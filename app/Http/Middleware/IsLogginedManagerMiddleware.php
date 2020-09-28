@@ -20,7 +20,7 @@ class IsLogginedManagerMiddleware
     public function handle(Request $request, Closure $next)
     {
         if(!Auth::check()) {
-            return route('admin.showLogin');
+            return route('admin.showlogin');
         }
         $user=User::find(Auth::id());
         $role=(new UserService())->getRole($user);
