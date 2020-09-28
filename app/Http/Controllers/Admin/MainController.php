@@ -9,6 +9,6 @@ class MainController extends Controller
 {
     public function dashboard()
     {
-        return 'hello';
+        return view('admin.pages.dashboard');
     }
 }
