@@ -17,7 +17,7 @@ class UsersSeeder extends Seeder
     {
         User::create(
             [
-                'email'=>'dkor2017@gmail.com',
+                'email'=>'admin@admin.com',
                 'password'=>Hash::make('132435'),
                 'is_active'=>1,
                 'referral_code'=>'hahahahaha',
