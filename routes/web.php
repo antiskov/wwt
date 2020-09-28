@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
     Route::group(['prefix'=>'admin','name'=>'login'], function () {
-        Route::get('/',[\App\Http\Controllers\Admin\MainController::class,'dashboard']);
-        Route::get('logout',[\App\Http\Controllers\Admin\AuthController::class,'logout']);
+        Route::get('/',[\App\Http\Controllers\Admin\MainController::class,'dashboard'])->name('dashboard');
+        Route::get('logout',[\App\Http\Controllers\Admin\AuthController::class,'logout'])->name('logout');
 
 
 
@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 
         Route::get('login',[\App\Http\Controllers\Admin\AuthController::class,'showLogin'])->name('showlogin');
-        Route::post('login',[\App\Http\Controllers\Admin\AuthController::class,'login']);
+        Route::post('login',[\App\Http\Controllers\Admin\AuthController::class,'login'])->name('login');
     });
 
 
