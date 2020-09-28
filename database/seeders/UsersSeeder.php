@@ -20,7 +20,8 @@ class UsersSeeder extends Seeder
                 'email'=>'dkor2017@gmail.com',
                 'password'=>Hash::make('132435'),
                 'is_active'=>1,
-                'referral_code'=>'hahahahaha'
+                'referral_code'=>'hahahahaha',
+                'role_id'=>3g
             ]
         );
     }

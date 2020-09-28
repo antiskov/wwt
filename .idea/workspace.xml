@@ -8,55 +8,9 @@
       <change afterPath="$PROJECT_DIR$/../mola-api" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../octulus_api" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../raml/api.raml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/phpunit.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Contracts/AdvertsInterface.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Advert.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/AdvertImage.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Category.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Complect.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Currency.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Language.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/MechanismType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Role.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Sex.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Status.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Timezone.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/UserSettings.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/WatchAdvert.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/WatchMake.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/WatchModel.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/WatchType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Services/AdvertsService.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Services/SecurityService.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Services/UserService.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_09_25_104235_create_timezones_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_09_25_104414_create_languages_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_09_25_104426_create_user_settings_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_09_25_104512_create_user_languages_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_09_25_123513_create_categories_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_09_25_124024_create_watch_types_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_09_25_124102_create_sexes_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_09_25_124144_create_watch_makes_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_09_25_124603_create_mechanism_types_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_09_25_124634_create_complects_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_09_25_124658_create_statuses_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_09_25_124722_create_watch_models_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_09_25_125326_create_adverts_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_09_25_130101_create_advert_images_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_09_25_130304_create_watch_adverts_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_09_25_142431_create_currencies_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_09_28_092605_create_roles_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/seeders/UserRolesSeeder.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/seeders/UsersSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/worldwatchtrade.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/worldwatchtrade.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/UsersSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/UsersSeeder.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -224,7 +178,7 @@
       <updated>1600944644146</updated>
       <workItem from="1600944645193" duration="9754000" />
       <workItem from="1601155681031" duration="12000" />
-      <workItem from="1601284031832" duration="3679000" />
+      <workItem from="1601284031832" duration="4902000" />
     </task>
     <servers />
   </component>
