@@ -18,5 +18,5 @@ Route::get('/', function () {
 });
 
 Route::group(['/admin'], function () {
-    Route::get('/login','Admin\AuthController@showLogin');
+    Route::get('/login',[\App\Http\Controllers\Admin\AuthController::class,'showLogin']);
 });
