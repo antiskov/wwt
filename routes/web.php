@@ -12,6 +12,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::group(['prefix'=>'/admin'], function () {
-    Route::get('/login',[\App\Http\Controllers\Admin\AuthController::class,'showLogin'])->name('adminlogin');
+Route::group(['prefix'=>'/admin','name'=>'admin.'], function () {
+    Route::get('/login',[\App\Http\Controllers\Admin\AuthController::class,'showLogin'])->name('login');
 });
