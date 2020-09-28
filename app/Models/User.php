@@ -8,6 +8,7 @@ use Illuminate\Notifications\Notifiable;
 
 /**
  * @property mixed id
+ * @method static find(int|string|null $id)
  */
 class User extends Authenticatable
 {
