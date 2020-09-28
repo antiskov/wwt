@@ -27,6 +27,6 @@ class IsLogginedManagerMiddleware
         if($role == 'admin' || $role == 'manager') {
             return $next($request);
         }
-        return route('admin.showLogin');
+        return redirect()->route('admin.showLogin');
     }
 }

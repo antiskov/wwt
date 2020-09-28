@@ -9,8 +9,8 @@
       <change afterPath="$PROJECT_DIR$/../octulus_api" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../raml/api.raml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/styles/admin/admin_login.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/styles/admin_package/admin_login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/layout/starter.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/layout/starter.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/AuthController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/IsLogginedManagerMiddleware.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/IsLogginedManagerMiddleware.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,7 +198,7 @@
       <workItem from="1600944645193" duration="9754000" />
       <workItem from="1601155681031" duration="12000" />
       <workItem from="1601284031832" duration="11815000" />
-      <workItem from="1601303285042" duration="1179000" />
+      <workItem from="1601303285042" duration="1491000" />
     </task>
     <servers />
   </component>
