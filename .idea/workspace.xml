@@ -8,9 +8,8 @@
       <change afterPath="$PROJECT_DIR$/../mola-api" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../octulus_api" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../raml/api.raml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/styles/admin_login.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/styles/admin/admin_login.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/login.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,6 +169,11 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\work\dda_projects\worldwatchtrade\public\styles\admin" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
@@ -186,7 +190,7 @@
       <updated>1600944644146</updated>
       <workItem from="1600944645193" duration="9754000" />
       <workItem from="1601155681031" duration="12000" />
-      <workItem from="1601284031832" duration="7903000" />
+      <workItem from="1601284031832" duration="8060000" />
     </task>
     <servers />
   </component>
