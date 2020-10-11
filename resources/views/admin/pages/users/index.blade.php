@@ -9,7 +9,7 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Главная</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Главная</a></li>
                         <li class="breadcrumb-item active">Пользователи</li>
                     </ol>
                 </div><!-- /.col -->
@@ -24,7 +24,8 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">DataTable with default features</h3>
+                        <a href="#" class="btn btn-block bg-gradient-success btn-lg">Добавить пользователя</a>
+                        <h3 class="card-title">Список пользователей</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -33,10 +34,10 @@
                                 <tr>
                                     <th>Id</th>
                                     <th>Email</th>
-                                    <th>Name</th>
-                                    <th>Role</th>
-                                    <th>Is Active</th>
-                                    <th>Operations</th>
+                                    <th>Имя</th>
+                                    <th>Роль</th>
+                                    <th>Активирован?</th>
+                                    <th>Действия</th>
                                 </tr>
                             </thead>
                             <tbody>

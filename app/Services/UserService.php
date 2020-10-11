@@ -5,6 +5,7 @@ namespace App\Services;
 
 
 use App\Contracts\IShowUser;
+use App\DataObjects\Admin\CreateUser;
 use App\Models\User;
 
 class UserService
@@ -17,4 +18,32 @@ class UserService
     {
         return User::all();
     }
+    public function create(CreateUser $request)
+    {
+        $user = new User();
+        $user->phone = $request->getPhone();
+        $user->name = $request->getName();
+        $user->surname = $request->getSurname();
+        $user->password = \Hash::make($request->getPassword());
+
+        if (!$user->save()) {
+            return false;
+        }
+
+        return $user;
+    }
+    public function update($user, $request)
+    {
+        $user = User::find($request->getId());
+        $user->name = $request->getName();
+        $user->surname = $request->getSurname();
+        /*$user->password = Hash::make($request->getPassword());*/
+
+        if (!$user->save()) {
+            return false;
+        }
+
+        return $user;
+    }
+
 }

@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->boolean('is_active')->default(0);
             $table->string('referral_code');
+            $table->bigInteger('invited_by')->nullable();
             $table->string('avatar')->nullable();
             $table->string('name')->nullable();
             $table->string('surname')->nullable();

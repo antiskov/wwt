@@ -21,6 +21,8 @@ use Illuminate\Support\Facades\Route;
 
             Route::group(['prefix'=>'users'],function() {
                 Route::get('/',[\App\Http\Controllers\Admin\UsersController::class,'index'])->name('admin.show_users');
+                Route::get('/create',[\App\Http\Controllers\Admin\UsersController::class,'showCreateUser'])->name('admin.create_user_form');
+                Route::post('/create',[\App\Http\Controllers\Admin\UsersController::class,'store'])->name('admin.create_user');
             });
 
         });

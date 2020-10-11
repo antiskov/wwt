@@ -65,7 +65,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       <i class="nav-icon fas fa-th"></i>
                       <p>
                           Пользователи
-                          <span class="right badge badge-danger">New</span>
                       </p>
                   </a>
               </li>

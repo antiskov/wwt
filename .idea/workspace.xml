@@ -8,7 +8,15 @@
       <change afterPath="$PROJECT_DIR$/../mola-api" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../octulus_api" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../raml/api.raml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/DataObjects/Admin/CreateUser.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/UsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/UsersController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/UserService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/UserService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/layout/starter.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/layout/starter.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/pages/users/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/pages/users/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/pages/users/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/pages/users/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -200,7 +208,7 @@
       <workItem from="1601306300543" duration="2114000" />
       <workItem from="1601381776092" duration="1193000" />
       <workItem from="1601461509747" duration="7000" />
-      <workItem from="1602431098115" duration="6351000" />
+      <workItem from="1602431098115" duration="8491000" />
     </task>
     <servers />
   </component>
@@ -212,11 +220,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602440123231" />
-    <state x="724" y="243" key="NewPhpClassDialog" timestamp="1602439969714">
+    <state x="724" y="243" key="NewPhpClassDialog" timestamp="1602442921016">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="724" y="243" key="NewPhpClassDialog/0.0.1920.1040/-1920.-232.1920.1160@0.0.1920.1040" timestamp="1601303592391" />
-    <state x="724" y="243" key="NewPhpClassDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602439969714" />
+    <state x="724" y="243" key="NewPhpClassDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602442921016" />
     <state x="794" y="443" key="NewPhpFileDialog" timestamp="1602437631838">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
