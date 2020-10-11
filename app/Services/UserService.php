@@ -21,9 +21,10 @@ class UserService
     public function create(CreateUser $request)
     {
         $user = new User();
-        $user->phone = $request->getPhone();
+        $user->email = $request->getEmail();
         $user->name = $request->getName();
         $user->surname = $request->getSurname();
+        $user->role_id = $request->getRole();
         $user->password = \Hash::make($request->getPassword());
 
         if (!$user->save()) {

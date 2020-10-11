@@ -69,5 +69,9 @@ class CreateUser
     {
         return $this->password;
     }
+    public function getRole(): int
+    {
+        return $this->role;
+    }
 
 }

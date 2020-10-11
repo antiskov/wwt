@@ -9,7 +9,7 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form role="form">
+                    <form role="form" method="POST" action="{{route('admin.create_user')}}">
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="email">Email</label>

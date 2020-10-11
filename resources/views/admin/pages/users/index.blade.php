@@ -24,7 +24,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <a href="#" class="btn btn-block bg-gradient-success btn-lg">Добавить пользователя</a>
+                        <a href="{{route('admin.create_user_form')}}" class="btn btn-block bg-gradient-success btn-lg">Добавить пользователя</a>
                         <h3 class="card-title">Список пользователей</h3>
                     </div>
                     <!-- /.card-header -->
