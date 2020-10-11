@@ -8,9 +8,7 @@
       <change afterPath="$PROJECT_DIR$/../mola-api" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../octulus_api" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../raml/api.raml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/pages/users/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/pages/users/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/UsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/UsersController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -202,7 +200,7 @@
       <workItem from="1601306300543" duration="2114000" />
       <workItem from="1601381776092" duration="1193000" />
       <workItem from="1601461509747" duration="7000" />
-      <workItem from="1602431098115" duration="14086000" />
+      <workItem from="1602431098115" duration="14271000" />
     </task>
     <servers />
   </component>

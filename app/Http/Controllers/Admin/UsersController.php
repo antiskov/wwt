@@ -40,9 +40,10 @@ class UsersController extends Controller
     }
     public function showEditUser(User $user)
     {
-
+        $roles=Role::all();
         return view('admin.pages.users.edit',[
-            'user'=>$user
+            'user'=>$user,
+            'roles'=>$roles
         ]);
     }
     public function update(UpdaeUserFormRequest $request, UserService $userService,User $user)
