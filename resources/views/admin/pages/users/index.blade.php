@@ -48,7 +48,7 @@
                                     <td>{{$user->getName()}}</td>
                                     <td>{{$user->getRole()}}</td>
                                     <td>{{$user->getActivity()}}</td>
-                                    <td><a href="{{route('admin.edit_user',['id'=>$user->id])}}">Редактировать</a></td>
+                                    <td><a href="{{route('admin.edit_user',['id'=>$user->getId()])}}">Редактировать</a></td>
                                 </tr>
                             @endforeach
                             </tbody>
