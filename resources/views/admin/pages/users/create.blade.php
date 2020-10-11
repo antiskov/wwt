@@ -44,6 +44,9 @@
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
+                    @if($errors->any())
+                        <h4>{{$errors->first()}}</h4>
+                    @endif
                 </div>
 
 
