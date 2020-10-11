@@ -8,9 +8,18 @@
       <change afterPath="$PROJECT_DIR$/../mola-api" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../octulus_api" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../raml/api.raml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Contracts/IShowUser.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/DataObjects/Admin/ShowShortUser.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/pages/users/edit.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/pages/users/index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/pages/users/show.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/AuthController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/IsLogginedManagerMiddleware.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/IsLogginedManagerMiddleware.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/UserService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/UserService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/layout/starter.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/layout/starter.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,7 +207,11 @@
       <workItem from="1600944645193" duration="9754000" />
       <workItem from="1601155681031" duration="12000" />
       <workItem from="1601284031832" duration="11815000" />
-      <workItem from="1601303285042" duration="1612000" />
+      <workItem from="1601303285042" duration="2225000" />
+      <workItem from="1601306300543" duration="2114000" />
+      <workItem from="1601381776092" duration="1193000" />
+      <workItem from="1601461509747" duration="7000" />
+      <workItem from="1602431098115" duration="5439000" />
     </task>
     <servers />
   </component>
@@ -206,17 +219,34 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="724" y="243" key="NewPhpClassDialog" timestamp="1601303592391">
+    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1602440123231">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602440123231" />
+    <state x="724" y="243" key="NewPhpClassDialog" timestamp="1602439969714">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="724" y="243" key="NewPhpClassDialog/0.0.1920.1040/-1920.-232.1920.1160@0.0.1920.1040" timestamp="1601303592391" />
-    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1601303600037">
+    <state x="724" y="243" key="NewPhpClassDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602439969714" />
+    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1602437631838">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040/-1920.-232.1920.1160@0.0.1920.1040" timestamp="1601303600037" />
+    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602437631838" />
     <state x="698" y="146" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1601287205568">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="698" y="146" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1040/-1920.-232.1920.1160@0.0.1920.1040" timestamp="1601287205568" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/welcome.blade.php</url>
+          <line>13</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -18,6 +18,11 @@ use Illuminate\Support\Facades\Route;
         Route::middleware('managerauth')->group(function () {
             Route::get('/',[MainController::class,'dashboard'])->name('admin.dashboard');
             Route::get('logout',[AuthController::class,'logout'])->name('admin.logout');
+
+            Route::group(['prefix'=>'users'],function() {
+                Route::get('/',[\App\Http\Controllers\Admin\UsersController::class,'index'])->name('admin.show_users');
+            });
+
         });
 
 

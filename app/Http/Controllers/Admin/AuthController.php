@@ -22,7 +22,7 @@ class AuthController extends Controller
         }
 
         return redirect()->back()->with(
-            'error','worng login or password'
+            'error','wrong login or password'
         );
     }
 

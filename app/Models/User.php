@@ -8,6 +8,11 @@ use Illuminate\Notifications\Notifiable;
 
 /**
  * @property mixed id
+ * @property mixed email
+ * @property mixed surname
+ * @property mixed name
+ * @property mixed role
+ * @property mixed is_active
  * @method static find(int|string|null $id)
  */
 class User extends Authenticatable
