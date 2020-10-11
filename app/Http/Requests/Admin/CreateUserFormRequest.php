@@ -34,6 +34,7 @@ class CreateUserFormRequest extends FormRequest
     }
     public function getDto(): CreateUser
     {
+        \Log::info('before returning user DTO');
         return new CreateUser(
             $this
         );

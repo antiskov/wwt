@@ -27,6 +27,7 @@ class UsersController extends Controller
     }
     public function store(CreateUserFormRequest $request, UserService $userService)
     {
+        \Log::info('in user controller creation');
         $user=$userService->create($request->getDto());
 
         return redirect()->back();
