@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="23" height="20" viewBox="0 0 23 20">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #7d7d7d;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path id="Прямоугольник_10_копия_10" data-name="Прямоугольник 10 копия 10" class="cls-1" d="M464,1588h17v6H464v-6Zm0,7h17v6H464v-6Zm0,7h17v6H464v-6Zm-6-14h5v6h-5v-6Zm0,7h5v6h-5v-6Zm0,7h5v6h-5v-6Z" transform="translate(-458 -1588)"/>
+</svg>
