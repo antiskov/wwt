@@ -31,7 +31,7 @@ class UsersController extends Controller
     {
 
         Log::info('in user controller creation');
-        $user=$userService->create($request->getDto());
+        $userService->create($request->getDto());
 
         return redirect()->back();
 
