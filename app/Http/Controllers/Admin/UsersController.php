@@ -8,6 +8,7 @@ use App\Http\Requests\Admin\CreateUserFormRequest;
 use App\Models\Role;
 use App\Services\UserService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class UsersController extends Controller
 {
@@ -27,7 +28,8 @@ class UsersController extends Controller
     }
     public function store(CreateUserFormRequest $request, UserService $userService)
     {
-        \Log::info('in user controller creation');
+
+        Log::info('in user controller creation');
         $user=$userService->create($request->getDto());
 
         return redirect()->back();

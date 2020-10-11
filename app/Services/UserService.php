@@ -3,7 +3,7 @@
 
 namespace App\Services;
 
-
+use Illuminate\Support\Facades\Log;
 use App\Contracts\IShowUser;
 use App\DataObjects\Admin\CreateUser;
 use App\Models\User;
@@ -20,7 +20,7 @@ class UserService
     }
     public function create(CreateUser $request)
     {
-        \Log::info('in user service creation');
+        Log::info('in user service creation');
         $user = new User();
         $user->email = $request->getEmail();
         $user->name = $request->getName();
@@ -29,7 +29,7 @@ class UserService
         $user->password = \Hash::make($request->getPassword());
         $user->referral_code=$request->getReferralCode();
         if (!$user->save()) {
-            \Log::info('user not saved');
+            Log::info('user not saved');
             return false;
         }
 
