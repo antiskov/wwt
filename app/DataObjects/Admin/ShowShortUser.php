@@ -19,7 +19,7 @@ class ShowShortUser implements IShowUser
         $this->id=$user->id;
         $this->email=$user->email;
         $this->name=$user->name.' '.$user->surname;
-        $this->role=$user->role;
+        $this->role=$user->role->title;
         $this->is_active=$user->is_active;
     }
 
