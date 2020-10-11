@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\DataObjects\Admin\ShowShortUser;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CreateUserFormRequest;
+use App\Http\Requests\Admin\UpdaeUserFormRequest;
 use App\Models\Role;
 use App\Models\User;
 use App\Services\UserService;
@@ -37,9 +38,9 @@ class UsersController extends Controller
         return redirect()->back();
 
     }
-    public function showEditUser(User $user)
+    public function showEditUser(UpdaeUserFormRequest $request, UserService $userService,User $user)
     {
-
+        dd($user);
         return view('admin.pages.users.edit',[
             'user'=>$user
         ]);
