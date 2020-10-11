@@ -23,8 +23,8 @@ use Illuminate\Support\Facades\Route;
                 Route::get('/',[\App\Http\Controllers\Admin\UsersController::class,'index'])->name('admin.show_users');
                 Route::get('/create',[\App\Http\Controllers\Admin\UsersController::class,'showCreateUser'])->name('admin.create_user_form');
                 Route::post('/create',[\App\Http\Controllers\Admin\UsersController::class,'store'])->name('admin.create_user');
-                Route::get('/edit/{id}',[\App\Http\Controllers\Admin\UsersController::class,'showEditUser'])->name('admin.edit_user_form');
-                Route::post('/edit/{id}',[\App\Http\Controllers\Admin\UsersController::class,'store'])->name('admin.edit_user');
+                Route::get('/edit/{user}',[\App\Http\Controllers\Admin\UsersController::class,'showEditUser'])->name('admin.edit_user_form');
+                Route::post('/edit/{user}',[\App\Http\Controllers\Admin\UsersController::class,'store'])->name('admin.edit_user');
             });
 
         });
