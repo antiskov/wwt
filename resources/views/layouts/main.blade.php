@@ -3,4 +3,8 @@
 
 
 @include('partials.global.footer-content')
+@section('modals')
+    @include('partials.modals.login')
+    @include('partials.modals.register')
+@show
 @include('partials.global.footer')
