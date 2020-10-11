@@ -5,6 +5,7 @@ namespace App\DataObjects\Admin;
 
 
 use App\Http\Requests\Admin\CreateUserFormRequest;
+use Illuminate\Support\Str;
 
 class CreateUser
 {
@@ -22,13 +23,9 @@ class CreateUser
 
     private $role;
 
-    /**
-     * UserCreateDTO constructor.
-     * @param string $phone
-     * @param string $name
-     * @param string $surname
-     * @param string $password
-     */
+    private $referral_code;
+
+
     public function __construct(CreateUserFormRequest $request)
     {
         $this->name = $request->get('name');
@@ -36,6 +33,7 @@ class CreateUser
         $this->password = $request->get('password');
         $this->email = $request->get('email');
         $this->role=$request->get('role');
+        $this->referral_code=Str::random(16);
     }
 
     /**
@@ -72,6 +70,10 @@ class CreateUser
     public function getRole(): int
     {
         return $this->role;
+    }
+    public function getReferralCode(): string
+    {
+        return $this->referral_code;
     }
 
 }

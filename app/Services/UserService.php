@@ -26,7 +26,7 @@ class UserService
         $user->surname = $request->getSurname();
         $user->role_id = $request->getRole();
         $user->password = \Hash::make($request->getPassword());
-
+        $user->referral_code=$request->getReferralCode();
         if (!$user->save()) {
             return false;
         }
