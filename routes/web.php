@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+    Route::get('/',[\App\Http\Controllers\HomeController::class,'main'])->name('home');
+
+
+
     Route::group(['prefix'=>'admin'], function () {
         Route::middleware('managerauth')->group(function () {
             Route::get('/',[MainController::class,'dashboard'])->name('admin.dashboard');

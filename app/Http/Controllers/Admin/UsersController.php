@@ -48,7 +48,9 @@ class UsersController extends Controller
     }
     public function update(UpdateUserFormRequest $request, UserService $userService, User $user)
     {
-        dd($user);
+        $userService->update($user,$request->getDto());
+
+        return redirect()->back();
     }
 
 }
