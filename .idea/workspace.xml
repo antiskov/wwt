@@ -8,19 +8,9 @@
       <change afterPath="$PROJECT_DIR$/../mola-api" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../octulus_api" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../raml/api.raml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/partials/modals/change_pass.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/partials/modals/change_pass_mail.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/partials/modals/congrats.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/partials/modals/introduce_yourself.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/partials/modals/item_page.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/partials/modals/login.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/partials/modals/password.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/partials/modals/referral_number.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/partials/modals/registration.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/partials/modals/save_search.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/main.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/main.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/main.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/main.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/partials/global/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/global/header.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -213,7 +203,7 @@
       <workItem from="1601306300543" duration="2114000" />
       <workItem from="1601381776092" duration="1193000" />
       <workItem from="1601461509747" duration="7000" />
-      <workItem from="1602431098115" duration="17026000" />
+      <workItem from="1602431098115" duration="17856000" />
     </task>
     <servers />
   </component>

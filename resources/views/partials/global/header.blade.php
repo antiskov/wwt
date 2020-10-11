@@ -282,17 +282,20 @@
                         </div>
                         <div class="header-login-block">
                             <div class="header-login-block__btns">
+                                @if(!\Illuminate\Support\Facades\Auth::check())
                                 <div>
-                                    <a data-fancybox data-src="#congrats-modal" href="javascript:;"  href="#">Войти</a>
+                                    <a data-fancybox data-src="#login-modal" href="javascript:;"  href="#">Войти</a>
                                     <a data-fancybox data-src="#registration-modal" href="javascript:;"  href="#">Регистрация</a>
                                 </div>
+                                @else
                                 <div class="header-login-block__portrait">
                                     <img src="/images/icons/profile-w.svg">
                                     <span class="notification-btn">1</span>
                                 </div>
+
                                 <!-- Next block for personal cabinet -->
 
-                                <!-- <div class="header-login-block__portrait header-login-block__portrait_cabinet">
+                                 <div class="header-login-block__portrait header-login-block__portrait_cabinet">
                                   <div class="header-cabinet-list-btn">
                                     <img src="./images/icons/profile-w.svg">
                                     <span class="notification-btn">1</span>
@@ -307,7 +310,8 @@
                                     <li><a href="#">Создать реферальную ссылку</a></li>
                                     <li><a href="#">Выход</a></li>
                                   </ul>
-                                </div> -->
+                                </div>
+                                @endif
                             </div>
                             <div class="languages-btns">
                                 <a href="#" class="active">ру</a>

@@ -5,6 +5,6 @@
 @include('partials.global.footer-content')
 @section('modals')
     @include('partials.modals.login')
-    @include('partials.modals.register')
+    @include('partials.modals.registration')
 @show
 @include('partials.global.footer')
