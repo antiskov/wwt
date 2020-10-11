@@ -38,16 +38,16 @@ class UsersController extends Controller
         return redirect()->back();
 
     }
-    public function showEditUser(UpdaeUserFormRequest $request, UserService $userService,User $user)
+    public function showEditUser(User $user)
     {
-        dd($user);
+
         return view('admin.pages.users.edit',[
             'user'=>$user
         ]);
     }
-    public function update()
+    public function update(UpdaeUserFormRequest $request, UserService $userService,User $user)
     {
-
+        dd($user);
     }
 
 }
