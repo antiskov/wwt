@@ -30,7 +30,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="{{route('admin.dashboard')}}" class="nav-link">Home</a>
-          <a href="{{route('admin.show_users')}}" class="nav-link">Пользователи</a>
       </li>
     </ul>
 
@@ -60,7 +59,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
-
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+              <li class="nav-item">
+                  <a href="{{route('admin.show_users')}}" class="nav-link">
+                      <i class="nav-icon fas fa-th"></i>
+                      <p>
+                          Пользователи
+                          <span class="right badge badge-danger">New</span>
+                      </p>
+                  </a>
+              </li>
+          </ul>
       </nav>
       <!-- /.sidebar-menu -->
     </div>
