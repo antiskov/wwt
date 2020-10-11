@@ -304,7 +304,7 @@
                                     <li><a href="#">Настройки</a></li>
                                     <li><a href="#">Избранное</a></li>
                                     <li><a href="#">Создать реферальную ссылку</a></li>
-                                    <li><a href="#">Выход</a></li>
+                                    <li><a href="{{route('logout')}}">Выход</a></li>
                                   </ul>
                                 </div>
                                 @endif
