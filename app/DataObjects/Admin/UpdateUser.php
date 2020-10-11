@@ -7,7 +7,7 @@ namespace App\DataObjects\Admin;
 use App\Http\Requests\Admin\CreateUserFormRequest;
 use Illuminate\Support\Str;
 
-class CreateUser
+class UpdateUser
 {
     /** @var string */
     private $email;
@@ -19,22 +19,20 @@ class CreateUser
     private $surname;
 
     /** @var string */
-    private $password;
+
 
     private $role;
 
-    private $referral_code;
+
 
 
     public function __construct(CreateUserFormRequest $request)
     {
         $this->name = $request->get('name');
         $this->surname = $request->has('surname')?$request->get('surname'):'';
-        $this->password = $request->get('password');
         $this->email = $request->get('email');
         $this->role=$request->get('role');
-        $this->referral_code=Str::random(16);
-        $this->is_active=1;
+
     }
 
     /**
@@ -64,21 +62,10 @@ class CreateUser
     /**
      * @return string
      */
-    public function getPassword(): string
-    {
-        return $this->password;
-    }
+
     public function getRole(): int
     {
         return $this->role;
-    }
-    public function getReferralCode(): string
-    {
-        return $this->referral_code;
-    }
-    public function getActivity(): int
-    {
-        return $this->is_active;
     }
 
 }

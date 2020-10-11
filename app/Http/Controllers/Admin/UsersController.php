@@ -6,6 +6,7 @@ use App\DataObjects\Admin\ShowShortUser;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CreateUserFormRequest;
 use App\Models\Role;
+use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -36,9 +37,12 @@ class UsersController extends Controller
         return redirect()->back();
 
     }
-    public function showEditUser()
+    public function showEditUser(User $user)
     {
-        return view('admin.pages.users.edit');
+
+        return view('admin.pages.users.edit',[
+            'user'=>$user
+        ]);
     }
     public function update()
     {

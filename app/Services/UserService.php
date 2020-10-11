@@ -28,6 +28,7 @@ class UserService
         $user->role_id = $request->getRole();
         $user->password = \Hash::make($request->getPassword());
         $user->referral_code=$request->getReferralCode();
+        $user->is_active=$request->getActivity();
         if (!$user->save()) {
             Log::info('user not saved');
             return false;
