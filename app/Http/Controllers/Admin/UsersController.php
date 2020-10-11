@@ -22,6 +22,7 @@ class UsersController extends Controller
     public function showCreateUser()
     {
         $roles=Role::all();
+        Log::info('in show creation form');
         return view('admin.pages.users.create',[
             'roles'=>$roles
         ]);
