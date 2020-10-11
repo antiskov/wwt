@@ -15,6 +15,7 @@ use Illuminate\Notifications\Notifiable;
  * @property mixed is_active
  * @property int|mixed role_id
  * @property mixed|string password
+ * @property mixed|string referral_code
  * @method static find(int|string|null $id)
  */
 class User extends Authenticatable
