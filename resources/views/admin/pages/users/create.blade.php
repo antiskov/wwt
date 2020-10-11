@@ -14,19 +14,19 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" placeholder="email">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="email">
                             </div>
                             <div class="form-group">
                                 <label for="password">Пароль</label>
-                                <input type="password" class="form-control" id="password" placeholder="Password">
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                             </div>
                             <div class="form-group">
                                 <label for="name">Имя</label>
-                                <input type="text" class="form-control" id="name" placeholder="Имя">
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Имя">
                             </div>
                             <div class="form-group">
                                 <label for="surname">Фамилия</label>
-                                <input type="text" class="form-control" id="surname" placeholder="Фамильия">
+                                <input type="text" class="form-control" id="surname" name="surname" placeholder="Фамильия">
                             </div>
                             <div class="form-group">
                                 <label>Роль</label>
