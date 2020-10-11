@@ -3,6 +3,7 @@
 
 namespace App\Services;
 
+use App\DataObjects\Admin\UpdateUser;
 use Illuminate\Support\Facades\Log;
 use App\Contracts\IShowUser;
 use App\DataObjects\Admin\CreateUser;
@@ -36,9 +37,8 @@ class UserService
 
         return $user;
     }
-    public function update($user, $request)
+    public function update($user, UpdateUser $request)
     {
-        $user = User::find($request->getId());
         $user->name = $request->getName();
         $user->surname = $request->getSurname();
         /*$user->password = Hash::make($request->getPassword());*/

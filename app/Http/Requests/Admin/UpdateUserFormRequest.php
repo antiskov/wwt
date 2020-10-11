@@ -5,7 +5,7 @@ namespace App\Http\Requests\Admin;
 use App\DataObjects\Admin\UpdateUser;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdaeUserFormRequest extends FormRequest
+class UpdateUserFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
