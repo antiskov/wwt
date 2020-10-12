@@ -5,7 +5,7 @@
             <img src="./images/icons/user.svg" alt="login photo">
         </div>
         <form id="login-form" class="check-login" action="#">
-            <input type="text" name="name" placeholder="Введите почту, логин или телефон">
+            <input type="text" name="name" id="login_email" placeholder="Введите почту, логин или телефон">
             <span>Обязательное поле*</span>
             <button class="btn-arrow">Далее</button>
         </form>

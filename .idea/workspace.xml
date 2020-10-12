@@ -8,12 +8,15 @@
       <change afterPath="$PROJECT_DIR$/../mola-api" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../octulus_api" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../raml/api.raml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Contracts/ICreateUser.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/DataObjects/RegisterUser.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SecurityController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/DataObjects/Admin/CreateUser.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/DataObjects/Admin/CreateUser.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/VerifyCsrfToken.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/VerifyCsrfToken.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/UserService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/UserService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/main.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/main.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/partials/global/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/global/header.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/partials/modals/password.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/modals/password.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/partials/modals/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/modals/login.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -206,7 +209,7 @@
       <workItem from="1601306300543" duration="2114000" />
       <workItem from="1601381776092" duration="1193000" />
       <workItem from="1601461509747" duration="7000" />
-      <workItem from="1602431098115" duration="18574000" />
+      <workItem from="1602431098115" duration="21873000" />
     </task>
     <servers />
   </component>
@@ -218,15 +221,15 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="665" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602451803606" />
-    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1602448668326">
+    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1602460735434">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602448668326" />
-    <state x="724" y="243" key="NewPhpClassDialog" timestamp="1602448655511">
+    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602460735434" />
+    <state x="724" y="243" key="NewPhpClassDialog" timestamp="1602460196182">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="724" y="243" key="NewPhpClassDialog/0.0.1920.1040/-1920.-232.1920.1160@0.0.1920.1040" timestamp="1601303592391" />
-    <state x="724" y="243" key="NewPhpClassDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602448655511" />
+    <state x="724" y="243" key="NewPhpClassDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602460196182" />
     <state x="794" y="443" key="NewPhpFileDialog" timestamp="1602455077608">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -236,5 +239,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="698" y="146" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1040/-1920.-232.1920.1160@0.0.1920.1040" timestamp="1601287205568" />
+    <state x="667" y="253" width="585" height="534" key="find.popup" timestamp="1602457752239">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="667" y="253" width="585" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602457752239" />
   </component>
 </project>

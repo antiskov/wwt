@@ -17,6 +17,7 @@ use Illuminate\Notifications\Notifiable;
  * @property mixed|string password
  * @property mixed|string referral_code
  * @method static find(int|string|null $id)
+ * @method static where(string $string, $email)
  */
 class User extends Authenticatable
 {

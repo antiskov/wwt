@@ -3,7 +3,9 @@
 
 namespace App\Services;
 
+use App\Contracts\ICreateUser;
 use App\DataObjects\Admin\UpdateUser;
+use App\Exceptions\NotImplementedException;
 use Illuminate\Support\Facades\Log;
 use App\Contracts\IShowUser;
 use App\DataObjects\Admin\CreateUser;
@@ -19,7 +21,7 @@ class UserService
     {
         return User::all();
     }
-    public function create(CreateUser $request)
+    public function create(ICreateUser $request)
     {
         Log::info('in user service creation');
         $user = new User();
@@ -49,5 +51,11 @@ class UserService
 
         return $user;
     }
+
+    public function sendVerificationCode($user)
+    {
+        throw new NotImplementedException();
+    }
+
 
 }

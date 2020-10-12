@@ -8,4 +8,7 @@
     @include('partials.modals.registration')
     @include('partials.modals.password')
 @show
+@section('scripts')
+
+@show
 @include('partials.global.footer')

@@ -1,14 +1,15 @@
 <?php
 
 
-namespace App\DataObjects\Admin;
+namespace App\DataObjects;
 
 
 use App\Contracts\ICreateUser;
 use App\Http\Requests\Admin\CreateUserFormRequest;
+use App\Http\Requests\RegisterFormRequest;
 use Illuminate\Support\Str;
 
-class CreateUser implements ICreateUser
+class RegisterUser implements ICreateUser
 {
     /** @var string */
     private $email;
@@ -25,21 +26,19 @@ class CreateUser implements ICreateUser
     private $role;
 
     private $referral_code;
-    /**
-     * @var int
-     */
+
     private $is_active;
 
 
-    public function __construct(CreateUserFormRequest $request)
+    public function __construct(RegisterFormRequest $request)
     {
-        $this->name = $request->get('name');
+        $this->name = $request->has('name')?$request->get('name'):'';
         $this->surname = $request->has('surname')?$request->get('surname'):'';
         $this->password = $request->get('password');
         $this->email = $request->get('email');
-        $this->role=$request->get('role');
+        $this->role=1;
         $this->referral_code=Str::random(16);
-        $this->is_active=1;
+        $this->is_active=0;
     }
 
     /**
@@ -85,5 +84,4 @@ class CreateUser implements ICreateUser
     {
         return $this->is_active;
     }
-
 }
