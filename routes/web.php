@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+    Route::get('/test', [\App\Http\Controllers\SetLocaleController::class, 'setLocal'])->middleware('set.locale');
+
     Route::get('/',[\App\Http\Controllers\HomeController::class,'main'])->name('home');
     Route::get('/logout',[\App\Http\Controllers\UserController::class,'logout'])->name('logout');
     Route::post('/login',[\App\Http\Controllers\UserController::class,'login'])->name('login');
@@ -33,13 +35,6 @@ use Illuminate\Support\Facades\Route;
             });
 
         });
-
-
-
-
-
-
-
         Route::get('login',[AuthController::class,'showLogin'])->name('admin.showlogin');
         Route::post('login',[AuthController::class,'login'])->name('admin.login');
     });

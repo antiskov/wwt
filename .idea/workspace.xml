@@ -1,22 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:multi_language" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="0d680e6e-3d93-4f3c-a53f-ff3148e53178" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../krasa-api/docker/mysql/my.cnf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../krasa-api/docker/nginx/conf.d/app.conf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../krasa-api/docker/php/local.ini" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../mola-api" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../octulus_api" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../raml/api.raml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Contracts/ICreateUser.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/DataObjects/RegisterUser.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/DataObjects/Admin/CreateUser.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/DataObjects/Admin/CreateUser.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/VerifyCsrfToken.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/VerifyCsrfToken.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/UserService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/UserService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/main.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/main.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/partials/modals/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/modals/login.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Middleware/SetLocale.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/lang/ru/auth.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/lang/ru/pagination.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/lang/ru/password.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/lang/ru/validation.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X02da6084925460b7cfdfdcafd377f7c7.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X079ee77c2e7249c7a9cc40410025ab0a.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X0c331793104b25ed227105989f7bd20f.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X0ec535eaeb2823c1c4bdc568dc297f79.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X106d2741b653f91082bdb4cfe8f19cb4.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X1124c244c6c39099b100519515105c34.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X1b9b02ebbb85a0d237c10ce1457a628b.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X1cf27ad4c936a0280ee4b5ee109b8117.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X1f0620d320cf1c715478cb1ac5b3ff6f.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X2028e3e939895b5e4c510fe406a60722.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X278cc889a1ae0c904483ac1d86dec4fe.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X2b264909c221c3f8a8173ecd26eba6f3.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X30d015125bbc2e8b7b0818209ca2c89c.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X3b9d90eb09c003c5a3f07d69d423d934.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X3f26bbb9b865008ad946054ba60fbf9b.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X4313a79712795af3f245778f5c79f897.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X4332764d0c6f6137eafb18a487e94ce3.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X457c7496f5e61c5b52e4396dfc08b85f.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X499528fd3d62bfb6ff8f321e2df14c91.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X4f034e39160e5b92d50ebda44124a1f9.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X5218e3941c5b496bf27dc4f68f1875ed.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X5592a1ac8935db4123ecb561f7e8a20c.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X55f6057264674d22119b23ce8dd74c7a.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X632deff3567634d256dcc64ce08f6c70.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X654d2c5b002e20acdffa4ed05e7eb1ab.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X6bd6c1ce30a7ac2612aeeffb639baccf.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X6f5d1540652683797f2f6baa004068fb.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X70b76bbd09b21562ea4274f544faee94.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X79afbbca5b18678c919ebb2748d7a91e.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X7f824ea1d1202b7c0683b48de32d8e1f.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X82a397bb556282cd9414536c06e7d965.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X86f464837d305100b67e1a5b2a012d89.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/X8f2baedbd361052ba3c5d4df89665847.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/Xa554ce9ee321aacb20a0f9cfde2cdee8.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/Xaa7262d0a321c06b3dedcd21560220c3.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/Xae5e1b5613750954230526f53ed40a0d.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/Xb9d23745923fa751c58f6cc1600fe660.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/Xc339463ca929031a5c38af6a85cbe795.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/Xc80405e7f51cc339cccfe7a21b7cfb96.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/Xc9d982aef504701bb66b4374dc091011.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/Xcc9aee2aa08224f46eeb3fb10594ffbf.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/Xd012c1a9eb341c34ee43afbea12468cb.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/Xd074bfd194b7675836b2a2e33c85e6b9.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/Xd47d9a07a4d091dfe1407ea952f3ca5b.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/Xd94449fc71e9c6fa7ea1110b76f83bcb.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/Xe25acc8cc6f2ac40868be7994f64f122.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/Xe39386d6d5f2725d8f9087438e889126.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/Xe8cb9c0bec2b57d7915ace65d22be2c9.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/Xead76996f69e650657e874d0980bedce.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/Xf7f6cb51386c8d821b9be96c863efc29.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,15 +225,22 @@
       <path value="$PROJECT_DIR$/vendor/seld/phar-utils" />
       <path value="$PROJECT_DIR$/vendor/barryvdh/reflection-docblock" />
       <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-ide-helper" />
+      <path value="$PROJECT_DIR$/vendor/symfony/debug" />
+      <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-debugbar" />
+      <path value="$PROJECT_DIR$/vendor/maximebf/debugbar" />
+      <path value="$PROJECT_DIR$/vendor/intervention/image" />
     </include_path>
   </component>
   <component name="ProjectId" id="1hxF4MlOg71Ny9PdoSfYqpwbtpI" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/public/admin" />
@@ -178,21 +255,29 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\work\dda_projects\worldwatchtrade\public\admin" />
+      <recent name="E:\work\dda_projects\worldwatchtrade\resources\views\admin\layout" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\work\dda_projects\worldwatchtrade\resources\views\partials\modals" />
       <recent name="E:\work\dda_projects\worldwatchtrade\resources\views\admin" />
       <recent name="E:\work\dda_projects\worldwatchtrade\public\styles\admin" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\work\dda_projects\worldwatchtrade\public\admin" />
-      <recent name="E:\work\dda_projects\worldwatchtrade\resources\views\admin\layout" />
-    </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JavaScript Debug.SetLocale.php">
+    <configuration name="SetLocale.php" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/worldwatchtrade/Http/Middleware/SetLocale.php" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.SetLocale.php" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -216,6 +301,30 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="multi_language" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="665" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1602451803606">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -230,11 +339,12 @@
     </state>
     <state x="724" y="243" key="NewPhpClassDialog/0.0.1920.1040/-1920.-232.1920.1160@0.0.1920.1040" timestamp="1601303592391" />
     <state x="724" y="243" key="NewPhpClassDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602460196182" />
-    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1602455077608">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="704" y="399" width="399" height="156" key="NewPhpFileDialog" timestamp="1603456226389">
+      <screen x="72" y="27" width="1528" height="873" />
     </state>
     <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040/-1920.-232.1920.1160@0.0.1920.1040" timestamp="1601303600037" />
     <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602455077608" />
+    <state x="704" y="399" width="399" height="156" key="NewPhpFileDialog/72.27.1528.873/1600.0.1920.1200@72.27.1528.873" timestamp="1603456226389" />
     <state x="698" y="146" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1601287205568">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -243,5 +353,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="667" y="253" width="585" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602457752239" />
+    <state x="509" y="204" width="672" height="678" key="search.everywhere.popup" timestamp="1603456983374">
+      <screen x="72" y="27" width="1528" height="873" />
+    </state>
+    <state x="509" y="204" width="672" height="678" key="search.everywhere.popup/72.27.1528.873/1600.0.1920.1200@72.27.1528.873" timestamp="1603456983374" />
   </component>
 </project>
