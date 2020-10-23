@@ -1,9 +1,9 @@
 <div id="registration-modal" class="modal">
     <div class="modal__content">
         <h5 class="modal__title">Добро пожаловать!</h5>
-        <form id="registration-form" class="registration" action="#">
+        <form id="registration-form" type='post' class="registration" action="{{ route('register-user') }}">
             <div class="change-input">
-                <input name="name" type="text" placeholder="Введите почту, логин или телефон" disabled
+                <input name="email" type="text" placeholder="Введите почту, логин или телефон" disabled
                        value="someMail@gmail.com" required>
                 <span>Введите правильно почту</span>
                 <img src="./images/icons/eraser.svg" alt="Изменить логин">
