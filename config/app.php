@@ -163,10 +163,6 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         /*
-         * Package Service Providers...
-         */
-
-        /*
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
@@ -228,5 +224,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
+
+
 
 ];
