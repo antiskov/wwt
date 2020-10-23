@@ -26,7 +26,6 @@ class ImageMinificationService
             $image_resize->save($save_path);
             $images_resized[$size]    = $save_path;
         }
-        dd($images_resized);
         return $images_resized;
     }
 }
