@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
     Route::get('/',[\App\Http\Controllers\HomeController::class,'main'])->name('home');
-    Route::get('/test', [\App\Http\Controllers\HomeController::class,'test']);
+    Route::get('/test', [\App\Http\Controllers\HomeController::class,'test']); //todo: remove on prod
     Route::get('/logout',[\App\Http\Controllers\UserController::class,'logout'])->name('logout');
     Route::post('/login',[\App\Http\Controllers\UserController::class,'login'])->name('login');
     Route::post('/register-user', [\App\Http\Controllers\AjaxController::class,'registerUser'])->name('register-user');
