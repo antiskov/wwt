@@ -8,34 +8,26 @@ use Intervention\Image\Facades\Image;
 
 class ImageMinificationService
 {
-    public function minify($image_url, $image_size)
+    public function minify($image_url, array $image_sizes)
     {
         $sizes = config('image_sizes');
-        $small_width    = $sizes['small']['width'];
-        $small_height   = $sizes['small']['height'];
-        $medium_width      = $sizes['medium']['width'];
-        $medium_height     = $sizes['medium']['height'];
-        $big_width      = $sizes['big']['width'];
-        $big_height     = $sizes['big']['height'];
-
 
         $image              = Storage::path($image_url);
-        $image_resize_small = Image::make($image);
-        $image_resize_big   = Image::make($image);
+        $image_resize = Image::make($image);
 
-        if($image_size === 'small'){
-            $image_resize_small->resize($small_width, $small_height);
-            $image_resize_small->save(Storage::path('public/yoda_small.png'));
-        }
+        $images_resized = ['original' => $image_url];
 
-        if($image_size === 'medium'){
-            $image_resize_small->resize($medium_width, $medium_height);
-            $image_resize_small->save(Storage::path('public/yoda_medium.png'));
-        }
+        foreach ($image_sizes as $size) {
+            $partials_url = explode('/', $image_url);
+            $last_key  = array_key_last($partials_url);
+            $partials_url[$last_key] = $size . '_' . end($partials_url);
 
-        if($image_size === 'big'){
-            $image_resize_big->resize($big_width, $big_height);
-            $image_resize_big->save(Storage::path('public/yoda_big.png'));
+            $image_resize->resize($sizes[$size]['width'], $sizes[$size]['height']);
+            $image_resize->save(Storage::path(implode('/', $partials_url)));
+
+            $images_resized = [$size => implode('/', $partials_url)];
         }
+        return $images_resized;
     }
+
 }

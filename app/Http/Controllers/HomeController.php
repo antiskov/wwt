@@ -14,7 +14,7 @@ class HomeController extends Controller
 
     public function test(ImageMinificationService $req)
     {
-        $req->minify('public/yoda.png', 'medium');
+        $req->minify('public/yoda.png', ['medium', 'big', 'small']);
 
         return view('pages.main');
     }
