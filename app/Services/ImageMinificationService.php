@@ -24,7 +24,7 @@ class ImageMinificationService
             $save_path               = Storage::path(implode('/', $partials_url));
             $image_resize->resize($sizes[$size]['width'], $sizes[$size]['height']);
             $image_resize->save($save_path);
-            $images_resized[$size]    = $save_path;
+            $images_resized[$size]   = $save_path;
         }
         return $images_resized;
     }
