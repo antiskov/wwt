@@ -37,7 +37,7 @@ class AjaxController extends Controller
         } else {
             $data=[
                 'status'=>'error',
-                'message'=>__('wrong_username or password')
+                'message'=>__('wrong_username or password'),
             ];
         }
         return response()->json($data);

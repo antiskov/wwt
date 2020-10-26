@@ -202,6 +202,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -245,6 +246,8 @@
       <workItem from="1601381776092" duration="1193000" />
       <workItem from="1601461509747" duration="7000" />
       <workItem from="1602431098115" duration="21873000" />
+      <workItem from="1603370216008" duration="13554000" />
+      <workItem from="1603437241260" duration="3996000" />
     </task>
     <servers />
   </component>
@@ -284,10 +287,15 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="665" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602451803606" />
+    <state x="601" y="27" width="902" height="873" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/72.27.1528.873/1600.0.1920.1200@72.27.1528.873" timestamp="1603439356448" />
     <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1602460735434">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602460735434" />
+    <state x="634" y="149" width="414" height="595" key="#com.jetbrains.php.refactoring.extractMethod.PhpExtractMethodDialog#method1" timestamp="1603380625893">
+      <screen x="72" y="27" width="1528" height="873" />
+    </state>
+    <state x="634" y="149" width="414" height="595" key="#com.jetbrains.php.refactoring.extractMethod.PhpExtractMethodDialog#method1/72.27.1528.873/1600.0.1920.1200@72.27.1528.873" timestamp="1603380625893" />
     <state x="724" y="243" key="NewPhpClassDialog" timestamp="1602460196182">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
