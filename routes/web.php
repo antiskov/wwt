@@ -14,9 +14,17 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+    Route::middleware('set.locale')->group(function () {
+        Route::get('/test{language}', [\App\Http\Controllers\SetLocaleController::class, 'setLocal'])->name('test');
+        Route::get('/',[\App\Http\Controllers\HomeController::class,'main'])->name('home');
+    });
+    Route::get('/test{language}', [\App\Http\Controllers\SetLocaleController::class, 'setLocal'])->middleware('set.locale')->name('test');
+
     Route::get('/',[\App\Http\Controllers\HomeController::class,'main'])->name('home');
+    Route::get('/test', [\App\Http\Controllers\HomeController::class,'test']); //todo: remove on prod
     Route::get('/logout',[\App\Http\Controllers\UserController::class,'logout'])->name('logout');
     Route::post('/login',[\App\Http\Controllers\UserController::class,'login'])->name('login');
+    Route::post('/register-user', [\App\Http\Controllers\AjaxController::class,'registerUser'])->name('register-user');
 
 
     Route::group(['prefix'=>'admin'], function () {
@@ -33,13 +41,6 @@ use Illuminate\Support\Facades\Route;
             });
 
         });
-
-
-
-
-
-
-
         Route::get('login',[AuthController::class,'showLogin'])->name('admin.showlogin');
         Route::post('login',[AuthController::class,'login'])->name('admin.login');
     });

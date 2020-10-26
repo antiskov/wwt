@@ -29,10 +29,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d680e6e-3d93-4f3c-a53f-ff3148e53178" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/worldwatchtrade.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/worldwatchtrade.iml" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wwt" beforeDir="false" afterPath="$PROJECT_DIR$/wwt" afterDir="false" />
+>>>>>>> d8464a2c729698ff90ff748fbd3444f00d7d978c
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -186,8 +192,14 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/public/admin" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -211,11 +223,19 @@
       <recent name="E:\work\dda_projects\worldwatchtrade\public\styles\admin" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JavaScript Debug.SetLocale.php">
+    <configuration name="SetLocale.php" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/worldwatchtrade/Http/Middleware/SetLocale.php" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.SetLocale.php" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -233,7 +253,12 @@
       <workItem from="1601381776092" duration="1193000" />
       <workItem from="1601461509747" duration="7000" />
       <workItem from="1602431098115" duration="21873000" />
+<<<<<<< HEAD
       <workItem from="1603700330212" duration="60000" />
+=======
+      <workItem from="1603370216008" duration="13554000" />
+      <workItem from="1603437241260" duration="3996000" />
+>>>>>>> d8464a2c729698ff90ff748fbd3444f00d7d978c
     </task>
     <servers />
   </component>
@@ -264,34 +289,50 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+<<<<<<< HEAD
   <component name="VcsManagerConfiguration">
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
   </component>
+=======
+>>>>>>> d8464a2c729698ff90ff748fbd3444f00d7d978c
   <component name="WindowStateProjectService">
+    <state x="481" y="87" width="700" height="759" key="#PHP" timestamp="1603718156066">
+      <screen x="72" y="27" width="1528" height="873" />
+    </state>
+    <state x="481" y="87" width="700" height="759" key="#PHP/72.27.1528.873/1600.0.1920.1200@72.27.1528.873" timestamp="1603718156066" />
     <state x="665" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1602451803606">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="665" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602451803606" />
+    <state x="601" y="27" width="902" height="873" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/72.27.1528.873/1600.0.1920.1200@72.27.1528.873" timestamp="1603439356448" />
     <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1602460735434">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602460735434" />
+    <state x="634" y="149" width="414" height="595" key="#com.jetbrains.php.refactoring.extractMethod.PhpExtractMethodDialog#method1" timestamp="1603380625893">
+      <screen x="72" y="27" width="1528" height="873" />
+    </state>
+    <state x="634" y="149" width="414" height="595" key="#com.jetbrains.php.refactoring.extractMethod.PhpExtractMethodDialog#method1/72.27.1528.873/1600.0.1920.1200@72.27.1528.873" timestamp="1603380625893" />
     <state x="724" y="243" key="NewPhpClassDialog" timestamp="1602460196182">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="724" y="243" key="NewPhpClassDialog/0.0.1920.1040/-1920.-232.1920.1160@0.0.1920.1040" timestamp="1601303592391" />
     <state x="724" y="243" key="NewPhpClassDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602460196182" />
-    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1602455077608">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="704" y="399" width="399" height="156" key="NewPhpFileDialog" timestamp="1603456226389">
+      <screen x="72" y="27" width="1528" height="873" />
     </state>
     <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040/-1920.-232.1920.1160@0.0.1920.1040" timestamp="1601303600037" />
     <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602455077608" />
+<<<<<<< HEAD
     <state x="325" y="98" width="1022" height="737" key="SettingsEditor" timestamp="1603700389869">
       <screen x="72" y="27" width="1528" height="873" />
     </state>
     <state x="325" y="98" width="1022" height="737" key="SettingsEditor/72.27.1528.873/1600.0.1920.1200@72.27.1528.873" timestamp="1603700389869" />
+=======
+    <state x="704" y="399" width="399" height="156" key="NewPhpFileDialog/72.27.1528.873/1600.0.1920.1200@72.27.1528.873" timestamp="1603456226389" />
+>>>>>>> d8464a2c729698ff90ff748fbd3444f00d7d978c
     <state x="698" y="146" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1601287205568">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -300,9 +341,16 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="667" y="253" width="585" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602457752239" />
+<<<<<<< HEAD
     <state x="509" y="204" width="672" height="678" key="search.everywhere.popup" timestamp="1603467393584">
       <screen x="72" y="27" width="1528" height="873" />
     </state>
     <state x="509" y="204" width="672" height="678" key="search.everywhere.popup/72.27.1528.873/1600.0.1920.1200@72.27.1528.873" timestamp="1603467393584" />
+=======
+    <state x="509" y="204" width="672" height="678" key="search.everywhere.popup" timestamp="1603456983374">
+      <screen x="72" y="27" width="1528" height="873" />
+    </state>
+    <state x="509" y="204" width="672" height="678" key="search.everywhere.popup/72.27.1528.873/1600.0.1920.1200@72.27.1528.873" timestamp="1603456983374" />
+>>>>>>> d8464a2c729698ff90ff748fbd3444f00d7d978c
   </component>
 </project>
