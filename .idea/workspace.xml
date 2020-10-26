@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -20,34 +23,15 @@
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:login_and_register" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:multi_language" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d680e6e-3d93-4f3c-a53f-ff3148e53178" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Services/ImageMinificationService.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/image_sizes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/worldwatchtrade.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/worldwatchtrade.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AjaxController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AjaxController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/main.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/main.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/partials/modals/registration.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/modals/registration.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/app/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/storage/app/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/app/public/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/storage/app/public/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/cache/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/cache/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/cache/data/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/cache/data/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/sessions/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/sessions/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/testing/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/testing/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/framework/views/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/storage/framework/views/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/logs/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/storage/logs/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wwt" beforeDir="false" afterPath="$PROJECT_DIR$/wwt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -186,22 +170,30 @@
       <path value="$PROJECT_DIR$/vendor/seld/phar-utils" />
       <path value="$PROJECT_DIR$/vendor/barryvdh/reflection-docblock" />
       <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-ide-helper" />
-      <path value="$PROJECT_DIR$/vendor/symfony/debug" />
-      <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-debugbar" />
       <path value="$PROJECT_DIR$/vendor/maximebf/debugbar" />
       <path value="$PROJECT_DIR$/vendor/intervention/image" />
+      <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-debugbar" />
+      <path value="$PROJECT_DIR$/vendor/symfony/debug" />
     </include_path>
   </component>
   <component name="ProjectId" id="1hxF4MlOg71Ny9PdoSfYqpwbtpI" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/admin" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -214,21 +206,29 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\work\dda_projects\worldwatchtrade\public\admin" />
+      <recent name="E:\work\dda_projects\worldwatchtrade\resources\views\admin\layout" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\work\dda_projects\worldwatchtrade\resources\views\partials\modals" />
       <recent name="E:\work\dda_projects\worldwatchtrade\resources\views\admin" />
       <recent name="E:\work\dda_projects\worldwatchtrade\public\styles\admin" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\work\dda_projects\worldwatchtrade\public\admin" />
-      <recent name="E:\work\dda_projects\worldwatchtrade\resources\views\admin\layout" />
-    </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JavaScript Debug.SetLocale.php">
+    <configuration name="SetLocale.php" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/worldwatchtrade/Http/Middleware/SetLocale.php" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.SetLocale.php" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -265,7 +265,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="login_and_register" />
+                        <option value="multi_language" />
                       </list>
                     </value>
                   </entry>
@@ -279,8 +279,12 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="601" y="27" width="902" height="873" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1603439356448">
+    <state x="481" y="87" width="700" height="759" key="#PHP" timestamp="1603718156066">
       <screen x="72" y="27" width="1528" height="873" />
+    </state>
+    <state x="481" y="87" width="700" height="759" key="#PHP/72.27.1528.873/1600.0.1920.1200@72.27.1528.873" timestamp="1603718156066" />
+    <state x="665" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1602451803606">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="665" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602451803606" />
     <state x="601" y="27" width="902" height="873" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/72.27.1528.873/1600.0.1920.1200@72.27.1528.873" timestamp="1603439356448" />
@@ -297,15 +301,12 @@
     </state>
     <state x="724" y="243" key="NewPhpClassDialog/0.0.1920.1040/-1920.-232.1920.1160@0.0.1920.1040" timestamp="1601303592391" />
     <state x="724" y="243" key="NewPhpClassDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602460196182" />
-    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1602455077608">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="704" y="399" width="399" height="156" key="NewPhpFileDialog" timestamp="1603456226389">
+      <screen x="72" y="27" width="1528" height="873" />
     </state>
     <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040/-1920.-232.1920.1160@0.0.1920.1040" timestamp="1601303600037" />
     <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602455077608" />
-    <state x="335" y="78" width="1022" height="737" key="SettingsEditor" timestamp="1603370074298">
-      <screen x="72" y="27" width="1528" height="873" />
-    </state>
-    <state x="335" y="78" width="1022" height="737" key="SettingsEditor/72.27.1528.873/1600.0.1920.1200@72.27.1528.873" timestamp="1603370074298" />
+    <state x="704" y="399" width="399" height="156" key="NewPhpFileDialog/72.27.1528.873/1600.0.1920.1200@72.27.1528.873" timestamp="1603456226389" />
     <state x="698" y="146" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1601287205568">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -314,13 +315,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="667" y="253" width="585" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602457752239" />
-    <state x="557" y="216" width="568" height="462" key="refactoring.ChangeSignatureDialog" timestamp="1603384141155">
+    <state x="509" y="204" width="672" height="678" key="search.everywhere.popup" timestamp="1603456983374">
       <screen x="72" y="27" width="1528" height="873" />
     </state>
-    <state x="557" y="216" width="568" height="462" key="refactoring.ChangeSignatureDialog/72.27.1528.873/1600.0.1920.1200@72.27.1528.873" timestamp="1603384141155" />
-    <state x="509" y="204" width="672" height="678" key="search.everywhere.popup" timestamp="1603370978016">
-      <screen x="72" y="27" width="1528" height="873" />
-    </state>
-    <state x="509" y="204" width="672" height="678" key="search.everywhere.popup/72.27.1528.873/1600.0.1920.1200@72.27.1528.873" timestamp="1603370978016" />
+    <state x="509" y="204" width="672" height="678" key="search.everywhere.popup/72.27.1528.873/1600.0.1920.1200@72.27.1528.873" timestamp="1603456983374" />
   </component>
 </project>
