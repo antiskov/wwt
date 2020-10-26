@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
 
 class SetLocaleController extends Controller
 {
     public function setLocal(string $language) {
-        $_COOKIE['language'] = $language;
-        App::setLocale($_COOKIE['language']);
+        Session::put('language', $language);
+        App::setLocale(Session::get('language'));
 
-        return view('pages.main');
+        return redirect()->back();
     }
 }

@@ -14,7 +14,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-    Route::get('/test', [\App\Http\Controllers\SetLocaleController::class, 'setLocal'])->middleware('set.locale');
+    Route::middleware('set.locale')->group(function () {
+        Route::get('/test{language}', [\App\Http\Controllers\SetLocaleController::class, 'setLocal'])->name('test');
+        Route::get('/',[\App\Http\Controllers\HomeController::class,'main'])->name('home');
+    });
+    Route::get('/test{language}', [\App\Http\Controllers\SetLocaleController::class, 'setLocal'])->middleware('set.locale')->name('test');
 
     Route::get('/',[\App\Http\Controllers\HomeController::class,'main'])->name('home');
     Route::get('/logout',[\App\Http\Controllers\UserController::class,'logout'])->name('logout');

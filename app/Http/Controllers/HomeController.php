@@ -10,6 +10,7 @@ class HomeController extends Controller
 {
     public function main()
     {
+        dump(App::getLocale());
         return view('pages.main');
     }
 }
