@@ -1,22 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:multi_language" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="0d680e6e-3d93-4f3c-a53f-ff3148e53178" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../krasa-api/docker/mysql/my.cnf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../krasa-api/docker/nginx/conf.d/app.conf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../krasa-api/docker/php/local.ini" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../mola-api" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../octulus_api" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../raml/api.raml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Contracts/ICreateUser.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/DataObjects/RegisterUser.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/DataObjects/Admin/CreateUser.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/DataObjects/Admin/CreateUser.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/VerifyCsrfToken.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/VerifyCsrfToken.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Services/UserService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/UserService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/main.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/main.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/partials/modals/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/modals/login.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/worldwatchtrade.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/worldwatchtrade.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,10 +171,16 @@
       <path value="$PROJECT_DIR$/vendor/seld/phar-utils" />
       <path value="$PROJECT_DIR$/vendor/barryvdh/reflection-docblock" />
       <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-ide-helper" />
+      <path value="$PROJECT_DIR$/vendor/maximebf/debugbar" />
+      <path value="$PROJECT_DIR$/vendor/intervention/image" />
+      <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-debugbar" />
+      <path value="$PROJECT_DIR$/vendor/symfony/debug" />
     </include_path>
   </component>
   <component name="ProjectId" id="1hxF4MlOg71Ny9PdoSfYqpwbtpI" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -175,17 +197,18 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\work\dda_projects\worldwatchtrade\public\admin" />
+      <recent name="E:\work\dda_projects\worldwatchtrade\resources\views\admin\layout" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\work\dda_projects\worldwatchtrade\resources\views\partials\modals" />
       <recent name="E:\work\dda_projects\worldwatchtrade\resources\views\admin" />
       <recent name="E:\work\dda_projects\worldwatchtrade\public\styles\admin" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\work\dda_projects\worldwatchtrade\public\admin" />
-      <recent name="E:\work\dda_projects\worldwatchtrade\resources\views\admin\layout" />
     </key>
   </component>
   <component name="RunManager">
@@ -210,11 +233,41 @@
       <workItem from="1601381776092" duration="1193000" />
       <workItem from="1601461509747" duration="7000" />
       <workItem from="1602431098115" duration="21873000" />
+      <workItem from="1603700330212" duration="60000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="multi_language" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/.." />
+    </ignored-roots>
   </component>
   <component name="WindowStateProjectService">
     <state x="665" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1602451803606">
@@ -235,6 +288,10 @@
     </state>
     <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040/-1920.-232.1920.1160@0.0.1920.1040" timestamp="1601303600037" />
     <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602455077608" />
+    <state x="325" y="98" width="1022" height="737" key="SettingsEditor" timestamp="1603700389869">
+      <screen x="72" y="27" width="1528" height="873" />
+    </state>
+    <state x="325" y="98" width="1022" height="737" key="SettingsEditor/72.27.1528.873/1600.0.1920.1200@72.27.1528.873" timestamp="1603700389869" />
     <state x="698" y="146" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1601287205568">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -243,5 +300,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="667" y="253" width="585" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602457752239" />
+    <state x="509" y="204" width="672" height="678" key="search.everywhere.popup" timestamp="1603467393584">
+      <screen x="72" y="27" width="1528" height="873" />
+    </state>
+    <state x="509" y="204" width="672" height="678" key="search.everywhere.popup/72.27.1528.873/1600.0.1920.1200@72.27.1528.873" timestamp="1603467393584" />
   </component>
 </project>
