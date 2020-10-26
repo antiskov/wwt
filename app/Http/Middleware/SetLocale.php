@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Cookie;
 use Locale;
 
 class SetLocale
@@ -22,7 +23,6 @@ class SetLocale
         $locale = Locale::acceptFromHttp($_SERVER['HTTP_ACCEPT_LANGUAGE']);
         foreach ($languages as $language) {
             if($language == $locale and !isset($_COOKIE['language'])) {
-                setcookie('language', $language);
                 Cookie::queue(Cookie::make('language', $language));
                 App::setLocale($_COOKIE['language']);
                 return $next($request);
