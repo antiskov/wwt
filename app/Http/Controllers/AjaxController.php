@@ -47,6 +47,5 @@ class AjaxController extends Controller
         $user=$userService->create($request->getDto());
 
         return response()->json($userService->sendVerificationCode($user));
-
     }
 }
