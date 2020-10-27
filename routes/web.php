@@ -26,6 +26,8 @@ use Illuminate\Support\Facades\Route;
     Route::post('/login',[\App\Http\Controllers\UserController::class,'login'])->name('login');
     Route::post('/register-user', [\App\Http\Controllers\AjaxController::class,'registerUser'])->name('register-user');
 
+    Route::get('t2{email}', [\App\Http\Controllers\HomeController::class, 't2'])->name('t2');
+
 
     Route::group(['prefix'=>'admin'], function () {
         Route::middleware('managerauth')->group(function () {
