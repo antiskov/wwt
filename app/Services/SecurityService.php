@@ -5,7 +5,11 @@ namespace App\Services;
 
 
 use App\Contracts\AdvertsInterface;
+use App\Mail\WelcomeMail;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class SecurityService
 {
@@ -18,5 +22,17 @@ class SecurityService
         }
 
         return false;
+    }
+
+    public function resetPassword(User $user)
+    {
+        $passwordSend = Str::random(8);
+        $user->forceFill([
+            'password' => Hash::make($passwordSend)
+        ])->save();
+
+        Mail::to($user)->send(new WelcomeMail($passwordSend));
+
+        return $user;
     }
 }
