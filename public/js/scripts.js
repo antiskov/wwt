@@ -433,6 +433,31 @@ $(document).ready(function () {
         })
     });
 
+    $('#login-form').on('submit', function(e){
+        e.preventDefault();
+        $.ajax({
+            type:"POST",
+            url: '/check-login-email',
+            data: $('#login-form').serializeArray(),
+            datatype: 'html',
+            success: function (data) {
+                $('#login-form').empty();
+                $('#login-form').html(data.output);
+
+                console.log(data.output);
+                console.log(data.errors);
+            },
+            error: function (xhr) {
+                if(xhr.status === 422) {
+                    $('#login-email-form').addClass('form-elem_err').removeClass('form-elem_success');
+                    $('#login-email-form + span').text(xhr.responseJSON.errors.email[0]);
+                }
+            }
+        }).done(function() {
+            $( this ).addClass( "done" );
+        })
+    });
+
     $('#password-form').validate({
         rules: {
             name: {

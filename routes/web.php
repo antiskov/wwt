@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Route;
     Route::post('/login',[\App\Http\Controllers\UserController::class,'login'])->name('login');
 
     Route::post('/register-user', [\App\Http\Controllers\AjaxController::class,'registerUser'])->name('register-user');
+    Route::post('/check-login-email', [\App\Http\Controllers\AjaxController::class, 'checkLoginEmail'])->name('check-login-email');
 
     Route::get('t2{email}', [\App\Http\Controllers\HomeController::class, 't2'])->name('t2');
 
