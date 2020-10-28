@@ -9,4 +9,6 @@ interface ICreateUser
     public function getEmail();
     public function getReferralCode();
     public function getPassword();
+    //public function getEmailVerificationCode();
+
 }

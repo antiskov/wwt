@@ -28,6 +28,8 @@ use Illuminate\Support\Facades\Route;
 
     Route::get('t2{email}', [\App\Http\Controllers\HomeController::class, 't2'])->name('t2');
 
+    Route::get('/email_verification_code/{email_verification_code}', [\App\Http\Controllers\HomeController::class, 'emailVerificationCode']);
+
 
     Route::group(['prefix'=>'admin'], function () {
         Route::middleware('managerauth')->group(function () {

@@ -6,10 +6,13 @@ namespace App\Services;
 use App\Contracts\ICreateUser;
 use App\DataObjects\Admin\UpdateUser;
 use App\Exceptions\NotImplementedException;
+use App\Mail\RegisterEmail;
 use Illuminate\Support\Facades\Log;
 use App\Contracts\IShowUser;
 use App\DataObjects\Admin\CreateUser;
 use App\Models\User;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class UserService
 {
@@ -26,6 +29,7 @@ class UserService
         Log::info('in user service creation');
         $user = new User();
         $user->email = $request->getEmail();
+        $user->email_verification_code = \Hash::make(Str::random(5)); //Hash::make($request->getEmailVerificationCode()):
         $user->name = $request->getName();
         $user->surname = $request->getSurname();
         $user->role_id = $request->getRole();
@@ -57,5 +61,14 @@ class UserService
         throw new NotImplementedException();
     }
 
+    public function sendEmailRegister($user) {
+        $codeEmail = $_SERVER['HTTP_HOST'] . '/email_verification_code/' . $user->email_verification_code;
+
+        Mail::to($user)->send(new RegisterEmail($codeEmail));
+    }
+
+    public function setActivity(User $user) {
+        $user->update(['is_active' => true]);
+    }
 
 }
