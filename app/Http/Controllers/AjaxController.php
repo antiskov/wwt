@@ -15,7 +15,7 @@ class AjaxController extends Controller
     public function checkLoginEmail(Request $request)
     {
         //var_dump($request);die;
-        $user=User::where('email',$request->email)->first();
+        $user=User::where('email', "=", $request->get('email-login'))->first();
         if($user) {
             $data=[
                 'status'=>'success',

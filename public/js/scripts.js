@@ -416,12 +416,11 @@ $(document).ready(function () {
             data: $('#registration-form').serializeArray(),
             datatype: 'html',
             success: function (data) {
-                console.log('7');
                 $('#registration-form').empty();
                 $('#registration-form').html(data.output);
 
-                console.log(data.output);
-                console.log(data.errors);
+                // console.log(data.output);
+                // console.log(data.errors);
             },
             error: function (xhr) {
                 if(xhr.status === 422) {
@@ -442,11 +441,12 @@ $(document).ready(function () {
             data: $('#login-form').serializeArray(),
             datatype: 'html',
             success: function (data) {
+                console.log('1');
                 $('#login-form').empty();
                 $('#login-form').html(data.output);
 
                 console.log(data.output);
-                console.log(data.errors);
+                //console.log(data.errors);
             },
             // error: function (xhr) {
             //     if(xhr.status === 422) {

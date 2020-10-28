@@ -1,14 +1,11 @@
 @component('mail::message')
-    # Introduction
+    # Link verification email
 
-    The body of your message.
-
-    email verification code: {{$codeEmail}}
+    {{$codeEmail}}
 
     @component('mail::button', ['url' => ''])
         Button Text
     @endcomponent
 
-    Thanks,<br>
-    {{ config('app.name') }}
+    Thanks,{{ config('app.name') }}
 @endcomponent
