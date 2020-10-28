@@ -4,9 +4,9 @@
         <form id="registration-form" method='post' class="registration" action="{{ url('/register-user') }}">
             @csrf
             <div class="change-input">
-                <input id="name" name="email" type="text" placeholder="Введите почту, логин или телефон" disabled
+                <input id="reg-form-email" name="email" type="text" placeholder="Введите почту, логин или телефон" disabled
                        value="someMail@gmail.com" required>
-                <span>{{ $errors->first('name') }}у</span>
+                <span></span>
                 <img src="./images/icons/eraser.svg" alt="Изменить логин">
             </div>
             <input id="reg-pass" name="password" type="password" placeholder="Введите пароль" required>

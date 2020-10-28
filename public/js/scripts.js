@@ -421,15 +421,16 @@ $(document).ready(function () {
 
                 console.log(data.output);
                 console.log(data.errors);
-
-                // Object.keys(data.errors).forEach((key) => {
-                //     document.querySelector(`[name='${key}']`).classList.add('is-invalid')
-                // })
             },
+            error: function (xhr, status, error) {
+                if(xhr.status === 422) {
+                    $('#reg-form-email').addClass('form-elem_err').removeClass('form-elem_success');
+                    $('#reg-form-email + span').text(xhr.responseJSON.errors.email[0]);
+                }
+            }
         }).done(function() {
             $( this ).addClass( "done" );
-        });
-        console.log(777);
+        })
     });
 
     $('#password-form').validate({
