@@ -416,13 +416,14 @@ $(document).ready(function () {
             data: $('#registration-form').serializeArray(),
             datatype: 'html',
             success: function (data) {
+                console.log('7');
                 $('#registration-form').empty();
                 $('#registration-form').html(data.output);
 
                 console.log(data.output);
                 console.log(data.errors);
             },
-            error: function (xhr, status, error) {
+            error: function (xhr) {
                 if(xhr.status === 422) {
                     $('#reg-form-email').addClass('form-elem_err').removeClass('form-elem_success');
                     $('#reg-form-email + span').text(xhr.responseJSON.errors.email[0]);
@@ -447,12 +448,12 @@ $(document).ready(function () {
                 console.log(data.output);
                 console.log(data.errors);
             },
-            error: function (xhr) {
-                if(xhr.status === 422) {
-                    $('#login-email-form').addClass('form-elem_err').removeClass('form-elem_success');
-                    $('#login-email-form + span').text(xhr.responseJSON.errors.email[0]);
-                }
-            }
+            // error: function (xhr) {
+            //     if(xhr.status === 422) {
+            //         $('#login-email-form').addClass('form-elem_err').removeClass('form-elem_success');
+            //         $('#login-email-form + span').text(xhr.responseJSON.errors.email[0]);
+            //     }
+            // }
         }).done(function() {
             $( this ).addClass( "done" );
         })

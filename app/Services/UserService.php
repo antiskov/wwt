@@ -58,13 +58,11 @@ class UserService
 
     public function sendVerificationCode($user)
     {
-        throw new NotImplementedException();
-    }
-
-    public function sendEmailRegister($user) {
         $codeEmail = $_SERVER['HTTP_HOST'] . '/email_verification_code/' . $user->email_verification_code;
-
-        Mail::to($user)->send(new RegisterEmail($codeEmail));
+        $checkSend = Mail::to($user)->send(new RegisterEmail($codeEmail));
+        if($checkSend != NULL){
+            throw new NotImplementedException();
+        }
     }
 
     public function setActivity(User $user) {

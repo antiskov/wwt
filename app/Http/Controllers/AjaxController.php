@@ -3,17 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RegisterFormRequest;
+use App\Mail\RegisterEmail;
 use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class AjaxController extends Controller
 {
     public function checkLoginEmail(Request $request)
     {
+        //var_dump($request);die;
         $user=User::where('email',$request->email)->first();
-
         if($user) {
             $data=[
                 'status'=>'success',
@@ -45,7 +47,6 @@ class AjaxController extends Controller
     public function registerUser(RegisterFormRequest $request,UserService $userService)
     {
         $user=$userService->create($request->getDto());
-        $userService->sendEmailRegister($user);
 
         return response()->json($userService->sendVerificationCode($user));
     }
