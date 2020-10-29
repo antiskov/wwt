@@ -467,11 +467,11 @@ $(document).ready(function () {
             data: $('#password-form').serializeArray(),
             datatype: 'html',
             success: function (data) {
-                //$('#password-form').empty();
                 $('#password-form').html(data.output);
-                window.location.replace(document.location.href);
+                if(data.status == 'success') {
+                    window.location.replace(document.location.href);
+                }
                 if(data.status == 'error') {
-                    console.log(data.message);
                     $('#password-login-form').addClass('form-elem_err').removeClass('form-elem_success');
                     $('#password-login-form + span').text(data.message);
                 }
@@ -479,7 +479,6 @@ $(document).ready(function () {
         }).done(function() {
             $( this ).addClass( "done" );
         })
-
     });
 
     $('#password-form').validate({

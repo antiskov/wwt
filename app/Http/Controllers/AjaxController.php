@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RegisterFormRequest;
-use App\Mail\RegisterEmail;
 use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 
 class AjaxController extends Controller
 {
@@ -33,14 +31,14 @@ class AjaxController extends Controller
     {
         $email=$request->get('email');
         $password=$request->get('password');
-        if (Auth::attempt(['email' => $email, 'password' => $password])) {
+        if (Auth::attempt(['email' => $email, 'password' => $password, 'is_active' => 1])) {
             $data=[
                 'status'=>'success',
             ];
         } else {
             $data=[
                 'status'=>'error',
-                'message'=>__('wrong_username or password'),
+                'message'=>__('wrong username or password, or not active account'),
             ];
         }
         return response()->json($data);

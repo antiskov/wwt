@@ -1,0 +1,77 @@
+$daintree: #00232B;
+$GoldSand: #E7C095;
+$white: #ffffff;
+// $AntiqueBrass: #C79E76;
+$AntiqueBrass: #CC9966;
+$Seashell: #F1F1F1;
+$Silver: #CCCCCC;
+$DustyGray: #999999;
+$Tiber: #062C34;
+$text: #f1f1f1;
+$black: #000000;
+$alto: #dcdcdc;
+$tePapaGreen: #1C3A41;
+$paleSky: #657681;
+$tan: #d4aa84;
+$border: #D7D7D7;
+$muddyWaters: #BA8F66;
+
+
+@mixin form-fields {
+  input[type=password], input[type=email], input[type=url], input[type=date], input[type=month], input[type=time], input[type=datetime], input[type=datetime-local], input[type=week], input[type=tel], input[type=color], input[type=number], input[type=search], input[type=text], select, textarea {
+    @content;
+  }
+}
+
+@mixin placeholder {
+  &:placeholder {
+    @content;
+  }
+  $placeholders: ":-webkit-input" ":-moz" "-moz" "-ms-input";
+  @each $placeholder in $placeholders {
+    &:#{$placeholder}-placeholder {
+      @content;
+    }
+  }
+}
+
+@mixin text-decoration-none {
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+@mixin text-decoration-underline {
+  text-decoration: underline;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+@mixin fake-text-decoration-underline($color:#000, $width:1px) {
+  text-decoration: none;
+  background-image: linear-gradient(to left, $color 50%, $color 50%);
+  background-repeat: repeat-x;
+  background-size: 1px $width;
+  background-position: 0 1.05em;
+  &:hover {
+    background: none;
+  }
+}
+
+@mixin fake-text-decoration-none($color:#000, $width:1px) {
+  text-decoration: none;
+  &:hover {
+    background-image: linear-gradient(to left, $color 50%, $color 50%);
+    background-repeat: repeat-x;
+    background-size: 1px $width;
+    background-position: 0 1.05em;
+  }
+}
+
+@mixin appearance-off {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
