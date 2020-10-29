@@ -418,9 +418,6 @@ $(document).ready(function () {
             success: function (data) {
                 $('#registration-form').empty();
                 $('#registration-form').html(data.output);
-
-                // console.log(data.output);
-                // console.log(data.errors);
             },
             error: function (xhr) {
                 if(xhr.status === 422) {
@@ -441,22 +438,48 @@ $(document).ready(function () {
             data: $('#login-form').serializeArray(),
             datatype: 'html',
             success: function (data) {
-                console.log('1');
-                $('#login-form').empty();
                 $('#login-form').html(data.output);
-
-                console.log(data.output);
-                //console.log(data.errors);
-            },
-            // error: function (xhr) {
-            //     if(xhr.status === 422) {
-            //         $('#login-email-form').addClass('form-elem_err').removeClass('form-elem_success');
-            //         $('#login-email-form + span').text(xhr.responseJSON.errors.email[0]);
-            //     }
-            // }
+                if(data.email) {
+                    $('#password-form-email').val(data.email);
+                    $.fancybox.close({
+                        src: '#login-modal',
+                    });
+                    $.fancybox.open({
+                        src  : '#password-modal',
+                    });
+                }
+                if(data.status == 'error') {
+                    console.log(data.message);
+                    $('#login-email-form').addClass('form-elem_err').removeClass('form-elem_success');
+                    $('#login-email-form + span').text(data.message);
+                }
+            }
         }).done(function() {
             $( this ).addClass( "done" );
         })
+    });
+
+    $('#password-form').on('submit', function(e){
+        e.preventDefault();
+        $.ajax({
+            type:"POST",
+            url: '/login-password',
+            data: $('#password-form').serializeArray(),
+            datatype: 'html',
+            success: function (data) {
+                //$('#password-form').empty();
+                $('#password-form').html(data.output);
+                window.location.replace(document.location.href);
+                if(data.status == 'error') {
+                    console.log(data.message);
+                    $('#password-login-form').addClass('form-elem_err').removeClass('form-elem_success');
+                    $('#password-login-form + span').text(data.message);
+                }
+            },
+        }).done(function() {
+            $( this ).addClass( "done" );
+        })
+
     });
 
     $('#password-form').validate({

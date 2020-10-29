@@ -4,15 +4,16 @@
         <div class="login-modal-img login-modal-img_portrait">
             <img src="./images/content/person.png" alt="login photo">
         </div>
-        <form id="password-form" class="check-login" action="#">
+        <form id="password-form" method="post" class="check-login" action="{{ url('/login-password') }}">
+            @CSRF
             <div class="change-input">
-                <input name="name" type="text" placeholder="Введите почту, логин или телефон" disabled required
+                <input id="password-form-email" name="email" type="text" placeholder="Введите почту, логин или телефон" disabled required
                        value="someMail@gmail.com">
-                <span>Обязательное поле*</span>
+                <span></span>
                 <img src="./images/icons/eraser.svg" alt="Изменить логин">
             </div>
             <div class="password-input">
-                <input name="password" type="password" placeholder="Введите пароль" required>
+                <input id='password-login-form' name="password" type="password" placeholder="Введите пароль" required>
                 <span>Обязательное поле*</span>
                 <img src="./images/icons/yey-close.svg" alt="Показать пароль">
             </div>
@@ -25,7 +26,7 @@
                 </div>
                 <a href="#">Напомнить пароль</a>
             </div>
-            <button class="btn-arrow">Далее</button>
+            <button type="submit" class="btn-arrow">Далее</button>
         </form>
     </div>
 </div>

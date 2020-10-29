@@ -14,25 +14,26 @@ class AjaxController extends Controller
 {
     public function checkLoginEmail(Request $request)
     {
-        //var_dump($request);die;
         $user=User::where('email', "=", $request->get('email-login'))->first();
         if($user) {
             $data=[
                 'status'=>'success',
+                'email' => $request->get('email-login'),
             ];
         } else {
             $data=[
                 'status'=>'error',
-                'message'=>__('no_user_found')
+                'message'=>__('no_user_found'),
+                //'email' => $request->get('email-login'),
             ];
         }
         return response()->json($data);
     }
     public function authUser(Request $request)
     {
-        $email=$request->email;
-        $password=$request->password;
-        if (Auth::attempt(['email' => $email, 'password' => $password, 'active' => 1])) {
+        $email=$request->get('email');
+        $password=$request->get('password');
+        if (Auth::attempt(['email' => $email, 'password' => $password])) {
             $data=[
                 'status'=>'success',
             ];

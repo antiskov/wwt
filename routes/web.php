@@ -17,18 +17,15 @@ use Illuminate\Support\Facades\Route;
     Route::middleware('set.locale')->group(function () {
         Route::get('/test{language}', [\App\Http\Controllers\SetLocaleController::class, 'setLocal'])->name('test');
         Route::get('/',[\App\Http\Controllers\HomeController::class,'main'])->name('home');
+        Route::get('/test', [\App\Http\Controllers\HomeController::class,'test']); //todo: remove on prod
+        Route::get('/logout',[\App\Http\Controllers\UserController::class,'logout'])->name('logout');
+        Route::post('/login',[\App\Http\Controllers\UserController::class,'login'])->name('login');
+        Route::post('/register-user', [\App\Http\Controllers\AjaxController::class,'registerUser'])->name('register-user');
+        Route::post('/check-login-email', [\App\Http\Controllers\AjaxController::class, 'checkLoginEmail'])->name('check-login-email');
+        Route::post('/login-password',[\App\Http\Controllers\AjaxController::class, 'authUser'])->name('login-password');
+        Route::get('/reset-password/{email}', [\App\Http\Controllers\HomeController::class, 'resetPassword'])->name('reset-password');
+        Route::get('/email_verification_code/{email_verification_code}', [\App\Http\Controllers\HomeController::class, 'emailVerificationCode'])->name('activation_link');
     });
-
-    Route::get('/test', [\App\Http\Controllers\HomeController::class,'test']); //todo: remove on prod
-    Route::get('/logout',[\App\Http\Controllers\UserController::class,'logout'])->name('logout');
-    Route::post('/login',[\App\Http\Controllers\UserController::class,'login'])->name('login');
-
-    Route::post('/register-user', [\App\Http\Controllers\AjaxController::class,'registerUser'])->name('register-user');
-    Route::post('/check-login-email', [\App\Http\Controllers\AjaxController::class, 'checkLoginEmail'])->name('check-login-email');
-
-    Route::get('t2{email}', [\App\Http\Controllers\HomeController::class, 't2'])->name('t2');
-
-    Route::get('/email_verification_code/{email_verification_code}', [\App\Http\Controllers\HomeController::class, 'emailVerificationCode']);
 
 
     Route::group(['prefix'=>'admin'], function () {

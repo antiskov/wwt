@@ -29,7 +29,7 @@ class UserService
         Log::info('in user service creation');
         $user = new User();
         $user->email = $request->getEmail();
-        $user->email_verification_code = \Hash::make(Str::random(5)); //Hash::make($request->getEmailVerificationCode()):
+        $user->email_verification_code = \Hash::make(Str::random(5), ['rounds' => 6]); //Hash::make($request->getEmailVerificationCode()):
         $user->name = $request->getName();
         $user->surname = $request->getSurname();
         $user->role_id = $request->getRole();
@@ -58,7 +58,7 @@ class UserService
 
     public function sendVerificationCode($user)
     {
-        $codeEmail = $_SERVER['HTTP_HOST'] . '/email_verification_code/' . $user->email_verification_code;
+        $codeEmail = route('activation_link', [$user->email_verification_code]);
         $checkSend = Mail::to($user)->send(new RegisterEmail($codeEmail));
         if($checkSend != NULL){
             throw new NotImplementedException();

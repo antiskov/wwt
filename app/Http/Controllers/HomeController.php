@@ -23,13 +23,13 @@ class HomeController extends Controller
         return view('pages.main');
     }
 
-    public function t2(string $email)
+    public function resetPassword(string $email)
     {
         $pass = new SecurityService();
         $user = User::where('email', '=', $email)->first();
         $pass->resetPassword($user);
-
-        return view('pages.main');
+        dd(redirect()->back());
+        return redirect()->route('home');
     }
 
     public function emailVerificationCode($email_verification_code) {
