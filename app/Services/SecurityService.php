@@ -5,6 +5,7 @@ namespace App\Services;
 
 
 use App\Contracts\AdvertsInterface;
+use App\Mail\RegisterEmail;
 use App\Mail\WelcomeMail;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;

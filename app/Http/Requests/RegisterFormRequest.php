@@ -26,10 +26,18 @@ class RegisterFormRequest extends FormRequest
     {
         return [
             'referrer'=>'string',
-            'email'=>'required|inique:users',
+            'email'=>'required|unique:users',
             'password'=>'required|min:8'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'email.unique:users' => 'A email must be unique',
+        ];
+    }
+
     public function getDto(): RegisterUser
     {
         return new RegisterUser(

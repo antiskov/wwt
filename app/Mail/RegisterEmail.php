@@ -7,20 +7,20 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class WelcomeMail extends Mailable
+class RegisterEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      *
-     * @param $passwordSend
+     * @param $codeEmail
      */
-    public $passwordSend;
+    public $codeEmail;
 
-    public function __construct($passwordSend)
+    public function __construct($codeEmail)
     {
-        $this->passwordSend = $passwordSend;
+        $this->codeEmail = $codeEmail;
     }
 
     /**
@@ -30,6 +30,6 @@ class WelcomeMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.welcome');
+        return $this->markdown('emails.email_register');
     }
 }

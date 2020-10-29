@@ -31,6 +31,10 @@ class CreateUser implements ICreateUser
     private $is_active;
 
 
+    /**
+     * CreateUser constructor.
+     * @param CreateUserFormRequest $request
+     */
     public function __construct(CreateUserFormRequest $request)
     {
         $this->name = $request->get('name');
@@ -73,14 +77,26 @@ class CreateUser implements ICreateUser
     {
         return $this->password;
     }
+
+    /**
+     * @return int
+     */
     public function getRole(): int
     {
         return $this->role;
     }
+
+    /**
+     * @return string
+     */
     public function getReferralCode(): string
     {
         return $this->referral_code;
     }
+
+    /**
+     * @return int
+     */
     public function getActivity(): int
     {
         return $this->is_active;

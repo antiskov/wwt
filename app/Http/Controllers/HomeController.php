@@ -4,34 +4,28 @@ namespace App\Http\Controllers;
 
 
 use App\Services\ImageMinificationService;
-use App\Mail\WelcomeMail;
-use App\Models\User;
-use App\Services\ImageMinificationService;
-use App\Services\ResetPassword;
-use App\Services\SecurityService;
-
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\View\View;
 
 class HomeController extends Controller
 {
+    /**
+     * @return Application|Factory|View
+     */
     public function main()
     {
         return view('pages.main');
     }
 
+    /**
+     * @param ImageMinificationService $req
+     * @return Application|Factory|View
+     */
     public function test(ImageMinificationService $req)
     {
         $req->minify('public/yoda.png', ['medium', 'big', 'small']);
 
         return view('pages.main');
     }
-
-    public function t2(string $email) {
-        $pass = new SecurityService();
-        $user = User::where('email', '=', $email)->first();
-        $pass->resetPassword($user);
-
-        return view('pages.main');
-    }
-
+}

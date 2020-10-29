@@ -5,7 +5,6 @@ namespace App\DataObjects;
 
 
 use App\Contracts\ICreateUser;
-use App\Http\Requests\Admin\CreateUserFormRequest;
 use App\Http\Requests\RegisterFormRequest;
 use Illuminate\Support\Str;
 
@@ -23,13 +22,26 @@ class RegisterUser implements ICreateUser
     /** @var string */
     private $password;
 
+    /**
+     * @var int
+     */
     private $role;
 
+    /**
+     * @var string
+     */
     private $referral_code;
 
+    /**
+     * @var int
+     */
     private $is_active;
 
 
+    /**
+     * RegisterUser constructor.
+     * @param RegisterFormRequest $request
+     */
     public function __construct(RegisterFormRequest $request)
     {
         $this->name = $request->has('name')?$request->get('name'):'';
@@ -72,14 +84,26 @@ class RegisterUser implements ICreateUser
     {
         return $this->password;
     }
+
+    /**
+     * @return int
+     */
     public function getRole(): int
     {
         return $this->role;
     }
+
+    /**
+     * @return string
+     */
     public function getReferralCode(): string
     {
         return $this->referral_code;
     }
+
+    /**
+     * @return int
+     */
     public function getActivity(): int
     {
         return $this->is_active;

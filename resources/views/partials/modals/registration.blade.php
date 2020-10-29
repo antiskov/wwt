@@ -1,11 +1,12 @@
 <div id="registration-modal" class="modal">
     <div class="modal__content">
         <h5 class="modal__title">Добро пожаловать!</h5>
-        <form id="registration-form" type='post' class="registration" action="{{ route('register-user') }}">
+        <form id="registration-form" method='post' class="registration" action="{{ url('/register-user') }}">
+            @csrf
             <div class="change-input">
-                <input name="email" type="text" placeholder="Введите почту, логин или телефон" disabled
+                <input id="reg-form-email" name="email" type="text" placeholder="Введите почту, логин или телефон" disabled
                        value="someMail@gmail.com" required>
-                <span>Введите правильно почту</span>
+                <span></span>
                 <img src="./images/icons/eraser.svg" alt="Изменить логин">
             </div>
             <input id="reg-pass" name="password" type="password" placeholder="Введите пароль" required>
@@ -26,7 +27,7 @@
                     <span>Обязательное поле*</span>
                 </label>
             </div>
-            <button class="btn-arrow">Зарегистрироваться</button>
+            <button type="submit" class="btn-arrow">Зарегистрироваться</button>
         </form>
     </div>
 </div>

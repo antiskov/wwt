@@ -5,6 +5,7 @@ namespace App\DataObjects\Admin;
 
 
 use App\Http\Requests\Admin\CreateUserFormRequest;
+use App\Http\Requests\Admin\UpdateUserFormRequest;
 use Illuminate\Support\Str;
 
 class UpdateUser
@@ -23,16 +24,18 @@ class UpdateUser
 
     private $role;
 
+    private $is_active;
 
 
 
-    public function __construct(CreateUserFormRequest $request)
+
+    public function __construct(UpdateUserFormRequest $request)
     {
         $this->name = $request->get('name');
         $this->surname = $request->has('surname')?$request->get('surname'):'';
         $this->email = $request->get('email');
         $this->role=$request->get('role');
-
+        $this->is_active=$request->get('is_active');
     }
 
     /**
@@ -66,6 +69,10 @@ class UpdateUser
     public function getRole(): int
     {
         return $this->role;
+    }
+
+    public function getIsActive() {
+        return $this->is_active;
     }
 
 }
