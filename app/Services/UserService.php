@@ -88,4 +88,10 @@ class UserService
         }
     }
 
+    public function setActivity(User $user) {
+        $user->is_active = 1;
+        $user->save();
+    }
+
+
 }

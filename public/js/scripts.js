@@ -418,6 +418,9 @@ $(document).ready(function () {
             success: function (data) {
                 $('#registration-form').empty();
                 $('#registration-form').html(data.output);
+
+                console.log(data.output);
+                console.log(data.errors);
             },
             error: function (xhr) {
                 if(xhr.status === 422) {
@@ -438,17 +441,18 @@ $(document).ready(function () {
             data: $('#login-form').serializeArray(),
             datatype: 'html',
             success: function (data) {
+                $('#login-form').empty();
                 $('#login-form').html(data.output);
-                if(data.email) {
+                if (data.email) {
                     $('#password-form-email').val(data.email);
                     $.fancybox.close({
                         src: '#login-modal',
                     });
                     $.fancybox.open({
-                        src  : '#password-modal',
+                        src: '#password-modal',
                     });
                 }
-                if(data.status == 'error') {
+                if (data.status == 'error') {
                     console.log(data.message);
                     $('#login-email-form').addClass('form-elem_err').removeClass('form-elem_success');
                     $('#login-email-form + span').text(data.message);
@@ -458,7 +462,6 @@ $(document).ready(function () {
             $( this ).addClass( "done" );
         })
     });
-
     $('#password-form').on('submit', function(e){
         e.preventDefault();
         $.ajax({
@@ -480,7 +483,6 @@ $(document).ready(function () {
             $( this ).addClass( "done" );
         })
     });
-
     $('#password-form').validate({
         rules: {
             name: {
@@ -576,11 +578,11 @@ $(document).ready(function () {
     let nameQty = 1;
     $('.form-ref-number__plus-btn').on('click', function () {
         const name = $(this)
-        .parent()
-        .children('label')
-        .children('input')
-        .attr('name')
-        .split('_')[0];
+            .parent()
+            .children('label')
+            .children('input')
+            .attr('name')
+            .split('_')[0];
 
         nameQty++;
 
