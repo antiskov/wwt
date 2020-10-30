@@ -24,7 +24,7 @@
                 </div>
                 <div class="load-prof">
                     <p>Профиль заполнен</p>
-                    <p>на <span>65%</span></p>
+                    <p>на <span>65% написать калькулятор заполнения</span></p>
                 </div>
             </div>
         </div>
@@ -32,15 +32,15 @@
             <h2>Личные данные </h2>
             <label for="prof-surname">
                 Фамилия
-                <input type="text" id="prof-surname">
+                <input name="surname"  type="text" id="prof-surname">
             </label>
             <label for="prof-name">
                 Имя
-                <input type="text" id="prof-name">
+                <input name="name" type="text" id="prof-name">
             </label>
             <div class="select-price">
                 <p>Пол</p>
-                <input type="hidden" name="" value="Женский">
+                <input name="sex"  type="hidden" name="" value="Женский">
                 <div class="select-value rotate">
                     <span>Женский</span>
                     <ul class="value-items">
@@ -51,25 +51,25 @@
             </div>
             <label for="calendar">
                 Дата рождения
-                <input type="date" id="calendar">
+                <input name="birthday_date" type="date" id="calendar">
             </label>
         </div>
         <div class="contact-date">
             <h2>Контактные данные</h2>
             <label for="prof-email">
                 Адрес эл. почты *
-                <input type="email" id="prof-email">
+                <input name="email" type="email" id="prof-email">
             </label>
             <label for="prof-phone">
                 Телефон
-                <input type="email" id="prof-phone">
+                <input name="phone" type="email" id="prof-phone">
             </label>
         </div>
         <div class="address-date">
             <h2>Адресные данные</h2>
             <div class="select-price">
                 <p>Улица *</p>
-                <input type="hidden" name="">
+                <input name='street' type="hidden" name="">
                 <div class="select-value rotate">
                     <span>Выберите</span>
                     <ul class="value-items">
@@ -87,13 +87,13 @@
             <label for="prof-stret-index">
                 Почтовый индекс и населенный пункт *
                 <span class="input-cont">
-                            <input type="number" id="prof-stret-index">
+                            <input name="zip_code" type="number" id="prof-stret-index">
                             <input type="number" id="prof-stret-index-2">
                         </span>
             </label>
             <div class="select-price">
                 <p>Страна *</p>
-                <input type="hidden" name="">
+                <input name="country" type="hidden" name="">
                 <div class="select-value rotate">
                     <span>Выберите</span>
                     <ul class="value-items">
@@ -106,7 +106,7 @@
             </div>
             <div class="select-price">
                 <p>Область</p>
-                <input type="hidden" name="">
+                <input name="region" type="hidden" name="">
                 <div class="select-value rotate">
                     <span>Выберите</span>
                     <ul class="value-items">
@@ -122,11 +122,11 @@
             <h2>Больше обо мне</h2>
             <label for="prof-profession">
                 Профессия
-                <input type="text" id="prof-profession">
+                <input name="specialisation" type="text" id="prof-profession">
             </label>
             <div class="select-price">
                 <p>Часовой пояс</p>
-                <input type="hidden" name="" value="Женский">
+                <input name="timezone_id" type="hidden" name="" value="Женский">
                 <div class="select-value rotate">
                     <span>Выберите</span>
                     <ul class="value-items">
