@@ -293,7 +293,7 @@
 
                                  <div class="header-login-block__portrait header-login-block__portrait_cabinet">
                                   <div class="header-cabinet-list-btn">
-                                    <img src="./images/icons/profile-w.svg">
+                                    <img src="/images/icons/profile-w.svg">
                                     <span class="notification-btn">1</span>
                                   </div>
                                   <ul class="header-cabinet-list">
@@ -301,7 +301,7 @@
                                     <li><a href="#">Сообщения</a></li>
                                     <li><a href="#">Платежи</a></li>
                                     <li><a href="#">Профиль</a></li>
-                                    <li><a href="#">Настройки</a></li>
+                                    <li><a href="{{ route('profile-settings') }}">Настройки</a></li>
                                     <li><a href="#">Избранное</a></li>
                                     <li><a href="#">Создать реферальную ссылку</a></li>
                                     <li><a href="{{route('logout')}}">Выход</a></li>

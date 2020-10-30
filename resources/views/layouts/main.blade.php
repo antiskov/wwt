@@ -1,6 +1,8 @@
 @include('partials.global.head')
 @include('partials.global.header')
+@section('content')
 
+@show
 
 @include('partials.global.footer-content')
 @section('modals')
@@ -9,6 +11,7 @@
     @include('partials.modals.password')
 @show
 @section('scripts')
+<<<<<<< HEAD
 {{--    <script type="text/javascript">--}}
 {{--        $('#registration-form').on('submit', function(e){--}}
 {{--            e.preventDefault();--}}
@@ -37,6 +40,8 @@
 {{--            console.log(1);--}}
 {{--        });--}}
 {{--    </script>--}}
+=======
+>>>>>>> 47531daf907d56987f9d07f829be1e509ca91557
 @endsection
 @show
 @include('partials.global.footer')
