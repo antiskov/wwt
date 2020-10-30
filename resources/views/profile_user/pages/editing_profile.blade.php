@@ -12,7 +12,7 @@
                         <div class="chart" id="graph" data-percent="63"></div>
                     </div>
                     <div class="person-img">
-                        <img src="/images/content/person.png" alt="img">
+                        <img src="{{ '/storage/images/'.Auth::user()->avatar}}" alt="img">
                     </div>
                 </div>
             </div>
@@ -20,7 +20,7 @@
                 <div class="photo-set">
                     <span>Отредактировать фото профиля</span>
                     <input type="file"  name="image" accept="image/x-png,image/gif,image/jpeg">
-                    <a href="#/" class="delete-photo">Удалить фото</a>
+                    <a href="{{ route('delete-avatar') }}" class="delete-photo">Удалить фото</a>
                 </div>
                 <div class="load-prof">
                     <p>Профиль заполнен</p>

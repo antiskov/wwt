@@ -12,22 +12,37 @@ class ProfileService
     public function createAvatar(Request $request)
     {
         $sizes = config('image_sizes.small');
+        $userDir = 'images/profiles/'.auth()->user()->email.'/';
 
         if(auth()->user()->avatar)
         {
-            Storage::delete('/public/images/' . auth()->user()->avatar);
+            Storage::delete('public/'.$userDir.auth()->user()->avatar);
+            Storage::delete('public/'.$userDir.'small_'.auth()->user()->avatar);
         }
-        $filename = auth()->user()->email . '_' . $request->file('image')->getClientOriginalName();
-        $request->file('image')->storeAs('images', $filename, 'public');
-        auth()->user()->avatar = $filename;
+        $avatarName = auth()->user()->email . '_' . $request->file('image')->getClientOriginalName();
+        $request->file('image')->storeAs($userDir, $avatarName, 'public');
+        auth()->user()->avatar = $avatarName;
         auth()->user()->save();
 
-        $image        = Storage::path('public/images/' . auth()->user()->avatar);
-        $image_resize = Image::make($image);
-        $image_resize->resize($sizes['width'], $sizes['height']);
-        $small_url_image = 'public/images/small_'.auth()->user()->avatar;
-        $image_resize->save(Storage::path($small_url_image));
+        $avatar        = Storage::path('public/'.$userDir.auth()->user()->avatar);
+        $avatar_small = Image::make($avatar);
+        $avatar_small->resize($sizes['width'], $sizes['height']);
+        $small_url_avatar = 'public/'.$userDir.'small_'.auth()->user()->avatar;
+        $avatar_small->save(Storage::path($small_url_avatar));
 
-        return $small_url_image;
+        return $avatarName;
+    }
+
+    public function deleteAvatar() {
+        $userDir = 'images/profiles/'.auth()->user()->email.'/';
+
+        if(auth()->user()->avatar)
+        {
+            Storage::delete('public/'.$userDir.auth()->user()->avatar);
+            Storage::delete('public/'.$userDir.'small_'.auth()->user()->avatar);
+
+            auth()->user()->avatar = 'person.png';
+            auth()->user()->save();
+        }
     }
 }

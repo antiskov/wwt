@@ -43,4 +43,11 @@ class ProfileController extends Controller
 
         return redirect()->back();
     }
+
+    public function deleteAvatar () {
+        $deleted = new ProfileService();
+        $deleted->deleteAvatar();
+
+        return redirect()->back();
+    }
 }
