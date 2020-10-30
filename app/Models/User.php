@@ -75,6 +75,6 @@ class User extends Authenticatable
      */
     public function usersettings()
     {
-        return $this->hasMany(UserSettings::class);
+        return $this->hasOne(UserSettings::class);
     }
 }

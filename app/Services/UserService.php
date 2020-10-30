@@ -7,8 +7,11 @@ use App\Contracts\ICreateUser;
 use App\DataObjects\Admin\UpdateUser;
 use App\Exceptions\EmailCodeValidException;
 use App\Mail\RegisterEmail;
+use App\Models\UserSettings;
 use Hash;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Log;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
@@ -93,5 +96,27 @@ class UserService
         $user->save();
     }
 
+    public function setSetting(Request $request)
+    {
+        if($setting = UserSettings::where('user_id', '=',auth()->user()->id)->first()) {
+
+            $setting->update([
+                'receive_service_info' => $request->receive_service_info,
+                'receive_partners_adverts' => $request->receive_partners_adverts,
+                'stay_logged_in' => $request->stay_logged_in,
+                'language_communication' => $request->language_communication,
+            ]);
+            if($request->stay_logged_in = null) {
+                \Cookie::queue(\Cookie::delete('XSRF-TOKEN'));
+                setcookie('XSRF-TOKEN', '');
+            }
+        } else {
+            $setting = new UserSettings($request->all());
+            $setting->user()->associate(auth()->user());
+            $setting->save();
+        }
+
+        return $setting;
+    }
 
 }

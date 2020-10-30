@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProfileRequest;
 use App\Services\ProfileService;
 use App\Services\SetSettingsService;
+use App\Services\UserService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
@@ -23,11 +24,11 @@ class ProfileController extends Controller
     }
 
     /**
-     * @param ProfileRequest $request
+     * @param Request $request
+     * @param UserService $setSetting
      * @return RedirectResponse
      */
-    public function setBasicSettings(Request $request) {
-        $setSetting = new SetSettingsService();
+    public function setBasicSettings(Request $request, UserService $setSetting) {
         $setSetting->setSetting($request);
 
         return redirect()->back();
@@ -37,17 +38,14 @@ class ProfileController extends Controller
         return view('profile_user.pages.editing_profile');
     }
 
-    public function editingProfileForm(ProfileRequest $request) {
-        //dd($request);
-        $form = new ProfileService();
+    public function editingProfileForm(ProfileRequest $request, ProfileService $form) {
         $form->createAvatar($request);
         $form->saveFormData($request);
 
         return redirect()->back();
     }
 
-    public function deleteAvatar () {
-        $deleted = new ProfileService();
+    public function deleteAvatar (ProfileService $deleted) {
         $deleted->deleteAvatar();
 
         return redirect()->back();

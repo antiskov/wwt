@@ -20,7 +20,7 @@
             <div class="remember-me">
                 <div class="checkbox-block">
                     <label class="checkbox-block__label">
-                        <input type="checkbox">
+                        <input type="checkbox" name="remember">
                         <p><span>Запомнить меня</span></p>
                     </label>
                 </div>

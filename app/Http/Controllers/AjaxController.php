@@ -31,7 +31,8 @@ class AjaxController extends Controller
     {
         $email=$request->get('email');
         $password=$request->get('password');
-        if (Auth::attempt(['email' => $email, 'password' => $password, 'is_active' => 1])) {
+        $remember=$request->get('remember');
+        if (Auth::attempt(['email' => $email, 'password' => $password, 'is_active' => 1], $remember )) {
             $data=[
                 'status'=>'success',
             ];

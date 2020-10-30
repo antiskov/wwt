@@ -20,7 +20,7 @@ class CreateUserSettingsTable extends Migration
             $table->boolean('receive_service_info')->nullable();
             $table->boolean('receive_partners_adverts')->nullable();
             $table->boolean('stay_logged_in')->nullable();
-            $table->string('language_communication')->nullable();
+            $table->enum('language_communication')->nullable();
             $table->timestamps();
         });
     }
