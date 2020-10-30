@@ -19,7 +19,7 @@
             <div class="name-setting">
                 <div class="photo-set">
                     <span>Отредактировать фото профиля</span>
-                    <input type="file"  name="image" accept="image/x-png,image/gif,image/jpeg">
+                    <input type="file"  name="avatar" accept="image/x-png,image/gif,image/jpeg">
                     <a href="{{ route('delete-avatar') }}" class="delete-photo">Удалить фото</a>
                 </div>
                 <div class="load-prof">
@@ -139,7 +139,7 @@
             </div>
             <div class="select-price aline">
                 <p>Язык</p>
-                <input type="hidden" name="" value="Женский">
+                <input type="hidden" name="" value="">
                 <div class="lang-wrap">
                     <div class="select-value rotate">
                         <span>Добавить язык</span>
@@ -157,7 +157,7 @@
             </div>
             <label for="description" class="textarea">
                 Описание
-                <textarea id="description"></textarea>
+                <textarea name="description" id="description"></textarea>
             </label>
         </div>
         <div class="option-prof">

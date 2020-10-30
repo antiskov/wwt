@@ -26,7 +26,7 @@ class ProfileController extends Controller
      * @param ProfileRequest $request
      * @return RedirectResponse
      */
-    public function setBasicSettings(ProfileRequest $request) {
+    public function setBasicSettings(Request $request) {
         $setSetting = new SetSettingsService();
         $setSetting->setSetting($request);
 
@@ -37,9 +37,11 @@ class ProfileController extends Controller
         return view('profile_user.pages.editing_profile');
     }
 
-    public function editingProfileForm(Request $request) {
+    public function editingProfileForm(ProfileRequest $request) {
+        //dd($request);
         $form = new ProfileService();
         $form->createAvatar($request);
+        $form->saveFormData($request);
 
         return redirect()->back();
     }
