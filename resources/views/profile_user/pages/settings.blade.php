@@ -1,7 +1,6 @@
-@extends('profile.layouts.main')
+@extends('profile_user.layouts.main')
 
 @section('profile-content')
-
     <form class="block-setting" method="post" action="{{ route('settings-form') }}">
         @csrf
         <h2 class="name-lk mob">Настройки</h2>
@@ -9,7 +8,7 @@
         <div class="chek_cont_set">
             <label class="checkbox-other">
                 <input name="stay_logged_in" type="checkbox" checked="" value="1">
-                <span>Оставаться залогиненным </span>
+                <span>Оставаться залогиненным</span>
             </label>
             <span>Если Вы выберите опцию «Оставаться залогиненным», то Вам нужно будет реже
                         регистрироваться на данном устройстве.

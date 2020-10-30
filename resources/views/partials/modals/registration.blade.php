@@ -7,7 +7,7 @@
                 <input id="reg-form-email" name="email" type="text" placeholder="Введите почту, логин или телефон" disabled
                        value="someMail@gmail.com" required>
                 <span></span>
-                <img src="./images/icons/eraser.svg" alt="Изменить логин">
+                <img src="/images/icons/eraser.svg" alt="Изменить логин">
             </div>
             <input id="reg-pass" name="password" type="password" placeholder="Введите пароль" required>
             <input name="repeat-password" type="password" placeholder="Повторите пароль" required>

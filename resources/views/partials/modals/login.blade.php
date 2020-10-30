@@ -2,7 +2,7 @@
     <div class="modal__content">
         <h5 class="modal__title">Войти или зарегестрироваться</h5>
         <div class="login-modal-img">
-            <img src="./images/icons/user.svg" alt="login photo">
+            <img src="/images/icons/user.svg" alt="login photo">
         </div>
         <form id="login-form" class="check-login" method="post" action="{{ url('check-login-email') }}">
             @CSRF

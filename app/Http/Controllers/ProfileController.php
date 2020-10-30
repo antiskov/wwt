@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProfileRequest;
 use App\Models\UserSettings;
 use App\Services\SetSettingsService;
 use Illuminate\Contracts\Foundation\Application;
@@ -17,14 +18,14 @@ class ProfileController extends Controller
      */
     public function settingsIndex() {
 
-        return view('profile.pages.settings');
+        return view('profile_user.pages.settings');
     }
 
     /**
-     * @param Request $request
+     * @param ProfileRequest $request
      * @return RedirectResponse
      */
-    public function setBasicSettings(Request $request) {
+    public function setBasicSettings(ProfileRequest $request) {
         $setSetting = new SetSettingsService();
         $setSetting->setSetting($request);
 

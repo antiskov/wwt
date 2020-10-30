@@ -4,7 +4,7 @@
     <section class="setting">
         <div class="">
             <div class="container-wrap">
-                @include('profile.modals.left-menu')
+                @include('profile_user.partials.left_menu')
                 @section('profile-content')
                 @show
             </div>
