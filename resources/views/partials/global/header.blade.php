@@ -300,7 +300,7 @@
                                     <li><a href="#">Мои обьявления</a></li>
                                     <li><a href="#">Сообщения</a></li>
                                     <li><a href="#">Платежи</a></li>
-                                    <li><a href="#">Профиль</a></li>
+                                    <li><a href="{{ route('editing-profile') }}">Профиль</a></li>
                                     <li><a href="{{ route('profile-settings') }}">Настройки</a></li>
                                     <li><a href="#">Избранное</a></li>
                                     <li><a href="#">Создать реферальную ссылку</a></li>

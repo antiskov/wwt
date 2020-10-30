@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileRequest;
-use App\Models\UserSettings;
+use App\Services\ProfileService;
 use App\Services\SetSettingsService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
@@ -28,6 +29,17 @@ class ProfileController extends Controller
     public function setBasicSettings(ProfileRequest $request) {
         $setSetting = new SetSettingsService();
         $setSetting->setSetting($request);
+
+        return redirect()->back();
+    }
+
+    public function editingProfileIndex() {
+        return view('profile_user.pages.editing_profile');
+    }
+
+    public function editingProfileForm(Request $request) {
+        $form = new ProfileService();
+        $form->createAvatar($request);
 
         return redirect()->back();
     }
