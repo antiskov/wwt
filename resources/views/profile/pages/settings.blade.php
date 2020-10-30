@@ -9,7 +9,7 @@
         <div class="chek_cont_set">
             <label class="checkbox-other">
                 <input name="stay_logged_in" type="checkbox" checked="" value="1">
-                <span>Оставаться залогиненным</span>
+                <span>Оставаться залогиненным </span>
             </label>
             <span>Если Вы выберите опцию «Оставаться залогиненным», то Вам нужно будет реже
                         регистрироваться на данном устройстве.
