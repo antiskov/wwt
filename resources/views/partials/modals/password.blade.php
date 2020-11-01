@@ -4,7 +4,7 @@
         <div class="login-modal-img login-modal-img_portrait">
             <img src="/images/content/person.png" alt="login photo">
         </div>
-        <form id="password-form" method="post" class="check-login" action="{{ url('/login-password') }}">
+        <form id="password-form" method="post" class="check-login" action="{{ route('login-password') }}">
             @CSRF
             <div class="change-input">
                 <input id="password-form-email" name="email" type="text" placeholder="Введите почту, логин или телефон" disabled required

@@ -24,15 +24,32 @@ class ProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'surname' => 'required',
+//            'email' => 'email',
+            'name' => 'required|min:2|max:20',
+            'surname' => 'required|min:2|max:20',
             'avatar' => 'required',
-//            'phone' => 'required',
-//            'country' => 'required',
-//            'region' => 'required',
-//            'city' => 'required',
-//            'street' => 'required',
-//            'specialisation' => 'required',
+//            'phone' => 'required|numeric|min:10',
+//            'country' => 'required|min:2|regex:/^[a-zA-Z]+$/u|max:255',
+//            'region' => 'required|min:2|regex:/^[a-zA-Z]+$/u|max:255',
+//            'city' => 'required|min:2|regex:/^[a-zA-Z]+$/u|max:255',
+//            'street' => 'required|min:2|regex:/^[a-zA-Z]+$/u|max:255',
+//            'zip_code' => numeric,
+//            'specialisation' => 'required|min:2|regex:/^[a-zA-Z]+$/u|max:255',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'email' => 'Please enter the data correctly.',
+            'name' => 'Please enter the data correctly.',
+            'surname' => 'Please enter the data correctly.',
+            'phone' => 'Please enter the data correctly.',
+            'country' => 'Please enter the data correctly.',
+            'region' => 'Please enter the data correctly.',
+            'city' => 'Please enter the data correctly.',
+            'street' => 'Please enter the data correctly.',
+            'specialisation' => 'Please enter the data correctly.',
         ];
     }
 }

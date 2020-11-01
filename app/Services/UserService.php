@@ -50,8 +50,8 @@ class UserService
         $user->surname = $request->getSurname();
         $user->role_id = $request->getRole();
         $user->password = Hash::make($request->getPassword());
-        $user->referral_code=$request->getReferralCode();
-        $user->is_active=$request->getActivity();
+        $user->referral_code = $request->getReferralCode();
+        $user->is_active = $request->getActivity();
         if (!$user->save()) {
             Log::info('user not saved');
             return false;
@@ -86,33 +86,36 @@ class UserService
     {
         $codeEmail = route('activation_link', [$user->email_verification_code]);
         $checkSend = Mail::to($user)->send(new RegisterEmail($codeEmail));
-        if($checkSend != NULL){
+        if ($checkSend != NULL) {
             throw new EmailCodeValidException();
         }
     }
 
-    public function setActivity(User $user) {
+    public function setActivity(User $user)
+    {
         $user->is_active = 1;
         $user->save();
     }
 
     public function setSetting(Request $request)
     {
-        if($setting = UserSettings::where('user_id', '=',auth()->user()->id)->first()) {
+        setcookie('remember', $request->remember ? 1 : 0);
 
-            $setting->update([
-                'receive_service_info' => $request->receive_service_info,
-                'receive_partners_adverts' => $request->receive_partners_adverts,
-                'stay_logged_in' => $request->stay_logged_in,
-                'language_communication' => $request->language_communication,
-            ]);
-            if($request->stay_logged_in = null) {
-                \Cookie::queue(\Cookie::delete('XSRF-TOKEN'));
-                setcookie('XSRF-TOKEN', '');
+        if ($setting = UserSettings::where('user_id', auth()->user()->id)->first()) {
+            $setting->receive_service_info = $request->receive_service_info;
+            $setting->receive_partners_adverts = $request->receive_service_info;
+            if ($request->language_communication == 'Русский') {
+                $setting->language_communication = 'ru';
+            } else {
+                $setting->language_communication = 'en';
             }
+            $setting->save();
         } else {
-            $setting = new UserSettings($request->all());
+            $setting = new UserSettings();
             $setting->user()->associate(auth()->user());
+            $setting->receive_service_info = $request->receive_service_info;
+            $setting->receive_partners_adverts = $request->receive_service_info;
+            $setting->language_communication = $request->language_communication;
             $setting->save();
         }
 

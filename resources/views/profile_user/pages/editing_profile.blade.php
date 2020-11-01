@@ -32,11 +32,11 @@
             <h2>Личные данные </h2>
             <label for="prof-surname">
                 Фамилия
-                <input name="surname"  type="text" id="prof-surname">
+                <input name="surname"  type="text" id="prof-surname" >
             </label>
             <label for="prof-name">
                 Имя
-                <input name="name" type="text" id="prof-name">
+                <input name="name" type="text" id="prof-name" >
             </label>
             <div class="select-price">
                 <p>Пол</p>
@@ -51,14 +51,14 @@
             </div>
             <label for="calendar">
                 Дата рождения
-                <input name="birthday_date" type="date" id="calendar">
+                <input name="birthday_date" type="date" id="calendar" >
             </label>
         </div>
         <div class="contact-date">
             <h2>Контактные данные</h2>
             <label for="prof-email">
                 Адрес эл. почты *
-                <input name="email" type="email" id="prof-email">
+                <input name="email" type="email" id="prof-email" value="{{ auth()->user()->email }}">
             </label>
             <label for="prof-phone">
                 Телефон
@@ -69,7 +69,7 @@
             <h2>Адресные данные</h2>
             <div class="select-price">
                 <p>Улица *</p>
-                <input name='street' type="hidden" name="">
+                <input name='street' type="hidden" >
                 <div class="select-value rotate">
                     <span>Выберите</span>
                     <ul class="value-items">
@@ -171,7 +171,7 @@
             </button>
         </div>
 
-        <a href="#/" class="delete-account-btn">
+        <a href="{{ route('delete-user') }}" class="delete-account-btn">
             удалить аккаунт пользователя
         </a>
     </form>

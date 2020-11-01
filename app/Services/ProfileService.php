@@ -53,11 +53,18 @@ class ProfileService
 
     public function saveFormData(Request $request)
     {
-        $user = new User();
+        $user = auth()->user();
+//        if(!$request->email) {
+//            $user->email = $request->email;
+//        }
         $user->email = $request->email;
         $user->name = $request->name;
         $user->surname = $request->surname;
-        $user->sex = $request->sex;
+        if($request->sex == 'Женский') {
+            $user->sex = 'woman';
+        } else {
+            $user->sex = 'man';
+        }
         $user->birthday_date = $request->birthday_date;
         $user->country = $request->country;
         $user->region = $request->region;
@@ -67,5 +74,10 @@ class ProfileService
         $user->specialisation = $request->specialisation;
         $user->description = $request->description;
         $user->save();
+    }
+
+    public function deleteUser()
+    {
+        auth()->user()->delete();
     }
 }

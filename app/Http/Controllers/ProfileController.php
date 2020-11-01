@@ -39,14 +39,21 @@ class ProfileController extends Controller
     }
 
     public function editingProfileForm(ProfileRequest $request, ProfileService $form) {
-        $form->createAvatar($request);
+        //dd($request);
         $form->saveFormData($request);
+        $form->createAvatar($request);
 
         return redirect()->back();
     }
 
     public function deleteAvatar (ProfileService $deleted) {
         $deleted->deleteAvatar();
+
+        return redirect()->back();
+    }
+
+    public function deleteUser (ProfileService $deleted) {
+        $deleted->deleteUser();
 
         return redirect()->back();
     }

@@ -2,51 +2,57 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CheckEmailRequest;
+use App\Http\Requests\LoginFormRequest;
 use App\Http\Requests\RegisterFormRequest;
 use App\Models\User;
 use App\Services\UserService;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AjaxController extends Controller
 {
-    public function checkLoginEmail(Request $request)
+    public function checkLoginEmail(CheckEmailRequest $request)
     {
-        $user=User::where('email', "=", $request->get('email-login'))->first();
-        if($user) {
-            $data=[
-                'status'=>'success',
-                'email' => $request->get('email-login'),
+        $user = User::where('email', "=", $request->email)->first();
+        if ($user) {
+            $data = [
+                'status' => 'success',
+                'email' => $request->email,
             ];
         } else {
-            $data=[
-                'status'=>'error',
-                'message'=>__('no_user_found'),
-                //'email' => $request->get('email-login'),
+            $data = [
+                'status' => 'error',
+                'message' => __('no user found'),
+            ];
+        }
+
+        return response()->json($data);
+    }
+
+    public function authUser(LoginFormRequest $request)
+    {
+        $email = $request->email;
+        $password = $request->password;
+        $remember = $request->remember;
+
+        setcookie('remember', $remember ? 1 : 0);
+
+        if (Auth::attempt(['email' => $email, 'password' => $password, 'is_active' => 1], 0)) {
+            $data = [
+                'status' => 'success',
+            ];
+        } else {
+            $data = [
+                'status' => 'error',
+                'message' => __('wrong username or password, or not active account'),
             ];
         }
         return response()->json($data);
     }
-    public function authUser(Request $request)
+
+    public function registerUser(RegisterFormRequest $request, UserService $userService)
     {
-        $email=$request->get('email');
-        $password=$request->get('password');
-        $remember=$request->get('remember');
-        if (Auth::attempt(['email' => $email, 'password' => $password, 'is_active' => 1], $remember )) {
-            $data=[
-                'status'=>'success',
-            ];
-        } else {
-            $data=[
-                'status'=>'error',
-                'message'=>__('wrong username or password, or not active account'),
-            ];
-        }
-        return response()->json($data);
-    }
-    public function registerUser(RegisterFormRequest $request,UserService $userService)
-    {
-        $user=$userService->create($request->getDto());
+        $user = $userService->create($request->getDto());
 
         return response()->json($userService->sendVerificationCode($user));
     }

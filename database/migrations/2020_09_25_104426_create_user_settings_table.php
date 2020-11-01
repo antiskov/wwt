@@ -19,8 +19,9 @@ class CreateUserSettingsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->boolean('receive_service_info')->nullable();
             $table->boolean('receive_partners_adverts')->nullable();
-            $table->boolean('stay_logged_in')->nullable();
-            $table->enum('language_communication')->nullable();
+            //$table->boolean('stay_logged_in')->nullable();
+            $table->enum('language_communication',['ru', 'en'])->nullable();
+            //$table->string('language_communication')->nullable();
             $table->timestamps();
         });
     }

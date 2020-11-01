@@ -15,6 +15,8 @@ class HomeController extends Controller
      */
     public function main()
     {
+        //if(isset($_COOKIE['remember'])) dd($_COOKIE['remember']);
+
         return view('pages.main');
     }
 

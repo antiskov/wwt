@@ -6,7 +6,7 @@
         </div>
         <form id="login-form" class="check-login" method="post" action="{{ url('check-login-email') }}">
             @CSRF
-            <input id="login-email-form" type="text" name="email-login" id="login_email" placeholder="Введите почту, логин или телефон">
+            <input id="login-email-form" type="text" name="email" id="login_email" placeholder="Введите почту, логин или телефон">
             <span></span>
             <button class="btn-arrow">Далее</button>
         </form>
