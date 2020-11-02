@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AuthController;
-use App\Http\Controllers\Admin\MainController;
+use App\Http\Controllers\Admin\ModerationAdvertsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,7 +40,7 @@ Route::middleware('set.locale')->group(function () {
 
 Route::group(['prefix' => 'admin'], function () {
     Route::middleware('managerauth')->group(function () {
-        Route::get('/', [MainController::class, 'dashboard'])->name('admin.dashboard');
+        Route::get('/', [\App\Http\Controllers\Admin\MainController::class, 'dashboard'])->name('admin.dashboard');
         Route::get('logout', [AuthController::class, 'logout'])->name('admin.logout');
 
         Route::group(['prefix' => 'users'], function () {
@@ -49,6 +49,10 @@ Route::group(['prefix' => 'admin'], function () {
             Route::post('/create', [\App\Http\Controllers\Admin\UsersController::class, 'store'])->name('admin.create_user');
             Route::get('/edit/{user}', [\App\Http\Controllers\Admin\UsersController::class, 'showEditUser'])->name('admin.edit_user_form');
             Route::post('/edit/{user}', [\App\Http\Controllers\Admin\UsersController::class, 'update'])->name('admin.edit_user');
+        });
+
+        Route::group(['prefix' => 'moderation_adverts'], function () {
+            Route::get('/m', [ModerationAdvertsController::class, 'index'])->name('admin.moderation_adverts');
         });
 
     });

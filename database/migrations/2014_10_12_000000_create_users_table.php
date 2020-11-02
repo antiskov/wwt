@@ -36,8 +36,9 @@ class CreateUsersTable extends Migration
             $table->float('latitude')->nullable();
             $table->float('longtitude')->nullable();
             $table->string('specialisation')->nullable();
-            $table->unsignedBigInteger('timezone_id')->nullable();
             $table->unsignedBigInteger('role_id')->default(0);
+            $table->foreign('role_id')->references('id')->on('roles');
+            $table->unsignedBigInteger('timezone_id')->nullable();
             $table->text('description')->nullable();
             $table->rememberToken();
             $table->timestamps();

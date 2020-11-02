@@ -19,6 +19,7 @@ class HomeController extends Controller
      * @return Application|Factory|View
      */
     public function main() {
+        dd($user=User::find(1));
 
         return view('pages.main');
     }

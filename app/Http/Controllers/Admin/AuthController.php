@@ -15,6 +15,7 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+        //dd(Auth::attempt(['email' => $request->email, 'password' => $request->password]));
         \Log::info($request->email.' '.$request->password);
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             \Log::info('logged in');
@@ -30,5 +31,9 @@ class AuthController extends Controller
     {
         Auth::logout();
         return redirect()->route('admin.showlogin');
+    }
+
+    public function dashboard() {
+        return view('admin.pages.dashboard');
     }
 }
