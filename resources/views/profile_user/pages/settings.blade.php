@@ -7,7 +7,11 @@
         <h2 class="name-lk des">Все о Вашем аккаунте</h2>
         <div class="chek_cont_set">
             <label class="checkbox-other">
-                <input name="stay_logged_in" type="checkbox" checked="" value="1">
+                @if($check)
+                    <input name="stay_logged_in" type="checkbox" checked value="1">
+                @else
+                    <input name="stay_logged_in" type="checkbox">
+                @endif
                 <span>Оставаться залогиненным</span>
             </label>
             <span>Если Вы выберите опцию «Оставаться залогиненным», то Вам нужно будет реже

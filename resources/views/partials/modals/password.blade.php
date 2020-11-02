@@ -7,7 +7,8 @@
         <form id="password-form" method="post" class="check-login" action="{{ route('login-password') }}">
             @CSRF
             <div class="change-input">
-                <input id="password-form-email" name="email" type="text" placeholder="Введите почту, логин или телефон" disabled required
+                <input id="password-form-email" name="email" type="text" placeholder="Введите почту, логин или телефон"
+                       disabled required
                        value="someMail@gmail.com">
                 <span></span>
                 <img src="/images/icons/eraser.svg" alt="Изменить логин">
@@ -21,7 +22,6 @@
                 <div class="checkbox-block">
                     <label class="checkbox-block__label">
                         <input type="checkbox" name="remember">
-                        <p><span>Запомнить меня</span></p>
                     </label>
                 </div>
                 <a href="#">Напомнить пароль</a>

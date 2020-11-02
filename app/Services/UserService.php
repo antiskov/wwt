@@ -99,7 +99,16 @@ class UserService
 
     public function setSetting(Request $request)
     {
-        setcookie('remember', $request->remember ? 1 : 0);
+
+        if(!$request->stay_logged_in) {
+            foreach (array_keys($_COOKIE) as $value) {
+                if (mb_substr($value, 0, 12) == 'remember_web') {
+                    Cookie::queue(Cookie::forget($value));
+                }
+            }
+        } else {
+            \Auth::login(auth()->user(), true);
+        }
 
         if ($setting = UserSettings::where('user_id', auth()->user()->id)->first()) {
             $setting->receive_service_info = $request->receive_service_info;
@@ -120,6 +129,17 @@ class UserService
         }
 
         return $setting;
+    }
+
+    public function checkAutoLogin() {
+        $check = 0;
+        foreach (array_keys($_COOKIE) as $value) {
+            if (mb_substr($value, 0, 12) == 'remember_web') {
+                $check = 1;
+            }
+        }
+
+        return $check;
     }
 
 }

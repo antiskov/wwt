@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\User;
 use App\Services\ProfileService;
+use App\Services\UserService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
@@ -11,11 +13,10 @@ use Illuminate\View\View;
 class HomeController extends Controller
 {
     /**
+     * @param UserService $user
      * @return Application|Factory|View
      */
-    public function main()
-    {
-        //if(isset($_COOKIE['remember'])) dd($_COOKIE['remember']);
+    public function main() {
 
         return view('pages.main');
     }

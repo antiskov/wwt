@@ -34,10 +34,10 @@ class AjaxController extends Controller
         $email = $request->email;
         $password = $request->password;
         $remember = $request->remember;
-
+        \Cookie::queue(\Cookie::forget('remember'));
         setcookie('remember', $remember ? 1 : 0);
 
-        if (Auth::attempt(['email' => $email, 'password' => $password, 'is_active' => 1], 0)) {
+        if (Auth::attempt(['email' => $email, 'password' => $password, 'is_active' => 1], $remember)) {
             $data = [
                 'status' => 'success',
             ];
