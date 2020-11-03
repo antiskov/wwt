@@ -16,11 +16,6 @@ class GoodsController extends Controller
         } else {
             $role = 1;
         }
-        //dd($advert->advertImages->full_path);
-        foreach ($advert->advertImages as $advertImage) {
-            dump($advertImage->full_path);
-        }
-        //dd(asset('/storage/'.$advertImage->full_path));
 
         return view('pages.item-page', [
             'role' => $role,
