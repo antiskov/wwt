@@ -41,7 +41,7 @@
                                 <tr>
                                     <td>{{$advert->id}}</td>
                                     <td>{{$advert->name}} {{$advert->surname}}</td>
-                                    <td>{{$advert->title}}</td>
+                                    <td><a href="{{route('admin.item-page', [$advert->id])}}">{{$advert->title}}</a></td>
                                     <td>{{$advert->price}} {{$advert->currency->title}}</td>
                                     <td>{{$advert->status->title}}</td>
                                     <td>

@@ -20,13 +20,18 @@ class ModerationAdvertsController extends Controller
     {
         $advertsService->changeStatus($status, $advert);
 
-        return redirect()->back();
+        return redirect()->route('admin.moderation_adverts');
     }
 
     public function deleteAdvert(Advert $advert, AdvertsService $advertsService)
     {
         $advertsService->deleteAdvert($advert);
 
-        return redirect()->back();
+        return redirect()->route('admin.moderation_adverts');
+    }
+
+    public function pageItem(Advert $advert)
+    {
+        return view('pages.item-page', ['role' => auth()->user()->role_id, 'advert' => $advert]);
     }
 }

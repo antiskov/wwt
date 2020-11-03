@@ -31,6 +31,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <li class="nav-item d-none d-sm-inline-block">
                 <a href="{{route('admin.dashboard')}}" class="nav-link">Home</a>
             </li>
+            <li>
+                <a href="{{route('admin.logout')}}" class="nav-link">Logout</a>
+            </li>
         </ul>
 
     </nav>
@@ -64,17 +67,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <li class="nav-item">
                         <a href="{{route('admin.show_users')}}" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
-                            <p>
-                                Пользователи
-                            </p>
+                            <p>Пользователи</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="{{route('admin.moderation_adverts')}}" class="nav-link">
-                            <i class="nav-icon fas fa-th"><p>
-                                    Модерация обьявлений
-                                </p></i>
-
+                            <i class="nav-icon fas fa-th"></i>
+                            <p> Модерация обьявлений</p>
                         </a>
                     </li>
                 </ul>
