@@ -1,4 +1,12 @@
-<!DOCTYPE html>
+@extends('layouts.main')
+
+@section('content')
+    @include('admin.partials.left_menu')
+    @section('admin-content')
+    @show
+@endsection
+
+    <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
@@ -31,9 +39,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <li class="nav-item d-none d-sm-inline-block">
                 <a href="{{route('admin.dashboard')}}" class="nav-link">Home</a>
             </li>
-            <li>
-                <a href="{{route('admin.logout')}}" class="nav-link">Logout</a>
-            </li>
         </ul>
 
     </nav>
@@ -61,23 +66,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div>
 
             <!-- Sidebar Menu -->
-            <nav class="mt-2">
-                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                    data-accordion="false">
-                    <li class="nav-item">
-                        <a href="{{route('admin.show_users')}}" class="nav-link">
-                            <i class="nav-icon fas fa-th"></i>
-                            <p>Пользователи</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{route('admin.moderation_adverts')}}" class="nav-link">
-                            <i class="nav-icon fas fa-th"></i>
-                            <p> Модерация обьявлений</p>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+        @include('admin.partials.left_menu')
             <!-- /.sidebar-menu -->
         </div>
         <!-- /.sidebar -->
@@ -108,14 +97,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- /.control-sidebar -->
 
     <!-- Main Footer -->
-{{--    <footer class="main-footer">--}}
-{{--        <!-- To the right -->--}}
-{{--        <div class="float-right d-none d-sm-inline">--}}
-{{--            Anything you want--}}
-{{--        </div>--}}
-{{--        <!-- Default to the left -->--}}
-{{--        <strong>Copyright &copy; 2020-2020 <a href="#">World Watch Traid</a>.</strong> All rights reserved.--}}
-{{--    </footer>--}}
+    <footer class="main-footer">
+        <!-- To the right -->
+        <div class="float-right d-none d-sm-inline">
+            Anything you want
+        </div>
+        <!-- Default to the left -->
+        <strong>Copyright &copy; 2020-2020 <a href="#">World Watch Traid</a>.</strong> All rights reserved.
+    </footer>
 </div>
 <!-- ./wrapper -->
 
@@ -131,3 +120,4 @@ scratch. This page gets rid of all links and provides the needed markup only.
 @show
 </body>
 </html>
+

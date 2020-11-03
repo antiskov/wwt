@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Status extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'title'
+    ];
+
+    public function adverts()
+    {
+        $this->hasOne(Advert::class);
+    }
 }

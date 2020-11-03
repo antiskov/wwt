@@ -2,11 +2,14 @@
 
 namespace Database\Seeders;
 
+use App\Models\Advert;
+use App\Models\Currency;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
-class UsersSeeder extends Seeder
+class CurrencySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,13 +18,10 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-        User::create(
+        Currency::create(
             [
-                'email'=>'admin@admin.com',
-                'password'=>Hash::make('12345678'),
-                'is_active'=>1,
-                'referral_code'=>'hahahahaha',
-                'role_id'=>3
+                'title' => 'USD',
+                'symbol' => '$',
             ]
         );
     }

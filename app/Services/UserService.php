@@ -25,7 +25,7 @@ class UserService
      */
     public function getRole($user)
     {
-        return $user->role->title;
+        return $user->role;
     }
 
     /**

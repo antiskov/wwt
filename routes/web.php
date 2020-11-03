@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AuthController;
-use App\Http\Controllers\Admin\MainController;
+use App\Http\Controllers\Admin\ModerationAdvertsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +24,7 @@ Route::middleware('set.locale')->group(function () {
     Route::post('/login-password', [\App\Http\Controllers\AjaxController::class, 'authUser'])->name('login-password');
     Route::get('/reset-password/{email}', [\App\Http\Controllers\UserController::class, 'resetPassword'])->name('reset-password');
     Route::get('/email_verification_code/{email_verification_code}', [\App\Http\Controllers\UserController::class, 'emailVerificationCode'])->name('activation_link');
+    Route::get('/item_page/{advert}', [\App\Http\Controllers\GoodsController::class, 'index'])->name('item-page');
 
     Route::group(['prefix' => 'profile'], function () {
         Route::middleware('auth')->group(function () {
@@ -40,7 +41,7 @@ Route::middleware('set.locale')->group(function () {
 
 Route::group(['prefix' => 'admin'], function () {
     Route::middleware('managerauth')->group(function () {
-        Route::get('/', [MainController::class, 'dashboard'])->name('admin.dashboard');
+        Route::get('/', [\App\Http\Controllers\Admin\MainController::class, 'dashboard'])->name('admin.dashboard');
         Route::get('logout', [AuthController::class, 'logout'])->name('admin.logout');
 
         Route::group(['prefix' => 'users'], function () {
@@ -49,6 +50,13 @@ Route::group(['prefix' => 'admin'], function () {
             Route::post('/create', [\App\Http\Controllers\Admin\UsersController::class, 'store'])->name('admin.create_user');
             Route::get('/edit/{user}', [\App\Http\Controllers\Admin\UsersController::class, 'showEditUser'])->name('admin.edit_user_form');
             Route::post('/edit/{user}', [\App\Http\Controllers\Admin\UsersController::class, 'update'])->name('admin.edit_user');
+        });
+
+        Route::group(['prefix' => 'moderation_adverts'], function () {
+            Route::get('/', [ModerationAdvertsController::class, 'index'])->name('admin.moderation_adverts');
+            Route::get('/change-status/{status}/{advert}', [ModerationAdvertsController::class, 'changeStatus'])->name('admin.change_status');
+            Route::get('/delete_advert/{advert}', [ModerationAdvertsController::class, 'deleteAdvert'])->name('admin.delete_advert');
+            Route::get('/item_page/{advert}', [ModerationAdvertsController::class, 'pageItem'])->name('admin.item-page');
         });
 
     });
