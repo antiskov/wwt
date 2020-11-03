@@ -52,7 +52,9 @@ Route::group(['prefix' => 'admin'], function () {
         });
 
         Route::group(['prefix' => 'moderation_adverts'], function () {
-            Route::get('/m', [ModerationAdvertsController::class, 'index'])->name('admin.moderation_adverts');
+            Route::get('/', [ModerationAdvertsController::class, 'index'])->name('admin.moderation_adverts');
+            Route::get('/change-status/{status}/{advert}', [ModerationAdvertsController::class, 'changeStatus'])->name('admin.change_status');
+            Route::get('/delete_advert/{advert}', [ModerationAdvertsController::class, 'deleteAdvert'])->name('admin.delete_advert');
         });
 
     });

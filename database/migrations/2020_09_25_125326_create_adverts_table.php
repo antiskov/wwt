@@ -17,11 +17,14 @@ class CreateAdvertsTable extends Migration
             $table->id();
             $table->enum('type',['watch','accessories','parts']);
             $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->string('title');
             $table->text('description')->nullable();
             $table->integer('price')->nullable();
             $table->unsignedBigInteger('currency_id');
+            $table->foreign('currency_id')->references('id')->on('currencies');
             $table->unsignedBigInteger('status_id')->default(0);
+            $table->foreign('status_id')->references('id')->on('statuses');
             $table->string('surname')->nullable();
             $table->string('name')->nullable();
             $table->date('birthday')->nullable();

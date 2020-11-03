@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\DataObjects\Admin\ShowShortAdvert;
 use App\DataObjects\Admin\ShowShortUser;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CreateUserFormRequest;
