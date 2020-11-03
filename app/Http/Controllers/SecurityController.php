@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\LoginFormRequest;
+use App\Http\Requests\CheckEmailRequest;
 use Illuminate\Http\Request;
 
 class SecurityController extends Controller
 {
-    public function login(LoginFormRequest $request)
+    public function login(CheckEmailRequest $request)
     {
         return redirect()->back();
     }

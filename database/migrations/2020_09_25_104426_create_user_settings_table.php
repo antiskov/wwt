@@ -16,10 +16,12 @@ class CreateUserSettingsTable extends Migration
         Schema::create('user_settings', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->boolean('receive_service_info')->nullable();
             $table->boolean('receive_partners_adverts')->nullable();
-            $table->boolean('stay_looged_in')->default(false);
+            $table->enum('language_communication',['ru', 'en'])->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

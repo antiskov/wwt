@@ -31,7 +31,7 @@ class SetLocale
             App::setLocale(Session::get('language'));
 
             return $next($request);
-        } elseif (in_array($locale, $languages) == fulse) {
+        } elseif (in_array($locale, $languages) == false) {
             App::setLocale(config('app.locale'));
 
             return $next($request);
