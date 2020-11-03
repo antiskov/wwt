@@ -14,21 +14,11 @@
                     <div class="shadow-cont">
                         <div class="swiper-container gallery-top">
                             <div class="swiper-wrapper">
-                                <a data-fancybox data-src="#item-page-modal" href="javascript:;"
-                                   class="swiper-slide"><img src="./images/slider/1.png" alt="img"
-                                                             class="swiper-slide-item"></a>
-                                <a data-fancybox data-src="#item-page-modal" href="javascript:;"
-                                   class="swiper-slide"><img src="./images/slider/1.png" alt="img"
-                                                             class="swiper-slide-item"></a>
-                                <a data-fancybox data-src="#item-page-modal" href="javascript:;"
-                                   class="swiper-slide"><img src="./images/slider/1.png" alt="img"
-                                                             class="swiper-slide-item"></a>
-                                <a data-fancybox data-src="#item-page-modal" href="javascript:;"
-                                   class="swiper-slide"><img src="./images/slider/1.png" alt="img"
-                                                             class="swiper-slide-item"></a>
-                                <a data-fancybox data-src="#item-page-modal" href="javascript:;"
-                                   class="swiper-slide"><img src="./images/slider/1.png" alt="img"
-                                                             class="swiper-slide-item"></a>
+                                @foreach($advert->advertImages as $advertImage)
+                                    <a data-fancybox data-src="#item-page-modal" href="javascript:;" class="swiper-slide">
+                                        <img src="{{asset('/storage/'.$advertImage->full_path)}}" alt="img" class="swiper-slide-item">
+                                    </a>
+                                @endforeach
                             </div>
                             <!-- Add Arrows -->
                             <div class="swiper-button-next swiper-button-black"></div>
@@ -36,11 +26,9 @@
                         </div>
                         <div class="swiper-container gallery-thumbs">
                             <div class="swiper-wrapper">
-                                <img src="./images/slider/1.png" alt="img" class="swiper-slide">
-                                <img src="./images/slider/1.png" alt="img" class="swiper-slide">
-                                <img src="./images/slider/1.png" alt="img" class="swiper-slide">
-                                <img src="./images/slider/1.png" alt="img" class="swiper-slide">
-                                <img src="./images/slider/1.png" alt="img" class="swiper-slide">
+                                @foreach($advert->advertImages as $advertImage)
+                                    <img src="{{asset('/storage/'.$advertImage->full_path)}}" alt="img" class="swiper-slide">
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -50,12 +38,10 @@
                 <div class="item-information">
 
                     <h2 class="item-name">
-                        Patek Philippe Aquanaut 5168G-001
-                        new unworn Patek new unworn Patek new
+                        {{$advert->title}}
                     </h2>
                     <div class="cont-price">
-
-                        <div class="item-price">1 777 178 ₴</div>
+                        <div class="item-price">{{$advert->price.' '.$advert->currency->symbol}}</div>
                     </div>
 
                     <div class="cont-specifications">
@@ -198,26 +184,7 @@
                         Базовые данные
                     </h2>
                     <p>
-                        Difficult to find this Aquanaut 5168G-001 new unworn full set September 2019.
-                        2017 is the 20th anniversary of the Aquanaut, and to celebrate Patek Philippe
-                        has created the ref. 5168G. Originally the Aquanaut was made in stainless steel
-                        and with a black dial, very much playing the part of a casual sports watch.
-                        Well, this model changes all that, with a hefty white gold case and a striking blue dial.
-                        It is a very different watch from the Aquanaut you're probably familiar with. How exactly?
-                        To start, the 5168G has a 42.2mm case made of solid white gold. Contrast that with the
-                        40mm steel case of the 5167A, and you'll immediately realize this is a different beast.
-                        The proportions and styling remain intact however, so you get the same lines and the
-                        same mix of polishing on the edges and brushing on the top of the bezel.
-                        This is the first white gold Aquanaut, though both the ref. 5167 (time and date) and
-                        the ref. 5164 (travel time) are available in rose gold.
-                        Then there's the dial. Instead of an even black, there is a beautiful blue gradient
-                        that turns black at the very edges. It definitely pulls you in and begs for a closer look.
-                        You get the same Arabic numerals in white gold, with white gold luminous markers, and
-                        at three o'clock is the familiar white date display too.
-                        Powering the watch is the caliber 324 SC, the same three-hand date movement that
-                        can be found in the 5167A. That means that with the bigger case you get a look at
-                        a relatively small movement through the sapphire back.
-                        (Hodinkee, Stephen Pulvirent)
+                        {{$advert->description}}
                     </p>
                 </div>
             </div>

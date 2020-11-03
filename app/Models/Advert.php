@@ -28,4 +28,9 @@ class Advert extends Model
         return $this->belongsTo(Status::class);
     }
 
+    public function advertImages()
+    {
+        return $this->hasMany(AdvertImage::class);
+    }
+
 }

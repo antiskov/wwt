@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Advert;
 use App\Models\Status;
 use Illuminate\Database\Seeder;
 
@@ -20,7 +21,8 @@ class DatabaseSeeder extends Seeder
 //            UsersSeeder::class,
 //            StatusSeeder::class,
 //            CurrencySeeder::class,
-            AdvertsSeeder::class,
+//            AdvertsSeeder::class,
+            AdvertsImageSeeder::class,
 
         ]);
     }

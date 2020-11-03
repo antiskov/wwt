@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\RegisterEmail;
 use App\Models\User;
+use App\Services\ImageMinificationService;
 use App\Services\ProfileService;
 use App\Services\UserService;
 use Illuminate\Contracts\Foundation\Application;
@@ -27,9 +28,9 @@ class HomeController extends Controller
      * @param ProfileService $req
      * @return Application|Factory|View
      */
-    public function test(ProfileService $req)
+    public function test(ImageMinificationService $req)
     {
-        $req->minify('public/yoda.png', ['medium', 'big', 'small']);
+        $req->minify('public/pokemon.png', ['medium', 'big', 'small']);
 
         return view('pages.main');
     }

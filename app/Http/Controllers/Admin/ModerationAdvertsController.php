@@ -30,8 +30,8 @@ class ModerationAdvertsController extends Controller
         return redirect()->route('admin.moderation_adverts');
     }
 
-    public function pageItem(Advert $advert)
-    {
-        return view('pages.item-page', ['role' => auth()->user()->role_id, 'advert' => $advert]);
-    }
+//    public function pageItem(Advert $advert)
+//    {
+//        return view('pages.item-page', ['role' => auth()->user()->role_id, 'advert' => $advert]);
+//    }
 }

@@ -46,6 +46,7 @@
                                     <td>{{$advert->status->title}}</td>
                                     <td>
                                         <a href='{{ route('admin.delete_advert', [$advert->id]) }}'>Удалить</a>
+                                        <br>
                                         <a href="{{ route('admin.change_status', [3, $advert->id]) }}">Отказать</a>
                                         <br>
                                         <a href="{{ route('admin.change_status', [4, $advert->id]) }}">Опубликовать</a>
