@@ -15,8 +15,10 @@
                         <div class="swiper-container gallery-top">
                             <div class="swiper-wrapper">
                                 @foreach($advert->advertImages as $advertImage)
-                                    <a data-fancybox data-src="#item-page-modal" href="javascript:;" class="swiper-slide">
-                                        <img src="{{asset('/storage/'.$advertImage->full_path)}}" alt="img" class="swiper-slide-item">
+                                    <a data-fancybox data-src="#item-page-modal" href="javascript:;"
+                                       class="swiper-slide">
+                                        <img src="{{asset('/storage/'.$advertImage->full_path)}}" alt="img"
+                                             class="swiper-slide-item">
                                     </a>
                                 @endforeach
                             </div>
@@ -27,7 +29,8 @@
                         <div class="swiper-container gallery-thumbs">
                             <div class="swiper-wrapper">
                                 @foreach($advert->advertImages as $advertImage)
-                                    <img src="{{asset('/storage/'.$advertImage->full_path)}}" alt="img" class="swiper-slide">
+                                    <img src="{{asset('/storage/'.$advertImage->full_path)}}" alt="img"
+                                         class="swiper-slide">
                                 @endforeach
                             </div>
                         </div>
@@ -47,26 +50,24 @@
                     <div class="cont-specifications">
                         <div class="cont">
                             <p>Состояние</p>
-                            <span>Новые</span>
+                                <span>{{ $advert->condition->title }}</span>
                         </div>
                         <div class="cont">
                             <p>Объем доставки</p>
-                            <span>С оригинальными документами и коробкой</span>
+                            <span>{{ $advert->deliveryVolume->title }}</span>
                         </div>
                         <div class="cont">
                             <p>Наличие</p>
-                            <span class="have">В наличии</span>
-                            <span class="waiting">Ожидать</span>
-                            <span class="dont-have">Нету в наличии</span>
+                            <span> {{ $advert->availabilityStatus->title }}</span>
                         </div>
                     </div>
                     <div class="seller-item">
                         <div class="cont-name">
-                            <h3>Владимир</h3>
-                            <a href="tel:+38(063)874-69-92" class="phone">+38(063)874-69-92</a>
+                            <h3>{{$advert->name}}</h3>
+                            <a href="tel:+38{{$advert->phone}}" class="phone">+38{{$advert->phone}}</a>
                         </div>
                         <div class="img-seller">
-                            <img src="./images/content/person.png" alt="img">
+                            <img src="{{asset('/storage/'.$advert->user->avatar)}}" alt="img">
                         </div>
                     </div>
                     <button class="call-seller btn-hover">Связатся с продавцом</button>

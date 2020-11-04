@@ -95,4 +95,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(UserSettings::class);
     }
+
+    public function adverts()
+    {
+        return $this->hasOne(Advert::class);
+    }
 }
