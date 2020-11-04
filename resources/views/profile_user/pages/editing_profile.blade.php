@@ -139,8 +139,9 @@
             </div>
             <div class="select-price aline">
                 <p>Язык</p>
-                <input type="hidden" name="" value="">
+
                 <div class="lang-wrap">
+                    <input type="hidden" name="" value="">
                     <div class="select-value rotate">
                         <span>Добавить язык</span>
                         <ul class="value-items">

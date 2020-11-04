@@ -113,11 +113,11 @@
                         </div>
                         <div class="setting-cont">
                             <p>Материал корпуса</p>
-                            <span>Белое золото</span>
+                            <span>{{ $advert->watchAdvert->watchMaterial->title }}</span>
                         </div>
                         <div class="setting-cont">
                             <p>Материал браслета</p>
-                            <span>Каучук</span>
+                            <span>{{ $advert->watchAdvert->braceletMaterial->title }}</span>
                         </div>
                         <div class="setting-cont">
                             <p>Год</p>
@@ -125,15 +125,15 @@
                         </div>
                         <div class="setting-cont">
                             <p>Состояние</p>
-                            <span>Новые (Новые, без признаков ношения)</span>
+                            <span>{{ $advert->watchAdvert->watch_state }}</span>
                         </div>
                         <div class="setting-cont">
                             <p>Объем доставки</p>
-                            <span>С оригинальными документами и коробкой</span>
+                            <span>{{$advert->deliveryVolume->title}}</span>
                         </div>
                         <div class="setting-cont">
                             <p>Местоположение</p>
-                            <span>Монако, Monaco</span>
+                            <span>{{$advert->country}}</span>
                         </div>
                     </div>
 
@@ -141,7 +141,7 @@
                     <div class="setting-wrap">
                         <div class="setting-cont">
                             <p>Тип механизма</p>
-                            <span>Автоподзавод</span>
+                            <span>{{$advert->watchAdvert->mechanismType->title}}</span>
                         </div>
                         <div class="setting-cont">
                             <p>Калибр/Механизм</p>
@@ -153,19 +153,19 @@
                     <div class="setting-wrap">
                         <div class="setting-cont">
                             <p>Материал корпуса</p>
-                            <span>Белое золото</span>
+                            <span>{{ $advert->watchAdvert->watchMaterial->title }}</span>
                         </div>
                         <div class="setting-cont">
                             <p>Диаметр</p>
-                            <span>42 mm</span>
+                            <span>{{$advert->watchAdvert->diameter}} mm</span>
                         </div>
                         <div class="setting-cont">
                             <p>Cтекло</p>
-                            <span>Сапфировое стекло</span>
+                            <span>{{$advert->watchAdvert->glass->title}}</span>
                         </div>
                         <div class="setting-cont">
                             <p>Цифры</p>
-                            <span>Aрабские</span>
+                            <span>{{$advert->watchAdvert->figures}} </span>
                         </div>
                     </div>
 
@@ -173,7 +173,7 @@
                     <div class="setting-wrap">
                         <div class="setting-cont">
                             <p>Браслет/ремешок</p>
-                            <span>Каучук</span>
+                            <span>{{ $advert->watchAdvert->braceletMaterial->title }}</span>
                         </div>
                     </div>
 
@@ -193,10 +193,11 @@
                 <div class="container">
                     <div class="person">
                         <div class="person-prof">
-                            <img src="./images/content/person.png" alt="img">
+                            <img src="{{asset('/storage/'.$advert->user->avatar)}} alt="img">
                         </div>
                         <div class="person-rating">
-                            <img src="./images/icons/stars.svg" alt="img">
+{{--                            <img src="./images/icons/stars.svg" alt="img">--}}
+                            нужно будет сделать интерактивные звезды
                         </div>
                         <div class="person-name">Владимир</div>
                         <a href="tel:+38063874-69-92" class="person-phone">+38(063)874-69-92</a>

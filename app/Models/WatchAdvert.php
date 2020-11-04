@@ -27,11 +27,31 @@ class WatchAdvert extends Model implements AdvertsInterface
 
     public function watchModel()
     {
-        return$this->belongsTo(WatchModel::class);
+        return $this->belongsTo(WatchModel::class);
     }
 
     public function watchType()
     {
-        return$this->belongsTo(WatchType::class);
+        return $this->belongsTo(WatchType::class);
+    }
+
+    public function watchMaterial()
+    {
+        return $this->belongsTo(WatchMaterial::class);
+    }
+
+    public function mechanismType()
+    {
+        return $this->belongsTo(MechanismType::class);
+    }
+
+    public function braceletMaterial()
+    {
+        return $this->belongsTo(BraceletMaterial::class);
+    }
+
+    public function glass()
+    {
+        return $this->belongsTo(Glass::class);
     }
 }

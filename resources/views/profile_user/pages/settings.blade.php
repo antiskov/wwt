@@ -43,10 +43,25 @@
                 <span>Наши партнеры регулярно делают нам привлекательные предложения, которые мы с удовольствием перенаправляем нашим клиентам.</span>
                 <div class="sep-cont">
                     <p>Мои предпочитаемые языки:</p>
-                    <select name="language" class="custom-select" required="required">
-                        <option value="ru">Русский</option>
-                        <option value="en">Английский</option>
-                    </select>
+{{--                    <select name="language" class="custom-select" required="required">--}}
+{{--                        <option value="ru">Русский</option>--}}
+{{--                        <option value="en">Английский</option>--}}
+{{--                    </select>--}}
+                    <div class="lang-wrap">
+                        <input type="hidden" name="" value="">
+                        <div class="select-value rotate">
+                            <span>Добавить язык</span>
+                            <ul class="value-items">
+                                <li>Украинский</li>
+                                <li>Русский</li>
+                                <li>English</li>
+                            </ul>
+                        </div>
+                        <div class="lang-result">
+                            <span>Украинский</span>
+                            <span>Mexico</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

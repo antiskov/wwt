@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\MechanismType;
 use App\Models\WatchAdvert;
 use App\Models\WatchMake;
+use App\Models\WatchMaterial;
 use App\Models\WatchModel;
 use App\Models\WatchType;
 use Illuminate\Database\Seeder;
@@ -50,7 +51,7 @@ class WatchModelSeeder extends Seeder
             'watch_type_id' => 1,
             'watch_make_id' => 1,
             'title' => 'A1000D-7EF',
-            'model_code' => 101,
+            'model_code' => 444,
             'sex_id' => 1,
             'height' => 10,
             'width' => 5,

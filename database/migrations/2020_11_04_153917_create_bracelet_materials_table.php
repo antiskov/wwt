@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWatchMeterialsTable extends Migration
+class CreateBraceletMaterialsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateWatchMeterialsTable extends Migration
      */
     public function up()
     {
-        Schema::create('watch_meterials', function (Blueprint $table) {
+        Schema::create('bracelet_materials', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ class CreateWatchMeterialsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('watch_meterials');
+        Schema::dropIfExists('bracelet_materials');
     }
 }
