@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Condition;
+use App\Models\Sex;
 use Illuminate\Database\Seeder;
 
-class ConditionSeeder extends Seeder
+class SexesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +14,7 @@ class ConditionSeeder extends Seeder
      */
     public function run()
     {
-        Condition::create([ 'title' => 'Новое']);
-        Condition::create([ 'title' => 'Старое' ]);
+        Sex::create([ 'title' => 'man']);
+        Sex::create([ 'title' => 'woman' ]);
     }
 }

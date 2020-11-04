@@ -54,4 +54,9 @@ class Advert extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function watchAdvert()
+    {
+        return $this->hasOne(WatchAdvert::class);
+    }
+
 }

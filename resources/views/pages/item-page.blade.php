@@ -50,7 +50,7 @@
                     <div class="cont-specifications">
                         <div class="cont">
                             <p>Состояние</p>
-                                <span>{{ $advert->condition->title }}</span>
+                                <span>{{ $advert->watchAdvert->watch_state }}</span>
                         </div>
                         <div class="cont">
                             <p>Объем доставки</p>
@@ -89,27 +89,27 @@
                     <div class="setting-wrap">
                         <div class="setting-cont">
                             <p>Номер объявления</p>
-                            <span>92UML2</span>
+                            <span>{{ $advert->id }}</span>
                         </div>
                         <div class="setting-cont">
                             <p>Идентификационный номер</p>
-                            <span>5168G-001</span>
+                            <span>{{ $advert->watchAdvert->model_code }}</span>
                         </div>
                         <div class="setting-cont">
                             <p>Марка</p>
-                            <span>Patek Philippe</span>
+                            <span>{{ $advert->watchAdvert->watchMake->title }}</span>
                         </div>
                         <div class="setting-cont">
                             <p>Модель</p>
-                            <span>Aquanaut</span>
+                            <span>{{ $advert->watchAdvert->watchModel->title }}</span>
                         </div>
                         <div class="setting-cont">
                             <p>Код</p>
-                            <span>6317</span>
+                            <span>{{ $advert->watchAdvert->watchModel->model_code }}</span>
                         </div>
                         <div class="setting-cont">
                             <p>Тип механизма</p>
-                            <span>Автоподзавод</span>
+                            <span>{{ $advert->watchAdvert->watchType->title }}</span>
                         </div>
                         <div class="setting-cont">
                             <p>Материал корпуса</p>

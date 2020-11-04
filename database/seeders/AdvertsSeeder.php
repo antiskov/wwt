@@ -36,7 +36,7 @@ class AdvertsSeeder extends Seeder
                 'street' => 'Khreshchatyk',
                 'zip_code' => 23000,
                 'delivery_volume_id' => 1,
-                'condition_id' => 1,
+                //'condition_id' => 1,
                 'availability_status_id' => 1,
             ]
         );
@@ -60,7 +60,7 @@ class AdvertsSeeder extends Seeder
                 'street' => 'Khreshchatyk',
                 'zip_code' => 23000,
                 'delivery_volume_id' => 3,
-                'condition_id' => 2,
+                //'condition_id' => 2,
                 'availability_status_id' => 2,
             ]
         );
@@ -84,7 +84,7 @@ class AdvertsSeeder extends Seeder
                 'street' => 'Khreshchatyk',
                 'zip_code' => 23000,
                 'delivery_volume_id' => 2,
-                'condition_id' => 2,
+                //'condition_id' => 2,
                 'availability_status_id' => 3,
             ]
         );

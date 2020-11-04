@@ -41,8 +41,8 @@ class AddCollumnAdvertsTable extends Migration
 //            $table->softDeletes();
             $table->unsignedBigInteger('delivery_volume_id');
             $table->foreign('delivery_volume_id')->references('id')->on('delivery_volumes');
-            $table->unsignedBigInteger('condition_id');
-            $table->foreign('condition_id')->references('id')->on('conditions');
+//            $table->unsignedBigInteger('condition_id');
+//            $table->foreign('condition_id')->references('id')->on('conditions');
             $table->unsignedBigInteger('availability_status_id');
             $table->foreign('availability_status_id')->references('id')->on('availability_statuses');
         });

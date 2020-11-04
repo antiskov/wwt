@@ -8,6 +8,7 @@ class GoodsController extends Controller
 {
     public function index(Advert $advert)
     {
+
         if(auth()->user()) {
             $role = auth()->user()->role_id;
         } else {

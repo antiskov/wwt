@@ -14,4 +14,24 @@ class WatchAdvert extends Model implements AdvertsInterface
     {
         return $this->user_id;
     }
+
+    public function advert()
+    {
+        return $this->belongsTo(Advert::class);
+    }
+
+    public function watchMake()
+    {
+        return $this->belongsTo(WatchMake::class);
+    }
+
+    public function watchModel()
+    {
+        return$this->belongsTo(WatchModel::class);
+    }
+
+    public function watchType()
+    {
+        return$this->belongsTo(WatchType::class);
+    }
 }
