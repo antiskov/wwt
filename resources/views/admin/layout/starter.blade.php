@@ -76,6 +76,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <p> Модерация обьявлений</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{route('admin.banner_control')}}" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>Управление баннерами</p>
+                        </a>
+                    </li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->

@@ -16,8 +16,6 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-        Language::create([''])
-
         User::create(
             [
                 'email'=>'admin@admin.com',
