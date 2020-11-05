@@ -6,9 +6,14 @@ namespace App\Services;
 
 use App\Contracts\AdvertCreator;
 use App\Contracts\AdvertsInterface;
+
 use App\DataObjects\WatchEntity;
 use App\Domain\WatchesAdvertCreator;
 use App\Exceptions\UnknownAdvertTypeException;
+
+use App\Models\Advert;
+use App\Models\Status;
+
 
 class AdvertsService
 {
@@ -16,6 +21,7 @@ class AdvertsService
     {
         return $advert->getUserId();
     }
+
     public function create(WatchEntity $watchEntity, AdvertCreator $creator)
     {
 
@@ -27,8 +33,24 @@ class AdvertsService
                 $creator= new WatchesAdvertCreator();
                 break;
             default:
-                throw new UnknownAdvertTypeException();
+                throw new UnknownAdvertTypeException;
         }
         return $creator;
+    }
+
+    public function getAllAdverts()
+    {
+        return Advert::all();
+    }
+
+    public function changeStatus($status, Advert $advert)
+    {
+        $advert->status_id = $status;
+        $advert->save();
+    }
+
+    public function deleteAdvert(Advert $advert)
+    {
+        $advert->delete();
     }
 }

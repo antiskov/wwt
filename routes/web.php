@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AuthController;
-use App\Http\Controllers\Admin\MainController;
+use App\Http\Controllers\Admin\ModerationAdvertsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,35 +14,59 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-    Route::middleware('set.locale')->group(function () {
-        Route::get('/test{language}', [\App\Http\Controllers\SetLocaleController::class, 'setLocal'])->name('test');
-        Route::get('/',[\App\Http\Controllers\HomeController::class,'main'])->name('home');
-        Route::get('/test', [\App\Http\Controllers\HomeController::class,'test']); //todo: remove on prod
-        Route::get('/logout',[\App\Http\Controllers\UserController::class,'logout'])->name('logout');
-        Route::post('/register-user', [\App\Http\Controllers\AjaxController::class,'registerUser'])->name('register-user');
-        Route::post('/check-login-email', [\App\Http\Controllers\AjaxController::class, 'checkLoginEmail'])->name('check-login-email');
-        Route::post('/login-password',[\App\Http\Controllers\AjaxController::class, 'authUser'])->name('login-password');
-        Route::get('/reset-password/{email}', [\App\Http\Controllers\UserController::class, 'resetPassword'])->name('reset-password');
-        Route::get('/email_verification_code/{email_verification_code}', [\App\Http\Controllers\UserController::class, 'emailVerificationCode'])->name('activation_link');
-    });
+Route::middleware('set.locale')->group(function () {
+    Route::get('/test{language}', [\App\Http\Controllers\SetLocaleController::class, 'setLocal'])->name('test');
+    Route::get('/', [\App\Http\Controllers\HomeController::class, 'main'])->name('home');
+    Route::get('/test', [\App\Http\Controllers\HomeController::class, 'test']); //todo: remove on prod
+    Route::get('/logout', [\App\Http\Controllers\UserController::class, 'logout'])->name('logout');
+    Route::post('/register-user', [\App\Http\Controllers\AjaxController::class, 'registerUser'])->name('register-user');
+    Route::post('/check-login-email', [\App\Http\Controllers\AjaxController::class, 'checkLoginEmail'])->name('check-login-email');
+    Route::post('/login-password', [\App\Http\Controllers\AjaxController::class, 'authUser'])->name('login-password');
+    Route::get('/reset-password/{email}', [\App\Http\Controllers\UserController::class, 'resetPassword'])->name('reset-password');
+    Route::get('/email_verification_code/{email_verification_code}', [\App\Http\Controllers\UserController::class, 'emailVerificationCode'])->name('activation_link');
+    Route::get('/item_page/{advert}', [\App\Http\Controllers\GoodsController::class, 'index'])->name('item-page');
 
-
-    Route::group(['prefix'=>'admin'], function () {
-        Route::middleware('managerauth')->group(function () {
-            Route::get('/',[MainController::class,'dashboard'])->name('admin.dashboard');
-            Route::get('logout',[AuthController::class,'logout'])->name('admin.logout');
-
-            Route::group(['prefix'=>'users'],function() {
-                Route::get('/',[\App\Http\Controllers\Admin\UsersController::class,'index'])->name('admin.show_users');
-                Route::get('/create',[\App\Http\Controllers\Admin\UsersController::class,'showCreateUser'])->name('admin.create_user_form');
-                Route::post('/create',[\App\Http\Controllers\Admin\UsersController::class,'store'])->name('admin.create_user');
-                Route::get('/edit/{user}',[\App\Http\Controllers\Admin\UsersController::class,'showEditUser'])->name('admin.edit_user_form');
-                Route::post('/edit/{user}',[\App\Http\Controllers\Admin\UsersController::class,'update'])->name('admin.edit_user');
-            });
-
+    Route::group(['prefix' => 'profile'], function () {
+        Route::middleware('auth')->group(function () {
+            Route::get('/settings', [\App\Http\Controllers\ProfileController::class, 'settingsIndex'])->name('profile-settings');
+            Route::post('/settings-form', [\App\Http\Controllers\ProfileController::class, 'setBasicSettings'])->name('settings-form');
+            Route::get('/editing-profile', [\App\Http\Controllers\ProfileController::class, 'editingProfileIndex'])->name('editing-profile');
+            Route::post('/editing-profile', [\App\Http\Controllers\ProfileController::class, 'editingProfileForm'])->name('editing-profile-form');
+            Route::get('/delete-avatar', [\App\Http\Controllers\ProfileController::class, 'deleteAvatar'])->name('delete-avatar');
+            Route::get('/delete-user', [\App\Http\Controllers\ProfileController::class, 'deleteUser'])->name('delete-user');
         });
-        Route::get('login',[AuthController::class,'showLogin'])->name('admin.showlogin');
-        Route::post('login',[AuthController::class,'login'])->name('admin.login');
     });
+});
 
+
+Route::group(['prefix' => 'admin'], function () {
+    Route::middleware('managerauth')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Admin\MainController::class, 'dashboard'])->name('admin.dashboard');
+        Route::get('logout', [AuthController::class, 'logout'])->name('admin.logout');
+
+        Route::group(['prefix' => 'users'], function () {
+            Route::get('/', [\App\Http\Controllers\Admin\UsersController::class, 'index'])->name('admin.show_users');
+            Route::get('/create', [\App\Http\Controllers\Admin\UsersController::class, 'showCreateUser'])->name('admin.create_user_form');
+            Route::post('/create', [\App\Http\Controllers\Admin\UsersController::class, 'store'])->name('admin.create_user');
+            Route::get('/edit/{user}', [\App\Http\Controllers\Admin\UsersController::class, 'showEditUser'])->name('admin.edit_user_form');
+            Route::post('/edit/{user}', [\App\Http\Controllers\Admin\UsersController::class, 'update'])->name('admin.edit_user');
+        });
+
+        Route::group(['prefix' => 'moderation_adverts'], function () {
+            Route::get('/', [ModerationAdvertsController::class, 'index'])->name('admin.moderation_adverts');
+            Route::get('/change-status/{status}/{advert}', [ModerationAdvertsController::class, 'changeStatus'])->name('admin.change_status');
+            Route::get('/delete_advert/{advert}', [ModerationAdvertsController::class, 'deleteAdvert'])->name('admin.delete_advert');
+            Route::get('/item_page/{advert}', [\App\Http\Controllers\GoodsController::class, 'index'])->name('admin.item-page');
+        });
+
+        Route::group(['prefix' => 'banner_control'], function (){
+            Route::get('/', [\App\Http\Controllers\Admin\BannerController::class, 'index'])->name('admin.banner_control');
+            Route::post('/create_banner', [\App\Http\Controllers\Admin\BannerController::class, 'createBanner'])->name('admin.create_banner');
+            Route::get('/close_banner/{banner}', [\App\Http\Controllers\Admin\BannerController::class, 'closeBanner'])->name('admin.close_banner');
+        });
+
+    });
+    Route::get('login', [AuthController::class, 'showLogin'])->name('admin.showlogin');
+    Route::post('login', [AuthController::class, 'login'])->name('admin.login');
+});
 

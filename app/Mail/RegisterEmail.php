@@ -2,10 +2,12 @@
 
 namespace App\Mail;
 
+use App\Http\Requests\LoginFormRequest;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
 class RegisterEmail extends Mailable
 {
@@ -16,11 +18,11 @@ class RegisterEmail extends Mailable
      *
      * @param $codeEmail
      */
-    public $codeEmail;
+    public $user;
 
-    public function __construct($codeEmail)
+    public function __construct($user)
     {
-        $this->codeEmail = $codeEmail;
+        $this->user = $user;
     }
 
     /**
@@ -30,6 +32,6 @@ class RegisterEmail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.email_register');
+        return $this->from(config('MAIL_FROM_ADDRESS'))->view('emails.email_register',['codeEmail'=>route('activation_link', [$this->user->email_verification_code])]);
     }
 }

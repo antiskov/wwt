@@ -441,8 +441,6 @@ $(document).ready(function () {
             data: $('#login-form').serializeArray(),
             datatype: 'html',
             success: function (data) {
-                $('#login-form').empty();
-                $('#login-form').html(data.output);
                 if (data.email) {
                     $('#password-form-email').val(data.email);
                     $.fancybox.close({
@@ -453,7 +451,6 @@ $(document).ready(function () {
                     });
                 }
                 if (data.status == 'error') {
-                    console.log(data.message);
                     $('#login-email-form').addClass('form-elem_err').removeClass('form-elem_success');
                     $('#login-email-form + span').text(data.message);
                 }

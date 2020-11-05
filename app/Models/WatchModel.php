@@ -11,4 +11,9 @@ use Illuminate\Database\Eloquent\Model;
 class WatchModel extends Model
 {
     use HasFactory;
+
+    public function watchAdvert()
+    {
+        return $this->hasMany(WatchAdvert::class);
+    }
 }

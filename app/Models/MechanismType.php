@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class MechanismType extends Model
 {
     use HasFactory;
+
+    public function watchAdvert()
+    {
+        return $this->hasMany(WatchAdvert::class);
+    }
 }

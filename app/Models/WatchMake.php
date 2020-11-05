@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class WatchMake extends Model
 {
     use HasFactory;
+
+    public function watchAdverts()
+    {
+        return $this->hasMany(WatchAdvert::class);
+    }
 }

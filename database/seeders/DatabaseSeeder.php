@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Advert;
+use App\Models\Status;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,8 +17,17 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $this->call([
-            //UserRolesSeeder::class,
+            SexesSeeder::class,
+            UserRolesSeeder::class,
+            StatusSeeder::class,
             UsersSeeder::class,
+            CurrencySeeder::class,
+            DeliveryVolumeSeeder::class,
+            AvailabilityStatusSeeder::class,
+            AdvertsSeeder::class,
+            AdvertsImageSeeder::class,
+            WatchModelSeeder::class,
+            WatchAdvertSeeder::class,
         ]);
     }
 }
