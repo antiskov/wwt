@@ -6,6 +6,8 @@ namespace App\Services;
 
 use App\Contracts\AdvertCreator;
 use App\Contracts\AdvertsInterface;
+use App\Models\Advert;
+use App\Models\Status;
 
 use App\DataObjects\WatchEntity;
 use App\Domain\WatchesAdvertCreator;
