@@ -22,6 +22,7 @@
                 <div class="checkbox-block">
                     <label class="checkbox-block__label">
                         <input type="checkbox" name="remember">
+                        <p><span>Запомнить меня</span></p>
                     </label>
                 </div>
                 <a href="#">Напомнить пароль</a>
