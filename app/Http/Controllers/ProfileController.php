@@ -46,9 +46,11 @@ class ProfileController extends Controller
 
     public function editingProfileForm(ProfileRequest $request, ProfileService $form)
     {
-        //dd($request);
+        //dd($request->birthday_date);
         $form->saveFormData($request);
-        $form->createAvatar($request);
+        if($request->avatar) {
+            $form->createAvatar($request);
+        }
 
         return redirect()->back();
     }

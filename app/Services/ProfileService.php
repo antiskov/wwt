@@ -55,7 +55,7 @@ class ProfileService
 
     public function saveFormData(Request $request)
     {
-//        dd($request);
+        //dd($request->phone);
         $user = auth()->user();
         $user->email = $request->email;
         $user->name = $request->name;
@@ -66,6 +66,7 @@ class ProfileService
             $user->sex = 'man';
         }
         $user->birthday_date = $request->birthday_date;
+        $user->phone = $request->phone;
         $user->country = $request->country;
         $user->region = $request->region;
         $user->city = $request->city;
@@ -73,27 +74,17 @@ class ProfileService
         $user->zip_code = $request->zip_code;
         $user->specialisation = $request->specialisation;
         $user->description = $request->description;
+        $user->street_addition = $request->street_addition;
         $user->save();
 
-
+        $languages = ['1' => 'Украинский','English', 'Русский'];
+        $numberLanguages = [0];
+        unset($numberLanguages[0]);
         foreach ($request->lang as $lang) {
-            if($lang == 'Украинский') {
-                $lang = 'ua';
-            } elseif ($lang == 'English') {
-                $lang = 'en';
-            } else {
-                $lang = 'ru';
-            }
-
-            $language = Language::where('code', $lang)->first();
-            $userLand = new UserLanguage();
-//            if($userLandOld = UserLanguage::where('user_id', $user->id)) {
-//                $user
-//            }
-//            $userLand->users()->sync($user);
-//            $userLand->languages()->sync($language);
-            $userLand->save();
+            $numberLanguages[] = array_search($lang, $languages);
         }
+
+        $user->languages()->sync($numberLanguages);
 
     }
 

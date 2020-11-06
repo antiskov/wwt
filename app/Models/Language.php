@@ -9,8 +9,11 @@ class Language extends Model
 {
     use HasFactory;
 
-    public function userLanguage()
+//    protected $table = 'user_languages';
+
+    public function users()
     {
-        return $this->hasMany(UserLanguage::class);
+        return $this->belongsToMany(User::class)->using(UserLanguage::class);
+        return $this->belongsToMany(User::class);
     }
 }

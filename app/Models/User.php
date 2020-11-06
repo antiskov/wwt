@@ -28,6 +28,7 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable, SoftDeletes;
 
+
     /**
      * The attributes that are mass assignable.
      *
@@ -102,8 +103,9 @@ class User extends Authenticatable
         return $this->hasOne(Advert::class);
     }
 
-    public function userLanguage()
+    public function languages()
     {
-        return $this->hasMany(UserLanguage::class);
+        //return $this->belongsToMany('App\Models\Language')->using('App\Models\UserLanguage');
+        return $this->belongsToMany(Language::class,'user_languages','user_id','language_id');
     }
 }
