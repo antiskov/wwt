@@ -75,10 +75,16 @@
     <div class="mob-menu">
       <div class="mob-menu__top">
         <div class="mob-menu-btn-close"></div>
-        <div class="languages-btns">
-          <a href="#" class="active">ру</a>
-          <a href="#">en</a>
-        </div>
+        <form class="languages-btns">
+          <label>
+            <input type="radio" name="language">
+            <span>ру</span>
+          </label>
+          <label>
+            <input type="radio" name="language">
+            <span>en</span>
+          </label>
+        </form>
       </div>
       <nav class="catalog-mob">
         <ul class="catalog-mob__gen-list">
@@ -309,10 +315,16 @@
                   </ul>
                 </div> -->
               </div>
-              <div class="languages-btns">
-                <a href="#" class="active">ру</a>
-                <a href="#">en</a>
-              </div>
+              <form class="languages-btns">
+                <label>
+                  <input type="radio" name="language">
+                  <span>ру</span>
+                </label>
+                <label>
+                  <input type="radio" name="language">
+                  <span>en</span>
+                </label>
+              </form>
             </div>
           </div>
           <nav class="header-desc__nav">

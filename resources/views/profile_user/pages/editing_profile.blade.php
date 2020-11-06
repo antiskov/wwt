@@ -142,17 +142,35 @@
 
                 <div class="lang-wrap">
                     <input type="hidden" name="" value="">
-                    <div class="select-value rotate">
+                    <div class="select-value select-value_multi rotate">
                         <span>Добавить язык</span>
-                        <ul class="value-items">
-                            <li>Украинский</li>
-                            <li>Русский</li>
-                            <li>English</li>
+                        <ul class="value-items value-items_multi">
+                            <li>
+                                <label>
+                                    <input name="lang[]" type="checkbox" id="lang_1" value="Украинский" checked>
+                                    <span>Украинский</span>
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input name="lang[]" type="checkbox" id="lang_2" value="Русский">
+                                    <span>Русский</span>
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input name="lang[]" type="checkbox" id="lang_3" value="English">
+                                    <span>English</span>
+                                </label>
+                            </li>
                         </ul>
+
                     </div>
                     <div class="lang-result">
-                        <span>Украинский</span>
-                        <span>Mexico</span>
+                        <label for="lang_1">
+                            <span>Украинский</span>
+                            <img src="/images/icons/close.svg" alt="">
+                        </label>
                     </div>
                 </div>
             </div>

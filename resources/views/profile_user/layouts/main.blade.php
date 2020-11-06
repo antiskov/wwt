@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <section class="setting">
+    <section class="profile prof-control">
         <div class="">
             <div class="container-wrap">
                 @include('profile_user.partials.left_menu')

@@ -101,4 +101,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Advert::class);
     }
+
+    public function userLanguage()
+    {
+        return $this->hasMany(UserLanguage::class);
+    }
 }

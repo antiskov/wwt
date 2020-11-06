@@ -3,7 +3,9 @@
 
 namespace App\Services;
 
+use App\Models\Language;
 use App\Models\User;
+use App\Models\UserLanguage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
@@ -53,10 +55,8 @@ class ProfileService
 
     public function saveFormData(Request $request)
     {
+//        dd($request);
         $user = auth()->user();
-//        if(!$request->email) {
-//            $user->email = $request->email;
-//        }
         $user->email = $request->email;
         $user->name = $request->name;
         $user->surname = $request->surname;
@@ -74,6 +74,27 @@ class ProfileService
         $user->specialisation = $request->specialisation;
         $user->description = $request->description;
         $user->save();
+
+
+        foreach ($request->lang as $lang) {
+            if($lang == 'Украинский') {
+                $lang = 'ua';
+            } elseif ($lang == 'English') {
+                $lang = 'en';
+            } else {
+                $lang = 'ru';
+            }
+
+            $language = Language::where('code', $lang)->first();
+            $userLand = new UserLanguage();
+//            if($userLandOld = UserLanguage::where('user_id', $user->id)) {
+//                $user
+//            }
+//            $userLand->users()->sync($user);
+//            $userLand->languages()->sync($language);
+            $userLand->save();
+        }
+
     }
 
     public function deleteUser()

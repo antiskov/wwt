@@ -70,7 +70,6 @@ class UserService
     {
         $user->name = $request->getName();
         $user->surname = $request->getSurname();
-        /*$user->password = Hash::make($request->getPassword());*/
 
         if (!$user->save()) {
             return false;
