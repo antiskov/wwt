@@ -4,6 +4,7 @@
 namespace App\Services;
 
 use App\Models\Language;
+use App\Models\Timezone;
 use App\Models\User;
 use App\Models\UserLanguage;
 use Illuminate\Http\Request;
@@ -55,7 +56,6 @@ class ProfileService
 
     public function saveFormData(Request $request)
     {
-        //dd($request->phone);
         $user = auth()->user();
         $user->email = $request->email;
         $user->name = $request->name;
@@ -65,6 +65,10 @@ class ProfileService
         } else {
             $user->sex = 'man';
         }
+        $timezone = explode(' ', $request->timezone_id);
+        $last_key = array_key_last($timezone);
+        $zoneTime = Timezone::where('time_difference', $timezone[$last_key])->first();
+        $user->timezone()->associate($zoneTime);
         $user->birthday_date = $request->birthday_date;
         $user->phone = $request->phone;
         $user->country = $request->country;

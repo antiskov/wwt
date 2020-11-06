@@ -15,11 +15,18 @@ class TimeZoneSeeder extends Seeder
      */
     public function run()
     {
-        Timezone::create([
-            'title' => '(UTC -12:00) Всемирное координированное время -12',
-            'time_difference' => 12,
-            'title' => '(UTC -12:00) Всемирное координированное время -15',
-            'time_difference' => 15,
-        ]);
+        $timestamp = time();
+        $zonesNumber = [];
+        foreach (timezone_identifiers_list() as $zone) {
+            date_default_timezone_set($zone);
+            $zonesNumber[] = date('P', $timestamp);
+        }
+
+        $uniqueNumber = array_unique($zonesNumber);
+        sort($uniqueNumber);
+
+        foreach ($uniqueNumber as $zone) {
+            Timezone::create(['title' => 'UTC/GMT ', 'time_difference' => $zone]);
+        }
     }
 }

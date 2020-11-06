@@ -14,6 +14,7 @@ class UpdateTimezonesTable extends Migration
     public function up()
     {
         Schema::table('timezones', function (Blueprint $table) {
+            $table->string('time_difference');
             $table->timestamps();
         });
     }

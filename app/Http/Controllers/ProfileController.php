@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileRequest;
+use App\Models\Timezone;
 use App\Services\ProfileService;
 use App\Services\SetSettingsService;
 use App\Services\UserService;
@@ -41,12 +42,12 @@ class ProfileController extends Controller
 
     public function editingProfileIndex()
     {
-        return view('profile_user.pages.editing_profile');
+        return view('profile_user.pages.editing_profile', ['timezones' => Timezone::all()]);
     }
 
     public function editingProfileForm(ProfileRequest $request, ProfileService $form)
     {
-        //dd($request->birthday_date);
+        //dd($request->timezone_id);
         $form->saveFormData($request);
         if($request->avatar) {
             $form->createAvatar($request);

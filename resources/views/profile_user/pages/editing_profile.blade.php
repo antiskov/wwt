@@ -148,14 +148,13 @@
             </label>
             <div class="select-price">
                 <p>Часовой пояс</p>
-                <input name="timezone_id" type="hidden" name="" value="Женский">
+                <input name="timezone_id" type="hidden" name="" value="">
                 <div class="select-value rotate">
                     <span>Выберите</span>
                     <ul class="value-items">
-                        <li>(UTC -12:00) Всемирное координированное время -12</li>
-                        <li>(UTC -13:00) Всемирное координированное время -12</li>
-                        <li>(UTC -14:00) Всемирное координированное время -12</li>
-                        <li>(UTC -15:00) Всемирное координированное время -12</li>
+                        @foreach($timezones as $zone)
+                        <li>{{$zone->title.' '.$zone->time_difference}}</li>
+                        @endforeach
                     </ul>
                 </div>
             </div>

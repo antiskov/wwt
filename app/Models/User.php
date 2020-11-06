@@ -105,7 +105,11 @@ class User extends Authenticatable
 
     public function languages()
     {
-        //return $this->belongsToMany('App\Models\Language')->using('App\Models\UserLanguage');
         return $this->belongsToMany(Language::class,'user_languages','user_id','language_id');
+    }
+
+    public function timezone()
+    {
+        return $this->belongsTo(Timezone::class);
     }
 }

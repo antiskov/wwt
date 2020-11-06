@@ -15,6 +15,7 @@ class UpdateUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('street_addition')->nullable();
+            $table->foreign('timezone_id')->references('id')->on('timezones');
         });
     }
 
