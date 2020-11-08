@@ -7,7 +7,7 @@
         <h2 class="name-lk des">Все о Вашем аккаунте</h2>
         <div class="chek_cont_set">
             <label class="checkbox-other">
-                @if($check)
+                @if($check['remember'])
                     <input name="stay_logged_in" type="checkbox" checked value="1">
                 @else
                     <input name="stay_logged_in" type="checkbox">
@@ -30,36 +30,39 @@
         <div class="more-sett">
             <div class="chek_cont_set">
                 <label class="checkbox-other">
-                    <input name="receive_service_info" type="checkbox" checked="" value="1">
+                    @if($check['receive_service_info'])
+                    <input name="receive_service_info" type="checkbox" checked= value="1">
+                    @else
+                    <input name="receive_service_info" type="checkbox">
+                    @endif
                     <span>Я хочу получать информацию о сервисах и продуктах World Watch Trade</span>
                 </label>
                 <span>Информация и предложения World Watch Trade в Вашем почтовом ящике.</span>
             </div>
             <div class="chek_cont_set">
                 <label class="checkbox-other">
-                    <input name="receive_partners_adverts" type="checkbox" checked="" value="1">
+                    @if($check['receive_partners_adverts'])
+                    <input name="receive_partners_adverts" type="checkbox" checked value="1">
+                    @else
+                    <input name="receive_partners_adverts" type="checkbox">
+                    @endif
                     <span>Актуальные объявления наших партнеров</span>
                 </label>
                 <span>Наши партнеры регулярно делают нам привлекательные предложения, которые мы с удовольствием перенаправляем нашим клиентам.</span>
                 <div class="sep-cont">
                     <p>Мои предпочитаемые языки:</p>
-{{--                    <select name="language" class="custom-select" required="required">--}}
-{{--                        <option value="ru">Русский</option>--}}
-{{--                        <option value="en">Английский</option>--}}
-{{--                    </select>--}}
-                    <div class="lang-wrap">
-                        <input type="hidden" name="" value="">
+                    <div class="select-price">
+                        @if($check['language_communication'] == 'ru')
+                            <input name="language_communication" type="hidden" value="Русский">
+                        @else
+                            <input name="language_communication" type="hidden" value="">
+                        @endif
                         <div class="select-value rotate">
-                            <span>Добавить язык</span>
+{{--                            <span>Русский</span>--}}
                             <ul class="value-items">
-                                <li>Украинский</li>
                                 <li>Русский</li>
-                                <li>English</li>
+                                <li>Английский</li>
                             </ul>
-                        </div>
-                        <div class="lang-result">
-                            <span>Украинский</span>
-                            <span>Mexico</span>
                         </div>
                     </div>
                 </div>

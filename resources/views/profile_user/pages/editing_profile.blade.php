@@ -44,7 +44,7 @@
             </label>
             <div class="select-price">
                 <p>Пол</p>
-                <input name="sex" type="hidden" name="" value={{auth()->user()->sex}}>
+                <input name="sex" type="hidden" value={{auth()->user()->sex}}>
                 <div class="select-value rotate">
                     @if(auth()->user()->sex == 'man')
                         <span>Мужской</span>

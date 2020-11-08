@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProfileRequest;
 use App\Models\Timezone;
 use App\Models\UserLanguage;
+use App\Models\UserSettings;
 use App\Services\ProfileService;
 use App\Services\SecurityService;
 use App\Services\UserService;
@@ -25,9 +26,14 @@ class ProfileController extends Controller
      */
     public function settingsIndex(UserService $user)
     {
-        $check = $user->checkAutoLogin();
+        $check = $user->check();
 
-        return view('profile_user.pages.settings' , ['check' => $check]);
+//        $settings = UserSettings::where('user_id', auth()->user()->id)->first();
+
+        return view('profile_user.pages.settings' , [
+            'check' => $check,
+//            'settings' => $settings,
+        ]);
     }
 
     /**

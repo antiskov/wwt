@@ -18,7 +18,6 @@ class UserSettings extends Model
         'receive_service_info',
         'receive_partners_adverts',
         'stay_logged_in',
-        'language_communication'
     ];
 
     /**
