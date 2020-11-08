@@ -43,16 +43,20 @@ class ProfileController extends Controller
 
     public function editingProfileIndex()
     {
+        $userLanguages = [];
+        foreach (auth()->user()->languages as $l) {
+            $userLanguages[] = $l->code;
+        }
 
         return view('profile_user.pages.editing_profile', [
             'timezones' => Timezone::all(),
-            'userLanguages' => auth()->user()->languages,
+            'userLanguages' => $userLanguages,
         ]);
     }
 
     public function editingProfileForm(ProfileRequest $request, ProfileService $form)
     {
-        //dd($request->timezone_id);
+
         $form->saveFormData($request);
         if($request->avatar) {
             $form->createAvatar($request);

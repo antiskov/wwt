@@ -81,9 +81,10 @@ class ProfileService
         $user->street_addition = $request->street_addition;
         $user->save();
 
-        $languages = ['1' => 'Украинский','English', 'Русский'];
+        $languages = ['1' => 'Украинский','Русский', 'English'];
         $numberLanguages = [0];
         unset($numberLanguages[0]);
+
         if($request->lang){
             foreach ($request->lang as $lang) {
                 $numberLanguages[] = array_search($lang, $languages);

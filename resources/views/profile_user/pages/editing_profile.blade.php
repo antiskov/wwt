@@ -151,7 +151,11 @@
             <div class="select-price">
                 <p>Часовой пояс</p>
                 <input name="timezone_id" type="hidden" name=""
-                       value="{{auth()->user()->timezone->title.' '.auth()->user()->timezone->time_difference}}">
+                       @if(auth()->user()->timezone_id)
+                        value="{{auth()->user()->timezone->title.' '.auth()->user()->timezone->time_difference}}"
+                       @else
+                        value=""
+                        @endif>
                 <div class="select-value rotate">
                     @if(auth()->user()->timezone_id)
                         <span>{{auth()->user()->timezone->title.' '.auth()->user()->timezone->time_difference}}</span>
@@ -167,51 +171,60 @@
             </div>
             <div class="select-price aline">
                 <p>Язык</p>
-
                 <div class="lang-wrap">
                     <input type="hidden" name="" value="">
                     <div class="select-value select-value_multi rotate">
                         <span>Добавить язык</span>
                         <ul class="value-items value-items_multi">
-{{--                            @foreach($userLanguages  as $lang)--}}
-                                <li>
-                                    <label>
-                                        <input name="lang[1]" type="checkbox" id="lang_1" value="Украинский"
-{{--                                               @if($lang->code == 'ua')--}}
-{{--                                               checked--}}
-{{--                                                @endif--}}
-                                        >
-                                        <span>Украинский</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input name="lang[2]" type="checkbox" id="lang_2" value="Русский"
-{{--                                               @if($lang->code == 'ru')--}}
-{{--                                               checked--}}
-{{--                                            @endif--}}
-                                        >
-                                        <span>Русский</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <label>
-                                        <input name="lang[3]" type="checkbox" id="lang_3" value="English"
-{{--                                               @if($lang->code == 'en')--}}
-{{--                                               checked--}}
-{{--                                            @endif--}}
-                                        >
-                                        <span>English</span>
-                                    </label>
-                                </li>
-{{--                            @endforeach--}}
+                            <li>
+                                <label>
+                                    <input name="lang[1]" type="checkbox" id="lang_1" value="Украинский"
+                                           @if(in_array('ua', $userLanguages))
+                                           checked
+                                        @endif
+                                    >
+                                    <span>Украинский</span>
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input name="lang[2]" type="checkbox" id="lang_2" value="Русский"
+                                           @if(in_array('ru', $userLanguages))
+                                           checked
+                                        @endif>
+                                    <span>Русский</span>
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input name="lang[3]" type="checkbox" id="lang_3" value="English"
+                                           @if(in_array('en', $userLanguages))
+                                           checked
+                                        @endif>
+                                    <span>English</span>
+                                </label>
+                            </li>
                         </ul>
                     </div>
                     <div class="lang-result">
-                        <label for="lang_1">
-                            <span>Украинский</span>
-                            <img src="/images/icons/close.svg" alt="">
-                        </label>
+                        @if(in_array('ua', $userLanguages))
+                            <label for="lang_1">
+                                <span>Украинский</span>
+                                <img src="/images/icons/close.svg" alt="">
+                            </label>
+                        @endif
+                        @if(in_array('ru', $userLanguages))
+                            <label for="lang_2">
+                                <span>Русский</span>
+                                <img src="/images/icons/close.svg" alt="">
+                            </label>
+                        @endif
+                        @if(in_array('en', $userLanguages))
+                            <label for="lang_3">
+                                <span>English</span>
+                                <img src="/images/icons/close.svg" alt="">
+                            </label>
+                        @endif
                     </div>
                 </div>
             </div>
