@@ -6,6 +6,7 @@ use App\Http\Requests\ProfileRequest;
 use App\Models\Timezone;
 use App\Models\UserLanguage;
 use App\Services\ProfileService;
+use App\Services\SecurityService;
 use App\Services\UserService;
 use http\Client\Curl\User;
 use Illuminate\Contracts\Foundation\Application;
@@ -41,8 +42,10 @@ class ProfileController extends Controller
         return redirect()->back();
     }
 
-    public function editingProfileIndex()
+    public function editingProfileIndex(ProfileService $service)
     {
+        $percentage = $service->calculate(auth()->user());
+
         $userLanguages = [];
         foreach (auth()->user()->languages as $l) {
             $userLanguages[] = $l->code;
@@ -51,6 +54,7 @@ class ProfileController extends Controller
         return view('profile_user.pages.editing_profile', [
             'timezones' => Timezone::all(),
             'userLanguages' => $userLanguages,
+            'percentage' => $percentage,
         ]);
     }
 
@@ -75,6 +79,13 @@ class ProfileController extends Controller
     public function deleteUser(ProfileService $deleted)
     {
         $deleted->deleteUser();
+
+        return redirect()->back();
+    }
+
+    public function resetPassword(SecurityService $service)
+    {
+        $service->resetPassword(auth()->user());
 
         return redirect()->back();
     }

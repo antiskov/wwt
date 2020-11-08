@@ -28,7 +28,7 @@
                 </div>
                 <div class="load-prof">
                     <p>Профиль заполнен</p>
-                    <p>на <span>65% написать калькулятор заполнения</span></p>
+                    <p>на <span>{{$percentage}}%</span></p>
                 </div>
             </div>
         </div>
@@ -235,7 +235,7 @@
         </div>
         <div class="option-prof">
             <div class="cont">
-                <a href="#/" class="change-pass">
+                <a href="{{route('reset-password')}}" class="change-pass">
                     Изменить пароль
                 </a>
             </div>
@@ -243,7 +243,6 @@
                 Сохранить
             </button>
         </div>
-
         <a href="{{ route('delete-user') }}" class="delete-account-btn">
             удалить аккаунт пользователя
         </a>

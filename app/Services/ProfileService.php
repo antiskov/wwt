@@ -99,4 +99,19 @@ class ProfileService
     {
         auth()->user()->delete();
     }
+
+    public function calculate(User $profile)
+    {
+        $columns    = preg_grep('/(.+ed_at)|(.*id)/', array_keys($profile->toArray()), PREG_GREP_INVERT);
+        $per_column = 100 / count($columns);
+        $total      = 0;
+
+        foreach ($profile->toArray() as $key => $value) {
+            if ($value !== NULL && $value !== [] && in_array($key, $columns)) {
+                $total += $per_column;
+            }
+        }
+
+        return round($total);
+    }
 }
