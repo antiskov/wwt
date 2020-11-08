@@ -44,7 +44,7 @@
             </label>
             <div class="select-price">
                 <p>Пол</p>
-                <input name="sex" type="hidden" name="" value="Женский" value="">
+                <input name="sex" type="hidden" name="" value={{auth()->user()->sex}}>
                 <div class="select-value rotate">
                     @if(auth()->user()->sex == 'man')
                         <span>Мужской</span>
@@ -80,39 +80,40 @@
                 <label for="street">
                     <input name='street' type="text" value="{{ auth()->user()->street }}">
                 </label>
-{{--                <div class="select-value rotate">--}}
-{{--                    @if(auth()->user()->country)--}}
-{{--                        <span>{{auth()->user()->country}}</span>--}}
-{{--                    @else--}}
-{{--                        <span>Выберите</span>--}}
-{{--                    @endif--}}
-{{--                    <ul class="value-items">--}}
-{{--                        <li>Ukraine</li>--}}
-{{--                        <li>USA</li>--}}
-{{--                        <li>Mexico</li>--}}
-{{--                        <li>Italian</li>--}}
-{{--                    </ul>--}}
-{{--                </div>--}}
+                {{--                <div class="select-value rotate">--}}
+                {{--                    @if(auth()->user()->country)--}}
+                {{--                        <span>{{auth()->user()->country}}</span>--}}
+                {{--                    @else--}}
+                {{--                        <span>Выберите</span>--}}
+                {{--                    @endif--}}
+                {{--                    <ul class="value-items">--}}
+                {{--                        <li>Ukraine</li>--}}
+                {{--                        <li>USA</li>--}}
+                {{--                        <li>Mexico</li>--}}
+                {{--                        <li>Italian</li>--}}
+                {{--                    </ul>--}}
+                {{--                </div>--}}
             </div>
             <label for="prof-stret-more">
                 Адресное дополнение
-                <input type="text" id="prof-stret-more" name="street_addition" value="{{auth()->user()->street_addition}}">
+                <input type="text" id="prof-stret-more" name="street_addition"
+                       value="{{auth()->user()->street_addition}}">
             </label>
             <label for="prof-stret-index">
                 Почтовый индекс и населенный пункт *
                 <span class="input-cont">
-                    <input name="zip_code" type="number" id="prof-stret-index" value="{{auth()->user()->zip_code}}">
-                    <input name="city" type="text" id="prof-stret-index-2" value="{{auth()->user()->city}}">
-                </span>
+        <input name="zip_code" type="number" id="prof-stret-index" value="{{auth()->user()->zip_code}}">
+        <input name="city" type="text" id="prof-stret-index-2" value="{{auth()->user()->city}}">
+    </span>
             </label>
             <div class="select-price">
                 <p>Страна *</p>
                 <input name="country" type="hidden" value="{{auth()->user()->country}}">
                 <div class="select-value rotate">
                     @if(auth()->user()->country)
-                    <span>{{auth()->user()->country}}</span>
+                        <span>{{auth()->user()->country}}</span>
                     @else
-                    <span>Выберите</span>
+                        <span>Выберите</span>
                     @endif
                     <ul class="value-items">
                         <li>Ukraine</li>
@@ -144,16 +145,22 @@
             <h2>Больше обо мне</h2>
             <label for="prof-profession">
                 Профессия
-                <input name="specialisation" type="text" id="prof-profession" value="{{auth()->user()->specialisation}}">
+                <input name="specialisation" type="text" id="prof-profession"
+                       value="{{auth()->user()->specialisation}}">
             </label>
             <div class="select-price">
                 <p>Часовой пояс</p>
-                <input name="timezone_id" type="hidden" name="" value="">
+                <input name="timezone_id" type="hidden" name=""
+                       value="{{auth()->user()->timezone->title.' '.auth()->user()->timezone->time_difference}}">
                 <div class="select-value rotate">
-                    <span>Выберите</span>
+                    @if(auth()->user()->timezone_id)
+                        <span>{{auth()->user()->timezone->title.' '.auth()->user()->timezone->time_difference}}</span>
+                    @else
+                        <span>Выберите</span>
+                    @endif
                     <ul class="value-items">
                         @foreach($timezones as $zone)
-                        <li>{{$zone->title.' '.$zone->time_difference}}</li>
+                            <li>{{$zone->title.' '.$zone->time_difference}}</li>
                         @endforeach
                     </ul>
                 </div>
@@ -166,26 +173,39 @@
                     <div class="select-value select-value_multi rotate">
                         <span>Добавить язык</span>
                         <ul class="value-items value-items_multi">
-                            <li>
-                                <label>
-                                    <input name="lang[1]" type="checkbox" id="lang_1" value="Украинский" checked>
-                                    <span>Украинский</span>
-                                </label>
-                            </li>
-                            <li>
-                                <label>
-                                    <input name="lang[2]" type="checkbox" id="lang_2" value="Русский">
-                                    <span>Русский</span>
-                                </label>
-                            </li>
-                            <li>
-                                <label>
-                                    <input name="lang[3]" type="checkbox" id="lang_3" value="English">
-                                    <span>English</span>
-                                </label>
-                            </li>
+{{--                            @foreach($userLanguages  as $lang)--}}
+                                <li>
+                                    <label>
+                                        <input name="lang[1]" type="checkbox" id="lang_1" value="Украинский"
+{{--                                               @if($lang->code == 'ua')--}}
+{{--                                               checked--}}
+{{--                                                @endif--}}
+                                        >
+                                        <span>Украинский</span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input name="lang[2]" type="checkbox" id="lang_2" value="Русский"
+{{--                                               @if($lang->code == 'ru')--}}
+{{--                                               checked--}}
+{{--                                            @endif--}}
+                                        >
+                                        <span>Русский</span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input name="lang[3]" type="checkbox" id="lang_3" value="English"
+{{--                                               @if($lang->code == 'en')--}}
+{{--                                               checked--}}
+{{--                                            @endif--}}
+                                        >
+                                        <span>English</span>
+                                    </label>
+                                </li>
+{{--                            @endforeach--}}
                         </ul>
-
                     </div>
                     <div class="lang-result">
                         <label for="lang_1">
@@ -197,7 +217,7 @@
             </div>
             <label for="description" class="textarea">
                 Описание
-                <textarea name="description" id="description"></textarea>
+                <textarea name="description" id="description">{{auth()->user()->description}}</textarea>
             </label>
         </div>
         <div class="option-prof">

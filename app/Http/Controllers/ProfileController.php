@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileRequest;
 use App\Models\Timezone;
+use App\Models\UserLanguage;
 use App\Services\ProfileService;
-use App\Services\SetSettingsService;
 use App\Services\UserService;
+use http\Client\Curl\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
@@ -42,7 +43,11 @@ class ProfileController extends Controller
 
     public function editingProfileIndex()
     {
-        return view('profile_user.pages.editing_profile', ['timezones' => Timezone::all()]);
+
+        return view('profile_user.pages.editing_profile', [
+            'timezones' => Timezone::all(),
+            'userLanguages' => auth()->user()->languages,
+        ]);
     }
 
     public function editingProfileForm(ProfileRequest $request, ProfileService $form)

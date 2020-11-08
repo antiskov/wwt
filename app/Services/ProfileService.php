@@ -84,8 +84,10 @@ class ProfileService
         $languages = ['1' => 'Украинский','English', 'Русский'];
         $numberLanguages = [0];
         unset($numberLanguages[0]);
-        foreach ($request->lang as $lang) {
-            $numberLanguages[] = array_search($lang, $languages);
+        if($request->lang){
+            foreach ($request->lang as $lang) {
+                $numberLanguages[] = array_search($lang, $languages);
+            }
         }
 
         $user->languages()->sync($numberLanguages);
