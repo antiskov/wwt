@@ -142,11 +142,16 @@ class UserService
                 $check['remember'] = 0;
             }
         }
+        if($settings = UserSettings::where('user_id', auth()->user()->id)->first()) {
+            $check['receive_service_info'] = $settings->receive_service_info;
+            $check['receive_partners_adverts'] = $settings->receive_partners_adverts;
+            $check['language_communication'] = $settings->language_communication;
+        } else {
+            $check['receive_service_info'] = 0;
+            $check['receive_partners_adverts'] = 0;
+            $check['language_communication'] = 0;
+        }
 
-        $settings = UserSettings::where('user_id', auth()->user()->id)->first();
-        $check['receive_service_info'] = $settings->receive_service_info;
-        $check['receive_partners_adverts'] = $settings->receive_partners_adverts;
-        $check['language_communication'] = $settings->language_communication;
 
         return $check;
     }

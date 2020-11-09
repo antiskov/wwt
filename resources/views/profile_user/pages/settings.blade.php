@@ -50,7 +50,7 @@
                 </label>
                 <span>Наши партнеры регулярно делают нам привлекательные предложения, которые мы с удовольствием перенаправляем нашим клиентам.</span>
                 <div class="sep-cont">
-                    <p>Мои предпочитаемые языки:</p>
+                    <p>Мои предпочитаемый язык:</p>
                     <div class="select-price">
                         @if($check['language_communication'] == 'ru')
                             <input name="language_communication" type="hidden" value="Русский">
