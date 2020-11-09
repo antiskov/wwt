@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\AdvertImage;
+use App\Models\BasicImageAdvert;
 use Illuminate\Database\Seeder;
 
 class AdvertsImageSeeder extends Seeder
@@ -57,5 +58,11 @@ class AdvertsImageSeeder extends Seeder
                 'is_active' => 10,
             ]
         );
+
+        for($i = 1; $i <= 12; $i++)
+        BasicImageAdvert::create([
+            'advert_id' => $i,
+            'title' => 'watch-1.png',
+        ]);
     }
 }

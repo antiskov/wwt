@@ -480,6 +480,10 @@ $(document).ready(function () {
             $( this ).addClass( "done" );
         })
     });
+
+    $('#login-form')
+
+
     $('#password-form').validate({
         rules: {
             name: {

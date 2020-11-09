@@ -30,6 +30,7 @@
                     </div>
                     <div class="search__result">
                         <div class="search__categories">
+                            <a href="{{route('catalog')}}"><h1>Каталог</h1></a>
                             <label>
                                 <input type="radio" name="category" checked>
                                 <span>Часы</span>
@@ -317,6 +318,7 @@
                     </div>
                     <nav class="header-desc__nav">
                         <ul class="header-desc-nav">
+                            <li><a href="{{route('catalog')}}"><h1>Каталог</h1></a></li>
                             <li>
                                 <a href="#">Швейцарские часы</a>
                                 <ul class="header-desc-nav__btns">

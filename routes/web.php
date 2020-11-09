@@ -36,6 +36,11 @@ Route::middleware('set.locale')->group(function () {
             Route::get('/delete-user', [\App\Http\Controllers\ProfileController::class, 'deleteUser'])->name('delete-user');
         });
     });
+
+    Route::group(['prefix' =>'catalog'], function() {
+        Route::get('/', [\App\Http\Controllers\CatalogController::class, 'index'])->name('catalog');
+        Route::post('/filter', [\App\Http\Controllers\CatalogController::class, 'filter'])->name('catalog.filter');
+    });
 });
 
 
