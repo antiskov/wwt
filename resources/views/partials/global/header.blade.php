@@ -216,7 +216,7 @@
     <div class="header-desc">
         <div class="container">
             <div class="header-desc__content">
-                <a href=# class="header-desc-logo">
+                <a href='{{route('home')}}' class="header-desc-logo">
                     <div class="header-desc-logo__img">
                         <img src="/images/logo.png" alt="logo">
                     </div>
