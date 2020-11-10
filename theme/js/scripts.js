@@ -95,8 +95,6 @@ $(document).ready(function () {
 
     li.each(function () {
       checkbox = $(this).find('input');
-      console.log(ul)
-      console.log(checkbox)
       if (checkbox.val().toUpperCase().indexOf(filter) !== -1) {
         $(this).css("display", "block");
       } else {
@@ -355,10 +353,6 @@ $(document).ready(function () {
       $(this).closest('.select-price').find('.input-info').removeClass('active')
     }
   );
-
-  $('.checkboxes-list input').on('click', function () {
-    // console.log($(this).closest('.checkboxes-list').attr('id'))
-  })
 
   $.validator.addMethod("valueNotEquals", function (value, element, arg) {
     return arg !== value;

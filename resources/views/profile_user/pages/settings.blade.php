@@ -49,16 +49,22 @@
                     <span>Актуальные объявления наших партнеров</span>
                 </label>
                 <span>Наши партнеры регулярно делают нам привлекательные предложения, которые мы с удовольствием перенаправляем нашим клиентам.</span>
-                <div class="sep-cont">
-                    <p>Мои предпочитаемый язык:</p>
-                    <div class="select-price">
+                <div class="select-price">
+                    <p>Мои предпочитаемые языки:</p>
+                    <div class="cont">
                         @if($check['language_communication'] == 'ru')
                             <input name="language_communication" type="hidden" value="Русский">
                         @else
                             <input name="language_communication" type="hidden" value="">
                         @endif
                         <div class="select-value rotate">
-{{--                            <span>Русский</span>--}}
+                            @if($check['language_communication'] == 'ru')
+                                <span>Русский</span>
+                            @elseif($check['language_communication'] == 'en')
+                                <span>Анлийский</span>
+                            @else
+                                <span>Выберите</span>
+                            @endif
                             <ul class="value-items">
                                 <li>Русский</li>
                                 <li>Английский</li>
