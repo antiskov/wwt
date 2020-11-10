@@ -1,5 +1,730 @@
-//= template/head.html
-//= template/header.html
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width ,initial-scale=1.0, user-scalable=0" id="viewport">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <script defer src="js/plugins.js"></script>
+    <script defer src="js/scripts.js"></script>
+</head>
+
+<body>
+<header class="header">
+  <div class="header-mob">
+    <div class="container">
+      <div class="header-mob__top">
+        <div class="mob-menu-btn">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <a href="#" class="header-mob-logo">
+          <img src="./images/logo.png" alt="logo">World Watch Trade
+        </a>
+        <a data-fancybox data-src="#password-modal" href="javascript:;" class="header-mob__login-btn login-btn">
+          <img src="./images/person.png" alt="account">
+          <span class="notification-btn">2</span>
+        </a>
+      </div>
+      <div class="search">
+        <form action="/" class="search-field">
+          <div class="search-input-holder">
+            <input type="text" name="search" placeholder="Поиск...">
+            <div class="search-input-holder__buttons">
+              <span class="clear-field-btn">
+                <img src="./images/icons/close-dark.svg" alt="Очистить поиск">
+              </span>
+              <button class="search-field__send-btn">
+                <img src="./images/icons/search.svg" alt="Поиск">
+              </button>
+            </div>
+          </div>
+          <div class="search__result">
+            <div class="search__categories">
+              <label>
+                <input type="radio" name="category" checked>
+                <span>Часы</span>
+              </label>
+              <label>
+                <input type="radio" name="category">
+                <span>Аксессуары</span>
+              </label>
+              <label>
+                <input type="radio" name="category">
+                <span>Запчасти</span>
+              </label>
+            </div>
+            <div class="search__items">
+              <p style="display: none;">Ничего не найдено</p>
+              <!-- ДЛЯ БЭКА: Убрать атрибут стайл и выводить, если нет товаров -->
+              <ul>
+                <li>
+                  <a href="#"><span>Hublot</span> Big Bang</a>
+                </li>
+                <li>
+                  <a href="#"><span>Hublot</span> Big Bang</a>
+                </li>
+                <li>
+                  <a href="#"><span>Hublot</span> Big Bang</a>
+                </li>
+                <li>
+                  <a href="#"><span>Hublot</span> Big Bang</a>
+                </li>
+                <li>
+                  <a href="#"><span>Hublot</span> Big Bang Kroko Kautschukband</a>
+                </li>
+                <li>
+                  <a href="#"><span>Hublot</span> Big Bang Fusion Dark Brown Alligator Strap</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="mob-menu">
+      <div class="mob-menu__top">
+        <div class="mob-menu-btn-close"></div>
+        <form class="languages-btns">
+          <label>
+            <input type="radio" name="language">
+            <span>ру</span>
+          </label>
+          <label>
+            <input type="radio" name="language">
+            <span>en</span>
+          </label>
+        </form>
+      </div>
+      <nav class="catalog-mob">
+        <ul class="catalog-mob__gen-list">
+          <li class="has-menu">
+            <span>Швейцарские часы</span>
+            <ul class="catalog-mob__menu">
+              <li class="has-menu">
+                <span>Купить</span>
+                <ul class="catalog-mob__list">
+                  <li>
+                    <span>Марки</span>
+                    <ul>
+                      <li>
+                        <a href="#">Rolex</a>
+                      </li>
+                      <li>
+                        <a href="#">Vacheron Constantin</a>
+                      </li>
+                      <li>
+                        <a href="#">Rolex</a>
+                      </li>
+                      <li>
+                        <a href="#">Vacheron Constantin</a>
+                      </li>
+                      <li>
+                        <a href="#">Rolex</a>
+                      </li>
+                      <li>
+                        <a href="#">Vacheron Constantin</a>
+                      </li>
+                      <li>
+                        <a href="#">Rolex</a>
+                      </li>
+                      <li>
+                        <a href="#">Vacheron Constantin</a>
+                      </li>
+                      <li>
+                        <a href="#">Rolex</a>
+                      </li>
+                      <li>
+                        <a href="#">Vacheron Constantin</a>
+                      </li>
+                      <li>
+                        <a href="#">Rolex</a>
+                      </li>
+                      <li>
+                        <a href="#">Vacheron Constantin</a>
+                      </li>
+                      <li>
+                        <a href="#">Rolex</a>
+                      </li>
+                      <li>
+                        <a href="#">Vacheron Constantin</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <span>Категории</span>
+                    <ul>
+                      <li>
+                        <a href="#">Мужские часы / Женские часы</a>
+                      </li>
+                      <li>
+                        <a href="#">Хронографы</a>
+                      </li>
+                      <li>
+                        <a href="#">Браслеты и ремешки / Детали и аксессуары</a>
+                      </li>
+                      <li>
+                        <a href="#">Мужские часы / Женские часы</a>
+                      </li>
+                      <li>
+                        <a href="#">Хронографы</a>
+                      </li>
+                      <li>
+                        <a href="#">Браслеты и ремешки / Детали и аксессуары</a>
+                      </li>
+                      <li>
+                        <a href="#">Мужские часы / Женские часы</a>
+                      </li>
+                      <li>
+                        <a href="#">Хронографы</a>
+                      </li>
+                      <li>
+                        <a href="#">Браслеты и ремешки / Детали и аксессуары</a>
+                      </li>
+                      <li>
+                        <a href="#">Мужские часы / Женские часы</a>
+                      </li>
+                      <li>
+                        <a href="#">Хронографы</a>
+                      </li>
+                      <li>
+                        <a href="#">Браслеты и ремешки / Детали и аксессуары</a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a data-fancybox data-src="#referral_number" href="javascript:;" class="thisMe">Продать</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            Аксессуары
+          </li>
+          <li>
+            Запчасти
+          </li>
+          <li>
+            Контакты
+          </li>
+        </ul>
+      </nav>
+      <div class="mob-menu-social">
+        <h3>Мы в соцсетях</h3>
+        <div class="mob-menu-social__content">
+          <a href="#/" class="social-wrap_link">
+            <img src="./images/icons/facebock.svg" alt="img">
+          </a>
+          <a href="#/" class="social-wrap_link">
+            <img src="./images/icons/insta.svg" alt="img">
+          </a>
+          <a href="#/" class="social-wrap_link">
+            <img src="./images/icons/youtube.svg" alt="img">
+          </a>
+          <a href="#/" class="social-wrap_link">
+            <img src="./images/icons/twiter.svg" alt="img">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="header-desc">
+    <div class="container">
+      <div class="header-desc__content">
+        <a href=# class="header-desc-logo">
+          <div class="header-desc-logo__img">
+            <img src="./images/logo.png" alt="logo">
+          </div>
+          <p class="header-desc-logo__subtext">welcome to</p>
+          <p class="header-desc-logo__text">World Watch Trade</p>
+        </a>
+        <div class="header-desc__main">
+          <div class="header-desc__top">
+            <div class="search search_desc">
+              <form action="/" class="search-field">
+                <div class="search-input-holder">
+                  <input type="text" name="search" placeholder="Поиск">
+                  <div class="search-input-holder__buttons">
+                    <span class="clear-field-btn">
+                      <img src="./images/icons/close-dark.svg" alt="Очистить поиск">
+                    </span>
+                    <button class="search-field__send-btn">
+                      <img src="./images/icons/search.svg" alt="Поиск">
+                    </button>
+                  </div>
+                </div>
+                <div class="search__result">
+                  <div class="search__categories">
+                    <label>
+                      <input type="radio" name="category" checked>
+                      <span>Часы</span>
+                    </label>
+                    <label>
+                      <input type="radio" name="category">
+                      <span>Аксессуары</span>
+                    </label>
+                    <label>
+                      <input type="radio" name="category">
+                      <span>Запчасти</span>
+                    </label>
+                  </div>
+                  <div class="search__items">
+                    <p style="display: none;">Ничего не найдено</p>
+                    <!-- ДЛЯ БЭКА: Убрать атрибут стайл и выводить, если нет товаров -->
+                    <ul>
+                      <li>
+                        <a href="#"><span>Hublot</span> Big Bang</a>
+                      </li>
+                      <li>
+                        <a href="#"><span>Hublot</span> Big Bang</a>
+                      </li>
+                      <li>
+                        <a href="#"><span>Hublot</span> Big Bang</a>
+                      </li>
+                      <li>
+                        <a href="#"><span>Hublot</span> Big Bang</a>
+                      </li>
+                      <li>
+                        <a href="#"><span>Hublot</span> Big Bang Kroko Kautschukband</a>
+                      </li>
+                      <li>
+                        <a href="#"><span>Hublot</span> Big Bang Fusion Dark Brown Alligator Strap</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="header-login-block">
+              <div class="header-login-block__btns">
+                <div>
+                  <a data-fancybox data-src="#congrats-modal" href="javascript:;"  href="#">Войти</a>
+                  <a data-fancybox data-src="#registration-modal" href="javascript:;"  href="#">Регистрация</a>
+                </div>
+                <div class="header-login-block__portrait">
+                  <img src="./images/icons/profile-w.svg">
+                  <span class="notification-btn">1</span>
+                </div>
+                <!-- Next block for personal cabinet -->
+
+                <!-- <div class="header-login-block__portrait header-login-block__portrait_cabinet">
+                  <div class="header-cabinet-list-btn">
+                    <img src="./images/icons/profile-w.svg">
+                    <span class="notification-btn">1</span>
+                  </div>
+                  <ul class="header-cabinet-list">
+                    <li><a href="#">Мои обьявления</a></li>
+                    <li><a href="#">Сообщения</a></li>
+                    <li><a href="#">Платежи</a></li>
+                    <li><a href="#">Профиль</a></li>
+                    <li><a href="#">Настройки</a></li>
+                    <li><a href="#">Избранное</a></li>
+                    <li><a href="#">Создать реферальную ссылку</a></li>
+                    <li><a href="#">Выход</a></li>
+                  </ul>
+                </div> -->
+              </div>
+              <form class="languages-btns">
+                <label>
+                  <input type="radio" name="language">
+                  <span>ру</span>
+                </label>
+                <label>
+                  <input type="radio" name="language">
+                  <span>en</span>
+                </label>
+              </form>
+            </div>
+          </div>
+          <nav class="header-desc__nav">
+            <ul class="header-desc-nav">
+              <li>
+                <a href="#">Швейцарские часы</a>
+                <ul class="header-desc-nav__btns">
+                  <li class="list-btn">
+                    <a href="#"><span>Купить</span></a>
+                    <div class="header-nav-lists header-nav-lists_first">
+                      <div class="header-nav-list header-nav-list_few-columns">
+                        <h3>Марки</h3>
+                        <div>
+                          <ul>
+                            <li>
+                              <a href="#">Rolex</a>
+                            </li>
+                            <li>
+                              <a href="#">Vacheron Constantin</a>
+                            </li>
+                            <li>
+                              <a href="#">Rolex</a>
+                            </li>
+                            <li>
+                              <a href="#">Vacheron Constantin</a>
+                            </li>
+                            <li>
+                              <a href="#">Rolex</a>
+                            </li>
+                            <li>
+                              <a href="#">Vacheron Constantin</a>
+                            </li>
+                            <li>
+                              <a href="#">Rolex</a>
+                            </li>
+                            <li>
+                              <a href="#">Vacheron Constantin</a>
+                            </li>
+                            <li>
+                              <a href="#">Rolex</a>
+                            </li>
+                            <li>
+                              <a href="#">Rolex</a>
+                            </li>
+                          </ul>
+                          <ul>
+                            <li>
+                              <a href="#">Rolex</a>
+                            </li>
+                            <li>
+                              <a href="#">Vacheron Constantin</a>
+                            </li>
+                            <li>
+                              <a href="#">Rolex</a>
+                            </li>
+                            <li>
+                              <a href="#">Vacheron Constantin</a>
+                            </li>
+                            <li>
+                              <a href="#">Rolex</a>
+                            </li>
+                            <li>
+                              <a href="#">Vacheron Constantin</a>
+                            </li>
+                            <li>
+                              <a href="#">Rolex</a>
+                            </li>
+                            <li>
+                              <a href="#">Vacheron Constantin</a>
+                            </li>
+                            <li>
+                              <a href="#">Rolex</a>
+                            </li>
+                            <li>
+                              <a href="#">Rolex</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="header-nav-list">
+                        <h3>Категории</h3>
+                        <ul>
+                          <li>
+                            <a href="#">Мужские часы / Женские часы</a>
+                          </li>
+                          <li>
+                            <a href="#">Новые часы / Подержанные часы</a>
+                          </li>
+                          <li>
+                            <a href="#">Механические часы / Автоматические часы</a>
+                          </li>
+                          <li>
+                            <a href="#">Винтажные часы</a>
+                          </li>
+                          <li>
+                            <a href="#">Хронографы</a>
+                          </li>
+                          <li>
+                            <a href="#">Часы для погружения</a>
+                          </li>
+                          <li>
+                            <a href="#">Пилотные часы</a>
+                          </li>
+                          <li>
+                            <a href="#">Военные часы</a>
+                          </li>
+                          <li>
+                            <a href="#">Швейцарские часы</a>
+                          </li>
+                          <li>
+                            <a href="#">Гоночные часы</a>
+                          </li>
+                          <li>
+                            <a href="#">Парусные часы</a>
+                          </li>
+                          <li>
+                            <a href="#">Браслеты и ремешки / Детали и аксессуары</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <a data-fancybox data-src="#referral_number" href="javascript:;" ><span>Продать</span></a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="#">Аксессуары</a>
+                <ul class="header-desc-nav__btns">
+                  <li class="list-btn">
+                    <a href="#"><span>Купить</span></a>
+                    <div class="header-nav-lists header-nav-lists_second">
+                      <div class="header-nav-list header-nav-list_few-columns">
+                        <h3>Марки</h3>
+                        <div>
+                          <ul>
+                            <li>
+                              <a href="#">Rolex</a>
+                            </li>
+                            <li>
+                              <a href="#">Vacheron Constantin</a>
+                            </li>
+                            <li>
+                              <a href="#">Rolex</a>
+                            </li>
+                            <li>
+                              <a href="#">Vacheron Constantin</a>
+                            </li>
+                            <li>
+                              <a href="#">Rolex</a>
+                            </li>
+                            <li>
+                              <a href="#">Vacheron Constantin</a>
+                            </li>
+                            <li>
+                              <a href="#">Rolex</a>
+                            </li>
+                            <li>
+                              <a href="#">Vacheron Constantin</a>
+                            </li>
+                            <li>
+                              <a href="#">Rolex</a>
+                            </li>
+                            <li>
+                              <a href="#">Rolex</a>
+                            </li>
+                          </ul>
+                          <ul>
+                            <li>
+                              <a href="#">Rolex</a>
+                            </li>
+                            <li>
+                              <a href="#">Vacheron Constantin</a>
+                            </li>
+                            <li>
+                              <a href="#">Rolex</a>
+                            </li>
+                            <li>
+                              <a href="#">Vacheron Constantin</a>
+                            </li>
+                            <li>
+                              <a href="#">Rolex</a>
+                            </li>
+                            <li>
+                              <a href="#">Vacheron Constantin</a>
+                            </li>
+                            <li>
+                              <a href="#">Rolex</a>
+                            </li>
+                            <li>
+                              <a href="#">Vacheron Constantin</a>
+                            </li>
+                            <li>
+                              <a href="#">Rolex</a>
+                            </li>
+                            <li>
+                              <a href="#">Rolex</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="header-nav-list">
+                        <h3>Категории</h3>
+                        <ul>
+                          <li>
+                            <a href="#">Мужские часы / Женские часы</a>
+                          </li>
+                          <li>
+                            <a href="#">Новые часы / Подержанные часы</a>
+                          </li>
+                          <li>
+                            <a href="#">Механические часы / Автоматические часы</a>
+                          </li>
+                          <li>
+                            <a href="#">Винтажные часы</a>
+                          </li>
+                          <li>
+                            <a href="#">Хронографы</a>
+                          </li>
+                          <li>
+                            <a href="#">Часы для погружения</a>
+                          </li>
+                          <li>
+                            <a href="#">Пилотные часы</a>
+                          </li>
+                          <li>
+                            <a href="#">Военные часы</a>
+                          </li>
+                          <li>
+                            <a href="#">Швейцарские часы</a>
+                          </li>
+                          <li>
+                            <a href="#">Гоночные часы</a>
+                          </li>
+                          <li>
+                            <a href="#">Парусные часы</a>
+                          </li>
+                          <li>
+                            <a href="#">Браслеты и ремешки / Детали и аксессуары</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <a data-fancybox data-src="#referral_number" href="javascript:;"><span>Продать</span></a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="#">Запчасти</a>
+                <ul class="header-desc-nav__btns">
+                  <li class="list-btn">
+                    <a href="#"><span>Купить</span></a>
+                    <div class="header-nav-lists header-nav-lists_third">
+                      <div class="header-nav-list header-nav-list_few-columns">
+                        <h3>Марки</h3>
+                        <div>
+                          <ul>
+                            <li>
+                              <a href="#">Rolex</a>
+                            </li>
+                            <li>
+                              <a href="#">Vacheron Constantin</a>
+                            </li>
+                            <li>
+                              <a href="#">Rolex</a>
+                            </li>
+                            <li>
+                              <a href="#">Vacheron Constantin</a>
+                            </li>
+                            <li>
+                              <a href="#">Rolex</a>
+                            </li>
+                            <li>
+                              <a href="#">Vacheron Constantin</a>
+                            </li>
+                            <li>
+                              <a href="#">Rolex</a>
+                            </li>
+                            <li>
+                              <a href="#">Vacheron Constantin</a>
+                            </li>
+                            <li>
+                              <a href="#">Rolex</a>
+                            </li>
+                            <li>
+                              <a href="#">Rolex</a>
+                            </li>
+                          </ul>
+                          <ul>
+                            <li>
+                              <a href="#">Rolex</a>
+                            </li>
+                            <li>
+                              <a href="#">Vacheron Constantin</a>
+                            </li>
+                            <li>
+                              <a href="#">Rolex</a>
+                            </li>
+                            <li>
+                              <a href="#">Vacheron Constantin</a>
+                            </li>
+                            <li>
+                              <a href="#">Rolex</a>
+                            </li>
+                            <li>
+                              <a href="#">Vacheron Constantin</a>
+                            </li>
+                            <li>
+                              <a href="#">Rolex</a>
+                            </li>
+                            <li>
+                              <a href="#">Vacheron Constantin</a>
+                            </li>
+                            <li>
+                              <a href="#">Rolex</a>
+                            </li>
+                            <li>
+                              <a href="#">Rolex</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="header-nav-list">
+                        <h3>Категории</h3>
+                        <ul>
+                          <li>
+                            <a href="#">Мужские часы / Женские часы</a>
+                          </li>
+                          <li>
+                            <a href="#">Новые часы / Подержанные часы</a>
+                          </li>
+                          <li>
+                            <a href="#">Механические часы / Автоматические часы</a>
+                          </li>
+                          <li>
+                            <a href="#">Винтажные часы</a>
+                          </li>
+                          <li>
+                            <a href="#">Хронографы</a>
+                          </li>
+                          <li>
+                            <a href="#">Часы для погружения</a>
+                          </li>
+                          <li>
+                            <a href="#">Пилотные часы</a>
+                          </li>
+                          <li>
+                            <a href="#">Военные часы</a>
+                          </li>
+                          <li>
+                            <a href="#">Швейцарские часы</a>
+                          </li>
+                          <li>
+                            <a href="#">Гоночные часы</a>
+                          </li>
+                          <li>
+                            <a href="#">Парусные часы</a>
+                          </li>
+                          <li>
+                            <a href="#">Браслеты и ремешки / Детали и аксессуары</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <a data-fancybox data-src="#referral_number" href="javascript:;"><span>Продать</span></a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="#">Контакты</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
 
 <section class="profile prof-control">
     <div class="">
@@ -165,17 +890,34 @@
                         <p>Язык</p>
                         <input type="hidden" name="" value="Женский">
                         <div class="lang-wrap">
-                            <div class="select-value rotate">
+                            <div class="select-value select-value_multi rotate">
                                 <span>Добавить язык</span>
-                                <ul class="value-items">
-                                    <li>Украинский</li>
-                                    <li>Русский</li>
-                                    <li>English</li>
+                                <ul class="value-items value-items_multi">
+                                    <li>
+                                        <label>
+                                            <input type="checkbox" id="lang_1" value="Украинский" checked>
+                                            <span>Украинский</span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label>
+                                            <input type="checkbox" id="lang_2" value="Русский">
+                                            <span>Русский</span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label>
+                                            <input type="checkbox" id="lang_3" value="English">
+                                            <span>English</span>
+                                        </label>
+                                    </li>
                                 </ul>
                             </div>
                             <div class="lang-result">
-                                <span>Украинский</span>
-                                <span>Mexico</span>
+                                <label for="lang_1">
+                                    <span>Украинский</span>
+                                    <img src="./images/icons/close.svg" alt="">
+                                </label>
                             </div>
                         </div>
                     </div>
@@ -203,6 +945,482 @@
     </div>
 </section>
 
-//= template/footer-content.html
-//= template/modals.html
-//= template/footer.html
+<footer class="footer">
+    <div class="sent-wrap">
+        <div class="sent-news">
+            <h2>Рассылка новинок <span>и новых поступлений</span></h2>
+            <div class="social-sent">
+                <a href="#/" class="social-sent_link">
+                    <img src="./images/icons/viber-hover.svg" alt="img">
+                    <img src="./images/icons/viber.svg" alt="img">
+                    <span>
+                        viber
+                    </span>
+                </a>
+                <a href="#/" class="social-sent_link">
+                    <img src="./images/icons/telegram-hover.svg" alt="img">
+                    <img src="./images/icons/telegram.svg" alt="img">
+                    <span>
+                        telegram
+                    </span>
+                </a>
+                <a href="#/" class="social-sent_link">
+                    <img src="./images/icons/whatsapp-hover.svg" alt="img">
+                    <img src="./images/icons/whatsapp.svg" alt="img">
+                    <span>
+                        whatsapp
+                    </span>
+                </a>
+                <a href="#/" class="social-sent_link">
+                    <img src="./images/icons/email-sms-hover.svg" alt="img">
+                    <img src="./images/icons/email-sms.svg" alt="img">
+                    <span>
+                        sms
+                    </span>
+                </a>
+            </div>
+            <div class="search-wrap">
+                <input type="search" name="search" class="footer-search" placeholder="Введите email">
+                <button class="email-push">
+                    <span>Подписаться</span>
+                    <img src="./images/icons/push-email.svg" alt="img">
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="footer-wrap">
+
+
+        <div class="social-cont">
+            <h2>Мы в соцсетях</h2>
+            <div class="social-wrap">
+                <a href="#/" class="social-wrap_link">
+                    <img src="./images/icons/facebock.svg" alt="img">
+                    <img src="./images/icons/facebook-hover.svg" alt="img">
+                </a>
+                <a href="#/" class="social-wrap_link">
+                    <img src="./images/icons/insta.svg" alt="img">
+                    <img src="./images/icons/insta-hover.svg" alt="img">
+                </a>
+                <a href="#/" class="social-wrap_link">
+                    <img src="./images/icons/youtube.svg" alt="img">
+                    <img src="./images/icons/youtube-hover.svg" alt="img">
+                </a>
+                <a href="#/" class="social-wrap_link">
+                    <img src="./images/icons/twiter.svg" alt="img">
+                    <img src="./images/icons/twiter-hover.svg" alt="img">
+                </a>
+            </div>
+            <div class="hot-line">
+                <p>Горячая линия </p>
+                <a href="tel:+49721906693">+49 721 906693</a>
+            </div>
+        </div>
+
+        <div class="application-cont">
+            <h2>Приложение</h2>
+            <div class="store-cont">
+                <div class="stores">
+                    <a href="#/" class="google-play">
+                        <img src="./images/content/google-play.png" alt="google">
+                    </a>
+                    <a href="#/" class="apple-play">
+                        <img src="./images/content/App-store.png" alt="Apple">
+                    </a>
+                </div>
+                <div class="order-advert">
+                    <div class="text-block">
+                        <p>Заказать рекламу на нашем на сайте</p>
+<!--                        <p></p>-->
+                    </div>
+                    <img src="./images/content/reclama-footer.png" alt="img" class="adv-img">
+                </div>
+            </div>
+        </div>
+        <div class="mob-phone">
+            <p>Горячая линия</p>
+            <a href="tel:+49721906693" class="footer-phone">+49 721 906693</a>
+        </div>
+    </div>
+</footer>
+<div id="login-modal" class="modal">
+  <div class="modal__content">
+    <h5 class="modal__title">Войти или зарегестрироваться</h5>
+    <div class="login-modal-img">
+      <img src="./images/icons/user.svg" alt="login photo">
+    </div>
+    <form id="login-form" class="check-login" action="#">
+      <input type="text" name="name" placeholder="Введите почту, логин или телефон">
+      <span>Обязательное поле*</span>
+      <button class="btn-arrow">Далее</button>
+    </form>
+  </div>
+</div>
+
+<div id="password-modal" class="modal">
+  <div class="modal__content">
+    <h5 class="modal__title">Добро пожаловать!</h5>
+    <div class="login-modal-img login-modal-img_portrait">
+      <img src="./images/content/person.png" alt="login photo">
+    </div>
+    <form id="password-form" class="check-login" action="#">
+      <div class="change-input">
+        <input name="name" type="text" placeholder="Введите почту, логин или телефон" disabled required
+          value="someMail@gmail.com">
+        <span>Обязательное поле*</span>
+        <img src="./images/icons/eraser.svg" alt="Изменить логин">
+      </div>
+      <div class="password-input">
+        <input name="password" type="password" placeholder="Введите пароль" required>
+        <span>Обязательное поле*</span>
+        <img src="./images/icons/yey-close.svg" alt="Показать пароль">
+      </div>
+      <div class="remember-me">
+        <div class="checkbox-block">
+          <label class="checkbox-block__label">
+            <input type="checkbox">
+            <p><span>Запомнить меня</span></p>
+          </label>
+        </div>
+        <a href="#">Напомнить пароль</a>
+      </div>
+      <button class="btn-arrow">Далее</button>
+    </form>
+  </div>
+</div>
+
+<div id="registration-modal" class="modal">
+  <div class="modal__content">
+    <h5 class="modal__title">Добро пожаловать!</h5>
+    <form id="registration-form" class="registration" action="#">
+      <div class="change-input">
+        <input name="name" type="text" placeholder="Введите почту, логин или телефон" disabled
+          value="someMail@gmail.com" required>
+        <span>Введите правильно почту</span>
+        <img src="./images/icons/eraser.svg" alt="Изменить логин">
+      </div>
+      <input id="reg-pass" name="password" type="password" placeholder="Введите пароль" required>
+      <input name="repeat-password" type="password" placeholder="Повторите пароль" required>
+      <span>Пароли не совпадают</span>
+      <div class="checkbox-block registration__checkbox">
+        <label class="checkbox-block__label">
+          <input type="checkbox" name="data-protection" required>
+          <p><span>Я принимаю условия о защите данных</span></p>
+          <span>Обязательное поле*</span>
+        </label>
+      </div>
+      <div class="checkbox-block registration__checkbox">
+        <label class="checkbox-block__label">
+          <input type="checkbox" name="mailing" required>
+          <p><span>Я хочу регулярно получать новостную рассылку о предложениях и продуктах по электронной почте.</span>
+          </p>
+          <span>Обязательное поле*</span>
+        </label>
+      </div>
+      <button class="btn-arrow">Зарегистрироваться</button>
+    </form>
+  </div>
+</div>
+
+<div id="change-pass-mail-modal" class="modal">
+  <div class="modal__content">
+    <h5 class="modal__title">Смена пароля</h5>
+    <p class="modal__text">
+      Введите, пожалуйста, адрес Вашей эл. почты и Вы получите эл. письмо, с помощью которого сможете изменить Ваш
+      пароль.
+    </p>
+    <form id="change-pass-mail-form" class="change-pass-mail" action="#">
+      <input name="mail" type="email" placeholder="Введите адресс вашей почты" required>
+      <span>Обязательное поле*</span>
+      <button class="btn-arrow">Восстановить пароль</button>
+    </form>
+  </div>
+</div>
+
+<div id="congrats-modal" class="modal">
+  <div class="modal__content">
+    <h5 class="modal__title">Поздравляем!</h5>
+    <p class="modal__text">
+      Вы успешно залогинились!
+    </p>
+  </div>
+</div>
+
+<div id="save-search-modal" class="modal">
+  <div class="modal__content">
+    <h5 class="modal__title">Сохранить результат поиска</h5>
+    <form id="save-search-form" class="change-pass-mail" action="#">
+      <input name="search-result" type="text" placeholder="Название поиска" required>
+      <span>Обязательное поле*</span>
+      <div class="checkbox-block">
+        <label class="checkbox-block__label">
+          <input type="checkbox" name="newsletter">
+          <p><span>Получать новые объявления по эл. почте</span></p>
+        </label>
+      </div>
+      <div class="modal__buttons">
+        <a data-fancybox-close href="#">Отменить</a>
+        <button class="btn-arrow">Сохранить</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="change-pass-modal" class="modal">
+  <div class="modal__content">
+    <h5 class="modal__title">Смена пароля</h5>
+    <p class="modal__text">
+      Здесь вы можете сменить пароль
+    </p>
+    <form id="change-pass-form" class="change-pass" action="#">
+      <input name="password" type="password" placeholder="Введите новый пароль" required>
+      <span>Поле не может быть пустым</span>
+      <input name="repeat-password" type="password" placeholder="Повторите новый пароль" required>
+      <span>Пароли не совпадают</span>
+      <button class="btn-arrow">Изменить</button>
+    </form>
+  </div>
+</div>
+
+<div id="introduce-yourself-modal" class="modal">
+  <div class="modal__content">
+    <h5 class="modal__title">Добро пожаловать!</h5>
+    <div class="login-modal-img">
+      <img src="./images/icons/Ok-lk.svg" alt="image" role="presentation" tabindex="-1">
+    </div>
+    <p class="modal__text">
+      Перед тем, как приступить, представьтесь, пожалуйста
+    </p>
+    <form id="introduce-yourself-form" class="introduce-yourself" action="#">
+      <input name="name" type="text" placeholder="Ваше имя" required>
+      <span>Обязательное поле*</span>
+      <input name="surname" type="text" placeholder="Ваша фамилия" required>
+      <span>Обязательное поле*</span>
+      <div class="contact-form__item">
+        <div class="custom-select" style="width:100%;">
+          <select name="male">
+            <option value="default">Укажите ваш пол</option>
+            <option value="Мужской">Мужской</option>
+            <option value="Женский">Женский</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal__buttons">
+        <a href="#">Пропустить</a>
+        <button class="btn-arrow">Сохранить</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="item-page-modal">
+  <div class="modal-cont">
+    <h2>Patek Philippe Aquanaut 5168G-001 new unworn Patek</h2>
+
+    <div class="slider-modal-cont">
+      <div class="swiper-container  nav-top">
+        <div class="swiper-wrapper">
+          <img src="./images/slider/1.png" alt="img" class="swiper-slide">
+          <img src="./images/slider/1.png" alt="img" class="swiper-slide">
+          <img src="./images/slider/1.png" alt="img" class="swiper-slide">
+          <img src="./images/slider/1.png" alt="img" class="swiper-slide">
+          <img src="./images/slider/1.png" alt="img" class="swiper-slide">
+        </div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next swiper-button-black"></div>
+        <div class="swiper-button-prev swiper-button-black"></div>
+      </div>
+      <div class="swiper-container  nav-nav">
+        <div class="swiper-wrapper">
+          <img src="./images/slider/1.png" alt="img" class="swiper-slide">
+          <img src="./images/slider/1.png" alt="img" class="swiper-slide">
+          <img src="./images/slider/1.png" alt="img" class="swiper-slide">
+          <img src="./images/slider/1.png" alt="img" class="swiper-slide">
+          <img src="./images/slider/1.png" alt="img" class="swiper-slide">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="referral_number">
+  <div class="number-wrap">
+    <div class="search-wrap">
+      <img src="./images/content/popup-img.png" alt="img" class="banner-search">
+      <div class="text-modal">
+        <h2>Введите пожалуйста</h2>
+        <form class="search-container">
+          <input type="search" class="input-search-modal" placeholder="идентификационный номер, марка, модель ... ">
+          <ul class="result-search">
+            <a class="result-search-item">
+                <img src="./images/content/search-item.png" alt="img">
+                <div class="info-cont">
+                    <h3>8908BA/52/<span>864</span>.D00D — Breguet Reine De Naples</h3>
+                    <p>28.5mm, Жёлтое золото, Автоподзавод, Перламутровый (Индикатор фазы Луны)</p>
+                </div>
+            </a>
+            <a class="result-search-item">
+                <img src="./images/content/search-item.png" alt="img">
+                <div class="info-cont">
+                    <h3>8908BA/52/<span>864</span>.D00D — Breguet Reine De Naples</h3>
+                    <p>28.5mm, Жёлтое золото, Автоподзавод, Перламутровый (Индикатор фазы Луны)</p>
+                </div>
+            </a>
+            <a class="result-search-item">
+                <img src="./images/content/search-item.png" alt="img">
+                <div class="info-cont">
+                    <h3>8908BA/52/<span>864</span>.D00D — Breguet Reine De Naples</h3>
+                    <p>28.5mm, Жёлтое золото, Автоподзавод, Перламутровый (Индикатор фазы Луны)</p>
+                </div>
+            </a>
+            <a class="result-search-item">
+                <img src="./images/content/search-item.png" alt="img">
+                <div class="info-cont">
+                    <h3>8908BA/52/<span>864</span>.D00D — Breguet Reine De Naples</h3>
+                    <p>28.5mm, Жёлтое золото, Автоподзавод, Перламутровый (Индикатор фазы Луны)</p>
+                </div>
+            </a>
+            <a class="result-search-item">
+                <img src="./images/content/search-item.png" alt="img">
+                <div class="info-cont">
+                    <h3>8908BA/52/<span>864</span>.D00D — Breguet Reine De Naples</h3>
+                    <p>28.5mm, Жёлтое золото, Автоподзавод, Перламутровый (Индикатор фазы Луны)</p>
+                </div>
+            </a>
+            <a class="result-search-item">
+                <img src="./images/content/search-item.png" alt="img">
+                <div class="info-cont">
+                    <h3>8908BA/52/<span>864</span>.D00D — Breguet Reine De Naples</h3>
+                    <p>28.5mm, Жёлтое золото, Автоподзавод, Перламутровый (Индикатор фазы Луны)</p>
+                </div>
+            </a>
+            <a class="result-search-item">
+                <img src="./images/content/search-item.png" alt="img">
+                <div class="info-cont">
+                    <h3>8908BA/52/<span>864</span>.D00D — Breguet Reine De Naples</h3>
+                    <p>28.5mm, Жёлтое золото, Автоподзавод, Перламутровый (Индикатор фазы Луны)</p>
+                </div>
+            </a>
+            <a class="result-search-item">
+                <img src="./images/content/search-item.png" alt="img">
+                <div class="info-cont">
+                    <h3>8908BA/52/<span>864</span>.D00D — Breguet Reine De Naples</h3>
+                    <p>28.5mm, Жёлтое золото, Автоподзавод, Перламутровый (Индикатор фазы Луны)</p>
+                </div>
+            </a>
+            <a class="result-search-item">
+                <img src="./images/content/search-item.png" alt="img">
+                <div class="info-cont">
+                    <h3>8908BA/52/<span>864</span>.D00D — Breguet Reine De Naples</h3>
+                    <p>28.5mm, Жёлтое золото, Автоподзавод, Перламутровый (Индикатор фазы Луны)</p>
+                </div>
+            </a>
+          </ul>
+
+          <button class="search-btn btn-hover">Итак, начнем</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="accessories">
+      <img src="./images/content/popup-img-2.png" alt="img" class="banner-search">
+      <div class="text-modal">
+        <h2>Введите ref номер часов для которых подходит этот аксессуар</h2>
+        <form class="search-container">
+          <input type="search" class="input-search-modal">
+          <ul class="result-search">
+            <a class="result-search-item">
+                <img src="./images/content/search-item.png" alt="img">
+                <div class="info-cont">
+                    <h3>8908BA/52/<span>864</span>.D00D — Breguet Reine De Naples</h3>
+                    <p>28.5mm, Жёлтое золото, Автоподзавод, Перламутровый (Индикатор фазы Луны)</p>
+                </div>
+            </a>
+            <a class="result-search-item">
+                <img src="./images/content/search-item.png" alt="img">
+                <div class="info-cont">
+                    <h3>8908BA/52/<span>864</span>.D00D — Breguet Reine De Naples</h3>
+                    <p>28.5mm, Жёлтое золото, Автоподзавод, Перламутровый (Индикатор фазы Луны)</p>
+                </div>
+            </a>
+            <a class="result-search-item">
+                <img src="./images/content/search-item.png" alt="img">
+                <div class="info-cont">
+                    <h3>8908BA/52/<span>864</span>.D00D — Breguet Reine De Naples</h3>
+                    <p>28.5mm, Жёлтое золото, Автоподзавод, Перламутровый (Индикатор фазы Луны)</p>
+                </div>
+            </a>
+            <a class="result-search-item">
+                <img src="./images/content/search-item.png" alt="img">
+                <div class="info-cont">
+                    <h3>8908BA/52/<span>864</span>.D00D — Breguet Reine De Naples</h3>
+                    <p>28.5mm, Жёлтое золото, Автоподзавод, Перламутровый (Индикатор фазы Луны)</p>
+                </div>
+            </a>
+            <a class="result-search-item">
+                <img src="./images/content/search-item.png" alt="img">
+                <div class="info-cont">
+                    <h3>8908BA/52/<span>864</span>.D00D — Breguet Reine De Naples</h3>
+                    <p>28.5mm, Жёлтое золото, Автоподзавод, Перламутровый (Индикатор фазы Луны)</p>
+                </div>
+            </a>
+            <a class="result-search-item">
+                <img src="./images/content/search-item.png" alt="img">
+                <div class="info-cont">
+                    <h3>8908BA/52/<span>864</span>.D00D — Breguet Reine De Naples</h3>
+                    <p>28.5mm, Жёлтое золото, Автоподзавод, Перламутровый (Индикатор фазы Луны)</p>
+                </div>
+            </a>
+            <a class="result-search-item">
+                <img src="./images/content/search-item.png" alt="img">
+                <div class="info-cont">
+                    <h3>8908BA/52/<span>864</span>.D00D — Breguet Reine De Naples</h3>
+                    <p>28.5mm, Жёлтое золото, Автоподзавод, Перламутровый (Индикатор фазы Луны)</p>
+                </div>
+            </a>
+            <a class="result-search-item">
+                <img src="./images/content/search-item.png" alt="img">
+                <div class="info-cont">
+                    <h3>8908BA/52/<span>864</span>.D00D — Breguet Reine De Naples</h3>
+                    <p>28.5mm, Жёлтое золото, Автоподзавод, Перламутровый (Индикатор фазы Луны)</p>
+                </div>
+            </a>
+            <a class="result-search-item">
+                <img src="./images/content/search-item.png" alt="img">
+                <div class="info-cont">
+                    <h3>8908BA/52/<span>864</span>.D00D — Breguet Reine De Naples</h3>
+                    <p>28.5mm, Жёлтое золото, Автоподзавод, Перламутровый (Индикатор фазы Луны)</p>
+                </div>
+            </a>
+          </ul>
+          <div class="chek_cont_set">
+            <label class="checkbox-other">
+              <input type="checkbox" checked>
+              <span>Я хочу указать ref номера позже </span>
+            </label>
+
+            <label class="checkbox-other">
+              <input type="checkbox" checked>
+              <span>Этот аксессуар подходит для любых часов</span>
+            </label>
+          </div>
+
+          <button class="search-btn btn-hover">Итак, начнем</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="loader-wrap">
+      <h2>Определяем характеристики Ваших часов</h2>
+      <div class="time-loading">
+        <img src="./images/loader.gif" alt="img" class="loading-gif">
+        <span>17</span>
+      </div>
+      <p>Найдено характеристик </p>
+    </div>
+  </div>
+</div>
+<!--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
+
+</body>
+</html>

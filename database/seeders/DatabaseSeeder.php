@@ -30,6 +30,8 @@ class DatabaseSeeder extends Seeder
             WatchDialSeeder::class,
             StateSeeder::class,
             ProvinceSeeder::class,
+            TimeZoneSeeder::class,
+            LanguageSeeder::class,
             SexesSeeder::class,
             UserRolesSeeder::class,
             StatusSeeder::class,

@@ -481,8 +481,6 @@ $(document).ready(function () {
         })
     });
 
-    $('#login-form')
-
 
     $('#password-form').validate({
         rules: {

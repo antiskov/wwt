@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileRequest;
+use App\Models\Timezone;
+use App\Models\UserLanguage;
+use App\Models\UserSettings;
 use App\Services\ProfileService;
-use App\Services\SetSettingsService;
+use App\Services\SecurityService;
 use App\Services\UserService;
+use http\Client\Curl\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
@@ -22,9 +26,14 @@ class ProfileController extends Controller
      */
     public function settingsIndex(UserService $user)
     {
-        $check = $user->checkAutoLogin();
+        $check = $user->check();
 
-        return view('profile_user.pages.settings' , ['check' => $check]);
+//        $settings = UserSettings::where('user_id', auth()->user()->id)->first();
+
+        return view('profile_user.pages.settings' , [
+            'check' => $check,
+//            'settings' => $settings,
+        ]);
     }
 
     /**
@@ -39,15 +48,29 @@ class ProfileController extends Controller
         return redirect()->back();
     }
 
-    public function editingProfileIndex()
+    public function editingProfileIndex(ProfileService $service)
     {
-        return view('profile_user.pages.editing_profile');
+        $percentage = $service->calculate(auth()->user());
+
+        $userLanguages = [];
+        foreach (auth()->user()->languages as $l) {
+            $userLanguages[] = $l->code;
+        }
+
+        return view('profile_user.pages.editing_profile', [
+            'timezones' => Timezone::all(),
+            'userLanguages' => $userLanguages,
+            'percentage' => $percentage,
+        ]);
     }
 
     public function editingProfileForm(ProfileRequest $request, ProfileService $form)
     {
+
         $form->saveFormData($request);
-        $form->createAvatar($request);
+        if($request->avatar) {
+            $form->createAvatar($request);
+        }
 
         return redirect()->back();
     }
@@ -62,6 +85,13 @@ class ProfileController extends Controller
     public function deleteUser(ProfileService $deleted)
     {
         $deleted->deleteUser();
+
+        return redirect()->back();
+    }
+
+    public function resetPassword(SecurityService $service)
+    {
+        $service->resetPassword(auth()->user());
 
         return redirect()->back();
     }

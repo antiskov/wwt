@@ -3,7 +3,10 @@
 
 namespace App\Services;
 
+use App\Models\Language;
+use App\Models\Timezone;
 use App\Models\User;
+use App\Models\UserLanguage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
@@ -54,9 +57,6 @@ class ProfileService
     public function saveFormData(Request $request)
     {
         $user = auth()->user();
-//        if(!$request->email) {
-//            $user->email = $request->email;
-//        }
         $user->email = $request->email;
         $user->name = $request->name;
         $user->surname = $request->surname;
@@ -65,7 +65,12 @@ class ProfileService
         } else {
             $user->sex = 'man';
         }
+        $timezone = explode(' ', $request->timezone_id);
+        $last_key = array_key_last($timezone);
+        $zoneTime = Timezone::where('time_difference', $timezone[$last_key])->first();
+        $user->timezone()->associate($zoneTime);
         $user->birthday_date = $request->birthday_date;
+        $user->phone = $request->phone;
         $user->country = $request->country;
         $user->region = $request->region;
         $user->city = $request->city;
@@ -73,11 +78,40 @@ class ProfileService
         $user->zip_code = $request->zip_code;
         $user->specialisation = $request->specialisation;
         $user->description = $request->description;
+        $user->street_addition = $request->street_addition;
         $user->save();
+
+        $languages = ['1' => 'Украинский','Русский', 'English'];
+        $numberLanguages = [0];
+        unset($numberLanguages[0]);
+
+        if($request->lang){
+            foreach ($request->lang as $lang) {
+                $numberLanguages[] = array_search($lang, $languages);
+            }
+        }
+
+        $user->languages()->sync($numberLanguages);
+
     }
 
     public function deleteUser()
     {
         auth()->user()->delete();
+    }
+
+    public function calculate(User $profile)
+    {
+        $columns    = preg_grep('/(.+ed_at)|(.*id)/', array_keys($profile->toArray()), PREG_GREP_INVERT);
+        $per_column = 100 / count($columns);
+        $total      = 0;
+
+        foreach ($profile->toArray() as $key => $value) {
+            if ($value !== NULL && $value !== [] && in_array($key, $columns)) {
+                $total += $per_column;
+            }
+        }
+
+        return round($total);
     }
 }

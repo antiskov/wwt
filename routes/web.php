@@ -34,6 +34,7 @@ Route::middleware('set.locale')->group(function () {
             Route::post('/editing-profile', [\App\Http\Controllers\ProfileController::class, 'editingProfileForm'])->name('editing-profile-form');
             Route::get('/delete-avatar', [\App\Http\Controllers\ProfileController::class, 'deleteAvatar'])->name('delete-avatar');
             Route::get('/delete-user', [\App\Http\Controllers\ProfileController::class, 'deleteUser'])->name('delete-user');
+            Route::get('/reset-password', [\App\Http\Controllers\ProfileController::class, 'resetPassword'])->name('reset-password');
         });
     });
 

@@ -28,6 +28,7 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable, SoftDeletes;
 
+
     /**
      * The attributes that are mass assignable.
      *
@@ -100,5 +101,15 @@ class User extends Authenticatable
     public function adverts()
     {
         return $this->hasOne(Advert::class);
+    }
+
+    public function languages()
+    {
+        return $this->belongsToMany(Language::class,'user_languages','user_id','language_id');
+    }
+
+    public function timezone()
+    {
+        return $this->belongsTo(Timezone::class);
     }
 }
