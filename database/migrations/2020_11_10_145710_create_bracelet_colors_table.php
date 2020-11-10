@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Update3WatchAdvertsTable extends Migration
+class CreateBraceletColorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class Update3WatchAdvertsTable extends Migration
      */
     public function up()
     {
-        Schema::table('watch_adverts', function (Blueprint $table) {
-//            $table->integer('diameter');
-//            $table->string('figures')->default('arab');
-            $table->unsignedBigInteger('glass_id')->nullable();
-            $table->foreign('glass_id')->references('id')->on('glasses');
+        Schema::create('bracelet_colors', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->timestamps();
         });
     }
 
@@ -28,6 +27,6 @@ class Update3WatchAdvertsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('bracelet_colors');
     }
 }

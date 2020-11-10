@@ -22,7 +22,6 @@ class WatchAdvertSeeder extends Seeder
     public function run()
     {
         WatchMaterial::create(['title' => 'iron']);
-        BraceletMaterial::create(['title' => 'skin']);
         Glass::create(['title' => 'sapphire']);
         $diameters = [
             '44.2',
@@ -41,7 +40,6 @@ class WatchAdvertSeeder extends Seeder
                 'watch_type_id' => 1,
                 'watch_make_id' => 1,
                 'watch_model_id' => 1,
-//                'watch_state' => 'new',
                 'model_code' => 471-874-9,
                 'sex_id' => 1,
                 'release_year' => 2000,
@@ -50,12 +48,20 @@ class WatchAdvertSeeder extends Seeder
                 'width' => 40,
                 'mechanism_type_id' => 1,
                 'watch_material_id' => 1,
-                'bracelet_material_id' => 1,
+                'bracelet_material_id' => 2,
                 'glass_id' => 1,
                 'diameter_watch_id' => 1,
                 'year_advert_id' => 1,
                 'state_id' => 2,
                 'watch_dial_id' => 2,
+                'watch_figure_id' => 1,
+                'watch_bezel_id' => 2,
+                'watch_thickness_id' => 3,
+                'watch_waterproof_id' => 2,
+                'bracelet_clasp_id' => 2,
+                'materials_clasp_id' => 1,
+                'bracelet_color_id' => 2,
+                'width_clasp_id' => 1,
             ]);
         }
     }

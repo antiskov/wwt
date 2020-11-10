@@ -64,4 +64,10 @@ class WatchAdvert extends Model implements AdvertsInterface
     {
         return $this->belongsTo(YearAdvert::class);
     }
+
+    public function options()
+    {
+        return $this->belongsToMany(Option::class,);
+    }
+
 }
