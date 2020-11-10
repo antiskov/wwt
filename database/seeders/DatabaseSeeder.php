@@ -17,6 +17,9 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $this->call([
+            OptionSeeder::class,
+            WatchDialSeeder::class,
+            StateSeeder::class,
             ProvinceSeeder::class,
             SexesSeeder::class,
             UserRolesSeeder::class,
@@ -29,6 +32,7 @@ class DatabaseSeeder extends Seeder
             AdvertsImageSeeder::class,
             WatchModelSeeder::class,
             WatchAdvertSeeder::class,
+            WatchOptionSeeder::class,
         ]);
     }
 }

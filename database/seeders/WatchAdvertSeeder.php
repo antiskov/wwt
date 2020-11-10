@@ -41,7 +41,7 @@ class WatchAdvertSeeder extends Seeder
                 'watch_type_id' => 1,
                 'watch_make_id' => 1,
                 'watch_model_id' => 1,
-                'watch_state' => 'new',
+//                'watch_state' => 'new',
                 'model_code' => 471-874-9,
                 'sex_id' => 1,
                 'release_year' => 2000,
@@ -54,6 +54,8 @@ class WatchAdvertSeeder extends Seeder
                 'glass_id' => 1,
                 'diameter_watch_id' => 1,
                 'year_advert_id' => 1,
+                'state_id' => 2,
+                'watch_dial_id' => 2,
             ]);
         }
     }

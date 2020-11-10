@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DeliveryVolume extends Model
+class State extends Model
 {
     use HasFactory;
 
-    public function adverts()
+    public function watchAdverts()
     {
-        return $this->hasMany(Advert::class);
+        return $this->hasMany(WatchAdvert::class);
     }
 }
