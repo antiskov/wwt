@@ -12,7 +12,7 @@
             <li><img src="/images/icons/email.svg" alt=""><a href="#/">Сообщения</a></li>
             <li><img src="/images/icons/pay.svg" alt=""><a href="#/">Платежи</a></li>
             <li><img src="/images/icons/profile.svg" alt=""><a href="{{ route('editing-profile') }}">Профиль</a></li>
-            <li><img src="/images/icons/setting.svg" alt=""><a href="#/">Настройки</a></li>
+            <li><img src="/images/icons/setting.svg" alt=""><a href="{{route('profile-settings')}}">Настройки</a></li>
             <li><img src="/images/icons/favor.svg" alt=""><a href="#/">Избранное</a></li>
             <li><img src="/images/icons/ref-link.svg" alt=""><a href="#/">Создать реферальную ссылку</a></li>
             <li><img src="/images/icons/exit.svg" alt=""><a href="{{route('logout')}}">Выход</a></li>

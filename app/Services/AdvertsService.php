@@ -13,9 +13,6 @@ use App\DataObjects\WatchEntity;
 use App\Domain\WatchesAdvertCreator;
 use App\Exceptions\UnknownAdvertTypeException;
 
-use App\Models\Advert;
-use App\Models\Status;
-
 
 class AdvertsService
 {

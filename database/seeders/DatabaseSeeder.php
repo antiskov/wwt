@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $this->call([
+            TimeZoneSeeder::class,
+            LanguageSeeder::class,
             SexesSeeder::class,
             UserRolesSeeder::class,
             StatusSeeder::class,
