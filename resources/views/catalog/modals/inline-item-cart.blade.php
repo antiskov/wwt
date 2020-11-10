@@ -60,7 +60,7 @@
                 </div>
                 <div class="item-infos">
                     <p>Диаметр:</p>
-                    <span>{{$advert->watchAdvert->diameter}} mm</span>
+                    <span>{{$advert->watchAdvert->diameterWatch->height}} mm</span>
                 </div>
             </div>
         </div>

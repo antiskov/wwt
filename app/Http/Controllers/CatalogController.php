@@ -34,6 +34,7 @@ class CatalogController extends Controller
 
     public function filter(Request $request)
     {
+        dd($request);
         return redirect()->back();
     }
 }
