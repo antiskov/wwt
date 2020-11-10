@@ -53,7 +53,7 @@
                         <li>
                             <div class="checkbox-block">
                                 <label class="checkbox-block__label">
-                                    <input type="checkbox" name="Victorinox" value="Victorinox">
+                                    <input type="checkbox" name="brand" value="Victorinox">
                                     <p><span>{{ $brand->title.' ('.count($brand->watchAdverts).')'}}</span></p>
                                 </label>
                             </div>
@@ -105,7 +105,7 @@
                         <li>
                             <div class="checkbox-block">
                                 <label class="checkbox-block__label">
-                                    <input type="checkbox" name="Victorinox" value="Victorinox">
+                                    <input type="checkbox" name="model" value="Victorinox">
                                     <p><span>{{$model->title.' ('.count($model->watchAdverts).')'}}</span></p>
                                 </label>
                             </div>
@@ -176,7 +176,7 @@
                         <li>
                             <div class="checkbox-block">
                                 <label class="checkbox-block__label">
-                                    <input type="checkbox" name="Victorinox" value="Victorinox">
+                                    <input type="checkbox" name="diameter" value="Victorinox">
                                     <p><span>{{$diameter->height.' ('.count($diameter->watchAdverts).')'}}</span></p>
                                 </label>
                             </div>
@@ -228,7 +228,7 @@
                         <li>
                             <div class="checkbox-block">
                                 <label class="checkbox-block__label">
-                                    <input type="checkbox" name="Victorinox" value="Victorinox">
+                                    <input type="checkbox" name="year" value="Victorinox">
                                     <p><span>{{$year->number.' ('.count($year->watchAdverts).')'}}</span></p>
                                 </label>
                             </div>
@@ -280,7 +280,7 @@
                         <li>
                             <div class="checkbox-block">
                                 <label class="checkbox-block__label">
-                                    <input type="checkbox" name="Victorinox" value="Victorinox">
+                                    <input type="checkbox" name="province" value="Victorinox">
                                     <p><span>{{$province->title.' ('.count($province->adverts->where('type', 'watch')).')'}}</span></p>
                                 </label>
                             </div>
@@ -310,7 +310,7 @@
                                             <li>
                                                 <div class="checkbox-block">
                                                     <label class="checkbox-block__label">
-                                                        <input type="checkbox" name="Victorinox" value="Victorinox">
+                                                        <input type="checkbox" name="type" value="Victorinox">
                                                         <p><span>{{$type->title.' ('.count($type->watchAdverts).')'}}</span></p>
                                                     </label>
                                                 </div>
@@ -325,7 +325,7 @@
                                                 <li>
                                                     <div class="checkbox-block">
                                                         <label class="checkbox-block__label">
-                                                            <input type="checkbox" name="Victorinox" value="Victorinox">
+                                                            <input type="checkbox" name="category" value="Victorinox">
                                                             <p><span>{{$category->title.' ('.count($category->watchModels).')'}}</span></p>
                                                         </label>
                                                     </div>
@@ -340,7 +340,7 @@
                                                 <li>
                                                     <div class="checkbox-block">
                                                         <label class="checkbox-block__label">
-                                                            <input type="checkbox" name="Victorinox" value="Victorinox">
+                                                            <input type="checkbox" name="model_code" value="Victorinox">
                                                             <p><span>{{$watchModel->model_code.' ('.count($watchModel->watchAdverts).')'}}</span></p>
                                                         </label>
                                                     </div>
@@ -355,7 +355,7 @@
                                             <li>
                                                 <div class="checkbox-block">
                                                     <label class="checkbox-block__label">
-                                                        <input type="checkbox" name="Victorinox" value="Victorinox">
+                                                        <input type="checkbox" name="state" value="Victorinox">
                                                         <p><span>{{$state->title.' ('.count($state->watchAdverts).')'}}</span>
                                                         </p>
                                                     </label>
@@ -371,7 +371,7 @@
                                                 <li>
                                                     <div class="checkbox-block">
                                                         <label class="checkbox-block__label">
-                                                            <input type="checkbox" name="Victorinox" value="Victorinox">
+                                                            <input type="checkbox" name="delivery_volume" value="Victorinox">
                                                             <p><span>{{$deliveryVolume->title.' ('.count($deliveryVolume->adverts).')'}}</span>
                                                             </p>
                                                         </label>
@@ -387,7 +387,7 @@
                                                 <li>
                                                     <div class="checkbox-block">
                                                         <label class="checkbox-block__label">
-                                                            <input type="checkbox" name="Victorinox" value="Victorinox">
+                                                            <input type="checkbox" name="sex[]" value="Victorinox">
                                                             <p>
                                                                 <span>Мужские {{' ('.count($sex_man->watchAdverts).')'}}</span>
                                                             </p>
@@ -397,7 +397,7 @@
                                                 <li>
                                                     <div class="checkbox-block">
                                                         <label class="checkbox-block__label">
-                                                            <input type="checkbox" name="Victorinox" value="Victorinox">
+                                                            <input type="checkbox" name="sex[]" value="Victorinox">
                                                             <p>
                                                                 <span>Женские {{' ('.count($sex_woman->watchAdverts).')'}}</span>
                                                             </p>
@@ -566,7 +566,7 @@
                                             <li>
                                                 <div class="checkbox-block">
                                                     <label class="checkbox-block__label">
-                                                        <input type="checkbox" name="Victorinox" value="Victorinox">
+                                                        <input type="checkbox" name="bracelet_material" value="Victorinox">
                                                         <p><span>{{$bracelet->title.' ('.count($bracelet->watchAdverts).')'}}</span></p>
                                                     </label>
                                                 </div>
@@ -581,7 +581,7 @@
                                             <li>
                                                 <div class="checkbox-block">
                                                     <label class="checkbox-block__label">
-                                                        <input type="checkbox" name="Victorinox" value="Victorinox">
+                                                        <input type="checkbox" name="$clasp" value="Victorinox">
                                                         <p><span>{{$clasp->title.' ('.count($clasp->watchAdverts).')'}}</span></p>
                                                     </label>
                                                 </div>
@@ -596,7 +596,7 @@
                                                 <li>
                                                     <div class="checkbox-block">
                                                         <label class="checkbox-block__label">
-                                                            <input type="checkbox" name="Victorinox" value="Victorinox">
+                                                            <input type="checkbox" name="materials_clasp" value="Victorinox">
                                                             <p><span>{{$materialsClasp->title.' ('.count($materialsClasp->watchAdverts).')'}}</span></p>
                                                         </label>
                                                     </div>
@@ -611,7 +611,7 @@
                                                 <li>
                                                     <div class="checkbox-block">
                                                         <label class="checkbox-block__label">
-                                                            <input type="checkbox" name="Victorinox" value="Victorinox">
+                                                            <input type="checkbox" name="bracelet_color" value="Victorinox">
                                                             <p><span>{{$braceletColor->title.' ('.count($braceletColor->watchAdverts).')'}}</span></p>
                                                         </label>
                                                     </div>
@@ -626,7 +626,7 @@
                                                 <li>
                                                     <div class="checkbox-block">
                                                         <label class="checkbox-block__label">
-                                                            <input type="checkbox" name="Victorinox" value="Victorinox">
+                                                            <input type="checkbox" name="width_clasp" value="Victorinox">
                                                             <p><span>{{$widthClasp->title.' mm ('.count($widthClasp->watchAdverts).')'}}</span></p>
                                                         </label>
                                                     </div>

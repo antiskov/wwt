@@ -35,13 +35,6 @@ class CatalogService
 {
     public function index()
     {
-//        $watchAdvert = WatchAdvert::all();
-//        $thickness = [];
-//        foreach ($watchAdvert as $watchAdvert) {
-//            $thickness[] = $watchAdvert->thickness;
-//        }
-//        $uniqueThickness = array_unique($thickness);
-
         return [
             'adverts' => Advert::where('type', 'watch')->get(),
             'brands' => WatchMake::all(),
