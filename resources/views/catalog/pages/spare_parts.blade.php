@@ -1,7 +1,7 @@
 @extends('catalog.layouts.main')
 
 @section('catalog-content')
-    @include('catalog.modals.filter')
+    @include('catalog.modals.filter_accessory')
     <section class="main-items">
         <div class="main-items-wrap">
             <div class="tabs">
@@ -12,9 +12,9 @@
                     </div>
                 </div>
                 <input type="radio" name="tab-btn" id="tab-btn-1" value="" checked>
-                <label for="tab-btn-1" class="block-1"><img src="./images/icons/block-item.svg" alt=""></label>
+                <label for="tab-btn-1" class="block-1"><img src="/images/icons/block-item.svg" alt=""></label>
                 <input type="radio" name="tab-btn" id="tab-btn-2" value="" >
-                <label for="tab-btn-2" class="block-2"><img src="./images/icons/line-item.svg" alt=""></label>
+                <label for="tab-btn-2" class="block-2"><img src="/images/icons/line-item.svg" alt=""></label>
 
                 <div class="wrap2">
                     <div class="currency-block">
@@ -22,7 +22,6 @@
                         <a href="#/">UAH</a>
                         <a href="#/">EUR</a>
                     </div>
-
                     <div class="select-price">
                         <p>Сортировать:</p>
                         <div class="select-value">Самые дорогие</div>
@@ -46,7 +45,7 @@
 
                 <div id="content-1" class="items-block">
                     <div class="block-view items-cont">
-                       @include('catalog.modals.item-cart', ['adverts' => $adverts])
+                        @include('catalog.modals.item-cart', ['adverts' => $adverts])
                     </div>
                 </div>
 

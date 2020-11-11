@@ -37,4 +37,14 @@ class CatalogController extends Controller
         dd($request);
         return redirect()->back();
     }
+
+    public function indexAccessory(CatalogService $service)
+    {
+        return view('catalog.pages.accessory', $service->indexAccessory());
+    }
+
+    public function indexSparePart(CatalogService $service)
+    {
+        return view('catalog.pages.spare_parts', $service->indexSparePart());
+    }
 }

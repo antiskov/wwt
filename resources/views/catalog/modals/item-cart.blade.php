@@ -8,11 +8,11 @@
             <img src="{{asset('/storage/'.$advert->basicImageAdvert->title)}}" alt="img">
         </a>
         <div class="rating-cont">
-            <img src="./images/icons/star-rat.svg" alt="img">
-            <img src="./images/icons/star-rat.svg" alt="img">
-            <img src="./images/icons/star-rat.svg" alt="img">
-            <img src="./images/icons/star-rat.svg" alt="img">
-            <img src="./images/icons/star-rat.svg" alt="img">
+            <img src="/images/icons/star-rat.svg" alt="img">
+            <img src="/images/icons/star-rat.svg" alt="img">
+            <img src="/images/icons/star-rat.svg" alt="img">
+            <img src="/images/icons/star-rat.svg" alt="img">
+            <img src="/images/icons/star-rat.svg" alt="img">
         </div>
         <a href="#/" class="cart-name">
             {{$advert->title}}

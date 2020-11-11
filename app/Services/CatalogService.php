@@ -36,7 +36,74 @@ class CatalogService
     public function index()
     {
         return [
-            'adverts' => Advert::where('type', 'watch')->get(),
+            'adverts' => Advert::where('type', 'watch')->paginate(6),
+            'brands' => WatchMake::all(),
+            'models' => WatchModel::all(),
+            'diameters' => DiameterWatch::all(),
+            'years' => YearAdvert::all(),
+            'provinces' => Province::all(),
+            'types' => WatchType::all(),
+            'categories' => Category::all(),
+            'watchAdverts' => WatchAdvert::all(),
+            'watchModels' => WatchModel::all(),
+            'sex_man' => Sex::where('title', 'man')->first(),
+            'sex_woman' => Sex::where('title', 'woman')->first(),
+            'states' => State::all(),
+            'deliveryVolumes' => DeliveryVolume::all(),
+            'mechanismTypes' => MechanismType::all(),
+            'watchMaterials' => WatchMaterial::all(),
+            'watchDials' => WatchDial::all(),
+            'glasses' => Glass::all(),
+            'options' => Option::all(),
+            'thicknesses' => WatchThickness::all(),
+            'bezels' => WatchBezel::all(),
+            'figures' => WatchFigure::all(),
+            'waterproofs' => WatchWaterproof::all(),
+            'bracelets' => BraceletMaterial::all(),
+            'clasps' => BraceletClasp::all(),
+            'materialsClasps' => MaterialsClasp::all(),
+            'braceletColors' => BraceletColor::all(),
+            'widthClasps' => WidthClasp::all(),
+        ];
+    }
+
+    public function indexAccessory()
+    {
+        return [
+            'adverts' => Advert::where('type', 'accessories')->paginate(6),
+            'brands' => WatchMake::all(),
+            'models' => WatchModel::all(),
+            'diameters' => DiameterWatch::all(),
+            'years' => YearAdvert::all(),
+            'provinces' => Province::all(),
+            'types' => WatchType::all(),
+            'categories' => Category::all(),
+            'watchAdverts' => WatchAdvert::all(),
+            'watchModels' => WatchModel::all(),
+            'sex_man' => Sex::where('title', 'man')->first(),
+            'sex_woman' => Sex::where('title', 'woman')->first(),
+            'states' => State::all(),
+            'deliveryVolumes' => DeliveryVolume::all(),
+            'mechanismTypes' => MechanismType::all(),
+            'watchMaterials' => WatchMaterial::all(),
+            'watchDials' => WatchDial::all(),
+            'glasses' => Glass::all(),
+            'options' => Option::all(),
+            'thicknesses' => WatchThickness::all(),
+            'bezels' => WatchBezel::all(),
+            'figures' => WatchFigure::all(),
+            'waterproofs' => WatchWaterproof::all(),
+            'bracelets' => BraceletMaterial::all(),
+            'clasps' => BraceletClasp::all(),
+            'materialsClasps' => MaterialsClasp::all(),
+            'braceletColors' => BraceletColor::all(),
+            'widthClasps' => WidthClasp::all(),
+        ];
+    }
+    public function indexSparePart()
+    {
+        return [
+            'adverts' => Advert::where('type', 'parts')->paginate(6),
             'brands' => WatchMake::all(),
             'models' => WatchModel::all(),
             'diameters' => DiameterWatch::all(),

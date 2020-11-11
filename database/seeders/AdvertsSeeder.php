@@ -64,55 +64,61 @@ class AdvertsSeeder extends Seeder
             );
         }
 
+        foreach ($watches as $watch) {
+            Advert::create(
+                [
+                    'type' => 'accessories',
+                    'user_id' => 1,
+                    'title' => $watch,
+                    'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+                    'price' => 200,
+                    'currency_id' => 1,
+                    'status_id' => 3,
+                    'surname' => 'Iskov',
+                    'name' => 'Anton',
+                    //'birthday' => '05.01.1999',
+                    'phone' => '0980000000',
+                    'country' => 'Ukraine',
+                    'region' => 'Europe',
+                    'city' => 'Kyiv',
+                    'street' => 'Khreshchatyk',
+                    'zip_code' => 23000,
+                    'delivery_volume_id' => 3,
+                    //'condition_id' => 2,
+                    'availability_status_id' => 2,
+                    'province_id' => 2,
+                ]
+            );
+        }
 
-        Advert::create(
-            [
-                'type' => 'accessories',
-                'user_id' => 1,
-                'title' => 'Rolex',
-                'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-                'price' => 200,
-                'currency_id' => 1,
-                'status_id' => 3,
-                'surname' => 'Iskov',
-                'name' => 'Anton',
-                //'birthday' => '05.01.1999',
-                'phone' => '0980000000',
-                'country' => 'Ukraine',
-                'region' => 'Europe',
-                'city' => 'Kyiv',
-                'street' => 'Khreshchatyk',
-                'zip_code' => 23000,
-                'delivery_volume_id' => 3,
-                //'condition_id' => 2,
-                'availability_status_id' => 2,
-                'province_id' => 2,
-            ]
-        );
 
-        Advert::create(
-            [
-                'type' => 'parts',
-                'user_id' => 1,
-                'title' => 'Casio',
-                'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-                'price' => 50,
-                'currency_id' => 1,
-                'status_id' => 3,
-                'surname' => 'Iskov',
-                'name' => 'Anton',
-                //'birthday' => '05.01.1999',
-                'phone' => '0980000000',
-                'country' => 'Ukraine',
-                'region' => 'Europe',
-                'city' => 'Kyiv',
-                'street' => 'Khreshchatyk',
-                'zip_code' => 23000,
-                'delivery_volume_id' => 2,
-                //'condition_id' => 2,
-                'availability_status_id' => 3,
-                'province_id' => 3,
-            ]
-        );
+        foreach ($watches as $watch) {
+            Advert::create(
+                [
+                    'type' => 'parts',
+                    'user_id' => 1,
+                    'title' => $watch,
+                    'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+                    'price' => 50,
+                    'currency_id' => 1,
+                    'status_id' => 3,
+                    'surname' => 'Iskov',
+                    'name' => 'Anton',
+                    //'birthday' => '05.01.1999',
+                    'phone' => '0980000000',
+                    'country' => 'Ukraine',
+                    'region' => 'Europe',
+                    'city' => 'Kyiv',
+                    'street' => 'Khreshchatyk',
+                    'zip_code' => 23000,
+                    'delivery_volume_id' => 2,
+                    //'condition_id' => 2,
+                    'availability_status_id' => 3,
+                    'province_id' => 3,
+                ]
+            );
+        }
+
+
     }
 }

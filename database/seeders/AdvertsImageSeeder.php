@@ -64,5 +64,15 @@ class AdvertsImageSeeder extends Seeder
             'advert_id' => $i,
             'title' => 'watch-1.png',
         ]);
+        for($i = 13; $i <= 24; $i++)
+        BasicImageAdvert::create([
+            'advert_id' => $i,
+            'title' => 'small_acc.jpeg',
+        ]);
+        for($i = 25; $i <= 36; $i++)
+        BasicImageAdvert::create([
+            'advert_id' => $i,
+            'title' => 'small_acc.jpeg',
+        ]);
     }
 }

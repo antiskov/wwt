@@ -72,7 +72,6 @@
                 </form>
             </div>
         </div>
-
         <div class="mob-menu">
             <div class="mob-menu__top">
                 <div class="mob-menu-btn-close"></div>
@@ -95,86 +94,16 @@
                                             <li>
                                                 <a href="#">Rolex</a>
                                             </li>
-                                            <li>
-                                                <a href="#">Vacheron Constantin</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Rolex</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Vacheron Constantin</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Rolex</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Vacheron Constantin</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Rolex</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Vacheron Constantin</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Rolex</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Vacheron Constantin</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Rolex</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Vacheron Constantin</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Rolex</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Vacheron Constantin</a>
-                                            </li>
                                         </ul>
                                     </li>
                                     <li>
                                         <span>Категории</span>
                                         <ul>
+                                            @foreach($categories as $category)
                                             <li>
-                                                <a href="#">Мужские часы / Женские часы</a>
+                                                <a href="#">{{$category->title.' ('.count($category->watchModels).')'}}</a>
                                             </li>
-                                            <li>
-                                                <a href="#">Хронографы</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Браслеты и ремешки / Детали и аксессуары</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Мужские часы / Женские часы</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Хронографы</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Браслеты и ремешки / Детали и аксессуары</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Мужские часы / Женские часы</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Хронографы</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Браслеты и ремешки / Детали и аксессуары</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Мужские часы / Женские часы</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Хронографы</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Браслеты и ремешки / Детали и аксессуары</a>
-                                            </li>
+                                            @endforeach
                                         </ul>
                                     </li>
                                 </ul>
@@ -329,68 +258,11 @@
                                                 <h3>Марки</h3>
                                                 <div>
                                                     <ul>
+                                                        @foreach($brands as $brand)
                                                         <li>
-                                                            <a href="#">Rolex</a>
+                                                            <a href="#">{{ $brand->title.' ('.count($brand->watchAdverts).')'}}</a>
                                                         </li>
-                                                        <li>
-                                                            <a href="#">Vacheron Constantin</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Rolex</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Vacheron Constantin</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Rolex</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Vacheron Constantin</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Rolex</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Vacheron Constantin</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Rolex</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Rolex</a>
-                                                        </li>
-                                                    </ul>
-                                                    <ul>
-                                                        <li>
-                                                            <a href="#">Rolex</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Vacheron Constantin</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Rolex</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Vacheron Constantin</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Rolex</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Vacheron Constantin</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Rolex</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Vacheron Constantin</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Rolex</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">Rolex</a>
-                                                        </li>
+                                                        @endforeach
                                                     </ul>
                                                 </div>
                                             </div>
@@ -399,39 +271,6 @@
                                                 <ul>
                                                     <li>
                                                         <a href="#">Мужские часы / Женские часы</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Новые часы / Подержанные часы</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Механические часы / Автоматические часы</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Винтажные часы</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Хронографы</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Часы для погружения</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Пилотные часы</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Военные часы</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Швейцарские часы</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Гоночные часы</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Парусные часы</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Браслеты и ремешки / Детали и аксессуары</a>
                                                     </li>
                                                 </ul>
                                             </div>
