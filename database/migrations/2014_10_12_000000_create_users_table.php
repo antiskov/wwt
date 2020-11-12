@@ -33,8 +33,8 @@ class CreateUsersTable extends Migration
             $table->string('city')->nullable();
             $table->string('street')->nullable();
             $table->string('zip_code')->nullable();
-            $table->float('latitude')->nullable();
-            $table->float('longtitude')->nullable();
+//            $table->float('latitude')->nullable();
+//            $table->float('longtitude')->nullable();
             $table->string('specialisation')->nullable();
             $table->unsignedBigInteger('role_id')->default(0);
             $table->foreign('role_id')->references('id')->on('roles');
