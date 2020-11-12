@@ -25,6 +25,7 @@ Route::middleware('set.locale')->group(function () {
     Route::get('/reset-password/{email}', [\App\Http\Controllers\UserController::class, 'resetPassword'])->name('reset-password');
     Route::get('/email_verification_code/{email_verification_code}', [\App\Http\Controllers\UserController::class, 'emailVerificationCode'])->name('activation_link');
     Route::get('/item_page/{advert}', [\App\Http\Controllers\GoodsController::class, 'index'])->name('item-page');
+    Route::get('/seller/{user}', [\App\Http\Controllers\CatalogController::class, 'sellerPage'])->name('seller-page');
 
     Route::group(['prefix' => 'profile'], function () {
         Route::middleware('auth')->group(function () {

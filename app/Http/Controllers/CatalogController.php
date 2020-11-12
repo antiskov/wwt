@@ -47,4 +47,9 @@ class CatalogController extends Controller
     {
         return view('catalog.pages.spare_parts', $service->indexSparePart());
     }
+
+    public function sellerPage()
+    {
+        return view('catalog.pages.seller_page');
+    }
 }
