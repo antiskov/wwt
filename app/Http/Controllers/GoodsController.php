@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Advert;
 use App\Models\MechanismType;
-use App\Models\WatchModel;
 
 class GoodsController extends Controller
 {
@@ -18,12 +17,17 @@ class GoodsController extends Controller
         }
 
         $mechanismType = MechanismType::where('id', $advert->watchAdvert->mechanism_type_id)->first();
-//        dd($mechanismType->title);
+
+        $userLanguages = [];
+        foreach (auth()->user()->languages as $l) {
+            $userLanguages[] = $l->code;
+        }
 
         return view('pages.item-page', [
             'role' => $role,
             'advert' => $advert,
             'mechanismType' => $mechanismType->title,
+            'userLanguages' => $userLanguages,
         ]);
     }
 }
