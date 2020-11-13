@@ -10,7 +10,7 @@ class AdvertImage extends Model
     use HasFactory;
 
     protected $fillable = [
-//        'full_path',
+        'full_path',
         'medium_path',
         'minified_path',
     ];
@@ -19,4 +19,6 @@ class AdvertImage extends Model
     {
         return $this->belongsTo(Advert::class);
     }
+
+
 }

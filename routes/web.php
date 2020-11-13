@@ -37,6 +37,13 @@ Route::middleware('set.locale')->group(function () {
             Route::get('/reset-password', [\App\Http\Controllers\ProfileController::class, 'resetPassword'])->name('reset-password');
         });
     });
+
+    Route::group(['prefix' =>'catalog'], function() {
+        Route::get('/', [\App\Http\Controllers\CatalogController::class, 'index'])->name('catalog');
+        Route::post('/filter', [\App\Http\Controllers\CatalogController::class, 'filter'])->name('catalog.filter');
+        Route::get('/accessory', [\App\Http\Controllers\CatalogController::class, 'indexAccessory'])->name('catalog.accessory');
+        Route::get('/spare_parts', [\App\Http\Controllers\CatalogController::class, 'indexSparePart'])->name('catalog.spare-parts');
+    });
 });
 
 

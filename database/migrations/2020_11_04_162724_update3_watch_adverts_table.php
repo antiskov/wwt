@@ -14,8 +14,8 @@ class Update3WatchAdvertsTable extends Migration
     public function up()
     {
         Schema::table('watch_adverts', function (Blueprint $table) {
-            $table->integer('diameter');
-            $table->string('figures')->default('arab');
+//            $table->integer('diameter');
+//            $table->string('figures')->default('arab');
             $table->unsignedBigInteger('glass_id')->nullable();
             $table->foreign('glass_id')->references('id')->on('glasses');
         });

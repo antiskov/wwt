@@ -2,8 +2,8 @@
 
 return [
     'small' => [
-        'width' => 300,
-        'height' => 340,
+        'width' => 247,
+        'height' => 249,
     ],
 
     'medium' => [

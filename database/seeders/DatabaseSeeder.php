@@ -17,6 +17,19 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $this->call([
+            MaterialsClaspSeeder::class,
+            BraceletColorSeeder::class,
+            WidthClaspSeeder::class,
+            BraceletClaspSeeder::class,
+            BraceletMaterialSeeder::class,
+            WatchWaterproofSeeder::class,
+            WatchThicknessSeeder::class,
+            WatchBezelSeeder::class,
+            WatchFigureSeeder::class,
+            OptionSeeder::class,
+            WatchDialSeeder::class,
+            StateSeeder::class,
+            ProvinceSeeder::class,
             TimeZoneSeeder::class,
             LanguageSeeder::class,
             SexesSeeder::class,
@@ -30,6 +43,13 @@ class DatabaseSeeder extends Seeder
             AdvertsImageSeeder::class,
             WatchModelSeeder::class,
             WatchAdvertSeeder::class,
+            WatchOptionSeeder::class,
+
+            AccessoryMakeSeeder::class,
+            AccessoryAdvertSeeder::class,
+
+            SparePartsMakeSeeder::class,
+            SparePartsAdvertSeeder::class,
         ]);
     }
 }

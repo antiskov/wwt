@@ -30,7 +30,7 @@ class HomeController extends Controller
      */
     public function test(ImageMinificationService $req)
     {
-        $req->minify('public/pokemon.png', ['medium', 'big', 'small']);
+        $req->minify('public/acc.jpeg', ['medium', 'big', 'small']);
 
         return view('pages.main');
     }

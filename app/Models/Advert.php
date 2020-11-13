@@ -59,4 +59,13 @@ class Advert extends Model
         return $this->hasOne(WatchAdvert::class);
     }
 
+    public function basicImageAdvert()
+    {
+        return $this->hasOne(BasicImageAdvert::class);
+    }
+
+    public function province()
+    {
+        return $this->belongsTo(Province::class);
+    }
 }

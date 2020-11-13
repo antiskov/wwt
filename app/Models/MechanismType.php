@@ -9,7 +9,7 @@ class MechanismType extends Model
 {
     use HasFactory;
 
-    public function watchAdvert()
+    public function watchAdverts()
     {
         return $this->hasMany(WatchAdvert::class);
     }
