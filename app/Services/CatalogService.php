@@ -35,35 +35,49 @@ class CatalogService
 {
     public function index()
     {
+//        $watchAdverts = new WatchAdvert();
+//        foreach ($watchAdverts as $item) {
+//            dump($item->only('release_year'));
+//        }
+//        dd($watchAdvert->only('release_year'));
+        $watchAdverts = WatchAdvert::all();
+        $years = [];
+        $types = [];
+        $categories = [];
+        foreach ($watchAdverts as $watchAdvert) {
+            $years[] = $watchAdvert->release_year;
+            $types[] = $watchAdvert->watchType;
+//            $categories[] = $watchAdvert->watchModel->category->id;
+        }
+        $uniqueYears = array_unique($years);
+        rsort($uniqueYears);
+        $uniqueTypes = array_unique($types);
+        rsort($uniqueTypes);
+
+        $adverts = Advert::all();
+        $provinces = [];
+        foreach ($adverts as $advert) {
+//            dd($advert->id);
+            $provinces[] = $advert->region;
+        }
+        $uniqueProvinces = array_unique($provinces);
+        rsort($uniqueProvinces);
+
         return [
             'adverts' => Advert::where('type', 'watch')->paginate(6),
             'brands' => WatchMake::all(),
             'models' => WatchModel::all(),
-            'diameters' => DiameterWatch::all(),
-            'years' => YearAdvert::all(),
-            'provinces' => Province::all(),
-            'types' => WatchType::all(),
+            'types' => $uniqueTypes,
             'categories' => Category::all(),
             'watchAdverts' => WatchAdvert::all(),
             'watchModels' => WatchModel::all(),
             'sex_man' => Sex::where('title', 'man')->first(),
             'sex_woman' => Sex::where('title', 'woman')->first(),
-            'states' => State::all(),
             'deliveryVolumes' => DeliveryVolume::all(),
             'mechanismTypes' => MechanismType::all(),
-            'watchMaterials' => WatchMaterial::all(),
-            'watchDials' => WatchDial::all(),
-            'glasses' => Glass::all(),
-            'options' => Option::all(),
-            'thicknesses' => WatchThickness::all(),
-            'bezels' => WatchBezel::all(),
-            'figures' => WatchFigure::all(),
-            'waterproofs' => WatchWaterproof::all(),
-            'bracelets' => BraceletMaterial::all(),
-            'clasps' => BraceletClasp::all(),
-            'materialsClasps' => MaterialsClasp::all(),
-            'braceletColors' => BraceletColor::all(),
-            'widthClasps' => WidthClasp::all(),
+//            'diameters' => WatchAdvert::only('witdh')
+            'years' => $uniqueYears,
+            'provinces' => $uniqueProvinces,
         ];
     }
 

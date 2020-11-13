@@ -2,11 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Category;
 use App\Models\MechanismType;
-use App\Models\WatchAdvert;
 use App\Models\WatchMake;
-use App\Models\WatchMaterial;
 use App\Models\WatchModel;
 use App\Models\WatchType;
 use Illuminate\Database\Seeder;
@@ -20,18 +17,8 @@ class WatchModelSeeder extends Seeder
      */
     public function run()
     {
-        Category::create([
-            'parent_id' => 2,
-            'title' => 'Analog',
-            'slug' => '4sb44s',
-        ]);
-
         WatchType::create([
             'title' => 'Automatic',
-        ]);
-
-        WatchType::create([
-            'title' => 'Chronograph',
         ]);
 
         WatchMake::create([
@@ -58,7 +45,5 @@ class WatchModelSeeder extends Seeder
             'mechanism_type_id' => 1,
             'photo' => 'a',
         ]);
-
-
     }
 }

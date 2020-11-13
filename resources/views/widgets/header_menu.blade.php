@@ -98,16 +98,16 @@
                                             @endforeach
                                         </ul>
                                     </li>
-                                    <li>
-                                        <span>Категории</span>
-                                        <ul>
-                                            @foreach($categories as $category)
-                                                <li>
-                                                    <a href="#">{{$category->title.' ('.count($category->watchModels).')'}}</a>
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    </li>
+{{--                                    <li>--}}
+{{--                                        <span>Категории</span>--}}
+{{--                                        <ul>--}}
+{{--                                            @foreach($categories as $category)--}}
+{{--                                                <li>--}}
+{{--                                                    <a href="#">{{$category->title.' ('.count($category->watchModels).')'}}</a>--}}
+{{--                                                </li>--}}
+{{--                                            @endforeach--}}
+{{--                                        </ul>--}}
+{{--                                    </li>--}}
                                 </ul>
                             </li>
                             <li>
@@ -315,16 +315,16 @@
                                                     </ul>
                                                 </div>
                                             </div>
-                                            <div class="header-nav-list">
-                                                <h3>Категории</h3>
-                                                <ul>
-                                                    @foreach($categories as $category)
-                                                        <li>
-                                                            <a href="#">{{$category->title.' ('.count($category->watchModels).')'}}</a>
-                                                        </li>
-                                                    @endforeach
-                                                </ul>
-                                            </div>
+{{--                                            <div class="header-nav-list">--}}
+{{--                                                <h3>Категории</h3>--}}
+{{--                                                <ul>--}}
+{{--                                                    @foreach($categories as $category)--}}
+{{--                                                        <li>--}}
+{{--                                                            <a href="#">{{$category->title.' ('.count($category->watchModels).')'}}</a>--}}
+{{--                                                        </li>--}}
+{{--                                                    @endforeach--}}
+{{--                                                </ul>--}}
+{{--                                            </div>--}}
                                         </div>
                                     </li>
                                     <li>

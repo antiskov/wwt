@@ -11,13 +11,13 @@ class Advert extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = [
-        'type',
-        'title',
-        'price',
-        'name',
-        'surname',
-    ];
+//    protected $fillable = [
+//        'type',
+//        'title',
+//        'price',
+//        'name',
+//        'surname',
+//    ];
 
     public function currency()
     {
