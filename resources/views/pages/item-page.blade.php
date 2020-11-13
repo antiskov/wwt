@@ -54,11 +54,11 @@
                         </div>
                         <div class="cont">
                             <p>Объем доставки</p>
-                            <span>{{ $advert->deliveryVolume->title }}</span>
+                            <span>{{ $advert->delivery_volume }}</span>
                         </div>
                         <div class="cont">
                             <p>Наличие</p>
-                            <span> {{ $advert->availabilityStatus->title }}</span>
+                            <span> {{ $advert->availability_status }}</span>
                         </div>
                     </div>
                     <div class="seller-item">
@@ -112,14 +112,6 @@
                             <span>{{ $advert->watchAdvert->watchType->title }}</span>
                         </div>
                         <div class="setting-cont">
-                            <p>Материал корпуса</p>
-                            <span>{{ $advert->watchAdvert->watchMaterial->title }}</span>
-                        </div>
-                        <div class="setting-cont">
-                            <p>Материал браслета</p>
-                            <span>{{ $advert->watchAdvert->braceletMaterial->title }}</span>
-                        </div>
-                        <div class="setting-cont">
                             <p>Год</p>
                             <span>2019</span>
                         </div>
@@ -129,7 +121,7 @@
                         </div>
                         <div class="setting-cont">
                             <p>Объем доставки</p>
-                            <span>{{$advert->deliveryVolume->title}}</span>
+                            <span>{{$advert->delivery_volume}}</span>
                         </div>
                         <div class="setting-cont">
                             <p>Местоположение</p>
@@ -141,7 +133,7 @@
                     <div class="setting-wrap">
                         <div class="setting-cont">
                             <p>Тип механизма</p>
-                            <span>{{$advert->watchAdvert->mechanismType->title}}</span>
+                            <span>{{$mechanismType}}</span>
                         </div>
                         <div class="setting-cont">
                             <p>Калибр/Механизм</p>
@@ -151,30 +143,14 @@
 
                     <h2>Корпус</h2>
                     <div class="setting-wrap">
-                        <div class="setting-cont">
-                            <p>Материал корпуса</p>
-                            <span>{{ $advert->watchAdvert->watchMaterial->title }}</span>
-                        </div>
-                        <div class="setting-cont">
-                            <p>Диаметр</p>
-                            <span>{{$advert->watchAdvert->diameter}} mm</span>
-                        </div>
-                        <div class="setting-cont">
-                            <p>Cтекло</p>
-                            <span>{{$advert->watchAdvert->glass->title}}</span>
-                        </div>
-                        <div class="setting-cont">
-                            <p>Цифры</p>
-                            <span>{{$advert->watchAdvert->figures}} </span>
-                        </div>
+{{--                        <div class="setting-cont">--}}
+{{--                            <p>Диаметр</p>--}}
+{{--                            <span>{{$advert->watchAdvert->diameter}} mm</span>--}}
+{{--                        </div>--}}
                     </div>
 
                     <h2>Браслет/ремешок</h2>
                     <div class="setting-wrap">
-                        <div class="setting-cont">
-                            <p>Браслет/ремешок</p>
-                            <span>{{ $advert->watchAdvert->braceletMaterial->title }}</span>
-                        </div>
                     </div>
 
                 </div>
@@ -193,14 +169,14 @@
                 <div class="container">
                     <div class="person">
                         <div class="person-prof">
-                            <img src="{{asset('/storage/'.$advert->user->avatar)}} alt="img">
+                            <img src="{{asset('/storage/'.$advert->user->avatar)}}" alt="img">
                         </div>
                         <div class="person-rating">
 {{--                            <img src="./images/icons/stars.svg" alt="img">--}}
                             нужно будет сделать интерактивные звезды
                         </div>
-                        <div class="person-name">Владимир</div>
-                        <a href="tel:+38063874-69-92" class="person-phone">+38(063)874-69-92</a>
+                        <div class="person-name">{{$advert->user->name}}</div>
+                        <a href="tel:{{$advert->user->phone}}" class="person-phone">{{$advert->user->phone}}</a>
                         <div class="person-social">
                             <a href="#/"></a>
                             <a href="#/"></a>
@@ -208,9 +184,6 @@
                         </div>
                         <div class="person-laung">
                             <p>Говорит на :</p>
-                            <span>Русский</span>
-                            <span>Українська</span>
-                            <span>English</span>
                         </div>
                         <div class="person-address">
                             <div class="address">

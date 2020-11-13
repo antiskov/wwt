@@ -33,6 +33,8 @@ class WatchAdvertSeeder extends Seeder
                 'is_release_year_confirmed' => 1,
                 'height' => 100,
                 'width' => 40,
+                'watch_state' => 'new',
+                'mechanism_type_id' => 1,
             ]);
         }
     }
