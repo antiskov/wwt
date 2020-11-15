@@ -35,6 +35,7 @@ class CatalogService
 {
     public function index()
     {
+
 //        $watchAdverts = new WatchAdvert();
 //        foreach ($watchAdverts as $item) {
 //            dump($item->only('release_year'));
@@ -69,7 +70,7 @@ class CatalogService
             'models' => WatchModel::all(),
             'types' => $uniqueTypes,
             'categories' => Category::all(),
-            'watchAdverts' => WatchAdvert::all(),
+            'watchAdverts' => WatchAdvert::paginate(6),
             'watchModels' => WatchModel::all(),
             'sex_man' => Sex::where('title', 'man')->first(),
             'sex_woman' => Sex::where('title', 'woman')->first(),

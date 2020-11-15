@@ -21,10 +21,10 @@ class WatchAdvertSeeder extends Seeder
      */
     public function run()
     {
-        for($i = 1; $i <= 12; $i++) {
+        for($i = 11; $i <= 32; $i++) {
             WatchAdvert::create([
                 'advert_id' => $i,
-                'watch_type_id' => 1,
+//                'watch_type_id' => 1,
                 'watch_make_id' => 1,
                 'watch_model_id' => 1,
                 'model_code' => 4717,

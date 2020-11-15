@@ -16,3 +16,4 @@
 @endsection
 @show
 @include('partials.global.footer')
+

@@ -13,4 +13,9 @@ class MechanismType extends Model
     {
         return $this->hasMany(WatchAdvert::class);
     }
+
+    public function accessoryAdvert()
+    {
+        return $this->hasMany(AccessoryAdvert::class);
+    }
 }

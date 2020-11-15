@@ -109,7 +109,7 @@
                         </div>
                         <div class="setting-cont">
                             <p>Тип механизма</p>
-                            <span>{{ $advert->watchAdvert->watchType->title }}</span>
+                            <span>{{ $advert->watchAdvert->mechanismType->title }}</span>
                         </div>
                         <div class="setting-cont">
                             <p>Год</p>

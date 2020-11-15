@@ -43,7 +43,8 @@ Route::middleware('set.locale')->group(function () {
         Route::post('/filter', [\App\Http\Controllers\CatalogController::class, 'filter'])->name('catalog.filter');
         Route::get('/accessory', [\App\Http\Controllers\CatalogController::class, 'indexAccessory'])->name('catalog.accessory');
         Route::get('/spare_parts', [\App\Http\Controllers\CatalogController::class, 'indexSparePart'])->name('catalog.spare-parts');
-        Route::get('/item_page/{advert}', [\App\Http\Controllers\GoodsController::class, 'index'])->name('item-page');
+        Route::get('/item_page/{advert}', [\App\Http\Controllers\GoodsController::class, 'index'])->name('catalog.item-page');
+        Route::get('/item_page_accessory/{advert}', [\App\Http\Controllers\GoodsController::class, 'indexAccessory'])->name('catalog.item-page-accessory');
     });
 });
 

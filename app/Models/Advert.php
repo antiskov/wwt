@@ -68,4 +68,9 @@ class Advert extends Model
     {
         return $this->belongsTo(Province::class);
     }
+
+    public function accessoryAdvert()
+    {
+        return $this->hasOne(AccessoryAdvert::class);
+    }
 }
