@@ -46,7 +46,8 @@ class UserService
         Log::info('in user service creation');
         $user = new User();
         $user->email = $request->getEmail();
-        $user->email_verification_code = Hash::make(Str::random(5), ['rounds' => 6]); //Hash::make($request->getEmailVerificationCode()):
+//        $user->email_verification_code = Hash::make(Str::random(3), ['rounds' => 4]);
+        $user->email_verification_code = rand(); //sometimes browser don't understand link with hash code
         $user->name = $request->getName();
         $user->surname = $request->getSurname();
         $user->role_id = $request->getRole();
@@ -84,7 +85,6 @@ class UserService
      */
     public function sendVerificationCode($user)
     {
-
         $data['codeEmail']=route('activation_link', [$user->email_verification_code]);
         Mail::to($user->email)->send(new ActivationMail($user));
         Log::info('mail sended');

@@ -277,7 +277,7 @@
                                             <span class="notification-btn">1</span>
                                         </div>
                                         <ul class="header-cabinet-list">
-                                            <li><a href="#">Мои обьявления</a></li>
+                                            <li><a href="{{route('my_adverts')}}">Мои обьявления</a></li>
                                             <li><a href="#">Сообщения</a></li>
                                             <li><a href="#">Платежи</a></li>
                                             <li><a href="{{ route('editing-profile') }}">Профиль</a></li>
@@ -293,6 +293,20 @@
                                 <a href="#" class="active">ру</a>
                                 <a href="#">en</a>
                             </div>
+                        </div>
+
+                        <div class="mob-menu__top">
+                            <div class="mob-menu-btn-close"></div>
+                            <form class="languages-btns">
+                                <label>
+                                    <input type="radio" name="language">
+                                    <span>ру</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="language">
+                                    <span>en</span>
+                                </label>
+                            </form>
                         </div>
                     </div>
                     <nav class="header-desc__nav">

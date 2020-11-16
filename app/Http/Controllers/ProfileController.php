@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileRequest;
+use App\Models\Advert;
 use App\Models\Timezone;
 use App\Models\UserLanguage;
 use App\Models\UserSettings;
@@ -94,5 +95,10 @@ class ProfileController extends Controller
         $service->resetPassword(auth()->user());
 
         return redirect()->back();
+    }
+
+    public function myAdverts()
+    {
+        return view('profile_user.pages.my_adverts', ['adverts' => Advert::where('user_id', auth()->user()->id)->get()]);
     }
 }
