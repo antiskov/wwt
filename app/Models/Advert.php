@@ -73,4 +73,8 @@ class Advert extends Model
     {
         return $this->hasOne(AccessoryAdvert::class);
     }
+    public function sparePartsAdvert()
+    {
+        return $this->hasOne(SparePartsAdvert::class);
+    }
 }

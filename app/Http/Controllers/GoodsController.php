@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Advert;
 use App\Models\MechanismType;
+use App\Models\User;
 
 class GoodsController extends Controller
 {
-    public function index(Advert $advert)
+    public function index(User $user, Advert $advert)
     {
 
         if(auth()->user()) {
@@ -19,7 +20,7 @@ class GoodsController extends Controller
         $mechanismType = MechanismType::where('id', $advert->watchAdvert->mechanism_type_id)->first();
 
         $userLanguages = [];
-        foreach (auth()->user()->languages as $l) {
+        foreach ($user->languages as $l) {
             $userLanguages[] = $l->code;
         }
 
@@ -31,7 +32,7 @@ class GoodsController extends Controller
         ]);
     }
 
-    public function indexAccessory(Advert $advert)
+    public function indexAccessory(User $user, Advert $advert)
     {
         if(auth()->user()) {
             $role = auth()->user()->role_id;
@@ -42,7 +43,7 @@ class GoodsController extends Controller
         $mechanismType = MechanismType::where('id', $advert->accessoryAdvert->accessory_mechanism_type_id)->first();
 
         $userLanguages = [];
-        foreach (auth()->user()->languages as $l) {
+        foreach ($user->languages as $l) {
             $userLanguages[] = $l->code;
         }
 
@@ -53,4 +54,29 @@ class GoodsController extends Controller
             'userLanguages' => $userLanguages,
         ]);
     }
+
+    public function indexSpareParts(User $user, Advert $advert)
+    {
+        if(auth()->user()) {
+            $role = auth()->user()->role_id;
+        } else {
+            $role = 1;
+        }
+
+        $mechanismType = MechanismType::where('id', $advert->sparePartsAdvert->spare_parts_mechanism_type_id)->first();
+
+        $userLanguages = [];
+        foreach ($user->languages as $l) {
+            $userLanguages[] = $l->code;
+        }
+
+        return view('catalog.pages.item-page-spare-parts', [
+            'role' => $role,
+            'advert' => $advert,
+            'mechanismType' => $mechanismType->title,
+            'userLanguages' => $userLanguages,
+            'user' => $user,
+        ]);
+    }
+
 }
