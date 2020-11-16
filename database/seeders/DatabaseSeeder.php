@@ -30,12 +30,13 @@ class DatabaseSeeder extends Seeder
             WatchAdvertSeeder::class,
 
             AccessoryModelSeeder::class,
-//            AccessoryMakeSeeder::class,
             AccessoryAdvertSeeder::class,
             AccessoryWatchSeeder::class,
 
-            SparePartsMakeSeeder::class,
+            SparePartsModelSeeder::class,
             SparePartsAdvertSeeder::class,
+            SparePartsWatchSeeder::class,
+
         ]);
     }
 }

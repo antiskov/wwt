@@ -20,6 +20,7 @@ class CreateAccessoryAdvertsTable extends Migration
             $table->unsignedBigInteger('accessory_make_id')->nullable();
             $table->foreign('accessory_make_id')->references('id')->on('accessory_makes');
             $table->unsignedBigInteger('accessory_model_id')->nullable();
+            $table->foreign('accessory_model_id')->references('id')->on('accessory_models');
             $table->enum('accessory_state',['new','userd'])->nullable();
             $table->string('model_code')->nullable();
             $table->unsignedBigInteger('sex_id')->nullable();

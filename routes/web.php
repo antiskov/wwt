@@ -24,7 +24,6 @@ Route::middleware('set.locale')->group(function () {
     Route::post('/login-password', [\App\Http\Controllers\AjaxController::class, 'authUser'])->name('login-password');
     Route::get('/reset-password/{email}', [\App\Http\Controllers\UserController::class, 'resetPassword'])->name('reset-password');
     Route::get('/email_verification_code/{email_verification_code}', [\App\Http\Controllers\UserController::class, 'emailVerificationCode'])->name('activation_link');
-    Route::get('/item_page/{advert}', [\App\Http\Controllers\GoodsController::class, 'index'])->name('item-page');
 
     Route::group(['prefix' => 'profile'], function () {
         Route::middleware('auth')->group(function () {
