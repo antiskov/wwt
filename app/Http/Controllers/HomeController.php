@@ -20,7 +20,7 @@ class HomeController extends Controller
      * @return Application|Factory|View
      */
     public function main() {
-
+        
         return view('pages.main');
     }
 

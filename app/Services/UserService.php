@@ -46,8 +46,7 @@ class UserService
         Log::info('in user service creation');
         $user = new User();
         $user->email = $request->getEmail();
-//        $user->email_verification_code = Hash::make(Str::random(3), ['rounds' => 4]);
-        $user->email_verification_code = rand(); //sometimes browser don't understand link with hash code
+        $user->email_verification_code = Str::random(10);
         $user->name = $request->getName();
         $user->surname = $request->getSurname();
         $user->role_id = $request->getRole();

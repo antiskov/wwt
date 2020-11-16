@@ -289,17 +289,10 @@
                                     </div>
                                 @endif
                             </div>
-                            <div class="languages-btns">
-                                <a href="#" class="active">ру</a>
-                                <a href="#">en</a>
-                            </div>
-                        </div>
-
-                        <div class="mob-menu__top">
-                            <div class="mob-menu-btn-close"></div>
                             <form class="languages-btns">
+                                @csrf
                                 <label>
-                                    <input type="radio" name="language">
+                                    <input type="radio" name="language" checked>
                                     <span>ру</span>
                                 </label>
                                 <label>
