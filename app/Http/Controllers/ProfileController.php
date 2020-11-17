@@ -99,7 +99,7 @@ class ProfileController extends Controller
         return view('profile_user.pages.my_adverts', ['adverts' => Advert::where('user_id', auth()->user()->id)->where('status_id', 1)->get()]);
     }
 
-    public function myAdvertsChange($status)
+    public function myAdvertsChange(int $status)
     {
         $response = view('profile_user.pages.my_adverts', ['adverts' => Advert::where('user_id', auth()->user()->id)->where('status_id', $status)->get()]);
 
