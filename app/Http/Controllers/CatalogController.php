@@ -14,6 +14,7 @@ use App\Models\Option;
 use App\Models\Province;
 use App\Models\Sex;
 use App\Models\State;
+use App\Models\User;
 use App\Models\WatchAdvert;
 use App\Models\WatchDial;
 use App\Models\WatchMake;
@@ -46,5 +47,20 @@ class CatalogController extends Controller
     public function indexSparePart(CatalogService $service)
     {
         return view('catalog.pages.spare_parts', $service->indexSparePart());
+    }
+
+    public function sellerPage(User $user)
+    {
+        $userLanguages = [];
+//        dd($user->languages);
+        foreach ($user->languages as $l) {
+            $userLanguages[] = $l->code;
+        }
+//        dd(Advert::where('user_id', $user->id)->get());
+        return view('catalog.pages.seller_page', [
+            'user' => $user,
+            'userLanguages' => $userLanguages,
+            'adverts' => Advert::where('user_id', $user->id)->get(),
+        ]);
     }
 }

@@ -29,11 +29,8 @@ class ProfileController extends Controller
     {
         $check = $user->check();
 
-//        $settings = UserSettings::where('user_id', auth()->user()->id)->first();
-
         return view('profile_user.pages.settings' , [
             'check' => $check,
-//            'settings' => $settings,
         ]);
     }
 
