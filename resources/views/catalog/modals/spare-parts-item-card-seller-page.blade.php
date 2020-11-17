@@ -5,13 +5,7 @@
             <div class="favorite-icon">
 
             </div>
-            @if($advert->type == 'watch')
-                <a href="{{route('catalog.item-page', [$user->id,$advert->id])}}" class="img-wrap">
-            @elseif($advert->type == 'accessories')
-                <a href="{{route('catalog.item-page-accessory', [$user->id,$advert->id])}}" class="img-wrap">
-            @else
-                <a href="{{route('catalog.item-page-spare-parts', [$user->id,$advert->id])}}" class="img-wrap">
-            @endif
+            <a href="{{route('catalog.item-page-spare-parts', [$user->id,$advert->id])}}" class="img-wrap">
                 <img src="{{asset('/storage/'.$advert->basicImageAdvert->title)}}" alt="img">
             </a>
             <div class="rating-cont">

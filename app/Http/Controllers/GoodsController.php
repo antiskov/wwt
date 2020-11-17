@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AccessoryMechanismType;
 use App\Models\Advert;
 use App\Models\MechanismType;
+use App\Models\SparePartsMechanismType;
 use App\Models\User;
 
 class GoodsController extends Controller
@@ -40,7 +42,7 @@ class GoodsController extends Controller
             $role = 1;
         }
 //        dd($advert->accessoryAdvert->accessory_mechanism_type_id);
-        $mechanismType = MechanismType::where('id', $advert->accessoryAdvert->accessory_mechanism_type_id)->first();
+        $mechanismType = AccessoryMechanismType::where('id', $advert->accessoryAdvert->accessory_mechanism_type_id)->first();
 
         $userLanguages = [];
         foreach ($user->languages as $l) {
@@ -63,7 +65,7 @@ class GoodsController extends Controller
             $role = 1;
         }
 
-        $mechanismType = MechanismType::where('id', $advert->sparePartsAdvert->spare_parts_mechanism_type_id)->first();
+        $mechanismType = SparePartsMechanismType::where('id', $advert->sparePartsAdvert->spare_parts_mechanism_type_id)->first();
 
         $userLanguages = [];
         foreach ($user->languages as $l) {
