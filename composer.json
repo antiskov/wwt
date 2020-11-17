@@ -11,6 +11,7 @@
         "php": "^7.3",
         "ext-intl": "*",
         "arrilot/laravel-widgets": "^3.13",
+        "cyrildewit/eloquent-viewable": "^5.2",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",

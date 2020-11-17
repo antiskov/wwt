@@ -14,10 +14,9 @@ class StatusSeeder extends Seeder
      */
     public function run()
     {
-        Status::create([ 'title' => 'dratf']);
-        Status::create([ 'title' => 'moderation' ]);
-        Status::create([ 'title' => 'denied' ]);
         Status::create([ 'title' => 'published' ]);
+        Status::create([ 'title' => 'moderation' ]);
         Status::create([ 'title' => 'sales' ]);
+        Status::create([ 'title' => 'dratf']);
     }
 }

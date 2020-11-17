@@ -36,7 +36,7 @@ Route::middleware('set.locale')->group(function () {
             Route::get('/delete-user', [\App\Http\Controllers\ProfileController::class, 'deleteUser'])->name('delete-user');
             Route::get('/reset-password', [\App\Http\Controllers\ProfileController::class, 'resetPassword'])->name('reset-password');
             Route::get('/my_adverts/', [\App\Http\Controllers\ProfileController::class, 'myAdverts'])->name('my_adverts');
-            Route::get('/my_adverts_change/', [\App\Http\Controllers\ProfileController::class, 'myAdvertsChange'])->name('my_adverts');
+            Route::get('/my_adverts_change/', [\App\Http\Controllers\ProfileController::class, 'myAdvertsChange'])->name('my_adverts_change');
         });
     });
 

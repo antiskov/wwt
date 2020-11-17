@@ -2,7 +2,18 @@
     <div class="">
         <div class="cart-info-block container">
             <div class="slider-item-page">
-                <div class="favorite-icon"></div>
+                <div id="heart" class="favorite-icon"></div>
+                <script>
+                    document.addEventListener("DOMContentLoaded", function(event) {
+                        document.querySelectorAll('.radio-wrap input').forEach(function (item) {
+                            item.addEventListener('change', function (e) {
+                                $.ajax({
+                                    url: '/profile/my_adverts_change?tab='+this.value,
+                                })
+                            })
+                        })
+                    });
+                </script>
                 <div class="shadow-cont">
                     <div class="swiper-container gallery-top">
                         <div class="swiper-wrapper">

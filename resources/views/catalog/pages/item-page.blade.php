@@ -13,7 +13,7 @@
                     <div class="person">
                         <div class="person-prof">
                             <img
-                                src="{{asset('/storage/images/profiles/'.auth()->user()->email.'/small_'.auth()->user()->avatar)}}"
+                                src="{{asset('/storage/images/profiles/'.$user->email.'/small_'.$user->avatar)}}"
                                 alt="img">
                         </div>
 {{--                        <div class="person-rating">--}}

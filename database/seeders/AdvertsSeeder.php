@@ -53,7 +53,7 @@ class AdvertsSeeder extends Seeder
                     'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
                     'price' => '200'.$i,
                     'currency_id' => 1,
-                    'status_id' => 1,
+                    'status_id' => rand(1,4),
                     'surname' => 'Iskov',
                     'name' => 'Anton',
                     //'birthday' => '05.01.1999',

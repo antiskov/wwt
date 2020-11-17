@@ -154,6 +154,12 @@ class CatalogService
 
     public function goodsIndex(User $user, Advert $advert)
     {
+        $expiresAt = now()->addHours(24);
+
+        views($advert)
+            ->cooldown($expiresAt)
+            ->record();
+
         if(auth()->user()) {
             $role = auth()->user()->role_id;
         } else {
