@@ -7,6 +7,24 @@
         <button><a href="{{ route('admin.change_status', [4, $advert->id]) }}">Опубликовать</a></button>
     @endif
     <section class="item-page">
+        <script>
+            document.addEventListener("DOMContentLoaded", function(event) {
+                document.querySelector('#heart').addEventListener('click', function (e) {
+                    // console.log(this.classList.contains('active'));
+                    if(!this.classList.contains('active')) {
+                        console.log(1);
+                        $.ajax({
+                            url: '/catalog/{{$advert->user_id}}/item_page_favorite/{{$advert->id}}/{{1}}',
+                        })
+                    } else {
+                        console.log(0);
+                        $.ajax({
+                            url: '/catalog/{{$advert->user_id}}/item_page_favorite/{{$advert->id}}/{{0}}',
+                        })
+                    }
+                })
+            });
+        </script>
         @include('catalog.modals.item-page-block')
             <div class="tabs__content">
                 <div class="container">

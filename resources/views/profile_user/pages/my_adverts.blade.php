@@ -13,7 +13,6 @@
         <label for="abu-3" class="anu-rad">Архивные</label>
         <input type="radio" name="tab-btn" id="abu-4" value="4">
         <label for="abu-4" class="anu-rad">Черновики</label>
-
         @include('profile_user.partials.my_advert_div')
     </div>
 </div>
@@ -21,9 +20,12 @@
     document.addEventListener("DOMContentLoaded", function(event) {
         document.querySelectorAll('.radio-wrap input').forEach(function (item) {
             item.addEventListener('change', function (e) {
-                // e.preventDefault();
                 $.ajax({
-                    url: '/profile/my_adverts_change?tab='+this.value,
+                    url: '/profile/my_adverts_change/'+this.value,
+                    success: function (data) {
+                        $('#advert').empty();
+                        $('#advert').html(data.output);
+                    },
                 })
             })
         })

@@ -7,16 +7,29 @@ use App\Models\Advert;
 use App\Models\MechanismType;
 use App\Models\SparePartsMechanismType;
 use App\Models\User;
+use App\Models\UserFavoriteAdvert;
 use App\Services\CatalogService;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
+use Illuminate\Http\Request;
 
 class GoodsController extends Controller
 {
     public function index(User $user, Advert $advert, CatalogService $service)
     {
-
-
         return view('catalog.pages.item-page', $service->goodsIndex($user, $advert));
+    }
+
+    public function setFavorite(User $user, Advert $advert, $favorite)
+    {
+
+        if($favorite == 1) {
+            $user->favoriteAdverts()->save($advert);
+        } else {
+            $favoriteAdvert = UserFavoriteAdvert::where('user_id', $user->id)->where('advert_id', $advert->id)->first();
+            $favoriteAdvert->delete();
+        }
+
+        return response()->json($favorite);
     }
 
 }

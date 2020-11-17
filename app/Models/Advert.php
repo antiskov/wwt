@@ -78,4 +78,9 @@ class Advert extends Model implements Viewable
     {
         return $this->hasOne(SparePartsAdvert::class);
     }
+
+    public function favoriteAdverts()
+    {
+        return $this->hasMany(UserFavoriteAdvert::class);
+    }
 }

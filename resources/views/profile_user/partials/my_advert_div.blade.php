@@ -1,4 +1,4 @@
-<div class="items-anno">
+<div id="advert" class="items-anno">
     @foreach($adverts as $advert)
         <div class="items-wrap">
             <div class="announce-item">
@@ -69,7 +69,7 @@
                                 <div class="text"><img src="/images/icons/phone.svg" alt="img">
                                     <p>Тел: </p><span>11</span></div>
                                 <div class="text"><img src="/images/icons/lk-star.svg" alt="img">
-                                    <p>В избранном: </p><span>8</span></div>
+                                    <p>В избранном: </p><span>{{$advert->favoriteAdverts->count()}}</span></div>
                                 <div class="text"><img src="/images/icons/email.svg" alt="img">
                                     <p>: </p><span>7</span></div>
                             </div>

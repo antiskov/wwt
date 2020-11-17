@@ -112,4 +112,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Timezone::class);
     }
+
+    public function favoriteAdverts()
+    {
+        return $this->belongsToMany(Advert::class,'user_favorite_adverts','user_id','advert_id');
+    }
 }

@@ -36,7 +36,7 @@ Route::middleware('set.locale')->group(function () {
             Route::get('/delete-user', [\App\Http\Controllers\ProfileController::class, 'deleteUser'])->name('delete-user');
             Route::get('/reset-password', [\App\Http\Controllers\ProfileController::class, 'resetPassword'])->name('reset-password');
             Route::get('/my_adverts/', [\App\Http\Controllers\ProfileController::class, 'myAdverts'])->name('my_adverts');
-            Route::get('/my_adverts_change/', [\App\Http\Controllers\ProfileController::class, 'myAdvertsChange'])->name('my_adverts_change');
+            Route::get('/my_adverts_change/{status}', [\App\Http\Controllers\ProfileController::class, 'myAdvertsChange'])->name('my_adverts_change');
         });
     });
 
@@ -46,6 +46,7 @@ Route::middleware('set.locale')->group(function () {
         Route::get('/accessory', [\App\Http\Controllers\CatalogController::class, 'indexAccessory'])->name('catalog.accessory');
         Route::get('/spare_parts', [\App\Http\Controllers\CatalogController::class, 'indexSparePart'])->name('catalog.spare-parts');
         Route::get('{user}/item_page/{advert}', [\App\Http\Controllers\GoodsController::class, 'index'])->name('catalog.item-page');
+        Route::get('{user}/item_page_favorite/{advert}/{favorite}', [\App\Http\Controllers\GoodsController::class, 'setFavorite'])->name('catalog.item_page_favorite');
         Route::get('{user}/item_page_accessory/{advert}', [\App\Http\Controllers\GoodsController::class,'index'])->name('catalog.item-page-accessory');
         Route::get('{user}/item_page_spare_parts/{advert}', [\App\Http\Controllers\GoodsController::class, 'index'])->name('catalog.item-page-spare-parts');
     });

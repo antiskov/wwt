@@ -24,6 +24,7 @@ class CreateSparePartsAdvertsTable extends Migration
             $table->enum('spare_parts_state',['new','userd'])->nullable();
             $table->string('model_code')->nullable();
             $table->unsignedBigInteger('sex_id')->nullable();
+            $table->foreign('sex_id')->references('id')->on('sexes');
             $table->integer('release_year')->nullable();
             $table->boolean('is_release_year_confirmed')->default(0);
             $table->float('height')->nullable();

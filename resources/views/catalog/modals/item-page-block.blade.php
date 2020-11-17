@@ -2,18 +2,11 @@
     <div class="">
         <div class="cart-info-block container">
             <div class="slider-item-page">
-                <div id="heart" class="favorite-icon"></div>
-                <script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        document.querySelectorAll('.radio-wrap input').forEach(function (item) {
-                            item.addEventListener('change', function (e) {
-                                $.ajax({
-                                    url: '/profile/my_adverts_change?tab='+this.value,
-                                })
-                            })
-                        })
-                    });
-                </script>
+                @if($favorite)
+                    <div id="heart" class="favorite-icon active"></div>
+                @else
+                    <div id="heart" class="favorite-icon"></div>
+                @endif
                 <div class="shadow-cont">
                     <div class="swiper-container gallery-top">
                         <div class="swiper-wrapper">
@@ -173,7 +166,11 @@
             <div class="">
                 <div class="cart-info-block container">
                     <div class="slider-item-page">
-                        <div class="favorite-icon"></div>
+                        @if($favorite)
+                            <div id="heart" class="favorite-icon active"></div>
+                        @else
+                            <div id="heart" class="favorite-icon"></div>
+                        @endif
                         <div class="shadow-cont">
                             <div class="swiper-container gallery-top">
                                 <div class="swiper-wrapper">
@@ -309,7 +306,11 @@
                     <div class="">
                         <div class="cart-info-block container">
                             <div class="slider-item-page">
-                                <div class="favorite-icon"></div>
+                                @if($favorite)
+                                    <div id="heart" class="favorite-icon active"></div>
+                                @else
+                                    <div id="heart" class="favorite-icon"></div>
+                                @endif
                                 <div class="shadow-cont">
                                     <div class="swiper-container gallery-top">
                                         <div class="swiper-wrapper">

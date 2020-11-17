@@ -21,6 +21,7 @@ use App\Models\Sex;
 use App\Models\SparePartsMechanismType;
 use App\Models\State;
 use App\Models\User;
+use App\Models\UserFavoriteAdvert;
 use App\Models\WatchAdvert;
 use App\Models\WatchBezel;
 use App\Models\WatchDial;
@@ -185,6 +186,7 @@ class CatalogService
             'mechanismType' => $mechanismType->title,
             'userLanguages' => $userLanguages,
             'user' => $user,
+            'favorite' => UserFavoriteAdvert::where('user_id', $user->id)->where('advert_id', $advert->id)->first(),
         ];
     }
 }
