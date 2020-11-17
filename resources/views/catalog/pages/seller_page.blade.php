@@ -74,6 +74,11 @@
         <div class="map-wrap">
             <div class="container">
                 <h2>Как добраться</h2>
+                <style type="text/css">
+                    #map{
+                        height:350px;
+                    }
+                </style>
                 <div class="gradient">
                     <div class="map-cont" id="map" height='300px'>
                         <script>
