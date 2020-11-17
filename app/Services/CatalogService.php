@@ -4,6 +4,7 @@
 namespace App\Services;
 
 
+use App\Models\AccessoryMechanismType;
 use App\Models\Advert;
 use App\Models\BraceletClasp;
 use App\Models\BraceletColor;
@@ -17,7 +18,9 @@ use App\Models\MechanismType;
 use App\Models\Option;
 use App\Models\Province;
 use App\Models\Sex;
+use App\Models\SparePartsMechanismType;
 use App\Models\State;
+use App\Models\User;
 use App\Models\WatchAdvert;
 use App\Models\WatchBezel;
 use App\Models\WatchDial;
@@ -146,6 +149,36 @@ class CatalogService
             'materialsClasps' => MaterialsClasp::all(),
             'braceletColors' => BraceletColor::all(),
             'widthClasps' => WidthClasp::all(),
+        ];
+    }
+
+    public function goodsIndex(User $user, Advert $advert)
+    {
+        if(auth()->user()) {
+            $role = auth()->user()->role_id;
+        } else {
+            $role = 1;
+        }
+
+        $userLanguages = [];
+        foreach ($user->languages as $l) {
+            $userLanguages[] = $l->code;
+        }
+
+        if($advert->type == 'watch') {
+            $mechanismType = MechanismType::where('id', $advert->watchAdvert->mechanism_type_id)->first();
+        } elseif ($advert->type == 'accessories') {
+            $mechanismType = AccessoryMechanismType::where('id', $advert->accessoryAdvert->accessory_mechanism_type_id)->first();
+        } else {
+            $mechanismType = SparePartsMechanismType::where('id', $advert->sparePartsAdvert->spare_parts_mechanism_type_id)->first();
+        }
+
+        return [
+            'role' => $role,
+            'advert' => $advert,
+            'mechanismType' => $mechanismType->title,
+            'userLanguages' => $userLanguages,
+            'user' => $user,
         ];
     }
 }
