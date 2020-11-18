@@ -62,10 +62,12 @@
                 datatype: 'html',
                 success: function (data) {
                     console.log(1);
+                    window.location.replace(document.location.href);
+                    // window.location.reload()
                     // $('#fileter').empty();
                     // $('#fileter').html(data.output);
 
-                    console.log(data);
+                    // console.log(data);
                     // console.log(data.errors);
                 },
                 error: function (xhr) {

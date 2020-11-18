@@ -82,9 +82,9 @@ class CatalogService
             ->groupBy('watch_type_title')->get();
 
 //        $adverts = $this->getFilter($request);
-        $adverts = DB::table('catalog_view')->select(DB::raw($this->getFilter($request)));
-        $adverts = DB::table('catalog_view')->select(DB::raw('*'));
-//        dd($adverts);
+//        $adverts = DB::raw($this->getFilter($request))->paginate(6);
+        $adverts = DB::table('catalog_view')->whereRaw($this->getFilter($request))->paginate(6);
+//        dd($adverts[0]);
 
         return [
 //            'adverts' => Advert::where('type', 'watch')->paginate(6),
@@ -209,6 +209,8 @@ class CatalogService
 
     public function getFilter(Request $request)
     {
-        return $query = '*';
+        $query = '1';
+        if(isset($request->brands)) foreach ($request->brands as $brand) $query .= "and watch_make_title in ('$brand')";
+        return $query;
     }
 }

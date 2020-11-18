@@ -30,19 +30,15 @@ class CatalogController extends Controller
 {
     public function index(CatalogService $service, Request $request)
     {
+
         return view('catalog.pages.main', $service->index($request));
     }
 
     public function filter(Request $request, CatalogService $service)
     {
-        $data = [
-            'request' => $request->year,
-            'message' => __('no user found'),
-        ];
-
-        $service->getFilter($request);
-
-        return response()->json($data);
+//        return view('catalog.pages.main', $service->index($request));
+//        dd(isset($request->brands[0]));
+        return redirect()->route('catalog');
     }
 
     public function indexAccessory(CatalogService $service)

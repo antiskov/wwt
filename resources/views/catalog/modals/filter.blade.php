@@ -583,7 +583,7 @@
                             <li>
                                 <div class="checkbox-block">
                                     <label class="checkbox-block__label">
-                                        <input type="checkbox" name="brand[]" value="{{$brand->watch_make_title}}" id="{{$brand->watch_make_title}}">
+                                        <input type="checkbox" name="brands[]" value="{{$brand->watch_make_title}}" id="{{$brand->watch_make_title}}">
                                         <p><span>{{$brand->watch_make_title.' ('.$brand->count_watch_make_title.')'}}</span></p>
                                     </label>
                                 </div>
@@ -787,7 +787,7 @@
                                                 <li>
                                                     <div class="checkbox-block">
                                                         <label class="checkbox-block__label">
-                                                            <input type="checkbox" name="brand[]" value="{{$brand->watch_make_title}}" id="{{$brand->watch_make_title}}">
+                                                            <input type="checkbox" name="brands[]" value="{{$brand->watch_make_title}}" id="{{$brand->watch_make_title}}">
                                                             <p><span>{{$brand->watch_make_title.' ('.$brand->count_watch_make_title.')'}}</span></p>
                                                         </label>
                                                     </div>
@@ -802,7 +802,7 @@
                                                 <li>
                                                     <div class="checkbox-block">
                                                         <label class="checkbox-block__label">
-                                                            <input type="checkbox" name="model[]" value="{{$model->watch_model_title}}" id="{{$model->watch_model_title}}">
+                                                            <input type="checkbox" name="models[]" value="{{$model->watch_model_title}}" id="{{$model->watch_model_title}}">
                                                             <p><span>{{$model->watch_model_title.' ('.$model->count_watch_model_title.')'}}</span></p>
                                                         </label>
                                                     </div>
@@ -818,12 +818,12 @@
                                                     <div class="checkbox-block">
                                                         <label class="checkbox-block__label">
                                                             @if($diameter->height == $diameter->width)
-                                                                <input type="checkbox" name="diameter[]" value="{{$diameter->height}}" id="{{$diameter->height}}">
+                                                                <input type="checkbox" name="diameters[]" value="{{$diameter->height}}" id="{{$diameter->height}}">
                                                                 <p>
                                                                     <span>{{$diameter->height.' ('.$diameter->count_height.')'}}</span>
                                                                 </p>
                                                             @else
-                                                                <input type="checkbox" name="diameter[]" value="{{$diameter->height.'/'.$diameter->width}}" id="{{$diameter->height.'/'.$diameter->width}}">
+                                                                <input type="checkbox" name="diameters[]" value="{{$diameter->height.'/'.$diameter->width}}" id="{{$diameter->height.'/'.$diameter->width}}">
                                                                 <p>
                                                                     <span>{{$diameter->height.'/'.$diameter->width.' ('.$diameter->count_height.')'}}</span>
                                                                 </p>
@@ -843,7 +843,7 @@
                                                 <li>
                                                     <div class="checkbox-block">
                                                         <label class="checkbox-block__label">
-                                                            <input type="checkbox" name="year[]" value="{{$year->release_year}}" id="{{$year->release_year}}">
+                                                            <input type="checkbox" name="years[]" value="{{$year->release_year}}" id="{{$year->release_year}}">
                                                             <p><span>{{$year->release_year.' ('.$year->count_release_year.')'}}</span></p>
                                                         </label>
                                                     </div>
@@ -858,7 +858,7 @@
                                                 <li>
                                                     <div class="checkbox-block">
                                                         <label class="checkbox-block__label">
-                                                            <input type="checkbox" name="region[]" value="{{$region->region}}" id="{{$region->region}}">
+                                                            <input type="checkbox" name="regions[]" value="{{$region->region}}" id="{{$region->region}}">
                                                             <p><span>{{$region->region.' ('.$region->count_region.')'}}</span></p>
                                                         </label>
                                                     </div>
@@ -882,7 +882,7 @@
                                                 <li>
                                                     <div class="checkbox-block">
                                                         <label class="checkbox-block__label">
-                                                            <input type="checkbox" name="mechanismType[]" value="{{$mechanismType->mechanism_type_title}}" id="{{$mechanismType->mechanism_type_title}}">
+                                                            <input type="checkbox" name="mechanismTypes[]" value="{{$mechanismType->mechanism_type_title}}" id="{{$mechanismType->mechanism_type_title}}">
                                                             <p><span>{{$mechanismType->mechanism_type_title.' ('.$mechanismType->count_mechanism_type_title.')'}}</span></p>
                                                         </label>
                                                     </div>
@@ -897,7 +897,7 @@
                                                 <li>
                                                     <div class="checkbox-block">
                                                         <label class="checkbox-block__label">
-                                                            <input type="checkbox" name="state[]" value="{{$state->watch_state}}" id="{{$state->watch_state}}">
+                                                            <input type="checkbox" name="states[]" value="{{$state->watch_state}}" id="{{$state->watch_state}}">
                                                             <p><span>{{$state->watch_state.' ('.$state->count_watch_state.')'}}</span></p>
                                                         </label>
                                                     </div>
@@ -912,7 +912,7 @@
                                                 <li>
                                                     <div class="checkbox-block">
                                                         <label class="checkbox-block__label">
-                                                            <input type="checkbox" name="deliveryVolume[]" value="{{$deliveryVolume->delivery_volume}}" id="{{$deliveryVolume->delivery_volume}}">
+                                                            <input type="checkbox" name="deliveryVolumes[]" value="{{$deliveryVolume->delivery_volume}}" id="{{$deliveryVolume->delivery_volume}}">
                                                             <p><span>{{$deliveryVolume->delivery_volume.' ('.$deliveryVolume->count_delivery_volume.')'}}</span></p>
                                                         </label>
                                                     </div>
@@ -930,7 +930,7 @@
                                                 <li>
                                                     <div class="checkbox-block">
                                                         <label class="checkbox-block__label">
-                                                            <input type="checkbox" name="sex[]" value="{{$sex->sex_title}}" id="{{$sex->sex_title}}">
+                                                            <input type="checkbox" name="sexes[]" value="{{$sex->sex_title}}" id="{{$sex->sex_title}}">
                                                             <p><span>{{$sex->sex_title.' ('.$sex->count_sex_title.')'}}</span></p>
                                                         </label>
                                                     </div>
@@ -945,7 +945,7 @@
                                                 <li>
                                                     <div class="checkbox-block">
                                                         <label class="checkbox-block__label">
-                                                            <input type="checkbox" name="type[]" value="{{$type->watch_type_title}}" id="{{$type->watch_type_title}}">
+                                                            <input type="checkbox" name="types[]" value="{{$type->watch_type_title}}" id="{{$type->watch_type_title}}">
                                                             <p><span>{{$type->watch_type_title.' ('.$type->count_watch_type_title.')'}}</span></p>
                                                         </label>
                                                     </div>
