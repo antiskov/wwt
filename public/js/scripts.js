@@ -95,8 +95,6 @@ $(document).ready(function () {
 
         li.each(function () {
             checkbox = $(this).find('input');
-            console.log(ul)
-            console.log(checkbox)
             if (checkbox.val().toUpperCase().indexOf(filter) !== -1) {
                 $(this).css("display", "block");
             } else {
@@ -305,12 +303,23 @@ $(document).ready(function () {
         }
     })
 
-    $('.rotate').click(function () {
-        $('.value-items').removeClass('active')
-        $('.rotate').removeClass('active')
+    $('.rotate').on('click', function (e) {
 
-        $(this).closest('.select-price').find('.value-items').addClass('active')
-        $(this).closest('.select-price').find('.rotate').addClass('active')
+        if ($(e.target).is("input") === true) {
+            return
+        }
+
+
+        if ($(this).hasClass('active')) {
+            $('.value-items').removeClass('active')
+            $('.rotate').removeClass('active')
+        } else {
+            $('.value-items').removeClass('active')
+            $('.rotate').removeClass('active')
+
+            $(this).closest('.select-price').find('.value-items').addClass('active')
+            $(this).closest('.select-price').find('.rotate').addClass('active')
+        }
     });
 
     $('.sep-cont').click(function () {
@@ -319,12 +328,12 @@ $(document).ready(function () {
         $(this).find('.value-items-set').toggleClass('active');
     });
 
-    $('.value-items li').click(function () {
+    $('.value-items:not(".value-items_multi") li').click(function () {
         $('.value-items').removeClass('active');
         $('.rotate').removeClass('active');
 
-        $(this).parent().parent().find('span').text($(this).text())
-        $(this).parent().parent().parent().find('input[type="hidden"]').val($(this).text())
+        $(this).parent().parent().find('span').text($(this).text());
+        $(this).parent().parent().parent().find('input[type="hidden"]').val($(this).text());
 
         $('.value-items li').removeClass('active');
         $(this).addClass('active');
@@ -344,10 +353,6 @@ $(document).ready(function () {
             $(this).closest('.select-price').find('.input-info').removeClass('active')
         }
     );
-
-    $('.checkboxes-list input').on('click', function () {
-        // console.log($(this).closest('.checkboxes-list').attr('id'))
-    })
 
     $.validator.addMethod("valueNotEquals", function (value, element, arg) {
         return arg !== value;
@@ -370,38 +375,6 @@ $(document).ready(function () {
         },
         unhighlight: function (element, errorClass, validClass) {
             $(element).closest('#login-form input').removeClass(errorClass).addClass(validClass);
-        },
-        errorPlacement: function (error, element) {
-
-        }
-    });
-
-    $('#registration-form').validate({
-        rules: {
-            name: {
-                required: true
-            },
-            password: {
-                required: true
-            },
-            "repeat-password": {
-                required: true,
-                equalTo: "#reg-pass"
-            },
-            "data-protection": {
-                required: true
-            },
-            mailing: {
-                required: true
-            }
-        },
-        errorClass: 'form-elem_err',
-        validClass: 'form-elem_success',
-        highlight: function (element, errorClass, validClass) {
-            $(element).closest('#registration-form input').addClass(errorClass).removeClass(validClass);
-        },
-        unhighlight: function (element, errorClass, validClass) {
-            $(element).closest('#registration-form input').removeClass(errorClass).addClass(validClass);
         },
         errorPlacement: function (error, element) {
 
@@ -481,6 +454,37 @@ $(document).ready(function () {
         })
     });
 
+    $('#registration-form').validate({
+        rules: {
+            name: {
+                required: true
+            },
+            password: {
+                required: true
+            },
+            "repeat-password": {
+                required: true,
+                equalTo: "#reg-pass"
+            },
+            "data-protection": {
+                required: true
+            },
+            mailing: {
+                required: true
+            }
+        },
+        errorClass: 'form-elem_err',
+        validClass: 'form-elem_success',
+        highlight: function (element, errorClass, validClass) {
+            $(element).closest('#registration-form input').addClass(errorClass).removeClass(validClass);
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).closest('#registration-form input').removeClass(errorClass).addClass(validClass);
+        },
+        errorPlacement: function (error, element) {
+
+        }
+    });
 
     $('#password-form').validate({
         rules: {
@@ -596,7 +600,7 @@ $(document).ready(function () {
             );
     })
 
-    $(document).on('click', '.form-ref-number__remove-btn', function() {
+    $(document).on('click', '.form-ref-number__remove-btn', function () {
         $(this).parent().remove();
     })
 
@@ -656,6 +660,89 @@ $(document).ready(function () {
         },
     })
 
+    $(document).on('click', '.value-items_multi li', function (e) {
+        e.stopPropagation();
+    })
+
+    $('.value-items_multi').on('change', 'input', function () {
+        if ($(this).prop('checked')) {
+            $(this).closest('.lang-wrap').find('.lang-result').append(`
+        <label for="${$(this).prop('id')}">
+          <span>${$(this).val()}</span>
+          <img src="./images/icons/close.svg" alt="">
+        </label>
+      `)
+        } else {
+            $('.lang-result').find(`label[for="${$(this).prop('id')}"]`).remove();
+        }
+    })
+
+    $('.filters-desc-category').on('change', 'input[type="checkbox"]', function () {
+        const selectedBlock = $(this).closest('.filters-desc-category').find('.filters-desc-choices-list');
+        const label = selectedBlock.find(`label[for=${$(this).prop('id')}]`);
+
+        if ($(this).prop('checked')) {
+            selectedBlock.append(`
+        <li>
+          <div>${$(this).val()} <label for="${$(this).prop('id')}"><span class="delete-choice-btn"></span></label></div>
+        </li>
+      `)
+        } else {
+            label.closest('li').remove();
+        }
+    });
+
+    $('.filters-desc').on('click', '.reset-filters-btn', function () {
+        $(this).closest('.filters-desc').find('input').prop('checked', false);
+        $(this).closest('.filters-desc').find('.filters-desc-choices-list').empty();
+    })
+    $('.filters-desc').on('click', '.clear-filter-choices-btn', function () {
+        $(this).closest('.filters-desc-category').find('input').prop('checked', false);
+        $(this).closest('.filters-desc-category').find('.filters-desc-choices-list').empty();
+    })
+
+    $('.filters-mob').on('keyup', '.filters-search-field', function () {
+        filtersSearchFieldMob($(this))
+    })
+
+    $('.filters-desc').on('keyup', '.filters-search-field', function () {
+        filtersSearchFieldDesc($(this))
+    })
+
+    function filtersSearchFieldMob(input) {
+        // Declare variables
+        let filter = input.val().toUpperCase();
+        let ul = input.closest('.filters-mob-category').find('.checkboxes-list');
+        let li = ul.find('li');
+
+        li.each(function () {
+            let searchedInput = $(this).find('input').val();
+            let txtValue = searchedInput;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                $(this).css('display', "");
+            } else {
+                $(this).css('display', "none");
+            }
+        })
+    }
+
+    function filtersSearchFieldDesc(input) {
+        // Declare variables
+        let filter = input.val().toUpperCase();
+        let ul = input.closest('.filters-desc-category').find('.checkboxes-list');
+        let li = ul.find('li');
+
+        li.each(function () {
+            let searchedInput = $(this).find('input').val();
+            let txtValue = searchedInput;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                $(this).css('display', "");
+            } else {
+                $(this).css('display', "none");
+            }
+        })
+    }
+
     $('.seller-slider').slick({
         infinite: true,
         slidesToShow: 2,
@@ -669,7 +756,6 @@ $(document).ready(function () {
             .addClass('active').siblings().removeClass('active')
             .closest('.tabs-mess').find('.tabs__content').removeClass('active').eq($(this).index()).addClass('active');
     });
-
 
 
     $('.currency-block a').click(function () {
@@ -815,7 +901,6 @@ $(document).ready(function () {
     });
 
 
-
     $('.one-cont input[type="file"]').change(function () {
         var file = this.files; //Files[0] = 1st file
         if (file[0]) {
@@ -891,7 +976,6 @@ if (prof) {
 }
 
 
-
 // var el = document.getElementById('graph'); // get canvas
 //
 // var options = {
@@ -950,19 +1034,3 @@ for (i = 0; i < acc.length; i++) {
         }
     });
 }
-
-// Initialize and add the map
-// function initMap() {
-//     // The location of Uluru
-//     const uluru = { lat: -25.344, lng: 131.036 };
-//     // The map, centered at Uluru
-//     const map = new google.maps.Map(document.getElementById("map"), {
-//         zoom: 4,
-//         center: uluru,
-//     });
-//     // The marker, positioned at Uluru
-//     const marker = new google.maps.Marker({
-//         position: uluru,
-//         map: map,
-//     });
-// }

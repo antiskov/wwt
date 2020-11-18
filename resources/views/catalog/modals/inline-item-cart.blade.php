@@ -2,7 +2,7 @@
 <div class="inline-cart">
     <div class="vip-label"></div>
     <div class="favorite-icon"></div>
-    <a href="{{route('item-page', [$advert->id])}}" class="img-wrap">
+    <a href="{{route('catalog.item-page', [$advert->user_id, $advert->id])}}" class="img-wrap">
         <img src="{{asset('/storage/'.$advert->basicImageAdvert->title)}}" alt="img">
     </a>
     <div class="info-cart">

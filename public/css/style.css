@@ -10180,7 +10180,6 @@ section.result-search .search-bg .result span {
     line-height: 1;
     text-align: center;
     display: block;
-    display: block;
     padding-bottom: 45px
 }
 
@@ -11939,14 +11938,6 @@ section.item-page .cart-info-block .item-information .call-seller:before {
     color: #d5aa82;
     border-bottom: 2px solid #d5aa82
 }
-
-/*.radio-wrap > div {*/
-/*    display: none*/
-/*}*/
-
-/*#abu-1:checked ~ #cont-1, #abu-2:checked ~ #cont-2, #abu-3:checked ~ #cont-3, #abu-4:checked ~ #cont-4, #abu-5:checked ~ #cont-5, #abu-6:checked ~ #cont-6 {*/
-/*    display: grid*/
-/*}*/
 
 .radio-wrap > label {
     display: inline-block;
@@ -19160,7 +19151,7 @@ section.submitting .form-cont .tabs-mess .tabs__content.active .tabs-item .contr
     section.submitting .form-cont .tabs-mess .tabs__content.active .tabs-item .control-block-wrap .control-photo .head-cont .person-cont {
         width: 180px;
         height: 180px;
-        border: 10px solid #fff
+        border: 10px solid #ecd7d7
     }
 
     section.submitting .form-cont .tabs-mess .tabs__content.active .tabs-item .control-block-wrap .control-photo .head-cont .person-cont .preview {

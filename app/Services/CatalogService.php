@@ -34,6 +34,7 @@ use App\Models\WatchType;
 use App\Models\WatchWaterproof;
 use App\Models\WidthClasp;
 use App\Models\YearAdvert;
+use Illuminate\Support\Facades\DB;
 
 class CatalogService
 {
@@ -45,34 +46,41 @@ class CatalogService
 //            dump($item->only('release_year'));
 //        }
 //        dd($watchAdvert->only('release_year'));
-        $watchAdverts = WatchAdvert::all();
-        $years = [];
-        $types = [];
-        $categories = [];
-        foreach ($watchAdverts as $watchAdvert) {
-            $years[] = $watchAdvert->release_year;
-            $types[] = $watchAdvert->watchType;
-//            $categories[] = $watchAdvert->watchModel->category->id;
-        }
-        $uniqueYears = array_unique($years);
-        rsort($uniqueYears);
-        $uniqueTypes = array_unique($types);
-        rsort($uniqueTypes);
+//        $watchAdverts = WatchAdvert::all();
+//        $years = [];
+//        $types = [];
+//        $categories = [];
+//        foreach ($watchAdverts as $watchAdvert) {
+//            $years[] = $watchAdvert->release_year;
+//            $types[] = $watchAdvert->mechanismType;
+////            $categories[] = $watchAdvert->watchModel->category->id;
+//        }
+//        $uniqueYears = array_unique($years);
+//        rsort($uniqueYears);
+//        $uniqueTypes = array_unique($types);
+//        rsort($uniqueTypes);
+////        dd($uniqueTypes);
+//        $adverts = Advert::all();
+//        $provinces = [];
+//        foreach ($adverts as $advert) {
+////            dd($advert->id);
+//            $provinces[] = $advert->region;
+//        }
+//        $uniqueProvinces = array_unique($provinces);
+//        rsort($uniqueProvinces);
 
-        $adverts = Advert::all();
-        $provinces = [];
-        foreach ($adverts as $advert) {
-//            dd($advert->id);
-            $provinces[] = $advert->region;
-        }
-        $uniqueProvinces = array_unique($provinces);
-        rsort($uniqueProvinces);
-
+//        $result = DB::raw('select * from catalog_view')->get();
+        $brands = DB::table('catalog_view')->select('adverts_title')->addSelect(DB::raw('COUNT(adverts_title) as count_adverts_title'))->groupBy('adverts_title')->get();
+        $models = DB::table('catalog_view')->select('watch_models_title')->addSelect(DB::raw('COUNT(watch_models_title) as count_watch_models_title'))->groupBy('watch_models_title')->get();
+        $models = DB::table('catalog_view')->select('watch_models_title')->addSelect(DB::raw('COUNT(watch_models_title) as count_watch_models_title'))->groupBy('watch_models_title')->get();
+//        dd($results);
+//        foreach ($results as $result) echo($result);
+//        die;
         return [
             'adverts' => Advert::where('type', 'watch')->paginate(6),
-            'brands' => WatchMake::all(),
-            'models' => WatchModel::all(),
-            'types' => $uniqueTypes,
+            'brands' => $brands,
+            'models' => $models,
+//            'types' => $uniqueTypes,
             'categories' => Category::all(),
             'watchAdverts' => WatchAdvert::paginate(6),
             'watchModels' => WatchModel::all(),
@@ -81,8 +89,8 @@ class CatalogService
             'deliveryVolumes' => DeliveryVolume::all(),
             'mechanismTypes' => MechanismType::all(),
 //            'diameters' => WatchAdvert::only('witdh')
-            'years' => $uniqueYears,
-            'provinces' => $uniqueProvinces,
+//            'years' => $uniqueYears,
+//            'provinces' => $uniqueProvinces,
         ];
     }
 

@@ -566,15 +566,8 @@
                 <div class="filters-desc-choices">
                     <div class="filters-desc-choices__items">
                         <h4>ВАШ ВЫБОР<span class="clear-filter-choices-btn"></span></h4>
-                        <ul data-list="filters-desc-brand-list" class="filters-desc-choices-list">
-                            <li>
-                                <div data-choice-value="Victorinox">Victorinox <span class="delete-choice-btn"></span>
-                                </div>
-                            </li>
-                            <li>
-                                <div data-choice-value="Nouvelle Horlogerie Calabrese (NHC)">Nouvelle Horlogerie
-                                    Calabrese (NHC) <span class="delete-choice-btn"></span></div>
-                            </li>
+                        <ul data-list="filters-desc-diameter-list" class="filters-desc-choices-list">
+
                         </ul>
                     </div>
 
@@ -590,8 +583,8 @@
                             <li>
                                 <div class="checkbox-block">
                                     <label class="checkbox-block__label">
-                                        <input type="checkbox" name="brand" value="Victorinox">
-                                        <p><span>{{ $brand->title.' ('.count($brand->watchAdverts).')'}}</span></p>
+                                        <input type="checkbox" name="brand" value="{{$brand->adverts_title}}" id="{{$brand->adverts_title}}">
+                                        <p><span>{{$brand->adverts_title.' ('.$brand->count_adverts_title.')'}}</span></p>
                                     </label>
                                 </div>
                             </li>
@@ -609,14 +602,6 @@
                     <div class="filters-desc-choices__items">
                         <h4>ВАШ ВЫБОР<span class="clear-filter-choices-btn"></span></h4>
                         <ul data-list="filters-desc-brand-list" class="filters-desc-choices-list">
-                            <li>
-                                <div data-choice-value="Victorinox">Victorinox <span class="delete-choice-btn"></span>
-                                </div>
-                            </li>
-                            <li>
-                                <div data-choice-value="Nouvelle Horlogerie Calabrese (NHC)">Nouvelle Horlogerie
-                                    Calabrese (NHC) <span class="delete-choice-btn"></span></div>
-                            </li>
                         </ul>
                     </div>
 
@@ -632,8 +617,8 @@
                             <li>
                                 <div class="checkbox-block">
                                     <label class="checkbox-block__label">
-                                        <input type="checkbox" name="model" value="Victorinox">
-                                        <p><span>{{$model->title.' ('.count($model->watchAdverts).')'}}</span></p>
+                                        <input type="checkbox" name="model" value="{{$model->watch_models_title}}" id="{{$model->watch_models_title}}">
+                                        <p><span>{{$model->watch_models_title.' ('.$model->count_watch_models_title.')'}}</span></p>
                                     </label>
                                 </div>
                             </li>
@@ -670,14 +655,6 @@
                     <div class="filters-desc-choices__items">
                         <h4>ВАШ ВЫБОР<span class="clear-filter-choices-btn"></span></h4>
                         <ul data-list="filters-desc-diameter-list" class="filters-desc-choices-list">
-                            <li>
-                                <div data-choice-value="Victorinox">Victorinox <span class="delete-choice-btn"></span>
-                                </div>
-                            </li>
-                            <li>
-                                <div data-choice-value="Nouvelle Horlogerie Calabrese (NHC)">Nouvelle Horlogerie
-                                    Calabrese (NHC) <span class="delete-choice-btn"></span></div>
-                            </li>
                         </ul>
                     </div>
 
@@ -689,17 +666,17 @@
                         <span class="clear-field-btn"></span>
                     </div>
                     <ul id="filters-desc-diameter-list" class="checkboxes-list">
-{{--                        @foreach($diameters as $diameter)--}}
-{{--                            <li>--}}
-{{--                                <div class="checkbox-block">--}}
-{{--                                    <label class="checkbox-block__label">--}}
-{{--                                        <input type="checkbox" name="diameter" value="Victorinox">--}}
-{{--                                        <p><span>{{$diameter->height.' ('.count($diameter->watchAdverts).')'}}</span>--}}
-{{--                                        </p>--}}
-{{--                                    </label>--}}
-{{--                                </div>--}}
-{{--                            </li>--}}
-{{--                        @endforeach--}}
+                        @foreach($diameters as $diameter)
+                            <li>
+                                <div class="checkbox-block">
+                                    <label class="checkbox-block__label">
+                                        <input type="checkbox" name="diameter" value="Victorinox">
+                                        <p><span>{{$diameter->height.' ('.count($diameter->watchAdverts).')'}}</span>
+                                        </p>
+                                    </label>
+                                </div>
+                            </li>
+                        @endforeach
                     </ul>
                     <div class="filters-buttons">
                         <button class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
@@ -713,14 +690,6 @@
                     <div class="filters-desc-choices__items">
                         <h4>ВАШ ВЫБОР<span class="clear-filter-choices-btn"></span></h4>
                         <ul data-list="filters-desc-year-list" class="filters-desc-choices-list">
-                            <li>
-                                <div data-choice-value="Victorinox">Victorinox <span class="delete-choice-btn"></span>
-                                </div>
-                            </li>
-                            <li>
-                                <div data-choice-value="Nouvelle Horlogerie Calabrese (NHC)">Nouvelle Horlogerie
-                                    Calabrese (NHC) <span class="delete-choice-btn"></span></div>
-                            </li>
                         </ul>
                     </div>
 
@@ -787,18 +756,18 @@
                         <span class="clear-field-btn"></span>
                     </div>
                     <ul id="filters-desc-location-list" class="checkboxes-list">
-                        @foreach($provinces as $province)
-                            <li>
-                                <div class="checkbox-block">
-                                    <label class="checkbox-block__label">
-                                        <input type="checkbox" name="province" value="Victorinox">
-                                        <p>
-                                            <span>{{$province.' ('.count($adverts->where('region', $province)).')'}}</span>
-                                        </p>
-                                    </label>
-                                </div>
-                            </li>
-                        @endforeach
+{{--                        @foreach($provinces as $province)--}}
+{{--                            <li>--}}
+{{--                                <div class="checkbox-block">--}}
+{{--                                    <label class="checkbox-block__label">--}}
+{{--                                        <input type="checkbox" name="province" value="Victorinox">--}}
+{{--                                        <p>--}}
+{{--                                            <span>{{$province.' ('.count($adverts->where('region', $province)).')'}}</span>--}}
+{{--                                        </p>--}}
+{{--                                    </label>--}}
+{{--                                </div>--}}
+{{--                            </li>--}}
+{{--                        @endforeach--}}
                     </ul>
                     <div class="filters-buttons">
                         <button class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
@@ -819,35 +788,35 @@
                                     <div class="filters-more-item__list">
                                         <p>Тип часов</p>
                                         <ul>
-                                            @foreach($types as $type)
-                                                <li>
-                                                    <div class="checkbox-block">
-                                                        <label class="checkbox-block__label">
-                                                            <input type="checkbox" name="type" value="Victorinox">
-                                                            <p>
-                                                                <span>{{$type->title.' ('.count($watchAdverts->where('watch_type_id', $type->id)).')'}}</span>
-                                                            </p>
-                                                        </label>
-                                                    </div>
-                                                </li>
-                                            @endforeach
+{{--                                            @foreach($types as $type)--}}
+{{--                                                <li>--}}
+{{--                                                    <div class="checkbox-block">--}}
+{{--                                                        <label class="checkbox-block__label">--}}
+{{--                                                            <input type="checkbox" name="type" value="Victorinox">--}}
+{{--                                                            <p>--}}
+{{--                                                                <span>{{$type->title.' ('.count($watchAdverts->where('watch_type_id', $type->id)).')'}}</span>--}}
+{{--                                                            </p>--}}
+{{--                                                        </label>--}}
+{{--                                                    </div>--}}
+{{--                                                </li>--}}
+{{--                                            @endforeach--}}
                                         </ul>
                                     </div>
                                     <div class="filters-more-item__list">
                                         <p>Категории</p>
                                         <ul>
-                                            @foreach($categories as $category)
-                                                <li>
-                                                    <div class="checkbox-block">
-                                                        <label class="checkbox-block__label">
-                                                            <input type="checkbox" name="category" value="Victorinox">
-                                                            <p>
-                                                                <span>{{$category->title.' ('.count($category->watchModels).')'}}</span>
-                                                            </p>
-                                                        </label>
-                                                    </div>
-                                                </li>
-                                            @endforeach
+{{--                                            @foreach($categories as $category)--}}
+{{--                                                <li>--}}
+{{--                                                    <div class="checkbox-block">--}}
+{{--                                                        <label class="checkbox-block__label">--}}
+{{--                                                            <input type="checkbox" name="category" value="Victorinox">--}}
+{{--                                                            <p>--}}
+{{--                                                                <span>{{$category->title.' ('.count($category->watchModels).')'}}</span>--}}
+{{--                                                            </p>--}}
+{{--                                                        </label>--}}
+{{--                                                    </div>--}}
+{{--                                                </li>--}}
+{{--                                            @endforeach--}}
                                         </ul>
                                     </div>
 {{--                                    <div class="filters-more-item__list">--}}
