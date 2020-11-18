@@ -66,6 +66,7 @@ class AdvertsSeeder extends Seeder
 //                    'latitude' = '50°27′16″',
 //                    'longtitude' = '30°31′25″',
                 'delivery_volume' => 'with box',
+                    'photo'=>'small_acc.jpeg,'
 
                 ]
             );
@@ -93,6 +94,7 @@ class AdvertsSeeder extends Seeder
 //                    'latitude' = '50°27′16″',
 //                    'longtitude' = '30°31′25″',
                     'delivery_volume' => 'with box',
+                    'photo'=>'small_acc.jpeg'
 
                 ]
             );
@@ -120,6 +122,7 @@ class AdvertsSeeder extends Seeder
 //                    'latitude' = '50°27′16″',
 //                    'longtitude' = '30°31′25″',
                     'delivery_volume' => 'with box',
+                    'photo'=>'small_acc.jpeg,'
 
                 ]
             );

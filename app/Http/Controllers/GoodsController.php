@@ -14,7 +14,11 @@ use Illuminate\Http\Request;
 
 class GoodsController extends Controller
 {
-    public function index(User $user, Advert $advert, CatalogService $service)
+//    public function index(User $user, Advert $advert, CatalogService $service)
+//    {
+//        return view('catalog.pages.item-page', $service->goodsIndex($user, $advert));
+//    }
+    public function index(Advert $advert, CatalogService $service)
     {
         return view('catalog.pages.item-page', $service->goodsIndex($user, $advert));
     }

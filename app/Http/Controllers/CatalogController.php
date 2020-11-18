@@ -28,15 +28,21 @@ use Illuminate\Http\Request;
 
 class CatalogController extends Controller
 {
-    public function index(CatalogService $service)
+    public function index(CatalogService $service, Request $request)
     {
-        return view('catalog.pages.main', $service->index());
+        return view('catalog.pages.main', $service->index($request));
     }
 
-    public function filter(Request $request)
+    public function filter(Request $request, CatalogService $service)
     {
-        dd($request);
-        return redirect()->back();
+        $data = [
+            'request' => $request->year,
+            'message' => __('no user found'),
+        ];
+
+        $service->getFilter($request);
+
+        return response()->json($data);
     }
 
     public function indexAccessory(CatalogService $service)

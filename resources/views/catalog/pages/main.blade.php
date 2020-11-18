@@ -44,19 +44,41 @@
                     <a href="#/" class="item-more">150</a>
                 </div>
 
-                <div id="content-1" class="items-block">
-                    <div class="block-view items-cont">
-                       @include('catalog.modals.item-cart', ['adverts' => $adverts])
-                    </div>
-                </div>
+                @include('catalog.modals.item-cart', ['adverts' => $adverts])
+                @include('catalog.modals.inline-item-cart', ['adverts' => $adverts])
 
-                <div id="content-2" class="items-block">
-                    <div class="items-cont inline-view">
-                        @include('catalog.modals.inline-item-cart', ['adverts' => $adverts])
-                    </div>
-                </div>
                 @include('catalog.modals.pagination')
             </div>
         </div>
     </section>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(event) {
+        $('#filter').on('submit', function(e){
+            e.preventDefault();
+            $.ajax({
+                type:"POST",
+                url: '/catalog/',
+                data: $('#filter').serializeArray(),
+                datatype: 'html',
+                success: function (data) {
+                    console.log(1);
+                    // $('#fileter').empty();
+                    // $('#fileter').html(data.output);
+
+                    console.log(data);
+                    // console.log(data.errors);
+                },
+                error: function (xhr) {
+                    console.log(22);
+                    // if(xhr.status === 422) {
+                    //     $('#reg-form-email').addClass('form-elem_err').removeClass('form-elem_success');
+                    //     $('#reg-form-email + span').text(xhr.responseJSON.errors.email[0]);
+                    // }
+                }
+            }).done(function() {
+                $( this ).addClass( "done" );
+            })
+        })
+        });
+    </script>
 @endsection

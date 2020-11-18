@@ -34,50 +34,20 @@ use App\Models\WatchType;
 use App\Models\WatchWaterproof;
 use App\Models\WidthClasp;
 use App\Models\YearAdvert;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class CatalogService
 {
-    public function index()
+    public function index(Request $request)
     {
+        $brands = DB::table('catalog_view')->select('watch_make_title')
+            ->addSelect(DB::raw('COUNT(watch_make_title) as count_watch_make_title'))
+            ->groupBy('watch_make_title')->get();
 
-//        $watchAdverts = new WatchAdvert();
-//        foreach ($watchAdverts as $item) {
-//            dump($item->only('release_year'));
-//        }
-//        dd($watchAdvert->only('release_year'));
-//        $watchAdverts = WatchAdvert::all();
-//        $years = [];
-//        $types = [];
-//        $categories = [];
-//        foreach ($watchAdverts as $watchAdvert) {
-//            $years[] = $watchAdvert->release_year;
-//            $types[] = $watchAdvert->mechanismType;
-////            $categories[] = $watchAdvert->watchModel->category->id;
-//        }
-//        $uniqueYears = array_unique($years);
-//        rsort($uniqueYears);
-//        $uniqueTypes = array_unique($types);
-//        rsort($uniqueTypes);
-////        dd($uniqueTypes);
-//        $adverts = Advert::all();
-//        $provinces = [];
-//        foreach ($adverts as $advert) {
-////            dd($advert->id);
-//            $provinces[] = $advert->region;
-//        }
-//        $uniqueProvinces = array_unique($provinces);
-//        rsort($uniqueProvinces);
-
-//        $result = DB::raw('select * from catalog_view')->get();
-
-        $brands = DB::table('catalog_view')->select('watch_makes_title')
-            ->addSelect(DB::raw('COUNT(watch_makes_title) as count_watch_makes_title'))
-            ->groupBy('watch_makes_title')->get();
-
-        $models = DB::table('catalog_view')->select('watch_models_title')
-            ->addSelect(DB::raw('COUNT(watch_models_title) as count_watch_models_title'))
-            ->groupBy('watch_models_title')->get();
+        $models = DB::table('catalog_view')->select('watch_model_title')
+            ->addSelect(DB::raw('COUNT(watch_model_title) as count_watch_model_title'))
+            ->groupBy('watch_model_title')->get();
 
         $diameters = DB::table('catalog_view')->select('height', 'width')
             ->addSelect( DB::raw('COUNT(height) as count_height'))
@@ -87,46 +57,38 @@ class CatalogService
             ->addSelect(DB::raw('COUNT(release_year) as count_release_year'))
             ->groupBy('release_year')->get();
 
-        $years = DB::table('catalog_view')->select('release_year')
-            ->addSelect(DB::raw('COUNT(release_year) as count_release_year'))
-            ->groupBy('release_year')->get();
+        $regions = DB::table('catalog_view')->select('region')
+            ->addSelect(DB::raw('COUNT(region) as count_region'))
+            ->groupBy('region')->get();
 
-        $regions = DB::table('catalog_view')->select('adverts_region')
-            ->addSelect(DB::raw('COUNT(adverts_region) as count_adverts_region'))
-            ->groupBy('adverts_region')->get();
-
-        $mechanismTypes = DB::table('catalog_view')->select('watch_adverts_mechanism_type_title')
-            ->addSelect(DB::raw('COUNT(watch_adverts_mechanism_type_title) as count_watch_adverts_mechanism_type_title'))
-            ->groupBy('watch_adverts_mechanism_type_title')->get();
+        $mechanismTypes = DB::table('catalog_view')->select('mechanism_type_title')
+            ->addSelect(DB::raw('COUNT(mechanism_type_title) as count_mechanism_type_title'))
+            ->groupBy('mechanism_type_title')->get();
 
         $states = DB::table('catalog_view')->select('watch_state')
             ->addSelect(DB::raw('COUNT(watch_state) as count_watch_state'))
             ->groupBy('watch_state')->get();
 
-        $deliveryVolumes = DB::table('catalog_view')->select('adverts_delivery_volume')
-            ->addSelect(DB::raw('COUNT(adverts_delivery_volume) as count_adverts_delivery_volume'))
-            ->groupBy('adverts_delivery_volume')->get();
+        $deliveryVolumes = DB::table('catalog_view')->select('delivery_volume')
+            ->addSelect(DB::raw('COUNT(delivery_volume) as count_delivery_volume'))
+            ->groupBy('delivery_volume')->get();
 
-        $sexes = DB::table('catalog_view')->select('watch_models_sex_title')
-            ->addSelect(DB::raw('COUNT(watch_models_sex_title) as count_watch_models_sex_title'))
-            ->groupBy('watch_models_sex_title')->get();
+        $sexes = DB::table('catalog_view')->select('sex_title')
+            ->addSelect(DB::raw('COUNT(sex_title) as count_sex_title'))
+            ->groupBy('sex_title')->get();
 
-        $types = DB::table('catalog_view')->select('watch_adverts_watch_type_title')
-            ->addSelect(DB::raw('COUNT(watch_adverts_watch_type_title) as count_watch_adverts_watch_type_title'))
-            ->groupBy('watch_adverts_watch_type_title')->get();
+        $types = DB::table('catalog_view')->select('watch_type_title')
+            ->addSelect(DB::raw('COUNT(watch_type_title) as count_watch_type_title'))
+            ->groupBy('watch_type_title')->get();
 
-
-//        dd($states);
+//        $adverts = $this->getFilter($request);
+        $adverts = DB::table('catalog_view')->select(DB::raw($this->getFilter($request)));
+        $adverts = DB::table('catalog_view')->select(DB::raw('*'));
+//        dd($adverts);
 
         return [
-            'adverts' => Advert::where('type', 'watch')->paginate(6),
-            'categories' => Category::all(),
-            'watchAdverts' => WatchAdvert::paginate(6),
-            'watchModels' => WatchModel::all(),
-            'sex_man' => Sex::where('title', 'man')->first(),
-            'sex_woman' => Sex::where('title', 'woman')->first(),
-//            'mechanismTypes' => MechanismType::all(),
-
+//            'adverts' => Advert::where('type', 'watch')->paginate(6),
+            'adverts' => $adverts,
             'brands' => $brands,
             'models' => $models,
             'mechanismTypes' => $mechanismTypes,
@@ -243,5 +205,10 @@ class CatalogService
             'user' => $user,
             'favorite' => UserFavoriteAdvert::where('user_id', $user->id)->where('advert_id', $advert->id)->first(),
         ];
+    }
+
+    public function getFilter(Request $request)
+    {
+        return $query = '*';
     }
 }
