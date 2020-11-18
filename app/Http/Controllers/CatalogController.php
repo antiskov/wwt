@@ -36,9 +36,11 @@ class CatalogController extends Controller
 
     public function filter(Request $request, CatalogService $service)
     {
-//        return view('catalog.pages.main', $service->index($request));
-//        dd(isset($request->brands[0]));
-        return redirect()->route('catalog');
+        $data = [
+            'output' => view('catalog.modals.global.tabs', $service->getTabs($request))->toHtml(),
+        ];
+
+        return response()->json($data);
     }
 
     public function indexAccessory(CatalogService $service)

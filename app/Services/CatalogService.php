@@ -84,6 +84,7 @@ class CatalogService
 //        $adverts = $this->getFilter($request);
 //        $adverts = DB::raw($this->getFilter($request))->paginate(6);
         $adverts = DB::table('catalog_view')->whereRaw($this->getFilter($request))->paginate(6);
+//        if(isset($request->brands)) dd($adverts);
 //        dd($adverts[0]);
 
         return [
@@ -209,8 +210,14 @@ class CatalogService
 
     public function getFilter(Request $request)
     {
-        $query = '1';
+        $query = '1 ';
+        if(isset($request->brands)) foreach ($request->brands as $brand) $query .= "and watch_make_title in ('$brand')";
         if(isset($request->brands)) foreach ($request->brands as $brand) $query .= "and watch_make_title in ('$brand')";
         return $query;
+    }
+
+    public function getTabs(Request $request)
+    {
+        return ['adverts' => DB::table('catalog_view')->whereRaw($this->getFilter($request))->paginate(6)];
     }
 }
