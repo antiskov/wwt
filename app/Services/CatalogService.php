@@ -70,27 +70,74 @@ class CatalogService
 //        rsort($uniqueProvinces);
 
 //        $result = DB::raw('select * from catalog_view')->get();
-        $brands = DB::table('catalog_view')->select('adverts_title')->addSelect(DB::raw('COUNT(adverts_title) as count_adverts_title'))->groupBy('adverts_title')->get();
-        $models = DB::table('catalog_view')->select('watch_models_title')->addSelect(DB::raw('COUNT(watch_models_title) as count_watch_models_title'))->groupBy('watch_models_title')->get();
-        $models = DB::table('catalog_view')->select('watch_models_title')->addSelect(DB::raw('COUNT(watch_models_title) as count_watch_models_title'))->groupBy('watch_models_title')->get();
-//        dd($results);
-//        foreach ($results as $result) echo($result);
-//        die;
+
+        $brands = DB::table('catalog_view')->select('watch_makes_title')
+            ->addSelect(DB::raw('COUNT(watch_makes_title) as count_watch_makes_title'))
+            ->groupBy('watch_makes_title')->get();
+
+        $models = DB::table('catalog_view')->select('watch_models_title')
+            ->addSelect(DB::raw('COUNT(watch_models_title) as count_watch_models_title'))
+            ->groupBy('watch_models_title')->get();
+
+        $diameters = DB::table('catalog_view')->select('height', 'width')
+            ->addSelect( DB::raw('COUNT(height) as count_height'))
+            ->groupBy('height', 'width')->get();
+
+        $years = DB::table('catalog_view')->select('release_year')
+            ->addSelect(DB::raw('COUNT(release_year) as count_release_year'))
+            ->groupBy('release_year')->get();
+
+        $years = DB::table('catalog_view')->select('release_year')
+            ->addSelect(DB::raw('COUNT(release_year) as count_release_year'))
+            ->groupBy('release_year')->get();
+
+        $regions = DB::table('catalog_view')->select('adverts_region')
+            ->addSelect(DB::raw('COUNT(adverts_region) as count_adverts_region'))
+            ->groupBy('adverts_region')->get();
+
+        $mechanismTypes = DB::table('catalog_view')->select('watch_adverts_mechanism_type_title')
+            ->addSelect(DB::raw('COUNT(watch_adverts_mechanism_type_title) as count_watch_adverts_mechanism_type_title'))
+            ->groupBy('watch_adverts_mechanism_type_title')->get();
+
+        $states = DB::table('catalog_view')->select('watch_state')
+            ->addSelect(DB::raw('COUNT(watch_state) as count_watch_state'))
+            ->groupBy('watch_state')->get();
+
+        $deliveryVolumes = DB::table('catalog_view')->select('adverts_delivery_volume')
+            ->addSelect(DB::raw('COUNT(adverts_delivery_volume) as count_adverts_delivery_volume'))
+            ->groupBy('adverts_delivery_volume')->get();
+
+        $sexes = DB::table('catalog_view')->select('watch_models_sex_title')
+            ->addSelect(DB::raw('COUNT(watch_models_sex_title) as count_watch_models_sex_title'))
+            ->groupBy('watch_models_sex_title')->get();
+
+        $types = DB::table('catalog_view')->select('watch_adverts_watch_type_title')
+            ->addSelect(DB::raw('COUNT(watch_adverts_watch_type_title) as count_watch_adverts_watch_type_title'))
+            ->groupBy('watch_adverts_watch_type_title')->get();
+
+
+//        dd($states);
+
         return [
             'adverts' => Advert::where('type', 'watch')->paginate(6),
-            'brands' => $brands,
-            'models' => $models,
-//            'types' => $uniqueTypes,
             'categories' => Category::all(),
             'watchAdverts' => WatchAdvert::paginate(6),
             'watchModels' => WatchModel::all(),
             'sex_man' => Sex::where('title', 'man')->first(),
             'sex_woman' => Sex::where('title', 'woman')->first(),
-            'deliveryVolumes' => DeliveryVolume::all(),
-            'mechanismTypes' => MechanismType::all(),
-//            'diameters' => WatchAdvert::only('witdh')
-//            'years' => $uniqueYears,
-//            'provinces' => $uniqueProvinces,
+//            'mechanismTypes' => MechanismType::all(),
+
+            'brands' => $brands,
+            'models' => $models,
+            'mechanismTypes' => $mechanismTypes,
+            'diameters' => $diameters,
+            'years' => $years,
+            'regions' => $regions,
+            'states' => $states,
+            'deliveryVolumes' => $deliveryVolumes,
+            'sexes' => $sexes,
+            'types' => $types,
+
         ];
     }
 

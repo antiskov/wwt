@@ -33,17 +33,19 @@ class WatchModelSeeder extends Seeder
             'title' => 'Quartz',
         ]);
 
-        WatchModel::create([
-            'category_id' => 1,
-            'watch_type_id' => 1,
-            'watch_make_id' => 1,
-            'title' => 'A1000D-7EF',
-            'model_code' => 444,
-            'sex_id' => 1,
-            'height' => 10,
-            'width' => 5,
-            'mechanism_type_id' => 1,
-            'photo' => 'a',
-        ]);
+        for($i = 1; $i < 10; $i++) {
+            WatchModel::create([
+                'category_id' => 1,
+                'watch_type_id' => 1,
+                'watch_make_id' => 1,
+                'title' => 'A1000D-7EF',
+                'model_code' => 444,
+                'sex_id' => rand(1,2),
+                'height' => rand(10, 20),
+                'width' => rand(1, 7),
+                'mechanism_type_id' => 1,
+                'photo' => 'a',
+            ]);
+        }
     }
 }

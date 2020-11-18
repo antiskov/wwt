@@ -17,7 +17,7 @@ class SparePartsAdvertSeeder extends Seeder
         for($i = 1; $i < 10; $i++) {
 
             SparePartsAdvert::create([
-                'advert_id' => 33 + $i,
+                'advert_id' => 32 + $i,
                 'spare_parts_make_id' => $i,
                 'spare_parts_model_id' => $i,
                 'spare_parts_state' => 'new',

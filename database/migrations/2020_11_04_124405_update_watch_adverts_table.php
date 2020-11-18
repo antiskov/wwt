@@ -15,7 +15,7 @@ class UpdateWatchAdvertsTable extends Migration
     {
         Schema::table('watch_adverts', function (Blueprint $table) {
             $table->foreign('advert_id')->references('id')->on('adverts');
-//            $table->foreign('watch_type_id')->references('id')->on('watch_types');
+            $table->foreign('watch_type_id')->references('id')->on('watch_types');
             $table->foreign('watch_make_id')->references('id')->on('watch_makes');
             $table->foreign('watch_model_id')->references('id')->on('watch_models');
             $table->foreign('mechanism_type_id')->references('id')->on('mechanism_types');

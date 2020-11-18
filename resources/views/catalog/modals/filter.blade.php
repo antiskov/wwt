@@ -583,8 +583,8 @@
                             <li>
                                 <div class="checkbox-block">
                                     <label class="checkbox-block__label">
-                                        <input type="checkbox" name="brand" value="{{$brand->adverts_title}}" id="{{$brand->adverts_title}}">
-                                        <p><span>{{$brand->adverts_title.' ('.$brand->count_adverts_title.')'}}</span></p>
+                                        <input type="checkbox" name="brand" value="{{$brand->watch_makes_title}}" id="{{$brand->watch_makes_title}}">
+                                        <p><span>{{$brand->watch_makes_title.' ('.$brand->count_watch_makes_title.')'}}</span></p>
                                     </label>
                                 </div>
                             </li>
@@ -670,9 +670,17 @@
                             <li>
                                 <div class="checkbox-block">
                                     <label class="checkbox-block__label">
-                                        <input type="checkbox" name="diameter" value="Victorinox">
-                                        <p><span>{{$diameter->height.' ('.count($diameter->watchAdverts).')'}}</span>
-                                        </p>
+                                        @if($diameter->height == $diameter->width)
+                                            <input type="checkbox" name="diameter" value="{{$diameter->height}}" id="{{$diameter->height}}">
+                                            <p>
+                                                <span>{{$diameter->height.' ('.$diameter->count_height.')'}}</span>
+                                            </p>
+                                        @else
+                                            <input type="checkbox" name="diameter" value="{{$diameter->height.'/'.$diameter->width}}" id="{{$diameter->height.'/'.$diameter->width}}">
+                                            <p>
+                                                <span>{{$diameter->height.'/'.$diameter->width.' ('.$diameter->count_height.')'}}</span>
+                                            </p>
+                                        @endif
                                     </label>
                                 </div>
                             </li>
@@ -705,25 +713,22 @@
                             <li>
                                 <div class="checkbox-block">
                                     <label class="checkbox-block__label">
-                                        <input type="checkbox" name="year" value="Victorinox">
-                                        <p>
-                                            <span>{{$year.' ('.count($watchAdverts->where('release_year', $year)).')'}}</span>
-                                        </p>
+                                        <input type="checkbox" name="model" value="{{$year->release_year}}" id="{{$year->release_year}}">
+                                        <p><span>{{$year->release_year.' ('.$year->count_release_year.')'}}</span></p>
                                     </label>
                                 </div>
                             </li>
                         @endforeach
-                        <li>
-                            <div class="checkbox-block">
-                                <label class="checkbox-block__label">
-                                    <input type="checkbox" name="year" value="Victorinox">
-                                    <p>
-                                        <span>Неизвесто{{' ('.count($watchAdverts->where('is_release_year_confirmed', 0)).')'}}</span>
-                                    </p>
-                                </label>
-                            </div>
-                        </li>
-
+{{--                        <li>--}}
+{{--                            <div class="checkbox-block">--}}
+{{--                                <label class="checkbox-block__label">--}}
+{{--                                    <input type="checkbox" name="year" value="Victorinox">--}}
+{{--                                    <p>--}}
+{{--                                        <span>Неизвесто{{' ('.count($watchAdverts->where('is_release_year_confirmed', 0)).')'}}</span>--}}
+{{--                                    </p>--}}
+{{--                                </label>--}}
+{{--                            </div>--}}
+{{--                        </li>--}}
                     </ul>
                     <div class="filters-buttons">
                         <button class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
@@ -737,14 +742,6 @@
                     <div class="filters-desc-choices__items">
                         <h4>ВАШ ВЫБОР<span class="clear-filter-choices-btn"></span></h4>
                         <ul data-list="filters-desc-location-list" class="filters-desc-choices-list">
-                            <li>
-                                <div data-choice-value="Victorinox">Victorinox <span class="delete-choice-btn"></span>
-                                </div>
-                            </li>
-                            <li>
-                                <div data-choice-value="Nouvelle Horlogerie Calabrese (NHC)">Nouvelle Horlogerie
-                                    Calabrese (NHC) <span class="delete-choice-btn"></span></div>
-                            </li>
                         </ul>
                     </div>
 
@@ -756,18 +753,16 @@
                         <span class="clear-field-btn"></span>
                     </div>
                     <ul id="filters-desc-location-list" class="checkboxes-list">
-{{--                        @foreach($provinces as $province)--}}
-{{--                            <li>--}}
-{{--                                <div class="checkbox-block">--}}
-{{--                                    <label class="checkbox-block__label">--}}
-{{--                                        <input type="checkbox" name="province" value="Victorinox">--}}
-{{--                                        <p>--}}
-{{--                                            <span>{{$province.' ('.count($adverts->where('region', $province)).')'}}</span>--}}
-{{--                                        </p>--}}
-{{--                                    </label>--}}
-{{--                                </div>--}}
-{{--                            </li>--}}
-{{--                        @endforeach--}}
+                        @foreach($regions as $region)
+                            <li>
+                                <div class="checkbox-block">
+                                    <label class="checkbox-block__label">
+                                        <input type="checkbox" name="model" value="{{$region->adverts_region}}" id="{{$region->adverts_region}}">
+                                        <p><span>{{$region->adverts_region.' ('.$region->count_adverts_region.')'}}</span></p>
+                                    </label>
+                                </div>
+                            </li>
+                        @endforeach
                     </ul>
                     <div class="filters-buttons">
                         <button class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
@@ -786,381 +781,86 @@
                             <div class="filters-more-item__content">
                                 <div>
                                     <div class="filters-more-item__list">
-                                        <p>Тип часов</p>
+                                        <p>Тип механизма</p>
                                         <ul>
-{{--                                            @foreach($types as $type)--}}
-{{--                                                <li>--}}
-{{--                                                    <div class="checkbox-block">--}}
-{{--                                                        <label class="checkbox-block__label">--}}
-{{--                                                            <input type="checkbox" name="type" value="Victorinox">--}}
-{{--                                                            <p>--}}
-{{--                                                                <span>{{$type->title.' ('.count($watchAdverts->where('watch_type_id', $type->id)).')'}}</span>--}}
-{{--                                                            </p>--}}
-{{--                                                        </label>--}}
-{{--                                                    </div>--}}
-{{--                                                </li>--}}
-{{--                                            @endforeach--}}
+                                            @foreach($mechanismTypes as $mechanismType)
+                                                <li>
+                                                    <div class="checkbox-block">
+                                                        <label class="checkbox-block__label">
+                                                            <input type="checkbox" name="model" value="{{$mechanismType->watch_adverts_mechanism_type_title}}" id="{{$mechanismType->watch_adverts_mechanism_type_title}}">
+                                                            <p><span>{{$mechanismType->watch_adverts_mechanism_type_title.' ('.$mechanismType->count_watch_adverts_mechanism_type_title.')'}}</span></p>
+                                                        </label>
+                                                    </div>
+                                                </li>
+                                            @endforeach
                                         </ul>
                                     </div>
                                     <div class="filters-more-item__list">
-                                        <p>Категории</p>
+                                        <p>Состояние</p>
                                         <ul>
-{{--                                            @foreach($categories as $category)--}}
-{{--                                                <li>--}}
-{{--                                                    <div class="checkbox-block">--}}
-{{--                                                        <label class="checkbox-block__label">--}}
-{{--                                                            <input type="checkbox" name="category" value="Victorinox">--}}
-{{--                                                            <p>--}}
-{{--                                                                <span>{{$category->title.' ('.count($category->watchModels).')'}}</span>--}}
-{{--                                                            </p>--}}
-{{--                                                        </label>--}}
-{{--                                                    </div>--}}
-{{--                                                </li>--}}
-{{--                                            @endforeach--}}
+                                            @foreach($states as $state)
+                                                <li>
+                                                    <div class="checkbox-block">
+                                                        <label class="checkbox-block__label">
+                                                            <input type="checkbox" name="model" value="{{$state->watch_state}}" id="{{$state->watch_state}}">
+                                                            <p><span>{{$state->watch_state.' ('.$state->count_watch_state.')'}}</span></p>
+                                                        </label>
+                                                    </div>
+                                                </li>
+                                            @endforeach
                                         </ul>
                                     </div>
-{{--                                    <div class="filters-more-item__list">--}}
-{{--                                        <p>Идентификационный номер</p>--}}
-{{--                                        <ul>--}}
-{{--                                            @foreach($watchModels as $watchModel)--}}
-{{--                                                <li>--}}
-{{--                                                    <div class="checkbox-block">--}}
-{{--                                                        <label class="checkbox-block__label">--}}
-{{--                                                            <input type="checkbox" name="model_code" value="Victorinox">--}}
-{{--                                                            <p>--}}
-{{--                                                                <span>{{$watchModel->model_code.' ('.count($watchModel->watchAdverts).')'}}</span>--}}
-{{--                                                            </p>--}}
-{{--                                                        </label>--}}
-{{--                                                    </div>--}}
-{{--                                                </li>--}}
-{{--                                            @endforeach--}}
-{{--                                        </ul>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="filters-more-item__list">--}}
-{{--                                        <p>Состояние</p>--}}
-{{--                                        <ul>--}}
-{{--                                            @foreach($states as $state)--}}
-{{--                                                <li>--}}
-{{--                                                    <div class="checkbox-block">--}}
-{{--                                                        <label class="checkbox-block__label">--}}
-{{--                                                            <input type="checkbox" name="state" value="Victorinox">--}}
-{{--                                                            <p>--}}
-{{--                                                                <span>{{$state->title.' ('.count($state->watchAdverts).')'}}</span>--}}
-{{--                                                            </p>--}}
-{{--                                                        </label>--}}
-{{--                                                    </div>--}}
-{{--                                                </li>--}}
-{{--                                            @endforeach--}}
-{{--                                        </ul>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="filters-more-item__lists">--}}
-{{--                                        <div class="filters-more-item__list">--}}
-{{--                                            <p>Обьем доставки</p>--}}
-{{--                                            <ul>--}}
-{{--                                                @foreach($deliveryVolumes as $deliveryVolume)--}}
-{{--                                                    <li>--}}
-{{--                                                        <div class="checkbox-block">--}}
-{{--                                                            <label class="checkbox-block__label">--}}
-{{--                                                                <input type="checkbox" name="delivery_volume"--}}
-{{--                                                                       value="Victorinox">--}}
-{{--                                                                <p>--}}
-{{--                                                                    <span>{{$deliveryVolume->title.' ('.count($deliveryVolume->adverts).')'}}</span>--}}
-{{--                                                                </p>--}}
-{{--                                                            </label>--}}
-{{--                                                        </div>--}}
-{{--                                                    </li>--}}
-{{--                                                @endforeach--}}
-{{--                                            </ul>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="filters-more-item__list">--}}
-{{--                                            <p>Пол</p>--}}
-{{--                                            <ul>--}}
-{{--                                                <li>--}}
-{{--                                                    <div class="checkbox-block">--}}
-{{--                                                        <label class="checkbox-block__label">--}}
-{{--                                                            <input type="checkbox" name="sex[]" value="Victorinox">--}}
-{{--                                                            <p>--}}
-{{--                                                                <span>Мужские {{' ('.count($sex_man->watchAdverts).')'}}</span>--}}
-{{--                                                            </p>--}}
-{{--                                                        </label>--}}
-{{--                                                    </div>--}}
-{{--                                                </li>--}}
-{{--                                                <li>--}}
-{{--                                                    <div class="checkbox-block">--}}
-{{--                                                        <label class="checkbox-block__label">--}}
-{{--                                                            <input type="checkbox" name="sex[]" value="Victorinox">--}}
-{{--                                                            <p>--}}
-{{--                                                                <span>Женские {{' ('.count($sex_woman->watchAdverts).')'}}</span>--}}
-{{--                                                            </p>--}}
-{{--                                                        </label>--}}
-{{--                                                    </div>--}}
-{{--                                                </li>--}}
-{{--                                            </ul>--}}
-{{--                                        </div>--}}
+                                    <div class="filters-more-item__list">
+                                        <p>Обьем доставки</p>
+                                        <ul>
+                                            @foreach($deliveryVolumes as $deliveryVolume)
+                                                <li>
+                                                    <div class="checkbox-block">
+                                                        <label class="checkbox-block__label">
+                                                            <input type="checkbox" name="model" value="{{$deliveryVolume->adverts_delivery_volume}}" id="{{$deliveryVolume->adverts_delivery_volume}}">
+                                                            <p><span>{{$deliveryVolume->adverts_delivery_volume.' ('.$deliveryVolume->count_adverts_delivery_volume.')'}}</span></p>
+                                                        </label>
+                                                    </div>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+
+                                </div>
+                                <div class="filters-more-item__lists">
+                                    <div class="filters-more-item__list">
+                                        <p>Пол</p>
+                                        <ul>
+                                            @foreach($sexes as $sex)
+                                                <li>
+                                                    <div class="checkbox-block">
+                                                        <label class="checkbox-block__label">
+                                                            <input type="checkbox" name="model" value="{{$sex->watch_models_sex_title}}" id="{{$sex->watch_models_sex_title}}">
+                                                            <p><span>{{$sex->watch_models_sex_title.' ('.$sex->count_watch_models_sex_title.')'}}</span></p>
+                                                        </label>
+                                                    </div>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                    <div class="filters-more-item__list">
+                                        <p>Тип часов</p>
+                                        <ul>
+                                            @foreach($types as $type)
+                                                <li>
+                                                    <div class="checkbox-block">
+                                                        <label class="checkbox-block__label">
+                                                            <input type="checkbox" name="model" value="{{$type->watch_adverts_watch_type_title}}" id="{{$type->watch_adverts_watch_type_title}}">
+                                                            <p><span>{{$type->watch_adverts_watch_type_title.' ('.$type->count_watch_adverts_watch_type_title.')'}}</span></p>
+                                                        </label>
+                                                    </div>
+                                                </li>
+                                            @endforeach
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
-{{--                        <div class="filters-more-item filters-more__item">--}}
-{{--                            <div class="filters-more-item__title">--}}
-{{--                                <h4>Параметры и функции</h4>--}}
-{{--                            </div>--}}
-{{--                            <div class="filters-more-item__content">--}}
-{{--                                <div>--}}
-{{--                                    <div class="filters-more-item__list">--}}
-{{--                                        <p>Тип механизма</p>--}}
-{{--                                        <ul>--}}
-{{--                                            @foreach($mechanismTypes as $mechanismType)--}}
-{{--                                                <li>--}}
-{{--                                                    <div class="checkbox-block">--}}
-{{--                                                        <label class="checkbox-block__label">--}}
-{{--                                                            <input type="checkbox" name="Victorinox" value="Victorinox">--}}
-{{--                                                            <p>--}}
-{{--                                                                <span>{{$mechanismType->title.' ('.count($mechanismType->watchAdverts).')'}}</span>--}}
-{{--                                                            </p>--}}
-{{--                                                        </label>--}}
-{{--                                                    </div>--}}
-{{--                                                </li>--}}
-{{--                                            @endforeach--}}
-{{--                                        </ul>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="filters-more-item__list">--}}
-{{--                                        <p>Материал корпуса</p>--}}
-{{--                                        <ul>--}}
-{{--                                            @foreach($watchMaterials as $watchMaterial)--}}
-{{--                                                <li>--}}
-{{--                                                    <div class="checkbox-block">--}}
-{{--                                                        <label class="checkbox-block__label">--}}
-{{--                                                            <input type="checkbox" name="Victorinox" value="Victorinox">--}}
-{{--                                                            <p>--}}
-{{--                                                                <span>{{$watchMaterial->title.' ('.count($watchMaterial->watchAdverts).')'}}</span>--}}
-{{--                                                            </p>--}}
-{{--                                                        </label>--}}
-{{--                                                    </div>--}}
-{{--                                                </li>--}}
-{{--                                            @endforeach--}}
-{{--                                        </ul>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="filters-more-item__list">--}}
-{{--                                        <p>Циферблат</p>--}}
-{{--                                        <ul>--}}
-{{--                                            @foreach($watchDials as $watchDial)--}}
-{{--                                                <li>--}}
-{{--                                                    <div class="checkbox-block">--}}
-{{--                                                        <label class="checkbox-block__label">--}}
-{{--                                                            <input type="checkbox" name="Victorinox" value="Victorinox">--}}
-{{--                                                            <p>--}}
-{{--                                                                <span>{{$watchDial->title.' ('.count($watchDial->watchAdverts).')'}}</span>--}}
-{{--                                                            </p>--}}
-{{--                                                        </label>--}}
-{{--                                                    </div>--}}
-{{--                                                </li>--}}
-{{--                                            @endforeach--}}
-{{--                                        </ul>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="filters-more-item__list">--}}
-{{--                                        <p>Стекло</p>--}}
-{{--                                        <ul>--}}
-{{--                                            @foreach($glasses as $glass)--}}
-{{--                                                <li>--}}
-{{--                                                    <div class="checkbox-block">--}}
-{{--                                                        <label class="checkbox-block__label">--}}
-{{--                                                            <input type="checkbox" name="Victorinox" value="Victorinox">--}}
-{{--                                                            <p>--}}
-{{--                                                                <span>{{$glass->title.' ('.count($glass->watchAdverts).')'}}</span>--}}
-{{--                                                            </p>--}}
-{{--                                                        </label>--}}
-{{--                                                    </div>--}}
-{{--                                                </li>--}}
-{{--                                            @endforeach--}}
-{{--                                        </ul>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="filters-more-item__list">--}}
-{{--                                        <p>Функции</p>--}}
-{{--                                        <ul>--}}
-{{--                                            @foreach($options as $option)--}}
-{{--                                                <li>--}}
-{{--                                                    <div class="checkbox-block">--}}
-{{--                                                        <label class="checkbox-block__label">--}}
-{{--                                                            <input type="checkbox" name="Victorinox" value="Victorinox">--}}
-{{--                                                            <p>--}}
-{{--                                                                <span>{{$option->title.' ('.count($option->watchAdverts).')'}}</span>--}}
-{{--                                                            </p>--}}
-{{--                                                        </label>--}}
-{{--                                                    </div>--}}
-{{--                                                </li>--}}
-{{--                                            @endforeach--}}
-{{--                                        </ul>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="filters-more-item__list">--}}
-{{--                                        <p>Толщина корпуса</p>--}}
-{{--                                        <ul>--}}
-{{--                                            @foreach($thicknesses as $thickness)--}}
-{{--                                                <li>--}}
-{{--                                                    <div class="checkbox-block">--}}
-{{--                                                        <label class="checkbox-block__label">--}}
-{{--                                                            <input type="checkbox" name="Victorinox" value="Victorinox">--}}
-{{--                                                            <p>--}}
-{{--                                                                <span>{{$thickness->title.' ('.count($thickness->watchAdverts).')'}}</span>--}}
-{{--                                                            </p>--}}
-{{--                                                        </label>--}}
-{{--                                                    </div>--}}
-{{--                                                </li>--}}
-{{--                                            @endforeach--}}
-{{--                                        </ul>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="filters-more-item__list">--}}
-{{--                                        <p>Безель</p>--}}
-{{--                                        <ul>--}}
-{{--                                            @foreach($bezels as $bezel)--}}
-{{--                                                <li>--}}
-{{--                                                    <div class="checkbox-block">--}}
-{{--                                                        <label class="checkbox-block__label">--}}
-{{--                                                            <input type="checkbox" name="Victorinox" value="Victorinox">--}}
-{{--                                                            <p>--}}
-{{--                                                                <span>{{$bezel->title.' ('.count($bezel->watchAdverts).')'}}</span>--}}
-{{--                                                            </p>--}}
-{{--                                                        </label>--}}
-{{--                                                    </div>--}}
-{{--                                                </li>--}}
-{{--                                            @endforeach--}}
-{{--                                        </ul>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="filters-more-item__list">--}}
-{{--                                        <p>Числа</p>--}}
-{{--                                        <ul>--}}
-{{--                                            @foreach($figures as $figure)--}}
-{{--                                                <li>--}}
-{{--                                                    <div class="checkbox-block">--}}
-{{--                                                        <label class="checkbox-block__label">--}}
-{{--                                                            <input type="checkbox" name="Victorinox" value="Victorinox">--}}
-{{--                                                            <p>--}}
-{{--                                                                <span>{{$figure->title.' ('.count($figure->watchAdverts).')'}}</span>--}}
-{{--                                                            </p>--}}
-{{--                                                        </label>--}}
-{{--                                                    </div>--}}
-{{--                                                </li>--}}
-{{--                                            @endforeach--}}
-{{--                                        </ul>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="filters-more-item__list">--}}
-{{--                                        <p>Водонепроницаемость</p>--}}
-{{--                                        <ul>--}}
-{{--                                            @foreach($waterproofs as $waterproof)--}}
-{{--                                                <li>--}}
-{{--                                                    <div class="checkbox-block">--}}
-{{--                                                        <label class="checkbox-block__label">--}}
-{{--                                                            <input type="checkbox" name="Victorinox" value="Victorinox">--}}
-{{--                                                            <p>--}}
-{{--                                                                <span>{{$waterproof->title.' ('.count($waterproof->watchAdverts).')'}}</span>--}}
-{{--                                                            </p>--}}
-{{--                                                        </label>--}}
-{{--                                                    </div>--}}
-{{--                                                </li>--}}
-{{--                                            @endforeach--}}
-{{--                                        </ul>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <div class="filters-more-item filters-more__item">--}}
-{{--                            <div class="filters-more-item__title">--}}
-{{--                                <h4>БРАСЛЕТ/РЕМЕШОК</h4>--}}
-{{--                            </div>--}}
-{{--                            <div class="filters-more-item__content">--}}
-{{--                                <div>--}}
-{{--                                    <div class="filters-more-item__list">--}}
-{{--                                        <p>Материал браслета</p>--}}
-{{--                                        <ul>--}}
-{{--                                            @foreach($bracelets as $bracelet)--}}
-{{--                                                <li>--}}
-{{--                                                    <div class="checkbox-block">--}}
-{{--                                                        <label class="checkbox-block__label">--}}
-{{--                                                            <input type="checkbox" name="bracelet_material"--}}
-{{--                                                                   value="Victorinox">--}}
-{{--                                                            <p>--}}
-{{--                                                                <span>{{$bracelet->title.' ('.count($bracelet->watchAdverts).')'}}</span>--}}
-{{--                                                            </p>--}}
-{{--                                                        </label>--}}
-{{--                                                    </div>--}}
-{{--                                                </li>--}}
-{{--                                            @endforeach--}}
-{{--                                        </ul>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="filters-more-item__list">--}}
-{{--                                        <p>Застежка</p>--}}
-{{--                                        <ul>--}}
-{{--                                            @foreach($clasps as $clasp)--}}
-{{--                                                <li>--}}
-{{--                                                    <div class="checkbox-block">--}}
-{{--                                                        <label class="checkbox-block__label">--}}
-{{--                                                            <input type="checkbox" name="$clasp" value="Victorinox">--}}
-{{--                                                            <p>--}}
-{{--                                                                <span>{{$clasp->title.' ('.count($clasp->watchAdverts).')'}}</span>--}}
-{{--                                                            </p>--}}
-{{--                                                        </label>--}}
-{{--                                                    </div>--}}
-{{--                                                </li>--}}
-{{--                                            @endforeach--}}
-{{--                                        </ul>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="filters-more-item__list">--}}
-{{--                                        <p>Метериал затяжки</p>--}}
-{{--                                        <ul>--}}
-{{--                                            @foreach($materialsClasps as $materialsClasp)--}}
-{{--                                                <li>--}}
-{{--                                                    <div class="checkbox-block">--}}
-{{--                                                        <label class="checkbox-block__label">--}}
-{{--                                                            <input type="checkbox" name="materials_clasp"--}}
-{{--                                                                   value="Victorinox">--}}
-{{--                                                            <p>--}}
-{{--                                                                <span>{{$materialsClasp->title.' ('.count($materialsClasp->watchAdverts).')'}}</span>--}}
-{{--                                                            </p>--}}
-{{--                                                        </label>--}}
-{{--                                                    </div>--}}
-{{--                                                </li>--}}
-{{--                                            @endforeach--}}
-{{--                                        </ul>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="filters-more-item__list">--}}
-{{--                                        <p>Цвет браслета</p>--}}
-{{--                                        <ul>--}}
-{{--                                            @foreach($braceletColors as $braceletColor)--}}
-{{--                                                <li>--}}
-{{--                                                    <div class="checkbox-block">--}}
-{{--                                                        <label class="checkbox-block__label">--}}
-{{--                                                            <input type="checkbox" name="bracelet_color"--}}
-{{--                                                                   value="Victorinox">--}}
-{{--                                                            <p>--}}
-{{--                                                                <span>{{$braceletColor->title.' ('.count($braceletColor->watchAdverts).')'}}</span>--}}
-{{--                                                            </p>--}}
-{{--                                                        </label>--}}
-{{--                                                    </div>--}}
-{{--                                                </li>--}}
-{{--                                            @endforeach--}}
-{{--                                        </ul>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="filters-more-item__list">--}}
-{{--                                        <p>Ширина застежки</p>--}}
-{{--                                        <ul>--}}
-{{--                                            @foreach($widthClasps as $widthClasp)--}}
-{{--                                                <li>--}}
-{{--                                                    <div class="checkbox-block">--}}
-{{--                                                        <label class="checkbox-block__label">--}}
-{{--                                                            <input type="checkbox" name="width_clasp"--}}
-{{--                                                                   value="Victorinox">--}}
-{{--                                                            <p>--}}
-{{--                                                                <span>{{$widthClasp->title.' mm ('.count($widthClasp->watchAdverts).')'}}</span>--}}
-{{--                                                            </p>--}}
-{{--                                                        </label>--}}
-{{--                                                    </div>--}}
-{{--                                                </li>--}}
-{{--                                            @endforeach--}}
-{{--                                        </ul>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
                     </div>
 
                     <div class="filters-buttons">

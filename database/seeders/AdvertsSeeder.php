@@ -44,7 +44,7 @@ class AdvertsSeeder extends Seeder
         ];
 
 
-        for ($i = 0; $i < 11; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             Advert::create(
                 [
                     'type' => 'accessories',

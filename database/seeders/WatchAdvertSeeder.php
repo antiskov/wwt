@@ -24,15 +24,15 @@ class WatchAdvertSeeder extends Seeder
         for($i = 11; $i <= 32; $i++) {
             WatchAdvert::create([
                 'advert_id' => $i,
-//                'watch_type_id' => 1,
+                'watch_type_id' => 1,
                 'watch_make_id' => 1,
-                'watch_model_id' => 1,
+                'watch_model_id' => rand(1,9),
                 'model_code' => 4717,
                 'sex_id' => 1,
                 'release_year' => '200'.$i,
                 'is_release_year_confirmed' => 1,
-                'height' => 100,
-                'width' => 40,
+                'height' => rand(10,20),
+                'width' => rand(1,9),
                 'watch_state' => 'new',
                 'mechanism_type_id' => 1,
             ]);

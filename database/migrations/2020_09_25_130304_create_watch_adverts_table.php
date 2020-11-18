@@ -16,7 +16,7 @@ class CreateWatchAdvertsTable extends Migration
         Schema::create('watch_adverts', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('advert_id')->nullable();
-//            $table->unsignedBigInteger('watch_type_id')->nullable();
+            $table->unsignedBigInteger('watch_type_id')->nullable();
             $table->unsignedBigInteger('watch_make_id')->nullable();
             $table->unsignedBigInteger('watch_model_id')->nullable();
             $table->enum('watch_state',['new','userd'])->nullable();
