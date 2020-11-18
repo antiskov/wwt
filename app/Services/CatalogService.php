@@ -81,11 +81,8 @@ class CatalogService
             ->addSelect(DB::raw('COUNT(watch_type_title) as count_watch_type_title'))
             ->groupBy('watch_type_title')->get();
 
-//        $adverts = $this->getFilter($request);
-//        $adverts = DB::raw($this->getFilter($request))->paginate(6);
-        $adverts = DB::table('catalog_view')->whereRaw($this->getFilter($request))->paginate(6);
+        $adverts = DB::table('catalog_view')->whereRaw($this->getFilter($request))->paginate(8);
 //        if(isset($request->brands)) dd($adverts);
-//        dd($adverts[0]);
 
         return [
 //            'adverts' => Advert::where('type', 'watch')->paginate(6),
@@ -210,14 +207,24 @@ class CatalogService
 
     public function getFilter(Request $request)
     {
-        $query = '1 ';
-        if(isset($request->brands)) foreach ($request->brands as $brand) $query .= "and watch_make_title in ('$brand')";
-        if(isset($request->brands)) foreach ($request->brands as $brand) $query .= "and watch_make_title in ('$brand')";
+        $title = "";
+        $query = '1';
+        if (isset($request->brands)) foreach ($request->brands as $brand) $query .= " and watch_make_title in ('$brand')";
+        if (isset($request->models)) {
+            $title = "'".$request->models[0]."'";
+            foreach ($request->models as $model) {
+                $title .= ", '$model'";
+            }
+//                dd($query .= " and watch_model_title in ($title)");
+            $query .= " and watch_model_title in ($title)";
+        }
+
         return $query;
     }
 
     public function getTabs(Request $request)
     {
+//        dd(DB::table('catalog_view')->whereRaw($this->getFilter($request))->paginate(6));
         return ['adverts' => DB::table('catalog_view')->whereRaw($this->getFilter($request))->paginate(6)];
     }
 }

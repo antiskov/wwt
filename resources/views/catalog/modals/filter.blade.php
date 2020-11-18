@@ -546,7 +546,7 @@
 {{--            </div>--}}
 {{--        </div>--}}
 {{--    </form>--}}
-    <form id="filter" class="filters-desc" method="post" action="{{route('catalog.filter')}}">
+    <form id="filter" class="filters-desc" method="get" action="{{route('catalog.filter-json')}}">
         @csrf
         <div class="filters-desc-tabs">
             <button class="reset-filters-btn btn-hover" type="reset">Сбросить</button>
@@ -617,7 +617,7 @@
                             <li>
                                 <div class="checkbox-block">
                                     <label class="checkbox-block__label">
-                                        <input type="checkbox" name="model[]" value="{{$model->watch_model_title}}" id="{{$model->watch_model_title}}">
+                                        <input type="checkbox" name="models[]" value="{{$model->watch_model_title}}" id="{{$model->watch_model_title}}">
                                         <p><span>{{$model->watch_model_title.' ('.$model->count_watch_model_title.')'}}</span></p>
                                     </label>
                                 </div>
@@ -671,12 +671,12 @@
                                 <div class="checkbox-block">
                                     <label class="checkbox-block__label">
                                         @if($diameter->height == $diameter->width)
-                                            <input type="checkbox" name="diameter[]" value="{{$diameter->height}}" id="{{$diameter->height}}">
+                                            <input type="checkbox" name="diameters[]" value="{{$diameter->height}}" id="{{$diameter->height}}">
                                             <p>
                                                 <span>{{$diameter->height.' ('.$diameter->count_height.')'}}</span>
                                             </p>
                                         @else
-                                            <input type="checkbox" name="diameter[]" value="{{$diameter->height.'/'.$diameter->width}}" id="{{$diameter->height.'/'.$diameter->width}}">
+                                            <input type="checkbox" name="diameters[]" value="{{$diameter->height.'/'.$diameter->width}}" id="{{$diameter->height.'/'.$diameter->width}}">
                                             <p>
                                                 <span>{{$diameter->height.'/'.$diameter->width.' ('.$diameter->count_height.')'}}</span>
                                             </p>
@@ -713,7 +713,7 @@
                             <li>
                                 <div class="checkbox-block">
                                     <label class="checkbox-block__label">
-                                        <input type="checkbox" name="year[]" value="{{$year->release_year}}" id="{{$year->release_year}}">
+                                        <input type="checkbox" name="years[]" value="{{$year->release_year}}" id="{{$year->release_year}}">
                                         <p><span>{{$year->release_year.' ('.$year->count_release_year.')'}}</span></p>
                                     </label>
                                 </div>
@@ -722,7 +722,7 @@
 {{--                        <li>--}}
 {{--                            <div class="checkbox-block">--}}
 {{--                                <label class="checkbox-block__label">--}}
-{{--                                    <input type="checkbox" name="year" value="Victorinox">--}}
+{{--                                    <input type="checkbox" name="years[]" value="Victorinox">--}}
 {{--                                    <p>--}}
 {{--                                        <span>Неизвесто{{' ('.count($watchAdverts->where('is_release_year_confirmed', 0)).')'}}</span>--}}
 {{--                                    </p>--}}
@@ -757,7 +757,7 @@
                             <li>
                                 <div class="checkbox-block">
                                     <label class="checkbox-block__label">
-                                        <input type="checkbox" name="region[]" value="{{$region->region}}" id="{{$region->region}}">
+                                        <input type="checkbox" name="regions[]" value="{{$region->region}}" id="{{$region->region}}">
                                         <p><span>{{$region->region.' ('.$region->count_region.')'}}</span></p>
                                     </label>
                                 </div>

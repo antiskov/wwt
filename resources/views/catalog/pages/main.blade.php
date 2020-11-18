@@ -8,10 +8,9 @@
         $('#filter').on('submit', function(e){
             e.preventDefault();
             $.ajax({
-                type:"POST",
-                url: '/catalog/filter',
+                type:"get",
+                url: '/catalog/filter_json',
                 data: $('#filter').serializeArray(),
-                datatype: 'html',
                 success: function (data) {
                     console.log(1);
                     $('#catalog-page').empty();

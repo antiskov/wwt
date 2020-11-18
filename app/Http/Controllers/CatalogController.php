@@ -34,7 +34,7 @@ class CatalogController extends Controller
         return view('catalog.pages.main', $service->index($request));
     }
 
-    public function filter(Request $request, CatalogService $service)
+    public function filterJson(Request $request, CatalogService $service)
     {
         $data = [
             'output' => view('catalog.modals.global.tabs', $service->getTabs($request))->toHtml(),

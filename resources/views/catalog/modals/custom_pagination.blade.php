@@ -2,7 +2,7 @@
             @if ($paginator->onFirstPage())
                 <a href="#/" class="text-link with-ico cont"></a>
             @else
-                <a href="{{ $paginator->previousPageUrl() }}"class="text-link with-ico cont"></a>
+                <a href="{{ $paginator->previousPageUrl() }}" class="text-link with-ico cont"></a>
             @endif
 
             @foreach ($elements as $element)

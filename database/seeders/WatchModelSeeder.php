@@ -38,7 +38,7 @@ class WatchModelSeeder extends Seeder
                 'category_id' => 1,
                 'watch_type_id' => 1,
                 'watch_make_id' => 1,
-                'title' => 'A1000D-7EF',
+                'title' => 'A1-'.rand(1000, 1500),
                 'model_code' => 444,
                 'sex_id' => rand(1,2),
                 'height' => rand(10, 20),

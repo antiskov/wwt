@@ -1,6 +1,6 @@
 <div id="content-2" class="items-block">
-    <div class="items-cont inline-view">
-        @foreach($adverts as $advert)
+    @foreach($adverts as $advert)
+        <div class="items-cont inline-view">
             <div class="inline-cart">
                 <div class="vip-label"></div>
                 <div class="favorite-icon"></div>
@@ -68,8 +68,8 @@
                     </div>
                 </div>
             </div>
-    </div>
+        </div>
     @endforeach
-    </div>
+</div>
 </div>
 
