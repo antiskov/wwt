@@ -23,15 +23,21 @@ use App\Models\WatchModel;
 use App\Models\WatchType;
 use App\Models\YearAdvert;
 use App\Services\CatalogService;
+use App\Services\CustomPaginateService;
 use Database\Seeders\DeliveryVolumeSeeder;
 use Illuminate\Http\Request;
 
 class CatalogController extends Controller
 {
-    public function index(CatalogService $service, Request $request)
+    public function index(CatalogService $service, Request $request, CustomPaginateService $paginateService)
     {
 
-        return view('catalog.pages.main', $service->index($request));
+        return view('catalog.pages.main', $service->index($request, $paginateService));
+    }
+
+    public function filter(CatalogService $service, Request $request, CustomPaginateService $paginateService)
+    {
+        return view('catalog.pages.main', $service->index($request, $paginateService));
     }
 
     public function filterJson(Request $request, CatalogService $service)

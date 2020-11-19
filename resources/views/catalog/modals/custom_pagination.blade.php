@@ -13,6 +13,7 @@
                 {{-- Array Of Links --}}
                 @if (is_array($element))
                     @foreach ($element as $page => $url)
+{{--                        {{ $url}}--}}
                         @if ($page == $paginator->currentPage())
                             <a href="#/" class="number-link active">{{ $page }}</a>
                         @else
@@ -28,3 +29,4 @@
                 <a href="#/" class="text-link with-ico"></a>
             @endif
 @endif
+{{--http://worldwatchtrade.local/catalog?_token=VEojBJYSR8tDc3OMaXTxcpdYidyw4r46KUazWflZ&models%5B%5D=A1-1042&models%5B%5D=A1-1077&price=0%3B600--}}

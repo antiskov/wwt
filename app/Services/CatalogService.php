@@ -34,13 +34,37 @@ use App\Models\WatchType;
 use App\Models\WatchWaterproof;
 use App\Models\WidthClasp;
 use App\Models\YearAdvert;
+use Illuminate\Database\Query\CastomPaginateService;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
 
 class CatalogService
 {
-    public function index(Request $request)
+    public function paginateArray($data, $perPage = 15, $path = 'none')
     {
+//        $data->get();
+//        $data->toArray();
+        $page = Paginator::resolveCurrentPage();
+        $total = count($data);
+//        $total = $data->count();
+        $results = array_slice($data, ($page - 1) * $perPage, $perPage);
+
+        if($path != 'none') {
+            return new LengthAwarePaginator($results, $total, $perPage, $page, [
+                'path' => $path,
+            ]);
+        }
+
+        return new LengthAwarePaginator($results, $total, $perPage, $page, [
+            'path' => Paginator::resolveCurrentPath(),
+        ]);
+    }
+    public function index(Request $request, CustomPaginateService $paginateService)
+    {
+//        dd($request);
+//        dd($request->fullUrl());
         $brands = DB::table('catalog_view')->select('watch_make_title')
             ->addSelect(DB::raw('COUNT(watch_make_title) as count_watch_make_title'))
             ->groupBy('watch_make_title')->get();
@@ -80,9 +104,16 @@ class CatalogService
         $types = DB::table('catalog_view')->select('watch_type_title')
             ->addSelect(DB::raw('COUNT(watch_type_title) as count_watch_type_title'))
             ->groupBy('watch_type_title')->get();
+//        dd($types);
 
-        $adverts = DB::table('catalog_view')->whereRaw($this->getFilter($request))->paginate(8);
+//        $adverts = DB::table('catalog_view')->whereRaw($this->getFilter($request));
+//        $adverts = DB::table('catalog_view')->whereRaw($this->getFilter($request))->paginate(8);
 //        if(isset($request->brands)) dd($adverts);
+//        dd($adverts);
+//        $thisPaginate = CustomPaginateService::class;
+//        $paginateService->thisPaginate($adverts, 6, $request->fullUrl());
+
+//        $adverts = $this->paginateArray(DB::table('catalog_view')->whereRaw($this->getFilter($request))->get()->toArray(), 6, $request->fullUrl())     ;
 
         return [
 //            'adverts' => Advert::where('type', 'watch')->paginate(6),
@@ -209,7 +240,15 @@ class CatalogService
     {
         $title = "";
         $query = '1';
-        if (isset($request->brands)) foreach ($request->brands as $brand) $query .= " and watch_make_title in ('$brand')";
+//        if (isset($request->brands)) foreach ($request->brands as $brand) $query .= " and watch_make_title in ('$brand')";
+        if (isset($request->brands)) {
+            $title = "'".$request->brands[0]."'";
+            foreach ($request->brands as $brand) {
+                $title .= ", '$brand'";
+            }
+//                dd($query .= " and watch_model_title in ($title)");
+            $query .= " and watch_make_title in ($brand)";
+        }
         if (isset($request->models)) {
             $title = "'".$request->models[0]."'";
             foreach ($request->models as $model) {
@@ -218,6 +257,7 @@ class CatalogService
 //                dd($query .= " and watch_model_title in ($title)");
             $query .= " and watch_model_title in ($title)";
         }
+//        dd($query);
 
         return $query;
     }
