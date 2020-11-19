@@ -2,6 +2,25 @@
 
 @section('catalog-content')
     @include('catalog.modals.filter')
+    <div id="save-search-modal" class="modal">
+        <div class="modal__content">
+            <h5 class="modal__title">Сохранить результат поиска</h5>
+            <form id="save-search-form" class="change-pass-mail" action="#">
+                <input name="search-result" type="text" placeholder="Название поиска" required>
+                <span>Обязательное поле*</span>
+                <div class="checkbox-block">
+                    <label class="checkbox-block__label">
+                        <input type="checkbox" name="newsletter">
+                        <p><span>Получать новые объявления по эл. почте</span></p>
+                    </label>
+                </div>
+                <div class="modal__buttons">
+                    <a data-fancybox-close href="#">Отменить</a>
+                    <button class="btn-arrow">Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
     @include('catalog.modals.global.tabs')
     <script>
         // document.addEventListener("DOMContentLoaded", function(event) {

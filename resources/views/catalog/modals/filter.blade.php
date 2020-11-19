@@ -592,7 +592,7 @@
                         @endforeach
                     </ul>
                     <div class="filters-buttons">
-                        <button class="filters-save-btn btn-hover-w" type="button"><a href="{{route('catalog.save-search')}}">Сохранить поисковый запрос</a></button>
+                        <button data-fancybox data-src="#password-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
                         <button class="filters-submit-btn btn-hover" type="submit">Применить (327)</button>
                     </div>
                 </div>
@@ -626,7 +626,7 @@
                         @endforeach
                     </ul>
                     <div class="filters-buttons">
-                        <button class="filters-save-btn btn-hover-w" type="button"><a href="{{route('catalog.save-search')}}">Сохранить поисковый запрос</a></button>
+                        <button data-fancybox data-src="#password-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
                         <button class="filters-submit-btn btn-hover" type="submit">Применить (327)</button>
                     </div>
                 </div>
@@ -646,7 +646,7 @@
                     </div>
                 </div>
                 <div class="filters-buttons">
-                    <button class="filters-save-btn btn-hover-w" type="button"><a href="{{route('catalog.save-search')}}">Сохранить поисковый запрос</a></button>
+                    <button data-fancybox data-src="#password-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
                     <button class="filters-submit-btn btn-hover" type="submit">Применить (327)</button>
                 </div>
             </div>
@@ -688,7 +688,7 @@
                         @endforeach
                     </ul>
                     <div class="filters-buttons">
-                        <button class="filters-save-btn btn-hover-w" type="button"><a href="{{route('catalog.save-search')}}">Сохранить поисковый запрос</a></button>
+                        <button data-fancybox data-src="#password-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
                         <button class="filters-submit-btn btn-hover" type="submit">Применить (327)</button>
                     </div>
                 </div>
@@ -732,7 +732,7 @@
 {{--                        </li>--}}
                     </ul>
                     <div class="filters-buttons">
-                        <button class="filters-save-btn btn-hover-w" type="button"><a href="{{route('catalog.save-search')}}">Сохранить поисковый запрос</a></button>
+                        <button data-fancybox data-src="#password-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
                         <button class="filters-submit-btn btn-hover" type="submit">Применить (327)</button>
                     </div>
                 </div>
@@ -766,7 +766,7 @@
                         @endforeach
                     </ul>
                     <div class="filters-buttons">
-                        <button class="filters-save-btn btn-hover-w" type="button"><a href="{{route('catalog.save-search')}}">Сохранить поисковый запрос</a></button>
+                        <button data-fancybox data-src="#password-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
                         <button class="filters-submit-btn btn-hover" type="submit">Применить (327)</button>
                     </div>
                 </div>
@@ -960,7 +960,8 @@
                     </div>
 
                     <div class="filters-buttons">
-                        <button class="filters-save-btn btn-hover-w" type="button"><a href="{{route('catalog.save-search')}}">Сохранить поисковый запрос</a></button>
+                        {{//todo popap to save search query}}
+                        <button data-fancybox data-src="#password-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
                         <button class="filters-submit-btn btn-hover" type="submit">Применить (327)</button>
                     </div>
                 </div>

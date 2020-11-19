@@ -39,7 +39,6 @@ use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
-use function MongoDB\BSON\toJSON;
 
 class CatalogService
 {
@@ -61,8 +60,6 @@ class CatalogService
     }
     public function index(Request $request)
     {
-//        dd($request);
-//        dd($request->fullUrl());
         $brands = DB::table('catalog_view')->select('watch_make_title')
             ->addSelect(DB::raw('COUNT(watch_make_title) as count_watch_make_title'))
             ->groupBy('watch_make_title')->get();
@@ -108,16 +105,10 @@ class CatalogService
         } else {
             $adverts = $this->paginateArray(DB::table('catalog_view')->whereRaw($this->getFilter($request))->get()->toArray(), 6, $request->fullUrl());
         }
+
         setcookie("searchLink", $request->fullUrl(), time()+3600);
 
-//        $url = explode('/', $request->fullUrl());
-//        $last_key                = array_key_last($url);
-////        dd($url[$last_key]);
-//        $saveSearch = $url[$last_key];
-////        dd($saveSearch);
-
         return [
-//            'adverts' => Advert::where('type', 'watch')->paginate(6),
             'adverts' => $adverts,
             'brands' => $brands,
             'models' => $models,
@@ -129,7 +120,6 @@ class CatalogService
             'deliveryVolumes' => $deliveryVolumes,
             'sexes' => $sexes,
             'types' => $types,
-
         ];
     }
 
