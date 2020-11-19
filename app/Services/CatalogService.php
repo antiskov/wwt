@@ -105,7 +105,7 @@ class CatalogService
         } else {
             $adverts = $this->paginateArray(DB::table('catalog_view')->whereRaw($this->getFilter($request))->get()->toArray(), 6, $request->fullUrl());
         }
-
+        \Cookie::queue(\Cookie::forget('searchLink'));
         setcookie("searchLink", $request->fullUrl(), time()+3600);
 
         return [
@@ -323,6 +323,7 @@ class CatalogService
 
     public function saveSearch()
     {
+//        dd($_COOKIE["searchLink"]);
         $search = new SearchLink();
         $search->user()->associate(auth()->user());
         $search->link = $_COOKIE["searchLink"];

@@ -74,8 +74,8 @@ class CatalogController extends Controller
 
     public function saveSearch(CatalogService $service, Request $request)
     {
+        $service->index($request);
         $service->saveSearch();
-        dd($request->fullUrl());
 
         return redirect()->back();
     }
