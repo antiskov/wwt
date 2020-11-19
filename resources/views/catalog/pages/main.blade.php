@@ -48,11 +48,11 @@
         // })
         // });
         document.addEventListener("DOMContentLoaded", function(event) {
-        $('#ajax_button').on('submit', function(e){
+        $('#ajax_button').on('click', function(e){
             e.preventDefault();
             $.ajax({
                 type:"get",
-                url: '/catalog/filter_json',
+                url: '/catalog/save_search',
                 data: $('#filter').serializeArray(),
                 success: function (data) {
                     console.log(data);

@@ -72,9 +72,10 @@ class CatalogController extends Controller
         ]);
     }
 
-    public function saveSearch(CatalogService $service)
+    public function saveSearch(CatalogService $service, Request $request)
     {
         $service->saveSearch();
+        dd($request->fullUrl());
 
         return redirect()->back();
     }
