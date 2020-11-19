@@ -12,6 +12,7 @@ use App\Models\Glass;
 use App\Models\MechanismType;
 use App\Models\Option;
 use App\Models\Province;
+use App\Models\SearchLink;
 use App\Models\Sex;
 use App\Models\State;
 use App\Models\User;
@@ -61,15 +62,21 @@ class CatalogController extends Controller
     public function sellerPage(User $user)
     {
         $userLanguages = [];
-//        dd($user->languages);
         foreach ($user->languages as $l) {
             $userLanguages[] = $l->code;
-        }
-//        dd(Advert::where('user_id', $user->id)->get());
+        };
         return view('catalog.pages.seller_page', [
             'user' => $user,
             'userLanguages' => $userLanguages,
             'adverts' => Advert::where('user_id', $user->id)->get(),
         ]);
     }
+
+    public function saveSearch(CatalogService $service)
+    {
+        $service->saveSearch();
+
+        return redirect()->back();
+    }
+
 }

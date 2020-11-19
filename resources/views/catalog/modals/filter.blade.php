@@ -549,7 +549,6 @@
 {{--    <form id="filter" class="filters-desc" method="get" action="{{route('catalog.filter-json')}}">--}}
 {{--    <form id="filter" class="filters-desc" method="get" action="{{route('catalog.filter')}}">--}}
     <form id="filter" class="filters-desc" method="get" action="{{route('catalog.filter')}}">
-        @csrf
         <div class="filters-desc-tabs">
             <button class="reset-filters-btn btn-hover" type="reset">Сбросить</button>
             <ul class="filters-desc-nav">
@@ -593,7 +592,7 @@
                         @endforeach
                     </ul>
                     <div class="filters-buttons">
-                        <button class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
+                        <button class="filters-save-btn btn-hover-w" type="button"><a href="{{route('catalog.save-search')}}">Сохранить поисковый запрос</a></button>
                         <button class="filters-submit-btn btn-hover" type="submit">Применить (327)</button>
                     </div>
                 </div>
@@ -627,7 +626,7 @@
                         @endforeach
                     </ul>
                     <div class="filters-buttons">
-                        <button class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
+                        <button class="filters-save-btn btn-hover-w" type="button"><a href="{{route('catalog.save-search')}}">Сохранить поисковый запрос</a></button>
                         <button class="filters-submit-btn btn-hover" type="submit">Применить (327)</button>
                     </div>
                 </div>
@@ -647,7 +646,7 @@
                     </div>
                 </div>
                 <div class="filters-buttons">
-                    <button class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
+                    <button class="filters-save-btn btn-hover-w" type="button"><a href="{{route('catalog.save-search')}}">Сохранить поисковый запрос</a></button>
                     <button class="filters-submit-btn btn-hover" type="submit">Применить (327)</button>
                 </div>
             </div>
@@ -689,7 +688,7 @@
                         @endforeach
                     </ul>
                     <div class="filters-buttons">
-                        <button class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
+                        <button class="filters-save-btn btn-hover-w" type="button"><a href="{{route('catalog.save-search')}}">Сохранить поисковый запрос</a></button>
                         <button class="filters-submit-btn btn-hover" type="submit">Применить (327)</button>
                     </div>
                 </div>
@@ -733,7 +732,7 @@
 {{--                        </li>--}}
                     </ul>
                     <div class="filters-buttons">
-                        <button class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
+                        <button class="filters-save-btn btn-hover-w" type="button"><a href="{{route('catalog.save-search')}}">Сохранить поисковый запрос</a></button>
                         <button class="filters-submit-btn btn-hover" type="submit">Применить (327)</button>
                     </div>
                 </div>
@@ -767,7 +766,7 @@
                         @endforeach
                     </ul>
                     <div class="filters-buttons">
-                        <button class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
+                        <button class="filters-save-btn btn-hover-w" type="button"><a href="{{route('catalog.save-search')}}">Сохранить поисковый запрос</a></button>
                         <button class="filters-submit-btn btn-hover" type="submit">Применить (327)</button>
                     </div>
                 </div>
@@ -961,7 +960,7 @@
                     </div>
 
                     <div class="filters-buttons">
-                        <button class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
+                        <button class="filters-save-btn btn-hover-w" type="button"><a href="{{route('catalog.save-search')}}">Сохранить поисковый запрос</a></button>
                         <button class="filters-submit-btn btn-hover" type="submit">Применить (327)</button>
                     </div>
                 </div>

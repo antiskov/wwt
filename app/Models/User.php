@@ -117,4 +117,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Advert::class,'user_favorite_adverts','user_id','advert_id');
     }
+
+    public function searchLinks()
+    {
+        return $this->hasMany(SearchLink::class);
+    }
 }

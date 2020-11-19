@@ -17,6 +17,7 @@ use App\Models\MaterialsClasp;
 use App\Models\MechanismType;
 use App\Models\Option;
 use App\Models\Province;
+use App\Models\SearchLink;
 use App\Models\Sex;
 use App\Models\SparePartsMechanismType;
 use App\Models\State;
@@ -38,6 +39,7 @@ use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
+use function MongoDB\BSON\toJSON;
 
 class CatalogService
 {
@@ -106,6 +108,13 @@ class CatalogService
         } else {
             $adverts = $this->paginateArray(DB::table('catalog_view')->whereRaw($this->getFilter($request))->get()->toArray(), 6, $request->fullUrl());
         }
+        setcookie("searchLink", $request->fullUrl(), time()+3600);
+
+//        $url = explode('/', $request->fullUrl());
+//        $last_key                = array_key_last($url);
+////        dd($url[$last_key]);
+//        $saveSearch = $url[$last_key];
+////        dd($saveSearch);
 
         return [
 //            'adverts' => Advert::where('type', 'watch')->paginate(6),
@@ -320,5 +329,13 @@ class CatalogService
     public function getTabs(Request $request)
     {
         return ['adverts' => DB::table('catalog_view')->whereRaw($this->getFilter($request))->paginate(6)];
+    }
+
+    public function saveSearch()
+    {
+        $search = new SearchLink();
+        $search->user()->associate(auth()->user());
+        $search->link = $_COOKIE["searchLink"];
+        $search->save();
     }
 }
