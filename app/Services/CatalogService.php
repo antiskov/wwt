@@ -34,7 +34,6 @@ use App\Models\WatchType;
 use App\Models\WatchWaterproof;
 use App\Models\WidthClasp;
 use App\Models\YearAdvert;
-use Illuminate\Database\Query\CastomPaginateService;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
@@ -44,11 +43,8 @@ class CatalogService
 {
     public function paginateArray($data, $perPage = 15, $path = 'none')
     {
-//        $data->get();
-//        $data->toArray();
         $page = Paginator::resolveCurrentPage();
         $total = count($data);
-//        $total = $data->count();
         $results = array_slice($data, ($page - 1) * $perPage, $perPage);
 
         if($path != 'none') {
@@ -61,7 +57,7 @@ class CatalogService
             'path' => Paginator::resolveCurrentPath(),
         ]);
     }
-    public function index(Request $request, CustomPaginateService $paginateService)
+    public function index(Request $request)
     {
 //        dd($request);
 //        dd($request->fullUrl());
@@ -104,16 +100,12 @@ class CatalogService
         $types = DB::table('catalog_view')->select('watch_type_title')
             ->addSelect(DB::raw('COUNT(watch_type_title) as count_watch_type_title'))
             ->groupBy('watch_type_title')->get();
-//        dd($types);
 
-//        $adverts = DB::table('catalog_view')->whereRaw($this->getFilter($request));
-//        $adverts = DB::table('catalog_view')->whereRaw($this->getFilter($request))->paginate(8);
-//        if(isset($request->brands)) dd($adverts);
-//        dd($adverts);
-//        $thisPaginate = CustomPaginateService::class;
-//        $paginateService->thisPaginate($adverts, 6, $request->fullUrl());
-
-//        $adverts = $this->paginateArray(DB::table('catalog_view')->whereRaw($this->getFilter($request))->get()->toArray(), 6, $request->fullUrl())     ;
+        if($this->getFilter($request) == '1') {
+            $adverts = DB::table('catalog_view')->whereRaw($this->getFilter($request))->paginate(6);
+        } else {
+            $adverts = $this->paginateArray(DB::table('catalog_view')->whereRaw($this->getFilter($request))->get()->toArray(), 6, $request->fullUrl());
+        }
 
         return [
 //            'adverts' => Advert::where('type', 'watch')->paginate(6),
@@ -240,31 +232,93 @@ class CatalogService
     {
         $title = "";
         $query = '1';
-//        if (isset($request->brands)) foreach ($request->brands as $brand) $query .= " and watch_make_title in ('$brand')";
         if (isset($request->brands)) {
             $title = "'".$request->brands[0]."'";
             foreach ($request->brands as $brand) {
                 $title .= ", '$brand'";
             }
-//                dd($query .= " and watch_model_title in ($title)");
-            $query .= " and watch_make_title in ($brand)";
+            $query .= " and watch_make_title in ($title)";
         }
         if (isset($request->models)) {
             $title = "'".$request->models[0]."'";
             foreach ($request->models as $model) {
                 $title .= ", '$model'";
             }
-//                dd($query .= " and watch_model_title in ($title)");
             $query .= " and watch_model_title in ($title)";
         }
-//        dd($query);
+        if (isset($request->models)) {
+            $title = "'".$request->models[0]."'";
+            foreach ($request->models as $model) {
+                $title .= ", '$model'";
+            }
+            $query .= " and watch_model_title in ($title)";
+        }
+        if (isset($request->diameters)) {
+            $heightWidth  = explode('/', $request->diameters[0]);
+            $height = $heightWidth[0];
+            $width = $heightWidth[1];
+            foreach ($request->diameters as $diameter) {
+                $heightWidth  = explode('/', $diameter);
+                $height .= ", $heightWidth[0]";
+                $width .= ", $heightWidth[1]";
+            }
+            $query .= " and height in ($height) and width in ($width)";
+        }
+        if (isset($request->years)) {
+            $title = $request->years[0];
+            foreach ($request->years as $year) {
+                $title .= ", $year";
+            }
+            $query .= " and release_year in ($title)";
+        }
+        if (isset($request->regions)) {
+            $title = "'".$request->regions[0]."'";
+            foreach ($request->regions as $region) {
+                $title .= ", '$region'";
+            }
+            $query .= " and region in ($title)";
+        }
+        if (isset($request->mechanismTypes)) {
+            $title = "'".$request->mechanismTypes[0]."'";
+            foreach ($request->mechanismTypes as $mechanismType) {
+                $title .= ", '$mechanismType'";
+            }
+            $query .= " and mechanism_type_title in ($title)";
+        }
+        if (isset($request->states)) {
+            $title = "'".$request->states[0]."'";
+            foreach ($request->states as $state) {
+                $title .= ", '$state'";
+            }
+            $query .= " and watch_state in ($title)";
+        }
+        if (isset($request->deliveryVolumes)) {
+            $title = "'".$request->deliveryVolumes[0]."'";
+            foreach ($request->deliveryVolumes as $deliveryVolume) {
+                $title .= ", '$deliveryVolume'";
+            }
+            $query .= " and delivery_volume in ($title)";
+        }
+        if (isset($request->sexes)) {
+            $title = "'".$request->sexes[0]."'";
+            foreach ($request->sexes as $sex) {
+                $title .= ", '$sex'";
+            }
+            $query .= " and sex_title in ($title)";
+        }
+        if (isset($request->types)) {
+            $title = "'".$request->types[0]."'";
+            foreach ($request->types as $type) {
+                $title .= ", '$type'";
+            }
+            $query .= " and watch_type_title in ($title)";
+        }
 
         return $query;
     }
 
     public function getTabs(Request $request)
     {
-//        dd(DB::table('catalog_view')->whereRaw($this->getFilter($request))->paginate(6));
         return ['adverts' => DB::table('catalog_view')->whereRaw($this->getFilter($request))->paginate(6)];
     }
 }

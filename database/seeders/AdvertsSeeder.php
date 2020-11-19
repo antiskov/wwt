@@ -100,7 +100,7 @@ class AdvertsSeeder extends Seeder
 //            );
 //        }
 
-        for($i = 0; $i < 30000; $i++) {
+        for($i = 0; $i < 25; $i++) {
             Advert::create(
                 [
                     'type' => 'watch',
@@ -115,7 +115,7 @@ class AdvertsSeeder extends Seeder
                     //'birthday' => '05.01.1999',
                     'phone' => '0980000000',
                     'country' => 'Ukraine',
-                    'region' => 'Europe',
+                    'region' => 'Region'.rand(1, 30),
                     'city' => 'Kyiv',
                     'street' => 'Khreshchatyk',
                     'zip_code' => 23000,

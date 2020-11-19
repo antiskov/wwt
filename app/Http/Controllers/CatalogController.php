@@ -29,15 +29,14 @@ use Illuminate\Http\Request;
 
 class CatalogController extends Controller
 {
-    public function index(CatalogService $service, Request $request, CustomPaginateService $paginateService)
+    public function index(CatalogService $service, Request $request)
     {
-
-        return view('catalog.pages.main', $service->index($request, $paginateService));
+        return view('catalog.pages.main', $service->index($request));
     }
 
-    public function filter(CatalogService $service, Request $request, CustomPaginateService $paginateService)
+    public function filter(CatalogService $service, Request $request)
     {
-        return view('catalog.pages.main', $service->index($request, $paginateService));
+        return view('catalog.pages.main', $service->index($request));
     }
 
     public function filterJson(Request $request, CatalogService $service)
