@@ -627,6 +627,7 @@
                     </ul>
                     <div class="filters-buttons">
                         <button data-fancybox data-src="#password-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
+                        <button id="ajax_button" class="filters-save-btn btn-hover-w" type="submit"><a href="">Аjax</a></button>
                         <button class="filters-submit-btn btn-hover" type="submit">Применить (327)</button>
                     </div>
                 </div>
@@ -960,7 +961,6 @@
                     </div>
 
                     <div class="filters-buttons">
-                        {{//todo popap to save search query}}
                         <button data-fancybox data-src="#password-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
                         <button class="filters-submit-btn btn-hover" type="submit">Применить (327)</button>
                     </div>
