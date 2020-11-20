@@ -102,10 +102,12 @@ class CatalogService
             ->addSelect(DB::raw('COUNT(watch_type_title) as count_watch_type_title'))
             ->groupBy('watch_type_title')->get();
 
-        $adverts = $this->paginateCustom(DB::table('catalog_view')->whereRaw($this->getFilter($request)),  $request->fullUrl(), 6);
+        $maxPrice = DB::table('catalog_view')->max('price');
 
+        $adverts = $this->paginateCustom(DB::table('catalog_view')->whereRaw($this->getFilter($request)),  $request->fullUrl(), 6);
+//        dd(DB::table('catalog_view')->whereRaw($this->getFilter($request))->get()->count());
         \Cookie::queue(\Cookie::forget('searchLink'));
-        setcookie("searchLink", $request->fullUrl(), time()+3600);
+        setcookie("searchLink", $request->fullUrl(), time()+600);
 
         return [
             'adverts' => $adverts,
@@ -119,6 +121,8 @@ class CatalogService
             'deliveryVolumes' => $deliveryVolumes,
             'sexes' => $sexes,
             'types' => $types,
+            'maxPrice' => $maxPrice,
+            'countResults' => DB::table('catalog_view')->whereRaw($this->getFilter($request))->get()->count(),
         ];
     }
 
@@ -310,6 +314,10 @@ class CatalogService
                 $title .= ", '$type'";
             }
             $query .= " and watch_type_title in ($title)";
+        }
+        if (isset($request->price)) {
+            $title = $request->price;
+            $query .= " and release_year in ($title)";
         }
 
         return $query;

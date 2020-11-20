@@ -46,6 +46,7 @@ Route::middleware('set.locale')->group(function () {
         Route::get('/filter', [\App\Http\Controllers\CatalogController::class, 'filter'])->name('catalog.filter');//todo спитати в Дениса чи достатньо json
         Route::get('/accessory', [\App\Http\Controllers\CatalogController::class, 'indexAccessory'])->name('catalog.accessory');
         Route::get('/save_search/', [\App\Http\Controllers\CatalogController::class, 'saveSearch'])->name('catalog.save-search');
+        Route::get('/count_results/', [\App\Http\Controllers\CatalogController::class, 'countResults']);
         Route::get('/spare_parts', [\App\Http\Controllers\CatalogController::class, 'indexSparePart'])->name('catalog.spare-parts');
 //        Route::get('{user}/item_page/{advert}', [\App\Http\Controllers\GoodsController::class, 'index'])->name('catalog.item-page');
         Route::get('/item_page/{advert}', [\App\Http\Controllers\GoodsController::class, 'index'])->name('catalog.item-page');

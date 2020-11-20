@@ -55,21 +55,37 @@
                 url: '/catalog/save_search',
                 data: $('#filter').serializeArray(),
                 success: function (data) {
-                    console.log(data);
-                    // $('#catalog-page').empty();
-                    // $('#catalog-page').html(data.output);
+                    console.log('success');
                 },
                 error: function (xhr) {
-                    console.log(22);
-                    // if(xhr.status === 422) {
-                    //     $('#reg-form-email').addClass('form-elem_err').removeClass('form-elem_success');
-                    //     $('#reg-form-email + span').text(xhr.responseJSON.errors.email[0]);
-                    // }
+                    console.log('error');
                 }
             }).done(function() {
                 $( this ).addClass( "done" );
             })
         })
+        });
+        document.addEventListener("DOMContentLoaded", function(event) {
+            function query(){
+                $.ajax({
+                    type:"get",
+                    url: '/catalog/count_results',
+                    data: $('#filter').serializeArray(),
+                    success: function (data) {
+                        // console.log('success');
+                        console.log('111');
+                        $('.filters-submit-btn').text('Применить ('+data.count+")");
+                    },
+                    error: function (xhr) {
+                        console.log('error');
+                    }
+                }).done(function() {
+                    $( this ).addClass( "done" );
+                })
+            };
+
+            $('.watch-filter').on('click', query);
+            $('.watch-filter').on('change', query);
         });
     </script>
 @endsection

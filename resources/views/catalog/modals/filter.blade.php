@@ -542,7 +542,7 @@
 {{--            </ul>--}}
 {{--            <div class="filters-buttons">--}}
 {{--                <button class="filters-save-btn btn-hover-w" type="button">Сохранить фильтр</button>--}}
-{{--                <button class="filters-submit-btn btn-hover" type="submit">Применить (327)</button>--}}
+{{--                <button class="filters-submit-btn btn-hover" type="submit">Применить</button>--}}
 {{--            </div>--}}
 {{--        </div>--}}
 {{--    </form>--}}
@@ -584,7 +584,7 @@
                             <li>
                                 <div class="checkbox-block">
                                     <label class="checkbox-block__label">
-                                        <input type="checkbox" name="brands[]" value="{{$brand->watch_make_title}}" id="{{$brand->watch_make_title}}">
+                                        <input class="watch-filter" type="checkbox" name="brands[]" value="{{$brand->watch_make_title}}" id="{{$brand->watch_make_title}}">
                                         <p><span>{{$brand->watch_make_title.' ('.$brand->count_watch_make_title.')'}}</span></p>
                                     </label>
                                 </div>
@@ -593,7 +593,7 @@
                     </ul>
                     <div class="filters-buttons">
                         <button data-fancybox data-src="#password-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
-                        <button class="filters-submit-btn btn-hover" type="submit">Применить (327)</button>
+                        <button class="filters-submit-btn btn-hover" type="submit">Применить</button>
                     </div>
                 </div>
             </div>
@@ -618,7 +618,7 @@
                             <li>
                                 <div class="checkbox-block">
                                     <label class="checkbox-block__label">
-                                        <input type="checkbox" name="models[]" value="{{$model->watch_model_title}}" id="{{$model->watch_model_title}}">
+                                        <input class="watch-filter" type="checkbox" name="models[]" value="{{$model->watch_model_title}}" id="{{$model->watch_model_title}}">
                                         <p><span>{{$model->watch_model_title.' ('.$model->count_watch_model_title.')'}}</span></p>
                                     </label>
                                 </div>
@@ -629,7 +629,7 @@
                         <button data-fancybox data-src="#password-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
                         <button id="ajax_button" class="filters-save-btn btn-hover-w" type="submit"><a href="{{route('catalog.save-search')}}">Аjax</a></button>
                         <button class="filters-save-btn btn-hover-w" type="button"><a href="{{route('catalog.save-search')}}">with reload</a></button>
-                        <button class="filters-submit-btn btn-hover" type="submit">Применить (327)</button>
+                        <button class="filters-submit-btn btn-hover" type="submit">Применить</button>
                     </div>
                 </div>
             </div>
@@ -637,19 +637,19 @@
                 <span class="filters-desc__close-btn"></span>
                 <div class="price-slider">
                     <div class="price-slider__line">
-                        <input id="slider-price-desc" type="text" class="range-slider" name="price" value=""
+                        <input id="slider-price-desc" type="text" class="range-slider watch-filter" name="price" value=""
                                data-from="0"
-                               data-to="600" data-min="0" data-max="600"/>
+                               data-to="{{$maxPrice}}" data-min="0" data-max="{{$maxPrice}}"/>
                     </div>
                     <div class="price-slider__controls">
-                        <input id="slider-price-desc-from" type="text" class="price-slider__from" value="0"/>
+                        <input id="slider-price-desc-from" type="text" class="price-slider__from watch-filter" name="price" value="0"/>
                         <p>uah</p>
-                        <input id="slider-price-desc-to" type="text" class="price-slider__to" value="600"/>
+                        <input id="slider-price-desc-to" type="text" class="price-slider__to watch-filter" name="price" value=""/>
                     </div>
                 </div>
                 <div class="filters-buttons">
                     <button data-fancybox data-src="#password-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
-                    <button class="filters-submit-btn btn-hover" type="submit">Применить (327)</button>
+                    <button class="filters-submit-btn btn-hover" type="submit">Применить</button>
                 </div>
             </div>
             <div id="filters-desc-diameter" class="filters-desc-category">
@@ -674,12 +674,12 @@
                                 <div class="checkbox-block">
                                     <label class="checkbox-block__label">
                                         @if($diameter->height == $diameter->width)
-                                            <input type="checkbox" name="diameters[]" value="{{$diameter->height}}" id="{{$diameter->height}}">
+                                            <input class="watch-filter" type="checkbox" name="diameters[]" value="{{$diameter->height}}" id="{{$diameter->height}}">
                                             <p>
                                                 <span>{{$diameter->height.' ('.$diameter->count_height.')'}}</span>
                                             </p>
                                         @else
-                                            <input type="checkbox" name="diameters[]" value="{{$diameter->height.'/'.$diameter->width}}" id="{{$diameter->height.'/'.$diameter->width}}">
+                                            <input class="watch-filter" type="checkbox" name="diameters[]" value="{{$diameter->height.'/'.$diameter->width}}" id="{{$diameter->height.'/'.$diameter->width}}">
                                             <p>
                                                 <span>{{$diameter->height.'/'.$diameter->width.' ('.$diameter->count_height.')'}}</span>
                                             </p>
@@ -691,7 +691,7 @@
                     </ul>
                     <div class="filters-buttons">
                         <button data-fancybox data-src="#password-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
-                        <button class="filters-submit-btn btn-hover" type="submit">Применить (327)</button>
+                        <button class="filters-submit-btn btn-hover" type="submit">Применить</button>
                     </div>
                 </div>
             </div>
@@ -716,7 +716,7 @@
                             <li>
                                 <div class="checkbox-block">
                                     <label class="checkbox-block__label">
-                                        <input type="checkbox" name="years[]" value="{{$year->release_year}}" id="{{$year->release_year}}">
+                                        <input class="watch-filter" type="checkbox" name="years[]" value="{{$year->release_year}}" id="{{$year->release_year}}">
                                         <p><span>{{$year->release_year.' ('.$year->count_release_year.')'}}</span></p>
                                     </label>
                                 </div>
@@ -725,7 +725,7 @@
 {{--                        <li>--}}
 {{--                            <div class="checkbox-block">--}}
 {{--                                <label class="checkbox-block__label">--}}
-{{--                                    <input type="checkbox" name="years[]" value="Victorinox">--}}
+{{--                                    <input class="watch-filter" type="checkbox" name="years[]" value="Victorinox">--}}
 {{--                                    <p>--}}
 {{--                                        <span>Неизвесто{{' ('.count($watchAdverts->where('is_release_year_confirmed', 0)).')'}}</span>--}}
 {{--                                    </p>--}}
@@ -735,7 +735,7 @@
                     </ul>
                     <div class="filters-buttons">
                         <button data-fancybox data-src="#password-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
-                        <button class="filters-submit-btn btn-hover" type="submit">Применить (327)</button>
+                        <button class="filters-submit-btn btn-hover" type="submit">Применить</button>
                     </div>
                 </div>
             </div>
@@ -760,7 +760,7 @@
                             <li>
                                 <div class="checkbox-block">
                                     <label class="checkbox-block__label">
-                                        <input type="checkbox" name="regions[]" value="{{$region->region}}" id="{{$region->region}}">
+                                        <input class="watch-filter" type="checkbox" name="regions[]" value="{{$region->region}}" id="{{$region->region}}">
                                         <p><span>{{$region->region.' ('.$region->count_region.')'}}</span></p>
                                     </label>
                                 </div>
@@ -769,7 +769,7 @@
                     </ul>
                     <div class="filters-buttons">
                         <button data-fancybox data-src="#password-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
-                        <button class="filters-submit-btn btn-hover" type="submit">Применить (327)</button>
+                        <button class="filters-submit-btn btn-hover" type="submit">Применить</button>
                     </div>
                 </div>
             </div>
@@ -790,7 +790,7 @@
                                                 <li>
                                                     <div class="checkbox-block">
                                                         <label class="checkbox-block__label">
-                                                            <input type="checkbox" name="brands[]" value="{{$brand->watch_make_title}}" id="{{$brand->watch_make_title}}">
+                                                            <input class="watch-filter" type="checkbox" name="brands[]" value="{{$brand->watch_make_title}}" id="{{$brand->watch_make_title}}">
                                                             <p><span>{{$brand->watch_make_title.' ('.$brand->count_watch_make_title.')'}}</span></p>
                                                         </label>
                                                     </div>
@@ -805,7 +805,7 @@
                                                 <li>
                                                     <div class="checkbox-block">
                                                         <label class="checkbox-block__label">
-                                                            <input type="checkbox" name="models[]" value="{{$model->watch_model_title}}" id="{{$model->watch_model_title}}">
+                                                            <input class="watch-filter" type="checkbox" name="models[]" value="{{$model->watch_model_title}}" id="{{$model->watch_model_title}}">
                                                             <p><span>{{$model->watch_model_title.' ('.$model->count_watch_model_title.')'}}</span></p>
                                                         </label>
                                                     </div>
@@ -821,12 +821,12 @@
                                                     <div class="checkbox-block">
                                                         <label class="checkbox-block__label">
                                                             @if($diameter->height == $diameter->width)
-                                                                <input type="checkbox" name="diameters[]" value="{{$diameter->height}}" id="{{$diameter->height}}">
+                                                                <input  class="watch-filter" type="checkbox" name="diameters[]" value="{{$diameter->height}}" id="{{$diameter->height}}">
                                                                 <p>
                                                                     <span>{{$diameter->height.' ('.$diameter->count_height.')'}}</span>
                                                                 </p>
                                                             @else
-                                                                <input type="checkbox" name="diameters[]" value="{{$diameter->height.'/'.$diameter->width}}" id="{{$diameter->height.'/'.$diameter->width}}">
+                                                                <input class="watch-filter" type="checkbox" name="diameters[]" value="{{$diameter->height.'/'.$diameter->width}}" id="{{$diameter->height.'/'.$diameter->width}}">
                                                                 <p>
                                                                     <span>{{$diameter->height.'/'.$diameter->width.' ('.$diameter->count_height.')'}}</span>
                                                                 </p>
@@ -846,7 +846,7 @@
                                                 <li>
                                                     <div class="checkbox-block">
                                                         <label class="checkbox-block__label">
-                                                            <input type="checkbox" name="years[]" value="{{$year->release_year}}" id="{{$year->release_year}}">
+                                                            <input class="watch-filter" type="checkbox" name="years[]" value="{{$year->release_year}}" id="{{$year->release_year}}">
                                                             <p><span>{{$year->release_year.' ('.$year->count_release_year.')'}}</span></p>
                                                         </label>
                                                     </div>
@@ -861,7 +861,7 @@
                                                 <li>
                                                     <div class="checkbox-block">
                                                         <label class="checkbox-block__label">
-                                                            <input type="checkbox" name="regions[]" value="{{$region->region}}" id="{{$region->region}}">
+                                                            <input class="watch-filter" type="checkbox" name="regions[]" value="{{$region->region}}" id="{{$region->region}}">
                                                             <p><span>{{$region->region.' ('.$region->count_region.')'}}</span></p>
                                                         </label>
                                                     </div>
@@ -885,7 +885,7 @@
                                                 <li>
                                                     <div class="checkbox-block">
                                                         <label class="checkbox-block__label">
-                                                            <input type="checkbox" name="mechanismTypes[]" value="{{$mechanismType->mechanism_type_title}}" id="{{$mechanismType->mechanism_type_title}}">
+                                                            <input  class="watch-filter" type="checkbox" name="mechanismTypes[]" value="{{$mechanismType->mechanism_type_title}}" id="{{$mechanismType->mechanism_type_title}}">
                                                             <p><span>{{$mechanismType->mechanism_type_title.' ('.$mechanismType->count_mechanism_type_title.')'}}</span></p>
                                                         </label>
                                                     </div>
@@ -900,7 +900,7 @@
                                                 <li>
                                                     <div class="checkbox-block">
                                                         <label class="checkbox-block__label">
-                                                            <input type="checkbox" name="states[]" value="{{$state->watch_state}}" id="{{$state->watch_state}}">
+                                                            <input class="watch-filter" type="checkbox" name="states[]" value="{{$state->watch_state}}" id="{{$state->watch_state}}">
                                                             <p><span>{{$state->watch_state.' ('.$state->count_watch_state.')'}}</span></p>
                                                         </label>
                                                     </div>
@@ -915,7 +915,7 @@
                                                 <li>
                                                     <div class="checkbox-block">
                                                         <label class="checkbox-block__label">
-                                                            <input type="checkbox" name="deliveryVolumes[]" value="{{$deliveryVolume->delivery_volume}}" id="{{$deliveryVolume->delivery_volume}}">
+                                                            <input class="watch-filter" type="checkbox" name="deliveryVolumes[]" value="{{$deliveryVolume->delivery_volume}}" id="{{$deliveryVolume->delivery_volume}}">
                                                             <p><span>{{$deliveryVolume->delivery_volume.' ('.$deliveryVolume->count_delivery_volume.')'}}</span></p>
                                                         </label>
                                                     </div>
@@ -933,7 +933,7 @@
                                                 <li>
                                                     <div class="checkbox-block">
                                                         <label class="checkbox-block__label">
-                                                            <input type="checkbox" name="sexes[]" value="{{$sex->sex_title}}" id="{{$sex->sex_title}}">
+                                                            <input class="watch-filter" type="checkbox" name="sexes[]" value="{{$sex->sex_title}}" id="{{$sex->sex_title}}">
                                                             <p><span>{{$sex->sex_title.' ('.$sex->count_sex_title.')'}}</span></p>
                                                         </label>
                                                     </div>
@@ -948,7 +948,7 @@
                                                 <li>
                                                     <div class="checkbox-block">
                                                         <label class="checkbox-block__label">
-                                                            <input type="checkbox" name="types[]" value="{{$type->watch_type_title}}" id="{{$type->watch_type_title}}">
+                                                            <input class="watch-filter" type="checkbox" name="types[]" value="{{$type->watch_type_title}}" id="{{$type->watch_type_title}}">
                                                             <p><span>{{$type->watch_type_title.' ('.$type->count_watch_type_title.')'}}</span></p>
                                                         </label>
                                                     </div>
@@ -963,7 +963,7 @@
 
                     <div class="filters-buttons">
                         <button data-fancybox data-src="#password-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
-                        <button class="filters-submit-btn btn-hover" type="submit">Применить (327)</button>
+                        <button class="filters-submit-btn btn-hover" type="submit">Применить</button>
                     </div>
                 </div>
             </div>

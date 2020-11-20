@@ -80,4 +80,16 @@ class CatalogController extends Controller
         return redirect()->back();
     }
 
+    public function countResults(CatalogService $service, Request $request)
+    {
+        $service->index($request);
+        $a = $service->index($request);
+
+        $data = [
+            'count' => $a['countResults']
+        ];
+
+        return response()->json($data);
+    }
+
 }
