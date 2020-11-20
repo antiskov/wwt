@@ -58,14 +58,13 @@
                     <div class="filters-mob-list__content">
                         <div class="price-slider price-slider_mob">
                             <div class="price-slider__line">
-                                <input id="slider-price-mob" type="text" class="range-slider" name="price" value=""
-                                       data-from="0"
-                                       data-to="600" data-min="0" data-max="600"/>
+                                <input id="slider-price-mob" type="text" class="range-slider watch-filter" value=""
+                                       data-from="0" data-to="{{$maxPrice}}" data-min="0" data-max="{{$maxPrice}}"/>
                             </div>
                             <div class="price-slider__controls">
-                                <input id="slider-price-mob-from" type="text" class="price-slider__from" value="0"/>
+                                <input id="slider-price-mob-from" type="text" class="price-slider__from watch-filter" name="prices[0]" value="0"/>
                                 <p>uah</p>
-                                <input id="slider-price-mob-to" type="text" class="price-slider__to" value="600"/>
+                                <input id="slider-price-mob-to" type="text" class="price-slider__to watch-filter" name="prices[1]" value="300"/>
                             </div>
                         </div>
                     </div>
