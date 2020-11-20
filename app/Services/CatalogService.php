@@ -42,18 +42,20 @@ use Illuminate\Support\Facades\DB;
 
 class CatalogService
 {
-    public function paginateArray($data, $perPage = 15, $path = 'none')
+
+    public function paginateCustom($thisPaginate, $path = 'none', $perPage = 15, $columns = ['*'], $pageName = 'page', $page = null)
     {
-        $page = Paginator::resolveCurrentPage();
-        $total = count($data);
-        $results = array_slice($data, ($page - 1) * $perPage, $perPage);
+        $page = $page ?: Paginator::resolveCurrentPage($pageName);
+
+        $total = $thisPaginate->getCountForPagination();
+
+        $results = $total ? $thisPaginate->forPage($page, $perPage)->get($columns) : collect();
 
         if($path != 'none') {
             return new LengthAwarePaginator($results, $total, $perPage, $page, [
                 'path' => $path,
             ]);
         }
-
         return new LengthAwarePaginator($results, $total, $perPage, $page, [
             'path' => Paginator::resolveCurrentPath(),
         ]);
@@ -100,11 +102,8 @@ class CatalogService
             ->addSelect(DB::raw('COUNT(watch_type_title) as count_watch_type_title'))
             ->groupBy('watch_type_title')->get();
 
-        if($this->getFilter($request) == '1') {
-            $adverts = DB::table('catalog_view')->whereRaw($this->getFilter($request))->paginate(6);
-        } else {
-            $adverts = $this->paginateArray(DB::table('catalog_view')->whereRaw($this->getFilter($request))->get()->toArray(), 6, $request->fullUrl());
-        }
+        $adverts = $this->paginateCustom(DB::table('catalog_view')->whereRaw($this->getFilter($request)),  $request->fullUrl(), 6);
+
         \Cookie::queue(\Cookie::forget('searchLink'));
         setcookie("searchLink", $request->fullUrl(), time()+3600);
 
