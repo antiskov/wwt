@@ -17,7 +17,7 @@ class CreateSearchLinksTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('link');
+            $table->json('link');
             $table->timestamps();
             $table->softDeletes();
         });

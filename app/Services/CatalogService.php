@@ -193,7 +193,7 @@ class CatalogService
         ];
     }
 
-    public function goodsIndex(User $user, Advert $advert)
+    public function goodsIndex(User $user, Advert $advert, UserService $userService)
     {
         $expiresAt = now()->addHours(24);
 
@@ -205,11 +205,6 @@ class CatalogService
             $role = auth()->user()->role_id;
         } else {
             $role = 1;
-        }
-
-        $userLanguages = [];
-        foreach ($user->languages as $l) {
-            $userLanguages[] = $l->code;
         }
 
         if($advert->type == 'watch') {
@@ -224,7 +219,7 @@ class CatalogService
             'role' => $role,
             'advert' => $advert,
             'mechanismType' => $mechanismType->title,
-            'userLanguages' => $userLanguages,
+            'userLanguages' => $userService->userLanguages($user),
             'user' => $user,
             'favorite' => UserFavoriteAdvert::where('user_id', $user->id)->where('advert_id', $advert->id)->first(),
         ];
@@ -315,11 +310,13 @@ class CatalogService
             }
             $query .= " and watch_type_title in ($title)";
         }
-        if (isset($request->price)) {
-            $title = $request->price;
-            $query .= " and release_year in ($title)";
+        if (isset($request->prices)) {
+            $titleMin = $request->prices[0];
+            $titleMax = $request->prices[1];
+            $query .= " and price > $titleMin and price < $titleMax";
         }
-
+//        dd($request->prices[1]);
+//        dd($query);
         return $query;
     }
 
@@ -328,12 +325,12 @@ class CatalogService
         return ['adverts' => DB::table('catalog_view')->whereRaw($this->getFilter($request))->paginate(6)];
     }
 
-    public function saveSearch()
+    public function saveSearch($serviceArray)
     {
-//        dd($_COOKIE["searchLink"]);
+        $searchRequest = json_encode($serviceArray['adverts']);
         $search = new SearchLink();
         $search->user()->associate(auth()->user());
-        $search->link = $_COOKIE["searchLink"];
+        $search->link = json_encode($searchRequest);
         $search->save();
     }
 }

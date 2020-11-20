@@ -46,18 +46,13 @@ class ProfileController extends Controller
         return redirect()->back();
     }
 
-    public function editingProfileIndex(ProfileService $service)
+    public function editingProfileIndex(ProfileService $service, UserService $userService)
     {
         $percentage = $service->calculate(auth()->user());
 
-        $userLanguages = [];
-        foreach (auth()->user()->languages as $l) {
-            $userLanguages[] = $l->code;
-        }
-
         return view('profile_user.pages.editing_profile', [
             'timezones' => Timezone::all(),
-            'userLanguages' => $userLanguages,
+            'userLanguages' => $userService->userLanguages(auth()->user()),
             'percentage' => $percentage,
         ]);
     }
@@ -96,7 +91,8 @@ class ProfileController extends Controller
 
     public function myAdverts(Request $request)
     {
-        return view('profile_user.pages.my_adverts', ['adverts' => Advert::where('user_id', auth()->user()->id)->where('status_id', 1)->get()]);
+        $adverts = Advert::where('user_id', auth()->user()->id)->where('status_id', 1)->get();
+        return view('profile_user.pages.my_adverts', ['adverts' => $adverts]);
     }
 
     public function myAdvertsChange(int $status)

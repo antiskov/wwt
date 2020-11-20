@@ -48,7 +48,7 @@
                                 <button class="advertice">Реклама</button>
                             </div>
                             <div class="set-block">
-                                <a href="{{route('catalog.item-page', [$advert->user_id, $advert->id])}}" class="sett">посмотреть</a>
+                                <a href="{{route('catalog.item-page', [$advert])}}" class="sett">посмотреть</a>
                                 <a href="#/" class="sett">редактировать</a>
                                 <a href="#/" class="sett">деактивировать</a>
                                 <div class="soc-block">

@@ -155,4 +155,14 @@ class UserService
         return $check;
     }
 
+    public function userLanguages(User $user)
+    {
+        $userLanguages = [];
+        foreach ($user->languages as $l) {
+            $userLanguages[] = $l->code;
+        }
+
+        return $userLanguages;
+    }
+
 }

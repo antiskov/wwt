@@ -25,6 +25,7 @@ use App\Models\WatchType;
 use App\Models\YearAdvert;
 use App\Services\CatalogService;
 use App\Services\CustomPaginateService;
+use App\Services\UserService;
 use Database\Seeders\DeliveryVolumeSeeder;
 use Illuminate\Http\Request;
 
@@ -59,23 +60,18 @@ class CatalogController extends Controller
         return view('catalog.pages.spare_parts', $service->indexSparePart());
     }
 
-    public function sellerPage(User $user)
+    public function sellerPage(User $user, UserService $service)
     {
-        $userLanguages = [];
-        foreach ($user->languages as $l) {
-            $userLanguages[] = $l->code;
-        };
         return view('catalog.pages.seller_page', [
             'user' => $user,
-            'userLanguages' => $userLanguages,
+            'userLanguages' => $service->userLanguages($user),
             'adverts' => Advert::where('user_id', $user->id)->get(),
         ]);
     }
 
     public function saveSearch(CatalogService $service, Request $request)
     {
-        $service->index($request);
-        $service->saveSearch();
+        $service->saveSearch($service->index($request));
 
         return redirect()->back();
     }

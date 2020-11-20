@@ -9,24 +9,21 @@ use App\Models\SparePartsMechanismType;
 use App\Models\User;
 use App\Models\UserFavoriteAdvert;
 use App\Services\CatalogService;
+use App\Services\UserService;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Http\Request;
 
 class GoodsController extends Controller
 {
-//    public function index(User $user, Advert $advert, CatalogService $service)
-//    {
-//        return view('catalog.pages.item-page', $service->goodsIndex($user, $advert));
-//    }
-    public function index(Advert $advert, CatalogService $service)
+    public function index(Advert $advert, CatalogService $service, UserService $userService)
     {
         $user = User::where('id', $advert->user_id)->first();
-        return view('catalog.pages.item-page', $service->goodsIndex($user, $advert));
+        return view('catalog.pages.item-page', $service->goodsIndex($user, $advert, $userService));
     }
 
     public function setFavorite(Advert $advert, $favorite)
     {
-        $user = User::where('id', $advert->user_id)->first();
+        $user = auth()->user();
         if($favorite == 1) {
             $user->favoriteAdverts()->save($advert);
         } else {

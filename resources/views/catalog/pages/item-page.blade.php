@@ -14,12 +14,12 @@
                     if(!this.classList.contains('active')) {
                         console.log(1);
                         $.ajax({
-                            url: '/catalog/{{$advert->user_id}}/item_page_favorite/{{$advert->id}}/{{1}}',
+                            url: '/catalog/item_page_favorite/{{$advert->id}}/{{1}}',
                         })
                     } else {
                         console.log(0);
                         $.ajax({
-                            url: '/catalog/{{$advert->user_id}}/item_page_favorite/{{$advert->id}}/{{0}}',
+                            url: '/catalog/item_page_favorite/{{$advert->id}}/{{0}}',
                         })
                     }
                 })
@@ -30,9 +30,9 @@
                 <div class="container">
                     <div class="person">
                         <div class="person-prof">
-                            <img
-                                src="{{asset('/storage/images/profiles/'.$user->email.'/small_'.$user->avatar)}}"
-                                alt="img">
+                            <a href="{{route('seller-page', $user->id)}}">
+                                <img src="{{asset('/storage/images/profiles/'.$user->email.'/small_'.$user->avatar)}}" alt="img">
+                            </a>
                         </div>
 {{--                        <div class="person-rating">--}}
 {{--                            <img src="./images/icons/stars.svg" alt="img">--}}

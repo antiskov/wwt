@@ -637,14 +637,14 @@
                 <span class="filters-desc__close-btn"></span>
                 <div class="price-slider">
                     <div class="price-slider__line">
-                        <input id="slider-price-desc" type="text" class="range-slider watch-filter" name="price" value=""
+                        <input id="slider-price-desc" type="text" class="range-slider watch-filter" value=""
                                data-from="0"
                                data-to="{{$maxPrice}}" data-min="0" data-max="{{$maxPrice}}"/>
                     </div>
                     <div class="price-slider__controls">
-                        <input id="slider-price-desc-from" type="text" class="price-slider__from watch-filter" name="price" value="0"/>
+                        <input id="slider-price-desc-from" type="text" class="price-slider__from watch-filter" name="prices[0]" value="0"/>
                         <p>uah</p>
-                        <input id="slider-price-desc-to" type="text" class="price-slider__to watch-filter" name="price" value=""/>
+                        <input id="slider-price-desc-to" type="text" class="price-slider__to watch-filter" name="prices[1]" value="300"/>
                     </div>
                 </div>
                 <div class="filters-buttons">
