@@ -4,7 +4,7 @@
 namespace App\Services;
 
 
-use App\Contracts\AdvertsInterface;
+use App\Contracts\Filter;
 use App\Models\Advert;
 use App\Models\Banner;
 use Illuminate\Http\Request;

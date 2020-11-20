@@ -548,7 +548,7 @@
 {{--    </form>--}}
 {{--    <form id="filter" class="filters-desc" method="get" action="{{route('catalog.filter-json')}}">--}}
 {{--    <form id="filter" class="filters-desc" method="get" action="{{route('catalog.filter')}}">--}}
-    <form id="filter" class="filters-desc" method="get" action="{{route('catalog.filter')}}">
+    <form id="filter" class="filters-desc" method="get" action="{{route('catalog')}}">
         <div class="filters-desc-tabs">
             <button class="reset-filters-btn btn-hover" type="reset">Сбросить</button>
             <ul class="filters-desc-nav">

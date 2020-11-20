@@ -4,6 +4,8 @@
 namespace App\Services;
 
 
+use App\Domain\FilterDirector;
+use App\Domain\filters\WatchFilter;
 use App\Models\AccessoryMechanismType;
 use App\Models\Advert;
 use App\Models\BraceletClasp;
@@ -105,9 +107,6 @@ class CatalogService
         $maxPrice = DB::table('catalog_view')->max('price');
 
         $adverts = $this->paginateCustom(DB::table('catalog_view')->whereRaw($this->getFilter($request)),  $request->fullUrl(), 6);
-//        dd(DB::table('catalog_view')->whereRaw($this->getFilter($request))->get()->count());
-        \Cookie::queue(\Cookie::forget('searchLink'));
-        setcookie("searchLink", $request->fullUrl(), time()+600);
 
         return [
             'adverts' => $adverts,
@@ -227,96 +226,11 @@ class CatalogService
 
     public function getFilter(Request $request)
     {
-        $title = "";
-        $query = '1';
-        if (isset($request->brands)) {
-            $title = "'".$request->brands[0]."'";
-            foreach ($request->brands as $brand) {
-                $title .= ", '$brand'";
-            }
-            $query .= " and watch_make_title in ($title)";
-        }
-        if (isset($request->models)) {
-            $title = "'".$request->models[0]."'";
-            foreach ($request->models as $model) {
-                $title .= ", '$model'";
-            }
-            $query .= " and watch_model_title in ($title)";
-        }
-        if (isset($request->models)) {
-            $title = "'".$request->models[0]."'";
-            foreach ($request->models as $model) {
-                $title .= ", '$model'";
-            }
-            $query .= " and watch_model_title in ($title)";
-        }
-        if (isset($request->diameters)) {
-            $heightWidth  = explode('/', $request->diameters[0]);
-            $height = $heightWidth[0];
-            $width = $heightWidth[1];
-            foreach ($request->diameters as $diameter) {
-                $heightWidth  = explode('/', $diameter);
-                $height .= ", $heightWidth[0]";
-                $width .= ", $heightWidth[1]";
-            }
-            $query .= " and height in ($height) and width in ($width)";
-        }
-        if (isset($request->years)) {
-            $title = $request->years[0];
-            foreach ($request->years as $year) {
-                $title .= ", $year";
-            }
-            $query .= " and release_year in ($title)";
-        }
-        if (isset($request->regions)) {
-            $title = "'".$request->regions[0]."'";
-            foreach ($request->regions as $region) {
-                $title .= ", '$region'";
-            }
-            $query .= " and region in ($title)";
-        }
-        if (isset($request->mechanismTypes)) {
-            $title = "'".$request->mechanismTypes[0]."'";
-            foreach ($request->mechanismTypes as $mechanismType) {
-                $title .= ", '$mechanismType'";
-            }
-            $query .= " and mechanism_type_title in ($title)";
-        }
-        if (isset($request->states)) {
-            $title = "'".$request->states[0]."'";
-            foreach ($request->states as $state) {
-                $title .= ", '$state'";
-            }
-            $query .= " and watch_state in ($title)";
-        }
-        if (isset($request->deliveryVolumes)) {
-            $title = "'".$request->deliveryVolumes[0]."'";
-            foreach ($request->deliveryVolumes as $deliveryVolume) {
-                $title .= ", '$deliveryVolume'";
-            }
-            $query .= " and delivery_volume in ($title)";
-        }
-        if (isset($request->sexes)) {
-            $title = "'".$request->sexes[0]."'";
-            foreach ($request->sexes as $sex) {
-                $title .= ", '$sex'";
-            }
-            $query .= " and sex_title in ($title)";
-        }
-        if (isset($request->types)) {
-            $title = "'".$request->types[0]."'";
-            foreach ($request->types as $type) {
-                $title .= ", '$type'";
-            }
-            $query .= " and watch_type_title in ($title)";
-        }
-        if (isset($request->prices)) {
-            $titleMin = $request->prices[0];
-            $titleMax = $request->prices[1];
-            $query .= " and price > $titleMin and price < $titleMax";
-        }
-//        dd($request->prices[1]);
-//        dd($query);
+        $watchFilter = new WatchFilter();
+        $director = new FilterDirector();
+        $director->createQueryWatchFilter($request, $watchFilter);
+        $query = $director->getQuery();
+
         return $query;
     }
 

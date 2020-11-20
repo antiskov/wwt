@@ -5,7 +5,7 @@ namespace App\Services;
 
 
 use App\Contracts\AdvertCreator;
-use App\Contracts\AdvertsInterface;
+use App\Contracts\Filter;
 use App\Models\Advert;
 use App\Models\Status;
 
@@ -16,7 +16,7 @@ use App\Exceptions\UnknownAdvertTypeException;
 
 class AdvertsService
 {
-    public function getCreatorId(AdvertsInterface $advert)
+    public function getCreatorId(Filter $advert)
     {
         return $advert->getUserId();
     }

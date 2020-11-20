@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use App\Contracts\AdvertsInterface;
+use App\Contracts\Filter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class WatchAdvert extends Model implements AdvertsInterface
+class WatchAdvert extends Model
 {
     use HasFactory;
 

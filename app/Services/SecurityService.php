@@ -4,7 +4,7 @@
 namespace App\Services;
 
 
-use App\Contracts\AdvertsInterface;
+use App\Contracts\Filter;
 use App\Mail\RegisterEmail;
 use App\Mail\WelcomeMail;
 use App\Models\User;
@@ -14,7 +14,7 @@ use Illuminate\Support\Str;
 
 class SecurityService
 {
-    public function can(User $user,AdvertsInterface $advert)
+    public function can(User $user, Filter $advert)
     {
         $role=(new UserService())->getRole($user);
 
