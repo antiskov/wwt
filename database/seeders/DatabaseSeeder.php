@@ -15,21 +15,28 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
         $this->call([
+            StatusSeeder::class,
+            CurrencySeeder::class,
             TimeZoneSeeder::class,
             LanguageSeeder::class,
             SexesSeeder::class,
             UserRolesSeeder::class,
-            StatusSeeder::class,
             UsersSeeder::class,
-            CurrencySeeder::class,
-            DeliveryVolumeSeeder::class,
-            AvailabilityStatusSeeder::class,
             AdvertsSeeder::class,
             AdvertsImageSeeder::class,
+            CategorySeeder::class,
             WatchModelSeeder::class,
             WatchAdvertSeeder::class,
+
+            AccessoryModelSeeder::class,
+            AccessoryAdvertSeeder::class,
+            AccessoryWatchSeeder::class,
+
+            SparePartsModelSeeder::class,
+            SparePartsAdvertSeeder::class,
+            SparePartsWatchSeeder::class,
+
         ]);
     }
 }

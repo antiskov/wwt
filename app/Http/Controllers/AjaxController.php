@@ -55,10 +55,8 @@ class AjaxController extends Controller
 
     public function registerUser(RegisterFormRequest $request, UserService $userService)
     {
-
-
-
         $user = $userService->create($request->getDto());
+
         return response()->json($userService->sendVerificationCode($user));
     }
 }

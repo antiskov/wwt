@@ -22,7 +22,9 @@ class UsersSeeder extends Seeder
                 'password'=>Hash::make('12345678'),
                 'is_active'=>1,
                 'referral_code'=>'hahahahaha',
-                'role_id'=>3
+                'role_id'=>3,
+                'latitude' => '50.4547',
+                'longtitude' => '30.5238',
             ]
         );
     }

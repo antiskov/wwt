@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\AdvertImage;
+use App\Models\BasicImageAdvert;
 use Illuminate\Database\Seeder;
 
 class AdvertsImageSeeder extends Seeder
@@ -27,7 +28,7 @@ class AdvertsImageSeeder extends Seeder
 
         AdvertImage::create(
             [
-                'advert_id' => 1,
+                'advert_id' => 2,
                 'full_path' => 'big_pokemon.png',
                 'medium_path' => 'medium_pokemon.png',
                 'minified_path' => 'small_pokemon.png',
@@ -38,7 +39,7 @@ class AdvertsImageSeeder extends Seeder
 
         AdvertImage::create(
             [
-                'advert_id' => 2,
+                'advert_id' => 3,
                 'full_path' => 'big_yoda.jpg',
                 'medium_path' => 'medium_yoda.jpg',
                 'minified_path' => 'small_yoda.jpg',
@@ -49,7 +50,7 @@ class AdvertsImageSeeder extends Seeder
 
         AdvertImage::create(
             [
-                'advert_id' => 2,
+                'advert_id' => 4,
                 'full_path' => 'big_pokemon.png',
                 'medium_path' => 'medium_pokemon.png',
                 'minified_path' => 'small_pokemon.png',
@@ -57,5 +58,21 @@ class AdvertsImageSeeder extends Seeder
                 'is_active' => 10,
             ]
         );
+
+        for($i = 1; $i < 40; $i++)
+        BasicImageAdvert::create([
+            'advert_id' => $i,
+            'title' => 'small_acc.jpeg',
+        ]);
+//        for($i = 11; $i <= 24; $i++)
+//        BasicImageAdvert::create([
+//            'advert_id' => $i,
+//            'title' => 'watch-1.png',
+//        ]);
+//        for($i = 25; $i <= 42; $i++)
+//        BasicImageAdvert::create([
+//            'advert_id' => $i,
+//            'title' => 'small_acc.jpeg',
+//        ]);
     }
 }

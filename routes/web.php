@@ -17,14 +17,14 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('set.locale')->group(function () {
     Route::get('/test{language}', [\App\Http\Controllers\SetLocaleController::class, 'setLocal'])->name('test');
     Route::get('/', [\App\Http\Controllers\HomeController::class, 'main'])->name('home');
-    Route::get('/test', [\App\Http\Controllers\HomeController::class, 'test']); //todo: remove on prod
+    Route::get('/test', [\App\Http\Controllers\HomeController::class, 'test']);
     Route::get('/logout', [\App\Http\Controllers\UserController::class, 'logout'])->name('logout');
     Route::post('/register-user', [\App\Http\Controllers\AjaxController::class, 'registerUser'])->name('register-user');
     Route::post('/check-login-email', [\App\Http\Controllers\AjaxController::class, 'checkLoginEmail'])->name('check-login-email');
     Route::post('/login-password', [\App\Http\Controllers\AjaxController::class, 'authUser'])->name('login-password');
     Route::get('/reset-password/{email}', [\App\Http\Controllers\UserController::class, 'resetPassword'])->name('reset-password');
     Route::get('/email_verification_code/{email_verification_code}', [\App\Http\Controllers\UserController::class, 'emailVerificationCode'])->name('activation_link');
-    Route::get('/item_page/{advert}', [\App\Http\Controllers\GoodsController::class, 'index'])->name('item-page');
+    Route::get('/seller/{user}', [\App\Http\Controllers\CatalogController::class, 'sellerPage'])->name('seller-page');
 
     Route::group(['prefix' => 'profile'], function () {
         Route::middleware('auth')->group(function () {
@@ -35,7 +35,20 @@ Route::middleware('set.locale')->group(function () {
             Route::get('/delete-avatar', [\App\Http\Controllers\ProfileController::class, 'deleteAvatar'])->name('delete-avatar');
             Route::get('/delete-user', [\App\Http\Controllers\ProfileController::class, 'deleteUser'])->name('delete-user');
             Route::get('/reset-password', [\App\Http\Controllers\ProfileController::class, 'resetPassword'])->name('reset-password');
+            Route::get('/my_adverts/', [\App\Http\Controllers\ProfileController::class, 'myAdverts'])->name('my_adverts');
+            Route::get('/my_adverts_change/{status}', [\App\Http\Controllers\ProfileController::class, 'myAdvertsChange'])->name('my_adverts_change');
         });
+    });
+
+    Route::group(['prefix' =>'catalog'], function() {
+        Route::get('/', [\App\Http\Controllers\CatalogController::class, 'index'])->name('catalog');
+        Route::get('/filter_json', [\App\Http\Controllers\CatalogController::class, 'filterJson'])->name('catalog.filter-json');
+        Route::get('/accessory', [\App\Http\Controllers\CatalogController::class, 'indexAccessory'])->name('catalog.accessory');
+        Route::get('/save_search/', [\App\Http\Controllers\CatalogController::class, 'saveSearch'])->name('catalog.save-search');
+        Route::get('/count_results/', [\App\Http\Controllers\CatalogController::class, 'countResults']);
+        Route::get('/spare_parts', [\App\Http\Controllers\CatalogController::class, 'indexSparePart'])->name('catalog.spare-parts');
+        Route::get('/item_page/{advert}', [\App\Http\Controllers\GoodsController::class, 'index'])->name('catalog.item-page');
+        Route::get('item_page_favorite/{advert}/{favorite}', [\App\Http\Controllers\GoodsController::class, 'setFavorite'])->name('catalog.item_page_favorite');
     });
 });
 

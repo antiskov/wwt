@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
 
-    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="css/style.css">
 
     <script defer src="js/plugins.js"></script>
     <script defer src="js/scripts.js"></script>
@@ -741,6 +741,14 @@
     </div>
     <section class="main-items">
         <div class="main-items-wrap">
+            <div class="choose-filter">
+                <ul class="choose-filter__content">
+                    <li class="active"><a href="#">Все</a></li>
+                    <li><a href="#">Часы</a></li>
+                    <li><a href="#">Аксессуары</a></li>
+                    <li><a href="#">Запчасти</a></li>
+                </ul>
+            </div>
             <section class="filters">
               <form action="/" class="filters-mob">
                 <div class="filters-mob-btns">
@@ -1866,14 +1874,7 @@
                     <div class="filters-desc-choices">
                       <div class="filters-desc-choices__items">
                         <h4>ВАШ ВЫБОР<span class="clear-filter-choices-btn"></span></h4>
-                        <ul data-list="filters-desc-brand-list" class="filters-desc-choices-list">
-                          <li>
-                            <div data-choice-value="Victorinox">Victorinox <span class="delete-choice-btn"></span></div>
-                          </li>
-                          <li>
-                            <div data-choice-value="Nouvelle Horlogerie Calabrese (NHC)">Nouvelle Horlogerie Calabrese (NHC) <span class="delete-choice-btn"></span></div>
-                          </li>
-                        </ul>
+                        <ul class="filters-desc-choices-list"></ul>
                       </div>
                       <div class="filters-desc-choices__quick">
                         <h4>Быстрый выбор</h4>
@@ -1889,15 +1890,14 @@
                     </div>
                     <div class="filters-desc-inputs">
                       <div class="filters-search">
-                        <input class="filters-search-field" data-search-list="filters-desc-brand-list" type="text"
-                          placeholder="Поиск по фильтру">
+                        <input class="filters-search-field" type="text" placeholder="Поиск по фильтру">
                         <span class="clear-field-btn"></span>
                       </div>
                       <ul id="filters-desc-brand-list" class="checkboxes-list">
                         <li>
                           <div class="checkbox-block">
                             <label class="checkbox-block__label">
-                              <input type="checkbox" name="Victorinox" value="Victorinox">
+                              <input type="checkbox" name="Victorinox" value="Victorinox" id="some_id_1">
                               <p><span>Victorinox (172)</span></p>
                             </label>
                           </div>
@@ -1905,7 +1905,7 @@
                         <li>
                           <div class="checkbox-block">
                             <label class="checkbox-block__label">
-                              <input type="checkbox" name="Victorinox" value="Nouvelle Horlogerie Calabrese (NHC)">
+                              <input type="checkbox" name="Victorinox" value="Nouvelle Horlogerie Calabrese (NHC)" id="some_id_2">
                               <p><span>Nouvelle Horlogerie Calabrese (NHC) (179)</span></p>
                             </label>
                           </div>
@@ -1913,7 +1913,7 @@
                         <li>
                           <div class="checkbox-block">
                             <label class="checkbox-block__label">
-                              <input type="checkbox" name="Victorinox" value="Victorinox">
+                              <input type="checkbox" name="Victorinox" value="Victorinox" id="some_id_3">
                               <p><span>Victorinox (172)</span></p>
                             </label>
                           </div>
@@ -1921,7 +1921,7 @@
                         <li>
                           <div class="checkbox-block">
                             <label class="checkbox-block__label">
-                              <input type="checkbox" name="Victorinox" value="Nouvelle Horlogerie Calabrese (NHC)">
+                              <input type="checkbox" name="Victorinox" value="Nouvelle Horlogerie Calabrese (NHC)" id="some_id_4">
                               <p><span>Nouvelle Horlogerie Calabrese (NHC) (179)</span></p>
                             </label>
                           </div>

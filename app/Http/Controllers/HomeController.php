@@ -20,7 +20,7 @@ class HomeController extends Controller
      * @return Application|Factory|View
      */
     public function main() {
-
+        
         return view('pages.main');
     }
 
@@ -30,7 +30,7 @@ class HomeController extends Controller
      */
     public function test(ImageMinificationService $req)
     {
-        $req->minify('public/pokemon.png', ['medium', 'big', 'small']);
+        $req->minify('public/acc.jpeg', ['medium', 'big', 'small']);
 
         return view('pages.main');
     }

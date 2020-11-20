@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileRequest;
+use App\Models\Advert;
 use App\Models\Timezone;
 use App\Models\UserLanguage;
 use App\Models\UserSettings;
@@ -28,11 +29,8 @@ class ProfileController extends Controller
     {
         $check = $user->check();
 
-//        $settings = UserSettings::where('user_id', auth()->user()->id)->first();
-
         return view('profile_user.pages.settings' , [
             'check' => $check,
-//            'settings' => $settings,
         ]);
     }
 
@@ -48,18 +46,13 @@ class ProfileController extends Controller
         return redirect()->back();
     }
 
-    public function editingProfileIndex(ProfileService $service)
+    public function editingProfileIndex(ProfileService $service, UserService $userService)
     {
         $percentage = $service->calculate(auth()->user());
 
-        $userLanguages = [];
-        foreach (auth()->user()->languages as $l) {
-            $userLanguages[] = $l->code;
-        }
-
         return view('profile_user.pages.editing_profile', [
             'timezones' => Timezone::all(),
-            'userLanguages' => $userLanguages,
+            'userLanguages' => $userService->userLanguages(auth()->user()),
             'percentage' => $percentage,
         ]);
     }
@@ -94,5 +87,20 @@ class ProfileController extends Controller
         $service->resetPassword(auth()->user());
 
         return redirect()->back();
+    }
+
+    public function myAdverts(Request $request)
+    {
+        $adverts = Advert::where('user_id', auth()->user()->id)->where('status_id', 1)->get();
+        return view('profile_user.pages.my_adverts', ['adverts' => $adverts]);
+    }
+
+    public function myAdvertsChange(int $status)
+    {
+        $data = [
+            'output' => view('profile_user.partials.my_advert_div', ['adverts' => Advert::where('user_id', auth()->user()->id)->where('status_id', $status)->get()])->toHtml(),
+        ];
+
+        return response()->json($data);
     }
 }

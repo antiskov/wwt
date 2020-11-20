@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use App\Contracts\AdvertsInterface;
+use App\Contracts\Filter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class WatchAdvert extends Model implements AdvertsInterface
+class WatchAdvert extends Model
 {
     use HasFactory;
 
@@ -54,4 +54,20 @@ class WatchAdvert extends Model implements AdvertsInterface
     {
         return $this->belongsTo(Glass::class);
     }
+
+    public function diameterWatch()
+    {
+        return $this->belongsTo(DiameterWatch::class);
+    }
+
+    public function yearAdvert()
+    {
+        return $this->belongsTo(YearAdvert::class);
+    }
+
+    public function options()
+    {
+        return $this->belongsToMany(Option::class,);
+    }
+
 }

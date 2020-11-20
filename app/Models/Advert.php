@@ -2,22 +2,23 @@
 
 namespace App\Models;
 
-use Database\Seeders\AvailabilityStatusSeeder;
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Advert extends Model
+class Advert extends Model implements Viewable
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, InteractsWithViews;
 
-    protected $fillable = [
-        'type',
-        'title',
-        'price',
-        'name',
-        'surname',
-    ];
+//    protected $fillable = [
+//        'type',
+//        'title',
+//        'price',
+//        'name',
+//        'surname',
+//    ];
 
     public function currency()
     {
@@ -59,4 +60,27 @@ class Advert extends Model
         return $this->hasOne(WatchAdvert::class);
     }
 
+    public function basicImageAdvert()
+    {
+        return $this->hasOne(BasicImageAdvert::class);
+    }
+
+    public function province()
+    {
+        return $this->belongsTo(Province::class);
+    }
+
+    public function accessoryAdvert()
+    {
+        return $this->hasOne(AccessoryAdvert::class);
+    }
+    public function sparePartsAdvert()
+    {
+        return $this->hasOne(SparePartsAdvert::class);
+    }
+
+    public function favoriteAdverts()
+    {
+        return $this->hasMany(UserFavoriteAdvert::class);
+    }
 }

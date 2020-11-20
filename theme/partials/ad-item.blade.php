@@ -1,4 +1,4 @@
-<div class="ad-item">
+<div class="announce-item">
 
     <div class="chek_cont_set">
         <label class="checkbox-other">

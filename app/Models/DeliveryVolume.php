@@ -11,6 +11,6 @@ class DeliveryVolume extends Model
 
     public function adverts()
     {
-        return $this->hasOne(Advert::class);
+        return $this->hasMany(Advert::class);
     }
 }
