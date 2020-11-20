@@ -70,10 +70,9 @@
                 $.ajax({
                     type:"get",
                     url: '/catalog/count_results',
-                    data: $('#filter').serializeArray(),
+                    data: $('.filter-search').serializeArray(),
                     success: function (data) {
-                        // console.log('success');
-                        console.log('111');
+                        console.log('success');
                         $('.filters-submit-btn').text('Применить ('+data.count+")");
                     },
                     error: function (xhr) {
