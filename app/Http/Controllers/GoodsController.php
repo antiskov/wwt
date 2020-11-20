@@ -20,12 +20,13 @@ class GoodsController extends Controller
 //    }
     public function index(Advert $advert, CatalogService $service)
     {
+        $user = User::where('id', $advert->user_id)->first();
         return view('catalog.pages.item-page', $service->goodsIndex($user, $advert));
     }
 
-    public function setFavorite(User $user, Advert $advert, $favorite)
+    public function setFavorite(Advert $advert, $favorite)
     {
-
+        $user = User::where('id', $advert->user_id)->first();
         if($favorite == 1) {
             $user->favoriteAdverts()->save($advert);
         } else {
