@@ -115,22 +115,25 @@ class ProfileController extends Controller
     public function changeFavorite(int $status)
     {
         $searchLinks = [];
-        foreach (auth()->user()->searchLinks as $link) dump($searchLinks[] = $link->link_search);
-        die;
-//        dd(auth()->user()->favoriteAdverts()->link_search);
-//        dd(route('catalog-json', [json_decode(auth()->user()->favoriteAdverts[0]->link)]));
+        foreach (auth()->user()->searchLinks as $link) {
+            $searchLinks[$link->id]['title'] = $link->title;
+            $searchLinks[$link->id]['link'] = $link->link_search;
+        }
 
         $data = [
             'output' => view('profile_user.partials.favorite_block', [
                 'status' => $status,
                 'adverts' => auth()->user()->favoriteAdverts,
-                'searchLinksId' => $searchLinks,
+                'searchLinks' => $searchLinks,
             ])->toHtml(),
         ];
-
-//        dd($data);
-
+        
         return response()->json($data);
+    }
+
+    public function deleteFavorite()
+    {
+        
     }
 
 }
