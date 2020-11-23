@@ -40,6 +40,7 @@ use App\Models\YearAdvert;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 
 class CatalogService
@@ -107,6 +108,9 @@ class CatalogService
         $maxPrice = DB::table('catalog_view')->max('price');
 
         $adverts = $this->paginateCustom(DB::table('catalog_view')->whereRaw($this->getFilter($request)),  $request->fullUrl(), 6);
+
+//        Cookie::queue(Cookie::forget('searchLink'));
+        setcookie("searchLink", $request->fullUrl(), time()+600);
 
         return [
             'adverts' => $adverts,
@@ -244,12 +248,12 @@ class CatalogService
     {
         $filters = json_encode($serviceArray['adverts']);
         $link = json_encode($serviceArray['linkSearch']);
-
+//        dd($_COOKIE['searchLink']);
 
         $search = new SearchLink();
         $search->user()->associate(auth()->user());
         $search->filter = $filters;
-        $search->link_search = $link;
+        $search->link_search = $_COOKIE['searchLink'];
         $search->title = 'Example name';
         $search->save();
     }
