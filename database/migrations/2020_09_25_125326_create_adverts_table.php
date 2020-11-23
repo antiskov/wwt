@@ -22,7 +22,6 @@ class CreateAdvertsTable extends Migration
             $table->text('description')->nullable();
             $table->integer('price')->nullable();
             $table->unsignedBigInteger('currency_id');
-            $table->foreign('currency_id')->references('id')->on('currencies');
             $table->unsignedBigInteger('status_id')->default(0);
             $table->foreign('status_id')->references('id')->on('statuses');
             $table->string('surname')->nullable();
