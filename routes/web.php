@@ -51,6 +51,7 @@ Route::middleware('set.locale')->group(function () {
         Route::get('/spare_parts', [\App\Http\Controllers\CatalogController::class, 'indexSparePart'])->name('catalog.spare-parts');
         Route::get('/item_page/{advert}', [\App\Http\Controllers\GoodsController::class, 'index'])->name('catalog.item-page');
         Route::get('/item_page_favorite/{advert}/{favorite}', [\App\Http\Controllers\GoodsController::class, 'setFavorite'])->name('catalog.item_page_favorite');
+        Route::get('/{search}', [\App\Http\Controllers\CatalogController::class, 'index'])->name('catalog-json');
     });
 });
 

@@ -122,6 +122,7 @@ class CatalogService
             'types' => $types,
             'maxPrice' => $maxPrice,
             'countResults' => DB::table('catalog_view')->whereRaw($this->getFilter($request))->get()->count(),
+            'linkSearch' => $request->fullUrl(),
         ];
     }
 
@@ -241,10 +242,15 @@ class CatalogService
 
     public function saveSearch($serviceArray)
     {
-        $searchRequest = json_encode($serviceArray['adverts']);
+        $filters = json_encode($serviceArray['adverts']);
+        $link = json_encode($serviceArray['linkSearch']);
+
+
         $search = new SearchLink();
         $search->user()->associate(auth()->user());
-        $search->link = json_encode($searchRequest);
+        $search->filter = $filters;
+        $search->link_search = $link;
+        $search->title = 'Example name';
         $search->save();
     }
 }

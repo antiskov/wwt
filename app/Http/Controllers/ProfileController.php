@@ -106,9 +106,6 @@ class ProfileController extends Controller
 
     public function getFavorite()
     {
-//        foreach (auth()->user()->favoriteAdverts as $f) dump($f);
-//        die;
-//        dd(auth()->user()->favoriteAdverts());
         return view('profile_user.pages.favorite', [
             'status' => 1,
             'adverts' => auth()->user()->favoriteAdverts,
@@ -117,13 +114,21 @@ class ProfileController extends Controller
 
     public function changeFavorite(int $status)
     {
-            $data = [
-//                'output' => view('profile_user.partials.favorite_block', ['adverts' => Advert::where('user_id', auth()->user()->id)->where('status_id', $status)->get()])->toHtml(),
-                'output' => view('profile_user.partials.favorite_block', [
-                    'status' => $status,
-                    'adverts' => auth()->user()->favoriteAdverts,
-                ])->toHtml(),
-            ];
+        $searchLinks = [];
+        foreach (auth()->user()->searchLinks as $link) dump($searchLinks[] = $link->link_search);
+        die;
+//        dd(auth()->user()->favoriteAdverts()->link_search);
+//        dd(route('catalog-json', [json_decode(auth()->user()->favoriteAdverts[0]->link)]));
+
+        $data = [
+            'output' => view('profile_user.partials.favorite_block', [
+                'status' => $status,
+                'adverts' => auth()->user()->favoriteAdverts,
+                'searchLinksId' => $searchLinks,
+            ])->toHtml(),
+        ];
+
+//        dd($data);
 
         return response()->json($data);
     }

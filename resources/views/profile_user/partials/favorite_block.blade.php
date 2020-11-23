@@ -1,15 +1,20 @@
 <div id="favorite_block" class="items-anno">
     @if($status == '2')
+        @foreach($searchLinksId as $searchLinkId)
+{{--        @foreach(auth()->user()->favoriteAdverts as $searchLink)--}}
         <div class="items-wrap">
             <div class="search-item">
                 <div class="search-item__delete-btn"></div>
                 <div class="search-item__text">
-                    <h5>Blancpein Calendar 34mm 2360</h5>
+{{--                    <h5><a href="{{route('catalog-json', [json_decode($searchLink->filter, true)])}}">{{$searchLink->title}}</a></h5>--}}
+{{--                    <h5><a href="{{route('catalog-json', [json_decode($searchLink->link, true)])}}">{{$searchLink->title}}</a></h5>--}}
+                    <h5><a href="{{route('catalog-json', [auth()->user()->favoriteAdverts[$searchLinkId]->link])}}">dasasd</a></h5>
                     <p>Сохраненные результаты поиска от 25 сент. 2020 г., последнее уведомление 25 сент. 2020 г.</p>
                 </div>
                 <a href="#" class="search-item__link">Все объявления</a>
             </div>
         </div>
+        @endforeach
     @else
         @foreach($adverts as $advert)
         <div class="favorite-items">
