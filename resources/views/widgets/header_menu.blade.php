@@ -282,7 +282,7 @@
                                             <li><a href="#">Платежи</a></li>
                                             <li><a href="{{ route('editing-profile') }}">Профиль</a></li>
                                             <li><a href="{{ route('profile-settings') }}">Настройки</a></li>
-                                            <li><a href="#">Избранное</a></li>
+                                            <li><a href="{{route('favorite')}}">Избранное</a></li>
                                             <li><a href="#">Создать реферальную ссылку</a></li>
                                             <li><a href="{{route('logout')}}">Выход</a></li>
                                         </ul>

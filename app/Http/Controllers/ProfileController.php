@@ -103,4 +103,29 @@ class ProfileController extends Controller
 
         return response()->json($data);
     }
+
+    public function getFavorite()
+    {
+//        foreach (auth()->user()->favoriteAdverts as $f) dump($f);
+//        die;
+//        dd(auth()->user()->favoriteAdverts());
+        return view('profile_user.pages.favorite', [
+            'status' => 1,
+            'adverts' => auth()->user()->favoriteAdverts,
+        ]);
+    }
+
+    public function changeFavorite(int $status)
+    {
+            $data = [
+//                'output' => view('profile_user.partials.favorite_block', ['adverts' => Advert::where('user_id', auth()->user()->id)->where('status_id', $status)->get()])->toHtml(),
+                'output' => view('profile_user.partials.favorite_block', [
+                    'status' => $status,
+                    'adverts' => auth()->user()->favoriteAdverts,
+                ])->toHtml(),
+            ];
+
+        return response()->json($data);
+    }
+
 }

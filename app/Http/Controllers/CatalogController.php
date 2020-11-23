@@ -83,4 +83,6 @@ class CatalogController extends Controller
         return response()->json($data);
     }
 
+
+
 }
