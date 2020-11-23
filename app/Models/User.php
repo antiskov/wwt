@@ -115,7 +115,8 @@ class User extends Authenticatable
 
     public function favoriteAdverts()
     {
-        return $this->belongsToMany(Advert::class,'user_favorite_adverts','user_id','advert_id');
+        return $this->belongsToMany(Advert::class,'user_favorite_adverts','user_id','advert_id')
+            ->withPivot('deleted_at')->wherePivot('deleted_at', '=', null);
     }
 
     public function searchLinks()

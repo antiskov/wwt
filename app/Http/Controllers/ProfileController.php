@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileRequest;
 use App\Models\Advert;
+use App\Models\SearchLink;
 use App\Models\Timezone;
+use App\Models\UserFavoriteAdvert;
 use App\Models\UserLanguage;
 use App\Models\UserSettings;
 use App\Services\ProfileService;
@@ -106,6 +108,7 @@ class ProfileController extends Controller
 
     public function getFavorite()
     {
+//        dd(auth()->user()->favoriteAdverts, UserFavoriteAdvert::all());
         return view('profile_user.pages.favorite', [
             'status' => 1,
             'adverts' => auth()->user()->favoriteAdverts,
@@ -118,6 +121,7 @@ class ProfileController extends Controller
         foreach (auth()->user()->searchLinks as $link) {
             $searchLinks[$link->id]['title'] = $link->title;
             $searchLinks[$link->id]['link'] = $link->link_search;
+            $searchLinks[$link->id]['id'] = $link->id;
         }
 
         $data = [
@@ -127,13 +131,29 @@ class ProfileController extends Controller
                 'searchLinks' => $searchLinks,
             ])->toHtml(),
         ];
-        
+
         return response()->json($data);
     }
 
-    public function deleteFavorite()
+    public function deleteFavorite(Advert $advert)
     {
-        
+        if($favorite = UserFavoriteAdvert::where('advert_id', $advert->id)->where('user_id', auth()->user()->id)->first()) {
+            $favorite->delete();
+        }
+
+        return redirect()->back();
     }
+
+//    public function deleteSearch($title, $link)
+    public function deleteSearch($search)
+    {
+        if($search = SearchLink::where('id', $search)->first()) {
+            $search->delete();
+        }
+
+        return redirect()->back();
+    }
+
+
 
 }

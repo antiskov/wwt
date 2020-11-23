@@ -3,7 +3,7 @@
         @foreach($adverts as $advert)
             <div class="favorite-items">
                 <div class="item-favorite">
-                    <img src="/images/icons/favorit-active.svg" alt="img" class="del-fav">
+                    <a href="{{route('delete_favorite', [$advert->id])}}"><img src="/images/icons/favorit-active.svg" alt="img" class="del-fav"></a>
                     <div class="item-info">
                         <div class="img-wrap">
                             <img src="/images/content/watch-1.png" alt="img">
@@ -31,11 +31,11 @@
                                 </div>
                                 <div class="publication-cont">
                                     <div class="cont">
-                                        <span>26. 07. 12</span>
+                                        <span>{{strstr($advert->created_at, ' ', true)}}</span>
                                         <p>Дата публикации:</p>
                                     </div>
                                     <div class="cont">
-                                        <span>16:45</span>
+                                        <span>{{strstr($advert->created_at, ' ')}}</span>
                                         <p>Время публикации:</p>
                                     </div>
                                 </div>
@@ -64,11 +64,10 @@
             {{--        @foreach(auth()->user()->favoriteAdverts as $searchLink)--}}
             <div class="items-wrap">
                 <div class="search-item">
-                    <div class="search-item__delete-btn"></div>
+                    <a href="{{route('delete_search', [$searchLink['id']])}}"><div class="search-item__delete-btn"></div></a>
                     <div class="search-item__text">
-                        {{--                    <h5><a href="{{route('catalog-json', [json_decode($searchLink->filter, true)])}}">{{$searchLink->title}}</a></h5>--}}
-                        {{--                    <h5><a href="{{route('catalog-json', [json_decode($searchLink->link, true)])}}">{{$searchLink->title}}</a></h5>--}}
-                        <h5><a href="{{route('catalog-favorite', $searchLink['link'])}}">{{$searchLink['title']}}</a>
+                        <h5>
+                            <a href="{{route('catalog-favorite', $searchLink['link'])}}">{{$searchLink['title']}}</a>
                         </h5>
                         <p>Сохраненные результаты поиска от 25 сент. 2020 г., последнее уведомление 25 сент. 2020 г.</p>
                     </div>
