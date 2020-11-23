@@ -432,6 +432,7 @@ $(document).ready(function () {
             $( this ).addClass( "done" );
         })
     });
+
     $('#password-form').on('submit', function(e){
         e.preventDefault();
         $.ajax({

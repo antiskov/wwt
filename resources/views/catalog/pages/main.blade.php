@@ -47,44 +47,44 @@
         //     })
         // })
         // });
-        // document.addEventListener("DOMContentLoaded", function(event) {
-        // $('#ajax_button').on('click', function(e){
-        //     e.preventDefault();
-        //     $.ajax({
-        //         type:"get",
-        //         url: '/catalog/save_search',
-        //         data: $('#filter').serializeArray(),
-        //         success: function (data) {
-        //             console.log('success');
-        //         },
-        //         error: function (xhr) {
-        //             console.log('error');
-        //         }
-        //     }).done(function() {
-        //         $( this ).addClass( "done" );
-        //     })
-        // })
-        // });
-        // document.addEventListener("DOMContentLoaded", function(event) {
-        //     function query(){
-        //         $.ajax({
-        //             type:"get",
-        //             url: '/catalog/count_results',
-        //             data: $('.filter-search').serializeArray(),
-        //             success: function (data) {
-        //                 console.log('success');
-        //                 $('.filters-submit-btn').text('Применить ('+data.count+")");
-        //             },
-        //             error: function (xhr) {
-        //                 console.log('error');
-        //             }
-        //         }).done(function() {
-        //             $( this ).addClass( "done" );
-        //         })
-        //     };
-        //
-        //     $('.watch-filter').on('click', query);
-        //     $('.watch-filter').on('change', query);
-        // });
+        document.addEventListener("DOMContentLoaded", function(event) {
+        $('#ajax_button').on('click', function(e){
+            e.preventDefault();
+            $.ajax({
+                type:"get",
+                url: '/catalog/save_search/',
+                data: $('#filter').serializeArray(),
+                success: function (data) {
+                    console.log('success');
+                },
+                error: function (xhr) {
+                    console.log('error');
+                }
+            }).done(function() {
+                $( this ).addClass( "done" );
+            })
+        })
+        });
+        document.addEventListener("DOMContentLoaded", function(event) {
+            function query(){
+                $.ajax({
+                    type:"get",
+                    url: '/catalog/count_results',
+                    data: $('.filter-search').serializeArray(),
+                    success: function (data) {
+                        console.log('success');
+                        $('.filters-submit-btn').text('Применить ('+data.count+")");
+                    },
+                    error: function (xhr) {
+                        console.log('error');
+                    }
+                }).done(function() {
+                    $( this ).addClass( "done" );
+                })
+            };
+
+            $('.watch-filter').on('click', query);
+            $('.watch-filter').on('change', query);
+        });
     </script>
 @endsection
