@@ -31,9 +31,9 @@ use Illuminate\Http\Request;
 
 class CatalogController extends Controller
 {
-    public function index(CatalogService $service, Request $request, $countPagination = 4)
+    public function index(CatalogService $service, Request $request)
     {
-        return view('catalog.pages.main', $service->index($request, $countPagination));
+        return view('catalog.pages.main', $service->index($request));
     }
 
     public function filterJson(Request $request, CatalogService $service)
@@ -82,9 +82,12 @@ class CatalogController extends Controller
         return response()->json($data);
     }
 
-    public function sort($status, CatalogService $service)
+    public function countPagination($countPagination = 50)
     {
+//        $_SESSION["countPagination"] = $countPagination;
+        setcookie("countPagination", $countPagination);
 
+        return redirect()->back();
     }
 
 

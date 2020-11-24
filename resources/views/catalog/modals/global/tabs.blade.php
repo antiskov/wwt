@@ -45,9 +45,9 @@
             <span class="vip">VIP</span>
 
             <div class="counter-more">
-                <a href="{{route('catalog', [50])}}" class="item-more">50</a>
-                <a href="{{route('catalog', [100])}}" class="item-more">100</a>
-                <a href="{{route('catalog', [150])}}" class="item-more">150</a>
+                <a href="{{route('catalog.count-pagination', [50])}}" class="item-more">50</a>
+                <a href="{{route('catalog.count-pagination', [100])}}" class="item-more">100</a>
+                <a href="{{route('catalog.count-pagination', [150])}}" class="item-more">150</a>
             </div>
 
             @include('catalog.modals.item-cart', ['adverts' => $adverts])

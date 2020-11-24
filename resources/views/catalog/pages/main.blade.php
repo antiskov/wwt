@@ -87,7 +87,10 @@
             $('.watch-filter').on('change', query);
         });
         document.addEventListener("DOMContentLoaded", function (event) {
-            if (!(window.location.href.indexOf("orderBy=dear") > -1) && !(window.location.href.indexOf("orderBy=cheap") > -1) && !(window.location.href.indexOf("page") > -1)) {
+            if (!(window.location.href.indexOf("orderBy=dear") > -1)
+                && !(window.location.href.indexOf("orderBy=cheap") > -1)
+                && !(window.location.href.indexOf("page") > -1))
+            {
                 document.cookie = "url_catalog="+window.location.href+"; max-age=600"
             }
 
@@ -98,14 +101,6 @@
                 return matches ? matches[1] : undefined
             }
 
-            if (window.location.href.indexOf("?") > -1) {
-                $('#sort-dear').on('click', function (e) {
-                    window.location.replace(getCookie('url_catalog')+'&orderBy=dear')
-                })
-                $('#sort-cheap').on('click', function (e) {
-                    window.location.replace(getCookie('url_catalog')+'&orderBy=cheap')
-                })
-            }
             if(!(window.location.href.indexOf("&") > -1)){
                 $('#sort-dear').on('click', function (e) {
                     window.location.replace(getCookie('url_catalog')+'?orderBy=dear')
@@ -113,6 +108,15 @@
                 $('#sort-cheap').on('click', function (e) {
                     window.location.replace(getCookie('url_catalog')+'?orderBy=cheap')
                 })
+            } else {
+                if (window.location.href.indexOf("?") > -1) {
+                    $('#sort-dear').on('click', function (e) {
+                        window.location.replace(getCookie('url_catalog') + '&orderBy=dear&')
+                    })
+                    $('#sort-cheap').on('click', function (e) {
+                        window.location.replace(getCookie('url_catalog') + '&orderBy=cheap&')
+                    })
+                }
             }
 
             document.querySelector('#check_call').addEventListener('click', function (e) {
@@ -121,10 +125,13 @@
                 }
                 if(document.getElementById("check_call").checked){
                     if (window.location.href.indexOf("?") > -1 && !(window.location.href.indexOf("=new") > -1)) {
-                        window.location.replace(getCookie('for_check_age')+'&states%5B%5D=new');
-                    }
-                    if(!(window.location.href.indexOf("&") > -1) && !(window.location.href.indexOf("=new") > -1)){
-                        window.location.replace(getCookie('for_check_age')+'?states%5B%5D=new');
+                        window.location.replace(getCookie('for_check_age')+'&states%5B%5D=new&');
+                        console.log(1);
+                    } else {
+                        if(!(window.location.href.indexOf("&") > -1) && !(window.location.href.indexOf("=new") > -1)){
+                            window.location.replace(getCookie('for_check_age')+'?states%5B%5D=new&');
+                            console.log(2);
+                        }
                     }
                 } else {
                     window.location.replace(getCookie('for_check_age'));

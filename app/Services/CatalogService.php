@@ -57,7 +57,7 @@ class CatalogService
         ]);
     }
 
-    public function index(Request $request, $countPagination)
+    public function index(Request $request, $countPagination = 4)
     {
 //        dd($request->orderBys);
 
@@ -103,7 +103,9 @@ class CatalogService
 
         $maxPrice = DB::table('catalog_view')->max('price');
 
-        $adverts = $this->paginateCustom(DB::table('catalog_view')->whereRaw($this->getFilter($request))->orderBy('price', $this->getOrderBy($request)), $request->fullUrl(), $countPagination);
+
+
+        $adverts = $this->paginateCustom(DB::table('catalog_view')->whereRaw($this->getFilter($request))->orderBy('price', $this->getOrderBy($request)), $request->fullUrl(), $this->getCountPagination());
 
         if(strstr($request->fullUrl(), '?')){
             session_start();
@@ -272,6 +274,16 @@ class CatalogService
             return  'desc';
         } else {
             return  'asc';
+        }
+    }
+
+    public function getCountPagination()
+    {
+
+        if(isset($_COOKIE["countPagination"])) {
+            return $_COOKIE["countPagination"];
+        } else {
+            return 50;
         }
     }
 }

@@ -340,22 +340,6 @@
                                 </div>
                             </li>
                         @endforeach
-                            <li>
-                                <div class="checkbox-block">
-                                    <label class="checkbox-block__label">
-                                        <input class="watch-filter" type="checkbox" name="orderBy" value="dear" id="{{$model->watch_model_title}}">
-                                        <p><span>дорогие</span></p>
-                                    </label>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="checkbox-block">
-                                    <label class="checkbox-block__label">
-                                        <input class="watch-filter" type="checkbox" name="orderBy" value="cheap" id="{{$model->watch_model_title}}">
-                                        <p><span>дешевые</span></p>
-                                    </label>
-                                </div>
-                            </li>
                     </ul>
                     <div class="filters-buttons">
                         <button data-fancybox data-src="#password-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
