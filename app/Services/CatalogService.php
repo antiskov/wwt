@@ -110,6 +110,14 @@ class CatalogService
             $_SESSION["searchLink"] = strstr($request->fullUrl(), '?');
         }
 
+        if($request->states[0] == 'new') {
+            $stateNew = 1;
+        } else {
+            $stateNew = 2;
+        }
+
+//        dd($request->fullUrl(), strstr($request->fullUrl(), 'states%5B%5D=new', true));
+
         return [
             'adverts' => $adverts,
             'brands' => $brands,
@@ -125,6 +133,7 @@ class CatalogService
             'maxPrice' => $maxPrice,
             'countResults' => DB::table('catalog_view')->whereRaw($this->getFilter($request))->get()->count(),
             'linkSearch' => $request->fullUrl(),
+            'stateNew' => $stateNew,
         ];
     }
 

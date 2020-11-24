@@ -87,8 +87,7 @@
             $('.watch-filter').on('change', query);
         });
         document.addEventListener("DOMContentLoaded", function (event) {
-            // alert(55);
-            if (!(window.location.href.indexOf("orderBy=dear") > -1) && !(window.location.href.indexOf("orderBy=cheap") > -1)) {
+            if (!(window.location.href.indexOf("orderBy=dear") > -1) && !(window.location.href.indexOf("orderBy=cheap") > -1) && !(window.location.href.indexOf("page") > -1)) {
                 document.cookie = "url_catalog="+window.location.href+"; max-age=600"
             }
 
@@ -115,6 +114,22 @@
                     window.location.replace(getCookie('url_catalog')+'?orderBy=cheap')
                 })
             }
+
+            document.querySelector('#check_call').addEventListener('click', function (e) {
+                if(!(window.location.href.indexOf("=new") > -1) && !(window.location.href.indexOf("page") > -1)) {
+                    document.cookie = "for_check_age="+window.location.href+"; max-age=600"
+                }
+                if(document.getElementById("check_call").checked){
+                    if (window.location.href.indexOf("?") > -1 && !(window.location.href.indexOf("=new") > -1)) {
+                        window.location.replace(getCookie('for_check_age')+'&states%5B%5D=new');
+                    }
+                    if(!(window.location.href.indexOf("&") > -1) && !(window.location.href.indexOf("=new") > -1)){
+                        window.location.replace(getCookie('for_check_age')+'?states%5B%5D=new');
+                    }
+                } else {
+                    window.location.replace(getCookie('for_check_age'));
+                }
+            })
         });
     </script>
 @endsection

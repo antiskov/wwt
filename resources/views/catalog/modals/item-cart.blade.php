@@ -3,8 +3,10 @@
     <div class="block-view items-cont">
         @foreach($adverts as $advert)
             <div class="item-cart">
+{{--                {{$advert->id}}--}}
                 <div class="vip-label"></div>
-                @if(\App\Models\UserFavoriteAdvert::where('user_id', auth()->user()->id)->where('advert_id', $advert->id)->first())
+{{--                {{(\App\Models\UserFavoriteAdvert::where('user_id', auth()->user()->id)->where('advert_id', $advert->id)->first())}}--}}
+                @if((\App\Models\UserFavoriteAdvert::where('user_id', auth()->user()->id)->where('advert_id', $advert->id)->first()))
                     <div class="favorite-icon active catalog-heart" data-id="{{$advert->id}}"></div>
                 @else
                     <div class="favorite-icon catalog-heart" data-id="{{$advert->id}}"></div>
@@ -23,7 +25,7 @@
                     {{$advert->title}}
                 </a>
                 <div class="price-block">
-                    {{--                                <span class="old">1500$</span>--}}
+                                                    <span class="old">1500$</span>
                     <span class="new">{{$advert->price}}$</span>
                 </div>
             </div>

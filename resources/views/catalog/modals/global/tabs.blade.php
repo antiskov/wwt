@@ -3,7 +3,11 @@
         <div class="tabs">
             <div class="change-option">
                 <div class="chek_cont">
-                    <input type="checkbox" id="check_call" required checked>
+                    @if($stateNew ==1)
+                        <input type="checkbox" id="check_call" value="111" checked>
+                    @else
+                        <input type="checkbox" id="check_call" value="111">
+                    @endif
                     <label class="caption placeholder" for="check_call"><p>Новые <span>/неношеные</span></p></label>
                 </div>
             </div>
@@ -47,7 +51,7 @@
             </div>
 
             @include('catalog.modals.item-cart', ['adverts' => $adverts])
-{{--            @include('catalog.modals.inline-item-cart', ['adverts' => $adverts])--}}
+            @include('catalog.modals.inline-item-cart', ['adverts' => $adverts])
 
             @include('catalog.modals.pagination')
         </div>

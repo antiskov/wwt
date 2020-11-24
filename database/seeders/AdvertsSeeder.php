@@ -107,7 +107,7 @@ class AdvertsSeeder extends Seeder
                     'user_id' => 1,
                     'title' => 'watch'.$i,
                     'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-                    'price' => rand(200, 900),
+                    'price' => rand(100, 5000),
                     'currency_id' => 1,
                     'status_id' => 1,
                     'surname' => 'Iskov',
