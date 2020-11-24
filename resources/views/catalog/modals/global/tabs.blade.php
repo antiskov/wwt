@@ -21,16 +21,22 @@
 
                 <div class="select-price">
                     <p>Сортировать:</p>
-                    <div class="select-value">Самые дорогие</div>
-                    <ul class="value-items">
-                        <li><a href="#/">Самые дорогие</a></li>
-                        <li><a href="#/">по релевантности</a></li>
-                        <li><a href="#/">по возрастанию цены</a></li>
-                        <li><a href="#/">по убыванию цены</a></li>
-                        <li><a href="#/">по популярности</a></li>
-                    </ul>
+
+                    <div class="select-value">
+                        <p id="sort-dear">Дорогие</p>
+                        <p id="sort-cheap">Дешевые</p>
+{{--                        Самые дорогие--}}
+                    </div>
+{{--                    <ul class="value-items">--}}
+{{--                        <li><a href="#/">Самые дорогие</a></li>--}}
+{{--                        <li><a href="#/">по релевантности</a></li>--}}
+{{--                        <li><a href="#/">по возрастанию цены</a></li>--}}
+{{--                        <li><a href="#/">по убыванию цены</a></li>--}}
+{{--                        <li><a href="#/">по популярности</a></li>--}}
+{{--                    </ul>--}}
                 </div>
             </div>
+
 
             <span class="vip">VIP</span>
 
@@ -41,7 +47,7 @@
             </div>
 
             @include('catalog.modals.item-cart', ['adverts' => $adverts])
-            @include('catalog.modals.inline-item-cart', ['adverts' => $adverts])
+{{--            @include('catalog.modals.inline-item-cart', ['adverts' => $adverts])--}}
 
             @include('catalog.modals.pagination')
         </div>

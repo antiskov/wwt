@@ -11,7 +11,6 @@ class WatchFilter implements Filter
 
     public function make(Request $request)
     {
-//        $title = "";
         $this->query = '1';
         if (isset($request->brands)) {
             $title = "'".$request->brands[0]."'";

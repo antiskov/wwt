@@ -45,26 +45,22 @@ use Illuminate\Support\Facades\DB;
 
 class CatalogService
 {
-    public function paginateCustom($thisPaginate, $path = 'none', $perPage = 15, $columns = ['*'], $pageName = 'page', $page = null)
+    public function paginateCustom($thisPaginate, $path, $perPage = 15, $columns = ['*'], $pageName = 'page', $page = null)
     {
         $page = $page ?: Paginator::resolveCurrentPage($pageName);
 
         $total = $thisPaginate->getCountForPagination();
 
         $results = $total ? $thisPaginate->forPage($page, $perPage)->get($columns) : collect();
-
-        if ($path != 'none') {
-            return new LengthAwarePaginator($results, $total, $perPage, $page, [
-                'path' => $path,
-            ]);
-        }
         return new LengthAwarePaginator($results, $total, $perPage, $page, [
-            'path' => Paginator::resolveCurrentPath(),
+            'path' => $path,
         ]);
     }
 
     public function index(Request $request)
     {
+//        dd($request->orderBys);
+
         $brands = DB::table('catalog_view')->select('watch_make_title')
             ->addSelect(DB::raw('COUNT(watch_make_title) as count_watch_make_title'))
             ->groupBy('watch_make_title')->get();
@@ -107,7 +103,7 @@ class CatalogService
 
         $maxPrice = DB::table('catalog_view')->max('price');
 
-        $adverts = $this->paginateCustom(DB::table('catalog_view')->whereRaw($this->getFilter($request)), $request->fullUrl(), 6);
+        $adverts = $this->paginateCustom(DB::table('catalog_view')->whereRaw($this->getFilter($request))->orderBy('price', $this->getOrderBy($request)), $request->fullUrl(), 6);
 
         if(strstr($request->fullUrl(), '?')){
             session_start();
@@ -259,5 +255,14 @@ class CatalogService
         $search->link_search = $_SESSION["searchLink"];
         $search->title = 'Example name';
         $search->save();
+    }
+
+    public function getOrderBy(Request $request)
+    {
+        if($request->orderBy == 'dear') {
+            return  'desc';
+        } else {
+            return  'asc';
+        }
     }
 }

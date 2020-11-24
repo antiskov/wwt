@@ -1,11 +1,14 @@
+
 <div id="content-1" class="items-block">
     <div class="block-view items-cont">
         @foreach($adverts as $advert)
             <div class="item-cart">
                 <div class="vip-label"></div>
-                <div class="favorite-icon">
-
-                </div>
+                @if(\App\Models\UserFavoriteAdvert::where('user_id', auth()->user()->id)->where('advert_id', $advert->id)->first())
+                    <div class="favorite-icon active catalog-heart" data-id="{{$advert->id}}"></div>
+                @else
+                    <div class="favorite-icon catalog-heart" data-id="{{$advert->id}}"></div>
+                @endif
                 <a href="{{route('catalog.item-page', [$advert->id])}}" class="img-wrap">
                     <img src="{{asset('/storage/'.$advert->photo)}}" alt="img">
                 </a>
@@ -27,4 +30,22 @@
         @endforeach
     </div>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+        document.querySelectorAll('.catalog-heart').forEach(function (item){
+            item.addEventListener('click', function (e){
+                    if(!this.classList.contains('active')) {
+                        console.log(this);
+                        $.ajax({
+                            url: `/catalog/item_page_favorite/${this.getAttribute('data-id')}/1`,
+                        })
+                    } else {
+                        $.ajax({
+                            url: `/catalog/item_page_favorite/${this.getAttribute('data-id')}/0`,
+                        })
+                    }
+            })
+        })
+    });
+</script>
 

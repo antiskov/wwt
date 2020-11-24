@@ -47,44 +47,74 @@
         //     })
         // })
         // });
-        document.addEventListener("DOMContentLoaded", function(event) {
-        $('#ajax_button').on('click', function(e){
-            e.preventDefault();
-            $.ajax({
-                type:"get",
-                url: '/catalog/save_search/',
-                data: $('#filter').serializeArray(),
-                success: function (data) {
-                    console.log('success');
-                },
-                error: function (xhr) {
-                    console.log('error');
-                }
-            }).done(function() {
-                $( this ).addClass( "done" );
-            })
-        })
-        });
-        document.addEventListener("DOMContentLoaded", function(event) {
-            function query(){
+        document.addEventListener("DOMContentLoaded", function (event) {
+            $('#ajax_button').on('click', function (e) {
+                e.preventDefault();
                 $.ajax({
-                    type:"get",
-                    url: '/catalog/count_results',
-                    data: $('.filter-search').serializeArray(),
+                    type: "get",
+                    url: '/catalog/save_search/',
+                    data: $('#filter').serializeArray(),
                     success: function (data) {
                         console.log('success');
-                        $('.filters-submit-btn').text('Применить ('+data.count+")");
                     },
                     error: function (xhr) {
                         console.log('error');
                     }
-                }).done(function() {
-                    $( this ).addClass( "done" );
+                }).done(function () {
+                    $(this).addClass("done");
+                })
+            })
+        });
+        document.addEventListener("DOMContentLoaded", function (event) {
+            function query() {
+                $.ajax({
+                    type: "get",
+                    url: '/catalog/count_results',
+                    data: $('.filter-search').serializeArray(),
+                    success: function (data) {
+                        console.log('success');
+                        $('.filters-submit-btn').text('Применить (' + data.count + ")");
+                    },
+                    error: function (xhr) {
+                        console.log('error');
+                    }
+                }).done(function () {
+                    $(this).addClass("done");
                 })
             };
 
             $('.watch-filter').on('click', query);
             $('.watch-filter').on('change', query);
+        });
+        document.addEventListener("DOMContentLoaded", function (event) {
+            // alert(55);
+            if (!(window.location.href.indexOf("orderBy=dear") > -1) && !(window.location.href.indexOf("orderBy=cheap") > -1)) {
+                document.cookie = "url_catalog="+window.location.href+"; max-age=600"
+            }
+
+            function getCookie(name) {
+                var matches = document.cookie.match(new RegExp(
+                    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+                ))
+                return matches ? matches[1] : undefined
+            }
+
+            if (window.location.href.indexOf("?") > -1) {
+                $('#sort-dear').on('click', function (e) {
+                    window.location.replace(getCookie('url_catalog')+'&orderBy=dear')
+                })
+                $('#sort-cheap').on('click', function (e) {
+                    window.location.replace(getCookie('url_catalog')+'&orderBy=cheap')
+                })
+            }
+            if(!(window.location.href.indexOf("&") > -1)){
+                $('#sort-dear').on('click', function (e) {
+                    window.location.replace(getCookie('url_catalog')+'?orderBy=dear')
+                })
+                $('#sort-cheap').on('click', function (e) {
+                    window.location.replace(getCookie('url_catalog')+'?orderBy=cheap')
+                })
+            }
         });
     </script>
 @endsection

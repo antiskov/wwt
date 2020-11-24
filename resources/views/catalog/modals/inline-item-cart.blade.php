@@ -3,7 +3,7 @@
         <div class="items-cont inline-view">
             <div class="inline-cart">
                 <div class="vip-label"></div>
-                <div class="favorite-icon"></div>
+                <div class="favorite-icon catalog-heart"></div>
                 <a href="{{route('catalog.item-page', [$advert->id])}}" class="img-wrap">
                     <img src="{{asset('/storage/'.$advert->photo)}}" alt="img">
                 </a>
@@ -69,6 +69,23 @@
                 </div>
             </div>
         </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function(event) {
+                document.querySelector('.catalog-heart').addEventListener('click', function (e) {
+                    if(!this.classList.contains('active')) {
+                        console.log(1);
+                        $.ajax({
+                            url: '/catalog/item_page_favorite/{{$advert->id}}/{{1}}',
+                        })
+                    } else {
+                        console.log(0);
+                        $.ajax({
+                            url: '/catalog/item_page_favorite/{{$advert->id}}/{{0}}',
+                        })
+                    }
+                })
+            });
+        </script>
     @endforeach
 </div>
 </div>
