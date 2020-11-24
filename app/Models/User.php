@@ -121,6 +121,6 @@ class User extends Authenticatable
 
     public function searchLinks()
     {
-        return $this->hasMany(SearchLink::class);
+        return $this->hasMany(SearchLink::class)->orderBy('id', 'desc');
     }
 }

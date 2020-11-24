@@ -91,7 +91,7 @@ class ProfileController extends Controller
         return redirect()->back();
     }
 
-    public function myAdverts(Request $request)
+    public function myAdverts()
     {
         $adverts = Advert::where('user_id', auth()->user()->id)->where('status_id', 1)->get();
         return view('profile_user.pages.my_adverts', ['adverts' => $adverts]);
@@ -106,29 +106,28 @@ class ProfileController extends Controller
         return response()->json($data);
     }
 
-    public function getFavorite()
+    public function getFavorite(ProfileService $service)
     {
-//        dd(auth()->user()->favoriteAdverts, UserFavoriteAdvert::all());
+        if(isset($_COOKIE['status'])) {
+            $status = $_COOKIE['status'];
+        } else {
+            $status = 1;
+        }
+
         return view('profile_user.pages.favorite', [
-            'status' => 1,
+            'status' => $status,
             'adverts' => auth()->user()->favoriteAdverts,
+            'searchLinks' => $service->getSearchLinks(),
         ]);
     }
 
-    public function changeFavorite(int $status)
+    public function changeFavorite(int $status, ProfileService $service)
     {
-        $searchLinks = [];
-        foreach (auth()->user()->searchLinks as $link) {
-            $searchLinks[$link->id]['title'] = $link->title;
-            $searchLinks[$link->id]['link'] = $link->link_search;
-            $searchLinks[$link->id]['id'] = $link->id;
-        }
-
         $data = [
             'output' => view('profile_user.partials.favorite_block', [
                 'status' => $status,
                 'adverts' => auth()->user()->favoriteAdverts,
-                'searchLinks' => $searchLinks,
+                'searchLinks' => $service->getSearchLinks(),
             ])->toHtml(),
         ];
 
@@ -144,7 +143,6 @@ class ProfileController extends Controller
         return redirect()->back();
     }
 
-//    public function deleteSearch($title, $link)
     public function deleteSearch($search)
     {
         if($search = SearchLink::where('id', $search)->first()) {

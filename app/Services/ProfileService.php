@@ -114,4 +114,18 @@ class ProfileService
 
         return round($total);
     }
+
+    public function getSearchLinks()
+    {
+        $searchLinks = [];
+
+        foreach (auth()->user()->searchLinks as $link) {
+            $searchLinks[$link->id]['title'] = $link->title;
+            $searchLinks[$link->id]['link'] = $link->link_search;
+            $searchLinks[$link->id]['id'] = $link->id;
+            $searchLinks[$link->id]['created_at'] = $link->created_at;
+        }
+
+        return $searchLinks;
+    }
 }

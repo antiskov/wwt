@@ -69,7 +69,7 @@
                         <h5>
                             <a href="{{route('catalog-favorite', $searchLink['link'])}}">{{$searchLink['title']}}</a>
                         </h5>
-                        <p>Сохраненные результаты поиска от 25 сент. 2020 г., последнее уведомление 25 сент. 2020 г.</p>
+                        <p>Сохраненные результаты поиска от {{strstr($searchLink['created_at'], ' ', true)}}, последнее уведомление 25 сент. 2020 г.</p>
                     </div>
                     <a href="#" class="search-item__link">Все объявления</a>
                 </div>
