@@ -57,7 +57,7 @@ class CatalogService
         ]);
     }
 
-    public function index(Request $request)
+    public function index(Request $request, $countPagination)
     {
 //        dd($request->orderBys);
 
@@ -103,14 +103,14 @@ class CatalogService
 
         $maxPrice = DB::table('catalog_view')->max('price');
 
-        $adverts = $this->paginateCustom(DB::table('catalog_view')->whereRaw($this->getFilter($request))->orderBy('price', $this->getOrderBy($request)), $request->fullUrl(), 6);
+        $adverts = $this->paginateCustom(DB::table('catalog_view')->whereRaw($this->getFilter($request))->orderBy('price', $this->getOrderBy($request)), $request->fullUrl(), $countPagination);
 
         if(strstr($request->fullUrl(), '?')){
             session_start();
             $_SESSION["searchLink"] = strstr($request->fullUrl(), '?');
         }
 
-        if($request->states[0] == 'new') {
+        if($request->states[0] == 'new' && !isset($request->states[1])) {
             $stateNew = 1;
         } else {
             $stateNew = 2;

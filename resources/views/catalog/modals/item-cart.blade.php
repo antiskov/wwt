@@ -25,7 +25,7 @@
                     {{$advert->title}}
                 </a>
                 <div class="price-block">
-                                                    <span class="old">1500$</span>
+{{--            <span class="old">1500$</span>--}}
                     <span class="new">{{$advert->price}}$</span>
                 </div>
             </div>
