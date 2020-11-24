@@ -52,7 +52,7 @@
             e.preventDefault();
             $.ajax({
                 type:"get",
-                url: '/catalog/save_search',
+                url: '/catalog/save_search/',
                 data: $('#filter').serializeArray(),
                 success: function (data) {
                     console.log('success');

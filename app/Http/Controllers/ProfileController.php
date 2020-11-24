@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileRequest;
 use App\Models\Advert;
+use App\Models\SearchLink;
 use App\Models\Timezone;
+use App\Models\UserFavoriteAdvert;
 use App\Models\UserLanguage;
 use App\Models\UserSettings;
 use App\Services\ProfileService;
@@ -89,7 +91,7 @@ class ProfileController extends Controller
         return redirect()->back();
     }
 
-    public function myAdverts(Request $request)
+    public function myAdverts()
     {
         $adverts = Advert::where('user_id', auth()->user()->id)->where('status_id', 1)->get();
         return view('profile_user.pages.my_adverts', ['adverts' => $adverts]);
@@ -103,4 +105,53 @@ class ProfileController extends Controller
 
         return response()->json($data);
     }
+
+    public function getFavorite(ProfileService $service)
+    {
+        if(isset($_COOKIE['status'])) {
+            $status = $_COOKIE['status'];
+        } else {
+            $status = 1;
+        }
+
+        return view('profile_user.pages.favorite', [
+            'status' => $status,
+            'adverts' => auth()->user()->favoriteAdverts,
+            'searchLinks' => $service->getSearchLinks(),
+        ]);
+    }
+
+    public function changeFavorite(int $status, ProfileService $service)
+    {
+        $data = [
+            'output' => view('profile_user.partials.favorite_block', [
+                'status' => $status,
+                'adverts' => auth()->user()->favoriteAdverts,
+                'searchLinks' => $service->getSearchLinks(),
+            ])->toHtml(),
+        ];
+
+        return response()->json($data);
+    }
+
+    public function deleteFavorite(Advert $advert)
+    {
+        if($favorite = UserFavoriteAdvert::where('advert_id', $advert->id)->where('user_id', auth()->user()->id)->first()) {
+            $favorite->delete();
+        }
+
+        return redirect()->back();
+    }
+
+    public function deleteSearch($search)
+    {
+        if($search = SearchLink::where('id', $search)->first()) {
+            $search->delete();
+        }
+
+        return redirect()->back();
+    }
+
+
+
 }

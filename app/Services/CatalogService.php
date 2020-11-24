@@ -40,11 +40,11 @@ use App\Models\YearAdvert;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 
 class CatalogService
 {
-
     public function paginateCustom($thisPaginate, $path = 'none', $perPage = 15, $columns = ['*'], $pageName = 'page', $page = null)
     {
         $page = $page ?: Paginator::resolveCurrentPage($pageName);
@@ -53,7 +53,7 @@ class CatalogService
 
         $results = $total ? $thisPaginate->forPage($page, $perPage)->get($columns) : collect();
 
-        if($path != 'none') {
+        if ($path != 'none') {
             return new LengthAwarePaginator($results, $total, $perPage, $page, [
                 'path' => $path,
             ]);
@@ -62,6 +62,7 @@ class CatalogService
             'path' => Paginator::resolveCurrentPath(),
         ]);
     }
+
     public function index(Request $request)
     {
         $brands = DB::table('catalog_view')->select('watch_make_title')
@@ -73,7 +74,7 @@ class CatalogService
             ->groupBy('watch_model_title')->get();
 
         $diameters = DB::table('catalog_view')->select('height', 'width')
-            ->addSelect( DB::raw('COUNT(height) as count_height'))
+            ->addSelect(DB::raw('COUNT(height) as count_height'))
             ->groupBy('height', 'width')->get();
 
         $years = DB::table('catalog_view')->select('release_year')
@@ -106,7 +107,12 @@ class CatalogService
 
         $maxPrice = DB::table('catalog_view')->max('price');
 
-        $adverts = $this->paginateCustom(DB::table('catalog_view')->whereRaw($this->getFilter($request)),  $request->fullUrl(), 6);
+        $adverts = $this->paginateCustom(DB::table('catalog_view')->whereRaw($this->getFilter($request)), $request->fullUrl(), 6);
+
+        if(strstr($request->fullUrl(), '?')){
+            session_start();
+            $_SESSION["searchLink"] = strstr($request->fullUrl(), '?');
+        }
 
         return [
             'adverts' => $adverts,
@@ -122,6 +128,7 @@ class CatalogService
             'types' => $types,
             'maxPrice' => $maxPrice,
             'countResults' => DB::table('catalog_view')->whereRaw($this->getFilter($request))->get()->count(),
+            'linkSearch' => $request->fullUrl(),
         ];
     }
 
@@ -158,6 +165,7 @@ class CatalogService
             'widthClasps' => WidthClasp::all(),
         ];
     }
+
     public function indexSparePart()
     {
         return [
@@ -200,13 +208,13 @@ class CatalogService
             ->cooldown($expiresAt)
             ->record();
 
-        if(auth()->user()) {
+        if (auth()->user()) {
             $role = auth()->user()->role_id;
         } else {
             $role = 1;
         }
 
-        if($advert->type == 'watch') {
+        if ($advert->type == 'watch') {
             $mechanismType = MechanismType::where('id', $advert->watchAdvert->mechanism_type_id)->first();
         } elseif ($advert->type == 'accessories') {
             $mechanismType = AccessoryMechanismType::where('id', $advert->accessoryAdvert->accessory_mechanism_type_id)->first();
@@ -241,10 +249,15 @@ class CatalogService
 
     public function saveSearch($serviceArray)
     {
-        $searchRequest = json_encode($serviceArray['adverts']);
+        session_start();
+
+        $filters = json_encode($serviceArray['adverts']);
+
         $search = new SearchLink();
         $search->user()->associate(auth()->user());
-        $search->link = json_encode($searchRequest);
+        $search->filter = $filters;
+        $search->link_search = $_SESSION["searchLink"];
+        $search->title = 'Example name';
         $search->save();
     }
 }

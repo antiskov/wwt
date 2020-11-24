@@ -37,6 +37,11 @@ Route::middleware('set.locale')->group(function () {
             Route::get('/reset-password', [\App\Http\Controllers\ProfileController::class, 'resetPassword'])->name('reset-password');
             Route::get('/my_adverts/', [\App\Http\Controllers\ProfileController::class, 'myAdverts'])->name('my_adverts');
             Route::get('/my_adverts_change/{status}', [\App\Http\Controllers\ProfileController::class, 'myAdvertsChange'])->name('my_adverts_change');
+            Route::get('/favorite', [\App\Http\Controllers\ProfileController::class, 'getFavorite'])->name('favorite');
+            Route::get('/favorite/{status}', [\App\Http\Controllers\ProfileController::class, 'changeFavorite'])->name('favorite_change');
+            Route::get('/favorite/delete/{advert}', [\App\Http\Controllers\ProfileController::class, 'deleteFavorite'])->name('delete_favorite');
+//            Route::get('/search/delete/{title}/{link}', [\App\Http\Controllers\ProfileController::class, 'deleteSearch'])->name('delete_search');
+            Route::get('/search/delete/{search}', [\App\Http\Controllers\ProfileController::class, 'deleteSearch'])->name('delete_search');
         });
     });
 
@@ -45,10 +50,12 @@ Route::middleware('set.locale')->group(function () {
         Route::get('/filter_json', [\App\Http\Controllers\CatalogController::class, 'filterJson'])->name('catalog.filter-json');
         Route::get('/accessory', [\App\Http\Controllers\CatalogController::class, 'indexAccessory'])->name('catalog.accessory');
         Route::get('/save_search/', [\App\Http\Controllers\CatalogController::class, 'saveSearch'])->name('catalog.save-search');
-        Route::get('/count_results/', [\App\Http\Controllers\CatalogController::class, 'countResults']);
+//        Route::get('/save_search/{link}', [\App\Http\Controllers\CatalogController::class, 'saveSearch'])->name('catalog.save-search');
+        Route::get('/count_results/', [\App\Http\Controllers\CatalogController::class, 'countResults'])->name('catalog.count-results');
         Route::get('/spare_parts', [\App\Http\Controllers\CatalogController::class, 'indexSparePart'])->name('catalog.spare-parts');
         Route::get('/item_page/{advert}', [\App\Http\Controllers\GoodsController::class, 'index'])->name('catalog.item-page');
-        Route::get('item_page_favorite/{advert}/{favorite}', [\App\Http\Controllers\GoodsController::class, 'setFavorite'])->name('catalog.item_page_favorite');
+        Route::get('/item_page_favorite/{advert}/{favorite}', [\App\Http\Controllers\GoodsController::class, 'setFavorite'])->name('catalog.item_page_favorite');
+        Route::get('/{search}', [\App\Http\Controllers\CatalogController::class, 'index'])->name('catalog-favorite');
     });
 });
 

@@ -31,7 +31,7 @@ use Illuminate\Http\Request;
 
 class CatalogController extends Controller
 {
-    public function index(CatalogService $service, Request $request)
+    public function index(CatalogService $service, Request $request, $search = false)
     {
         return view('catalog.pages.main', $service->index($request));
     }
@@ -73,7 +73,6 @@ class CatalogController extends Controller
 
     public function countResults(CatalogService $service, Request $request)
     {
-        $service->index($request);
         $a = $service->index($request);
 
         $data = [
@@ -82,5 +81,7 @@ class CatalogController extends Controller
 
         return response()->json($data);
     }
+
+
 
 }
