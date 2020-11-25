@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class BannerRequest extends FormRequest
+class SliderRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,9 @@ class BannerRequest extends FormRequest
     public function rules()
     {
         return [
-            'banner_image' => 'required|image',
-            'description' => 'max:1000',
-            'date_finish' => 'required|date',
+            'image' => 'required|image',
+            'upper_text' => 'max:500',
+            'middle_text' => 'max:1000',
             'link' => 'required|max:300'
         ];
     }

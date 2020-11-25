@@ -119,6 +119,10 @@
                         <span>{{ $advert->watchAdvert->watch_state }}</span>
                     </div>
                     <div class="setting-cont">
+                        <p>Пол</p>
+                        <span>{{ $advert->watchAdvert->sex->title}}</span>
+                    </div>
+                    <div class="setting-cont">
                         <p>Объем доставки</p>
                         <span>{{$advert->delivery_volume}}</span>
                     </div>

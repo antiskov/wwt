@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\BannerRequest;
 use App\Models\Banner;
 use App\Services\AdminService;
 use App\Services\BannerService;
@@ -17,7 +18,7 @@ class BannerController extends Controller
         return view('admin.pages.banner_control', ['banners' => $banners]);
     }
 
-    public function createBanner(Request $request, AdminService $service)
+    public function createBanner(BannerRequest $request, AdminService $service)
     {
         $service->createBanner($request);
 

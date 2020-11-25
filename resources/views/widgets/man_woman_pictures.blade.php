@@ -2,7 +2,7 @@
     <div class="gradient gradient_two-categories">
         <div class="two-categories__content">
             <div class="two-categories__item">
-                <a href="#" class="two-categories-item">
+                <a href="http://worldwatchtrade.local/catalog?sexes%5B%5D=man" class="two-categories-item">
                     <div class="two-categories-item__content">
                         <img src="{{asset($man)}}" alt="Мужские часы">
                         <p>Мужские</p>
@@ -10,7 +10,7 @@
                 </a>
             </div>
             <div class="two-categories__item">
-                <a href="#" class="two-categories-item">
+                <a href="http://worldwatchtrade.local/catalog?sexes%5B%5D=woman" class="two-categories-item">
                     <div class="two-categories-item__content">
                         <img src="{{asset($woman)}}" alt="Женские часы">
                         <p>Женские</p>

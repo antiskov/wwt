@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SliderRequest;
 use App\Models\HomeSlider;
 use App\Services\AdminService;
 use Illuminate\Http\Request;
@@ -18,7 +19,7 @@ class SliderController extends Controller
         }
     }
 
-    public function upload(Request $request, AdminService $service)
+    public function upload(SliderRequest $request, AdminService $service)
     {
         $service->uploadSlider($request);
 
