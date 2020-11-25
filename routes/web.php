@@ -87,6 +87,11 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('/close_banner/{banner}', [\App\Http\Controllers\Admin\BannerController::class, 'closeBanner'])->name('admin.close_banner');
         });
 
+        Route::group(['prefix' => 'manage_picture'], function (){
+           Route::get('/', [\App\Http\Controllers\Admin\ManagePictureController::class, 'index'])->name('admin.manage_picture');
+           Route::post('/upload', [\App\Http\Controllers\Admin\ManagePictureController::class, 'upload'])->name('admin.upload_picture');
+        });
+
     });
     Route::get('login', [AuthController::class, 'showLogin'])->name('admin.showlogin');
     Route::post('login', [AuthController::class, 'login'])->name('admin.login');
