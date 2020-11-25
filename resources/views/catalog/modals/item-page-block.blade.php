@@ -2,11 +2,13 @@
     <div class="">
         <div class="cart-info-block container">
             <div class="slider-item-page">
+                @auth
                 @if($favorite)
                     <div id="heart" class="favorite-icon active"></div>
                 @else
                     <div id="heart" class="favorite-icon"></div>
                 @endif
+                @endauth
                 <div class="shadow-cont">
                     <div class="swiper-container gallery-top">
                         <div class="swiper-wrapper">
@@ -40,7 +42,8 @@
                     {{$advert->title}}
                 </h2>
                 <div class="cont-price">
-                    <div class="item-price">{{$advert->price.' '.$advert->currency->symbol}}</div>
+{{--                    <div class="item-price">{{$advert->price.' '.$advert->currency->symbol}}</div>--}}
+                    <div class="item-price">{{$advert->price.'$'}}</div>
                 </div>
 
                 <div class="cont-specifications">
