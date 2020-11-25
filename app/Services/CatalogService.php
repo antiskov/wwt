@@ -40,14 +40,12 @@ use App\Models\YearAdvert;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
-use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 
 class CatalogService
 {
     public function paginateCustom($thisPaginate, $path, $perPage = 15, $columns = ['*'], $pageName = 'page', $page = null)
     {
-//        dd($perPage);
         $page = $page ?: Paginator::resolveCurrentPage($pageName);
 
         $total = $thisPaginate->getCountForPagination();
@@ -58,7 +56,7 @@ class CatalogService
         ]);
     }
 
-    public function index(Request $request, $nameView = 'catalog_view', $user_id = 0)
+    public function index(Request $request, $user_id = 0, $nameView = 'user_adverts_view')
     {
 
         $brands = DB::table($nameView)->select('watch_make_title')
@@ -104,7 +102,13 @@ class CatalogService
 
         $maxPrice = DB::table($nameView)->max('price');
 
-        $adverts = $this->paginateCustom(DB::table($nameView)->whereRaw($this->getFilter($request).' and '.$this->getConditionUserId($user_id))->orderBy('price', $this->getOrderBy($request)), $request->fullUrl(), $this->getCountPagination());
+        $adverts = $this->paginateCustom(
+            DB::table($nameView)
+            ->whereRaw($this->getFilter($request).' and '.$this->getConditionUserId($user_id))
+            ->orderBy('price', $this->getOrderBy($request)),
+            $request->fullUrl(),
+            $this->getCountPagination()
+        );
 
         $this->setSearchLink($request);
 
@@ -286,7 +290,7 @@ class CatalogService
 
     public function setStateNew(Request $request)
     {
-        if($request->states[0] == 'new' && !isset($request->states[1])) {
+        if(($request->states[0] == 'new' && !isset($request->states[1])) || ($request->states[0] == 'new' && $request->states[0] == $request->states[1])) {
             $stateNew = 1;
         } else {
             $stateNew = 2;

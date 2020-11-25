@@ -93,6 +93,6 @@ class CatalogController extends Controller
     public function sellerAds(CatalogService $service, Request $request, User $user)
     {
 //        dd($user->id);
-        return view('catalog.pages.seller_ads', $service->index($request, 'user_adverts_view', $user->id));
+        return view('catalog.pages.seller_ads', $service->index($request, $user->id));
     }
 }
