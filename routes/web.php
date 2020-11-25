@@ -85,6 +85,15 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('/', [\App\Http\Controllers\Admin\BannerController::class, 'index'])->name('admin.banner_control');
             Route::post('/create_banner', [\App\Http\Controllers\Admin\BannerController::class, 'createBanner'])->name('admin.create_banner');
             Route::get('/close_banner/{banner}', [\App\Http\Controllers\Admin\BannerController::class, 'closeBanner'])->name('admin.close_banner');
+            Route::get('/delete_banner/{banner}', [\App\Http\Controllers\Admin\BannerController::class, 'deleteBanner'])->name('admin.delete_banner');
+        });
+
+        Route::group(['prefix' => 'manage_slider'], function (){
+            Route::get('/', [\App\Http\Controllers\Admin\SliderController::class, 'index'])->name('admin.slider');
+            Route::post('/upload', [\App\Http\Controllers\Admin\SliderController::class, 'upload'])->name('admin.upload_slider');
+            Route::get('/deactivation/{slider}', [\App\Http\Controllers\Admin\SliderController::class, 'deactivation'])->name('admin.deactivation_slider');
+            Route::get('/activation/{slider}', [\App\Http\Controllers\Admin\SliderController::class, 'activation'])->name('admin.activation_slider');
+            Route::get('/delete/{slider}', [\App\Http\Controllers\Admin\SliderController::class, 'delete'])->name('admin.delete_slider');
         });
 
         Route::group(['prefix' => 'manage_picture'], function (){

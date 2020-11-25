@@ -30,4 +30,11 @@ class BannerController extends Controller
 
         return redirect()->back();
     }
+
+    public function deleteBanner(Banner $banner, AdminService $service)
+    {
+        $service->deleteBanner($banner);
+
+        return redirect()->back();
+    }
 }

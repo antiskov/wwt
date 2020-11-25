@@ -11,7 +11,7 @@ class ManagePictureController extends Controller
 {
     public function index()
     {
-        return view('admin.pages.manage_picture.manage_picture');
+        return view('admin.pages.manage_picture');
     }
 
     public function upload(Request $request, AdminService $service)
