@@ -45,26 +45,23 @@ use Illuminate\Support\Facades\DB;
 
 class CatalogService
 {
-    public function paginateCustom($thisPaginate, $path = 'none', $perPage = 15, $columns = ['*'], $pageName = 'page', $page = null)
+    public function paginateCustom($thisPaginate, $path, $perPage = 15, $columns = ['*'], $pageName = 'page', $page = null)
     {
+//        dd($perPage);
         $page = $page ?: Paginator::resolveCurrentPage($pageName);
 
         $total = $thisPaginate->getCountForPagination();
 
         $results = $total ? $thisPaginate->forPage($page, $perPage)->get($columns) : collect();
-
-        if ($path != 'none') {
-            return new LengthAwarePaginator($results, $total, $perPage, $page, [
-                'path' => $path,
-            ]);
-        }
         return new LengthAwarePaginator($results, $total, $perPage, $page, [
-            'path' => Paginator::resolveCurrentPath(),
+            'path' => $path,
         ]);
     }
 
-    public function index(Request $request)
+    public function index(Request $request, $countPagination = 4)
     {
+//        dd($request->orderBys);
+
         $brands = DB::table('catalog_view')->select('watch_make_title')
             ->addSelect(DB::raw('COUNT(watch_make_title) as count_watch_make_title'))
             ->groupBy('watch_make_title')->get();
@@ -107,12 +104,22 @@ class CatalogService
 
         $maxPrice = DB::table('catalog_view')->max('price');
 
-        $adverts = $this->paginateCustom(DB::table('catalog_view')->whereRaw($this->getFilter($request)), $request->fullUrl(), 6);
+
+
+        $adverts = $this->paginateCustom(DB::table('catalog_view')->whereRaw($this->getFilter($request))->orderBy('price', $this->getOrderBy($request)), $request->fullUrl(), $this->getCountPagination());
 
         if(strstr($request->fullUrl(), '?')){
             session_start();
             $_SESSION["searchLink"] = strstr($request->fullUrl(), '?');
         }
+
+        if($request->states[0] == 'new' && !isset($request->states[1])) {
+            $stateNew = 1;
+        } else {
+            $stateNew = 2;
+        }
+
+//        dd($request->fullUrl(), strstr($request->fullUrl(), 'states%5B%5D=new', true));
 
         return [
             'adverts' => $adverts,
@@ -129,6 +136,7 @@ class CatalogService
             'maxPrice' => $maxPrice,
             'countResults' => DB::table('catalog_view')->whereRaw($this->getFilter($request))->get()->count(),
             'linkSearch' => $request->fullUrl(),
+            'stateNew' => $stateNew,
         ];
     }
 
@@ -259,5 +267,25 @@ class CatalogService
         $search->link_search = $_SESSION["searchLink"];
         $search->title = 'Example name';
         $search->save();
+    }
+
+    public function getOrderBy(Request $request)
+    {
+        if($request->orderBy == 'dear') {
+            return  'desc';
+        } else {
+            return  'asc';
+        }
+    }
+
+    public function getCountPagination()
+    {
+        if(!isset($_COOKIE["countPagination"])) {
+            return $_COOKIE["countPagination"] = 50;
+        } elseif($_COOKIE["countPagination"] == 'count_results') {
+            return $_COOKIE["countPagination"] = 50;
+        } else {
+            return $_COOKIE["countPagination"];
+        }
     }
 }

@@ -47,10 +47,11 @@ Route::middleware('set.locale')->group(function () {
 
     Route::group(['prefix' =>'catalog'], function() {
         Route::get('/', [\App\Http\Controllers\CatalogController::class, 'index'])->name('catalog');
+        Route::get('/{countPagination?}', [\App\Http\Controllers\CatalogController::class, 'countPagination'])->name('catalog.count-pagination');
         Route::get('/filter_json', [\App\Http\Controllers\CatalogController::class, 'filterJson'])->name('catalog.filter-json');
         Route::get('/accessory', [\App\Http\Controllers\CatalogController::class, 'indexAccessory'])->name('catalog.accessory');
         Route::get('/save_search/', [\App\Http\Controllers\CatalogController::class, 'saveSearch'])->name('catalog.save-search');
-//        Route::get('/save_search/{link}', [\App\Http\Controllers\CatalogController::class, 'saveSearch'])->name('catalog.save-search');
+        Route::get('/sort/{status}', [\App\Http\Controllers\CatalogController::class, 'sort'])->name('catalog.sort');
         Route::get('/count_results/', [\App\Http\Controllers\CatalogController::class, 'countResults'])->name('catalog.count-results');
         Route::get('/spare_parts', [\App\Http\Controllers\CatalogController::class, 'indexSparePart'])->name('catalog.spare-parts');
         Route::get('/item_page/{advert}', [\App\Http\Controllers\GoodsController::class, 'index'])->name('catalog.item-page');

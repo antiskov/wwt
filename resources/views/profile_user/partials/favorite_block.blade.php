@@ -71,7 +71,7 @@
                         </h5>
                         <p>Сохраненные результаты поиска от {{strstr($searchLink['created_at'], ' ', true)}}, последнее уведомление 25 сент. 2020 г.</p>
                     </div>
-                    <a href="#" class="search-item__link">Все объявления</a>
+{{--                    <a href="#" class="search-item__link">Все объявления</a>--}}
                 </div>
             </div>
         @endforeach

@@ -17,25 +17,25 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             StatusSeeder::class,
-            //CurrencySeeder::class,
+//            CurrencySeeder::class,
             TimeZoneSeeder::class,
             LanguageSeeder::class,
             SexesSeeder::class,
             UserRolesSeeder::class,
             UsersSeeder::class,
             AdvertsSeeder::class,
-            AdvertsImageSeeder::class,
+//            AdvertsImageSeeder::class,
             CategorySeeder::class,
             WatchModelSeeder::class,
             WatchAdvertSeeder::class,
 
-            AccessoryModelSeeder::class,
-            AccessoryAdvertSeeder::class,
-            AccessoryWatchSeeder::class,
-
-            SparePartsModelSeeder::class,
-            SparePartsAdvertSeeder::class,
-            SparePartsWatchSeeder::class,
+//            AccessoryModelSeeder::class,
+//            AccessoryAdvertSeeder::class,
+//            AccessoryWatchSeeder::class,
+//
+//            SparePartsModelSeeder::class,
+//            SparePartsAdvertSeeder::class,
+//            SparePartsWatchSeeder::class,
 
         ]);
     }

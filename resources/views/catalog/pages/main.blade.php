@@ -47,44 +47,96 @@
         //     })
         // })
         // });
-        document.addEventListener("DOMContentLoaded", function(event) {
-        $('#ajax_button').on('click', function(e){
-            e.preventDefault();
-            $.ajax({
-                type:"get",
-                url: '/catalog/save_search/',
-                data: $('#filter').serializeArray(),
-                success: function (data) {
-                    console.log('success');
-                },
-                error: function (xhr) {
-                    console.log('error');
-                }
-            }).done(function() {
-                $( this ).addClass( "done" );
-            })
-        })
-        });
-        document.addEventListener("DOMContentLoaded", function(event) {
-            function query(){
+        document.addEventListener("DOMContentLoaded", function (event) {
+            $('#ajax_button').on('click', function (e) {
+                e.preventDefault();
                 $.ajax({
-                    type:"get",
-                    url: '/catalog/count_results',
-                    data: $('.filter-search').serializeArray(),
+                    type: "get",
+                    url: '/catalog/save_search/',
+                    data: $('#filter').serializeArray(),
                     success: function (data) {
                         console.log('success');
-                        $('.filters-submit-btn').text('Применить ('+data.count+")");
                     },
                     error: function (xhr) {
                         console.log('error');
                     }
-                }).done(function() {
-                    $( this ).addClass( "done" );
+                }).done(function () {
+                    $(this).addClass("done");
+                })
+            })
+        });
+        document.addEventListener("DOMContentLoaded", function (event) {
+            function query() {
+                $.ajax({
+                    type: "get",
+                    url: '/catalog/count_results',
+                    data: $('.filter-search').serializeArray(),
+                    success: function (data) {
+                        console.log('success');
+                        $('.filters-submit-btn').text('Применить (' + data.count + ")");
+                    },
+                    error: function (xhr) {
+                        console.log('error');
+                    }
+                }).done(function () {
+                    $(this).addClass("done");
                 })
             };
 
             $('.watch-filter').on('click', query);
             $('.watch-filter').on('change', query);
+        });
+        document.addEventListener("DOMContentLoaded", function (event) {
+            if (!(window.location.href.indexOf("orderBy=dear") > -1)
+                && !(window.location.href.indexOf("orderBy=cheap") > -1)
+                && !(window.location.href.indexOf("page") > -1))
+            {
+                document.cookie = "url_catalog="+window.location.href+"; max-age=600"
+            }
+
+            function getCookie(name) {
+                var matches = document.cookie.match(new RegExp(
+                    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+                ))
+                return matches ? matches[1] : undefined
+            }
+
+            if(!(window.location.href.indexOf("&") > -1)){
+                $('#sort-dear').on('click', function (e) {
+                    window.location.replace(getCookie('url_catalog')+'?orderBy=dear')
+                })
+                $('#sort-cheap').on('click', function (e) {
+                    window.location.replace(getCookie('url_catalog')+'?orderBy=cheap')
+                })
+            } else {
+                if (window.location.href.indexOf("?") > -1) {
+                    $('#sort-dear').on('click', function (e) {
+                        window.location.replace(getCookie('url_catalog') + '&orderBy=dear&')
+                    })
+                    $('#sort-cheap').on('click', function (e) {
+                        window.location.replace(getCookie('url_catalog') + '&orderBy=cheap&')
+                    })
+                }
+            }
+
+            document.querySelector('#check_call').addEventListener('click', function (e) {
+                if(!(window.location.href.indexOf("=new") > -1) && !(window.location.href.indexOf("page") > -1)) {
+                    document.cookie = "for_check_age="+window.location.href+"; max-age=600"
+                }
+                if(document.getElementById("check_call").checked){
+                    if (window.location.href.indexOf("?") > -1 && !(window.location.href.indexOf("=new") > -1)) {
+                        window.location.replace(getCookie('for_check_age')+'&states%5B%5D=new&');
+                        console.log(1);
+                    } else {
+                        if(!(window.location.href.indexOf("&") > -1) && !(window.location.href.indexOf("=new") > -1)){
+                            window.location.replace(getCookie('for_check_age')+'?states%5B%5D=new&');
+                            console.log(2);
+                        }
+                    }
+                } else {
+                    window.location.replace(getCookie('for_check_age'));
+                }
+            })
         });
     </script>
 @endsection

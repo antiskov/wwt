@@ -3,7 +3,11 @@
         <div class="tabs">
             <div class="change-option">
                 <div class="chek_cont">
-                    <input type="checkbox" id="check_call" required checked>
+                    @if($stateNew ==1)
+                        <input type="checkbox" id="check_call" value="111" checked>
+                    @else
+                        <input type="checkbox" id="check_call" value="111">
+                    @endif
                     <label class="caption placeholder" for="check_call"><p>Новые <span>/неношеные</span></p></label>
                 </div>
             </div>
@@ -21,23 +25,29 @@
 
                 <div class="select-price">
                     <p>Сортировать:</p>
-                    <div class="select-value">Самые дорогие</div>
-                    <ul class="value-items">
-                        <li><a href="#/">Самые дорогие</a></li>
-                        <li><a href="#/">по релевантности</a></li>
-                        <li><a href="#/">по возрастанию цены</a></li>
-                        <li><a href="#/">по убыванию цены</a></li>
-                        <li><a href="#/">по популярности</a></li>
-                    </ul>
+
+                    <div class="select-value">
+                        <p id="sort-dear">Дорогие</p>
+                        <p id="sort-cheap">Дешевые</p>
+{{--                        Самые дорогие--}}
+                    </div>
+{{--                    <ul class="value-items">--}}
+{{--                        <li><a href="#/">Самые дорогие</a></li>--}}
+{{--                        <li><a href="#/">по релевантности</a></li>--}}
+{{--                        <li><a href="#/">по возрастанию цены</a></li>--}}
+{{--                        <li><a href="#/">по убыванию цены</a></li>--}}
+{{--                        <li><a href="#/">по популярности</a></li>--}}
+{{--                    </ul>--}}
                 </div>
             </div>
+
 
             <span class="vip">VIP</span>
 
             <div class="counter-more">
-                <a href="#/" class="item-more">50</a>
-                <a href="#/" class="item-more">100</a>
-                <a href="#/" class="item-more">150</a>
+                <a href="{{route('catalog.count-pagination', [50])}}" class="item-more">50</a>
+                <a href="{{route('catalog.count-pagination', [100])}}" class="item-more">100</a>
+                <a href="{{route('catalog.count-pagination', [150])}}" class="item-more">150</a>
             </div>
 
             @include('catalog.modals.item-cart', ['adverts' => $adverts])
