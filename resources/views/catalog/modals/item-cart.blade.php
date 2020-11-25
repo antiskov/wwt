@@ -5,22 +5,23 @@
             <div class="item-cart">
 {{--                {{$advert->id}}--}}
                 <div class="vip-label"></div>
-{{--                {{(\App\Models\UserFavoriteAdvert::where('user_id', auth()->user()->id)->where('advert_id', $advert->id)->first())}}--}}
+                @auth
                 @if((\App\Models\UserFavoriteAdvert::where('user_id', auth()->user()->id)->where('advert_id', $advert->id)->first()))
                     <div class="favorite-icon active catalog-heart" data-id="{{$advert->id}}"></div>
                 @else
                     <div class="favorite-icon catalog-heart" data-id="{{$advert->id}}"></div>
                 @endif
+                @endauth
                 <a href="{{route('catalog.item-page', [$advert->id])}}" class="img-wrap">
                     <img src="{{asset('/storage/'.$advert->photo)}}" alt="img">
                 </a>
-                <div class="rating-cont">
-                    <img src="/images/icons/star-rat.svg" alt="img">
-                    <img src="/images/icons/star-rat.svg" alt="img">
-                    <img src="/images/icons/star-rat.svg" alt="img">
-                    <img src="/images/icons/star-rat.svg" alt="img">
-                    <img src="/images/icons/star-rat.svg" alt="img">
-                </div>
+{{--                <div class="rating-cont">--}}
+{{--                    <img src="/images/icons/star-rat.svg" alt="img">--}}
+{{--                    <img src="/images/icons/star-rat.svg" alt="img">--}}
+{{--                    <img src="/images/icons/star-rat.svg" alt="img">--}}
+{{--                    <img src="/images/icons/star-rat.svg" alt="img">--}}
+{{--                    <img src="/images/icons/star-rat.svg" alt="img">--}}
+{{--                </div>--}}
                 <a href="#/" class="cart-name">
                     {{$advert->title}}
                 </a>
