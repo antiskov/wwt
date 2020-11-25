@@ -3,7 +3,7 @@
         <div class="tabs">
             <div class="change-option">
                 <div class="chek_cont">
-                    @if($stateNew ==1)
+                    @if($stateNew == 1)
                         <input type="checkbox" id="check_call" value="111" checked>
                     @else
                         <input type="checkbox" id="check_call" value="111">

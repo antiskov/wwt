@@ -13,6 +13,7 @@
     @include('partials.modals.password')
 @show
 @section('scripts')
+
 @endsection
 @show
 @include('partials.global.footer')
