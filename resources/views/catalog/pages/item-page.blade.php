@@ -66,7 +66,7 @@
                                 <span>{{$advert->user->country}}</span>
                             </div>
                         </div>
-                        <a href="#/" class="all-ads btn-hover-w">Все объявления продавца</a>
+                        <a href="{{route('catalog.seller-ads', [$advert->user_id])}}" class="all-ads btn-hover-w">Все объявления продавца</a>
                     </div>
                 </div>
             </div>
