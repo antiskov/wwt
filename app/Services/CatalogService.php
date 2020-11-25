@@ -47,6 +47,7 @@ class CatalogService
 {
     public function paginateCustom($thisPaginate, $path, $perPage = 15, $columns = ['*'], $pageName = 'page', $page = null)
     {
+//        dd($perPage);
         $page = $page ?: Paginator::resolveCurrentPage($pageName);
 
         $total = $thisPaginate->getCountForPagination();
@@ -279,11 +280,12 @@ class CatalogService
 
     public function getCountPagination()
     {
-
-        if(isset($_COOKIE["countPagination"])) {
-            return $_COOKIE["countPagination"];
+        if(!isset($_COOKIE["countPagination"])) {
+            return $_COOKIE["countPagination"] = 50;
+        } elseif($_COOKIE["countPagination"] == 'count_results') {
+            return $_COOKIE["countPagination"] = 50;
         } else {
-            return 50;
+            return $_COOKIE["countPagination"];
         }
     }
 }
