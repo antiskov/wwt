@@ -33,6 +33,7 @@ class CatalogController extends Controller
 {
     public function index(CatalogService $service, Request $request)
     {
+//        dd($request);
         return view('catalog.pages.main', $service->index($request));
     }
 
@@ -84,12 +85,14 @@ class CatalogController extends Controller
 
     public function countPagination($countPagination = 50)
     {
-//        $_SESSION["countPagination"] = $countPagination;
         setcookie("countPagination", $countPagination);
 
         return redirect()->back();
     }
 
-
-
+    public function sellerAds(CatalogService $service, Request $request, User $user)
+    {
+//        dd($user->id);
+        return view('catalog.pages.seller_ads', $service->index($request, 'user_adverts_view', $user->id));
+    }
 }

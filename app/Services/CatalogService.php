@@ -58,68 +58,55 @@ class CatalogService
         ]);
     }
 
-    public function index(Request $request, $countPagination = 4)
+    public function index(Request $request, $nameView = 'catalog_view', $user_id = 0)
     {
-//        dd($request->orderBys);
 
-        $brands = DB::table('catalog_view')->select('watch_make_title')
+        $brands = DB::table($nameView)->select('watch_make_title')
             ->addSelect(DB::raw('COUNT(watch_make_title) as count_watch_make_title'))
-            ->groupBy('watch_make_title')->get();
+            ->groupBy('watch_make_title')->whereRaw($this->getConditionUserId($user_id))->get();
 
-        $models = DB::table('catalog_view')->select('watch_model_title')
+        $models = DB::table($nameView)->select('watch_model_title')
             ->addSelect(DB::raw('COUNT(watch_model_title) as count_watch_model_title'))
-            ->groupBy('watch_model_title')->get();
+            ->groupBy('watch_model_title')->whereRaw($this->getConditionUserId($user_id))->get();
 
-        $diameters = DB::table('catalog_view')->select('height', 'width')
+        $diameters = DB::table($nameView)->select('height', 'width')
             ->addSelect(DB::raw('COUNT(height) as count_height'))
-            ->groupBy('height', 'width')->get();
+            ->groupBy('height', 'width')->whereRaw($this->getConditionUserId($user_id))->get();
 
-        $years = DB::table('catalog_view')->select('release_year')
+        $years = DB::table($nameView)->select('release_year')
             ->addSelect(DB::raw('COUNT(release_year) as count_release_year'))
-            ->groupBy('release_year')->get();
+            ->groupBy('release_year')->whereRaw($this->getConditionUserId($user_id))->get();
 
-        $regions = DB::table('catalog_view')->select('region')
+        $regions = DB::table($nameView)->select('region')
             ->addSelect(DB::raw('COUNT(region) as count_region'))
-            ->groupBy('region')->get();
+//            ->groupBy('region')->whereRaw(($user_id == 0) ? "and user_id ($user_id)" : "") ->get();
+            ->groupBy('region')->whereRaw($this->getConditionUserId($user_id))->get();
 
-        $mechanismTypes = DB::table('catalog_view')->select('mechanism_type_title')
+        $mechanismTypes = DB::table($nameView)->select('mechanism_type_title')
             ->addSelect(DB::raw('COUNT(mechanism_type_title) as count_mechanism_type_title'))
-            ->groupBy('mechanism_type_title')->get();
+            ->groupBy('mechanism_type_title')->whereRaw($this->getConditionUserId($user_id))->get();
 
-        $states = DB::table('catalog_view')->select('watch_state')
+        $states = DB::table($nameView)->select('watch_state')
             ->addSelect(DB::raw('COUNT(watch_state) as count_watch_state'))
-            ->groupBy('watch_state')->get();
+            ->groupBy('watch_state')->whereRaw($this->getConditionUserId($user_id))->get();
 
-        $deliveryVolumes = DB::table('catalog_view')->select('delivery_volume')
+        $deliveryVolumes = DB::table($nameView)->select('delivery_volume')
             ->addSelect(DB::raw('COUNT(delivery_volume) as count_delivery_volume'))
-            ->groupBy('delivery_volume')->get();
+            ->groupBy('delivery_volume')->whereRaw($this->getConditionUserId($user_id))->get();
 
-        $sexes = DB::table('catalog_view')->select('sex_title')
+        $sexes = DB::table($nameView)->select('sex_title')
             ->addSelect(DB::raw('COUNT(sex_title) as count_sex_title'))
-            ->groupBy('sex_title')->get();
+            ->groupBy('sex_title')->whereRaw($this->getConditionUserId($user_id))->get();
 
-        $types = DB::table('catalog_view')->select('watch_type_title')
+        $types = DB::table($nameView)->select('watch_type_title')
             ->addSelect(DB::raw('COUNT(watch_type_title) as count_watch_type_title'))
-            ->groupBy('watch_type_title')->get();
+            ->groupBy('watch_type_title')->whereRaw($this->getConditionUserId($user_id))->get();
 
-        $maxPrice = DB::table('catalog_view')->max('price');
+        $maxPrice = DB::table($nameView)->max('price');
 
+        $adverts = $this->paginateCustom(DB::table($nameView)->whereRaw($this->getFilter($request).' and '.$this->getConditionUserId($user_id))->orderBy('price', $this->getOrderBy($request)), $request->fullUrl(), $this->getCountPagination());
 
-
-        $adverts = $this->paginateCustom(DB::table('catalog_view')->whereRaw($this->getFilter($request))->orderBy('price', $this->getOrderBy($request)), $request->fullUrl(), $this->getCountPagination());
-
-        if(strstr($request->fullUrl(), '?')){
-            session_start();
-            $_SESSION["searchLink"] = strstr($request->fullUrl(), '?');
-        }
-
-        if($request->states[0] == 'new' && !isset($request->states[1])) {
-            $stateNew = 1;
-        } else {
-            $stateNew = 2;
-        }
-
-//        dd($request->fullUrl(), strstr($request->fullUrl(), 'states%5B%5D=new', true));
+        $this->setSearchLink($request);
 
         return [
             'adverts' => $adverts,
@@ -134,9 +121,9 @@ class CatalogService
             'sexes' => $sexes,
             'types' => $types,
             'maxPrice' => $maxPrice,
-            'countResults' => DB::table('catalog_view')->whereRaw($this->getFilter($request))->get()->count(),
+            'countResults' => DB::table($nameView)->whereRaw($this->getFilter($request))->get()->count(),
             'linkSearch' => $request->fullUrl(),
-            'stateNew' => $stateNew,
+            'stateNew' =>  $this->setStateNew($request),
         ];
     }
 
@@ -250,9 +237,9 @@ class CatalogService
         return $query;
     }
 
-    public function getTabs(Request $request)
+    public function getTabs(Request $request, $nameView = 'catalog_view')
     {
-        return ['adverts' => DB::table('catalog_view')->whereRaw($this->getFilter($request))->paginate(6)];
+        return ['adverts' => DB::table($nameView)->whereRaw($this->getFilter($request))->paginate(6)];
     }
 
     public function saveSearch($serviceArray)
@@ -286,6 +273,34 @@ class CatalogService
             return $_COOKIE["countPagination"] = 50;
         } else {
             return $_COOKIE["countPagination"];
+        }
+    }
+
+    public function setSearchLink(Request $request)
+    {
+        if(strstr($request->fullUrl(), '?')){
+            session_start();
+            $_SESSION["searchLink"] = strstr($request->fullUrl(), '?');
+        }
+    }
+
+    public function setStateNew(Request $request)
+    {
+        if($request->states[0] == 'new' && !isset($request->states[1])) {
+            $stateNew = 1;
+        } else {
+            $stateNew = 2;
+        }
+
+        return $stateNew;
+    }
+
+    public function getConditionUserId($user_id)
+    {
+        if($user_id == 0) {
+            return '1';
+        } else {
+            return "user_id in ($user_id)";
         }
     }
 }

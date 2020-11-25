@@ -34,21 +34,21 @@
     </div>
 </div>
 <script>
-    document.addEventListener("DOMContentLoaded", function(event) {
-        document.querySelectorAll('.catalog-heart').forEach(function (item){
-            item.addEventListener('click', function (e){
-                    if(!this.classList.contains('active')) {
-                        console.log(this);
-                        $.ajax({
-                            url: `/catalog/item_page_favorite/${this.getAttribute('data-id')}/1`,
-                        })
-                    } else {
-                        $.ajax({
-                            url: `/catalog/item_page_favorite/${this.getAttribute('data-id')}/0`,
-                        })
-                    }
-            })
-        })
-    });
+    // document.addEventListener("DOMContentLoaded", function(event) {
+    //     document.querySelectorAll('.catalog-heart').forEach(function (item){
+    //         item.addEventListener('click', function (e){
+    //                 if(!this.classList.contains('active')) {
+    //                     console.log(this);
+    //                     $.ajax({
+    //                         url: `/catalog/item_page_favorite/${this.getAttribute('data-id')}/1`,
+    //                     })
+    //                 } else {
+    //                     $.ajax({
+    //                         url: `/catalog/item_page_favorite/${this.getAttribute('data-id')}/0`,
+    //                     })
+    //                 }
+    //         })
+    //     })
+    // });
 </script>
 

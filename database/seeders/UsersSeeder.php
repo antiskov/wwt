@@ -27,5 +27,17 @@ class UsersSeeder extends Seeder
                 'longtitude' => '30.5238',
             ]
         );
+
+        User::create(
+            [
+                'email'=>'anton@anton.com',
+                'password'=>Hash::make('12345678'),
+                'is_active'=>1,
+                'referral_code'=>'hahahahaha',
+                'role_id'=>1,
+                'latitude' => '50.4547',
+                'longtitude' => '30.5238',
+            ]
+        );
     }
 }
