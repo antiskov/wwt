@@ -22,13 +22,13 @@ class WatchAdvertSeeder extends Seeder
     public function run()
     {
         $states = ['new', 'userd'];
-        for($i = 11; $i < 35; $i++) {
+        for($i = 1; $i < 200; $i++) {
             WatchAdvert::create([
                 'advert_id' => $i,
                 'watch_type_id' => 1,
                 'watch_make_id' => 1,
                 'watch_model_id' => rand(1,9),
-                'model_code' => 4717,
+                'model_code' => rand(3000, 6000),
                 'sex_id' => rand(1,2),
                 'release_year' => '200'.$i,
                 'is_release_year_confirmed' => 1,

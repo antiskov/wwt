@@ -24,18 +24,18 @@ class DatabaseSeeder extends Seeder
             UserRolesSeeder::class,
             UsersSeeder::class,
             AdvertsSeeder::class,
-            AdvertsImageSeeder::class,
+//            AdvertsImageSeeder::class,
             CategorySeeder::class,
             WatchModelSeeder::class,
             WatchAdvertSeeder::class,
 
-            AccessoryModelSeeder::class,
-            AccessoryAdvertSeeder::class,
-            AccessoryWatchSeeder::class,
-
-            SparePartsModelSeeder::class,
-            SparePartsAdvertSeeder::class,
-            SparePartsWatchSeeder::class,
+//            AccessoryModelSeeder::class,
+//            AccessoryAdvertSeeder::class,
+//            AccessoryWatchSeeder::class,
+//
+//            SparePartsModelSeeder::class,
+//            SparePartsAdvertSeeder::class,
+//            SparePartsWatchSeeder::class,
 
         ]);
     }
