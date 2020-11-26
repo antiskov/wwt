@@ -12,6 +12,7 @@ class MainPageFilter implements Filter
     public function make(Request $request)
     {
         $this->query = '1 and vip_status in (1)';
+
         if (isset($request->brands)) {
             $title = "'".$request->brands[0]."'";
             foreach ($request->brands as $brand) {

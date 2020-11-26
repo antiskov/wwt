@@ -71,7 +71,7 @@
                 </a>
             </div>
         </section>
-{{--        @include('catalog.modals.filter')--}}
-{{--        @include('catalog.modals.global.tabs')--}}
+        @include('catalog.modals.filter')
+        @include('catalog.modals.global.tabs')
     </div>
 @endsection
