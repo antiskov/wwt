@@ -46,7 +46,7 @@ Route::middleware('set.locale')->group(function () {
     });
 
     Route::group(['prefix' =>'catalog'], function() {
-        Route::get('/', [\App\Http\Controllers\CatalogController::class, 'index'])->name('catalog');
+        Route::get('/', [\App\Http\Controllers\CatalogController::class, 'getFilterResult'])->name('catalog');
         Route::get('/filter_json', [\App\Http\Controllers\CatalogController::class, 'filterJson'])->name('catalog.filter-json');
         Route::get('/accessory', [\App\Http\Controllers\CatalogController::class, 'indexAccessory'])->name('catalog.accessory');
         Route::get('/save_search/', [\App\Http\Controllers\CatalogController::class, 'saveSearch'])->name('catalog.save-search');
