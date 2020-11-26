@@ -70,4 +70,9 @@ class WatchAdvert extends Model
         return $this->belongsToMany(Option::class,);
     }
 
+    public function sex()
+    {
+        return $this->belongsTo(Sex::class);
+    }
+
 }

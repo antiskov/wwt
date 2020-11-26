@@ -42,7 +42,8 @@
                                     <td>{{$advert->id}}</td>
                                     <td>{{$advert->name}} {{$advert->surname}}</td>
                                     <td><a href="{{route('admin.item-page', [$advert->id])}}">{{$advert->title}}</a></td>
-                                    <td>{{$advert->price}} {{$advert->currency->title}}</td>
+{{--                                    <td>{{$advert->price}} {{$advert->currency->title}}</td>--}}
+                                    <td>{{$advert->price}}$</td>
                                     <td>{{$advert->status->title}}</td>
                                     <td>
                                         <a href='{{ route('admin.delete_advert', [$advert->id]) }}'>Удалить</a>

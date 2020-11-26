@@ -24,17 +24,20 @@
                     <div class="card-body">
                         <form action="{{route('admin.create_banner')}}" method="post" enctype='multipart/form-data'>
                             @csrf
-                            <label>Создание баннера</label>
+                            <label for="">Изображение баннера</label>
+                            <input type="file" required name="banner_image" accept="image/x-png,image/gif,image/jpeg">
                             <br>
-                            <textarea name="description" id="" cols="60" rows="1"
-                                      placeholder="информация о заказчике"></textarea>
+                            <label for="">Информация о заказчике</label>
+                            <textarea name="description" id="" cols="60" rows="1"></textarea>
                             <br>
                             C:
                             <input name="date_start" type="date" id="calendar">
                             По:
                             <input name="date_finish" type="date" id="calendar">
                             <br>
-                            <input type="file" required name="banner_image" accept="image/x-png,image/gif,image/jpeg">
+                            <label for="">Ссылка</label>
+                            <input type="text" required name="link" accept="image/x-png,image/gif,image/jpeg">
+                            <br>
                             <input type="submit" value="Создать баннер">
                         </form>
                     </div>
@@ -47,6 +50,9 @@
                                     <a href="{{route('admin.close_banner', [$banner->id])}}">Деактивировать</a>
                                 </button>
                             @endif
+                            <button>
+                                <a href="{{route('admin.delete_banner', [$banner->id])}}">Удалить</a>
+                            </button>
                             <br>
                             <span>#{{$banner->id}}</span>
                             <p>{{$banner->description}}</p>
