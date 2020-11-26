@@ -52,7 +52,8 @@
                 <a href="#/" class="sett">редактировать</a>
                 <a href="#/" class="sett">деактивировать</a>
                 <div class="soc-block">
-                    <a href="#/" class="sett">Поделиться</a>
+                    <input type="hidden" name="link-for-copy" value="123">
+                    <a href="#" class="sett btn-for-copy tooltip" title="Ссылка успешно скопирована в буффер обмена!">Поделиться</a>
                 </div>
             </div>
         </div>

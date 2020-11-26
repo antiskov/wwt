@@ -362,25 +362,6 @@ $(document).ready(function () {
         $(this).parent().children("select").removeClass("form-elem_err")
     })
 
-    $('#login-form').validate({
-        rules: {
-            name: {
-                required: true
-            },
-        },
-        errorClass: 'form-elem_err',
-        validClass: 'form-elem_success',
-        highlight: function (element, errorClass, validClass) {
-            $(element).closest('#login-form input').addClass(errorClass).removeClass(validClass);
-        },
-        unhighlight: function (element, errorClass, validClass) {
-            $(element).closest('#login-form input').removeClass(errorClass).addClass(validClass);
-        },
-        errorPlacement: function (error, element) {
-
-        }
-    });
-
     $('#registration-form').on('submit', function(e){
         e.preventDefault();
         $.ajax({
@@ -453,6 +434,25 @@ $(document).ready(function () {
         }).done(function() {
             $( this ).addClass( "done" );
         })
+    });
+
+    $('#login-form').validate({
+        rules: {
+            name: {
+                required: true
+            },
+        },
+        errorClass: 'form-elem_err',
+        validClass: 'form-elem_success',
+        highlight: function (element, errorClass, validClass) {
+            $(element).closest('#login-form input').addClass(errorClass).removeClass(validClass);
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).closest('#login-form input').removeClass(errorClass).addClass(validClass);
+        },
+        errorPlacement: function (error, element) {
+
+        }
     });
 
     $('#registration-form').validate({
@@ -864,6 +864,24 @@ $(document).ready(function () {
         });
         reader.readAsDataURL(file);
     }
+
+    $('.tooltip').tooltipster({
+        animation: 'fade',
+        delay: 200,
+        trigger: 'click',
+        maxWidth: 300,
+        // timer: 1000,
+    });
+
+    $(document).on('click', '.btn-for-copy', function (e) {
+        e.preventDefault();
+        var $tempVal = $(this).closest('.soc-block').find('input[name="link-for-copy"]');
+        var $tempCreated = $("<input>");
+        $("body").append($tempCreated);
+        $tempCreated.val($($tempVal).val()).select();
+        document.execCommand("copy");
+        $tempCreated.remove();
+    })
 
     // Удаление фотографий
     imagesList.on('click', '.delete-link', function () {

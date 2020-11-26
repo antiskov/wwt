@@ -77,7 +77,6 @@ class CatalogService
 
         $regions = DB::table($nameView)->select('region')
             ->addSelect(DB::raw('COUNT(region) as count_region'))
-//            ->groupBy('region')->whereRaw(($user_id == 0) ? "and user_id ($user_id)" : "") ->get();
             ->groupBy('region')->whereRaw($this->getConditionUserId($user_id))->get();
 
         $mechanismTypes = DB::table($nameView)->select('mechanism_type_title')
@@ -256,7 +255,7 @@ class CatalogService
         $search->user()->associate(auth()->user());
         $search->filter = $filters;
         $search->link_search = $_SESSION["searchLink"];
-        $search->title = 'Example name';
+        $search->title = $_COOKIE['search_title'];
         $search->save();
     }
 
