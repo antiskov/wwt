@@ -16,7 +16,7 @@
                             <div class="desc-main">
                                 <div class="price-cont">
                                     <div class="new">
-                                        {{$advert->price}}
+                                        {{$advert->price}}$
                                     </div>
                                     {{--                                <div class="old">--}}
                                     {{--                                    1500 $--}}

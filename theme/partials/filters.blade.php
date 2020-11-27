@@ -1449,7 +1449,7 @@
             </li>
           </ul>
           <div class="filters-buttons">
-            <button class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
+            <button data-fancybox data-src="#save-filter-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
             <button class="filters-submit-btn btn-hover" type="submit">Применить (327)</button>
           </div>
         </div>
@@ -1811,7 +1811,7 @@
             </li>
           </ul>
           <div class="filters-buttons">
-            <button class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
+            <button data-fancybox data-src="#save-filter-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
             <button class="filters-submit-btn btn-hover" type="submit">Применить (327)</button>
           </div>
         </div>
@@ -1830,7 +1830,7 @@
           </div>
         </div>
         <div class="filters-buttons">
-          <button class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
+          <button data-fancybox data-src="#save-filter-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
           <button class="filters-submit-btn btn-hover" type="submit">Применить (327)</button>
         </div>
       </div>
@@ -2173,7 +2173,7 @@
             </li>
           </ul>
           <div class="filters-buttons">
-            <button class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
+            <button data-fancybox data-src="#save-filter-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
             <button class="filters-submit-btn btn-hover" type="submit">Применить (327)</button>
           </div>
         </div>
@@ -2517,7 +2517,7 @@
             </li>
           </ul>
           <div class="filters-buttons">
-            <button class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
+            <button data-fancybox data-src="#save-filter-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
             <button class="filters-submit-btn btn-hover" type="submit">Применить (327)</button>
           </div>
         </div>
@@ -2861,7 +2861,7 @@
             </li>
           </ul>
           <div class="filters-buttons">
-            <button class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
+            <button data-fancybox data-src="#save-filter-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
             <button class="filters-submit-btn btn-hover" type="submit">Применить (327)</button>
           </div>
         </div>
@@ -6388,7 +6388,7 @@
           </div>
 
           <div class="filters-buttons">
-            <button class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
+            <button data-fancybox data-src="#save-filter-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
             <button class="filters-submit-btn btn-hover" type="submit">Применить (327)</button>
           </div>
         </div>
