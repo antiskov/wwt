@@ -25,6 +25,7 @@ Route::middleware('set.locale')->group(function () {
     Route::get('/reset-password/{email}', [\App\Http\Controllers\UserController::class, 'resetPassword'])->name('reset-password');
     Route::get('/email_verification_code/{email_verification_code}', [\App\Http\Controllers\UserController::class, 'emailVerificationCode'])->name('activation_link');
     Route::get('/seller/{user}', [\App\Http\Controllers\CatalogController::class, 'sellerPage'])->name('seller-page');
+    Route::get('/referral_link/{referral_code}', [\App\Http\Controllers\ProfileController::class, 'getReferral'])->name('get_referral');
 
     Route::group(['prefix' => 'profile'], function () {
         Route::middleware('auth')->group(function () {
@@ -43,6 +44,7 @@ Route::middleware('set.locale')->group(function () {
 //            Route::get('/search/delete/{title}/{link}', [\App\Http\Controllers\ProfileController::class, 'deleteSearch'])->name('delete_search');
             Route::get('/search/delete/{search}', [\App\Http\Controllers\ProfileController::class, 'deleteSearch'])->name('delete_search');
             Route::get('/referral', [\App\Http\Controllers\ProfileController::class, 'referralIndex'])->name('referral');
+            Route::post('/referral/create', [\App\Http\Controllers\ProfileController::class, 'createReferral'])->name('create_referral');
         });
     });
 

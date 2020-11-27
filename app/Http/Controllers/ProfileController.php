@@ -4,15 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileRequest;
 use App\Models\Advert;
+use App\Models\Referral;
 use App\Models\SearchLink;
 use App\Models\Timezone;
+use App\Models\User;
 use App\Models\UserFavoriteAdvert;
 use App\Models\UserLanguage;
 use App\Models\UserSettings;
 use App\Services\ProfileService;
 use App\Services\SecurityService;
 use App\Services\UserService;
-use http\Client\Curl\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
@@ -154,6 +155,33 @@ class ProfileController extends Controller
 
     public function referralIndex()
     {
+        if(Referral::where('user_id', auth()->user()->id)->first()){
+            return \view('profile_user.pages.referral', ['referral_link' => route('home').'/referral_link/'.auth()->user()->referral_code]);
+        }
         return \view('profile_user.pages.referral');
     }
+
+    public function createReferral(Request $request)
+    {
+        if(!Referral::where('user_id', auth()->user()->id)->where('email', $request->email)->where('name', $request->name)->first()){
+            $referral = new Referral();
+            $referral->user()->associate(auth()->user());
+            $referral->email = $request->email;
+            $referral->name = $request->name;
+            $referral->save();
+        }
+
+        return redirect()->back();
+    }
+
+    public function getReferral($referral_code)
+    {
+
+        if(User::where('referral_code', $referral_code)->first()){
+            Cookie::queue(Cookie::make('referral_code', $referral_code));
+        }
+
+        return redirect()->back();
+    }
+
 }
