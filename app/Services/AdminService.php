@@ -11,6 +11,7 @@ use App\Domain\WatchesAdvertCreator;
 use App\Exceptions\UnknownAdvertTypeException;
 use App\Models\Advert;
 use App\Models\Banner;
+use App\Models\HomeSlider;
 use App\Models\ManWomanPicture;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -33,6 +34,7 @@ class AdminService
         $banner->date_finish = $request->date_finish;
         $banner->banner_image = $filename;
         $banner->is_active = 1;
+        $banner->link = $request->link;
         $banner->save();
     }
 
@@ -40,6 +42,11 @@ class AdminService
     {
         $banner->is_active = 0;
         $banner->save();
+    }
+
+    public function deleteBanner(Banner $banner)
+    {
+        $banner->delete();
     }
 
     public function createManWomanPictures(Request $request)
@@ -96,5 +103,19 @@ class AdminService
     public function deleteAdvert(Advert $advert)
     {
         $advert->delete();
+    }
+
+    public function uploadSlider(Request $request)
+    {
+        $image = $request->file('image')->getClientOriginalName();
+        $request->file('image')->storeAs('admin/sliders', $image, 'public');
+
+        $slider = new HomeSlider();
+        $slider->image = $image;
+        $slider->upper_text = $request->upper_text;
+        $slider->middle_text = $request->middle_text;
+        $slider->link = $request->link;
+        $slider->is_active = 1;
+        $slider->save();
     }
 }

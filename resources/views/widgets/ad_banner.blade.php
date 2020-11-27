@@ -1,3 +1,3 @@
 <a href="#">
-    <img src="{{asset('/storage/banners/'.$banner->banner_image)}}" alt="">
+    <a href="{{$banner->link}}"><img src="{{asset('/storage/banners/'.$banner->banner_image)}}" alt=""></a>
 </a>

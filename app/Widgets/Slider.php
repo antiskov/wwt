@@ -2,10 +2,10 @@
 
 namespace App\Widgets;
 
-use App\Models\ManWomanPicture;
+use App\Models\HomeSlider;
 use Arrilot\Widgets\AbstractWidget;
 
-class ManWomanPictures extends AbstractWidget
+class Slider extends AbstractWidget
 {
     /**
      * The configuration array.
@@ -20,20 +20,16 @@ class ManWomanPictures extends AbstractWidget
      */
     public function run()
     {
-        if($picture = ManWomanPicture::latest()->first()){
-            return view('widgets.man_woman_pictures', [
+        if(HomeSlider::where('is_active', 1)->get()) {
+            return view('widgets.slider', [
                 'config' => $this->config,
-                'man' => "/storage/admin/man_woman_pictures/$picture->man",
-                'woman' => "/storage/admin/man_woman_pictures/$picture->woman",
+                'sliders' => HomeSlider::where('is_active', 1)->get(),
             ]);
         } else {
-            return view('widgets.man_woman_pictures', [
+            return view('widgets.slider', [
                 'config' => $this->config,
-                'man' => "",
-                'woman' => "",
             ]);
         }
-
 
     }
 }

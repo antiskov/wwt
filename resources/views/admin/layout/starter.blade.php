@@ -88,6 +88,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <p>Управление картинками</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{route('admin.slider')}}" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>Управление слайдером</p>
+                        </a>
+                    </li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
