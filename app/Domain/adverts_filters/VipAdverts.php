@@ -4,8 +4,8 @@ namespace App\Domain\adverts_filters;
 
 use App\Contracts\AdvertsFilters;
 use App\Domain\FilterDirector;
-use App\Domain\filters\MainPageFilter;
-use App\Domain\filters\WatchFilter;
+use App\Domain\Filters\MainPageFilter;
+use App\Domain\Filters\WatchFilter;
 use App\Domain\ToolsForAdvertsFilters;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;

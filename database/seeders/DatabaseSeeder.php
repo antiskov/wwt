@@ -16,17 +16,16 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-//            StatusSeeder::class,
-////            CurrencySeeder::class,
-//            TimeZoneSeeder::class,
-//            LanguageSeeder::class,
-//            SexesSeeder::class,
-//            UserRolesSeeder::class,
-//            UsersSeeder::class,
+            StatusSeeder::class,
+            TimeZoneSeeder::class,
+            LanguageSeeder::class,
+            SexesSeeder::class,
+            UserRolesSeeder::class,
+            UsersSeeder::class,
             AdvertsSeeder::class,
-//            AdvertsImageSeeder::class,
-//            CategorySeeder::class,
-//            WatchModelSeeder::class,
+            AdvertsImageSeeder::class,
+            CategorySeeder::class,
+            WatchModelSeeder::class,
             WatchAdvertSeeder::class,
 
 //            AccessoryModelSeeder::class,

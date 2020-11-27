@@ -1,18 +1,16 @@
 <?php
 
-namespace App\Domain\filters;
+namespace App\Domain\Filters;
 
 use App\Contracts\Filter;
 use Illuminate\Http\Request;
 
-class MainPageFilter implements Filter
+class BaseFilter implements Filter
 {
     protected $query;
 
     public function make(Request $request)
     {
-        $this->query = '1 and vip_status in (1)';
-
         if (isset($request->brands)) {
             $title = "'".$request->brands[0]."'";
             foreach ($request->brands as $brand) {
@@ -99,8 +97,6 @@ class MainPageFilter implements Filter
             $titleMax = $request->prices[1];
             $this->query .= " and price > $titleMin and price < $titleMax";
         }
-
-//        dd($this->query);
     }
 
     public function getQuery()

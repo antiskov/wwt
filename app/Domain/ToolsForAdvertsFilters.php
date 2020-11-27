@@ -2,7 +2,7 @@
 
 namespace App\Domain;
 
-use App\Domain\filters\WatchFilter;
+use App\Domain\Filters\WatchFilter;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
