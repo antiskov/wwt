@@ -62,7 +62,6 @@ Route::middleware('set.locale')->group(function () {
     });
 });
 
-
 Route::group(['prefix' => 'admin'], function () {
     Route::middleware('managerauth')->group(function () {
         Route::get('/', [\App\Http\Controllers\Admin\MainController::class, 'dashboard'])->name('admin.dashboard');
@@ -83,15 +82,24 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('/item_page/{advert}', [\App\Http\Controllers\GoodsController::class, 'index'])->name('admin.item-page');
         });
 
-        Route::group(['prefix' => 'banner_control'], function (){
+        Route::group(['prefix' => 'banner_control'], function () {
             Route::get('/', [\App\Http\Controllers\Admin\BannerController::class, 'index'])->name('admin.banner_control');
             Route::post('/create_banner', [\App\Http\Controllers\Admin\BannerController::class, 'createBanner'])->name('admin.create_banner');
             Route::get('/close_banner/{banner}', [\App\Http\Controllers\Admin\BannerController::class, 'closeBanner'])->name('admin.close_banner');
+            Route::get('/delete_banner/{banner}', [\App\Http\Controllers\Admin\BannerController::class, 'deleteBanner'])->name('admin.delete_banner');
         });
 
-        Route::group(['prefix' => 'manage_picture'], function (){
-           Route::get('/', [\App\Http\Controllers\Admin\ManagePictureController::class, 'index'])->name('admin.manage_picture');
-           Route::post('/upload', [\App\Http\Controllers\Admin\ManagePictureController::class, 'upload'])->name('admin.upload_picture');
+        Route::group(['prefix' => 'manage_slider'], function () {
+            Route::get('/', [\App\Http\Controllers\Admin\SliderController::class, 'index'])->name('admin.slider');
+            Route::post('/upload', [\App\Http\Controllers\Admin\SliderController::class, 'upload'])->name('admin.upload_slider');
+            Route::get('/deactivation/{slider}', [\App\Http\Controllers\Admin\SliderController::class, 'deactivation'])->name('admin.deactivation_slider');
+            Route::get('/activation/{slider}', [\App\Http\Controllers\Admin\SliderController::class, 'activation'])->name('admin.activation_slider');
+            Route::get('/delete/{slider}', [\App\Http\Controllers\Admin\SliderController::class, 'delete'])->name('admin.delete_slider');
+        });
+
+        Route::group(['prefix' => 'manage_picture'], function () {
+            Route::get('/', [\App\Http\Controllers\Admin\ManagePictureController::class, 'index'])->name('admin.manage_picture');
+            Route::post('/upload', [\App\Http\Controllers\Admin\ManagePictureController::class, 'upload'])->name('admin.upload_picture');
         });
 
     });

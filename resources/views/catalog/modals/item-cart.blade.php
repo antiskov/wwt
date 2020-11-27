@@ -22,7 +22,7 @@
 {{--                    <img src="/images/icons/star-rat.svg" alt="img">--}}
 {{--                    <img src="/images/icons/star-rat.svg" alt="img">--}}
 {{--                </div>--}}
-                <a href="#/" class="cart-name">
+                <a href="{{route('catalog.item-page', [$advert->id])}}" class="cart-name">
                     {{$advert->title}}
                 </a>
                 <div class="price-block">

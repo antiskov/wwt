@@ -14,7 +14,7 @@
                     <img src="{{asset('/storage/'.$advert->photo)}}" alt="img">
                 </a>
                 <div class="info-cart">
-                    <a href="#/" class="cart-name">{{$advert->title}}</a>
+                    <a href="{{route('catalog.item-page', [$advert->id])}}" class="cart-name">{{$advert->title}}</a>
                     <div class="info-wrap">
                         <div class="block">
                             <div class="price">
@@ -52,6 +52,7 @@
                                 <p>ИИ номер:</p>
                                 <span>{{ $advert->model_code}}</span>
                             </div>
+
                         </div>
                         <div class="block-grid">
                             <div class="item-infos">
@@ -69,6 +70,10 @@
                                 @else
                                     <span>{{$advert->height.'/'.$advert->width}}</span>
                                 @endif
+                            </div>
+                            <div class="item-infos">
+                                <p>Пол:</p>
+                                <span>{{ $advert->sex_title}}</span>
                             </div>
                         </div>
                     </div>

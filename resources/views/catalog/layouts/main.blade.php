@@ -92,12 +92,21 @@
         } else {
             if (window.location.href.indexOf("?") > -1) {
                 if(window.location.href.indexOf("=new") > -1 && window.location.href.indexOf("&") > -1){
-                    $('#sort-dear').on('click', function (e) {
-                        window.location.replace(getCookie('url_catalog') + '&states%5B%5D=new&orderBy=dear&')
-                    })
-                    $('#sort-cheap').on('click', function (e) {
-                        window.location.replace(getCookie('url_catalog') + '&states%5B%5D=new&orderBy=cheap&')
-                    })
+                    if(getCookie('url_catalog').indexOf("?") > -1) {
+                        $('#sort-dear').on('click', function (e) {
+                            window.location.replace(getCookie('url_catalog') + '&states%5B%5D=new&orderBy=dear&')
+                        })
+                        $('#sort-cheap').on('click', function (e) {
+                            window.location.replace(getCookie('url_catalog') + '&states%5B%5D=new&orderBy=cheap&')
+                        })
+                    } else {
+                        $('#sort-dear').on('click', function (e) {
+                            window.location.replace(getCookie('url_catalog') + '?states%5B%5D=new&orderBy=dear&')
+                        })
+                        $('#sort-cheap').on('click', function (e) {
+                            window.location.replace(getCookie('url_catalog') + '?states%5B%5D=new&orderBy=cheap&')
+                        })
+                    }
                 } else {
                     if(window.location.href.indexOf("=new") > -1 && !(window.location.href.indexOf("&") > -1)){
                         $('#sort-dear').on('click', function (e) {
