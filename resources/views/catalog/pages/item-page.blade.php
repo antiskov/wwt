@@ -10,7 +10,6 @@
         <script>
             document.addEventListener("DOMContentLoaded", function(event) {
                 document.querySelector('#heart').addEventListener('click', function (e) {
-                    // console.log(this.classList.contains('active'));
                     if(!this.classList.contains('active')) {
                         console.log(1);
                         $.ajax({

@@ -277,6 +277,19 @@
                 <li data-tab="filters-desc-more">Больше</li>
             </ul>
         </div>
+        <div id="save-filter-modal" class="modal">
+            <div class="modal__content">
+                <h5 class="modal__title">Сохранение фильтра</h5>
+                <p class="modal__text">
+                    Введите, пожалуйста, название фильтра для сохранения.
+                </p>
+                <div id="save-filter-form" class="change-pass-mail">
+                    <input id="input-save-search" name="title_search" type="text" placeholder="Введите название фильтра">
+                    <span>Обязательное поле*</span>
+                    <a href="{{route('catalog.save-search')}}"><button id="button-save-search" class="btn-arrow" type="button">Сохранить запрос</button></a>
+                </div>
+            </div>
+        </div>
         <div class="filters-desc-categories">
             <div id="filters-desc-brand" class="filters-desc-category">
                 <span class="filters-desc__close-btn"></span>
@@ -308,7 +321,7 @@
                         @endforeach
                     </ul>
                     <div class="filters-buttons">
-                        <button data-fancybox data-src="#password-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
+                        <button data-fancybox data-src="#save-filter-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
                         <button class="filters-submit-btn btn-hover" type="submit">Применить</button>
                     </div>
                 </div>
@@ -342,9 +355,8 @@
                         @endforeach
                     </ul>
                     <div class="filters-buttons">
-                        <button data-fancybox data-src="#password-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
+                        <button data-fancybox data-src="#save-filter-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
                         <button id="ajax_button" class="filters-save-btn btn-hover-w" type="submit"><a href="{{route('catalog.save-search')}}">Аjax</a></button>
-                        <button class="filters-save-btn btn-hover-w" type="button"><a href="{{route('catalog.save-search')}}">with reload</a></button>
                         <button class="filters-submit-btn btn-hover" type="submit">Применить</button>
                     </div>
                 </div>
@@ -364,7 +376,7 @@
                     </div>
                 </div>
                 <div class="filters-buttons">
-                    <button data-fancybox data-src="#password-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
+                    <button data-fancybox data-src="#save-filter-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
                     <button class="filters-submit-btn btn-hover" type="submit">Применить</button>
                 </div>
             </div>
@@ -406,7 +418,7 @@
                         @endforeach
                     </ul>
                     <div class="filters-buttons">
-                        <button data-fancybox data-src="#password-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
+                        <button data-fancybox data-src="#save-filter-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
                         <button class="filters-submit-btn btn-hover" type="submit">Применить</button>
                     </div>
                 </div>
@@ -450,7 +462,7 @@
 {{--                        </li>--}}
                     </ul>
                     <div class="filters-buttons">
-                        <button data-fancybox data-src="#password-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
+                        <button data-fancybox data-src="#save-filter-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
                         <button class="filters-submit-btn btn-hover" type="submit">Применить</button>
                     </div>
                 </div>
@@ -484,7 +496,7 @@
                         @endforeach
                     </ul>
                     <div class="filters-buttons">
-                        <button data-fancybox data-src="#password-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
+                        <button data-fancybox data-src="#save-filter-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
                         <button class="filters-submit-btn btn-hover" type="submit">Применить</button>
                     </div>
                 </div>
@@ -678,7 +690,7 @@
                     </div>
 
                     <div class="filters-buttons">
-                        <button data-fancybox data-src="#password-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
+                        <button data-fancybox data-src="#save-filter-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
                         <button class="filters-submit-btn btn-hover" type="submit">Применить</button>
                     </div>
                 </div>
@@ -686,3 +698,5 @@
         </div>
     </form>
 </section>
+
+

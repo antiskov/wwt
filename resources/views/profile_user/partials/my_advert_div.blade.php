@@ -34,7 +34,7 @@
                         <div class="price-block">
                             <div class="price">
                                 <div class="new">
-                                    {{$advert->price}}
+                                    {{$advert->price}}$
                                 </div>
                                 {{--                                    <div class="old">--}}
                                 {{--                                        1500$--}}
@@ -52,7 +52,8 @@
                                 <a href="#/" class="sett">редактировать</a>
                                 <a href="#/" class="sett">деактивировать</a>
                                 <div class="soc-block">
-                                    <a href="#/" class="sett">Поделиться</a>
+                                    <input type="hidden" name="link-for-copy" value="{{route('catalog.item-page', [$advert])}}">
+                                    <a href="#" class="sett btn-for-copy tooltip" title="Ссылка успешно скопирована в буффер обмена!">Поделиться</a>
                                 </div>
                             </div>
                         </div>

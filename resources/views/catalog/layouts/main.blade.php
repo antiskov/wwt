@@ -46,6 +46,13 @@
             })
         })
     });
+
+    document.addEventListener("DOMContentLoaded", function(event) {
+        document.querySelector('#button-save-search').addEventListener('click', function (e) {
+            document.cookie = 'search_title='+$('#input-save-search').val()+'; max-age=600'
+        })
+    });
+
     document.addEventListener("DOMContentLoaded", function (event) {
         function query() {
             $.ajax({
