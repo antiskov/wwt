@@ -34,7 +34,6 @@ class VipAdverts extends ToolsForAdvertsFilters implements AdvertsFilters
 
         $regions = DB::table($nameView)->select('region')
             ->addSelect(DB::raw('COUNT(region) as count_region'))
-//            ->groupBy('region')->whereRaw(($user_id == 0) ? "and user_id ($user_id)" : "") ->get();
             ->groupBy('region')->whereRaw($this->getConditionUserId($user_id))->get();
 
         $mechanismTypes = DB::table($nameView)->select('mechanism_type_title')
@@ -102,5 +101,14 @@ class VipAdverts extends ToolsForAdvertsFilters implements AdvertsFilters
         $query = $director->getQuery();
 
         return $query;
+    }
+
+    public function getConditionUserId($user_id)
+    {
+        if($user_id == 0) {
+            return '1 and vip_status in (1)';
+        } else {
+            return "user_id in ($user_id)";
+        }
     }
 }

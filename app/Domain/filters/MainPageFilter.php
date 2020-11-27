@@ -99,6 +99,8 @@ class MainPageFilter implements Filter
             $titleMax = $request->prices[1];
             $this->query .= " and price > $titleMin and price < $titleMax";
         }
+
+//        dd($this->query);
     }
 
     public function getQuery()
