@@ -42,6 +42,7 @@ Route::middleware('set.locale')->group(function () {
             Route::get('/favorite/delete/{advert}', [\App\Http\Controllers\ProfileController::class, 'deleteFavorite'])->name('delete_favorite');
 //            Route::get('/search/delete/{title}/{link}', [\App\Http\Controllers\ProfileController::class, 'deleteSearch'])->name('delete_search');
             Route::get('/search/delete/{search}', [\App\Http\Controllers\ProfileController::class, 'deleteSearch'])->name('delete_search');
+            Route::get('/referral', [\App\Http\Controllers\ProfileController::class, 'referralIndex'])->name('referral');
         });
     });
 

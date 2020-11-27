@@ -152,6 +152,8 @@ class ProfileController extends Controller
         return redirect()->back();
     }
 
-
-
+    public function referralIndex()
+    {
+        return \view('profile_user.pages.referral');
+    }
 }
