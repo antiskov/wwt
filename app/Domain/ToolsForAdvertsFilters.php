@@ -6,6 +6,7 @@ use App\Domain\filters\WatchFilter;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Session;
 
 class ToolsForAdvertsFilters
 {
@@ -54,8 +55,7 @@ class ToolsForAdvertsFilters
     public function setSearchLink(Request $request)
     {
         if(strstr($request->fullUrl(), '?')){
-            session_start();
-            $_SESSION["searchLink"] = strstr($request->fullUrl(), '?');
+            Session::put('searchLink', strstr($request->fullUrl(), '?'));
         }
     }
 

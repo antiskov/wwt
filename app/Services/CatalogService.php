@@ -40,6 +40,7 @@ use App\Models\WidthClasp;
 use App\Models\YearAdvert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class CatalogService
 {
@@ -59,15 +60,13 @@ class CatalogService
 
     public function saveSearch($serviceArray)
     {
-        session_start();
-
         $filters = json_encode($serviceArray['adverts']);
 
         $search = new SearchLink();
         $search->user()->associate(auth()->user());
         $search->filter = $filters;
-        $search->link_search = $_SESSION["searchLink"];
-        $search->title = 'Example name';
+        $search->link_search = Session::get('searchLink');
+        $search->title = $_COOKIE['search_title'];
         $search->save();
     }
 
