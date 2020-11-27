@@ -41,6 +41,7 @@ use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class CatalogService
 {
@@ -247,14 +248,14 @@ class CatalogService
 
     public function saveSearch($serviceArray)
     {
-        session_start();
+//        session_start();
 
         $filters = json_encode($serviceArray['adverts']);
 
         $search = new SearchLink();
         $search->user()->associate(auth()->user());
         $search->filter = $filters;
-        $search->link_search = $_SESSION["searchLink"];
+        $search->link_search = Session::get('searchLink');
         $search->title = $_COOKIE['search_title'];
         $search->save();
     }
@@ -282,8 +283,7 @@ class CatalogService
     public function setSearchLink(Request $request)
     {
         if(strstr($request->fullUrl(), '?')){
-            session_start();
-            $_SESSION["searchLink"] = strstr($request->fullUrl(), '?');
+            Session::put('searchLink', strstr($request->fullUrl(), '?'));
         }
     }
 
