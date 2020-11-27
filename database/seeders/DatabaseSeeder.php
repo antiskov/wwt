@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
             UserRolesSeeder::class,
             UsersSeeder::class,
             AdvertsSeeder::class,
-//            AdvertsImageSeeder::class,
+            AdvertsImageSeeder::class,
             CategorySeeder::class,
             WatchModelSeeder::class,
             WatchAdvertSeeder::class,
