@@ -4,6 +4,7 @@
 namespace App\Services;
 
 
+
 use App\Domain\adverts_filters\AdvertFilterGetter;
 use App\Domain\adverts_filters\UserFilterAdverts;
 use App\Domain\AdvertsFiltersDirector;
@@ -44,7 +45,7 @@ use Illuminate\Support\Facades\Session;
 
 class CatalogService
 {
-    public function getFilterResult(Request $request, $user_id = 0, $nameView = 'user_adverts_view')
+    public function getFilterResult(Request $request)
     {
         $advertFilter = new AdvertFilterGetter();
         $director = new AdvertsFiltersDirector();

@@ -24,7 +24,7 @@ class ToolsForAdvertsFilters
 
     public function getFilter(Request $request)
     {
-        $watchFilter = new WatchFilter();
+        $watchFilter = new WatchFilter($request);
         $director = new FilterDirector();
         $director->createQueryWatchFilter($request, $watchFilter);
         $query = $director->getQuery();

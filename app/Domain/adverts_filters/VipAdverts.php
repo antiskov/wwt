@@ -95,7 +95,7 @@ class VipAdverts extends ToolsForAdvertsFilters implements AdvertsFilters
 
     public function getFilter(Request $request)
     {
-        $watchFilter = new MainPageFilter();
+        $watchFilter = new MainPageFilter($request);
         $director = new FilterDirector();
         $director->createQueryWatchFilter($request, $watchFilter);
         $query = $director->getQuery();
