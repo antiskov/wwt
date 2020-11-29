@@ -5,8 +5,8 @@ namespace App\Services;
 
 
 
-use App\Domain\adverts_filters\AdvertFilterGetter;
-use App\Domain\adverts_filters\UserFilterAdverts;
+use App\Domain\AdvertsAndFilters\AdvertsFiltersGetter;
+use App\Domain\AdvertsAndFilters\UserFilterAdverts;
 use App\Domain\AdvertsFiltersDirector;
 use App\Models\AccessoryMechanismType;
 use App\Models\Advert;
@@ -47,7 +47,7 @@ class CatalogService
 {
     public function getFilterResult(Request $request)
     {
-        $advertFilter = new AdvertFilterGetter();
+        $advertFilter = new AdvertsFiltersGetter();
         $director = new AdvertsFiltersDirector();
         $director->setQueryToDB($request, $advertFilter);
 
@@ -73,7 +73,7 @@ class CatalogService
 
     public function getResultForUser(Request $request, $user_id = 0)
     {
-        $adverts = new AdvertFilterGetter();
+        $adverts = new AdvertsFiltersGetter();
         $adverts->index($request, $user_id);
         return $adverts->getResult();
     }

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 
-use App\Domain\adverts_filters\AdvertFilterGetter;
-use App\Domain\adverts_filters\VipAdverts;
+use App\Domain\AdvertsAndFilters\AdvertsFiltersGetter;
+use App\Domain\AdvertsAndFilters\VipAdvertsAndFiltersGetter;
 use App\Domain\AdvertsFiltersDirector;
 use App\Mail\RegisterEmail;
 use App\Models\User;
@@ -24,7 +24,7 @@ class HomeController extends Controller
      * @return Application|Factory|View
      */
     public function main(Request $request) {
-        $advertFilter = new VipAdverts();
+        $advertFilter = new VipAdvertsAndFiltersGetter();
         $director = new AdvertsFiltersDirector();
         $director->setQueryToDB($request, $advertFilter);
 

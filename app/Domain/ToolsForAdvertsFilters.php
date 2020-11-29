@@ -2,7 +2,7 @@
 
 namespace App\Domain;
 
-use App\Domain\Filters\WatchFilter;
+use App\Domain\Filters\CatalogFilter;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
@@ -24,7 +24,7 @@ class ToolsForAdvertsFilters
 
     public function getFilter(Request $request)
     {
-        $watchFilter = new WatchFilter($request);
+        $watchFilter = new CatalogFilter($request);
         $director = new FilterDirector();
         $director->createQueryWatchFilter($request, $watchFilter);
         $query = $director->getQuery();

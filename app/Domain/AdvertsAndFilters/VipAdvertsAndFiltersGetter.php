@@ -1,13 +1,15 @@
 <?php
 
-namespace App\Domain\adverts_filters;
+namespace App\Domain\AdvertsAndFilters;
 
 use App\Contracts\AdvertsFilters;
+use App\Domain\FilterDirector;
+use App\Domain\Filters\MainPageFilter;
 use App\Domain\ToolsForAdvertsFilters;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class AdvertFilterGetter extends ToolsForAdvertsFilters implements AdvertsFilters
+class VipAdvertsAndFiltersGetter extends ToolsForAdvertsFilters implements AdvertsFilters
 {
     protected $result;
 
@@ -88,5 +90,24 @@ class AdvertFilterGetter extends ToolsForAdvertsFilters implements AdvertsFilter
     public function getResult()
     {
         return $this->result;
+    }
+
+    public function getFilter(Request $request)
+    {
+        $watchFilter = new MainPageFilter($request);
+        $director = new FilterDirector();
+        $director->createQueryWatchFilter($request, $watchFilter);
+        $query = $director->getQuery();
+
+        return $query;
+    }
+
+    public function getConditionUserId($user_id)
+    {
+        if($user_id == 0) {
+            return '1 and vip_status in (1)';
+        } else {
+            return "user_id in ($user_id)";
+        }
     }
 }
