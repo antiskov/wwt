@@ -381,6 +381,80 @@ $(document).ready(function () {
     }
   });
 
+    $('#registration-form').on('submit', function(e){
+        e.preventDefault();
+        $.ajax({
+            type:"POST",
+            url: '/register-user',
+            data: $('#registration-form').serializeArray(),
+            datatype: 'html',
+            success: function (data) {
+                $('#registration-form').empty();
+                $('#registration-form').html(data.output);
+
+                console.log(data.output);
+                console.log(data.errors);
+            },
+            error: function (xhr) {
+                if(xhr.status === 422) {
+                    $('#reg-form-email').addClass('form-elem_err').removeClass('form-elem_success');
+                    $('#reg-form-email + span').text(xhr.responseJSON.errors.email[0]);
+                }
+            }
+        }).done(function() {
+            $( this ).addClass( "done" );
+        })
+    });
+
+    $('#login-form').on('submit', function(e){
+        e.preventDefault();
+        $.ajax({
+            type:"POST",
+            url: '/check-login-email',
+            data: $('#login-form').serializeArray(),
+            datatype: 'html',
+            success: function (data) {
+                if (data.email) {
+                    $('#password-form-email').val(data.email);
+                    $.fancybox.close({
+                        src: '#login-modal',
+                    });
+                    $.fancybox.open({
+                        src: '#password-modal',
+                    });
+                }
+                if (data.status == 'error') {
+                    $('#login-email-form').addClass('form-elem_err').removeClass('form-elem_success');
+                    $('#login-email-form + span').text(data.message);
+                }
+            }
+        }).done(function() {
+            $( this ).addClass( "done" );
+        })
+    });
+
+    $('#password-form').on('submit', function(e){
+        e.preventDefault();
+        $.ajax({
+            type:"POST",
+            url: '/login-password',
+            data: $('#password-form').serializeArray(),
+            datatype: 'html',
+            success: function (data) {
+                $('#password-form').html(data.output);
+                if(data.status == 'success') {
+                    window.location.replace(document.location.href);
+                }
+                if(data.status == 'error') {
+                    $('#password-login-form').addClass('form-elem_err').removeClass('form-elem_success');
+                    $('#password-login-form + span').text(data.message);
+                }
+            },
+        }).done(function() {
+            $( this ).addClass( "done" );
+        })
+    });
+
   $('#registration-form').validate({
     rules: {
       name: {
@@ -669,6 +743,10 @@ $(document).ready(function () {
       }
     })
   }
+
+  $('.phone-dropdown button').on('click', function() {
+    $(this).parent().toggleClass('active')
+  })
 
   $('.seller-slider').slick({
     infinite: true,

@@ -36,8 +36,13 @@
 {{--                        <div class="person-rating">--}}
 {{--                            <img src="./images/icons/stars.svg" alt="img">--}}
 {{--                        </div>--}}
-                        <div class="person-name">{{$advert->user->name}}</div>
-                        <a href="tel:{{$advert->user->phone}}" class="person-phone">{{$advert->user->phone}}</a>
+                        <div class="cont-name">
+                            <h3>{{$advert->name}}</h3>
+                            <div class="phone-dropdown">
+                                <a href="tel:{{$advert->user->phone}}" class="phone">{{$advert->user->phone}}</a>
+                                <button class="btn-hover">Показать телефон</button>
+                            </div>
+                        </div>
                         <div class="person-social">
                             <a href="#/"></a>
                             <a href="#/"></a>

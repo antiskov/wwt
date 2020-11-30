@@ -362,6 +362,25 @@ $(document).ready(function () {
         $(this).parent().children("select").removeClass("form-elem_err")
     })
 
+    $('#login-form').validate({
+        rules: {
+            name: {
+                required: true
+            },
+        },
+        errorClass: 'form-elem_err',
+        validClass: 'form-elem_success',
+        highlight: function (element, errorClass, validClass) {
+            $(element).closest('#login-form input').addClass(errorClass).removeClass(validClass);
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).closest('#login-form input').removeClass(errorClass).addClass(validClass);
+        },
+        errorPlacement: function (error, element) {
+
+        }
+    });
+
     $('#registration-form').on('submit', function(e){
         e.preventDefault();
         $.ajax({
@@ -434,25 +453,6 @@ $(document).ready(function () {
         }).done(function() {
             $( this ).addClass( "done" );
         })
-    });
-
-    $('#login-form').validate({
-        rules: {
-            name: {
-                required: true
-            },
-        },
-        errorClass: 'form-elem_err',
-        validClass: 'form-elem_success',
-        highlight: function (element, errorClass, validClass) {
-            $(element).closest('#login-form input').addClass(errorClass).removeClass(validClass);
-        },
-        unhighlight: function (element, errorClass, validClass) {
-            $(element).closest('#login-form input').removeClass(errorClass).addClass(validClass);
-        },
-        errorPlacement: function (error, element) {
-
-        }
     });
 
     $('#registration-form').validate({
@@ -743,6 +743,10 @@ $(document).ready(function () {
             }
         })
     }
+
+    $('.phone-dropdown button').on('click', function() {
+        $(this).parent().toggleClass('active')
+    })
 
     $('.seller-slider').slick({
         infinite: true,

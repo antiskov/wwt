@@ -63,7 +63,10 @@
                 <div class="seller-item">
                     <div class="cont-name">
                         <h3>{{$advert->name}}</h3>
-                        <a href="tel:+38{{$advert->phone}}" class="phone">+38{{$advert->phone}}</a>
+                        <div class="phone-dropdown">
+                            <a href="tel:{{$advert->user->phone}}" class="phone">{{$advert->user->phone}}</a>
+                            <button class="btn-hover">Показать телефон</button>
+                        </div>
                     </div>
                     <div class="img-seller">
                         <img src="{{asset('/storage/'.$advert->user->avatar)}}" alt="img">
