@@ -31,10 +31,9 @@ use Illuminate\Http\Request;
 
 class CatalogController extends Controller
 {
-    public function index(CatalogService $service, Request $request)
+    public function getFilterResult(CatalogService $service, Request $request)
     {
-//        dd($request);
-        return view('catalog.pages.main', $service->index($request));
+        return view('catalog.pages.main', $service->getFilterResult($request));
     }
 
     public function filterJson(Request $request, CatalogService $service)
@@ -46,14 +45,14 @@ class CatalogController extends Controller
         return response()->json($data);
     }
 
-    public function indexAccessory(CatalogService $service)
+    public function getFilterResultAccessory(CatalogService $service)
     {
-        return view('catalog.pages.accessory', $service->indexAccessory());
+//        return view('catalog.pages.accessory', $service->getFilterResultAccessory());
     }
 
-    public function indexSparePart(CatalogService $service)
+    public function getFilterResultSparePart(CatalogService $service)
     {
-        return view('catalog.pages.spare_parts', $service->indexSparePart());
+//        return view('catalog.pages.spare_parts', $service->getFilterResultSparePart());
     }
 
     public function sellerPage(User $user, UserService $service)
@@ -67,14 +66,14 @@ class CatalogController extends Controller
 
     public function saveSearch(CatalogService $service, Request $request)
     {
-        $service->saveSearch($service->index($request));
+        $service->saveSearch($service->getFilterResult($request));
 
         return redirect()->back();
     }
 
     public function countResults(CatalogService $service, Request $request)
     {
-        $a = $service->index($request);
+        $a = $service->getFilterResult($request);
 
         $data = [
             'count' => $a['countResults']
@@ -93,6 +92,6 @@ class CatalogController extends Controller
     public function sellerAds(CatalogService $service, Request $request, User $user)
     {
 //        dd($user->id);
-        return view('catalog.pages.seller_ads', $service->index($request, $user->id));
+        return view('catalog.pages.seller_ads', $service->getResultForUser($request, $user->id));
     }
 }
