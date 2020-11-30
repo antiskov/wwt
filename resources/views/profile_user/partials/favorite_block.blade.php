@@ -67,7 +67,7 @@
                     <a href="{{route('delete_search', [$searchLink['id']])}}"><div class="search-item__delete-btn"></div></a>
                     <div class="search-item__text">
                         <h5>
-                            <a href="{{route('catalog-favorite', $searchLink['link'])}}">{{$searchLink['title']}}</a>
+                            <a href="{{$searchLink['link']}}">{{$searchLink['title']}}</a>
                         </h5>
                         <p>Сохраненные результаты поиска от {{strstr($searchLink['created_at'], ' ', true)}}, последнее уведомление 25 сент. 2020 г.</p>
                     </div>

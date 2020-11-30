@@ -42,7 +42,7 @@ class CreateUser implements ICreateUser
         $this->password = $request->get('password');
         $this->email = $request->get('email');
         $this->role=$request->get('role');
-        $this->referral_code=Str::random(16);
+        $this->referral_code=Str::random(25);
         $this->is_active=1;
     }
 

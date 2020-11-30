@@ -8,6 +8,7 @@ use App\Domain\Filters\MainPageFilter;
 use App\Domain\ToolsForAdvertsFilters;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class VipAdvertsAndFiltersGetter extends ToolsForAdvertsFilters implements AdvertsFilters
 {

@@ -35,11 +35,6 @@ class Advert extends Model implements Viewable
         return $this->hasMany(AdvertImage::class);
     }
 
-    public function condition()
-    {
-        return $this->belongsTo(Condition::class);
-    }
-
     public function deliveryVolume()
     {
         return $this->belongsTo(DeliveryVolume::class);
