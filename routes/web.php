@@ -53,7 +53,7 @@ Route::middleware('set.locale')->group(function () {
         Route::get('/count_results', [\App\Http\Controllers\CatalogController::class, 'countResults'])->name('catalog.count-results');
         Route::get('/spare_parts', [\App\Http\Controllers\CatalogController::class, 'indexSparePart'])->name('catalog.spare-parts');
         Route::get('/item_page/{advert}', [\App\Http\Controllers\GoodsController::class, 'index'])->name('catalog.item-page');
-        Route::post('/show_phone/{advert}', [\App\Http\Controllers\GoodsController::class, 'showPhone'])->name('catalog.show_phone');
+        Route::get('/show_phone/{advert}', [\App\Http\Controllers\GoodsController::class, 'showPhone'])->name('catalog.show_phone');
         Route::get('/item_page_favorite/{advert}/{favorite}', [\App\Http\Controllers\GoodsController::class, 'setFavorite'])->name('catalog.item_page_favorite');
         Route::get('{user}/seller_ads', [\App\Http\Controllers\CatalogController::class, 'sellerAds'])->name('catalog.seller-ads');
 

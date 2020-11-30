@@ -8,9 +8,9 @@
     @endif
     <section class="item-page">
         <script>
-            document.addEventListener("DOMContentLoaded", function(event) {
+            document.addEventListener("DOMContentLoaded", function (event) {
                 document.querySelector('#heart').addEventListener('click', function (e) {
-                    if(!this.classList.contains('active')) {
+                    if (!this.classList.contains('active')) {
                         console.log(1);
                         $.ajax({
                             url: '/catalog/item_page_favorite/{{$advert->id}}/{{1}}',
@@ -22,58 +22,66 @@
                         })
                     }
                 })
+                document.querySelector('.button-show-phone').addEventListener('click', function (e) {
+                    console.log(1);
+                    $.ajax({
+                        url: '/catalog/show_phone/{{$advert->id}}',
+                    })
+                })
             });
         </script>
         @include('catalog.modals.item-page-block')
-            <div class="tabs__content">
-                <div class="container">
-                    <div class="person">
-                        <div class="person-prof">
-                            <a href="{{route('seller-page', $user->id)}}">
-                                <img src="{{asset('/storage/images/profiles/'.$user->email.'/small_'.$user->avatar)}}" alt="img">
-                            </a>
-                        </div>
-{{--                        <div class="person-rating">--}}
-{{--                            <img src="./images/icons/stars.svg" alt="img">--}}
-{{--                        </div>--}}
-                        <div class="person-name">
-                            <h3>{{$advert->name}}</h3>
-                        </div>
-                        <div class="phone-dropdown">
-                            <a href="tel:{{$advert->user->phone}}" class="phone">{{$advert->user->phone}}</a>
-                            <button class="btn-hover">Показать телефон</button>
-                        </div>
-                        <div class="person-social">
-                            <a href="#/"></a>
-                            <a href="#/"></a>
-                            <a href="#/"></a>
-                        </div>
-                        <div class="person-laung">
-                            <p>Говорит на :</p>
-                            @if(in_array('ua', $userLanguages))
-                                <span>Украинский</span>
-                            @endif
-                            @if(in_array('ru', $userLanguages))
-                                <span>Русский</span>
-                            @endif
-                            @if(in_array('en', $userLanguages))
-                                <span>English</span>
-                            @endif
-                        </div>
-                        <div class="person-address">
-                            <div class="address">
-                                <p>Город:</p>
-                                <span>{{$advert->user->city}}</span>
-                            </div>
-                            <div class="address">
-                                <p>Страна:</p>
-                                <span>{{$advert->user->country}}</span>
-                            </div>
-                        </div>
-                        <a href="{{route('catalog.seller-ads', [$advert->user_id])}}" class="all-ads btn-hover-w">Все объявления продавца</a>
+        <div class="tabs__content">
+            <div class="container">
+                <div class="person">
+                    <div class="person-prof">
+                        <a href="{{route('seller-page', $user->id)}}">
+                            <img src="{{asset('/storage/images/profiles/'.$user->email.'/small_'.$user->avatar)}}"
+                                 alt="img">
+                        </a>
                     </div>
+                    {{--                        <div class="person-rating">--}}
+                    {{--                            <img src="./images/icons/stars.svg" alt="img">--}}
+                    {{--                        </div>--}}
+                    <div class="person-name">
+                        <h3>{{$advert->name}}</h3>
+                    </div>
+                    <div class="phone-dropdown">
+                        <a href="tel:{{$advert->user->phone}}" class="phone">{{$advert->user->phone}}</a>
+                        <button class="btn-hover button-show-phone">Показать телефон</button>
+                    </div>
+                    <div class="person-social">
+                        <a href="#/"></a>
+                        <a href="#/"></a>
+                        <a href="#/"></a>
+                    </div>
+                    <div class="person-laung">
+                        <p>Говорит на :</p>
+                        @if(in_array('ua', $userLanguages))
+                            <span>Украинский</span>
+                        @endif
+                        @if(in_array('ru', $userLanguages))
+                            <span>Русский</span>
+                        @endif
+                        @if(in_array('en', $userLanguages))
+                            <span>English</span>
+                        @endif
+                    </div>
+                    <div class="person-address">
+                        <div class="address">
+                            <p>Город:</p>
+                            <span>{{$advert->user->city}}</span>
+                        </div>
+                        <div class="address">
+                            <p>Страна:</p>
+                            <span>{{$advert->user->country}}</span>
+                        </div>
+                    </div>
+                    <a href="{{route('catalog.seller-ads', [$advert->user_id])}}" class="all-ads btn-hover-w">Все
+                        объявления продавца</a>
                 </div>
             </div>
+        </div>
         </div>
     </section>
 @endsection

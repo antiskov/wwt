@@ -65,7 +65,7 @@
                         <h3>{{$advert->name}}</h3>
                         <div class="phone-dropdown">
                             <a href="tel:{{$advert->user->phone}}" class="phone">{{$advert->user->phone}}</a>
-                            <button class="btn-hover">Показать телефон</button>
+                            <button class="btn-hover button-show-phone">Показать телефон</button>
                         </div>
                     </div>
                     <div class="img-seller">
