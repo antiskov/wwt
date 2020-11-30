@@ -20,13 +20,21 @@ class WatchModelSeeder extends Seeder
         WatchType::create([
             'title' => 'Automatic',
         ]);
-
+//
         WatchMake::create([
-            'title' => 'Casio'
+            'title' => 'Jordano'
         ]);
 
         WatchMake::create([
             'title' => 'Apple'
+        ]);
+
+        WatchMake::create([
+            'title' => 'Rolex'
+        ]);
+
+        WatchMake::create([
+            'title' => 'Xiaomi'
         ]);
 
         MechanismType::create([
