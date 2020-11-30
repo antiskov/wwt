@@ -58,7 +58,7 @@ class AdvertsFiltersGetter extends ToolsForAdvertsFilters implements AdvertsFilt
         $adverts = $this->paginateCustom(
             DB::table($nameView)
                 ->whereRaw($this->getFilter($request).' and '.$this->getConditionUserId($user_id))
-                ->orderBy('vip_status')
+                ->orderBy('vip_status', 'desc')
                 ->orderBy('price', $this->getOrderBy($request)),
             $request->fullUrl(),
             $this->getCountPagination()

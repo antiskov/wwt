@@ -2,7 +2,6 @@
     @foreach($adverts as $advert)
         <div class="items-wrap">
             <div class="announce-item">
-
                 <div class="chek_cont_set">
                     <label class="checkbox-other">
                         <input type="checkbox" checked>

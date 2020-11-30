@@ -9,9 +9,6 @@ use App\Domain\AdvertsAndFilters\AdvertsFiltersGetter;
 use App\Domain\AdvertsFiltersDirector;
 use App\Models\AccessoryMechanismType;
 use App\Models\Advert;
-use App\Models\BraceletClasp;
-use App\Models\BraceletColor;
-use App\Models\BraceletMaterial;
 use App\Models\Category;
 use App\Models\DeliveryVolume;
 use App\Models\DiameterWatch;
@@ -19,7 +16,6 @@ use App\Models\Glass;
 use App\Models\MaterialsClasp;
 use App\Models\MechanismType;
 use App\Models\Option;
-use App\Models\Province;
 use App\Models\SearchLink;
 use App\Models\Sex;
 use App\Models\SparePartsMechanismType;
@@ -65,7 +61,7 @@ class CatalogService
         $search = new SearchLink();
         $search->user()->associate(auth()->user());
         $search->filter = $filters;
-        $search->link_search = Session::get('searchLink');
+        $search->link_search = route('catalog-favorite', [Session::get('searchLink')]);
         $search->title = $_COOKIE['search_title'];
         $search->save();
     }
