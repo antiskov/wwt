@@ -26,7 +26,7 @@ class WatchAdvertSeeder extends Seeder
             WatchAdvert::create([
                 'advert_id' => $i,
                 'watch_type_id' => 1,
-                'watch_make_id' => 1,
+                'watch_make_id' => rand(1,4),
                 'watch_model_id' => rand(1,9),
                 'model_code' => rand(3000, 6000),
                 'sex_id' => rand(1,2),
