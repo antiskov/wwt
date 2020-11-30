@@ -23,9 +23,12 @@
                     }
                 })
                 document.querySelector('.button-show-phone').addEventListener('click', function (e) {
-                    console.log(1);
+                    e.preventDefault();
                     $.ajax({
                         url: '/catalog/show_phone/{{$advert->id}}',
+                        success: function (data) {
+                            $('#show-phone').html(data.output);
+                        },
                     })
                 })
             });

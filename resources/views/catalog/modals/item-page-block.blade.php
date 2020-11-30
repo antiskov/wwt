@@ -64,8 +64,12 @@
                     <div class="cont-name">
                         <h3>{{$advert->name}}</h3>
                         <div class="phone-dropdown">
-                            <a href="tel:{{$advert->user->phone}}" class="phone">{{$advert->user->phone}}</a>
-                            <button class="btn-hover button-show-phone">Показать телефон</button>
+                            <form id="show-phone" action="{{route('catalog.show_phone', $advert->id)}}">
+                                @csrf
+                                <button class="btn-hover button-show-phone" type="submit">Показать телефон</button>
+                            </form>
+{{--                            <a href="tel:{{$advert->user->phone}}" class="phone">{{$advert->user->phone}}</a>--}}
+{{--                            <button class="btn-hover button-show-phone">Показать телефон</button>--}}
                         </div>
                     </div>
                     <div class="img-seller">

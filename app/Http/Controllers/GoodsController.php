@@ -34,12 +34,18 @@ class GoodsController extends Controller
         return response()->json($favorite);
     }
 
-    public function showPhone(Advert $advert)
+    public function showPhone(Advert $advert, Request $request)
     {
+//        dd($request);
+
         $advert->number_phone_show = $advert->number_phone_show + 1;
         $advert->save();
 
-        return redirect()->back();
+        $data = [
+            'output' => "<a href='tel:{$advert->user->phone}' class='phone'>{$advert->user->phone}</a>"
+        ];
+
+        return response()->json($data);
     }
 
 }
