@@ -14,8 +14,8 @@ class Update2UsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->float('latitude', 8, 2);
-            $table->float('longtitude', 8, 2);
+            $table->float('latitude', 8, 2)->nullable();
+            $table->float('longtitude', 8, 2)->nullable();
         });
     }
 

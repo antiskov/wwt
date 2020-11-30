@@ -161,22 +161,8 @@ class ProfileController extends Controller
         return \view('profile_user.pages.referral');
     }
 
-    public function createReferral(Request $request)
-    {
-        if(!Referral::where('user_id', auth()->user()->id)->where('email', $request->email)->where('name', $request->name)->first()){
-            $referral = new Referral();
-            $referral->user()->associate(auth()->user());
-            $referral->email = $request->email;
-            $referral->name = $request->name;
-            $referral->save();
-        }
-
-        return redirect()->back();
-    }
-
     public function getReferral($referral_code)
     {
-
         if(User::where('referral_code', $referral_code)->first()){
             Cookie::queue(Cookie::make('referral_code', $referral_code));
         }

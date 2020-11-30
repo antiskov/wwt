@@ -23,8 +23,8 @@ class UsersSeeder extends Seeder
                 'is_active'=>1,
                 'referral_code'=>'hahahahaha',
                 'role_id'=>3,
-                'latitude' => '50.4547',
-                'longtitude' => '30.5238',
+                'user_latitude' => '50.4547',
+                'user_longtitude' => '30.5238',
             ]
         );
 
@@ -35,8 +35,8 @@ class UsersSeeder extends Seeder
                 'is_active'=>1,
                 'referral_code'=>'hahahahaha',
                 'role_id'=>1,
-                'latitude' => '50.4547',
-                'longtitude' => '30.5238',
+                'user_latitude' => '50.4547',
+                'user_longtitude' => '30.5238',
             ]
         );
     }

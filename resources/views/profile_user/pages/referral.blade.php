@@ -5,26 +5,29 @@
         <div class="">
             <div class="block-referral">
                 <h2 class="name-lk">Создать реферальную ссылку</h2>
-                <p>
-                    Если вы хотите порекомендовать кому-то нашу платформу -
-                    вы можете создать реферальную ссылку введя данные нового пользователя
-                </p>
-                <form id="referral_from" action="{{route('create_referral')}}" method="post" class="referral">
+{{--                <p>--}}
+{{--                    Если вы хотите порекомендовать кому-то нашу платформу ---}}
+{{--                    вы можете создать реферальную ссылку введя данные нового пользователя--}}
+{{--                </p>--}}
+{{--                <form id="referral_from" action="{{route('create_referral')}}" method="post" class="referral">--}}
 {{--                <form id="referral_from" type="get" class="referral">--}}
-                    @csrf
-                    <label for="referral-email">
-                        Введите email
-                        <input type="email" name="email" id="referral-email">
-                    </label>
-                    <label for="referral-name">
-                        Введите Имя
-                        <input type="name" name="name" id="referral-name">
-                    </label>
+{{--                    @csrf--}}
+{{--                    <label for="referral-email">--}}
+{{--                        Введите email--}}
+{{--                        <input type="email" name="email" id="referral-email">--}}
+{{--                    </label>--}}
+{{--                    <label for="referral-name">--}}
+{{--                        Введите Имя--}}
+{{--                        <input type="name" name="name" id="referral-name">--}}
+{{--                    </label>--}}
 {{--                    <button id="button_referral_from" class="referral-save btn-hover" type="submit">Сформировать--}}
-                    <button id="button_referral_from" class="referral-save btn-hover" type="submit">Сформировать
-                        ссылку
-                    </button>
-                </form>
+{{--                    --}}
+{{--                </form>--}}
+{{--                <div class="referral">--}}
+{{--                    <button id="button_referral_from" class="referral-save btn-hover" type="submit">Сформировать--}}
+{{--                        ссылку--}}
+{{--                    </button>--}}
+{{--                </div>--}}
 
                 @if(isset($referral_link))
                 <div class="referral-link">
