@@ -11,14 +11,12 @@ use App\Models\UserLanguage;
 use App\Models\UserSettings;
 use App\Services\ProfileService;
 use App\Services\SecurityService;
+use App\Services\SubscribeService;
 use App\Services\UserService;
-use http\Client\Curl\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cookie;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
@@ -41,9 +39,9 @@ class ProfileController extends Controller
      * @param UserService $setSetting
      * @return RedirectResponse
      */
-    public function setBasicSettings(Request $request, UserService $setSetting)
+    public function setBasicSettings(Request $request, UserService $setSetting, SubscribeService $subscribeService)
     {
-        $setSetting->setSetting($request);
+        $setSetting->setSetting($request, $subscribeService);
 
         return redirect()->back();
     }

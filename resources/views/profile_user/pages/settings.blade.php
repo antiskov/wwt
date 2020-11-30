@@ -7,7 +7,7 @@
         <h2 class="name-lk des">Все о Вашем аккаунте</h2>
         <div class="chek_cont_set">
             <label class="checkbox-other">
-                @if($check['remember'])
+                @if(isset($check['remember']))
                     <input name="stay_logged_in" type="checkbox" checked value="1">
                 @else
                     <input name="stay_logged_in" type="checkbox">

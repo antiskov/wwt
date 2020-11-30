@@ -8,6 +8,7 @@ use App\DataObjects\Admin\UpdateUser;
 use App\Exceptions\EmailCodeValidException;
 use App\Mail\ActivationMail;
 use App\Mail\RegisterEmail;
+use App\Models\Subscription;
 use App\Models\UserSettings;
 use Hash;
 use Illuminate\Database\Eloquent\Collection;
@@ -99,7 +100,7 @@ class UserService
         $user->save();
     }
 
-        public function setSetting(Request $request)
+        public function setSetting(Request $request, SubscribeService $subscribeService)
     {
         if(!$request->stay_logged_in) {
             foreach (array_keys($_COOKIE) as $value) {
@@ -112,7 +113,6 @@ class UserService
         }
 
         if ($setting = UserSettings::where('user_id', auth()->user()->id)->first()) {
-            $setting->receive_service_info = $request->receive_service_info ? 1 : 0;
             $setting->receive_partners_adverts = $request->receive_partners_adverts ? 1 : 0;
             if ($request->language_communication == 'Русский') {
                 $setting->language_communication = 'ru';
@@ -123,10 +123,15 @@ class UserService
         } else {
             $setting = new UserSettings();
             $setting->user()->associate(auth()->user());
-            $setting->receive_service_info = $request->receive_service_info ? 1 : 0;
             $setting->receive_partners_adverts = $request->receive_service_info ? 1 : 0;
             $setting->language_communication = $request->language_communication ? 1 : 0;
             $setting->save();
+        }
+
+        if($request->receive_service_info) {
+            $subscribeService->changeSubscribe(auth()->user()->email, 1);
+        } else {
+            $subscribeService->changeSubscribe(auth()->user()->email, 0);
         }
 
         return $setting;
@@ -134,23 +139,28 @@ class UserService
 
     public function check() {
         $check = [];
+
         foreach (array_keys($_COOKIE) as $value) {
             if (mb_substr($value, 0, 12) == 'remember_web') {
                 $check['remember'] = 1;
-            } else {
-                $check['remember'] = 0;
             }
         }
+
         if($settings = UserSettings::where('user_id', auth()->user()->id)->first()) {
-            $check['receive_service_info'] = $settings->receive_service_info;
             $check['receive_partners_adverts'] = $settings->receive_partners_adverts;
             $check['language_communication'] = $settings->language_communication;
         } else {
-            $check['receive_service_info'] = 0;
             $check['receive_partners_adverts'] = 0;
             $check['language_communication'] = 0;
         }
 
+        $subscribe = Subscription::where('email', auth()->user()->email)->first();
+
+        if($subscribe->status == 1) {
+            $check['receive_service_info'] = 1;
+        } else {
+            $check['receive_service_info'] = 0;
+        }
 
         return $check;
     }

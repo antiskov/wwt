@@ -14,14 +14,14 @@
             <span>Пароли не совпадают</span>
             <div class="checkbox-block registration__checkbox">
                 <label class="checkbox-block__label">
-                    <input type="checkbox" name="data-protection" required>
+                    <input type="checkbox" name="data-protection" required value="1">
                     <p><span>Я принимаю условия о защите данных</span></p>
                     <span>Обязательное поле*</span>
                 </label>
             </div>
             <div class="checkbox-block registration__checkbox">
                 <label class="checkbox-block__label">
-                    <input type="checkbox" name="mailing" required>
+                    <input type="checkbox" name="mailing" required value="1">
                     <p><span>Я хочу регулярно получать новостную рассылку о предложениях и продуктах по электронной почте.</span>
                     </p>
                     <span>Обязательное поле*</span>

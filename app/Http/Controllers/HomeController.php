@@ -10,6 +10,7 @@ use App\Mail\RegisterEmail;
 use App\Models\User;
 use App\Services\ImageMinificationService;
 use App\Services\ProfileService;
+use App\Services\SubscribeService;
 use App\Services\UserService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -40,5 +41,12 @@ class HomeController extends Controller
         $req->minify('public/acc.jpeg', ['medium', 'big', 'small']);
 
         return view('pages.main');
+    }
+
+    public function subscribe(Request $request, SubscribeService $service)
+    {
+        $service->setSubscribe($request->get('email'));
+
+        return redirect()->back();
     }
 }
