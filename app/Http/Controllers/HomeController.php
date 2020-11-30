@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 
+use App\Domain\AdvertsAndFilters\AdvertsFiltersGetter;
+use App\Domain\AdvertsAndFilters\VipAdvertsAndFiltersGetter;
+use App\Domain\AdvertsFiltersDirector;
 use App\Mail\RegisterEmail;
 use App\Models\User;
 use App\Services\ImageMinificationService;
@@ -10,6 +13,7 @@ use App\Services\ProfileService;
 use App\Services\UserService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
 
@@ -19,9 +23,12 @@ class HomeController extends Controller
      * @param UserService $user
      * @return Application|Factory|View
      */
-    public function main() {
-        
-        return view('pages.main');
+    public function main(Request $request) {
+        $advertFilter = new VipAdvertsAndFiltersGetter();
+        $director = new AdvertsFiltersDirector();
+        $director->setQueryToDB($request, $advertFilter);
+
+        return view('pages.main', $director->getResult());
     }
 
     /**
