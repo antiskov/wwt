@@ -22,12 +22,14 @@
                         })
                     }
                 })
-                document.querySelector('.button-show-phone').addEventListener('click', function (e) {
+                $('.show-phone').on('submit', function(e){
                     e.preventDefault();
                     $.ajax({
+                        type: 'post',
                         url: '/catalog/show_phone/{{$advert->id}}',
+                        data: $('.show-phone').serializeArray(),
                         success: function (data) {
-                            $('#show-phone').html(data.output);
+                            $('.show-phone').html(data.output);
                         },
                     })
                 })
@@ -50,8 +52,10 @@
                         <h3>{{$advert->name}}</h3>
                     </div>
                     <div class="phone-dropdown">
-                        <a href="tel:{{$advert->user->phone}}" class="phone">{{$advert->user->phone}}</a>
-                        <button class="btn-hover button-show-phone">Показать телефон</button>
+                        <form class="show-phone" action="{{route('catalog.show_phone', $advert->id)}}" type="post">
+                            @csrf
+                            <button class="btn-hover button-show-phone" type="submit">Показать телефон</button>
+                        </form>
                     </div>
                     <div class="person-social">
                         <a href="#/"></a>

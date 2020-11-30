@@ -64,12 +64,10 @@
                     <div class="cont-name">
                         <h3>{{$advert->name}}</h3>
                         <div class="phone-dropdown">
-                            <form id="show-phone" action="{{route('catalog.show_phone', $advert->id)}}">
+                            <form class="show-phone" action="{{route('catalog.show_phone', $advert->id)}}" type="post">
                                 @csrf
                                 <button class="btn-hover button-show-phone" type="submit">Показать телефон</button>
                             </form>
-{{--                            <a href="tel:{{$advert->user->phone}}" class="phone">{{$advert->user->phone}}</a>--}}
-{{--                            <button class="btn-hover button-show-phone">Показать телефон</button>--}}
                         </div>
                     </div>
                     <div class="img-seller">
