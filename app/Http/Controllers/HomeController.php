@@ -14,8 +14,7 @@ use App\Services\UserService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\View\View;
+use Illuminate\Support\Facades\Cookie;
 
 class HomeController extends Controller
 {
@@ -24,6 +23,9 @@ class HomeController extends Controller
      * @return Application|Factory|View
      */
     public function main(Request $request) {
+        if(!Cookie::get('referral_code')){
+            Cookie::queue(Cookie::make('referral_code', $request->referral_code));
+        }
         $advertFilter = new VipAdvertsAndFiltersGetter();
         $director = new AdvertsFiltersDirector();
         $director->setQueryToDB($request, $advertFilter);

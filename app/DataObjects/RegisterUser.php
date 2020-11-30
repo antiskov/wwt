@@ -49,7 +49,7 @@ class RegisterUser implements ICreateUser
         $this->password = $request->get('password');
         $this->email = $request->get('email');
         $this->role=1;
-        $this->referral_code=Str::random(16);
+        $this->referral_code=Str::random(25);
         $this->is_active=0;
     }
 

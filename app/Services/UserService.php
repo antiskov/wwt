@@ -8,6 +8,7 @@ use App\DataObjects\Admin\UpdateUser;
 use App\Exceptions\EmailCodeValidException;
 use App\Mail\ActivationMail;
 use App\Mail\RegisterEmail;
+use App\Models\UserReferral;
 use App\Models\UserSettings;
 use Hash;
 use Illuminate\Database\Eloquent\Collection;
@@ -57,6 +58,8 @@ class UserService
             Log::info('user not saved');
             return false;
         }
+
+        $this->setUserReferral($user);
 
         return $user;
     }
@@ -163,6 +166,16 @@ class UserService
         }
 
         return $userLanguages;
+    }
+
+    public function setUserReferral(User $referralUser)
+    {
+        if(Cookie::get('referral_code')){
+            $user = User::where('referral_code', Cookie::get('referral_code'))->first();
+
+            $referralUser->referral_user_id = $user->id;
+            $referralUser->save();
+        }
     }
 
 }

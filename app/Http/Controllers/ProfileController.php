@@ -4,15 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileRequest;
 use App\Models\Advert;
+use App\Models\Referral;
 use App\Models\SearchLink;
 use App\Models\Timezone;
+use App\Models\User;
 use App\Models\UserFavoriteAdvert;
 use App\Models\UserLanguage;
 use App\Models\UserSettings;
 use App\Services\ProfileService;
 use App\Services\SecurityService;
 use App\Services\UserService;
-use http\Client\Curl\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
@@ -152,6 +153,18 @@ class ProfileController extends Controller
         return redirect()->back();
     }
 
+    public function referralIndex()
+    {
+        return \view('profile_user.pages.referral', ['referral_link' => route('home', ['referral_code' => auth()->user()->referral_code])]);
+    }
 
+    public function getReferral($referral_code)
+    {
+        if(User::where('referral_code', $referral_code)->first()){
+            Cookie::queue(Cookie::make('referral_code', $referral_code));
+        }
+
+        return redirect()->back();
+    }
 
 }
