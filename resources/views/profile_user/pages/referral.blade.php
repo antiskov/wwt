@@ -28,14 +28,11 @@
 {{--                        ссылку--}}
 {{--                    </button>--}}
 {{--                </div>--}}
-
-                @if(isset($referral_link))
                 <div class="referral-link">
                     <a id="referral_link" href="{{$referral_link}}">
                         {{$referral_link}}
                     </a>
                 </div>
-                @endif
 
                 <div class="block-thanks">
                     <p>

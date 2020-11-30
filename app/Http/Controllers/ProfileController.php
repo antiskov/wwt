@@ -155,10 +155,7 @@ class ProfileController extends Controller
 
     public function referralIndex()
     {
-        if(Referral::where('user_id', auth()->user()->id)->first()){
-            return \view('profile_user.pages.referral', ['referral_link' => route('home').'/referral_link/'.auth()->user()->referral_code]);
-        }
-        return \view('profile_user.pages.referral');
+        return \view('profile_user.pages.referral', ['referral_link' => route('home').'/referral_link/'.auth()->user()->referral_code]);
     }
 
     public function getReferral($referral_code)
