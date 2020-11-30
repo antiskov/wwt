@@ -6,7 +6,6 @@ namespace App\Services;
 
 
 use App\Domain\AdvertsAndFilters\AdvertsFiltersGetter;
-use App\Domain\AdvertsAndFilters\UserFilterAdverts;
 use App\Domain\AdvertsFiltersDirector;
 use App\Models\AccessoryMechanismType;
 use App\Models\Advert;
