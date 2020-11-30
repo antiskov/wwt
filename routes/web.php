@@ -40,13 +40,12 @@ Route::middleware('set.locale')->group(function () {
             Route::get('/favorite', [\App\Http\Controllers\ProfileController::class, 'getFavorite'])->name('favorite');
             Route::get('/favorite/{status}', [\App\Http\Controllers\ProfileController::class, 'changeFavorite'])->name('favorite_change');
             Route::get('/favorite/delete/{advert}', [\App\Http\Controllers\ProfileController::class, 'deleteFavorite'])->name('delete_favorite');
-//            Route::get('/search/delete/{title}/{link}', [\App\Http\Controllers\ProfileController::class, 'deleteSearch'])->name('delete_search');
             Route::get('/search/delete/{search}', [\App\Http\Controllers\ProfileController::class, 'deleteSearch'])->name('delete_search');
         });
     });
 
-    Route::group(['prefix' => 'catalog'], function () {
-        Route::get('/', [\App\Http\Controllers\CatalogController::class, 'index'])->name('catalog');
+    Route::group(['prefix' =>'catalog'], function() {
+        Route::get('/', [\App\Http\Controllers\CatalogController::class, 'getFilterResult'])->name('catalog');
         Route::get('/filter_json', [\App\Http\Controllers\CatalogController::class, 'filterJson'])->name('catalog.filter-json');
         Route::get('/accessory', [\App\Http\Controllers\CatalogController::class, 'indexAccessory'])->name('catalog.accessory');
         Route::get('/save_search', [\App\Http\Controllers\CatalogController::class, 'saveSearch'])->name('catalog.save-search');
@@ -111,5 +110,4 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('login', [AuthController::class, 'showLogin'])->name('admin.showlogin');
     Route::post('login', [AuthController::class, 'login'])->name('admin.login');
 });
-
 

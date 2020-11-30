@@ -17,7 +17,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             StatusSeeder::class,
-//            CurrencySeeder::class,
             TimeZoneSeeder::class,
             LanguageSeeder::class,
             SexesSeeder::class,
