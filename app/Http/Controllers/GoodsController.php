@@ -34,4 +34,12 @@ class GoodsController extends Controller
         return response()->json($favorite);
     }
 
+    public function showPhone(Advert $advert)
+    {
+        $advert->number_phone_show = $advert->number_phone_show + 1;
+        $advert->save();
+
+        return redirect()->back();
+    }
+
 }
