@@ -46,8 +46,8 @@ Route::middleware('set.locale')->group(function () {
         });
     });
 
-    Route::group(['prefix' => 'catalog'], function () {
-        Route::get('/', [\App\Http\Controllers\CatalogController::class, 'index'])->name('catalog');
+    Route::group(['prefix' =>'catalog'], function() {
+        Route::get('/', [\App\Http\Controllers\CatalogController::class, 'getFilterResult'])->name('catalog');
         Route::get('/filter_json', [\App\Http\Controllers\CatalogController::class, 'filterJson'])->name('catalog.filter-json');
         Route::get('/accessory', [\App\Http\Controllers\CatalogController::class, 'indexAccessory'])->name('catalog.accessory');
         Route::get('/save_search', [\App\Http\Controllers\CatalogController::class, 'saveSearch'])->name('catalog.save-search');
@@ -63,7 +63,6 @@ Route::middleware('set.locale')->group(function () {
     });
 });
 
-//Route::middleware('auth')->group(function () {
 Route::group(['prefix' => 'admin'], function () {
     Route::middleware('managerauth')->group(function () {
         Route::get('/', [\App\Http\Controllers\Admin\MainController::class, 'dashboard'])->name('admin.dashboard');
@@ -103,10 +102,14 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('/', [\App\Http\Controllers\Admin\ManagePictureController::class, 'index'])->name('admin.manage_picture');
             Route::post('/upload', [\App\Http\Controllers\Admin\ManagePictureController::class, 'upload'])->name('admin.upload_picture');
         });
+        Route::group(['prefix' => 'manage_makers'], function () {
+            Route::get('/', [\App\Http\Controllers\Admin\MakersController::class, 'index'])->name('admin.manage_makers');
+            Route::post('/upload', [\App\Http\Controllers\Admin\MakersController::class, 'upload'])->name('admin.upload_picture');
+            Route::get('/change_status/{status}/{maker}', [\App\Http\Controllers\Admin\MakersController::class, 'changeStatus'])->name('admin.change_status_maker');
+        });
 
     });
     Route::get('login', [AuthController::class, 'showLogin'])->name('admin.showlogin');
     Route::post('login', [AuthController::class, 'login'])->name('admin.login');
 });
-//});
 

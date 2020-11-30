@@ -4,8 +4,9 @@
 namespace App\Services;
 
 
-use App\Domain\FilterDirector;
-use App\Domain\filters\WatchFilter;
+
+use App\Domain\AdvertsAndFilters\AdvertsFiltersGetter;
+use App\Domain\AdvertsFiltersDirector;
 use App\Models\AccessoryMechanismType;
 use App\Models\Advert;
 use App\Models\BraceletClasp;
@@ -38,96 +39,42 @@ use App\Models\WatchWaterproof;
 use App\Models\WidthClasp;
 use App\Models\YearAdvert;
 use Illuminate\Http\Request;
-use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class CatalogService
 {
-    public function paginateCustom($thisPaginate, $path, $perPage = 15, $columns = ['*'], $pageName = 'page', $page = null)
+    public function getFilterResult(Request $request)
     {
-        $page = $page ?: Paginator::resolveCurrentPage($pageName);
+        $advertFilter = new AdvertsFiltersGetter();
+        $director = new AdvertsFiltersDirector();
+        $director->setQueryToDB($request, $advertFilter);
 
-        $total = $thisPaginate->getCountForPagination();
-
-        $results = $total ? $thisPaginate->forPage($page, $perPage)->get($columns) : collect();
-        return new LengthAwarePaginator($results, $total, $perPage, $page, [
-            'path' => $path,
-        ]);
+        return $director->getResult();
     }
 
-    public function index(Request $request, $user_id = 0, $nameView = 'user_adverts_view')
+    public function getTabs(Request $request, $nameView = 'catalog_view')
     {
+        return ['adverts' => DB::table($nameView)->whereRaw($this->getFilter($request))->paginate(6)];
+    }
 
-        $brands = DB::table($nameView)->select('watch_make_title')
-            ->addSelect(DB::raw('COUNT(watch_make_title) as count_watch_make_title'))
-            ->groupBy('watch_make_title')->whereRaw($this->getConditionUserId($user_id))->get();
+    public function saveSearch($serviceArray)
+    {
+        $filters = json_encode($serviceArray['adverts']);
 
-        $models = DB::table($nameView)->select('watch_model_title')
-            ->addSelect(DB::raw('COUNT(watch_model_title) as count_watch_model_title'))
-            ->groupBy('watch_model_title')->whereRaw($this->getConditionUserId($user_id))->get();
+        $search = new SearchLink();
+        $search->user()->associate(auth()->user());
+        $search->filter = $filters;
+        $search->link_search = Session::get('searchLink');
+        $search->title = $_COOKIE['search_title'];
+        $search->save();
+    }
 
-        $diameters = DB::table($nameView)->select('height', 'width')
-            ->addSelect(DB::raw('COUNT(height) as count_height'))
-            ->groupBy('height', 'width')->whereRaw($this->getConditionUserId($user_id))->get();
-
-        $years = DB::table($nameView)->select('release_year')
-            ->addSelect(DB::raw('COUNT(release_year) as count_release_year'))
-            ->groupBy('release_year')->whereRaw($this->getConditionUserId($user_id))->get();
-
-        $regions = DB::table($nameView)->select('region')
-            ->addSelect(DB::raw('COUNT(region) as count_region'))
-            ->groupBy('region')->whereRaw($this->getConditionUserId($user_id))->get();
-
-        $mechanismTypes = DB::table($nameView)->select('mechanism_type_title')
-            ->addSelect(DB::raw('COUNT(mechanism_type_title) as count_mechanism_type_title'))
-            ->groupBy('mechanism_type_title')->whereRaw($this->getConditionUserId($user_id))->get();
-
-        $states = DB::table($nameView)->select('watch_state')
-            ->addSelect(DB::raw('COUNT(watch_state) as count_watch_state'))
-            ->groupBy('watch_state')->whereRaw($this->getConditionUserId($user_id))->get();
-
-        $deliveryVolumes = DB::table($nameView)->select('delivery_volume')
-            ->addSelect(DB::raw('COUNT(delivery_volume) as count_delivery_volume'))
-            ->groupBy('delivery_volume')->whereRaw($this->getConditionUserId($user_id))->get();
-
-        $sexes = DB::table($nameView)->select('sex_title')
-            ->addSelect(DB::raw('COUNT(sex_title) as count_sex_title'))
-            ->groupBy('sex_title')->whereRaw($this->getConditionUserId($user_id))->get();
-
-        $types = DB::table($nameView)->select('watch_type_title')
-            ->addSelect(DB::raw('COUNT(watch_type_title) as count_watch_type_title'))
-            ->groupBy('watch_type_title')->whereRaw($this->getConditionUserId($user_id))->get();
-
-        $maxPrice = DB::table($nameView)->max('price');
-
-        $adverts = $this->paginateCustom(
-            DB::table($nameView)
-            ->whereRaw($this->getFilter($request).' and '.$this->getConditionUserId($user_id))
-            ->orderBy('price', $this->getOrderBy($request)),
-            $request->fullUrl(),
-            $this->getCountPagination()
-        );
-
-        $this->setSearchLink($request);
-
-        return [
-            'adverts' => $adverts,
-            'brands' => $brands,
-            'models' => $models,
-            'mechanismTypes' => $mechanismTypes,
-            'diameters' => $diameters,
-            'years' => $years,
-            'regions' => $regions,
-            'states' => $states,
-            'deliveryVolumes' => $deliveryVolumes,
-            'sexes' => $sexes,
-            'types' => $types,
-            'maxPrice' => $maxPrice,
-            'countResults' => DB::table($nameView)->whereRaw($this->getFilter($request))->get()->count(),
-            'linkSearch' => $request->fullUrl(),
-            'stateNew' =>  $this->setStateNew($request),
-        ];
+    public function getResultForUser(Request $request, $user_id = 0)
+    {
+        $adverts = new AdvertsFiltersGetter();
+        $adverts->index($request, $user_id);
+        return $adverts->getResult();
     }
 
     public function indexAccessory()
@@ -228,82 +175,5 @@ class CatalogService
             'user' => $user,
             'favorite' => UserFavoriteAdvert::where('user_id', $user->id)->where('advert_id', $advert->id)->first(),
         ];
-    }
-
-    public function getFilter(Request $request)
-    {
-        $watchFilter = new WatchFilter();
-        $director = new FilterDirector();
-        $director->createQueryWatchFilter($request, $watchFilter);
-        $query = $director->getQuery();
-
-        return $query;
-    }
-
-    public function getTabs(Request $request, $nameView = 'catalog_view')
-    {
-        return ['adverts' => DB::table($nameView)->whereRaw($this->getFilter($request))->paginate(6)];
-    }
-
-    public function saveSearch($serviceArray)
-    {
-        session_start();
-
-        $filters = json_encode($serviceArray['adverts']);
-
-        $search = new SearchLink();
-        $search->user()->associate(auth()->user());
-        $search->filter = $filters;
-        $search->link_search = $_SESSION["searchLink"];
-        $search->title = $_COOKIE['search_title'];
-        $search->save();
-    }
-
-    public function getOrderBy(Request $request)
-    {
-        if($request->orderBy == 'dear') {
-            return  'desc';
-        } else {
-            return  'asc';
-        }
-    }
-
-    public function getCountPagination()
-    {
-        if(!isset($_COOKIE["countPagination"])) {
-            return $_COOKIE["countPagination"] = 50;
-        } elseif($_COOKIE["countPagination"] == 'count_results') {
-            return $_COOKIE["countPagination"] = 50;
-        } else {
-            return $_COOKIE["countPagination"];
-        }
-    }
-
-    public function setSearchLink(Request $request)
-    {
-        if(strstr($request->fullUrl(), '?')){
-            session_start();
-            $_SESSION["searchLink"] = strstr($request->fullUrl(), '?');
-        }
-    }
-
-    public function setStateNew(Request $request)
-    {
-        if(($request->states[0] == 'new' && !isset($request->states[1])) || ($request->states[0] == 'new' && $request->states[0] == $request->states[1])) {
-            $stateNew = 1;
-        } else {
-            $stateNew = 2;
-        }
-
-        return $stateNew;
-    }
-
-    public function getConditionUserId($user_id)
-    {
-        if($user_id == 0) {
-            return '1';
-        } else {
-            return "user_id in ($user_id)";
-        }
     }
 }

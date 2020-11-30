@@ -17,14 +17,13 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             StatusSeeder::class,
-//            CurrencySeeder::class,
             TimeZoneSeeder::class,
             LanguageSeeder::class,
             SexesSeeder::class,
             UserRolesSeeder::class,
             UsersSeeder::class,
             AdvertsSeeder::class,
-//            AdvertsImageSeeder::class,
+            AdvertsImageSeeder::class,
             CategorySeeder::class,
             WatchModelSeeder::class,
             WatchAdvertSeeder::class,

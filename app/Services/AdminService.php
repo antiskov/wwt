@@ -13,6 +13,7 @@ use App\Models\Advert;
 use App\Models\Banner;
 use App\Models\HomeSlider;
 use App\Models\ManWomanPicture;
+use App\Models\WatchMake;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -117,5 +118,19 @@ class AdminService
         $slider->link = $request->link;
         $slider->is_active = 1;
         $slider->save();
+    }
+
+    public function createMaker(Request $request)
+    {
+        if(!WatchMake::where('title', $request->title)->where('logo', $request->logo)->first()){
+            $logo = $request->file('logo')->getClientOriginalName();
+            $request->file('logo')->storeAs('admin/makers', $logo, 'public');
+
+            $maker = new WatchMake();
+            $maker->title = $request->title;
+            $maker->logo = $logo;
+            $maker->status = 0;
+            $maker->save();
+        }
     }
 }

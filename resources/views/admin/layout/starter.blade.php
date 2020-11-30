@@ -94,6 +94,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <p>Управление слайдером</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{route('admin.manage_makers')}}" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>Марки производителей</p>
+                        </a>
+                    </li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->

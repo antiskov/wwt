@@ -40,36 +40,37 @@ class AdvertsSeeder extends Seeder
 //                    'latitude' = '50°27′16″',
 //                    'longtitude' = '30°31′25″',
                     'delivery_volume' => 'with box',
-                    'photo'=>'small_acc.jpeg'
+                    'photo'=>'small_acc.jpeg',
+                    'vip_status' => rand(0,1),
 
                 ]
             );
         }
 
-        $watches = [
-            'Rolex',
-            'Casio',
-            'iWatch',
-            'Patek Philippe',
-            'Omega',
-            'IWC Schaffhausen',
-            'Rolex',
-            'Casio',
-            'iWatch',
-            'Patek Philippe',
-            'Omega',
-            'IWC Schaffhausen',
-            'IWC Schaffhausen',
-            'IWC Schaffhausen',
-            'IWC Schaffhausen',
-            'IWC Schaffhausen',
-            'IWC Schaffhausen',
-            'IWC Schaffhausen',
-            'IWC Schaffhausen',
-            'IWC Schaffhausen',
-            'IWC Schaffhausen',
-            'IWC Schaffhausen',
-        ];
+//        $watches = [
+//            'Rolex',
+//            'Casio',
+//            'iWatch',
+//            'Patek Philippe',
+//            'Omega',
+//            'IWC Schaffhausen',
+//            'Rolex',
+//            'Casio',
+//            'iWatch',
+//            'Patek Philippe',
+//            'Omega',
+//            'IWC Schaffhausen',
+//            'IWC Schaffhausen',
+//            'IWC Schaffhausen',
+//            'IWC Schaffhausen',
+//            'IWC Schaffhausen',
+//            'IWC Schaffhausen',
+//            'IWC Schaffhausen',
+//            'IWC Schaffhausen',
+//            'IWC Schaffhausen',
+//            'IWC Schaffhausen',
+//            'IWC Schaffhausen',
+//        ];
 
 
 //        for ($i = 0; $i < 10; $i++) {
