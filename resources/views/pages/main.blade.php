@@ -3,45 +3,9 @@
     <div class="site-holder">
         @widget('slider')
         @widget('man_woman_pictures')
-<<<<<<< HEAD
         @widget('makers')
-{{--        @include('catalog.modals.filter')--}}
-{{--        @include('catalog.modals.global.tabs')--}}
-=======
-        <section class="brands-slider swiper-container">
-            <div class="swiper-wrapper">
-                <a href="#" class="brands-slider-item swiper-slide">
-                    <img src="./images/content/partners/1.png" alt="партнер">
-                </a>
-                <a href="#" class="brands-slider-item swiper-slide">
-                    <img src="./images/content/partners/2.png" alt="партнер">
-                </a>
-                <a href="#" class="brands-slider-item swiper-slide">
-                    <img src="./images/content/partners/3.png" alt="партнер">
-                </a>
-                <a href="#" class="brands-slider-item swiper-slide">
-                    <img src="./images/content/partners/5.png" alt="партнер">
-                </a>
-                <a href="#" class="brands-slider-item swiper-slide">
-                    <img src="./images/content/partners/7.png" alt="партнер">
-                </a>
-                <a href="#" class="brands-slider-item swiper-slide">
-                    <img src="./images/content/partners/8.png" alt="партнер">
-                </a>
-                <a href="#" class="brands-slider-item swiper-slide">
-                    <img src="./images/content/partners/9.png" alt="партнер">
-                </a>
-                <a href="#" class="brands-slider-item swiper-slide">
-                    <img src="./images/content/partners/1.png" alt="партнер">
-                </a>
-                <a href="#" class="brands-slider-item swiper-slide">
-                    <img src="./images/content/partners/2.png" alt="партнер">
-                </a>
-            </div>
-        </section>
         @include('catalog.modals.filter')
         @include('catalog.modals.global.tabs')
->>>>>>> b8ea1ad44c9ab7e155925f0ddd005c4695219d3e
     </div>
     <script>
         // document.addEventListener("DOMContentLoaded", function(event) {

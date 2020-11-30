@@ -14,8 +14,8 @@ class Update2WatchMakesTable extends Migration
     public function up()
     {
         Schema::table('watch_makes', function (Blueprint $table) {
-            $table->string('logo');
-            $table->boolean('status');
+            $table->string('logo')->nullable();
+            $table->boolean('status')->default(0);
         });
     }
 
