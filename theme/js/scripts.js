@@ -670,6 +670,10 @@ $(document).ready(function () {
     })
   }
 
+  $('.phone-dropdown button').on('click', function() {
+    $(this).parent().toggleClass('active')
+  })
+
   $('.seller-slider').slick({
     infinite: true,
     slidesToShow: 2,
