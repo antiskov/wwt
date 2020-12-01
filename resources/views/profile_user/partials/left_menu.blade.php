@@ -3,9 +3,11 @@
         <img src="/images/icons/close.svg" alt="img" class="close">
         <div class="person-info">
             <div class="img-cont">
-                <img src="/images/content/person.png" alt="img">
+                <img
+                    src="{{asset('/storage/images/profiles/'.auth()->user()->email.'/small_'.auth()->user()->avatar)}}"
+                    alt="img">
             </div>
-            <div class="peron-name">LUXE WARE (HK) LIMITED</div>
+            <div class="peron-name">{{auth()->user()->name}}</div>
         </div>
         <ul class="link-items">
             <li><img src="/images/icons/my-order.svg" alt=""><a href="{{route('my_adverts')}}">Мои объявления</a></li>

@@ -6,6 +6,7 @@ namespace App\Services;
 
 
 use App\Domain\AdvertsAndFilters\AdvertsFiltersGetter;
+use App\Domain\AdvertsAndFilters\SellerAdsGetter;
 use App\Domain\AdvertsFiltersDirector;
 use App\Models\AccessoryMechanismType;
 use App\Models\Advert;
@@ -68,8 +69,9 @@ class CatalogService
 
     public function getResultForUser(Request $request, $user_id = 0)
     {
-        $adverts = new AdvertsFiltersGetter();
+        $adverts = new SellerAdsGetter();
         $adverts->index($request, $user_id);
+
         return $adverts->getResult();
     }
 

@@ -3,9 +3,11 @@
 namespace App\Domain;
 
 use App\Domain\Filters\CatalogFilter;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class ToolsForAdvertsFilters
@@ -77,5 +79,17 @@ class ToolsForAdvertsFilters
         }
 
         return $stateNew;
+    }
+
+    public function getCountUserAdverts($nameView, $user_id)
+    {
+        $count = DB::table($nameView)->select(DB::raw('COUNT(id) as count'))->whereRaw("user_id = $user_id")->get();
+
+        return $count[0];
+    }
+
+    public function getUser($user_id)
+    {
+        return User::where('id', $user_id)->first();
     }
 }
