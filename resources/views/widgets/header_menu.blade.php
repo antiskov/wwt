@@ -34,14 +34,14 @@
                                 <input type="radio" name="category" checked>
                                 <span>Часы</span>
                             </label>
-                            <label>
-                                <input type="radio" name="category">
-                                <span>Аксессуары</span>
-                            </label>
-                            <label>
-                                <input type="radio" name="category">
-                                <span>Запчасти</span>
-                            </label>
+{{--                            <label>--}}
+{{--                                <input type="radio" name="category">--}}
+{{--                                <span>Аксессуары</span>--}}
+{{--                            </label>--}}
+{{--                            <label>--}}
+{{--                                <input type="radio" name="category">--}}
+{{--                                <span>Запчасти</span>--}}
+{{--                            </label>--}}
                         </div>
                         <div class="search__items">
                             <p style="display: none;">Ничего не найдено</p>
@@ -115,60 +115,60 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="has-menu">
-                        <span>Аксессуары</span>
-                        <ul class="catalog-mob__menu">
-                            <li class="has-menu">
-                                <span>Купить</span>
-                                <ul class="catalog-mob__list">
-                                    <a href="{{route('catalog.accessory')}}">Показать все результаты</a>
-                                    <li>
-                                        <span>Марки</span>
-                                        <ul>
-                                            @foreach($accessoryMakes as $accessoryMake)
-                                                <li>
-                                                    <a href="#">{{$accessoryMake->title.' ('.count($accessoryMake->accessoryAdverts).')'}}</a>
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a data-fancybox data-src="#referral_number" href="javascript:;" class="thisMe">Продать</a>
-                            </li>
-                        <ul class="catalog-mob__list">
-                            <a href="">Показать все результаты</a>
-                        </ul>
-                        </ul>
-                    </li>
-                    <li class="has-menu">
-                        <span>Запчасти</span>
-                        <ul class="catalog-mob__menu">
-                            <li class="has-menu">
-                                <span>Купить</span>
-                                <ul class="catalog-mob__list">
-                                    <a href="{{route('catalog.spare-parts')}}">Показать все результаты</a>
-                                    <li>
-                                        <span>Марки</span>
-                                        <ul>
-                                            @foreach($sparePartsMakes as $sparePartsMake)
-                                                <li>
-                                                    <a href="#">{{$sparePartsMake->title.' ('.count($sparePartsMake->sparePartsAdverts).')'}}</a>
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a data-fancybox data-src="#referral_number" href="javascript:;" class="thisMe">Продать</a>
-                            </li>
-                        <ul class="catalog-mob__list">
-                            <a href="">Показать все результаты</a>
-                        </ul>
-                        </ul>
-                    </li>
+{{--                    <li class="has-menu">--}}
+{{--                        <span>Аксессуары</span>--}}
+{{--                        <ul class="catalog-mob__menu">--}}
+{{--                            <li class="has-menu">--}}
+{{--                                <span>Купить</span>--}}
+{{--                                <ul class="catalog-mob__list">--}}
+{{--                                    <a href="{{route('catalog.accessory')}}">Показать все результаты</a>--}}
+{{--                                    <li>--}}
+{{--                                        <span>Марки</span>--}}
+{{--                                        <ul>--}}
+{{--                                            @foreach($accessoryMakes as $accessoryMake)--}}
+{{--                                                <li>--}}
+{{--                                                    <a href="#">{{$accessoryMake->title.' ('.count($accessoryMake->accessoryAdverts).')'}}</a>--}}
+{{--                                                </li>--}}
+{{--                                            @endforeach--}}
+{{--                                        </ul>--}}
+{{--                                    </li>--}}
+{{--                                </ul>--}}
+{{--                            </li>--}}
+{{--                            <li>--}}
+{{--                                <a data-fancybox data-src="#referral_number" href="javascript:;" class="thisMe">Продать</a>--}}
+{{--                            </li>--}}
+{{--                        <ul class="catalog-mob__list">--}}
+{{--                            <a href="">Показать все результаты</a>--}}
+{{--                        </ul>--}}
+{{--                        </ul>--}}
+{{--                    </li>--}}
+{{--                    <li class="has-menu">--}}
+{{--                        <span>Запчасти</span>--}}
+{{--                        <ul class="catalog-mob__menu">--}}
+{{--                            <li class="has-menu">--}}
+{{--                                <span>Купить</span>--}}
+{{--                                <ul class="catalog-mob__list">--}}
+{{--                                    <a href="{{route('catalog.spare-parts')}}">Показать все результаты</a>--}}
+{{--                                    <li>--}}
+{{--                                        <span>Марки</span>--}}
+{{--                                        <ul>--}}
+{{--                                            @foreach($sparePartsMakes as $sparePartsMake)--}}
+{{--                                                <li>--}}
+{{--                                                    <a href="#">{{$sparePartsMake->title.' ('.count($sparePartsMake->sparePartsAdverts).')'}}</a>--}}
+{{--                                                </li>--}}
+{{--                                            @endforeach--}}
+{{--                                        </ul>--}}
+{{--                                    </li>--}}
+{{--                                </ul>--}}
+{{--                            </li>--}}
+{{--                            <li>--}}
+{{--                                <a data-fancybox data-src="#referral_number" href="javascript:;" class="thisMe">Продать</a>--}}
+{{--                            </li>--}}
+{{--                        <ul class="catalog-mob__list">--}}
+{{--                            <a href="">Показать все результаты</a>--}}
+{{--                        </ul>--}}
+{{--                        </ul>--}}
+{{--                    </li>--}}
                     <li>
                         Контакты
                     </li>
@@ -224,14 +224,14 @@
                                             <input type="radio" name="category" checked>
                                             <span>Часы</span>
                                         </label>
-                                        <label>
-                                            <input type="radio" name="category">
-                                            <span>Аксессуары</span>
-                                        </label>
-                                        <label>
-                                            <input type="radio" name="category">
-                                            <span>Запчасти</span>
-                                        </label>
+{{--                                        <label>--}}
+{{--                                            <input type="radio" name="category">--}}
+{{--                                            <span>Аксессуары</span>--}}
+{{--                                        </label>--}}
+{{--                                        <label>--}}
+{{--                                            <input type="radio" name="category">--}}
+{{--                                            <span>Запчасти</span>--}}
+{{--                                        </label>--}}
                                     </div>
                                     <div class="search__items">
                                         <p style="display: none;">Ничего не найдено</p>
@@ -339,24 +339,24 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li>
-                                <a href="{{route('catalog.accessory')}}">Аксессуары</a>
-                                <ul class="header-desc-nav__btns">
-                                    <li class="list-btn">
-                                        <a href="#"><span>Купить</span></a>
-                                        <div class="header-nav-lists header-nav-lists_second">
-                                            <div class="header-nav-list header-nav-list_few-columns">
-                                                <h3>Марки</h3>
-                                                <div>
-                                                    <ul>
-                                                        @foreach($accessoryMakes as $accessoryMake)
-                                                            <li>
-                                                                <a href="#">{{$accessoryMake->title.' ('.count($accessoryMake->accessoryAdverts).')'}}</a>
-                                                            </li>
-                                                        @endforeach
-                                                    </ul>
-                                                </div>
-                                            </div>
+{{--                            <li>--}}
+{{--                                <a href="{{route('catalog.accessory')}}">Аксессуары</a>--}}
+{{--                                <ul class="header-desc-nav__btns">--}}
+{{--                                    <li class="list-btn">--}}
+{{--                                        <a href="#"><span>Купить</span></a>--}}
+{{--                                        <div class="header-nav-lists header-nav-lists_second">--}}
+{{--                                            <div class="header-nav-list header-nav-list_few-columns">--}}
+{{--                                                <h3>Марки</h3>--}}
+{{--                                                <div>--}}
+{{--                                                    <ul>--}}
+{{--                                                        @foreach($accessoryMakes as $accessoryMake)--}}
+{{--                                                            <li>--}}
+{{--                                                                <a href="#">{{$accessoryMake->title.' ('.count($accessoryMake->accessoryAdverts).')'}}</a>--}}
+{{--                                                            </li>--}}
+{{--                                                        @endforeach--}}
+{{--                                                    </ul>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
 {{--                                            <div class="header-nav-list">--}}
 {{--                                                <h3>Категории</h3>--}}
 {{--                                                <ul>--}}
@@ -364,38 +364,38 @@
 {{--                                                    </li>--}}
 {{--                                                </ul>--}}
 {{--                                            </div>--}}
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <a data-fancybox data-src="#referral_number" href="javascript:;"><span>Продать</span></a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="{{route('catalog.spare-parts')}}">Запчасти</a>
-                                <ul class="header-desc-nav__btns">
-                                    <li class="list-btn">
-                                        <a href="#"><span>Купить</span></a>
-                                        <div class="header-nav-lists header-nav-lists_third">
-                                            <div class="header-nav-list header-nav-list_few-columns">
-                                                <h3>Марки</h3>
-                                                <div>
-                                                    <ul>
-                                                        @foreach($sparePartsMakes as $sparePartsMake)
-                                                            <li>
-                                                                <a href="#">{{$sparePartsMake->title.' ('.count($sparePartsMake->sparePartsAdverts).')'}}</a>
-                                                            </li>
-                                                        @endforeach
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <a data-fancybox data-src="#referral_number" href="javascript:;"><span>Продать</span></a>
-                                    </li>
-                                </ul>
-                            </li>
+{{--                                        </div>--}}
+{{--                                    </li>--}}
+{{--                                    <li>--}}
+{{--                                        <a data-fancybox data-src="#referral_number" href="javascript:;"><span>Продать</span></a>--}}
+{{--                                    </li>--}}
+{{--                                </ul>--}}
+{{--                            </li>--}}
+{{--                            <li>--}}
+{{--                                <a href="{{route('catalog.spare-parts')}}">Запчасти</a>--}}
+{{--                                <ul class="header-desc-nav__btns">--}}
+{{--                                    <li class="list-btn">--}}
+{{--                                        <a href="#"><span>Купить</span></a>--}}
+{{--                                        <div class="header-nav-lists header-nav-lists_third">--}}
+{{--                                            <div class="header-nav-list header-nav-list_few-columns">--}}
+{{--                                                <h3>Марки</h3>--}}
+{{--                                                <div>--}}
+{{--                                                    <ul>--}}
+{{--                                                        @foreach($sparePartsMakes as $sparePartsMake)--}}
+{{--                                                            <li>--}}
+{{--                                                                <a href="#">{{$sparePartsMake->title.' ('.count($sparePartsMake->sparePartsAdverts).')'}}</a>--}}
+{{--                                                            </li>--}}
+{{--                                                        @endforeach--}}
+{{--                                                    </ul>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </li>--}}
+{{--                                    <li>--}}
+{{--                                        <a data-fancybox data-src="#referral_number" href="javascript:;"><span>Продать</span></a>--}}
+{{--                                    </li>--}}
+{{--                                </ul>--}}
+{{--                            </li>--}}
                             <li>
                                 <a href="#">Контакты</a>
                             </li>

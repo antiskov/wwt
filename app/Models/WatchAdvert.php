@@ -45,29 +45,9 @@ class WatchAdvert extends Model
         return $this->belongsTo(MechanismType::class);
     }
 
-    public function braceletMaterial()
-    {
-        return $this->belongsTo(BraceletMaterial::class);
-    }
-
-    public function glass()
-    {
-        return $this->belongsTo(Glass::class);
-    }
-
     public function diameterWatch()
     {
         return $this->belongsTo(DiameterWatch::class);
-    }
-
-    public function yearAdvert()
-    {
-        return $this->belongsTo(YearAdvert::class);
-    }
-
-    public function options()
-    {
-        return $this->belongsToMany(Option::class,);
     }
 
     public function sex()
