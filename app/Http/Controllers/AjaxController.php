@@ -7,6 +7,7 @@ use App\Http\Requests\LoginFormRequest;
 use App\Http\Requests\RegisterFormRequest;
 use App\Mail\TestMail;
 use App\Models\User;
+use App\Services\SubscribeService;
 use App\Services\UserService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -53,9 +54,12 @@ class AjaxController extends Controller
         return response()->json($data);
     }
 
-    public function registerUser(RegisterFormRequest $request, UserService $userService)
+    public function registerUser(RegisterFormRequest $request, UserService $userService, SubscribeService $subscribeService)
     {
         $user = $userService->create($request->getDto());
+        if($request->mailing){
+            $subscribeService->setSubscribe($request->get('email'));
+        }
 
         return response()->json($userService->sendVerificationCode($user));
     }

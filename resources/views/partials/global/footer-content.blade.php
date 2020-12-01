@@ -32,13 +32,14 @@
                     </span>
                 </a>
             </div>
-            <div class="search-wrap">
-                <input type="search" name="search" class="footer-search" placeholder="Введите email">
-                <button class="email-push">
+            <form class="search-wrap" action="{{route('subscribe')}}" method="post">
+                @csrf
+                <input type="search" name="email" class="footer-search" placeholder="Введите email">
+                <button class="email-push" type="submit">
                     <span>Подписаться</span>
                     <img src="/images/icons/push-email.svg" alt="img">
                 </button>
-            </div>
+            </form>
         </div>
     </div>
     <div class="footer-wrap">
