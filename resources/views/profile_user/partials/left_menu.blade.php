@@ -12,7 +12,7 @@
         <ul class="link-items">
             <li><img src="/images/icons/my-order.svg" alt=""><a href="{{route('my_adverts')}}">Мои объявления</a></li>
             <li><img src="/images/icons/email.svg" alt=""><a href="#/">Сообщения</a></li>
-            <li><img src="/images/icons/pay.svg" alt=""><a href="#/">Платежи</a></li>
+            <li><img src="/images/icons/pay.svg" alt=""><a href="{{route('payments')}}">Платежи</a></li>
             <li><img src="/images/icons/profile.svg" alt=""><a href="{{ route('editing-profile') }}">Профиль</a></li>
             <li><img src="/images/icons/setting.svg" alt=""><a href="{{route('profile-settings')}}">Настройки</a></li>
             <li><img src="/images/icons/favor.svg" alt=""><a href="{{route('favorite')}}">Избранное</a></li>

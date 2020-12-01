@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\UserFavoriteAdvert;
 use App\Models\UserLanguage;
 use App\Models\UserSettings;
+use App\Services\PayService;
 use App\Services\ProfileService;
 use App\Services\SecurityService;
 use App\Services\SubscribeService;
@@ -19,6 +20,8 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
@@ -164,6 +167,17 @@ class ProfileController extends Controller
         }
 
         return redirect()->back();
+    }
+
+    public function getPayments(Request $request, PayService $service)
+    {
+        $service->checkTransaction();
+        return \view('profile_user.pages.payments', $service->setPay($request,2));
+    }
+
+    public function setTransaction(Request $request, PayService $service)
+    {
+        $service->setTransactionDB();
     }
 
 }
