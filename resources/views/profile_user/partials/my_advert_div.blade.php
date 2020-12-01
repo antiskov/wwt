@@ -67,7 +67,7 @@
                                 <div class="text"><img src="/images/icons/viewing.svg" alt="img">
                                     <p>Просмотров: </p><span>{{views($advert)->count()}}</span></div>
                                 <div class="text"><img src="/images/icons/phone.svg" alt="img">
-                                    <p>Тел: </p><span>11</span></div>
+                                    <p>Тел: </p><span>{{$advert->number_phone_show}}</span></div>
                                 <div class="text"><img src="/images/icons/lk-star.svg" alt="img">
                                     <p>В избранном: </p><span>{{$advert->favoriteAdverts->count()}}</span></div>
                                 <div class="text"><img src="/images/icons/email.svg" alt="img">

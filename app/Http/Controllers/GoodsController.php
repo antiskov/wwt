@@ -34,4 +34,18 @@ class GoodsController extends Controller
         return response()->json($favorite);
     }
 
+    public function showPhone(Advert $advert, Request $request)
+    {
+//        dd($request);
+
+        $advert->number_phone_show = $advert->number_phone_show + 1;
+        $advert->save();
+
+        $data = [
+            'output' => view('catalog.modals.item-page-phone', ['advert' => $advert])->toHtml(),
+        ];
+
+        return response()->json($data);
+    }
+
 }
