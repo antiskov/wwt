@@ -45,16 +45,6 @@ class CatalogController extends Controller
         return response()->json($data);
     }
 
-    public function getFilterResultAccessory(CatalogService $service)
-    {
-//        return view('catalog.pages.accessory', $service->getFilterResultAccessory());
-    }
-
-    public function getFilterResultSparePart(CatalogService $service)
-    {
-//        return view('catalog.pages.spare_parts', $service->getFilterResultSparePart());
-    }
-
     public function sellerPage(User $user, UserService $service)
     {
         return view('catalog.pages.seller_page', [

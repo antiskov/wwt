@@ -60,11 +60,6 @@ class Advert extends Model implements Viewable
         return $this->hasOne(BasicImageAdvert::class);
     }
 
-    public function province()
-    {
-        return $this->belongsTo(Province::class);
-    }
-
     public function accessoryAdvert()
     {
         return $this->hasOne(AccessoryAdvert::class);
