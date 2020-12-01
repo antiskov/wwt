@@ -51,4 +51,11 @@ class HomeController extends Controller
 
         return redirect()->back();
     }
+
+    public function unsubscribe(Request $request, SubscribeService $service)
+    {
+        $service->changeSubscribe($request->get('email'), 0);
+
+        return redirect()->route('home');
+    }
 }
