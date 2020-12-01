@@ -62,7 +62,7 @@ Route::middleware('set.locale')->group(function () {
         Route::get('/{search}', [\App\Http\Controllers\CatalogController::class, 'getFilterResult'])->name('catalog-favorite');
     });
 
-    Route::get('/{countPagination?}', [\App\Http\Controllers\CatalogController::class, 'countPagination'])->name('count-pagination');
+    Route::get('count_pagination/{countPagination?}', [\App\Http\Controllers\CatalogController::class, 'countPagination'])->name('count-pagination');
 });
 
 Route::group(['prefix' => 'admin'], function () {

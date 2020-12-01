@@ -8,8 +8,8 @@
                 <img src="./images/content/person.png" alt="img">
             </div>
             <div class="cont">
-                <div class="person-name">LUXE WARE (HK) LIMITED</div>
-                <span>699 объявлений </span>
+                <div class="person-name">{{$user->name}}</div>
+                <span>{{$countUserAdverts->count}} объявлений </span>
             </div>
 
         </div>
