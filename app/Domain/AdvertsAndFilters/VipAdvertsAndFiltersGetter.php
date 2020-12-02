@@ -61,8 +61,11 @@ class VipAdvertsAndFiltersGetter extends ToolsForAdvertsFilters implements Adver
         $adverts = $this->paginateCustom(
             DB::table($nameView)
                 ->whereRaw($this->getFilter($request).' and '.$this->getConditionUserId($user_id))
-                ->orderBy('vip_status')
-                ->orderBy('price', $this->getOrderBy($request)),
+                ->orderBy('vip_status', 'desc')
+                ->orderBy('price', $this->getOrderBy($request))
+                ->setBindings([
+                    $this->getBindsArr($request)
+                ]),
             $request->fullUrl(),
             $this->getCountPagination()
         );
@@ -82,10 +85,12 @@ class VipAdvertsAndFiltersGetter extends ToolsForAdvertsFilters implements Adver
             'sexes' => $sexes,
             'types' => $types,
             'maxPrice' => $maxPrice,
-            'countResults' => DB::table($nameView)->whereRaw($this->getFilter($request))->get()->count(),
+            'countResults' => DB::table($nameView)->whereRaw($this->getFilter($request))
+                ->setBindings([$this->getBindsArr($request)])->get()->count(),
             'linkSearch' => $request->fullUrl(),
             'stateNew' =>  $this->setStateNew($request),
         ];
+
     }
 
     public function getResult()

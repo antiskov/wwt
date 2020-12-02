@@ -10,6 +10,7 @@ abstract class BaseFilter implements Filter
     protected $query;
     protected $bindsArr;
     protected $request;
+
     public function __construct($request)
     {
         $this->request = $request;
@@ -43,7 +44,7 @@ abstract class BaseFilter implements Filter
     protected function brandsQuery()
     {
         if ($brandsArr = $this->request->get('brands', false)) {
-            $this->bindsArr[] = $this->implodeAsValuesForQuery($brandsArr);
+            $this->bindsArr[] = $brandsArr;
             $this->query .= " and watch_make_title in (?)";
         }
     }
@@ -51,7 +52,7 @@ abstract class BaseFilter implements Filter
     protected function modelsQuery()
     {
         if ($modelsArr = $this->request->get('models', false)) {
-            $this->bindsArr[] = $this->implodeAsValuesForQuery($modelsArr);
+            $this->bindsArr[] = $modelsArr;
             $this->query .= " and watch_model_title in (?)";
         }
     }
@@ -76,7 +77,7 @@ abstract class BaseFilter implements Filter
     public function yearsQuery()
     {
         if($yearsArr = $this->request->get('years', false)){
-            $this->bindsArr[] = $this->implodeAsIntValueQuery($yearsArr);
+            $this->bindsArr[] = $yearsArr;
             $this->query .= " and release_year in (?)";
         }
     }
@@ -84,7 +85,7 @@ abstract class BaseFilter implements Filter
     public function regionsQuery()
     {
         if($regionsArr = $this->request->get('regions', false)){
-            $this->bindsArr[] = $this->implodeAsValuesForQuery($regionsArr);
+            $this->bindsArr[] = $regionsArr;
             $this->query .= " and region in (?)";
         }
     }
@@ -92,7 +93,7 @@ abstract class BaseFilter implements Filter
     public function mechanismTypesQuery()
     {
         if($mechanismTypesArr = $this->request->get('mechanismTypes', false)){
-            $this->bindsArr[] = $this->implodeAsValuesForQuery($mechanismTypesArr);
+            $this->bindsArr[] = $mechanismTypesArr;
             $this->query .= " and mechanism_type_title in (?})";
         }
     }
@@ -100,15 +101,15 @@ abstract class BaseFilter implements Filter
     public function statesQuery()
     {
         if($statesArr = $this->request->get('states', false)){
-            $this->bindsArr[] = 'watch_state';
-            $this->query .= " and ? in ({$this->implodeAsValuesForQuery($statesArr)})";
+            $this->bindsArr[] = $statesArr;
+            $this->query .= " and watch_state in (?)";
         }
     }
 
     public function deliveryVolumesQuery()
     {
         if($deliveryVolumesArr = $this->request->get('deliveryVolumes', false)){
-            $this->bindsArr[] = $this->implodeAsValuesForQuery($deliveryVolumesArr);
+            $this->bindsArr[] = $deliveryVolumesArr;
             $this->query .= " and delivery_volume in (?)";
         }
     }
@@ -116,15 +117,15 @@ abstract class BaseFilter implements Filter
     public function sexesQuery()
     {
         if($sexesArr = $this->request->get('sexes', false)){
-            $this->bindsArr[] = 'sex_title';
-            $this->query .= " and ? in ({$this->implodeAsValuesForQuery($sexesArr)})";
+            $this->bindsArr[] = $sexesArr;
+            $this->query .= " and sex_title in (?)";
         }
     }
 
     public function typesQuery()
     {
         if($typesArr = $this->request->get('types', false)){
-            $this->bindsArr[] = $this->implodeAsValuesForQuery($typesArr);
+            $this->bindsArr[] = $typesArr;
             $this->query .= " and watch_type_title in (?})";
         }
     }
@@ -138,16 +139,6 @@ abstract class BaseFilter implements Filter
             $this->bindsArr[] = $titleMax;
             $this->query .= " and price > ? and price < ?";
         }
-    }
-
-
-    private function implodeAsValuesForQuery(array $arr)
-    {
-        return "'" . implode("', '", $arr) . "'";
-    }
-
-    private function implodeAsIntValueQuery(array $arr){
-        return implode(", ", $arr);
     }
 
 
