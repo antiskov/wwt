@@ -29,4 +29,27 @@
         </div>
     </section>
 </section>
+<script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+        function query() {
+            $.ajax({
+                type: "get",
+                url: '{{route('catalog.seller-ads.count-results', $user->id)}}',
+                data: $('.filter-search').serializeArray(),
+                success: function (data) {
+                    console.log('success');
+                    $('.filters-submit-btn').text('Применить (' + data.count + ")");
+                },
+                error: function (xhr) {
+                    console.log('error');
+                }
+            }).done(function () {
+                $(this).addClass("done");
+            })
+        };
+
+        $('.watch-filter').on('click', query);
+        $('.watch-filter').on('change', query);
+    });
+</script>
 @endsection

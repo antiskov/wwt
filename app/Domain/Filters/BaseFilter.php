@@ -38,13 +38,21 @@ abstract class BaseFilter implements Filter
 
     public function getBindsArr()
     {
+//        dd($this->bindsArr);
         return $this->bindsArr;
     }
 
     protected function brandsQuery()
     {
+
+//        foreach ($this->request->all() as $key => $value) {
+//            dump($key, $value);
+//        }
+//        die;
         if ($brandsArr = $this->request->get('brands', false)) {
+//            foreach ($brandsArr as $item) $this->bindsArr[] = $item;
             $this->bindsArr[] = $brandsArr;
+//            $this->bindsArr[] = $this->implodeAsValuesForQuery($brandsArr);
             $this->query .= " and watch_make_title in (?)";
         }
     }
@@ -52,7 +60,7 @@ abstract class BaseFilter implements Filter
     protected function modelsQuery()
     {
         if ($modelsArr = $this->request->get('models', false)) {
-            $this->bindsArr[] = $modelsArr;
+            $this->bindsArr['watch_model_title'] = $modelsArr;
             $this->query .= " and watch_model_title in (?)";
         }
     }
@@ -67,17 +75,17 @@ abstract class BaseFilter implements Filter
                 $heightWidth  = explode('/', $diameter);
                 $height .= ", $heightWidth[0]";
                 $width .= ", $heightWidth[1]";
-                $this->bindsArr[] = $height;
-                $this->bindsArr[] = $width;
+                $this->bindsArr['height'] = $height;
+                $this->bindsArr['width'] = $width;
             }
-            $this->query .= " and height in (?) and height in (?)";
+            $this->query .= " and height in (?) and width in (?)";
         }
     }
 
     public function yearsQuery()
     {
         if($yearsArr = $this->request->get('years', false)){
-            $this->bindsArr[] = $yearsArr;
+            $this->bindsArr['release_year'] = $yearsArr;
             $this->query .= " and release_year in (?)";
         }
     }
@@ -85,7 +93,7 @@ abstract class BaseFilter implements Filter
     public function regionsQuery()
     {
         if($regionsArr = $this->request->get('regions', false)){
-            $this->bindsArr[] = $regionsArr;
+            $this->bindsArr['region'] = $regionsArr;
             $this->query .= " and region in (?)";
         }
     }
@@ -93,7 +101,7 @@ abstract class BaseFilter implements Filter
     public function mechanismTypesQuery()
     {
         if($mechanismTypesArr = $this->request->get('mechanismTypes', false)){
-            $this->bindsArr[] = $mechanismTypesArr;
+            $this->bindsArr['mechanism_type_title'] = $mechanismTypesArr;
             $this->query .= " and mechanism_type_title in (?})";
         }
     }
@@ -101,7 +109,7 @@ abstract class BaseFilter implements Filter
     public function statesQuery()
     {
         if($statesArr = $this->request->get('states', false)){
-            $this->bindsArr[] = $statesArr;
+            $this->bindsArr['watch_state'] = $statesArr;
             $this->query .= " and watch_state in (?)";
         }
     }
@@ -109,7 +117,7 @@ abstract class BaseFilter implements Filter
     public function deliveryVolumesQuery()
     {
         if($deliveryVolumesArr = $this->request->get('deliveryVolumes', false)){
-            $this->bindsArr[] = $deliveryVolumesArr;
+            $this->bindsArr['delivery_volume'] = $deliveryVolumesArr;
             $this->query .= " and delivery_volume in (?)";
         }
     }
@@ -117,7 +125,7 @@ abstract class BaseFilter implements Filter
     public function sexesQuery()
     {
         if($sexesArr = $this->request->get('sexes', false)){
-            $this->bindsArr[] = $sexesArr;
+            $this->bindsArr['sex_title'] = $sexesArr;
             $this->query .= " and sex_title in (?)";
         }
     }
@@ -125,7 +133,7 @@ abstract class BaseFilter implements Filter
     public function typesQuery()
     {
         if($typesArr = $this->request->get('types', false)){
-            $this->bindsArr[] = $typesArr;
+            $this->bindsArr['watch_type_title'] = $typesArr;
             $this->query .= " and watch_type_title in (?})";
         }
     }
@@ -135,11 +143,20 @@ abstract class BaseFilter implements Filter
         if($pricesArr = $this->request->get('prices', false)){
             $titleMin = $pricesArr[0];
             $titleMax = $pricesArr[1];
-            $this->bindsArr[] = $titleMin;
-            $this->bindsArr[] = $titleMax;
+            $this->bindsArr['priceMin'] = $titleMin;
+            $this->bindsArr['priceMax'] = $titleMax;
             $this->query .= " and price > ? and price < ?";
         }
     }
+
+    private function implodeAsValuesForQuery(array $arr)
+    {
+//        dd(["'" . implode("', '", $arr) . "'"]);
+        return "'" . implode("', '", $arr) . "'";
+        return ["'" . implode("', '", $arr) . "'"];
+//        return $arr;
+    }
+
 
 
 }

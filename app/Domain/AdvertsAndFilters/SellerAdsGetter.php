@@ -83,7 +83,7 @@ class SellerAdsGetter extends ToolsForAdvertsFilters implements AdvertsFilters
             'types' => $types,
             'maxPrice' => $maxPrice,
             'countResults' => DB::table($nameView)->whereRaw($this->getFilter($request))
-                ->setBindings([$this->getBindsArr($request)])->get()->count(),
+                ->setBindings([$this->getBindsArr($request)])->where('user_id', $user_id)->get()->count(),
             'linkSearch' => $request->fullUrl(),
             'stateNew' =>  $this->setStateNew($request),
             'countUserAdverts' => $this->getCountUserAdverts($nameView, $user_id),

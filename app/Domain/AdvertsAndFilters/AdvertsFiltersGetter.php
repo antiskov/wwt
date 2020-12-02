@@ -55,17 +55,33 @@ class AdvertsFiltersGetter extends ToolsForAdvertsFilters implements AdvertsFilt
 
         $maxPrice = DB::table($nameView)->max('price');
 
+//        dd(DB::table($nameView)
+//            ->whereRaw($this->getFilter($request).' and '.$this->getConditionUserId($user_id), $this->getBindsArr($request))
+//            ->orderBy('vip_status', 'desc')
+//            ->orderBy('price', $this->getOrderBy($request)));
+
+        $query = DB::table($nameView);
+        $requestArr = $request->all();
+        array_shift($requestArr);
+        foreach ($requestArr as $key => $value) {
+            $query->whereIn($key, $value);
+        }
         $adverts = $this->paginateCustom(
-            DB::table($nameView)
-                ->whereRaw($this->getFilter($request).' and '.$this->getConditionUserId($user_id))
+            $query
                 ->orderBy('vip_status', 'desc')
-                ->orderBy('price', $this->getOrderBy($request))
-                ->setBindings([
-                    $this->getBindsArr($request)
-                ]),
+                ->orderBy('price', $this->getOrderBy($request)),
             $request->fullUrl(),
             $this->getCountPagination()
         );
+
+//        $adverts = $this->paginateCustom(
+//            DB::table($nameView)
+//                ->whereRaw($this->getFilter($request).' and '.$this->getConditionUserId($user_id), $this->getBindsArr($request))
+//                ->orderBy('vip_status', 'desc')
+//                ->orderBy('price', $this->getOrderBy($request)),
+//            $request->fullUrl(),
+//            $this->getCountPagination()
+//        );
 
         $this->setSearchLink($request);
 
