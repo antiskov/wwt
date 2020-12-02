@@ -15,11 +15,12 @@ class CreateUserTransactionsTable extends Migration
     {
         Schema::create('user_transactions', function (Blueprint $table) {
             $table->id();
+            $table->enum('type', ['addition', 'cost']);
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('price');
             $table->string('title');
-            $table->integer('status');
+            $table->enum('status', ['error', 'failure', 'reversed', 'success', 'none']);
             $table->string('order_id');
             $table->timestamps();
         });

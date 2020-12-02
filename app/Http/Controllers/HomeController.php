@@ -9,6 +9,7 @@ use App\Domain\AdvertsFiltersDirector;
 use App\Mail\RegisterEmail;
 use App\Models\User;
 use App\Services\ImageMinificationService;
+use App\Services\PayService;
 use App\Services\ProfileService;
 use App\Services\SubscribeService;
 use App\Services\UserService;
@@ -57,5 +58,14 @@ class HomeController extends Controller
         $service->changeSubscribe($request->get('email'), 0);
 
         return redirect()->route('home');
+    }
+
+    public function getStatusPay($order_id, PayService $service)
+    {
+        if($service->getCheckStatusPay($order_id) == 'success'){
+            return view('pages.status_pay', ['status' => 1]);
+        } else {
+            return view('pages.status_pay', ['status' => 0  ]);
+        }
     }
 }

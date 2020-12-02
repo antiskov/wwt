@@ -6,11 +6,13 @@ use App\Http\Requests\ProfileRequest;
 use App\Models\Advert;
 use App\Models\Referral;
 use App\Models\SearchLink;
+use App\Models\TestCallback;
 use App\Models\Timezone;
 use App\Models\User;
 use App\Models\UserFavoriteAdvert;
 use App\Models\UserLanguage;
 use App\Models\UserSettings;
+use App\Models\UserTransaction;
 use App\Services\PayService;
 use App\Services\ProfileService;
 use App\Services\SecurityService;
@@ -172,12 +174,21 @@ class ProfileController extends Controller
     public function getPayments(Request $request, PayService $service)
     {
         $service->checkTransaction();
-        return \view('profile_user.pages.payments', $service->setPay($request,2));
+        return \view('profile_user.pages.payments', [
+            'pay' => $service->setPay($request,2),
+            'score' => $service->getScore(),
+            'payments' => UserTransaction::where('user_id', auth()->user()->id)->get()
+        ]);
     }
 
-    public function setTransaction(Request $request, PayService $service)
+    public function setTransaction($order_id, PayService $service)
     {
-        $service->setTransactionDB();
+        $service->setTransactionDB($order_id);
+    }
+
+    public function callbackPay(Request $request, PayService $service)
+    {
+        $service->setCallback();
     }
 
 }
