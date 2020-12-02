@@ -34,6 +34,21 @@ class ToolsForAdvertsFilters
         return $query;
     }
 
+    public function getRequest()
+    {
+
+    }
+
+    public function getBindsArr(Request $request)
+    {
+        $watchFilter = new CatalogFilter($request);
+        $director = new FilterDirector();
+        $director->createQueryWatchFilter($request, $watchFilter);
+        $bindsArr = $director->getBindsArr();
+
+        return $bindsArr;
+    }
+
     public function getCountPagination()
     {
         if(!isset($_COOKIE["countPagination"])) {

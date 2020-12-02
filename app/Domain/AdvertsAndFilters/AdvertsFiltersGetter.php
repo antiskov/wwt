@@ -59,12 +59,27 @@ class AdvertsFiltersGetter extends ToolsForAdvertsFilters implements AdvertsFilt
             DB::table($nameView)
                 ->whereRaw($this->getFilter($request).' and '.$this->getConditionUserId($user_id))
                 ->orderBy('vip_status', 'desc')
-                ->orderBy('price', $this->getOrderBy($request)),
+                ->orderBy('price', $this->getOrderBy($request))
+                ->setBindings([
+                    $this->getBindsArr($request)
+                ]),
             $request->fullUrl(),
             $this->getCountPagination()
         );
+        dd(DB::table($nameView)
+            ->whereRaw($this->getFilter($request).' and '.$this->getConditionUserId($user_id))
+            ->setBindings([
+                $this->getBindsArr($request)
+            ])
+            ->orderBy('vip_status', 'desc')
+            ->orderBy('price', $this->getOrderBy($request))
+            );
 
-        $this->setSearchLink($request);
+//        dd($adverts);
+//
+//        foreach ($adverts as $advert) dd($advert);
+//        die;
+//        $this->setSearchLink($request);
 
         $this->result = [
             'adverts' => $adverts,
@@ -79,7 +94,9 @@ class AdvertsFiltersGetter extends ToolsForAdvertsFilters implements AdvertsFilt
             'sexes' => $sexes,
             'types' => $types,
             'maxPrice' => $maxPrice,
-            'countResults' => DB::table($nameView)->whereRaw($this->getFilter($request))->get()->count(),
+            'countResults' => DB::table($nameView)->whereRaw($this->getFilter($request))->setBindings([
+                $this->getBindsArr($request)
+            ])->get()->count(),
             'linkSearch' => $request->fullUrl(),
             'stateNew' =>  $this->setStateNew($request),
         ];
