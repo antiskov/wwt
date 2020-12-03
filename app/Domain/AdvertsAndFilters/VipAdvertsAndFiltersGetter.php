@@ -58,10 +58,11 @@ class VipAdvertsAndFiltersGetter extends ToolsForAdvertsFilters implements Adver
 
         $maxPrice = DB::table($nameView)->max('price');
 
+        $query = DB::table($nameView)->where('vip_status', 1);
+
         $adverts = $this->paginateCustom(
-            DB::table($nameView)
-                ->whereRaw($this->getFilter($request).' and '.$this->getConditionUserId($user_id))
-                ->orderBy('vip_status')
+            $this->getQuery($query, $request)
+                ->orderBy('vip_status', 'desc')
                 ->orderBy('price', $this->getOrderBy($request)),
             $request->fullUrl(),
             $this->getCountPagination()
@@ -82,10 +83,11 @@ class VipAdvertsAndFiltersGetter extends ToolsForAdvertsFilters implements Adver
             'sexes' => $sexes,
             'types' => $types,
             'maxPrice' => $maxPrice,
-            'countResults' => DB::table($nameView)->whereRaw($this->getFilter($request))->get()->count(),
+            'countResults' => $query->get()->count(),
             'linkSearch' => $request->fullUrl(),
             'stateNew' =>  $this->setStateNew($request),
         ];
+
     }
 
     public function getResult()
@@ -110,5 +112,13 @@ class VipAdvertsAndFiltersGetter extends ToolsForAdvertsFilters implements Adver
         } else {
             return "user_id in ($user_id)";
         }
+    }
+
+    public function getFilterCountResults(Request $request, $user_id = 0, $nameView = 'user_adverts_view')
+    {
+        $nameView = 'user_adverts_view';
+        $countQuery = $this->getQuery(DB::table($nameView)->where('vip_status', 1), $request);
+
+        $this->result = ['countResults' => $countQuery->get()->count()];
     }
 }

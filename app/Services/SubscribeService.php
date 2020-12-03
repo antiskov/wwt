@@ -20,6 +20,10 @@ class SubscribeService
         if($subscription = Subscription::where('email', $email)->first()){
             $subscription->status = $status;
             $subscription->save();
+        } else {
+            $subscription = new Subscription();
+            $subscription->email = $email;
+            $subscription->save();
         }
     }
 }

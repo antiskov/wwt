@@ -55,9 +55,10 @@ class AdvertsFiltersGetter extends ToolsForAdvertsFilters implements AdvertsFilt
 
         $maxPrice = DB::table($nameView)->max('price');
 
+        $query = DB::table($nameView);
+
         $adverts = $this->paginateCustom(
-            DB::table($nameView)
-                ->whereRaw($this->getFilter($request).' and '.$this->getConditionUserId($user_id))
+            $this->getQuery($query, $request)
                 ->orderBy('vip_status', 'desc')
                 ->orderBy('price', $this->getOrderBy($request)),
             $request->fullUrl(),
@@ -79,7 +80,7 @@ class AdvertsFiltersGetter extends ToolsForAdvertsFilters implements AdvertsFilt
             'sexes' => $sexes,
             'types' => $types,
             'maxPrice' => $maxPrice,
-            'countResults' => DB::table($nameView)->whereRaw($this->getFilter($request))->get()->count(),
+            'countResults' => $query->get()->count(),
             'linkSearch' => $request->fullUrl(),
             'stateNew' =>  $this->setStateNew($request),
         ];
@@ -88,5 +89,13 @@ class AdvertsFiltersGetter extends ToolsForAdvertsFilters implements AdvertsFilt
     public function getResult()
     {
         return $this->result;
+    }
+
+    public function getFilterCountResults(Request $request, $user_id = 0, $nameView = 'user_adverts_view')
+    {
+        $nameView = 'user_adverts_view';
+        $countQuery = $this->getQuery(DB::table($nameView), $request);
+
+        $this->result = ['countResults' => $countQuery->get()->count()];
     }
 }

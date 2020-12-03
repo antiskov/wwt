@@ -130,7 +130,7 @@ class UserService
             $setting->save();
         }
 
-        if($request->receive_service_info) {
+        if($request->receive_service_info == 'on') {
             $subscribeService->changeSubscribe(auth()->user()->email, 1);
         } else {
             $subscribeService->changeSubscribe(auth()->user()->email, 0);
@@ -158,7 +158,7 @@ class UserService
 
         $subscribe = Subscription::where('email', auth()->user()->email)->first();
 
-        if($subscribe->status == 1) {
+        if(isset($subscribe->status) && $subscribe->status == 1) {
             $check['receive_service_info'] = 1;
         } else {
             $check['receive_service_info'] = 0;

@@ -28,6 +28,7 @@ use App\Services\CustomPaginateService;
 use App\Services\UserService;
 use Database\Seeders\DeliveryVolumeSeeder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 class CatalogController extends Controller
 {
@@ -61,9 +62,9 @@ class CatalogController extends Controller
         return redirect()->back();
     }
 
-    public function countResults(CatalogService $service, Request $request)
+    public function countResults(CatalogService $service, Request $request, $type, $user = 0)
     {
-        $a = $service->getFilterResult($request);
+        $a = $service->getFilterResults($request, $type, $user);
 
         $data = [
             'count' => $a['countResults']
@@ -74,14 +75,13 @@ class CatalogController extends Controller
 
     public function countPagination($countPagination = 50)
     {
-        setcookie("countPagination", $countPagination);
+        Cookie::queue(Cookie::make('countPagination', $countPagination));
 
         return redirect()->back();
     }
 
     public function sellerAds(CatalogService $service, Request $request, User $user)
     {
-//        dd($user->id);
         return view('catalog.pages.seller_ads', $service->getResultForUser($request, $user->id));
     }
 }
