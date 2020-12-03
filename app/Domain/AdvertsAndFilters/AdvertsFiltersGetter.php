@@ -55,33 +55,15 @@ class AdvertsFiltersGetter extends ToolsForAdvertsFilters implements AdvertsFilt
 
         $maxPrice = DB::table($nameView)->max('price');
 
-//        dd(DB::table($nameView)
-//            ->whereRaw($this->getFilter($request).' and '.$this->getConditionUserId($user_id), $this->getBindsArr($request))
-//            ->orderBy('vip_status', 'desc')
-//            ->orderBy('price', $this->getOrderBy($request)));
-
         $query = DB::table($nameView);
-        $requestArr = $request->all();
-        array_shift($requestArr);
-        foreach ($requestArr as $key => $value) {
-            $query->whereIn($key, $value);
-        }
+
         $adverts = $this->paginateCustom(
-            $query
+            $this->getQuery($query, $request)
                 ->orderBy('vip_status', 'desc')
                 ->orderBy('price', $this->getOrderBy($request)),
             $request->fullUrl(),
             $this->getCountPagination()
         );
-
-//        $adverts = $this->paginateCustom(
-//            DB::table($nameView)
-//                ->whereRaw($this->getFilter($request).' and '.$this->getConditionUserId($user_id), $this->getBindsArr($request))
-//                ->orderBy('vip_status', 'desc')
-//                ->orderBy('price', $this->getOrderBy($request)),
-//            $request->fullUrl(),
-//            $this->getCountPagination()
-//        );
 
         $this->setSearchLink($request);
 
@@ -98,8 +80,7 @@ class AdvertsFiltersGetter extends ToolsForAdvertsFilters implements AdvertsFilt
             'sexes' => $sexes,
             'types' => $types,
             'maxPrice' => $maxPrice,
-            'countResults' => DB::table($nameView)->whereRaw($this->getFilter($request))
-                ->setBindings([$this->getBindsArr($request)])->get()->count(),
+            'countResults' => $query->get()->count(),
             'linkSearch' => $request->fullUrl(),
             'stateNew' =>  $this->setStateNew($request),
         ];
@@ -108,5 +89,13 @@ class AdvertsFiltersGetter extends ToolsForAdvertsFilters implements AdvertsFilt
     public function getResult()
     {
         return $this->result;
+    }
+
+    public function getFilterCountResults(Request $request, $user_id = 0, $nameView = 'user_adverts_view')
+    {
+        $nameView = 'user_adverts_view';
+        $countQuery = $this->getQuery(DB::table($nameView), $request);
+
+        $this->result = ['countResults' => $countQuery->get()->count()];
     }
 }

@@ -62,9 +62,13 @@ class CatalogController extends Controller
         return redirect()->back();
     }
 
-    public function countResults(CatalogService $service, Request $request)
+    public function countResults(CatalogService $service, Request $request, $type, $user = 0)
     {
-        $a = $service->getFilterResult($request);
+        if($user){
+            $a = $service->getFilterResults($request, $type, $user);
+        } else {
+            $a = $service->getFilterResults($request, $type);
+        }
 
         $data = [
             'count' => $a['countResults']
@@ -83,15 +87,5 @@ class CatalogController extends Controller
     public function sellerAds(CatalogService $service, Request $request, User $user)
     {
         return view('catalog.pages.seller_ads', $service->getResultForUser($request, $user->id));
-    }
-
-    public function sellerAdsCountResult(CatalogService $service, Request $request, User $user)
-    {
-        $a = $service->getResultForUser($request, $user->id);
-        $data = [
-            'count' => $a['countResults']
-        ];
-
-        return response()->json($data);
     }
 }

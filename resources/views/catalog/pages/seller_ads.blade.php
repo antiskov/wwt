@@ -34,7 +34,7 @@
         function query() {
             $.ajax({
                 type: "get",
-                url: '{{route('catalog.seller-ads.count-results', $user->id)}}',
+                url: '{{route('catalog.seller-ads.count-results', [3, $user->id])}}',
                 data: $('.filter-search').serializeArray(),
                 success: function (data) {
                     console.log('success');

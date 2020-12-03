@@ -55,14 +55,15 @@ class SellerAdsGetter extends ToolsForAdvertsFilters implements AdvertsFilters
 
         $maxPrice = DB::table($nameView)->max('price');
 
+        $query = DB::table($nameView)->where('user_id', $user_id);
+        $countQuery = $this->getQuery(DB::table($nameView)->where('user_id', $user_id), $request);
+
+//        dd($countQuery = $this->getQuery($query, $request)->get()->count());
+
         $adverts = $this->paginateCustom(
-            DB::table($nameView)
-                ->whereRaw($this->getFilter($request).' and '.$this->getConditionUserId($user_id))
+            $this->getQuery($query, $request)
                 ->orderBy('vip_status', 'desc')
-                ->orderBy('price', $this->getOrderBy($request))
-                ->setBindings([
-                    $this->getBindsArr($request)
-                ]),
+                ->orderBy('price', $this->getOrderBy($request)),
             $request->fullUrl(),
             $this->getCountPagination()
         );
@@ -82,8 +83,7 @@ class SellerAdsGetter extends ToolsForAdvertsFilters implements AdvertsFilters
             'sexes' => $sexes,
             'types' => $types,
             'maxPrice' => $maxPrice,
-            'countResults' => DB::table($nameView)->whereRaw($this->getFilter($request))
-                ->setBindings([$this->getBindsArr($request)])->where('user_id', $user_id)->get()->count(),
+            'countResults' => $countQuery->get()->count(),
             'linkSearch' => $request->fullUrl(),
             'stateNew' =>  $this->setStateNew($request),
             'countUserAdverts' => $this->getCountUserAdverts($nameView, $user_id),
@@ -94,6 +94,14 @@ class SellerAdsGetter extends ToolsForAdvertsFilters implements AdvertsFilters
     public function getResult()
     {
         return $this->result;
+    }
+
+    public function getFilterCountResults(Request $request, $user_id = 0, $nameView = 'user_adverts_view')
+    {
+        $nameView = 'user_adverts_view';
+        $countQuery = $this->getQuery(DB::table($nameView)->where('user_id', $user_id), $request);
+
+        $this->result = ['countResults' => $countQuery->get()->count()];
     }
 
 }

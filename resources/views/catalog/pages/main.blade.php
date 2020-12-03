@@ -8,7 +8,7 @@
         function query() {
             $.ajax({
                 type: "get",
-                url: '/catalog/count_results',
+                url: '/catalog/count_results/1',
                 data: $('.filter-search').serializeArray(),
                 success: function (data) {
                     console.log('success');

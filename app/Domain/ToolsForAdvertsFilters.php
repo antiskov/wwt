@@ -13,6 +13,20 @@ use Illuminate\Support\Facades\Session;
 
 class ToolsForAdvertsFilters
 {
+    public function getQuery($query, Request $request)
+    {
+        if($this->getBindsArr($request)){
+            foreach ($this->getBindsArr($request) as $key => $value) {
+                $query->whereIn($key, $value);
+            }
+        }
+
+        if($pricesArr = $request->get('prices', false)){
+            $query->whereBetween('price', [$pricesArr[0], $pricesArr[1]]);
+        }
+
+        return $query;
+    }
     public function paginateCustom($thisPaginate, $path, $perPage = 15, $columns = ['*'], $pageName = 'page', $page = null)
     {
         $page = $page ?: Paginator::resolveCurrentPage($pageName);
@@ -33,11 +47,6 @@ class ToolsForAdvertsFilters
         $query = $director->getQuery();
 
         return $query;
-    }
-
-    public function getRequest()
-    {
-
     }
 
     public function getBindsArr(Request $request)
