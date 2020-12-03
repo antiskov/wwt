@@ -279,7 +279,7 @@
                                         <ul class="header-cabinet-list">
                                             <li><a href="{{route('my_adverts')}}">Мои обьявления</a></li>
                                             <li><a href="#">Сообщения</a></li>
-                                            <li><a href="#">Платежи</a></li>
+                                            <li><a href="{{route('payments')}}">Платежи</a></li>
                                             <li><a href="{{ route('editing-profile') }}">Профиль</a></li>
                                             <li><a href="{{ route('profile-settings') }}">Настройки</a></li>
                                             <li><a href="{{route('favorite')}}">Избранное</a></li>

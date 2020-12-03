@@ -14,6 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+    Route::post('/callback_pay', [\App\Http\Controllers\ProfileController::class, 'callbackPay'])->name('callback_pay');
+

@@ -6,11 +6,14 @@ use App\Http\Requests\ProfileRequest;
 use App\Models\Advert;
 use App\Models\Referral;
 use App\Models\SearchLink;
+use App\Models\TestCallback;
 use App\Models\Timezone;
 use App\Models\User;
 use App\Models\UserFavoriteAdvert;
 use App\Models\UserLanguage;
 use App\Models\UserSettings;
+use App\Models\UserTransaction;
+use App\Services\PayService;
 use App\Services\ProfileService;
 use App\Services\SecurityService;
 use App\Services\SubscribeService;
@@ -19,6 +22,8 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
@@ -164,6 +169,30 @@ class ProfileController extends Controller
         }
 
         return redirect()->back();
+    }
+
+    public function getPayments(PayService $service)
+    {
+        $service->checkTransaction();
+        return \view('profile_user.pages.payments', [
+            'score' => $service->getScore(),
+            'payments' => UserTransaction::where('user_id', auth()->user()->id)->orderBy('id', 'desc')->get()
+        ]);
+    }
+
+    public function setTransaction(Request $request, PayService $service)
+    {
+        return redirect()->route('go_to_liqpay', $service->setTransactionDB($request));
+    }
+
+    public function callbackPay(Request $request, PayService $service)
+    {
+        $service->setCallback();
+    }
+
+    public function goToLiqPay(PayService $service, $order_id)
+    {
+        return \view('pages.additing_cost', ["pay" => $service->setPay($order_id)]);
     }
 
 }

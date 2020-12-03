@@ -99,7 +99,7 @@ class ToolsForAdvertsFilters
 
     public function setStateNew(Request $request)
     {
-        if(($request->states[0] == 'new' && !isset($request->states[1])) || ($request->states[0] == 'new' && $request->states[0] == $request->states[1])) {
+        if(isset($request->states) && (($request->states[0] == 'new' && !isset($request->states[1])) || ($request->states[0] == 'new' && $request->states[0] == $request->states[1]))) {
             $stateNew = 1;
         } else {
             $stateNew = 2;

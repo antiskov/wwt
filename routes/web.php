@@ -27,6 +27,11 @@ Route::middleware('set.locale')->group(function () {
     Route::get('/seller/{user}', [\App\Http\Controllers\CatalogController::class, 'sellerPage'])->name('seller-page');
     Route::post('/subscribe', [\App\Http\Controllers\HomeController::class, 'subscribe'])->name('subscribe');
     Route::post('/unsubscribe', [\App\Http\Controllers\HomeController::class, 'unsubscribe'])->name('unsubscribe');
+//    Route::get('/set_transaction/{order_id}', [\App\Http\Controllers\ProfileController::class, 'setTransaction'])->name('set_transaction');
+    Route::get('/status_pay/{order_id}', [\App\Http\Controllers\HomeController::class, 'getStatusPay'])->name('status_pay');
+    Route::post('/set_cost', [\App\Http\Controllers\ProfileController::class, 'setTransaction'])->name('set_transaction');
+    Route::get('/go_to_liqpay/{order_id}', [\App\Http\Controllers\ProfileController::class, 'goToLiqPay'])->name('go_to_liqpay');
+
 
     Route::group(['prefix' => 'profile'], function () {
         Route::middleware('auth')->group(function () {
@@ -44,6 +49,8 @@ Route::middleware('set.locale')->group(function () {
             Route::get('/favorite/delete/{advert}', [\App\Http\Controllers\ProfileController::class, 'deleteFavorite'])->name('delete_favorite');
             Route::get('/search/delete/{search}', [\App\Http\Controllers\ProfileController::class, 'deleteSearch'])->name('delete_search');
             Route::get('/referral', [\App\Http\Controllers\ProfileController::class, 'referralIndex'])->name('referral');
+            Route::get('/payments', [\App\Http\Controllers\ProfileController::class, 'getPayments'])->name('payments');
+            Route::post('/set_cost', [\App\Http\Controllers\ProfileController::class, 'setTransaction'])->name('set_transaction');
         });
     });
 
