@@ -80,16 +80,22 @@ class CatalogService
 
     public function getFilterResults(Request $request, $type, $user_id = 0)
     {
-        if($user_id) {
+        if($type == 3 && $user_id != 0) {
             $adverts = new SellerAdsGetter();
-        } elseif ($type == 1) {
+        } elseif ($type == 1 && $user_id == 0) {
             $adverts = new AdvertsFiltersGetter();
-        } else {
+        } elseif ($type == 2 && $user_id == 0) {
             $adverts = new VipAdvertsAndFiltersGetter();
         }
-        $adverts->getFilterCountResults($request, $user_id);
 
-        return $adverts->getResult();
+        if(isset($adverts)){
+            $adverts->getFilterCountResults($request, $user_id);
+
+            return $adverts->getResult();
+        } else {
+            return null;
+        }
+
     }
 
     public function goodsIndex(User $user, Advert $advert, UserService $userService)

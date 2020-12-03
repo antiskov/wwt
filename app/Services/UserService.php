@@ -130,7 +130,7 @@ class UserService
             $setting->save();
         }
 
-        if($request->receive_service_info) {
+        if($request->receive_service_info == 'on') {
             $subscribeService->changeSubscribe(auth()->user()->email, 1);
         } else {
             $subscribeService->changeSubscribe(auth()->user()->email, 0);
