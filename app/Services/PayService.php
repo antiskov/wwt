@@ -20,15 +20,15 @@ class PayService
 
     }
 
-    public function setPay(Request $request, $amount, $description = 'пополнение счета', $currency = 'USD')
+    public function setPay($order_id, $description = 'пополнение счета', $currency = 'USD')
     {
+        $transaction = UserTransaction::where('order_id', $order_id)->first();
         $parameters = $this->getParameters();
-        $order_id = auth()->user()->id . '-' . rand(1000000, 2000000);
         $array = [
             "public_key" => $parameters['publicKey'],
             "version" => "3",
             "action" => "pay",
-            "amount" => $amount,
+            "amount" => $transaction->price,
             "currency" => $currency,
             "description" => $description,
             "order_id" => $order_id,
@@ -48,21 +48,25 @@ class PayService
             'signature' => $signature,
             'url' => $parameters['url'],
             'order_id' => $order_id,
+            'amount' => $transaction->price,
         ];
 
         return $payArr;
     }
 
-    public function setTransactionDB($order_id, $amount = 2, $description = 'пополнение счета')
+    public function setTransactionDB(Request $request, $description = 'пополнение счета')
     {
         $userTransaction = new UserTransaction();
         $userTransaction->type = 'addition';
         $userTransaction->user_id = auth()->user()->id;
-        $userTransaction->price = $amount;
+        $userTransaction->price = $request->get('cost');
         $userTransaction->title = $description;
         $userTransaction->status = 'none';
-        $userTransaction->order_id = $order_id;
+        $userTransaction->order_id = auth()->user()->id . '-' . rand(1000000, 2000000);
         $userTransaction->save();
+//        dd(UserTransaction::all());
+
+        return $userTransaction->order_id;
     }
 
     public function checkTransaction()
@@ -76,7 +80,7 @@ class PayService
                 'version' => '3',
                 'order_id' => $transaction->order_id,
             ));
-//            dd($transaction->status);
+//            dd($res->status);
             $transaction->status = $res->status;
             $transaction->save();
         }
@@ -122,9 +126,9 @@ class PayService
         $score = 0;
         $transactions = UserTransaction::where('user_id', auth()->user()->id)->get();
         foreach ($transactions as $transaction) {
-            if($transaction->type == 'addition'){
+            if($transaction->type == 'addition' && $transaction->status == 'success'){
                 $score = $score + $transaction->price;
-            } else {
+            } elseif($transaction->status == 'success') {
                 $score = $score - $transaction->price;
             }
         }

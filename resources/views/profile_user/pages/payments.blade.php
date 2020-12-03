@@ -1,6 +1,17 @@
 @extends('profile_user.layouts.main')
 
 @section('profile-content')
+    <div id="save-search-modal" class="modal">
+        <div class="modal__content">
+            <h5 class="modal__title">Пополнение счета</h5>
+            <form id="save-search-form" class="change-pass-mail" method="post" action="{{route('set_transaction')}}"
+                  accept-charset="utf-8">
+                @csrf
+                <input type="number" name="cost"> долларов США
+                <button class="replenish" type="submit">Пополнить</button>
+            </form>
+        </div>
+    </div>
     <section class="payments">
         <div class="">
             <div class="block-payment">
@@ -11,11 +22,7 @@
                             <div>На вашем счету:</div>
                             <p>{{$score}}<span>$</span></p>
                         </div>
-                        <form id="payment" method="POST" action="{{$pay['url']}}" accept-charset="utf-8">
-                            <input type="hidden" name="data" value="{{$pay['data']}}"/>
-                            <input type="hidden" name="signature" value="{{$pay['signature']}}"/>
-                            <button class="replenish" type="submit">Пополнить</button>
-                        </form>
+                        <button class="replenish" data-fancybox data-src="#save-search-modal" href="javascript:;" type="submit">Пополнить</button>
                     </div>
                     <div class="payment-items">
                         @foreach($payments as $payment)
@@ -51,14 +58,5 @@
             </div>
         </div>
     </section>
-    <script>
-        document.addEventListener("DOMContentLoaded", function (event) {
-            $('#payment').on('click', function (e) {
-                $.ajax({
-                    url: '/set_transaction/{{$pay['order_id']}}',
-                });
-            });
-        });
-    </script>
 @endsection
 

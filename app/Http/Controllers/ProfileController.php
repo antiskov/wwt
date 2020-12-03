@@ -171,24 +171,28 @@ class ProfileController extends Controller
         return redirect()->back();
     }
 
-    public function getPayments(Request $request, PayService $service)
+    public function getPayments(PayService $service)
     {
         $service->checkTransaction();
         return \view('profile_user.pages.payments', [
-            'pay' => $service->setPay($request,2),
             'score' => $service->getScore(),
-            'payments' => UserTransaction::where('user_id', auth()->user()->id)->get()
+            'payments' => UserTransaction::where('user_id', auth()->user()->id)->orderBy('id', 'desc')->get()
         ]);
     }
 
-    public function setTransaction($order_id, PayService $service)
+    public function setTransaction(Request $request, PayService $service)
     {
-        $service->setTransactionDB($order_id);
+        return redirect()->route('go_to_liqpay', $service->setTransactionDB($request));
     }
 
     public function callbackPay(Request $request, PayService $service)
     {
         $service->setCallback();
+    }
+
+    public function goToLiqPay(PayService $service, $order_id)
+    {
+        return \view('pages.additing_cost', ["pay" => $service->setPay($order_id)]);
     }
 
 }
