@@ -7,11 +7,26 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class ToolsForAdvertsFilters
 {
+    public function getQuery($query, Request $request)
+    {
+        if($this->getBindsArr($request)){
+            foreach ($this->getBindsArr($request) as $key => $value) {
+                $query->whereIn($key, $value);
+            }
+        }
+
+        if($pricesArr = $request->get('prices', false)){
+            $query->whereBetween('price', [$pricesArr[0], $pricesArr[1]]);
+        }
+
+        return $query;
+    }
     public function paginateCustom($thisPaginate, $path, $perPage = 15, $columns = ['*'], $pageName = 'page', $page = null)
     {
         $page = $page ?: Paginator::resolveCurrentPage($pageName);
@@ -34,14 +49,26 @@ class ToolsForAdvertsFilters
         return $query;
     }
 
+    public function getBindsArr(Request $request)
+    {
+        $watchFilter = new CatalogFilter($request);
+        $director = new FilterDirector();
+        $director->createQueryWatchFilter($request, $watchFilter);
+        $bindsArr = $director->getBindsArr();
+
+        return $bindsArr;
+    }
+
     public function getCountPagination()
     {
         if(!isset($_COOKIE["countPagination"])) {
-            return $_COOKIE["countPagination"] = 50;
+            Cookie::queue(Cookie::make('countPagination', 50));
+            return 50;
         } elseif($_COOKIE["countPagination"] == 'count_results') {
-            return $_COOKIE["countPagination"] = 50;
+            Cookie::queue(Cookie::make('countPagination', 50));
+            return 50;
         } else {
-            return $_COOKIE["countPagination"];
+            return Cookie::get('countPagination');
         }
     }
 

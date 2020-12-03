@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 abstract class BaseFilter implements Filter
 {
     protected $query;
+    protected $bindsArr;
     protected $request;
+
     public function __construct($request)
     {
         $this->request = $request;
@@ -26,7 +28,7 @@ abstract class BaseFilter implements Filter
         $this->deliveryVolumesQuery();
         $this->sexesQuery();
         $this->typesQuery();
-        $this->pricesQuery();
+//        $this->pricesQuery();
     }
 
     public function getQuery()
@@ -34,17 +36,24 @@ abstract class BaseFilter implements Filter
         return $this->query;
     }
 
+    public function getBindsArr()
+    {
+        return $this->bindsArr;
+    }
+
     protected function brandsQuery()
     {
         if ($brandsArr = $this->request->get('brands', false)) {
-            $this->query .= " and watch_make_title in ({$this->implodeAsValuesForQuery($brandsArr)})";
+            $this->bindsArr['watch_make_title'] = $brandsArr;
+            $this->query .= " and watch_make_title in (?)";
         }
     }
 
     protected function modelsQuery()
     {
         if ($modelsArr = $this->request->get('models', false)) {
-            $this->query .= " and watch_model_title in ({$this->implodeAsValuesForQuery($modelsArr)})";
+            $this->bindsArr['watch_model_title'] = $modelsArr;
+            $this->query .= " and watch_model_title in (?)";
         }
     }
 
@@ -58,57 +67,66 @@ abstract class BaseFilter implements Filter
                 $heightWidth  = explode('/', $diameter);
                 $height .= ", $heightWidth[0]";
                 $width .= ", $heightWidth[1]";
+                $this->bindsArr['height'][] = $heightWidth[0];
+                $this->bindsArr['width'][] = $heightWidth[1];
             }
-            $this->query .= " and height in ($height) and width in ($width)";
+            $this->query .= " and height in (?) and width in (?)";
         }
     }
 
     public function yearsQuery()
     {
         if($yearsArr = $this->request->get('years', false)){
-            $this->query .= " and release_year in ({$this->implodeAsIntValueQuery($yearsArr)})";
+            $this->bindsArr['release_year'] = $yearsArr;
+            $this->query .= " and release_year in (?)";
         }
     }
 
     public function regionsQuery()
     {
         if($regionsArr = $this->request->get('regions', false)){
-            $this->query .= " and region in ({$this->implodeAsValuesForQuery($regionsArr)})";
+            $this->bindsArr['region'] = $regionsArr;
+            $this->query .= " and region in (?)";
         }
     }
 
     public function mechanismTypesQuery()
     {
         if($mechanismTypesArr = $this->request->get('mechanismTypes', false)){
-            $this->query .= " and mechanism_type_title in ({$this->implodeAsValuesForQuery($mechanismTypesArr)})";
+            $this->bindsArr['mechanism_type_title'] = $mechanismTypesArr;
+            $this->query .= " and mechanism_type_title in (?)";
         }
     }
 
     public function statesQuery()
     {
         if($statesArr = $this->request->get('states', false)){
-            $this->query .= " and watch_state in ({$this->implodeAsValuesForQuery($statesArr)})";
+            $this->bindsArr['watch_state'] = $statesArr;
+            $this->query .= " and watch_state in (?)";
         }
     }
 
     public function deliveryVolumesQuery()
     {
         if($deliveryVolumesArr = $this->request->get('deliveryVolumes', false)){
-            $this->query .= " and delivery_volume in ({$this->implodeAsValuesForQuery($deliveryVolumesArr)})";
+            $this->bindsArr['delivery_volume'] = $deliveryVolumesArr;
+            $this->query .= " and delivery_volume in (?)";
         }
     }
 
     public function sexesQuery()
     {
         if($sexesArr = $this->request->get('sexes', false)){
-            $this->query .= " and sex_title in ({$this->implodeAsValuesForQuery($sexesArr)})";
+            $this->bindsArr['sex_title'] = $sexesArr;
+            $this->query .= " and sex_title in (?)";
         }
     }
 
     public function typesQuery()
     {
         if($typesArr = $this->request->get('types', false)){
-            $this->query .= " and watch_type_title in ({$this->implodeAsValuesForQuery($typesArr)})";
+            $this->bindsArr['watch_type_title'] = $typesArr;
+            $this->query .= " and watch_type_title in (?)";
         }
     }
 
@@ -117,19 +135,12 @@ abstract class BaseFilter implements Filter
         if($pricesArr = $this->request->get('prices', false)){
             $titleMin = $pricesArr[0];
             $titleMax = $pricesArr[1];
-            $this->query .= " and price > $titleMin and price < $titleMax";
+            $this->bindsArr['price'][] = $titleMin;
+            $this->bindsArr['price'][] = $titleMax;
+            $this->query .= " and price > (?) and price < (?)";
         }
     }
 
-
-    private function implodeAsValuesForQuery(array $arr)
-    {
-        return "'" . implode("', '", $arr) . "'";
-    }
-
-    private function implodeAsIntValueQuery(array $arr){
-        return implode(", ", $arr);
-    }
 
 
 }

@@ -7,7 +7,9 @@ namespace App\Services;
 
 use App\Domain\AdvertsAndFilters\AdvertsFiltersGetter;
 use App\Domain\AdvertsAndFilters\SellerAdsGetter;
+use App\Domain\AdvertsAndFilters\VipAdvertsAndFiltersGetter;
 use App\Domain\AdvertsFiltersDirector;
+use App\Http\Controllers\CatalogController;
 use App\Models\AccessoryMechanismType;
 use App\Models\Advert;
 use App\Models\Category;
@@ -38,6 +40,7 @@ use App\Models\YearAdvert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use phpDocumentor\Reflection\Type;
 
 class CatalogService
 {
@@ -73,6 +76,26 @@ class CatalogService
         $adverts->index($request, $user_id);
 
         return $adverts->getResult();
+    }
+
+    public function getFilterResults(Request $request, $type, $user_id = 0)
+    {
+        if($type == 3 && $user_id != 0) {
+            $adverts = new SellerAdsGetter();
+        } elseif ($type == 1 && $user_id == 0) {
+            $adverts = new AdvertsFiltersGetter();
+        } elseif ($type == 2 && $user_id == 0) {
+            $adverts = new VipAdvertsAndFiltersGetter();
+        }
+
+        if(isset($adverts)){
+            $adverts->getFilterCountResults($request, $user_id);
+
+            return $adverts->getResult();
+        } else {
+            return null;
+        }
+
     }
 
     public function goodsIndex(User $user, Advert $advert, UserService $userService)

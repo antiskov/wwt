@@ -10,4 +10,5 @@ interface Filter
     public function make(Request $request);
 
     public function getQuery();
+    public function getBindsArr();
 }

@@ -59,14 +59,16 @@ Route::middleware('set.locale')->group(function () {
         Route::get('/filter_json', [\App\Http\Controllers\CatalogController::class, 'filterJson'])->name('catalog.filter-json');
         Route::get('/save_search', [\App\Http\Controllers\CatalogController::class, 'saveSearch'])->name('catalog.save-search');
         Route::get('/sort/{status}', [\App\Http\Controllers\CatalogController::class, 'sort'])->name('catalog.sort');
-        Route::get('/count_results', [\App\Http\Controllers\CatalogController::class, 'countResults'])->name('catalog.count-results');
+        Route::get('/count_results/{type}', [\App\Http\Controllers\CatalogController::class, 'countResults'])->name('catalog.count-results');
         Route::get('/item_page/{advert}', [\App\Http\Controllers\GoodsController::class, 'index'])->name('catalog.item-page');
         Route::get('/show_phone/{advert}', [\App\Http\Controllers\GoodsController::class, 'showPhone'])->name('catalog.show_phone');
         Route::get('/item_page_favorite/{advert}/{favorite}', [\App\Http\Controllers\GoodsController::class, 'setFavorite'])->name('catalog.item_page_favorite');
         Route::get('{user}/seller_ads', [\App\Http\Controllers\CatalogController::class, 'sellerAds'])->name('catalog.seller-ads');
+        Route::get('{type}/{user}/seller_ads/count_results/', [\App\Http\Controllers\CatalogController::class, 'countResults'])->name('catalog.seller-ads.count-results');
 
         Route::get('/{search}', [\App\Http\Controllers\CatalogController::class, 'getFilterResult'])->name('catalog-favorite');
     });
+    Route::get('/count_results/{type}', [\App\Http\Controllers\CatalogController::class, 'countResults'])->name('home.count-results');
 
     Route::get('count_pagination/{countPagination?}', [\App\Http\Controllers\CatalogController::class, 'countPagination'])->name('count-pagination');
 });

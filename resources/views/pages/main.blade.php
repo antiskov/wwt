@@ -37,7 +37,7 @@
                 e.preventDefault();
                 $.ajax({
                     type: "get",
-                    url: '/catalog/save_search/',
+                    url: '/catalog/save_search/2',
                     data: $('#filter').serializeArray(),
                     success: function (data) {
                         console.log('success');
@@ -61,7 +61,7 @@
             function query() {
                 $.ajax({
                     type: "get",
-                    url: '/catalog/count_results',
+                    url: '/count_results/2',
                     data: $('.filter-search').serializeArray(),
                     success: function (data) {
                         console.log('success');
