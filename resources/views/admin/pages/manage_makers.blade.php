@@ -24,7 +24,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{route('admin.upload_picture')}}" method="post" enctype='multipart/form-data'>
+                        <form action="{{route('admin.upload_makers_picture')}}" method="post" enctype='multipart/form-data'>
                             @csrf
                             <label for="">Логотип производителя</label>
                             <input type="file" required name="logo" accept="image/x-png,image/gif,image/jpeg">

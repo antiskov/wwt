@@ -27,7 +27,6 @@ Route::middleware('set.locale')->group(function () {
     Route::get('/seller/{user}', [\App\Http\Controllers\CatalogController::class, 'sellerPage'])->name('seller-page');
     Route::post('/subscribe', [\App\Http\Controllers\HomeController::class, 'subscribe'])->name('subscribe');
     Route::post('/unsubscribe', [\App\Http\Controllers\HomeController::class, 'unsubscribe'])->name('unsubscribe');
-//    Route::get('/set_transaction/{order_id}', [\App\Http\Controllers\ProfileController::class, 'setTransaction'])->name('set_transaction');
     Route::get('/status_pay/{order_id}', [\App\Http\Controllers\HomeController::class, 'getStatusPay'])->name('status_pay');
     Route::post('/set_cost', [\App\Http\Controllers\ProfileController::class, 'setTransaction'])->name('set_transaction');
     Route::get('/go_to_liqpay/{order_id}', [\App\Http\Controllers\ProfileController::class, 'goToLiqPay'])->name('go_to_liqpay');
@@ -114,7 +113,7 @@ Route::group(['prefix' => 'admin'], function () {
         });
         Route::group(['prefix' => 'manage_makers'], function () {
             Route::get('/', [\App\Http\Controllers\Admin\MakersController::class, 'index'])->name('admin.manage_makers');
-            Route::post('/upload', [\App\Http\Controllers\Admin\MakersController::class, 'upload'])->name('admin.upload_picture');
+            Route::post('/upload', [\App\Http\Controllers\Admin\MakersController::class, 'upload'])->name('admin.upload_makers_picture');
             Route::get('/change_status/{status}/{maker}', [\App\Http\Controllers\Admin\MakersController::class, 'changeStatus'])->name('admin.change_status_maker');
         });
 

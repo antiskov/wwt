@@ -12,9 +12,9 @@
                 </div>
             </div>
             <input type="radio" name="tab-btn" id="tab-btn-1" value="" checked>
-            <label for="tab-btn-1" class="block-1"><img src="./images/icons/block-item.svg" alt=""></label>
+            <label for="tab-btn-1" class="block-1"><img src="/images/icons/block-item.svg" alt=""></label>
             <input type="radio" name="tab-btn" id="tab-btn-2" value="" >
-            <label for="tab-btn-2" class="block-2"><img src="./images/icons/line-item.svg" alt=""></label>
+            <label for="tab-btn-2" class="block-2"><img src="/images/icons/line-item.svg" alt=""></label>
 
             <div class="wrap2">
                 <div class="currency-block">

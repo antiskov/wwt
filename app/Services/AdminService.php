@@ -59,11 +59,12 @@ class AdminService
 
         if($picture = ManWomanPicture::latest()->first()) {
             $picture->delete();
-            Storage::delete('public/admin/man_woman_pictures/'.$picture->man);
-            Storage::delete('public/admin/man_woman_pictures/'.$picture->woman);
+            Storage::delete('/public/admin/man_woman_pictures/'.$picture->man);
+            Storage::delete('/public/admin/man_woman_pictures/'.$picture->woman);
         }
 
         $picture = new ManWomanPicture();
+//        dd($man_image);
         $picture->man = $man_image;
         $picture->woman = $woman_image;
         $picture->save();
