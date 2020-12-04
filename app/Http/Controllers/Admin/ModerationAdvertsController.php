@@ -10,9 +10,9 @@ use App\Services\AdvertsService;
 
 class ModerationAdvertsController extends Controller
 {
-    public function index(AdminService $advertsService)
+    public function index()
     {
-        $adverts=$advertsService->getAllAdverts();
+        $adverts = Advert::paginate(30);
 
         return view('admin.pages.moderation_adverts', ['adverts' => $adverts]);
     }
