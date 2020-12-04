@@ -8,10 +8,10 @@
             @CSRF
             <div class="change-input">
                 <input id="password-form-email" name="email" type="text" placeholder="Введите почту, логин или телефон"
-                       disabled required
+                       required
                        value="someMail@gmail.com">
                 <span></span>
-                <img src="/images/icons/eraser.svg" alt="Изменить логин">
+{{--                <img src="/images/icons/eraser.svg" alt="Изменить логин">--}}
             </div>
             <div class="password-input">
                 <input id='password-login-form' name="password" type="password" placeholder="Введите пароль" required>
@@ -25,7 +25,7 @@
                         <p><span>Запомнить меня</span></p>
                     </label>
                 </div>
-                <a href="#">Напомнить пароль</a>
+                <a href="{{route('forgot_password')}}">Напомнить пароль</a>
             </div>
             <button type="submit" class="btn-arrow">Далее</button>
         </form>
