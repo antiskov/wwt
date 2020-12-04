@@ -25,7 +25,7 @@
                         <p><span>Запомнить меня</span></p>
                     </label>
                 </div>
-                <a href="{{route('forgot_password')}}">Напомнить пароль</a>
+                <a href="{{route('forgot_password')}}">Проблема с паролем?</a>
             </div>
             <button type="submit" class="btn-arrow">Далее</button>
         </form>

@@ -5,9 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ManagePasswordRequest;
 use App\Models\User;
 use App\Services\PasswordService;
+use Illuminate\Support\Facades\DB;
 
 class PasswordController
 {
+    public function __construct()
+    {
+        \Auth::logout();
+    }
     public function resetPasswordIndex()
     {
         return view('password.reset_password');
@@ -32,6 +37,6 @@ class PasswordController
             $user->save();
         }
 
-        return redirect()->route('home');
+        return redirect()->route('home')->with('status_password', trans('Password has been changed.'));
     }
 }

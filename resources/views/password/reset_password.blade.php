@@ -3,7 +3,12 @@
 @section('content')
     <section class="e404">
         <div class="e404-wrap">
-            <h4>Востановление пароля</h4>
+            <h4>Смена пароля</h4>
+            @if(Session::has('status'))
+            <p>{!! Session::get('status') !!}</p>
+            @endif
+
+            <br>
             <form action="{{route('forgot_password_store')}}" method="post">
                 @csrf
                 @foreach ($errors->all() as $error)

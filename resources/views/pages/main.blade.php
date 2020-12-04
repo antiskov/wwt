@@ -1,5 +1,10 @@
 @extends('layouts.main')
 @section('content')
+    <div>
+        @if(Session::has('status_password'))
+            <h1>{!! Session::get('status_password') !!}</h1>
+        @endif
+    </div>
     <div class="site-holder">
         @widget('slider')
         @widget('man_woman_pictures')
