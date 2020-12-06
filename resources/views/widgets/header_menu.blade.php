@@ -7,13 +7,36 @@
                     <div></div>
                     <div></div>
                 </div>
-                <a href="#" class="header-mob-logo">
+                <a href="{{route('home')}}" class="header-mob-logo">
                     <img src="/images/logo.png" alt="logo">World Watch Trade
                 </a>
-                <a data-fancybox data-src="#password-modal" href="javascript:;" class="header-mob__login-btn login-btn">
-                    <img src="/images/person.png" alt="account">
-                    <span class="notification-btn">2</span>
-                </a>
+                @if(!\Illuminate\Support\Facades\Auth::check())
+                    <a data-fancybox data-src="#password-modal" href="javascript:;"
+                       class="header-mob__login-btn login-btn">
+                        <img src="/images/person.png" alt="account">
+                        <span class="notification-btn">2</span>
+                    </a>
+                @else
+
+                <!-- Next block for personal cabinet -->
+
+                    <div class="header-login-block__portrait header-login-block__portrait_cabinet">
+                        <div class="header-cabinet-list-btn">
+                            <img src="/images/icons/profile-w.svg">
+                            <span class="notification-btn">1</span>
+                        </div>
+                        <ul class="header-cabinet-list">
+                            <li><a href="{{route('my_adverts')}}">Мои обьявления</a></li>
+                            <li><a href="#">Сообщения</a></li>
+                            <li><a href="{{route('payments')}}">Платежи</a></li>
+                            <li><a href="{{ route('editing-profile') }}">Профиль</a></li>
+                            <li><a href="{{ route('profile-settings') }}">Настройки</a></li>
+                            <li><a href="{{route('favorite')}}">Избранное</a></li>
+                            <li><a href="{{route('referral')}}">Создать реферальную ссылку</a></li>
+                            <li><a href="{{route('logout')}}">Выход</a></li>
+                        </ul>
+                    </div>
+                @endif
             </div>
             <div class="search">
                 <form action="/" class="search-field">
