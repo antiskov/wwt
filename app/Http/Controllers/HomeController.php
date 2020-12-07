@@ -28,11 +28,11 @@ class HomeController extends Controller
         if(!Cookie::get('referral_code')){
             Cookie::queue(Cookie::make('referral_code', $request->referral_code));
         }
-        $advertFilter = new VipAdvertsAndFiltersGetter();
-        $director = new AdvertsFiltersDirector();
-        $director->setQueryToDB($request, $advertFilter);
 
-        return view('pages.main', $director->getResult());
+        $advertFilter = new VipAdvertsAndFiltersGetter();
+        $advertFilter->index($request);
+
+        return view('pages.main', $advertFilter->getResult());
     }
 
     /**

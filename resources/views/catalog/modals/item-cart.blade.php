@@ -28,7 +28,7 @@
                 </a>
                 <div class="price-block">
 {{--            <span class="old">1500$</span>--}}
-                    <span class="new">{{$advert->price}}$</span>
+                    <span class="new">{{$advert->price*$currency['rate'].' '.$currency['symbol']}}</span>
                 </div>
             </div>
         @endforeach

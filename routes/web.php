@@ -27,10 +27,10 @@ Route::middleware('set.locale')->group(function () {
     Route::get('/seller/{user}', [\App\Http\Controllers\CatalogController::class, 'sellerPage'])->name('seller-page');
     Route::post('/subscribe', [\App\Http\Controllers\HomeController::class, 'subscribe'])->name('subscribe');
     Route::post('/unsubscribe', [\App\Http\Controllers\HomeController::class, 'unsubscribe'])->name('unsubscribe');
-//    Route::get('/set_transaction/{order_id}', [\App\Http\Controllers\ProfileController::class, 'setTransaction'])->name('set_transaction');
     Route::get('/status_pay/{order_id}', [\App\Http\Controllers\HomeController::class, 'getStatusPay'])->name('status_pay');
     Route::post('/set_cost', [\App\Http\Controllers\ProfileController::class, 'setTransaction'])->name('set_transaction');
     Route::get('/go_to_liqpay/{order_id}', [\App\Http\Controllers\ProfileController::class, 'goToLiqPay'])->name('go_to_liqpay');
+    Route::get('/update_rate', [\App\Http\Controllers\RateController::class])->name('update_rate');
 
 
     Route::group(['prefix' => 'profile'], function () {
@@ -65,6 +65,7 @@ Route::middleware('set.locale')->group(function () {
         Route::get('/item_page_favorite/{advert}/{favorite}', [\App\Http\Controllers\GoodsController::class, 'setFavorite'])->name('catalog.item_page_favorite');
         Route::get('{user}/seller_ads', [\App\Http\Controllers\CatalogController::class, 'sellerAds'])->name('catalog.seller-ads');
         Route::get('{type}/{user}/seller_ads/count_results/', [\App\Http\Controllers\CatalogController::class, 'countResults'])->name('catalog.seller-ads.count-results');
+        Route::get('/set_rate/{currency}', [\App\Http\Controllers\CatalogController::class, 'setRate'])->name('catalog.set_rate');
 
         Route::get('/{search}', [\App\Http\Controllers\CatalogController::class, 'getFilterResult'])->name('catalog-favorite');
     });

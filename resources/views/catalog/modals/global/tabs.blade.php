@@ -18,9 +18,9 @@
 
             <div class="wrap2">
                 <div class="currency-block">
-                    <a href="#/">USD</a>
-                    <a href="#/">UAH</a>
-                    <a href="#/">EUR</a>
+                    @foreach($currencies as $item)
+                    <a href="{{route('catalog.set_rate', $item->title)}}">{{$item->title}}</a>
+                    @endforeach
                 </div>
 
                 <div class="select-price">

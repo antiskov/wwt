@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileRequest;
 use App\Models\Advert;
+use App\Models\Currency;
 use App\Models\Referral;
 use App\Models\SearchLink;
 use App\Models\TestCallback;
@@ -176,7 +177,8 @@ class ProfileController extends Controller
         $service->checkTransaction();
         return \view('profile_user.pages.payments', [
             'score' => $service->getScore(),
-            'payments' => UserTransaction::where('user_id', auth()->user()->id)->orderBy('id', 'desc')->get()
+            'payments' => UserTransaction::where('user_id', auth()->user()->id)->orderBy('id', 'desc')->get(),
+            'currency' => Currency::where('title', 'UAH')->first()->title,
         ]);
     }
 
@@ -192,7 +194,10 @@ class ProfileController extends Controller
 
     public function goToLiqPay(PayService $service, $order_id)
     {
-        return \view('pages.additing_cost', ["pay" => $service->setPay($order_id)]);
+        return \view('pages.additing_cost', [
+            "pay" => $service->setPay($order_id),
+            'currency' => Currency::where('title', 'UAH')->first()->title,
+            ]);
     }
 
 }

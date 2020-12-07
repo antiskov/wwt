@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             WatchModelSeeder::class,
             WatchAdvertSeeder::class,
+            CurrencySeeder::class,
 
 //            AccessoryModelSeeder::class,
 //            AccessoryAdvertSeeder::class,

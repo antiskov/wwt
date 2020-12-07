@@ -24,5 +24,20 @@ class CurrencySeeder extends Seeder
                 'symbol' => '$',
             ]
         );
+
+        Currency::create(
+            [
+                'title' => 'UAH',
+                'symbol' => '₴',
+            ]
+        );
+
+        Currency::create(
+            [
+                'title' => 'EUR',
+                'symbol' => '€',
+            ]
+        );
+
     }
 }
