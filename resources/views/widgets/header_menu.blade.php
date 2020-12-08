@@ -26,14 +26,14 @@
                             <span class="notification-btn">1</span>
                         </div>
                         <ul class="header-cabinet-list">
-                            <li><a href="{{route('my_adverts')}}">Мои обьявления</a></li>
-                            <li><a href="#">Сообщения</a></li>
-                            <li><a href="{{route('payments')}}">Платежи</a></li>
-                            <li><a href="{{ route('editing-profile') }}">Профиль</a></li>
-                            <li><a href="{{ route('profile-settings') }}">Настройки</a></li>
-                            <li><a href="{{route('favorite')}}">Избранное</a></li>
-                            <li><a href="{{route('referral')}}">Создать реферальную ссылку</a></li>
-                            <li><a href="{{route('logout')}}">Выход</a></li>
+                            <li><a href="{{route('my_adverts')}}">{{__('messages.menu_my_adverts')}}</a></li>
+                            <li><a href="#">{{__('messages.menu_messages')}}</a></li>
+                            <li><a href="{{route('payments')}}">{{__('messages.menu_payments')}}</a></li>
+                            <li><a href="{{ route('editing-profile') }}">{{__('messages.menu_editing_profile')}}</a></li>
+                            <li><a href="{{ route('profile-settings') }}">{{__('messages.menu_profile_settings')}}</a></li>
+                            <li><a href="{{route('favorite')}}">{{__('messages.menu_favorite')}}</a></li>
+                            <li><a href="{{route('referral')}}">{{__('messages.menu_referral')}}</a></li>
+                            <li><a href="{{route('logout')}}">{{__('messages.menu_logout')}}</a></li>
                         </ul>
                     </div>
                 @endif
@@ -300,14 +300,14 @@
                                             <span class="notification-btn">1</span>
                                         </div>
                                         <ul class="header-cabinet-list">
-                                            <li><a href="{{route('my_adverts')}}">Мои обьявления</a></li>
-                                            <li><a href="#">Сообщения</a></li>
-                                            <li><a href="{{route('payments')}}">Платежи</a></li>
-                                            <li><a href="{{ route('editing-profile') }}">Профиль</a></li>
-                                            <li><a href="{{ route('profile-settings') }}">Настройки</a></li>
-                                            <li><a href="{{route('favorite')}}">Избранное</a></li>
-                                            <li><a href="{{route('referral')}}">Создать реферальную ссылку</a></li>
-                                            <li><a href="{{route('logout')}}">Выход</a></li>
+                                            <li><a href="{{route('my_adverts')}}">{{__('messages.menu_my_adverts')}}</a></li>
+                                            <li><a href="#">{{__('messages.menu_messages')}}</a></li>
+                                            <li><a href="{{route('payments')}}">{{__('messages.menu_payments')}}</a></li>
+                                            <li><a href="{{ route('editing-profile') }}">{{__('messages.menu_editing_profile')}}</a></li>
+                                            <li><a href="{{ route('profile-settings') }}">{{__('messages.menu_profile_settings')}}</a></li>
+                                            <li><a href="{{route('favorite')}}">{{__('messages.menu_favorite')}}</a></li>
+                                            <li><a href="{{route('referral')}}">{{__('messages.menu_referral')}}</a></li>
+                                            <li><a href="{{route('logout')}}">{{__('messages.menu_logout')}}</a></li>
                                         </ul>
                                     </div>
                                 @endif

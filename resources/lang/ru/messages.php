@@ -21,5 +21,13 @@ return [
     'required_filed' => 'Обязательное поле*',
     'mailing' => 'Я хочу регулярно получать новостную рассылку о предложениях и продуктах по электронной почте.',
     'registration_button' => 'Зарегистрироваться',
+    'menu_my_adverts' => 'Мои обьявления',
+    'menu_messages' => 'Сообщения',
+    'menu_payments' => 'Платежи',
+    'menu_editing_profile' => 'Профиль',
+    'menu_profile_settings' => 'Настройки',
+    'menu_favorite' => 'Избранное',
+    'menu_referral' => 'Создать реферальную ссылку',
+    'menu_logout' => 'Выход',
 
 ];
