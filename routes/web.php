@@ -27,10 +27,11 @@ Route::middleware('set.locale')->group(function () {
     Route::get('/seller/{user}', [\App\Http\Controllers\CatalogController::class, 'sellerPage'])->name('seller-page');
     Route::post('/subscribe', [\App\Http\Controllers\HomeController::class, 'subscribe'])->name('subscribe');
     Route::post('/unsubscribe', [\App\Http\Controllers\HomeController::class, 'unsubscribe'])->name('unsubscribe');
-//    Route::get('/set_transaction/{order_id}', [\App\Http\Controllers\ProfileController::class, 'setTransaction'])->name('set_transaction');
     Route::get('/status_pay/{order_id}', [\App\Http\Controllers\HomeController::class, 'getStatusPay'])->name('status_pay');
     Route::post('/set_cost', [\App\Http\Controllers\ProfileController::class, 'setTransaction'])->name('set_transaction');
     Route::get('/go_to_liqpay/{order_id}', [\App\Http\Controllers\ProfileController::class, 'goToLiqPay'])->name('go_to_liqpay');
+    Route::get('/about', [\App\Http\Controllers\HomeController::class, 'getAbout'])->name('about');
+    Route::post('/send_about', [\App\Http\Controllers\HomeController::class, 'sendAbout'])->name('send_about');
 
 
     Route::group(['prefix' => 'profile'], function () {
