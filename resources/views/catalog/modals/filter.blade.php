@@ -1,5 +1,9 @@
 <section class="filters">
-    <form action="/" class="filters-mob filter-search">
+    @if(isset($user))
+        <form class="filters-mob filter-search" method="get" action="{{route('catalog.seller-ads', $user)}}">
+    @else
+        <form class="filters-mob filter-search" method="get" action="{{route('catalog')}}">
+    @endif
         <div class="filters-mob-btns">
             <button class="reset-filters-btn btn-hover" type="reset">Сбросить</button>
             <button class="open-mob-filter-btn" type="button">Фильтр</button>
@@ -257,8 +261,11 @@
                         </ul>
                     </div>
                 </li>
+            </ul>
             <div class="filters-buttons">
-                <button class="filters-save-btn btn-hover-w" type="button">Сохранить фильтр</button>
+                @auth
+                    <button data-fancybox data-src="#save-filter-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
+                @endauth
                 <button class="filters-submit-btn btn-hover" type="submit">Применить</button>
             </div>
         </div>
@@ -288,7 +295,7 @@
                     Введите, пожалуйста, название фильтра для сохранения.
                 </p>
                 <div id="save-filter-form" class="change-pass-mail">
-                    <input id="input-save-search" name="title_search" type="text" placeholder="Введите название фильтра" value="0">
+                    <input id="input-save-search" name="title_search" type="text" placeholder="Введите название фильтра">
                     <span>Обязательное поле*</span>
                     <a href="{{route('catalog.save-search')}}"><button id="button-save-search" class="btn-arrow" type="button">Сохранить запрос</button></a>
                 </div>
