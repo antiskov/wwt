@@ -16,7 +16,9 @@ use App\Services\UserService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
@@ -67,5 +69,10 @@ class HomeController extends Controller
         } else {
             return view('pages.status_pay', ['status' => 0  ]);
         }
+    }
+
+    public function setLocale(string $lang)
+    {
+        Cookie::queue(Cookie::make('language', $lang));
     }
 }

@@ -82,7 +82,7 @@
             <nav class="catalog-mob">
                 <ul class="catalog-mob__gen-list">
                     <li class="has-menu">
-                        <span>Швейцарские часы</span>
+                        <span>{{__('messages.swiss_watches')}}</span>
                         <ul class="catalog-mob__menu">
                             <li class="has-menu">
                                 <span>Купить</span>
@@ -170,7 +170,7 @@
 {{--                        </ul>--}}
 {{--                    </li>--}}
                     <li>
-                        Контакты
+                        {{__('messages.contacts')}}
                     </li>
                 </ul>
             </nav>
@@ -264,8 +264,8 @@
                             <div class="header-login-block__btns">
                                 @if(!\Illuminate\Support\Facades\Auth::check())
                                     <div>
-                                        <a data-fancybox data-src="#login-modal" href="javascript:;"  href="#">Войти</a>
-                                        <a data-fancybox data-src="#registration-modal" href="javascript:;"  href="#">Регистрация</a>
+                                        <a data-fancybox data-src="#login-modal" href="javascript:;"  href="#">{{__('messages.login')}}</a>
+                                        <a data-fancybox data-src="#registration-modal" href="javascript:;"  href="#">{{__('messages.registration')}}</a>
                                     </div>
                                 @else
 
@@ -291,21 +291,32 @@
                             </div>
                             <form class="languages-btns">
                                 @csrf
-                                <label>
-                                    <input type="radio" name="language" checked>
-                                    <span>ру</span>
-                                </label>
-                                <label>
-                                    <input type="radio" name="language">
-                                    <span>en</span>
-                                </label>
+                                @if(Cookie::get('language') == 'ru')
+                                    <label>
+                                        <input type="radio" name="language" checked value="ru">
+                                        <span>ру</span>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="language" value="en">
+                                        <span>en</span>
+                                    </label>
+                                @else
+                                    <label>
+                                        <input type="radio" name="language" value="ru">
+                                        <span>ру</span>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="language" checked value="en">
+                                        <span>en</span>
+                                    </label>
+                                @endif
                             </form>
                         </div>
                     </div>
                     <nav class="header-desc__nav">
                         <ul class="header-desc-nav">
                             <li>
-                                <a href="{{route('catalog')}}">Швейцарские часы</a>
+                                <a href="{{route('catalog')}}">{{__('messages.swiss_watches')}}</a>
                                 <ul class="header-desc-nav__btns">
                                     <li class="list-btn">
                                         <a href="#"><span>Купить</span></a>
@@ -397,7 +408,7 @@
 {{--                                </ul>--}}
 {{--                            </li>--}}
                             <li>
-                                <a href="#">Контакты</a>
+                                <a href="#">{{__('messages.contacts')}}</a>
                             </li>
                         </ul>
                     </nav>
@@ -406,3 +417,20 @@
         </div>
     </div>
 </header>
+<script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+        console.log(222);
+        document.querySelectorAll('.languages-btns input').forEach(function (item) {
+            item.addEventListener('change', function (e) {
+                $.ajax({
+                    url: '/set_locale/'+this.value,
+                    success: function (data) {
+                        // $('#advert').empty();
+                        // $('#advert').html(data.output);
+                        window.location.reload();
+                    },
+                })
+            })
+        })
+    });
+</script>

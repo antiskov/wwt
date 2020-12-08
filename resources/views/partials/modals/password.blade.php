@@ -1,13 +1,13 @@
 <div id="password-modal" class="modal">
     <div class="modal__content">
-        <h5 class="modal__title">Добро пожаловать!</h5>
+        <h5 class="modal__title">{{__('messages.modal_welcome')}}</h5>
         <div class="login-modal-img login-modal-img_portrait">
             <img src="/images/content/person.png" alt="login photo">
         </div>
         <form id="password-form" method="post" class="check-login" action="{{ route('login-password') }}">
             @CSRF
             <div class="change-input">
-                <input id="password-form-email" name="email" type="text" placeholder="Введите почту, логин или телефон"
+                <input id="password-form-email" name="email" type="text" placeholder="{{__('messages.modal_placeholder')}}"
                        disabled required
                        value="someMail@gmail.com">
                 <span></span>
@@ -15,19 +15,19 @@
             </div>
             <div class="password-input">
                 <input id='password-login-form' name="password" type="password" placeholder="Введите пароль" required>
-                <span>Обязательное поле*</span>
-                <img src="/images/icons/yey-close.svg" alt="Показать пароль">
+                <span>{{__('messages.modal_password_span')}}</span>
+                <img src="/images/icons/yey-close.svg" alt="{{__('messages.modal_password_show_pass')}}">
             </div>
             <div class="remember-me">
                 <div class="checkbox-block">
                     <label class="checkbox-block__label">
                         <input type="checkbox" name="remember">
-                        <p><span>Запомнить меня</span></p>
+                        <p><span>{{__('messages.modal_password_remember')}}</span></p>
                     </label>
                 </div>
-                <a href="#">Напомнить пароль</a>
+                <a href="#">{{__('messages.modal_password_remind_pass')}}</a>
             </div>
-            <button type="submit" class="btn-arrow">Далее</button>
+            <button type="submit" class="btn-arrow">{{__('messages.next_button')}}</button>
         </form>
     </div>
 </div>
