@@ -21,38 +21,38 @@
                                     {{--                                <div class="old">--}}
                                     {{--                                    1500 $--}}
                                     {{--                                </div>--}}
-                                    <div class="rating">
-                                        <img src="/images/icons/star-rat.svg" alt="img">
-                                        <img src="/images/icons/star-rat.svg" alt="img">
-                                        <img src="/images/icons/star-rat.svg" alt="img">
-                                        <img src="/images/icons/star-rat.svg" alt="img">
-                                        <img src="/images/icons/star-rat.svg" alt="img">
-                                    </div>
+{{--                                    <div class="rating">--}}
+{{--                                        <img src="/images/icons/star-rat.svg" alt="img">--}}
+{{--                                        <img src="/images/icons/star-rat.svg" alt="img">--}}
+{{--                                        <img src="/images/icons/star-rat.svg" alt="img">--}}
+{{--                                        <img src="/images/icons/star-rat.svg" alt="img">--}}
+{{--                                        <img src="/images/icons/star-rat.svg" alt="img">--}}
+{{--                                    </div>--}}
                                 </div>
                                 <div class="publication-cont">
                                     <div class="cont">
                                         <span>{{strstr($advert->created_at, ' ', true)}}</span>
-                                        <p>Дата публикации:</p>
+                                        <p>{{__('messages.favorite_date')}}</p>
                                     </div>
                                     <div class="cont">
                                         <span>{{strstr($advert->created_at, ' ')}}</span>
-                                        <p>Время публикации:</p>
+                                        <p>{{__('messages.favorite_time')}}</p>
                                     </div>
                                 </div>
-                                <div class="social-cont">
-                                    <a href="#/" class="soc-icon"></a>
-                                    <a href="#/" class="soc-icon"></a>
-                                </div>
+{{--                                <div class="social-cont">--}}
+{{--                                    <a href="#/" class="soc-icon"></a>--}}
+{{--                                    <a href="#/" class="soc-icon"></a>--}}
+{{--                                </div>--}}
                             </div>
                         </div>
                     </div>
                     <div class="publication-cont">
                         <div class="cont">
-                            <p>Дата публикации:</p>
+                            <p>{{__('messages.favorite_date')}}</p>
                             <span>26. 07. 12</span>
                         </div>
                         <div class="cont">
-                            <p>Время публикации:</p>
+                            <p>>{{__('messages.favorite_time')}}</p>
                             <span>16:45</span>
                         </div>
                     </div>
@@ -69,7 +69,7 @@
                         <h5>
                             <a href="{{$searchLink['link']}}">{{$searchLink['title']}}</a>
                         </h5>
-                        <p>Сохраненные результаты поиска от {{strstr($searchLink['created_at'], ' ', true)}}, последнее уведомление 25 сент. 2020 г.</p>
+                        <p>{{__('messages.save_search_from_date').strstr($searchLink['created_at'], ' ', true)}}</p>
                     </div>
 {{--                    <a href="#" class="search-item__link">Все объявления</a>--}}
                 </div>

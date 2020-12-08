@@ -3,8 +3,8 @@
 @section('profile-content')
     <form class="block-setting" method="post" action="{{ route('settings-form') }}">
         @csrf
-        <h2 class="name-lk mob">Настройки</h2>
-        <h2 class="name-lk des">Все о Вашем аккаунте</h2>
+        <h2 class="name-lk mob">{{__('messages.settings')}}</h2>
+        <h2 class="name-lk des">{{__('messages.settings_about_user')}}</h2>
         <div class="chek_cont_set">
             <label class="checkbox-other">
                 @if(isset($check['remember']))
@@ -12,21 +12,11 @@
                 @else
                     <input name="stay_logged_in" type="checkbox">
                 @endif
-                <span>Оставаться залогиненным</span>
+                <span>{{__('messages.settings_will_be_login')}}</span>
             </label>
-            <span>Если Вы выберите опцию «Оставаться залогиненным», то Вам нужно будет реже
-                        регистрироваться на данном устройстве.
-                        В целях безопасности используйте эту опцию только на Ваших личных устройствах.
-                    </span>
+            <span>{{__('messages.settings_will_be_login_description')}}</span>
         </div>
-        <h2 class="name-lk">Уведомления по эл. почте</h2>
-        {{--        <div class="chek_cont_set">--}}
-        {{--            <label class="checkbox-other">--}}
-        {{--                <input name="receive_service_info" type="checkbox" checked="">--}}
-        {{--                <span>Я хочу получать информацию о сервисах и продуктах World Watch Trade</span>--}}
-        {{--            </label>--}}
-        {{--            <span>Не пропускать больше ничего важного!</span>--}}
-        {{--        </div>--}}
+        <h2 class="name-lk">{{__('messages.settings_notifications')}}</h2>
         <div class="more-sett">
             <div class="chek_cont_set">
                 <label class="checkbox-other">
@@ -35,9 +25,9 @@
                     @else
                     <input name="receive_service_info" type="checkbox">
                     @endif
-                    <span>Я хочу получать информацию о сервисах и продуктах World Watch Trade</span>
+                    <span>{{__('messages.settings_i_wont_get_info')}}</span>
                 </label>
-                <span>Информация и предложения World Watch Trade в Вашем почтовом ящике.</span>
+                <span>{{__('messages.settings_info_about_wwt_in_inbox')}}</span>
             </div>
             <div class="chek_cont_set">
                 <label class="checkbox-other">
@@ -46,11 +36,11 @@
                     @else
                     <input name="receive_partners_adverts" type="checkbox">
                     @endif
-                    <span>Актуальные объявления наших партнеров</span>
+                    <span>{{__('messages.settings_info_our_partners')}}</span>
                 </label>
-                <span>Наши партнеры регулярно делают нам привлекательные предложения, которые мы с удовольствием перенаправляем нашим клиентам.</span>
+                <span>{{__('messages.settings_info_about_notification_our_partners')}}</span>
                 <div class="select-price">
-                    <p>Мои предпочитаемые языки:</p>
+                    <p>{{__('messages.settings_my_favorite_languages')}}</p>
                     <div class="cont">
                         @if($check['language_communication'] == 'ru')
                             <input name="language_communication" type="hidden" value="Русский">
@@ -59,15 +49,15 @@
                         @endif
                         <div class="select-value rotate">
                             @if($check['language_communication'] == 'ru')
-                                <span>Русский</span>
+                                <span>{{__('messages.russian')}}</span>
                             @elseif($check['language_communication'] == 'en')
-                                <span>Анлийский</span>
+                                <span>{{__('messages.english')}}</span>
                             @else
-                                <span>Выберите</span>
+                                <span>{{__('messages.settings_choose')}}</span>
                             @endif
                             <ul class="value-items">
-                                <li>Русский</li>
-                                <li>Английский</li>
+                                <li>{{__('messages.russian')}}</li>
+                                <li>{{__('messages.english')}}</li>
                             </ul>
                         </div>
                     </div>
