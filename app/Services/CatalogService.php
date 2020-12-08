@@ -107,41 +107,4 @@ class CatalogService
             'favorite' => UserFavoriteAdvert::where('user_id', $user->id)->where('advert_id', $advert->id)->first(),
         ];
     }
-
-    public function test()
-    {
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, 'https://api.privatbank.ua/p24api/pubinfo?exchange&json&coursid=11');
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 5);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, 5);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-        $server_output = curl_exec($ch);
-        curl_close($ch);
-        $result = json_decode($server_output, true);
-        if($usd = ExchangeRate::where('pair_currencies', 'USD/UAH')->first()) {
-            if($eur = ExchangeRate::where('pair_currencies', 'EUR/UAH')->first()){
-                $usd->rate = $result[0]['sale'];
-                $usd->save();
-
-                $eur->rate = $result[1]['sale'];
-                $eur->save();
-            }
-        } else {
-            $usd = new ExchangeRate();
-            $eur = new ExchangeRate();
-            $usd->pair_currencies = 'USD/UAH';
-            $usd->rate = $result[0]['sale'];
-            $usd->save();
-
-            $eur->pair_currencies = 'EUR/UAH';
-            $eur->rate = $result[1]['sale'];
-            $eur->save();
-
-        }
-    }
 }

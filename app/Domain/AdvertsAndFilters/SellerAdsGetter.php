@@ -8,7 +8,7 @@ use App\Models\Currency;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class SellerAdsGetter extends ToolsForAdvertsFilters implements AdvertsFilters
+class SellerAdsGetter extends ToolsForAdvertsFilters
 {
     protected $result;
 

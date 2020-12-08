@@ -11,7 +11,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 
-class AdvertsFiltersGetter extends ToolsForAdvertsFilters implements AdvertsFilters
+class AdvertsFiltersGetter extends ToolsForAdvertsFilters
 {
     protected $result;
 

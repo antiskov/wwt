@@ -2,7 +2,7 @@
 
 namespace App\Domain;
 
-use App\Domain\Filters\CatalogFilter;
+use App\Contracts\AdvertsFilters;
 use App\Models\Currency;
 use App\Models\ExchangeRate;
 use App\Models\User;
@@ -12,9 +12,8 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
-use phpDocumentor\Reflection\DocBlock\Tags\See;
 
-class ToolsForAdvertsFilters
+abstract class ToolsForAdvertsFilters implements AdvertsFilters
 {
     public function changeToCurrencyPriceFilter($nameView = 'user_adverts_view')
     {
@@ -45,6 +44,8 @@ class ToolsForAdvertsFilters
                 $eur = ExchangeRate::where('pair_currencies', 'EUR/UAH')->first()->rate;
                 $usd = ExchangeRate::where('pair_currencies', 'USD/UAH')->first()->rate;
                 $currency['rate'] = round($eur / $usd, 3);
+            } else {
+                $currency['rate'] = 1;
             }
         } else {
             $currency['rate'] = 1;
@@ -65,6 +66,9 @@ class ToolsForAdvertsFilters
                 $usd = ExchangeRate::where('pair_currencies', 'USD/UAH')->first()->rate;
                 $currency['rate'] = round($eur / $usd, 3);
                 $currency['symbol'] = Currency::where('title', 'EUR')->first()->symbol;
+            } else {
+                $currency['rate'] = 1;
+                $currency['symbol'] = Currency::where('title', 'USD')->first()->symbol;
             }
         } else {
             $currency['rate'] = 1;
