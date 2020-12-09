@@ -620,6 +620,7 @@ $(document).ready(function () {
     });
 
     function initialCheck() {
+        console.log(11);
         $('.filters-desc-category').find('input[type="checkbox"]').each(function () {
             const selectedBlock = $(this).closest('.filters-desc-category').find('.filters-desc-choices-list');
             const label = selectedBlock.find(`label[for=${$(this).prop('id')}]`);
@@ -636,9 +637,7 @@ $(document).ready(function () {
         })
     }
 
-    initialCheck();
-
-
+    initialCheck()
 
     $('.filters-desc').on('click', '.reset-filters-btn', function () {
         $(this).closest('.filters-desc').find('input').prop('checked', false);

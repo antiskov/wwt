@@ -1,6 +1,8 @@
 <section class="filters">
     @if(isset($user))
         <form class="filters-mob filter-search" method="get" action="{{route('catalog.seller-ads', $user)}}">
+    @elseif(isset($vipHome))
+        <form class="filters-mob filter-search" method="get" action="{{route('result_for_home')}}">
     @else
         <form class="filters-mob filter-search" method="get" action="{{route('catalog')}}">
     @endif
@@ -317,8 +319,6 @@
 {{--    <form id="filter" class="filters-desc" method="get" action="{{route('catalog.filter-json')}}">--}}
     @if(isset($user))
         <form class="filters-desc filter-search" method="get" action="{{route('catalog.seller-ads', $user)}}">
-    @elseif($vipHome == 1)
-        <form class="filters-desc filter-search" method="get" action="{{route('result_for_home')}}">
     @else
         <form class="filters-desc filter-search" method="get" action="{{route('catalog')}}">
     @endif
@@ -630,7 +630,7 @@
                                                         <label class="checkbox-block__label">
                                                             <input class="watch-filter" type="checkbox" name="models[]" value="{{$model->watch_model_title}}" id="{{$model->watch_model_title}}"
                                                                 @if(request()->models)
-                                                                {{in_array($brand->watch_make_title, request()->brands)  ? 'checked' : ''}}
+                                                                {{in_array($brand->watch_make_title, request()->models)  ? 'checked' : ''}}
                                                                 @endif
                                                                 >
                                                             <p><span>{{$model->watch_model_title.' ('.$model->count_watch_model_title.')'}}</span></p>
