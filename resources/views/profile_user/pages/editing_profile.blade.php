@@ -235,7 +235,7 @@
         </div>
         <div class="option-prof">
             <div class="cont">
-                <a href="{{route('reset-password')}}" class="change-pass">
+                <a href="{{route('forgot_password')}}" class="change-pass">
                     Изменить пароль
                 </a>
             </div>

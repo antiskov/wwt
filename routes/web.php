@@ -22,7 +22,6 @@ Route::middleware('set.locale')->group(function () {
     Route::post('/register-user', [\App\Http\Controllers\AjaxController::class, 'registerUser'])->name('register-user');
     Route::post('/check-login-email', [\App\Http\Controllers\AjaxController::class, 'checkLoginEmail'])->name('check-login-email');
     Route::post('/login-password', [\App\Http\Controllers\AjaxController::class, 'authUser'])->name('login-password');
-    Route::get('/reset-password/{email}', [\App\Http\Controllers\UserController::class, 'resetPassword'])->name('reset-password');
     Route::get('/email_verification_code/{email_verification_code}', [\App\Http\Controllers\UserController::class, 'emailVerificationCode'])->name('activation_link');
     Route::get('/seller/{user}', [\App\Http\Controllers\CatalogController::class, 'sellerPage'])->name('seller-page');
     Route::post('/subscribe', [\App\Http\Controllers\HomeController::class, 'subscribe'])->name('subscribe');
@@ -30,6 +29,14 @@ Route::middleware('set.locale')->group(function () {
     Route::get('/status_pay/{order_id}', [\App\Http\Controllers\HomeController::class, 'getStatusPay'])->name('status_pay');
     Route::post('/set_cost', [\App\Http\Controllers\ProfileController::class, 'setTransaction'])->name('set_transaction');
     Route::get('/go_to_liqpay/{order_id}', [\App\Http\Controllers\ProfileController::class, 'goToLiqPay'])->name('go_to_liqpay');
+
+    Route::group(['prefix' => 'forgot_password'], function (){
+        Route::get('/', [\App\Http\Controllers\PasswordController::class, 'resetPasswordIndex'])->name('forgot_password');
+        Route::post('/', [\App\Http\Controllers\PasswordController::class, 'resetPasswordStore'])->name('forgot_password_store');
+        Route::get('/token/{token?}', [\App\Http\Controllers\PasswordController::class, 'resetPasswordToken'])->name('forgot_password_token');
+        Route::post('/new-password', [\App\Http\Controllers\PasswordController::class, 'saveNewPassword'])->name('save_new_password');
+    });
+
 
 
     Route::group(['prefix' => 'profile'], function () {
