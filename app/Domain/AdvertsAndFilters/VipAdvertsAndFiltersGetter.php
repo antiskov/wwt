@@ -34,6 +34,7 @@ class VipAdvertsAndFiltersGetter extends ToolsForAdvertsFilters
             'countResults' => $query->get()->count(),
             'linkSearch' => $request->fullUrl(),
             'stateNew' =>  $this->setStateNew($request),
+            'vipHome' => 1,
         ];
 
         $this->result = array_merge($itemsArr, $this->getNameAndCountFilters($user_id, ' and vip_status in (1)'));

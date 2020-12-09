@@ -56,6 +56,14 @@ class CatalogService
         return $adverts->getResult();
     }
 
+    public function getResultForHome(Request $request, $user_id = 0)
+    {
+        $adverts = new VipAdvertsAndFiltersGetter();
+        $adverts->index($request, $user_id);
+
+        return $adverts->getResult();
+    }
+
     public function getFilterResults(Request $request, $type, $user_id = 0)
     {
         if($type == 3 && $user_id != 0) {

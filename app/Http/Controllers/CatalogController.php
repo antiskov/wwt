@@ -17,6 +17,11 @@ class CatalogController extends Controller
         return view('catalog.pages.main', $service->getFilterResult($request));
     }
 
+    public function getResultForHome(CatalogService $service, Request $request)
+    {
+        return view('pages.main', $service->getResultForHome($request));
+    }
+
     public function filterJson(Request $request, CatalogService $service)
     {
         $data = [

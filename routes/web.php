@@ -33,6 +33,7 @@ Route::middleware('set.locale')->group(function () {
     Route::get('/about', [\App\Http\Controllers\HomeController::class, 'getAbout'])->name('about');
     Route::post('/send_about', [\App\Http\Controllers\HomeController::class, 'sendAbout'])->name('send_about');
     Route::get('/set_locale/{lang}', [\App\Http\Controllers\HomeController::class, 'setLocale'])->name('set_locale');
+    Route::get('/vip', [\App\Http\Controllers\CatalogController::class, 'getResultForHome'])->name('result_for_home');
 
     Route::group(['prefix' => 'forgot_password'], function (){
         Route::get('/', [\App\Http\Controllers\PasswordController::class, 'resetPasswordIndex'])->name('forgot_password');

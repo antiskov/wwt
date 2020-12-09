@@ -317,6 +317,8 @@
 {{--    <form id="filter" class="filters-desc" method="get" action="{{route('catalog.filter-json')}}">--}}
     @if(isset($user))
         <form class="filters-desc filter-search" method="get" action="{{route('catalog.seller-ads', $user)}}">
+    @elseif($vipHome == 1)
+        <form class="filters-desc filter-search" method="get" action="{{route('result_for_home')}}">
     @else
         <form class="filters-desc filter-search" method="get" action="{{route('catalog')}}">
     @endif

@@ -80,7 +80,7 @@
                 })
             };
 
-            // $('.watch-filter').on('click', query);
+            $('.watch-filter').on('click', query);
             $('.watch-filter').on('change', query);
         });
         document.addEventListener("DOMContentLoaded", function (event) {
