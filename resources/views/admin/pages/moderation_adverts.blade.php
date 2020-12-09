@@ -25,6 +25,12 @@
                 <div class="card">
                     <!-- /.card-header -->
                     <div class="card-body">
+                        <div class="pagination">
+                            <div class="link-wrap">
+                                {{$adverts->links('admin.layout.bootstrap-4')}}
+                            </div>
+                        </div>
+                        <br>
                         <table id="users_table" class="table table-bordered table-striped">
                             <thead>
                             <tr>
@@ -42,15 +48,17 @@
                                     <td>{{$advert->id}}</td>
                                     <td>{{$advert->name}} {{$advert->surname}}</td>
                                     <td><a href="{{route('admin.item-page', [$advert->id])}}">{{$advert->title}}</a></td>
-{{--                                    <td>{{$advert->price}} {{$advert->currency->title}}</td>--}}
                                     <td>{{$advert->price}}$</td>
                                     <td>{{$advert->status->title}}</td>
                                     <td>
-                                        <a href='{{ route('admin.delete_advert', [$advert->id]) }}'>Удалить</a>
-                                        <br>
-                                        <a href="{{ route('admin.change_status', [3, $advert->id]) }}">Отказать</a>
-                                        <br>
-                                        <a href="{{ route('admin.change_status', [4, $advert->id]) }}">Опубликовать</a>
+                                        @if($advert->status->title == 'published')
+                                            <a href="{{ route('admin.change_status', [2, $advert->id]) }}">Отказать</a>
+                                            <br>
+                                        @else
+                                            <a href="{{ route('admin.change_status', [1, $advert->id]) }}">Опубликовать</a>
+                                            <br>
+                                        @endif
+                                            <a href='{{ route('admin.delete_advert', [$advert->id]) }}'>Удалить</a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -66,24 +74,32 @@
                             </tr>
                             </tfoot>
                         </table>
+                        <br>
+                        <div class="pagination">
+                            <div class="link-wrap">
+                                {{$adverts->links('admin.layout.bootstrap-4')}}
+                            </div>
+                        </div>
                     </div>
                 </div>
+
             </div>
         </div>
+
     </div>
 @endsection
-@section('scripts')
-    <script src="/admin_package/plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="/admin_package/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-    <script src="/admin_package/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="/admin_package/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-    <script>
-        $(function () {
-            $("#users_table").DataTable({
-                "responsive": true,
-                "autoWidth": false,
-            });
-        });
-    </script>
+{{--@section('scripts')--}}
+{{--    <script src="/admin_package/plugins/datatables/jquery.dataTables.min.js"></script>--}}
+{{--    <script src="/admin_package/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>--}}
+{{--    <script src="/admin_package/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>--}}
+{{--    <script src="/admin_package/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>--}}
+{{--    <script>--}}
+{{--        $(function () {--}}
+{{--            $("#users_table").DataTable({--}}
+{{--                "responsive": true,--}}
+{{--                "autoWidth": false,--}}
+{{--            });--}}
+{{--        });--}}
+{{--    </script>--}}
 
-@endsection
+{{--@endsection--}}

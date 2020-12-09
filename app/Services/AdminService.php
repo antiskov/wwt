@@ -91,11 +91,6 @@ class AdminService
         return $creator;
     }
 
-    public function getAllAdverts()
-    {
-        return Advert::all();
-    }
-
     public function changeStatus($status, Advert $advert)
     {
         $advert->status_id = $status;
