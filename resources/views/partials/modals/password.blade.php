@@ -6,6 +6,7 @@
         </div>
         <form id="password-form" method="post" class="check-login" action="{{ route('login-password') }}">
             @CSRF
+            <h1>fidshsdjhfsdfhf;</h1>
             <div class="change-input">
                 <input id="password-form-email" name="email" type="text" placeholder="{{__('messages.modal_placeholder')}}"
                        required
@@ -28,6 +29,7 @@
                 <a href="{{route('forgot_password')}}">{{__('messages.modal_password_remind_pass')}}</a>
             </div>
             <button type="submit" class="btn-arrow">{{__('messages.next_button')}}</button>
+            <pre data-fancybox data-src="#registration-modal" class="common-link">Нет аккаунта?</pre>
         </form>
     </div>
 </div>

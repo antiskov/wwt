@@ -3,10 +3,10 @@
         <div class="items-wrap">
             <div class="announce-item">
                 <div class="chek_cont_set">
-                    <label class="checkbox-other">
-                        <input type="checkbox" checked>
-                        <span></span>
-                    </label>
+{{--                    <label class="checkbox-other">--}}
+{{--                        <input type="checkbox" checked>--}}
+{{--                        <span></span>--}}
+{{--                    </label>--}}
                 </div>
 
                 <!--    <div class="chek_cont">-->
@@ -16,8 +16,8 @@
 
                 <div class="cont">
                     <div class="img-wrap">
-                        <img src="/images/content/watch-1.png" alt="img">
-                        <img src="/images/content/watch-1.png" alt="img">
+                        <img src="{{asset('/storage/'.$advert->photo)}}" alt="img">
+                        <img src="{{asset('/storage/'.$advert->photo)}}" alt="img">
                     </div>
                     <div class="ad-cont">
                         <div class="name-block">
