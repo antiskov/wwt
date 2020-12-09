@@ -7,7 +7,7 @@
             <form id="save-search-form" class="change-pass-mail" method="post" action="{{route('set_transaction')}}"
                   accept-charset="utf-8">
                 @csrf
-                <input type="number" name="cost"> долларов США
+                <input type="number" name="cost">{{$currency}}
                 <button class="replenish" type="submit">Пополнить</button>
             </form>
         </div>
@@ -20,7 +20,7 @@
                     <div class="cont">
                         <div class="money">
                             <div>На вашем счету:</div>
-                            <p>{{$score}}<span>$</span></p>
+                            <p>{{$score}}<span> {{$currency}}</span></p>
                         </div>
                         <button class="replenish" data-fancybox data-src="#save-search-modal" href="javascript:;" type="submit">Пополнить</button>
                     </div>
@@ -44,7 +44,7 @@
                                     </div>
                                     <div class="pay-info">
                                         <p>Цена:</p>
-                                        <span>{{$payment->price}}$</span>
+                                        <span>{{$payment->price}} {{$currency}}</span>
                                     </div>
                                     <div class="pay-info">
                                         <p>Статус</p>

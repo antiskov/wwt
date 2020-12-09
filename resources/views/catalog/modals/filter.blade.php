@@ -385,7 +385,7 @@
                     </div>
                     <div class="price-slider__controls">
                         <input id="slider-price-desc-from" type="text" class="price-slider__from watch-filter" name="prices[0]" value="0"/>
-                        <p>uah</p>
+                        <p>{{$filter_currency}}</p>
                         <input id="slider-price-desc-to" type="text" class="price-slider__to watch-filter" name="prices[1]" value="300"/>
                     </div>
                 </div>

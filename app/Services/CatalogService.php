@@ -9,48 +9,26 @@ use App\Domain\AdvertsAndFilters\AdvertsFiltersGetter;
 use App\Domain\AdvertsAndFilters\SellerAdsGetter;
 use App\Domain\AdvertsAndFilters\VipAdvertsAndFiltersGetter;
 use App\Domain\AdvertsFiltersDirector;
-use App\Http\Controllers\CatalogController;
 use App\Models\AccessoryMechanismType;
 use App\Models\Advert;
-use App\Models\Category;
-use App\Models\DeliveryVolume;
-use App\Models\DiameterWatch;
-use App\Models\Glass;
-use App\Models\MaterialsClasp;
+use App\Models\ExchangeRate;
 use App\Models\MechanismType;
-use App\Models\Option;
 use App\Models\SearchLink;
-use App\Models\Sex;
 use App\Models\SparePartsMechanismType;
-use App\Models\State;
 use App\Models\User;
 use App\Models\UserFavoriteAdvert;
-use App\Models\WatchAdvert;
-use App\Models\WatchBezel;
-use App\Models\WatchDial;
-use App\Models\WatchFigure;
-use App\Models\WatchMake;
-use App\Models\WatchMaterial;
-use App\Models\WatchModel;
-use App\Models\WatchThickness;
-use App\Models\WatchType;
-use App\Models\WatchWaterproof;
-use App\Models\WidthClasp;
-use App\Models\YearAdvert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
-use phpDocumentor\Reflection\Type;
 
 class CatalogService
 {
     public function getFilterResult(Request $request)
     {
         $advertFilter = new AdvertsFiltersGetter();
-        $director = new AdvertsFiltersDirector();
-        $director->setQueryToDB($request, $advertFilter);
+        $advertFilter->index($request);
 
-        return $director->getResult();
+        return $advertFilter->getResult();
     }
 
     public function getTabs(Request $request, $nameView = 'catalog_view')

@@ -20,7 +20,7 @@ class PayService
 
     }
 
-    public function setPay($order_id, $description = 'пополнение счета', $currency = 'USD')
+    public function setPay($order_id, $description = 'пополнение счета', $currency = 'UAH')
     {
         $transaction = UserTransaction::where('order_id', $order_id)->first();
         $parameters = $this->getParameters();

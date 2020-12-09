@@ -6,18 +6,9 @@
             <form id="payment" method="POST" action="{{$pay['url']}}" accept-charset="utf-8">
                 <input type="hidden" name="data" value="{{$pay['data']}}"/>
                 <input type="hidden" name="signature" value="{{$pay['signature']}}"/>
-                <h3>{{$pay['amount']}}$</h3>
+                <h3>{{$pay['amount']}} {{$currency}}</h3>
                 <button class="replenish" type="submit">Пополнить</button>
             </form>
         </div>
     </section>
-    <script>
-        {{--document.addEventListener("DOMContentLoaded", function (event) {--}}
-        {{--    $('#payment').on('click', function (e) {--}}
-        {{--        $.ajax({--}}
-        {{--            url: '/set_transaction/{{$pay['order_id']}}',--}}
-        {{--        });--}}
-        {{--    });--}}
-        {{--});--}}
-    </script>
 @endsection
