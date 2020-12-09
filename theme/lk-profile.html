@@ -816,56 +816,65 @@
                 </div>
                 <div class="address-date">
                     <h2>Адресные данные</h2>
-                    <div class="select-price">
+
+                    <!--    Двіжуха з автокомплітами       -->
+                    <div class="autocomplete-input" data-autocomplete>
                         <p>Улица *</p>
-                        <input type="hidden" name="">
-                        <div class="select-value rotate">
-                            <span>Выберите</span>
-                            <ul class="value-items">
-                                <li>Ukraine</li>
-                                <li>USA</li>
-                                <li>Mexico</li>
-                                <li>Italian</li>
-                            </ul>
+                        <div class="autocomplete-input__block">
+                            <div class="autocomplete-input__holder">
+                                <input type="text">
+                            </div>
+                            <div class="autocomplete-input__content">
+                                <ul data-id="dropdownContent"></ul>
+                            </div>
                         </div>
                     </div>
                     <label for="prof-stret-more">
                         Адресное дополнение
                         <input type="text" id="prof-stret-more">
                     </label>
-                    <label for="prof-stret-index">
-                        Почтовый индекс и населенный пункт *
-                        <span class="input-cont">
-                            <input type="number" id="prof-stret-index">
-                            <input type="number" id="prof-stret-index-2">
-                        </span>
+                    <label for="prof-index">
+                        Почтовый индекс
+                        <input type="text" id="prof-index">
                     </label>
-                    <div class="select-price">
+                    <div class="autocomplete-input" data-autocomplete>
+                        <p>Населенный пункт</p>
+                        <div class="autocomplete-input__block">
+                            <div class="autocomplete-input__holder">
+                                <input type="text">
+                            </div>
+                            <div class="autocomplete-input__content">
+                                <ul data-id="dropdownContent"></ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="autocomplete-input" data-autocomplete>
                         <p>Страна *</p>
-                        <input type="hidden" name="">
-                        <div class="select-value rotate">
-                            <span>Выберите</span>
-                            <ul class="value-items">
-                                <li>Ukraine</li>
-                                <li>USA</li>
-                                <li>Mexico</li>
-                                <li>Italian</li>
-                            </ul>
+                        <div class="autocomplete-input__block">
+                            <div class="autocomplete-input__holder">
+                                <input type="text">
+                            </div>
+                            <div class="autocomplete-input__content">
+                                <ul data-id="dropdownContent"></ul>
+                            </div>
                         </div>
                     </div>
-                    <div class="select-price">
+                    <div class="autocomplete-input" data-autocomplete>
                         <p>Область</p>
-                        <input type="hidden" name="">
-                        <div class="select-value rotate">
-                            <span>Выберите</span>
-                            <ul class="value-items">
-                                <li>Ukraine</li>
-                                <li>USA</li>
-                                <li>Mexico</li>
-                                <li>Italian</li>
-                            </ul>
+                        <div class="autocomplete-input__block">
+                            <div class="autocomplete-input__holder">
+                                <input type="text">
+                            </div>
+                            <div class="autocomplete-input__content">
+                                <ul data-id="dropdownContent"></ul>
+                            </div>
                         </div>
                     </div>
+
+                    <!--   Двіжуха з корами               -->
+                    <input type="hidden" name="lat" data-id="lat">
+                    <input type="hidden" name="lng" data-id="lng">
+
                 </div>
                 <div class="about-me">
                     <h2>Больше обо мне</h2>
@@ -944,6 +953,9 @@
         </div>
     </div>
 </section>
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDmCYblB4cVMXS93Da6iBG1RFldOXY46hA"></script>
+<script src="js/g-autocomplete.js"></script>
 
 <footer class="footer">
     <div class="sent-wrap">
@@ -1085,6 +1097,7 @@
         <a href="#">Напомнить пароль</a>
       </div>
       <button class="btn-arrow">Далее</button>
+      <pre data-fancybox data-src="#registration-modal" class="common-link">Нет аккаунта?</pre>
     </form>
   </div>
 </div>

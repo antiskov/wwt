@@ -619,6 +619,8 @@ $(document).ready(function () {
     }
   });
 
+
+
   $('.filters-desc').on('click', '.reset-filters-btn', function () {
     $(this).closest('.filters-desc').find('input').prop('checked', false);
     $(this).closest('.filters-desc').find('.filters-desc-choices-list').empty();

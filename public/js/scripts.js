@@ -381,80 +381,6 @@ $(document).ready(function () {
         }
     });
 
-    $('#registration-form').on('submit', function(e){
-        e.preventDefault();
-        $.ajax({
-            type:"POST",
-            url: '/register-user',
-            data: $('#registration-form').serializeArray(),
-            datatype: 'html',
-            success: function (data) {
-                $('#registration-form').empty();
-                $('#registration-form').html(data.output);
-
-                console.log(data.output);
-                console.log(data.errors);
-            },
-            error: function (xhr) {
-                if(xhr.status === 422) {
-                    $('#reg-form-email').addClass('form-elem_err').removeClass('form-elem_success');
-                    $('#reg-form-email + span').text(xhr.responseJSON.errors.email[0]);
-                }
-            }
-        }).done(function() {
-            $( this ).addClass( "done" );
-        })
-    });
-
-    $('#login-form').on('submit', function(e){
-        e.preventDefault();
-        $.ajax({
-            type:"POST",
-            url: '/check-login-email',
-            data: $('#login-form').serializeArray(),
-            datatype: 'html',
-            success: function (data) {
-                if (data.email) {
-                    $('#password-form-email').val(data.email);
-                    $.fancybox.close({
-                        src: '#login-modal',
-                    });
-                    $.fancybox.open({
-                        src: '#password-modal',
-                    });
-                }
-                if (data.status == 'error') {
-                    $('#login-email-form').addClass('form-elem_err').removeClass('form-elem_success');
-                    $('#login-email-form + span').text(data.message);
-                }
-            }
-        }).done(function() {
-            $( this ).addClass( "done" );
-        })
-    });
-
-    $('#password-form').on('submit', function(e){
-        e.preventDefault();
-        $.ajax({
-            type:"POST",
-            url: '/login-password',
-            data: $('#password-form').serializeArray(),
-            datatype: 'html',
-            success: function (data) {
-                $('#password-form').html(data.output);
-                if(data.status == 'success') {
-                    window.location.replace(document.location.href);
-                }
-                if(data.status == 'error') {
-                    $('#password-login-form').addClass('form-elem_err').removeClass('form-elem_success');
-                    $('#password-login-form + span').text(data.message);
-                }
-            },
-        }).done(function() {
-            $( this ).addClass( "done" );
-        })
-    });
-
     $('#registration-form').validate({
         rules: {
             name: {
@@ -692,6 +618,27 @@ $(document).ready(function () {
             label.closest('li').remove();
         }
     });
+
+    function initialCheck() {
+        $('.filters-desc-category').find('input[type="checkbox"]').each(function () {
+            const selectedBlock = $(this).closest('.filters-desc-category').find('.filters-desc-choices-list');
+            const label = selectedBlock.find(`label[for=${$(this).prop('id')}]`);
+
+            if ($(this).prop('checked')) {
+                selectedBlock.append(`
+        <li>
+          <div>${$(this).val()} <label for="${$(this).prop('id')}"><span class="delete-choice-btn"></span></label></div>
+        </li>
+      `)
+            } else {
+                label.closest('li').remove();
+            }
+        })
+    }
+
+    initialCheck();
+
+
 
     $('.filters-desc').on('click', '.reset-filters-btn', function () {
         $(this).closest('.filters-desc').find('input').prop('checked', false);

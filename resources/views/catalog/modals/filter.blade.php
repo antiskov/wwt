@@ -26,7 +26,11 @@
                                 <li>
                                     <div class="checkbox-block">
                                         <label class="checkbox-block__label">
-                                            <input class="watch-filter" type="checkbox" name="brands[]" value="{{$brand->watch_make_title}}" id="{{$brand->watch_make_title}}">
+                                            <input class="watch-filter" type="checkbox" name="brands[]" value="{{$brand->watch_make_title}}" id="{{$brand->watch_make_title}}"
+                                                @if(isset(request()->brands))
+                                                    {{in_array($brand->watch_make_title, request()->brands)  ? 'checked' : ''}}
+                                                @endif
+                                            >
                                             <p><span>{{$brand->watch_make_title.' ('.$brand->count_watch_make_title.')'}}</span></p>
                                         </label>
                                     </div>
@@ -48,7 +52,11 @@
                                 <li>
                                     <div class="checkbox-block">
                                         <label class="checkbox-block__label">
-                                            <input class="watch-filter" type="checkbox" name="models[]" value="{{$model->watch_model_title}}" id="{{$model->watch_model_title}}">
+                                            <input class="watch-filter" type="checkbox" name="models[]" value="{{$model->watch_model_title}}" id="{{$model->watch_model_title}}"
+                                            @if(isset(request()->models))
+                                                {{in_array($model->watch_model_title, request()->models)  ? 'checked' : ''}}
+                                                @endif
+                                            >
                                             <p><span>{{$model->watch_model_title.' ('.$model->count_watch_model_title.')'}}</span></p>
                                         </label>
                                     </div>
@@ -87,12 +95,20 @@
                                     <div class="checkbox-block">
                                         <label class="checkbox-block__label">
                                             @if($diameter->height == $diameter->width)
-                                                <input class="watch-filter" type="checkbox" name="diameters[]" value="{{$diameter->height}}" id="{{$diameter->height}}">
+                                                <input class="watch-filter" type="checkbox" name="diameters[]" value="{{$diameter->height}}" id="{{$diameter->height}}"
+                                                @if(isset(request()->diameters))
+                                                    {{in_array($diameter->height, request()->diameters)  ? 'checked' : ''}}
+                                                    @endif
+                                                >
                                                 <p>
                                                     <span>{{$diameter->height.' ('.$diameter->count_height.')'}}</span>
                                                 </p>
                                             @else
-                                                <input class="watch-filter" type="checkbox" name="diameters[]" value="{{$diameter->height.'/'.$diameter->width}}" id="{{$diameter->height.'/'.$diameter->width}}">
+                                                <input class="watch-filter" type="checkbox" name="diameters[]" value="{{$diameter->height.'/'.$diameter->width}}" id="{{$diameter->height.'/'.$diameter->width}}"
+                                                @if(isset(request()->diameters))
+                                                    {{in_array($diameter->height.'/'.$diameter->width, request()->diameters)  ? 'checked' : ''}}
+                                                    @endif
+                                                >
                                                 <p>
                                                     <span>{{$diameter->height.'/'.$diameter->width.' ('.$diameter->count_height.')'}}</span>
                                                 </p>
@@ -117,7 +133,11 @@
                                 <li>
                                     <div class="checkbox-block">
                                         <label class="checkbox-block__label">
-                                            <input class="watch-filter" type="checkbox" name="years[]" value="{{$year->release_year}}" id="{{$year->release_year}}">
+                                            <input class="watch-filter" type="checkbox" name="years[]" value="{{$year->release_year}}" id="{{$year->release_year}}"
+                                            @if(isset(request()->years))
+                                                {{in_array($year->release_year, request()->years)  ? 'checked' : ''}}
+                                                @endif
+                                            >
                                             <p><span>{{$year->release_year.' ('.$year->count_release_year.')'}}</span></p>
                                         </label>
                                     </div>
@@ -139,7 +159,11 @@
                                 <li>
                                     <div class="checkbox-block">
                                         <label class="checkbox-block__label">
-                                            <input class="watch-filter" type="checkbox" name="regions[]" value="{{$region->region}}" id="{{$region->region}}">
+                                            <input class="watch-filter" type="checkbox" name="regions[]" value="{{$region->region}}" id="{{$region->region}}"
+                                                @if(request()->regions)
+                                                {{in_array($region->region, request()->regions)  ? 'checked' : ''}}
+                                                @endif
+                                                >
                                             <p><span>{{$region->region.' ('.$region->count_region.')'}}</span></p>
                                         </label>
                                     </div>
@@ -164,7 +188,11 @@
                                 <li>
                                     <div class="checkbox-block">
                                         <label class="checkbox-block__label">
-                                            <input  class="watch-filter" type="checkbox" name="mechanismTypes[]" value="{{$mechanismType->mechanism_type_title}}" id="{{$mechanismType->mechanism_type_title}}">
+                                            <input  class="watch-filter" type="checkbox" name="mechanismTypes[]" value="{{$mechanismType->mechanism_type_title}}" id="{{$mechanismType->mechanism_type_title}}"
+                                                @if(request()->mechanismTypes)
+                                                {{in_array($mechanismType->mechanism_type_title, request()->mechanismTypes)  ? 'checked' : ''}}
+                                                @endif
+                                                >
                                             <p><span>{{$mechanismType->mechanism_type_title.' ('.$mechanismType->count_mechanism_type_title.')'}}</span></p>
                                         </label>
                                     </div>
@@ -186,7 +214,11 @@
                                 <li>
                                     <div class="checkbox-block">
                                         <label class="checkbox-block__label">
-                                            <input class="watch-filter" type="checkbox" name="states[]" value="{{$state->watch_state}}" id="{{$state->watch_state}}">
+                                            <input class="watch-filter" type="checkbox" name="states[]" value="{{$state->watch_state}}" id="{{$state->watch_state}}"
+                                                @if(request()->states)
+                                                {{in_array($state->watch_state, request()->states)  ? 'checked' : ''}}
+                                                @endif
+                                                >
                                             <p><span>{{$state->watch_state.' ('.$state->count_watch_state.')'}}</span></p>
                                         </label>
                                     </div>
@@ -208,7 +240,11 @@
                                 <li>
                                     <div class="checkbox-block">
                                         <label class="checkbox-block__label">
-                                            <input class="watch-filter" type="checkbox" name="deliveryVolumes[]" value="{{$deliveryVolume->delivery_volume}}" id="{{$deliveryVolume->delivery_volume}}">
+                                            <input class="watch-filter" type="checkbox" name="deliveryVolumes[]" value="{{$deliveryVolume->delivery_volume}}" id="{{$deliveryVolume->delivery_volume}}"
+                                                @if(request()->deliveryVolumes)
+                                                {{in_array($deliveryVolume->delivery_volume, request()->deliveryVolumes)  ? 'checked' : ''}}
+                                                @endif
+                                                >
                                             <p><span>{{$deliveryVolume->delivery_volume.' ('.$deliveryVolume->count_delivery_volume.')'}}</span></p>
                                         </label>
                                     </div>
@@ -230,7 +266,11 @@
                                 <li>
                                     <div class="checkbox-block">
                                         <label class="checkbox-block__label">
-                                            <input class="watch-filter" type="checkbox" name="sexes[]" value="{{$sex->sex_title}}" id="{{$sex->sex_title}}">
+                                            <input class="watch-filter" type="checkbox" name="sexes[]" value="{{$sex->sex_title}}" id="{{$sex->sex_title}}"
+                                                @if(request()->sexes)
+                                                {{in_array($sex->sex_title, request()->sexes)  ? 'checked' : ''}}
+                                                @endif
+                                                >
                                             <p><span>{{$sex->sex_title.' ('.$sex->count_sex_title.')'}}</span></p>
                                         </label>
                                     </div>
@@ -252,7 +292,11 @@
                                 <li>
                                     <div class="checkbox-block">
                                         <label class="checkbox-block__label">
-                                            <input class="watch-filter" type="checkbox" name="types[]" value="{{$type->watch_type_title}}" id="{{$type->watch_type_title}}">
+                                            <input class="watch-filter" type="checkbox" name="types[]" value="{{$type->watch_type_title}}" id="{{$type->watch_type_title}}"
+                                                @if(request()->types)
+                                                {{in_array($type->watch_type_title, request()->types)  ? 'checked' : ''}}
+                                                @endif
+                                                >
                                             <p><span>{{$type->watch_type_title.' ('.$type->count_watch_type_title.')'}}</span></p>
                                         </label>
                                     </div>
@@ -320,11 +364,16 @@
                         <span class="clear-field-btn"></span>
                     </div>
                     <ul id="filters-desc-brand-list" class="checkboxes-list">
-                        @foreach($brands as $brand)
+                        @foreach($brands as $i => $brand)
+
                             <li>
                                 <div class="checkbox-block">
                                     <label class="checkbox-block__label">
-                                        <input class="watch-filter" type="checkbox" name="brands[]" value="{{$brand->watch_make_title}}" id="{{$brand->watch_make_title}}">
+                                        <input class="watch-filter" type="checkbox" name="brands[]" value="{{$brand->watch_make_title}}" id="{{$brand->watch_make_title}}"
+                                            @if(request()->brands)
+                                            {{in_array($brand->watch_make_title, request()->brands)  ? 'checked' : ''}}
+                                            @endif
+                                            >
                                         <p><span>{{$brand->watch_make_title.' ('.$brand->count_watch_make_title.')'}}</span></p>
                                     </label>
                                 </div>
@@ -360,7 +409,11 @@
                             <li>
                                 <div class="checkbox-block">
                                     <label class="checkbox-block__label">
-                                        <input class="watch-filter" type="checkbox" name="models[]" value="{{$model->watch_model_title}}" id="{{$model->watch_model_title}}">
+                                        <input class="watch-filter" type="checkbox" name="models[]" value="{{$model->watch_model_title}}" id="{{$model->watch_model_title}}"
+                                            @if(request()->models)
+                                            {{in_array($model->watch_model_title, request()->models)  ? 'checked' : ''}}
+                                            @endif
+                                            >
                                         <p><span>{{$model->watch_model_title.' ('.$model->count_watch_model_title.')'}}</span></p>
                                     </label>
                                 </div>
@@ -416,12 +469,20 @@
                                 <div class="checkbox-block">
                                     <label class="checkbox-block__label">
                                         @if($diameter->height == $diameter->width)
-                                            <input class="watch-filter" type="checkbox" name="diameters[]" value="{{$diameter->height}}" id="{{$diameter->height}}">
+                                            <input class="watch-filter" type="checkbox" name="diameters[]" value="{{$diameter->height}}" id="{{$diameter->height}}"
+                                                @if(request()->diameters)
+                                                {{in_array($diameter->height, request()->diameters)  ? 'checked' : ''}}
+                                                @endif
+                                                >
                                             <p>
                                                 <span>{{$diameter->height.' ('.$diameter->count_height.')'}}</span>
                                             </p>
                                         @else
-                                            <input class="watch-filter" type="checkbox" name="diameters[]" value="{{$diameter->height.'/'.$diameter->width}}" id="{{$diameter->height.'/'.$diameter->width}}">
+                                            <input class="watch-filter" type="checkbox" name="diameters[]" value="{{$diameter->height.'/'.$diameter->width}}" id="{{$diameter->height.'/'.$diameter->width}}"
+                                                @if(request()->diameters)
+                                                {{in_array($diameter->height.'/'.$diameter->width, request()->diameters)  ? 'checked' : ''}}
+                                                @endif
+                                                >
                                             <p>
                                                 <span>{{$diameter->height.'/'.$diameter->width.' ('.$diameter->count_height.')'}}</span>
                                             </p>
@@ -460,7 +521,11 @@
                             <li>
                                 <div class="checkbox-block">
                                     <label class="checkbox-block__label">
-                                        <input class="watch-filter" type="checkbox" name="years[]" value="{{$year->release_year}}" id="{{$year->release_year}}">
+                                        <input class="watch-filter" type="checkbox" name="years[]" value="{{$year->release_year}}" id="{{$year->release_year}}"
+                                            @if(request()->years)
+                                            {{in_array($year->release_year, request()->years)  ? 'checked' : ''}}
+                                            @endif
+                                            >
                                         <p><span>{{$year->release_year.' ('.$year->count_release_year.')'}}</span></p>
                                     </label>
                                 </div>
@@ -506,7 +571,11 @@
                             <li>
                                 <div class="checkbox-block">
                                     <label class="checkbox-block__label">
-                                        <input class="watch-filter" type="checkbox" name="regions[]" value="{{$region->region}}" id="{{$region->region}}">
+                                        <input class="watch-filter" type="checkbox" name="regions[]" value="{{$region->region}}" id="{{$region->region}}"
+                                            @if(request()->regions)
+                                            {{in_array($region->region, request()->regions)  ? 'checked' : ''}}
+                                            @endif
+                                            >
                                         <p><span>{{$region->region.' ('.$region->count_region.')'}}</span></p>
                                     </label>
                                 </div>
@@ -538,7 +607,11 @@
                                                 <li>
                                                     <div class="checkbox-block">
                                                         <label class="checkbox-block__label">
-                                                            <input class="watch-filter" type="checkbox" name="brands[]" value="{{$brand->watch_make_title}}" id="{{$brand->watch_make_title}}">
+                                                            <input class="watch-filter" type="checkbox" name="brands[]" value="{{$brand->watch_make_title}}" id="{{$brand->watch_make_title}}"
+                                                                @if(request()->brands)
+                                                                {{in_array($brand->watch_make_title, request()->brands)  ? 'checked' : ''}}
+                                                                @endif
+                                                                >
                                                             <p><span>{{$brand->watch_make_title.' ('.$brand->count_watch_make_title.')'}}</span></p>
                                                         </label>
                                                     </div>
@@ -553,7 +626,11 @@
                                                 <li>
                                                     <div class="checkbox-block">
                                                         <label class="checkbox-block__label">
-                                                            <input class="watch-filter" type="checkbox" name="models[]" value="{{$model->watch_model_title}}" id="{{$model->watch_model_title}}">
+                                                            <input class="watch-filter" type="checkbox" name="models[]" value="{{$model->watch_model_title}}" id="{{$model->watch_model_title}}"
+                                                                @if(request()->models)
+                                                                {{in_array($brand->watch_make_title, request()->brands)  ? 'checked' : ''}}
+                                                                @endif
+                                                                >
                                                             <p><span>{{$model->watch_model_title.' ('.$model->count_watch_model_title.')'}}</span></p>
                                                         </label>
                                                     </div>
@@ -569,12 +646,20 @@
                                                     <div class="checkbox-block">
                                                         <label class="checkbox-block__label">
                                                             @if($diameter->height == $diameter->width)
-                                                                <input  class="watch-filter" type="checkbox" name="diameters[]" value="{{$diameter->height}}" id="{{$diameter->height}}">
+                                                                <input  class="watch-filter" type="checkbox" name="diameters[]" value="{{$diameter->height}}" id="{{$diameter->height}}"
+                                                                    @if(request()->diameters)
+                                                                    {{in_array($diameter->height, request()->diameters)  ? 'checked' : ''}}
+                                                                    @endif
+                                                                    >
                                                                 <p>
                                                                     <span>{{$diameter->height.' ('.$diameter->count_height.')'}}</span>
                                                                 </p>
                                                             @else
-                                                                <input class="watch-filter" type="checkbox" name="diameters[]" value="{{$diameter->height.'/'.$diameter->width}}" id="{{$diameter->height.'/'.$diameter->width}}">
+                                                                <input class="watch-filter" type="checkbox" name="diameters[]" value="{{$diameter->height.'/'.$diameter->width}}" id="{{$diameter->height.'/'.$diameter->width}}"
+                                                                    @if(request()->diameters)
+                                                                    {{in_array($diameter->height.'/'.$diameter->width, request()->diameters)  ? 'checked' : ''}}
+                                                                    @endif
+                                                                    >
                                                                 <p>
                                                                     <span>{{$diameter->height.'/'.$diameter->width.' ('.$diameter->count_height.')'}}</span>
                                                                 </p>
@@ -594,7 +679,11 @@
                                                 <li>
                                                     <div class="checkbox-block">
                                                         <label class="checkbox-block__label">
-                                                            <input class="watch-filter" type="checkbox" name="years[]" value="{{$year->release_year}}" id="{{$year->release_year}}">
+                                                            <input class="watch-filter" type="checkbox" name="years[]" value="{{$year->release_year}}" id="{{$year->release_year}}"
+                                                                @if(request()->years)
+                                                                {{in_array($year->release_year, request()->years)  ? 'checked' : ''}}
+                                                                @endif
+                                                                >
                                                             <p><span>{{$year->release_year.' ('.$year->count_release_year.')'}}</span></p>
                                                         </label>
                                                     </div>
@@ -609,7 +698,11 @@
                                                 <li>
                                                     <div class="checkbox-block">
                                                         <label class="checkbox-block__label">
-                                                            <input class="watch-filter" type="checkbox" name="regions[]" value="{{$region->region}}" id="{{$region->region}}">
+                                                            <input class="watch-filter" type="checkbox" name="regions[]" value="{{$region->region}}" id="{{$region->region}}"
+                                                                @if(request()->regions)
+                                                                {{in_array($region->region, request()->regions)  ? 'checked' : ''}}
+                                                                @endif
+                                                                >
                                                             <p><span>{{$region->region.' ('.$region->count_region.')'}}</span></p>
                                                         </label>
                                                     </div>
@@ -633,7 +726,11 @@
                                                 <li>
                                                     <div class="checkbox-block">
                                                         <label class="checkbox-block__label">
-                                                            <input  class="watch-filter" type="checkbox" name="mechanismTypes[]" value="{{$mechanismType->mechanism_type_title}}" id="{{$mechanismType->mechanism_type_title}}">
+                                                            <input  class="watch-filter" type="checkbox" name="mechanismTypes[]" value="{{$mechanismType->mechanism_type_title}}" id="{{$mechanismType->mechanism_type_title}}"
+                                                                @if(request()->mechanismTypes)
+                                                                {{in_array($mechanismType->mechanism_type_title, request()->mechanismTypes)  ? 'checked' : ''}}
+                                                                @endif
+                                                                >
                                                             <p><span>{{$mechanismType->mechanism_type_title.' ('.$mechanismType->count_mechanism_type_title.')'}}</span></p>
                                                         </label>
                                                     </div>
@@ -648,7 +745,11 @@
                                                 <li>
                                                     <div class="checkbox-block">
                                                         <label class="checkbox-block__label">
-                                                            <input class="watch-filter" type="checkbox" name="states[]" value="{{$state->watch_state}}" id="{{$state->watch_state}}">
+                                                            <input class="watch-filter" type="checkbox" name="states[]" value="{{$state->watch_state}}" id="{{$state->watch_state}}"
+                                                                @if(request()->states)
+                                                                {{in_array($state->watch_state, request()->states)  ? 'checked' : ''}}
+                                                                @endif
+                                                                >
                                                             <p><span>{{$state->watch_state.' ('.$state->count_watch_state.')'}}</span></p>
                                                         </label>
                                                     </div>
@@ -663,7 +764,11 @@
                                                 <li>
                                                     <div class="checkbox-block">
                                                         <label class="checkbox-block__label">
-                                                            <input class="watch-filter" type="checkbox" name="deliveryVolumes[]" value="{{$deliveryVolume->delivery_volume}}" id="{{$deliveryVolume->delivery_volume}}">
+                                                            <input class="watch-filter" type="checkbox" name="deliveryVolumes[]" value="{{$deliveryVolume->delivery_volume}}" id="{{$deliveryVolume->delivery_volume}}"
+                                                                @if(request()->deliveryVolumes)
+                                                                {{in_array($deliveryVolume->delivery_volume, request()->deliveryVolumes)  ? 'checked' : ''}}
+                                                                @endif
+                                                                >
                                                             <p><span>{{$deliveryVolume->delivery_volume.' ('.$deliveryVolume->count_delivery_volume.')'}}</span></p>
                                                         </label>
                                                     </div>
@@ -681,7 +786,11 @@
                                                 <li>
                                                     <div class="checkbox-block">
                                                         <label class="checkbox-block__label">
-                                                            <input class="watch-filter" type="checkbox" name="sexes[]" value="{{$sex->sex_title}}" id="{{$sex->sex_title}}">
+                                                            <input class="watch-filter" type="checkbox" name="sexes[]" value="{{$sex->sex_title}}" id="{{$sex->sex_title}}"
+                                                                @if(request()->sexes)
+                                                                {{in_array($sex->sex_title, request()->sexes)  ? 'checked' : ''}}
+                                                                @endif
+                                                                >
                                                             <p><span>{{$sex->sex_title.' ('.$sex->count_sex_title.')'}}</span></p>
                                                         </label>
                                                     </div>
@@ -696,7 +805,11 @@
                                                 <li>
                                                     <div class="checkbox-block">
                                                         <label class="checkbox-block__label">
-                                                            <input class="watch-filter" type="checkbox" name="types[]" value="{{$type->watch_type_title}}" id="{{$type->watch_type_title}}">
+                                                            <input class="watch-filter" type="checkbox" name="types[]" value="{{$type->watch_type_title}}" id="{{$type->watch_type_title}}"
+                                                                @if(request()->types)
+                                                                {{in_array($type->watch_type_title, request()->types)  ? 'checked' : ''}}
+                                                                @endif
+                                                                >
                                                             <p><span>{{$type->watch_type_title.' ('.$type->count_watch_type_title.')'}}</span></p>
                                                         </label>
                                                     </div>
