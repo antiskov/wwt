@@ -25,19 +25,13 @@
 
                 <div class="select-price">
                     <p>Сортировать:</p>
-
-                    <div class="select-value">
-                        <p id="sort-dear">Дорогие</p>
-                        <p id="sort-cheap">Дешевые</p>
-{{--                        Самые дорогие--}}
+                    <div class="select-value rotate">
+                        <span>по возрастанию цены</span>
+                        <ul class="value-items">
+                            <li id="sort-dear">по возрастанию цены</li>
+                            <li id="sort-cheap">по убыванию цены</li>
+                        </ul>
                     </div>
-{{--                    <ul class="value-items">--}}
-{{--                        <li><a href="#/">Самые дорогие</a></li>--}}
-{{--                        <li><a href="#/">по релевантности</a></li>--}}
-{{--                        <li><a href="#/">по возрастанию цены</a></li>--}}
-{{--                        <li><a href="#/">по убыванию цены</a></li>--}}
-{{--                        <li><a href="#/">по популярности</a></li>--}}
-{{--                    </ul>--}}
                 </div>
             </div>
 

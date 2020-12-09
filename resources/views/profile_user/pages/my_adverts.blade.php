@@ -6,13 +6,13 @@
     <h2 class="name-lk">Мои объявления </h2>
     <div class="radio-wrap">
         <input type="radio" name="tab-btn" id="abu-1" value="1" checked>
-        <label for="abu-1" class="anu-rad">Активные</label>
+        <label for="abu-1" class="anu-rad">{{__('messages.my_adverts_active')}}</label>
         <input type="radio" name="tab-btn" id="abu-2" value="2" >
-        <label for="abu-2" class="anu-rad">На модерации</label>
+        <label for="abu-2" class="anu-rad">{{__('messages.my_adverts_moderation')}}</label>
         <input type="radio" name="tab-btn" id="abu-3" value="3" >
-        <label for="abu-3" class="anu-rad">Архивные</label>
+        <label for="abu-3" class="anu-rad">{{__('messages.my_adverts_archive')}}</label>
         <input type="radio" name="tab-btn" id="abu-4" value="4">
-        <label for="abu-4" class="anu-rad">Черновики</label>
+        <label for="abu-4" class="anu-rad">{{__('messages.my_adverts_draft')}}</label>
         @include('profile_user.partials.my_advert_div')
     </div>
 </div>

@@ -1,33 +1,33 @@
 <div id="registration-modal" class="modal">
     <div class="modal__content">
-        <h5 class="modal__title">Добро пожаловать!</h5>
+        <h5 class="modal__title">{{__('messages.modal_welcome')}}</h5>
         <form id="registration-form" method='post' class="registration" action="{{ url('/register-user') }}">
             @csrf
             <div class="change-input">
-                <input id="reg-form-email" name="email" type="text" placeholder="Введите почту, логин или телефон" disabled
+                <input id="reg-form-email" name="email" type="text" placeholder="{{__('messages.modal_placeholder')}}" disabled
                        value="someMail@gmail.com" required>
                 <span></span>
-                <img src="/images/icons/eraser.svg" alt="Изменить логин">
+                <img src="/images/icons/eraser.svg" alt="{{__('messages.modal_registration_change_login')}}">
             </div>
-            <input id="reg-pass" name="password" type="password" placeholder="Введите пароль" required>
-            <input name="repeat-password" type="password" placeholder="Повторите пароль" required>
-            <span>Пароли не совпадают</span>
+            <input id="reg-pass" name="password" type="password" placeholder="{{__('messages.modal_registration_password')}}" required>
+            <input name="repeat-password" type="password" placeholder="{{__('messages.modal_registration_password_again')}}" required>
+            <span>{{__('messages.modal_registration_password_again')}}</span>
             <div class="checkbox-block registration__checkbox">
                 <label class="checkbox-block__label">
                     <input type="checkbox" name="data-protection" required value="1">
-                    <p><span>Я принимаю условия о защите данных</span></p>
-                    <span>Обязательное поле*</span>
+                    <p><span>{{__('messages.data_protection')}}</span></p>
+                    <span>{{__('messages.required_filed')}}</span>
                 </label>
             </div>
             <div class="checkbox-block registration__checkbox">
                 <label class="checkbox-block__label">
                     <input type="checkbox" name="mailing" required value="1">
-                    <p><span>Я хочу регулярно получать новостную рассылку о предложениях и продуктах по электронной почте.</span>
+                    <p><span>{{__('messages.mailing')}}</span>
                     </p>
-                    <span>Обязательное поле*</span>
+                    <span>{{__('messages.required_filed')}}</span>
                 </label>
             </div>
-            <button type="submit" class="btn-arrow">Зарегистрироваться</button>
+            <button type="submit" class="btn-arrow">{{__('messages.registration_button')}}</button>
         </form>
     </div>
 </div>

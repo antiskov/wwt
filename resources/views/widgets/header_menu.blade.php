@@ -26,14 +26,14 @@
                             <span class="notification-btn">1</span>
                         </div>
                         <ul class="header-cabinet-list">
-                            <li><a href="{{route('my_adverts')}}">Мои обьявления</a></li>
-                            <li><a href="#">Сообщения</a></li>
-                            <li><a href="{{route('payments')}}">Платежи</a></li>
-                            <li><a href="{{ route('editing-profile') }}">Профиль</a></li>
-                            <li><a href="{{ route('profile-settings') }}">Настройки</a></li>
-                            <li><a href="{{route('favorite')}}">Избранное</a></li>
-                            <li><a href="{{route('referral')}}">Создать реферальную ссылку</a></li>
-                            <li><a href="{{route('logout')}}">Выход</a></li>
+                            <li><a href="{{route('my_adverts')}}">{{__('messages.menu_my_adverts')}}</a></li>
+                            <li><a href="#">{{__('messages.menu_messages')}}</a></li>
+                            <li><a href="{{route('payments')}}">{{__('messages.menu_payments')}}</a></li>
+                            <li><a href="{{ route('editing-profile') }}">{{__('messages.menu_editing_profile')}}</a></li>
+                            <li><a href="{{ route('profile-settings') }}">{{__('messages.menu_profile_settings')}}</a></li>
+                            <li><a href="{{route('favorite')}}">{{__('messages.menu_favorite')}}</a></li>
+                            <li><a href="{{route('referral')}}">{{__('messages.menu_referral')}}</a></li>
+                            <li><a href="{{route('logout')}}">{{__('messages.menu_logout')}}</a></li>
                         </ul>
                     </div>
                 @endif
@@ -105,7 +105,7 @@
             <nav class="catalog-mob">
                 <ul class="catalog-mob__gen-list">
                     <li class="has-menu">
-                        <span>Швейцарские часы</span>
+                        <span>{{__('messages.swiss_watches')}}</span>
                         <ul class="catalog-mob__menu">
                             <li class="has-menu">
                                 <span>Купить</span>
@@ -193,7 +193,7 @@
 {{--                        </ul>--}}
 {{--                    </li>--}}
                     <li>
-                        Контакты
+                        {{__('messages.contacts')}}
                     </li>
                 </ul>
             </nav>
@@ -287,8 +287,8 @@
                             <div class="header-login-block__btns">
                                 @if(!\Illuminate\Support\Facades\Auth::check())
                                     <div>
-                                        <a data-fancybox data-src="#login-modal" href="javascript:;"  href="#">Войти</a>
-                                        <a data-fancybox data-src="#registration-modal" href="javascript:;"  href="#">Регистрация</a>
+                                        <a data-fancybox data-src="#login-modal" href="javascript:;"  href="#">{{__('messages.login')}}</a>
+                                        <a data-fancybox data-src="#registration-modal" href="javascript:;"  href="#">{{__('messages.registration')}}</a>
                                     </div>
                                 @else
 
@@ -300,35 +300,46 @@
                                             <span class="notification-btn">1</span>
                                         </div>
                                         <ul class="header-cabinet-list">
-                                            <li><a href="{{route('my_adverts')}}">Мои обьявления</a></li>
-                                            <li><a href="#">Сообщения</a></li>
-                                            <li><a href="{{route('payments')}}">Платежи</a></li>
-                                            <li><a href="{{ route('editing-profile') }}">Профиль</a></li>
-                                            <li><a href="{{ route('profile-settings') }}">Настройки</a></li>
-                                            <li><a href="{{route('favorite')}}">Избранное</a></li>
-                                            <li><a href="{{route('referral')}}">Создать реферальную ссылку</a></li>
-                                            <li><a href="{{route('logout')}}">Выход</a></li>
+                                            <li><a href="{{route('my_adverts')}}">{{__('messages.menu_my_adverts')}}</a></li>
+                                            <li><a href="#">{{__('messages.menu_messages')}}</a></li>
+                                            <li><a href="{{route('payments')}}">{{__('messages.menu_payments')}}</a></li>
+                                            <li><a href="{{ route('editing-profile') }}">{{__('messages.menu_editing_profile')}}</a></li>
+                                            <li><a href="{{ route('profile-settings') }}">{{__('messages.menu_profile_settings')}}</a></li>
+                                            <li><a href="{{route('favorite')}}">{{__('messages.menu_favorite')}}</a></li>
+                                            <li><a href="{{route('referral')}}">{{__('messages.menu_referral')}}</a></li>
+                                            <li><a href="{{route('logout')}}">{{__('messages.menu_logout')}}</a></li>
                                         </ul>
                                     </div>
                                 @endif
                             </div>
                             <form class="languages-btns">
                                 @csrf
-                                <label>
-                                    <input type="radio" name="language" checked>
-                                    <span>ру</span>
-                                </label>
-                                <label>
-                                    <input type="radio" name="language">
-                                    <span>en</span>
-                                </label>
+                                @if(Cookie::get('language') == 'ru')
+                                    <label>
+                                        <input type="radio" name="language" checked value="ru">
+                                        <span>ру</span>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="language" value="en">
+                                        <span>en</span>
+                                    </label>
+                                @else
+                                    <label>
+                                        <input type="radio" name="language" value="ru">
+                                        <span>ру</span>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="language" checked value="en">
+                                        <span>en</span>
+                                    </label>
+                                @endif
                             </form>
                         </div>
                     </div>
                     <nav class="header-desc__nav">
                         <ul class="header-desc-nav">
                             <li>
-                                <a href="{{route('catalog')}}">Швейцарские часы</a>
+                                <a href="{{route('catalog')}}">{{__('messages.swiss_watches')}}</a>
                                 <ul class="header-desc-nav__btns">
                                     <li class="list-btn">
                                         <a href="#"><span>Купить</span></a>
@@ -420,7 +431,7 @@
 {{--                                </ul>--}}
 {{--                            </li>--}}
                             <li>
-                                <a href="{{route('about')}}">Контакты</a>
+                                <a href="{{route('about')}}">{{__('messages.contacts')}}</a>
                             </li>
                         </ul>
                     </nav>
@@ -429,3 +440,20 @@
         </div>
     </div>
 </header>
+<script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+        console.log(222);
+        document.querySelectorAll('.languages-btns input').forEach(function (item) {
+            item.addEventListener('change', function (e) {
+                $.ajax({
+                    url: '/set_locale/'+this.value,
+                    success: function (data) {
+                        // $('#advert').empty();
+                        // $('#advert').html(data.output);
+                        window.location.reload();
+                    },
+                })
+            })
+        })
+    });
+</script>

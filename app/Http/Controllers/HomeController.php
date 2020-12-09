@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 
 use App\Domain\AdvertsAndFilters\VipAdvertsAndFiltersGetter;
-use App\Mail\SendAbout;
-use App\Models\User;
 use App\Services\ImageMinificationService;
 use App\Services\PayService;
 use App\Services\ProfileService;
@@ -67,7 +65,6 @@ class HomeController extends Controller
             return view('pages.status_pay', ['status' => 0  ]);
         }
     }
-
     public function getAbout()
     {
         return view('pages.about');
@@ -78,5 +75,10 @@ class HomeController extends Controller
         Mail::to($request->email)->send(new SendAbout($request));
 
         return redirect()->back();
+    }
+
+    public function setLocale(string $lang)
+    {
+        Cookie::queue(Cookie::make('language', $lang));
     }
 }

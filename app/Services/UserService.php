@@ -116,7 +116,7 @@ class UserService
 
         if ($setting = UserSettings::where('user_id', auth()->user()->id)->first()) {
             $setting->receive_partners_adverts = $request->receive_partners_adverts ? 1 : 0;
-            if ($request->language_communication == 'Русский') {
+            if ($request->language_communication == 'Русский' || $request->language_communication == 'Russian') {
                 $setting->language_communication = 'ru';
             } else {
                 $setting->language_communication = 'en';

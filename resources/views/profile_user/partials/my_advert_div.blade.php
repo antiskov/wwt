@@ -22,12 +22,13 @@
                     <div class="ad-cont">
                         <div class="name-block">
                             <h2>{{$advert->title}}</h2>
+{{--                            <button class="advertice">Реклама</button>--}}
                             <div class="data">
                                 {{--                                    <p>--}}
                                 {{--                                        <span>С: 26. 07. 12</span>--}}
                                 {{--                                        <span>По: 26. 07. 12</span>--}}
                                 {{--                                    </p>--}}
-                                <button class="advertice">Реклама</button>
+{{--                                <button class="advertice">Реклама</button>--}}
                             </div>
                         </div>
                         <div class="price-block">
@@ -47,9 +48,9 @@
                                 <button class="advertice">Реклама</button>
                             </div>
                             <div class="set-block">
-                                <a href="{{route('catalog.item-page', [$advert])}}" class="sett">посмотреть</a>
-                                <a href="#/" class="sett">редактировать</a>
-                                <a href="#/" class="sett">деактивировать</a>
+                                <a href="{{route('catalog.item-page', [$advert])}}" class="sett">{{__('messages.my_adverts_div_show')}}</a>
+                                <a href="#/" class="sett">{{__('messages.my_adverts_div_edit')}}</a>
+                                <a href="#/" class="sett">{{__('messages.my_adverts_div_close')}}</a>
                                 <div class="soc-block">
                                     <input type="hidden" name="link-for-copy" value="{{route('catalog.item-page', [$advert])}}">
                                     <a href="#" class="sett btn-for-copy tooltip" title="Ссылка успешно скопирована в буффер обмена!">Поделиться</a>
@@ -58,18 +59,18 @@
                         </div>
                         <div class="statistics-cont">
                             <div class="set-mob">
-                                <a href="#/" class="sett">посмотреть</a>
-                                <a href="#/" class="sett">редактировать</a>
-                                <a href="#/" class="sett">деактивировать</a>
+                                <a href="#/" class="sett">{{__('messages.my_adverts_div_show')}}</a>
+                                <a href="#/" class="sett">{{__('messages.my_adverts_div_edit')}}</a>
+                                <a href="#/" class="sett">{{__('messages.my_adverts_div_close')}}</a>
                             </div>
                             <div class="static-items">
-                                <div class="">Статистика:</div>
+                                <div class="">{{__('messages.my_adverts_div_statics')}}</div>
                                 <div class="text"><img src="/images/icons/viewing.svg" alt="img">
-                                    <p>Просмотров: </p><span>{{views($advert)->count()}}</span></div>
+                                    <p>{{__('messages.my_adverts_div_views')}}</p><span>{{views($advert)->count()}}</span></div>
                                 <div class="text"><img src="/images/icons/phone.svg" alt="img">
-                                    <p>Тел: </p><span>{{$advert->number_phone_show}}</span></div>
+                                    <p>{{__('messages.my_adverts_div_calls')}}</p><span>{{$advert->number_phone_show}}</span></div>
                                 <div class="text"><img src="/images/icons/lk-star.svg" alt="img">
-                                    <p>В избранном: </p><span>{{$advert->favoriteAdverts->count()}}</span></div>
+                                    <p>{{__('messages.my_adverts_div_favorite')}} </p><span>{{$advert->favoriteAdverts->count()}}</span></div>
                                 <div class="text"><img src="/images/icons/email.svg" alt="img">
                                     <p>: </p><span>7</span></div>
                             </div>
@@ -77,15 +78,15 @@
                     </div>
                     <div class="statistics-cont">
                         <div class="set-mob">
-                            <a href="#/" class="sett">посмотреть</a>
-                            <a href="#/" class="sett">редактировать</a>
-                            <a href="#/" class="sett">деактивировать</a>
+                            <a href="#/" class="sett">{{__('messages.my_adverts_div_show')}}</a>
+                            <a href="#/" class="sett">{{__('messages.my_adverts_div_edit')}}</a>
+                            <a href="#/" class="sett">{{__('messages.my_adverts_div_close')}}</a>
                         </div>
                         <div class="static-items">
-                            <div class="name-static">Статистика:</div>
-                            <div class="text"><img src="/images/icons/viewing.svg" alt="img">: <p>Просмотров</p><span>11</span></div>
-                            <div class="text"><img src="/images/icons/phone.svg" alt="img">: <p>Тел: </p><span>11</span></div>
-                            <div class="text"><img src="/images/icons/lk-star.svg" alt="img">: <p>В избранном: </p><span>8</span></div>
+                            <div class="name-static">{{__('messages.my_adverts_div_statics')}}</div>
+                            <div class="text"><img src="/images/icons/viewing.svg" alt="img">: <p>{{__('messages.my_adverts_div_views')}}</p><span>{{views($advert)->count()}}</span></div>
+                            <div class="text"><img src="/images/icons/phone.svg" alt="img">: <p>{{__('messages.my_adverts_div_calls')}}</p><span>{{$advert->number_phone_show}}</span></div>
+                            <div class="text"><img src="/images/icons/lk-star.svg" alt="img">: <p>{{__('messages.my_adverts_div_favorite')}}</p><span>{{$advert->favoriteAdverts->count()}}</span></div>
                             <div class="text"><img src="/images/icons/email.svg" alt="img">: <p>: </p><span>7</span></div>
                         </div>
                     </div>
