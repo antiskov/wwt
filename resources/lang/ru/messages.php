@@ -7,7 +7,7 @@ return [
     'registration' => 'РЕГИСТРАЦИЯ',
 
     'modal_login' => 'Войти',
-    'modal_placeholder' => 'Введите почту, логин или телефон',
+    'modal_login_placeholder' => 'Введите почту, логин или телефон',
     'next_button' => 'Далее',
     'modal_welcome' => 'Добро пожаловать!',
 

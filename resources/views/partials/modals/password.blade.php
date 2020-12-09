@@ -7,13 +7,8 @@
         <form id="password-form" method="post" class="check-login" action="{{ route('login-password') }}">
             @CSRF
             <div class="change-input">
-<<<<<<< HEAD
-                <input id="password-form-email" name="email" type="text" placeholder="Введите почту, логин или телефон"
-                       required
-=======
                 <input id="password-form-email" name="email" type="text" placeholder="{{__('messages.modal_placeholder')}}"
-                       disabled required
->>>>>>> 8948a19f1a39f70d03b42d8e5eb19bb3d226483c
+                       required
                        value="someMail@gmail.com">
                 <span></span>
 {{--                <img src="/images/icons/eraser.svg" alt="Изменить логин">--}}
@@ -30,11 +25,7 @@
                         <p><span>{{__('messages.modal_password_remember')}}</span></p>
                     </label>
                 </div>
-<<<<<<< HEAD
-                <a href="{{route('forgot_password')}}">Проблема с паролем?</a>
-=======
-                <a href="#">{{__('messages.modal_password_remind_pass')}}</a>
->>>>>>> 8948a19f1a39f70d03b42d8e5eb19bb3d226483c
+                <a href="{{route('forgot_password')}}">{{__('messages.modal_password_remind_pass')}}</a>
             </div>
             <button type="submit" class="btn-arrow">{{__('messages.next_button')}}</button>
         </form>
