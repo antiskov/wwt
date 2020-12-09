@@ -29,6 +29,7 @@ Route::middleware('set.locale')->group(function () {
     Route::get('/status_pay/{order_id}', [\App\Http\Controllers\HomeController::class, 'getStatusPay'])->name('status_pay');
     Route::post('/set_cost', [\App\Http\Controllers\ProfileController::class, 'setTransaction'])->name('set_transaction');
     Route::get('/go_to_liqpay/{order_id}', [\App\Http\Controllers\ProfileController::class, 'goToLiqPay'])->name('go_to_liqpay');
+<<<<<<< HEAD
     Route::get('/update_rate', [\App\Http\Controllers\RateController::class])->name('update_rate');
 
     Route::group(['prefix' => 'forgot_password'], function (){
@@ -38,6 +39,10 @@ Route::middleware('set.locale')->group(function () {
         Route::post('/new-password', [\App\Http\Controllers\PasswordController::class, 'saveNewPassword'])->name('save_new_password');
     });
 
+=======
+    Route::get('/about', [\App\Http\Controllers\HomeController::class, 'getAbout'])->name('about');
+    Route::post('/send_about', [\App\Http\Controllers\HomeController::class, 'sendAbout'])->name('send_about');
+>>>>>>> 6bd4db32ce991b1d5258bdebb3bdda0ff17221ed
 
 
     Route::group(['prefix' => 'profile'], function () {

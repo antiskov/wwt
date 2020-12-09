@@ -3,23 +3,19 @@
 namespace App\Http\Controllers;
 
 
-use App\Domain\AdvertsAndFilters\AdvertsFiltersGetter;
 use App\Domain\AdvertsAndFilters\VipAdvertsAndFiltersGetter;
-use App\Domain\AdvertsFiltersDirector;
-use App\Http\Requests\ManagePasswordRequest;
-use App\Mail\RegisterEmail;
+use App\Mail\SendAbout;
 use App\Models\User;
 use App\Services\ImageMinificationService;
-use App\Services\PasswordService;
 use App\Services\PayService;
 use App\Services\ProfileService;
 use App\Services\SubscribeService;
 use App\Services\UserService;
-use DB;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -70,5 +66,17 @@ class HomeController extends Controller
         } else {
             return view('pages.status_pay', ['status' => 0  ]);
         }
+    }
+
+    public function getAbout()
+    {
+        return view('pages.about');
+    }
+
+    public function sendAbout(Request $request)
+    {
+        Mail::to($request->email)->send(new SendAbout($request));
+
+        return redirect()->back();
     }
 }
