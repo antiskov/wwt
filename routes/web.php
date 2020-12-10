@@ -66,7 +66,6 @@ Route::middleware('set.locale')->group(function () {
 
     Route::group(['prefix' =>'catalog'], function() {
         Route::get('/', [\App\Http\Controllers\CatalogController::class, 'getFilterResult'])->name('catalog');
-        Route::get('/filter_json', [\App\Http\Controllers\CatalogController::class, 'filterJson'])->name('catalog.filter-json');
         Route::get('/save_search', [\App\Http\Controllers\CatalogController::class, 'saveSearch'])->name('catalog.save-search');
         Route::get('/sort/{status}', [\App\Http\Controllers\CatalogController::class, 'sort'])->name('catalog.sort');
         Route::get('/count_results/{type}', [\App\Http\Controllers\CatalogController::class, 'countResults'])->name('catalog.count-results');

@@ -31,10 +31,10 @@ class CatalogService
         return $advertFilter->getResult();
     }
 
-    public function getTabs(Request $request, $nameView = 'catalog_view')
-    {
-        return ['adverts' => DB::table($nameView)->whereRaw($this->getFilter($request))->paginate(6)];
-    }
+//    public function getTabs(Request $request, $nameView = 'catalog_view')
+//    {
+//        return ['adverts' => DB::table($nameView)->whereRaw($this->getFilter($request))->paginate(6)];
+//    }
 
     public function saveSearch($serviceArray)
     {

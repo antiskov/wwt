@@ -14,7 +14,7 @@ class CatalogController extends Controller
 {
     public function getFilterResult(CatalogService $service, Request $request)
     {
-//        dd($request->all());
+        \Log::info($request->all());
         return view('catalog.pages.main', $service->getFilterResult($request));
     }
 
@@ -23,14 +23,14 @@ class CatalogController extends Controller
         return view('pages.main', $service->getResultForHome($request));
     }
 
-    public function filterJson(Request $request, CatalogService $service)
-    {
-        $data = [
-            'output' => view('catalog.modals.global.tabs', $service->getTabs($request))->toHtml(),
-        ];
-
-        return response()->json($data);
-    }
+//    public function filterJson(Request $request, CatalogService $service)
+//    {
+//        $data = [
+//            'output' => view('catalog.modals.global.tabs', $service->getTabs($request))->toHtml(),
+//        ];
+//
+//        return response()->json($data);
+//    }
 
     public function sellerPage(User $user, UserService $service)
     {

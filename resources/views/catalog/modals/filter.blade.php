@@ -316,9 +316,10 @@
             </div>
         </div>
     </form>
-{{--    <form id="filter" class="filters-desc" method="get" action="{{route('catalog.filter-json')}}">--}}
     @if(isset($user))
         <form class="filters-desc filter-search" method="get" action="{{route('catalog.seller-ads', $user)}}">
+    @elseif(isset($vipHome))
+        <form class="filters-desc filter-search" method="get" action="{{route('result_for_home')}}">
     @else
         <form class="filters-desc filter-search" method="get" action="{{route('catalog')}}">
     @endif
@@ -366,8 +367,7 @@
                         <span class="clear-field-btn"></span>
                     </div>
                     <ul id="filters-desc-brand-list" class="checkboxes-list">
-                        @foreach($brands as $i => $brand)
-
+                        @foreach($brands as $brand)
                             <li>
                                 <div class="checkbox-block">
                                     <label class="checkbox-block__label">
@@ -596,125 +596,6 @@
                 <span class="filters-desc__close-btn"></span>
                 <div class="filters-more">
                     <div class="filters-more__content">
-                        <div class="filters-more-item filters-more__item">
-                            <div class="filters-more-item__title">
-                                <h4>Общие данные</h4>
-                            </div>
-                            <div class="filters-more-item__content">
-                                <div>
-                                    <div class="filters-more-item__list">
-                                        <p>Марка</p>
-                                        <ul>
-                                            @foreach($brands as $brand)
-                                                <li>
-                                                    <div class="checkbox-block">
-                                                        <label class="checkbox-block__label">
-                                                            <input class="watch-filter" type="checkbox" name="brands[]" value="{{$brand->watch_make_title}}" id="{{$brand->watch_make_title}}"
-                                                                @if(request()->brands)
-                                                                {{in_array($brand->watch_make_title, request()->brands)  ? 'checked' : ''}}
-                                                                @endif
-                                                                >
-                                                            <p><span>{{$brand->watch_make_title.' ('.$brand->count_watch_make_title.')'}}</span></p>
-                                                        </label>
-                                                    </div>
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                    <div class="filters-more-item__list">
-                                        <p>Модель</p>
-                                        <ul>
-                                            @foreach($models as $model)
-                                                <li>
-                                                    <div class="checkbox-block">
-                                                        <label class="checkbox-block__label">
-                                                            <input class="watch-filter" type="checkbox" name="models[]" value="{{$model->watch_model_title}}" id="{{$model->watch_model_title}}"
-                                                                @if(request()->models)
-                                                                {{in_array($brand->watch_make_title, request()->models)  ? 'checked' : ''}}
-                                                                @endif
-                                                                >
-                                                            <p><span>{{$model->watch_model_title.' ('.$model->count_watch_model_title.')'}}</span></p>
-                                                        </label>
-                                                    </div>
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                    <div class="filters-more-item__list">
-                                        <p>Диаметры</p>
-                                        <ul>
-                                            @foreach($diameters as $diameter)
-                                                <li>
-                                                    <div class="checkbox-block">
-                                                        <label class="checkbox-block__label">
-                                                            @if($diameter->height == $diameter->width)
-                                                                <input  class="watch-filter" type="checkbox" name="diameters[]" value="{{$diameter->height}}" id="{{$diameter->height}}"
-                                                                    @if(request()->diameters)
-                                                                    {{in_array($diameter->height, request()->diameters)  ? 'checked' : ''}}
-                                                                    @endif
-                                                                    >
-                                                                <p>
-                                                                    <span>{{$diameter->height.' ('.$diameter->count_height.')'}}</span>
-                                                                </p>
-                                                            @else
-                                                                <input class="watch-filter" type="checkbox" name="diameters[]" value="{{$diameter->height.'/'.$diameter->width}}" id="{{$diameter->height.'/'.$diameter->width}}"
-                                                                    @if(request()->diameters)
-                                                                    {{in_array($diameter->height.'/'.$diameter->width, request()->diameters)  ? 'checked' : ''}}
-                                                                    @endif
-                                                                    >
-                                                                <p>
-                                                                    <span>{{$diameter->height.'/'.$diameter->width.' ('.$diameter->count_height.')'}}</span>
-                                                                </p>
-                                                            @endif
-                                                        </label>
-                                                    </div>
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="filters-more-item__lists">
-                                    <div class="filters-more-item__list">
-                                        <p>Год</p>
-                                        <ul>
-                                            @foreach($years as $year)
-                                                <li>
-                                                    <div class="checkbox-block">
-                                                        <label class="checkbox-block__label">
-                                                            <input class="watch-filter" type="checkbox" name="years[]" value="{{$year->release_year}}" id="{{$year->release_year}}"
-                                                                @if(request()->years)
-                                                                {{in_array($year->release_year, request()->years)  ? 'checked' : ''}}
-                                                                @endif
-                                                                >
-                                                            <p><span>{{$year->release_year.' ('.$year->count_release_year.')'}}</span></p>
-                                                        </label>
-                                                    </div>
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                    <div class="filters-more-item__list">
-                                        <p>Местоположение</p>
-                                        <ul>
-                                            @foreach($regions as $region)
-                                                <li>
-                                                    <div class="checkbox-block">
-                                                        <label class="checkbox-block__label">
-                                                            <input class="watch-filter" type="checkbox" name="regions[]" value="{{$region->region}}" id="{{$region->region}}"
-                                                                @if(request()->regions)
-                                                                {{in_array($region->region, request()->regions)  ? 'checked' : ''}}
-                                                                @endif
-                                                                >
-                                                            <p><span>{{$region->region.' ('.$region->count_region.')'}}</span></p>
-                                                        </label>
-                                                    </div>
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="filters-more-item filters-more__item">
                             <div class="filters-more-item__title">
                                 <h4>Дополнительно</h4>
