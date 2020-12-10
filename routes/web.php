@@ -81,6 +81,10 @@ Route::middleware('set.locale')->group(function () {
     Route::get('/count_results/{type}', [\App\Http\Controllers\CatalogController::class, 'countResults'])->name('home.count-results');
 
     Route::get('count_pagination/{countPagination?}', [\App\Http\Controllers\CatalogController::class, 'countPagination'])->name('count-pagination');
+
+    Route::group(['prefix' =>'submitting'], function() {
+        Route::get('/', [\App\Http\Controllers\SubmittingController::class, 'index'])->name('submitting');
+    });
 });
 
 Route::group(['prefix' => 'admin'], function () {
