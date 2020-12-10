@@ -29,8 +29,10 @@
                             <li><a href="{{route('my_adverts')}}">{{__('messages.menu_my_adverts')}}</a></li>
                             <li><a href="#">{{__('messages.menu_messages')}}</a></li>
                             <li><a href="{{route('payments')}}">{{__('messages.menu_payments')}}</a></li>
-                            <li><a href="{{ route('editing-profile') }}">{{__('messages.menu_editing_profile')}}</a></li>
-                            <li><a href="{{ route('profile-settings') }}">{{__('messages.menu_profile_settings')}}</a></li>
+                            <li><a href="{{ route('editing-profile') }}">{{__('messages.menu_editing_profile')}}</a>
+                            </li>
+                            <li><a href="{{ route('profile-settings') }}">{{__('messages.menu_profile_settings')}}</a>
+                            </li>
                             <li><a href="{{route('favorite')}}">{{__('messages.menu_favorite')}}</a></li>
                             <li><a href="{{route('referral')}}">{{__('messages.menu_referral')}}</a></li>
                             <li><a href="{{route('logout')}}">{{__('messages.menu_logout')}}</a></li>
@@ -57,14 +59,14 @@
                                 <input type="radio" name="category" checked>
                                 <span>Часы</span>
                             </label>
-{{--                            <label>--}}
-{{--                                <input type="radio" name="category">--}}
-{{--                                <span>Аксессуары</span>--}}
-{{--                            </label>--}}
-{{--                            <label>--}}
-{{--                                <input type="radio" name="category">--}}
-{{--                                <span>Запчасти</span>--}}
-{{--                            </label>--}}
+                            {{--                            <label>--}}
+                            {{--                                <input type="radio" name="category">--}}
+                            {{--                                <span>Аксессуары</span>--}}
+                            {{--                            </label>--}}
+                            {{--                            <label>--}}
+                            {{--                                <input type="radio" name="category">--}}
+                            {{--                                <span>Запчасти</span>--}}
+                            {{--                            </label>--}}
                         </div>
                         <div class="search__items">
                             <p style="display: none;">Ничего не найдено</p>
@@ -115,83 +117,84 @@
                                         <span>Марки</span>
                                         <ul>
                                             @foreach($brands as $brand)
-                                            <li>
-                                                <a href="#">{{ $brand->title.' ('.count($brand->watchAdverts).')'}}</a>
-                                            </li>
+                                                <li>
+                                                    <a href="#">{{ $brand->title.' ('.count($brand->watchAdverts).')'}}</a>
+                                                </li>
                                             @endforeach
                                         </ul>
                                     </li>
-{{--                                    <li>--}}
-{{--                                        <span>Категории</span>--}}
-{{--                                        <ul>--}}
-{{--                                            @foreach($categories as $category)--}}
-{{--                                                <li>--}}
-{{--                                                    <a href="#">{{$category->title.' ('.count($category->watchModels).')'}}</a>--}}
-{{--                                                </li>--}}
-{{--                                            @endforeach--}}
-{{--                                        </ul>--}}
-{{--                                    </li>--}}
+                                    {{--                                    <li>--}}
+                                    {{--                                        <span>Категории</span>--}}
+                                    {{--                                        <ul>--}}
+                                    {{--                                            @foreach($categories as $category)--}}
+                                    {{--                                                <li>--}}
+                                    {{--                                                    <a href="#">{{$category->title.' ('.count($category->watchModels).')'}}</a>--}}
+                                    {{--                                                </li>--}}
+                                    {{--                                            @endforeach--}}
+                                    {{--                                        </ul>--}}
+                                    {{--                                    </li>--}}
                                 </ul>
                             </li>
                             <li>
-                                <a data-fancybox data-src="#referral_number" href="javascript:;" class="thisMe">Продать</a>
+                                <a data-fancybox data-src="#referral_number" href="javascript:;"
+                                   class="thisMe">Продать</a>
                             </li>
                         </ul>
                     </li>
-{{--                    <li class="has-menu">--}}
-{{--                        <span>Аксессуары</span>--}}
-{{--                        <ul class="catalog-mob__menu">--}}
-{{--                            <li class="has-menu">--}}
-{{--                                <span>Купить</span>--}}
-{{--                                <ul class="catalog-mob__list">--}}
-{{--                                    <a href="{{route('catalog.accessory')}}">Показать все результаты</a>--}}
-{{--                                    <li>--}}
-{{--                                        <span>Марки</span>--}}
-{{--                                        <ul>--}}
-{{--                                            @foreach($accessoryMakes as $accessoryMake)--}}
-{{--                                                <li>--}}
-{{--                                                    <a href="#">{{$accessoryMake->title.' ('.count($accessoryMake->accessoryAdverts).')'}}</a>--}}
-{{--                                                </li>--}}
-{{--                                            @endforeach--}}
-{{--                                        </ul>--}}
-{{--                                    </li>--}}
-{{--                                </ul>--}}
-{{--                            </li>--}}
-{{--                            <li>--}}
-{{--                                <a data-fancybox data-src="#referral_number" href="javascript:;" class="thisMe">Продать</a>--}}
-{{--                            </li>--}}
-{{--                        <ul class="catalog-mob__list">--}}
-{{--                            <a href="">Показать все результаты</a>--}}
-{{--                        </ul>--}}
-{{--                        </ul>--}}
-{{--                    </li>--}}
-{{--                    <li class="has-menu">--}}
-{{--                        <span>Запчасти</span>--}}
-{{--                        <ul class="catalog-mob__menu">--}}
-{{--                            <li class="has-menu">--}}
-{{--                                <span>Купить</span>--}}
-{{--                                <ul class="catalog-mob__list">--}}
-{{--                                    <a href="{{route('catalog.spare-parts')}}">Показать все результаты</a>--}}
-{{--                                    <li>--}}
-{{--                                        <span>Марки</span>--}}
-{{--                                        <ul>--}}
-{{--                                            @foreach($sparePartsMakes as $sparePartsMake)--}}
-{{--                                                <li>--}}
-{{--                                                    <a href="#">{{$sparePartsMake->title.' ('.count($sparePartsMake->sparePartsAdverts).')'}}</a>--}}
-{{--                                                </li>--}}
-{{--                                            @endforeach--}}
-{{--                                        </ul>--}}
-{{--                                    </li>--}}
-{{--                                </ul>--}}
-{{--                            </li>--}}
-{{--                            <li>--}}
-{{--                                <a data-fancybox data-src="#referral_number" href="javascript:;" class="thisMe">Продать</a>--}}
-{{--                            </li>--}}
-{{--                        <ul class="catalog-mob__list">--}}
-{{--                            <a href="">Показать все результаты</a>--}}
-{{--                        </ul>--}}
-{{--                        </ul>--}}
-{{--                    </li>--}}
+                    {{--                    <li class="has-menu">--}}
+                    {{--                        <span>Аксессуары</span>--}}
+                    {{--                        <ul class="catalog-mob__menu">--}}
+                    {{--                            <li class="has-menu">--}}
+                    {{--                                <span>Купить</span>--}}
+                    {{--                                <ul class="catalog-mob__list">--}}
+                    {{--                                    <a href="{{route('catalog.accessory')}}">Показать все результаты</a>--}}
+                    {{--                                    <li>--}}
+                    {{--                                        <span>Марки</span>--}}
+                    {{--                                        <ul>--}}
+                    {{--                                            @foreach($accessoryMakes as $accessoryMake)--}}
+                    {{--                                                <li>--}}
+                    {{--                                                    <a href="#">{{$accessoryMake->title.' ('.count($accessoryMake->accessoryAdverts).')'}}</a>--}}
+                    {{--                                                </li>--}}
+                    {{--                                            @endforeach--}}
+                    {{--                                        </ul>--}}
+                    {{--                                    </li>--}}
+                    {{--                                </ul>--}}
+                    {{--                            </li>--}}
+                    {{--                            <li>--}}
+                    {{--                                <a data-fancybox data-src="#referral_number" href="javascript:;" class="thisMe">Продать</a>--}}
+                    {{--                            </li>--}}
+                    {{--                        <ul class="catalog-mob__list">--}}
+                    {{--                            <a href="">Показать все результаты</a>--}}
+                    {{--                        </ul>--}}
+                    {{--                        </ul>--}}
+                    {{--                    </li>--}}
+                    {{--                    <li class="has-menu">--}}
+                    {{--                        <span>Запчасти</span>--}}
+                    {{--                        <ul class="catalog-mob__menu">--}}
+                    {{--                            <li class="has-menu">--}}
+                    {{--                                <span>Купить</span>--}}
+                    {{--                                <ul class="catalog-mob__list">--}}
+                    {{--                                    <a href="{{route('catalog.spare-parts')}}">Показать все результаты</a>--}}
+                    {{--                                    <li>--}}
+                    {{--                                        <span>Марки</span>--}}
+                    {{--                                        <ul>--}}
+                    {{--                                            @foreach($sparePartsMakes as $sparePartsMake)--}}
+                    {{--                                                <li>--}}
+                    {{--                                                    <a href="#">{{$sparePartsMake->title.' ('.count($sparePartsMake->sparePartsAdverts).')'}}</a>--}}
+                    {{--                                                </li>--}}
+                    {{--                                            @endforeach--}}
+                    {{--                                        </ul>--}}
+                    {{--                                    </li>--}}
+                    {{--                                </ul>--}}
+                    {{--                            </li>--}}
+                    {{--                            <li>--}}
+                    {{--                                <a data-fancybox data-src="#referral_number" href="javascript:;" class="thisMe">Продать</a>--}}
+                    {{--                            </li>--}}
+                    {{--                        <ul class="catalog-mob__list">--}}
+                    {{--                            <a href="">Показать все результаты</a>--}}
+                    {{--                        </ul>--}}
+                    {{--                        </ul>--}}
+                    {{--                    </li>--}}
                     <li>
                         {{__('messages.contacts')}}
                     </li>
@@ -247,14 +250,14 @@
                                             <input type="radio" name="category" checked>
                                             <span>Часы</span>
                                         </label>
-{{--                                        <label>--}}
-{{--                                            <input type="radio" name="category">--}}
-{{--                                            <span>Аксессуары</span>--}}
-{{--                                        </label>--}}
-{{--                                        <label>--}}
-{{--                                            <input type="radio" name="category">--}}
-{{--                                            <span>Запчасти</span>--}}
-{{--                                        </label>--}}
+                                        {{--                                        <label>--}}
+                                        {{--                                            <input type="radio" name="category">--}}
+                                        {{--                                            <span>Аксессуары</span>--}}
+                                        {{--                                        </label>--}}
+                                        {{--                                        <label>--}}
+                                        {{--                                            <input type="radio" name="category">--}}
+                                        {{--                                            <span>Запчасти</span>--}}
+                                        {{--                                        </label>--}}
                                     </div>
                                     <div class="search__items">
                                         <p style="display: none;">Ничего не найдено</p>
@@ -276,7 +279,8 @@
                                                 <a href="#"><span>Hublot</span> Big Bang Kroko Kautschukband</a>
                                             </li>
                                             <li>
-                                                <a href="#"><span>Hublot</span> Big Bang Fusion Dark Brown Alligator Strap</a>
+                                                <a href="#"><span>Hublot</span> Big Bang Fusion Dark Brown Alligator
+                                                    Strap</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -287,8 +291,10 @@
                             <div class="header-login-block__btns">
                                 @if(!\Illuminate\Support\Facades\Auth::check())
                                     <div>
-                                        <a data-fancybox data-src="#login-modal" href="javascript:;"  href="#">{{__('messages.login')}}</a>
-                                        <a data-fancybox data-src="#registration-modal" href="javascript:;"  href="#">{{__('messages.registration')}}</a>
+                                        <a data-fancybox data-src="#login-modal" href="javascript:;"
+                                           href="#">{{__('messages.login')}}</a>
+                                        <a data-fancybox data-src="#registration-modal" href="javascript:;"
+                                           href="#">{{__('messages.registration')}}</a>
                                     </div>
                                 @else
 
@@ -300,13 +306,21 @@
                                             <span class="notification-btn">1</span>
                                         </div>
                                         <ul class="header-cabinet-list">
-                                            <li><a href="{{route('my_adverts')}}">{{__('messages.menu_my_adverts')}}</a></li>
+                                            <li><a href="{{route('my_adverts')}}">{{__('messages.menu_my_adverts')}}</a>
+                                            </li>
                                             <li><a href="#">{{__('messages.menu_messages')}}</a></li>
-                                            <li><a href="{{route('payments')}}">{{__('messages.menu_payments')}}</a></li>
-                                            <li><a href="{{ route('editing-profile') }}">{{__('messages.menu_editing_profile')}}</a></li>
-                                            <li><a href="{{ route('profile-settings') }}">{{__('messages.menu_profile_settings')}}</a></li>
-                                            <li><a href="{{route('favorite')}}">{{__('messages.menu_favorite')}}</a></li>
-                                            <li><a href="{{route('referral')}}">{{__('messages.menu_referral')}}</a></li>
+                                            <li><a href="{{route('payments')}}">{{__('messages.menu_payments')}}</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route('editing-profile') }}">{{__('messages.menu_editing_profile')}}</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route('profile-settings') }}">{{__('messages.menu_profile_settings')}}</a>
+                                            </li>
+                                            <li><a href="{{route('favorite')}}">{{__('messages.menu_favorite')}}</a>
+                                            </li>
+                                            <li><a href="{{route('referral')}}">{{__('messages.menu_referral')}}</a>
+                                            </li>
                                             <li><a href="{{route('logout')}}">{{__('messages.menu_logout')}}</a></li>
                                         </ul>
                                     </div>
@@ -356,80 +370,81 @@
                                                     </ul>
                                                 </div>
                                             </div>
-{{--                                            <div class="header-nav-list">--}}
-{{--                                                <h3>Категории</h3>--}}
-{{--                                                <ul>--}}
-{{--                                                    @foreach($categories as $category)--}}
-{{--                                                        <li>--}}
-{{--                                                            <a href="#">{{$category->title.' ('.count($category->watchModels).')'}}</a>--}}
-{{--                                                        </li>--}}
-{{--                                                    @endforeach--}}
-{{--                                                </ul>--}}
-{{--                                            </div>--}}
+                                            {{--                                            <div class="header-nav-list">--}}
+                                            {{--                                                <h3>Категории</h3>--}}
+                                            {{--                                                <ul>--}}
+                                            {{--                                                    @foreach($categories as $category)--}}
+                                            {{--                                                        <li>--}}
+                                            {{--                                                            <a href="#">{{$category->title.' ('.count($category->watchModels).')'}}</a>--}}
+                                            {{--                                                        </li>--}}
+                                            {{--                                                    @endforeach--}}
+                                            {{--                                                </ul>--}}
+                                            {{--                                            </div>--}}
                                         </div>
                                     </li>
                                     <li>
-                                        <a data-fancybox data-src="#referral_number" href="javascript:;" ><span>Продать</span></a>
+                                        <a data-fancybox data-src="#referral_number"
+                                           href="javascript:;"><span>Продать</span></a>
                                     </li>
                                 </ul>
                             </li>
-{{--                            <li>--}}
-{{--                                <a href="{{route('catalog.accessory')}}">Аксессуары</a>--}}
-{{--                                <ul class="header-desc-nav__btns">--}}
-{{--                                    <li class="list-btn">--}}
-{{--                                        <a href="#"><span>Купить</span></a>--}}
-{{--                                        <div class="header-nav-lists header-nav-lists_second">--}}
-{{--                                            <div class="header-nav-list header-nav-list_few-columns">--}}
-{{--                                                <h3>Марки</h3>--}}
-{{--                                                <div>--}}
-{{--                                                    <ul>--}}
-{{--                                                        @foreach($accessoryMakes as $accessoryMake)--}}
-{{--                                                            <li>--}}
-{{--                                                                <a href="#">{{$accessoryMake->title.' ('.count($accessoryMake->accessoryAdverts).')'}}</a>--}}
-{{--                                                            </li>--}}
-{{--                                                        @endforeach--}}
-{{--                                                    </ul>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                            <div class="header-nav-list">--}}
-{{--                                                <h3>Категории</h3>--}}
-{{--                                                <ul>--}}
-{{--                                                        <a href="#">Браслеты и ремешки / Детали и аксессуары</a>--}}
-{{--                                                    </li>--}}
-{{--                                                </ul>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </li>--}}
-{{--                                    <li>--}}
-{{--                                        <a data-fancybox data-src="#referral_number" href="javascript:;"><span>Продать</span></a>--}}
-{{--                                    </li>--}}
-{{--                                </ul>--}}
-{{--                            </li>--}}
-{{--                            <li>--}}
-{{--                                <a href="{{route('catalog.spare-parts')}}">Запчасти</a>--}}
-{{--                                <ul class="header-desc-nav__btns">--}}
-{{--                                    <li class="list-btn">--}}
-{{--                                        <a href="#"><span>Купить</span></a>--}}
-{{--                                        <div class="header-nav-lists header-nav-lists_third">--}}
-{{--                                            <div class="header-nav-list header-nav-list_few-columns">--}}
-{{--                                                <h3>Марки</h3>--}}
-{{--                                                <div>--}}
-{{--                                                    <ul>--}}
-{{--                                                        @foreach($sparePartsMakes as $sparePartsMake)--}}
-{{--                                                            <li>--}}
-{{--                                                                <a href="#">{{$sparePartsMake->title.' ('.count($sparePartsMake->sparePartsAdverts).')'}}</a>--}}
-{{--                                                            </li>--}}
-{{--                                                        @endforeach--}}
-{{--                                                    </ul>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </li>--}}
-{{--                                    <li>--}}
-{{--                                        <a data-fancybox data-src="#referral_number" href="javascript:;"><span>Продать</span></a>--}}
-{{--                                    </li>--}}
-{{--                                </ul>--}}
-{{--                            </li>--}}
+                            {{--                            <li>--}}
+                            {{--                                <a href="{{route('catalog.accessory')}}">Аксессуары</a>--}}
+                            {{--                                <ul class="header-desc-nav__btns">--}}
+                            {{--                                    <li class="list-btn">--}}
+                            {{--                                        <a href="#"><span>Купить</span></a>--}}
+                            {{--                                        <div class="header-nav-lists header-nav-lists_second">--}}
+                            {{--                                            <div class="header-nav-list header-nav-list_few-columns">--}}
+                            {{--                                                <h3>Марки</h3>--}}
+                            {{--                                                <div>--}}
+                            {{--                                                    <ul>--}}
+                            {{--                                                        @foreach($accessoryMakes as $accessoryMake)--}}
+                            {{--                                                            <li>--}}
+                            {{--                                                                <a href="#">{{$accessoryMake->title.' ('.count($accessoryMake->accessoryAdverts).')'}}</a>--}}
+                            {{--                                                            </li>--}}
+                            {{--                                                        @endforeach--}}
+                            {{--                                                    </ul>--}}
+                            {{--                                                </div>--}}
+                            {{--                                            </div>--}}
+                            {{--                                            <div class="header-nav-list">--}}
+                            {{--                                                <h3>Категории</h3>--}}
+                            {{--                                                <ul>--}}
+                            {{--                                                        <a href="#">Браслеты и ремешки / Детали и аксессуары</a>--}}
+                            {{--                                                    </li>--}}
+                            {{--                                                </ul>--}}
+                            {{--                                            </div>--}}
+                            {{--                                        </div>--}}
+                            {{--                                    </li>--}}
+                            {{--                                    <li>--}}
+                            {{--                                        <a data-fancybox data-src="#referral_number" href="javascript:;"><span>Продать</span></a>--}}
+                            {{--                                    </li>--}}
+                            {{--                                </ul>--}}
+                            {{--                            </li>--}}
+                            {{--                            <li>--}}
+                            {{--                                <a href="{{route('catalog.spare-parts')}}">Запчасти</a>--}}
+                            {{--                                <ul class="header-desc-nav__btns">--}}
+                            {{--                                    <li class="list-btn">--}}
+                            {{--                                        <a href="#"><span>Купить</span></a>--}}
+                            {{--                                        <div class="header-nav-lists header-nav-lists_third">--}}
+                            {{--                                            <div class="header-nav-list header-nav-list_few-columns">--}}
+                            {{--                                                <h3>Марки</h3>--}}
+                            {{--                                                <div>--}}
+                            {{--                                                    <ul>--}}
+                            {{--                                                        @foreach($sparePartsMakes as $sparePartsMake)--}}
+                            {{--                                                            <li>--}}
+                            {{--                                                                <a href="#">{{$sparePartsMake->title.' ('.count($sparePartsMake->sparePartsAdverts).')'}}</a>--}}
+                            {{--                                                            </li>--}}
+                            {{--                                                        @endforeach--}}
+                            {{--                                                    </ul>--}}
+                            {{--                                                </div>--}}
+                            {{--                                            </div>--}}
+                            {{--                                        </div>--}}
+                            {{--                                    </li>--}}
+                            {{--                                    <li>--}}
+                            {{--                                        <a data-fancybox data-src="#referral_number" href="javascript:;"><span>Продать</span></a>--}}
+                            {{--                                    </li>--}}
+                            {{--                                </ul>--}}
+                            {{--                            </li>--}}
                             <li>
                                 <a href="{{route('about')}}">{{__('messages.contacts')}}</a>
                             </li>
@@ -441,12 +456,12 @@
     </div>
 </header>
 <script>
-    document.addEventListener("DOMContentLoaded", function(event) {
+    document.addEventListener("DOMContentLoaded", function (event) {
         console.log(222);
         document.querySelectorAll('.languages-btns input').forEach(function (item) {
             item.addEventListener('change', function (e) {
                 $.ajax({
-                    url: '/set_locale/'+this.value,
+                    url: '/set_locale/' + this.value,
                     success: function (data) {
                         // $('#advert').empty();
                         // $('#advert').html(data.output);
@@ -455,78 +470,79 @@
                 })
             })
         })
-    });
-    $('#registration-form').on('submit', function(e){
-        e.preventDefault();
-        $.ajax({
-            type:"POST",
-            url: '/register-user',
-            data: $('#registration-form').serializeArray(),
-            datatype: 'html',
-            success: function (data) {
-                $('#registration-form').empty();
-                $('#registration-form').html(data.output);
 
-                console.log(data.output);
-                console.log(data.errors);
-            },
-            error: function (xhr) {
-                if(xhr.status === 422) {
-                    $('#reg-form-email').addClass('form-elem_err').removeClass('form-elem_success');
-                    $('#reg-form-email + span').text(xhr.responseJSON.errors.email[0]);
-                }
-            }
-        }).done(function() {
-            $( this ).addClass( "done" );
-        })
-    });
+        $('#registration-form').on('submit', function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: '/register-user',
+                data: $('#registration-form').serializeArray(),
+                datatype: 'html',
+                success: function (data) {
+                    $('#registration-form').empty();
+                    $('#registration-form').html(data.output);
 
-    $('#login-form').on('submit', function(e){
-        e.preventDefault();
-        $.ajax({
-            type:"POST",
-            url: '/check-login-email',
-            data: $('#login-form').serializeArray(),
-            datatype: 'html',
-            success: function (data) {
-                if (data.email) {
-                    $('#password-form-email').val(data.email);
-                    $.fancybox.close({
-                        src: '#login-modal',
-                    });
-                    $.fancybox.open({
-                        src: '#password-modal',
-                    });
+                    console.log(data.output);
+                    console.log(data.errors);
+                },
+                error: function (xhr) {
+                    if (xhr.status === 422) {
+                        $('#reg-form-email').addClass('form-elem_err').removeClass('form-elem_success');
+                        $('#reg-form-email + span').text(xhr.responseJSON.errors.email[0]);
+                    }
                 }
-                if (data.status == 'error') {
-                    $('#login-email-form').addClass('form-elem_err').removeClass('form-elem_success');
-                    $('#login-email-form + span').text(data.message);
-                }
-            }
-        }).done(function() {
-            $( this ).addClass( "done" );
-        })
-    });
+            }).done(function () {
+                $(this).addClass("done");
+            })
+        });
 
-    $('#password-form').on('submit', function(e){
-        e.preventDefault();
-        $.ajax({
-            type:"POST",
-            url: '/login-password',
-            data: $('#password-form').serializeArray(),
-            datatype: 'html',
-            success: function (data) {
-                $('#password-form').html(data.output);
-                if(data.status == 'success') {
-                    window.location.replace(document.location.href);
+        $('#login-form').on('submit', function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: '/check-login-email',
+                data: $('#login-form').serializeArray(),
+                datatype: 'html',
+                success: function (data) {
+                    if (data.email) {
+                        $('#password-form-email').val(data.email);
+                        $.fancybox.close({
+                            src: '#login-modal',
+                        });
+                        $.fancybox.open({
+                            src: '#password-modal',
+                        });
+                    }
+                    if (data.status == 'error') {
+                        $('#login-email-form').addClass('form-elem_err').removeClass('form-elem_success');
+                        $('#login-email-form + span').text(data.message);
+                    }
                 }
-                if(data.status == 'error') {
-                    $('#password-login-form').addClass('form-elem_err').removeClass('form-elem_success');
-                    $('#password-login-form + span').text(data.message);
-                }
-            },
-        }).done(function() {
-            $( this ).addClass( "done" );
-        })
+            }).done(function () {
+                $(this).addClass("done");
+            })
+        });
+
+        $('#password-form').on('submit', function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: '/login-password',
+                data: $('#password-form').serializeArray(),
+                datatype: 'html',
+                success: function (data) {
+                    $('#password-form').html(data.output);
+                    if (data.status == 'success') {
+                        window.location.replace(document.location.href);
+                    }
+                    if (data.status == 'error') {
+                        $('#password-login-form').addClass('form-elem_err').removeClass('form-elem_success');
+                        $('#password-login-form + span').text(data.message);
+                    }
+                },
+            }).done(function () {
+                $(this).addClass("done");
+            })
+        });
     });
 </script>

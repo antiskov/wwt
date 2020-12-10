@@ -18,7 +18,7 @@
               <li>
                 <div class="checkbox-block">
                   <label class="checkbox-block__label">
-                    <input type="checkbox" name="Victorinox" value="Victorinox">
+                    <input type="checkbox" name="Victorinox" checked="checked" value="Victorinox">
                     <p><span>Victorinox (172)</span></p>
                   </label>
                 </div>
@@ -1039,7 +1039,7 @@
               <li>
                 <div class="checkbox-block">
                   <label class="checkbox-block__label">
-                    <input type="checkbox" name="Victorinox" value="Victorinox">
+                    <input type="checkbox" name="Victorinox" checked value="Victorinox">
                     <p><span>Victorinox (172)</span></p>
                   </label>
                 </div>
@@ -1146,7 +1146,7 @@
             <li>
               <div class="checkbox-block">
                 <label class="checkbox-block__label">
-                  <input type="checkbox" name="Victorinox" value="Victorinox" id="some_id_1">
+                  <input type="checkbox" name="Victorinox" checked value="Victorinox" id="some_id_1">
                   <p><span>Victorinox (172)</span></p>
                 </label>
               </div>

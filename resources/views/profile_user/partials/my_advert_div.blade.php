@@ -16,8 +16,7 @@
 
                 <div class="cont">
                     <div class="img-wrap">
-                        <img src="{{asset('/storage/'.$advert->photo)}}" alt="img">
-                        <img src="{{asset('/storage/'.$advert->photo)}}" alt="img">
+                        <img src="/images/content/watch-1.png" alt="img">
                     </div>
                     <div class="ad-cont">
                         <div class="name-block">
