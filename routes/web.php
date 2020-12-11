@@ -84,6 +84,7 @@ Route::middleware('set.locale')->group(function () {
 
     Route::group(['prefix' =>'submitting'], function() {
         Route::get('/', [\App\Http\Controllers\SubmittingController::class, 'index'])->name('submitting');
+//        Route::post('/step')
     });
 });
 
