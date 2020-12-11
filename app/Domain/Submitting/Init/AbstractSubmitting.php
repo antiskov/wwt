@@ -1,10 +1,8 @@
 <?php
 
-namespace App\Domain\Submitting;
+namespace App\Domain\Submitting\Init;
 
-use App\Contracts\SubmittingInterface;
-use App\Http\Requests\SubmittingRequest;
-use App\Models\Advert;
+use App\Contracts\Submitting\SubmittingInterface;
 
 abstract class AbstractSubmitting
 {
@@ -12,7 +10,7 @@ abstract class AbstractSubmitting
 
     abstract public function getSubmit():SubmittingInterface;
 
-    public function get()
+    public function get():array
     {
         $advert = $this->getSubmit();
         $advert->init();

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Domain\Submitting;
+namespace App\Domain\Submitting\Init;
 
-use App\Contracts\SubmittingInterface;
-use App\Http\Requests\SubmittingRequest;
+use App\Contracts\Submitting\SubmittingInterface;
+use App\Http\Requests\Submitting\SubmittingRequest;
 
 class WatchConnector extends AbstractSubmitting
 {

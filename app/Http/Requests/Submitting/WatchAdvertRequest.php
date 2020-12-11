@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Submitting;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SubmittingRequest extends FormRequest
+class WatchAdvertRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,8 @@ class SubmittingRequest extends FormRequest
     public function rules()
     {
         return [
-//            'model_code' => 'required|numeric',
-            'model_code' => 'numeric',
+            'model_code' => 'required|numeric',
+            "watchType"=> 'required|max:255',
         ];
     }
 }

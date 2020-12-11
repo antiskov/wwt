@@ -84,7 +84,8 @@ Route::middleware('set.locale')->group(function () {
 
     Route::group(['prefix' =>'submitting'], function() {
         Route::get('/', [\App\Http\Controllers\SubmittingController::class, 'index'])->name('submitting');
-//        Route::post('/step')
+        Route::post('/create_draft/{advert}', [\App\Http\Controllers\SubmittingController::class, 'createDraft'])->name('submitting.create_draft');
+        Route::get('/draft/{advert}', [\App\Http\Controllers\SubmittingController::class, 'getDraft'])->name('submitting.get_draft');
     });
 });
 

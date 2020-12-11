@@ -1,12 +1,15 @@
 <?php
 
-namespace App\Domain\Submitting;
+namespace App\Domain\Submitting\Init;
 
 use App\Models\Advert;
 
 class ToolsForSub
 {
-    protected function createAdvert(){
+    protected $request;
+
+    protected function createAdvert():Advert
+    {
         $advert = new Advert();
         $advert->user()->associate(auth()->user());
         $advert->title = 'none';
@@ -17,11 +20,5 @@ class ToolsForSub
         $advert->save();
 
         return $advert;
-    }
-
-    public function getInfoForStep()
-    {
-        $this->init();
-        return $this->getInfo();
     }
 }
