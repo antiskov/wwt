@@ -1,12 +1,18 @@
-<div class="tabs__content ">
+<div class="tabs__content active" data-tab="1">
     <div class="tabs-item">
         <h2>Предложение <span>* обязательное поле</span></h2>
         <div class="input-case">
             <div class="select-price">
                 <p>Тип часов *</p>
-                <input type="hidden" name="watchType">
-                <div class="select-value rotate">
-                    <span>Выберите</span>
+                @if($position == 1)
+                    <input type="hidden" name="watchType" value="{{$advert->watchAdvert->watchType->title}}">
+                    <div class="select-value rotate">
+                        <span>{{$advert->watchAdvert->watchType->title}}</span>
+                @else
+                    <input type="hidden" name="watchType">
+                    <div class="select-value rotate">
+                        <span>Выберите</span>
+                @endif
                     <ul class="value-items">
                         @foreach($watchTypes as $watchType)
                             <li>{{$watchType->title}}</li>
@@ -15,30 +21,28 @@
                 </div>
             </div>
             <div class="select-price">
-                <p>Марка *</p>
-                <div class="cont">
-                    <input type="text" name="brand" value="">
-
-                    <span>
-                                    Производитель не включен в список?
-                                </span>
-                </div>
             </div>
             <div class="select-price">
-                <p>Модель *
+                <p>Марка *</p>
+                @if($position == 1)
+                    <input data-step-input class="common-input" type="text" name="brand" value="{{$advert->watchAdvert->watchMake->title}}">
+                @else
+                    <input data-step-input class="common-input" type="text" name="brand" value="">
+                @endif
+            </div>
+            <div class="select-price">
+                <p class="ai-fe">Модель *
                     <img src="/images/icons/information-icon.svg" alt="img" class="info-icon">
                     <span class="input-info">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                                     Dolores earum, ipsa ipsum iste laborum nihil tempore? Ea
                                     laboriosam officiis possimus quam quas quod sed totam?
                                 </span>
                 </p>
-                <div class="cont">
-                    <input type="text" name="model" value="">
-                    <span>
-                                    Вы можете добавить к названию модели дополнительную
-                                    информацию, например, конкретный вариант модели.
-                                </span>
-                </div>
+                @if($position == 1)
+                    <input data-step-input class="common-input" type="text" name="model" value="{{$advert->watchAdvert->watchModel->title}}">
+                @else
+                    <input data-step-input class="common-input" type="text" name="model" value="">
+                @endif
             </div>
             <div class="select-price">
                 <p>Идент. номер
@@ -49,16 +53,9 @@
                                 </span>
                 </p>
                 @if(isset($model_code))
-                    <input type="text" name="model_code" value="{{$model_code}}">
+                    <input data-step-input type="text" class="common-input" name="model_code" value="{{$model_code}}">
                 @else
-                    <input type="text" name="model_code" value="">
-                    {{--                            <div class="select-value rotate">--}}
-                    {{--                                <span>Выберите</span>--}}
-                    {{--                                <ul class="value-items">--}}
-                    {{--                                    <li>{{$model_code}}</li>--}}
-                    {{--                                    <li>0000 0000 0000 0000</li>--}}
-                    {{--                                </ul>--}}
-                    {{--                            </div>--}}
+                    <input data-step-input type="text" class="common-input" name="model_code" value="">
                 @endif
             </div>
             <div class="select-price">
@@ -69,9 +66,15 @@
                                     laboriosam officiis possimus quam quas quod sed totam?
                                 </span>
                 </p>
-                <input type="hidden" name="state">
-                <div class="select-value rotate">
-                    <span>Выберите</span>
+                @if($position == 1)
+                    <input type="hidden" name="state" value="{{$advert->watchAdvert->watch_state}}">
+                    <div class="select-value rotate">
+                        <span>{{$advert->watchAdvert->watch_state}}</span>
+                @else
+                    <input type="hidden" name="state">
+                    <div class="select-value rotate">
+                        <span>Выберите</span>
+                @endif
                     <ul class="value-items">
                         @foreach($states as $state)
                             <li>{{$state}}</li>
@@ -87,9 +90,15 @@
                                     laboriosam officiis possimus quam quas quod sed totam?
                                 </span>
                 </p>
-                <input type="hidden" name="deliveryVolume">
-                <div class="select-value rotate">
-                    <span>Выберите</span>
+                @if($position == 1)
+                    <input type="hidden" name="deliveryVolume" value="{{$advert->	delivery_volume}}">
+                    <div class="select-value rotate">
+                        <span>{{$advert->delivery_volume}}</span>
+                @else
+                    <input type="hidden" name="deliveryVolume">
+                    <div class="select-value rotate">
+                        <span>Выберите</span>
+                @endif
                     <ul class="value-items">
                         @foreach($deliveryVolumes as $deliveryVolume)
                             <li>{{$deliveryVolume}}</li>
@@ -102,9 +111,15 @@
         <h2>Базовые данные</h2>
         <div class="select-price">
             <p>Пол</p>
-            <input type="hidden" name="sex">
-            <div class="select-value rotate">
-                <span>Выберите</span>
+            @if($position == 1)
+                <input type="hidden" name="sex" value="{{$advert->watchAdvert->sex->title}}">
+                <div class="select-value rotate">
+                    <span>{{$advert->watchAdvert->sex->title}}</span>
+            @else
+                <input type="hidden" name="sex">
+                <div class="select-value rotate">
+                    <span>Выберите</span>
+            @endif
                 <ul class="value-items">
                     @foreach($sexes as $sex)
                         <li>{{$sex->title}}</li>
@@ -117,32 +132,60 @@
         <label for="made-watch">
             Год выпуска *
             <span class="cont-wrap">
-                            <input type="text" id="made-watch" name="release_year">
-                            <span class="check-cont">
+                @if($position == 1)
+                    <input data-step-input type="text" id="made-watch" name="release_year" value="{{$advert->watchAdvert->release_year}}">
+                @else
+                    <input data-step-input type="text" id="made-watch" name="release_year">
+                @endif
+                    @if($position == 1 && $advert->watchAdvert->is_release_year_confirmed == 1)
+                        <span class="check-cont">
                                 <label class="checkbox-other">
-                                    <input type="radio" name="year">
+                                    <input type="radio" name="year" checked value="1">
                                     <span>Приблизительно</span>
                                 </label>
                                 <label class="checkbox-other">
-                                    <input type="radio" name="year" checked="">
+                                    <input type="radio" name="year" value="0">
                                     <span>Неизвестно</span>
                                 </label>
                             </span>
-                        </span>
+                    @else
+                        <span class="check-cont">
+                                <label class="checkbox-other">
+                                    <input type="radio" name="year" value="1">
+                                    <span>Приблизительно</span>
+                                </label>
+                                <label class="checkbox-other">
+                                    <input type="radio" name="year" checked value="0">
+                                    <span>Неизвестно</span>
+                                </label>
+                            </span>
+                    @endif
         </label>
         <label>
             Диаметр *
             <span class="size-cont">
-                            <input type="number" name="width">
+                @if($position == 1)
+                    <input data-step-input type="number" name="width" value="{{$advert->watchAdvert->width}}">
+                    X
+                    <input data-step-input type="number" name="height" value="{{$advert->watchAdvert->height}}">
+                @else
+                            <input data-step-input type="number" name="width">
                             X
-                            <input type="number" name="height">
+                            <input data-step-input type="number" name="height">
                         </span>
+            @endif
         </label>
         <div class="select-price">
             <p>Тип механизма</p>
-            <input type="hidden" name="typeMechanism">
-            <div class="select-value rotate">
-                <span>Выберите</span>
+            @if($position == 1)
+                <input type="hidden" name="typeMechanism" value="{{$advert->watchAdvert->mechanismType->title}}">
+                <div class="select-value rotate">
+                    <span>{{$advert->watchAdvert->mechanismType->title}}</span>
+            @else
+                <input type="hidden" name="typeMechanism">
+                <div class="select-value rotate">
+                    <span>Выберите</span>
+            @endif
                 <ul class="value-items">
                     @foreach($mechanismTypes as $mechanismType)
                         <li>{{$mechanismType->title}}</li>
@@ -152,45 +195,39 @@
         </div>
         <label for="description" class="description">
             Описание
+            @if($position == 1)
+                <textarea id="description" name="description"
+                          placeholder="Примеры: Где Вы купили часы?">{{$advert->watchAdvert->release_year}}</textarea>
+            @else
             <textarea id="description" name="description"
                       placeholder="Примеры: Где Вы купили часы?"></textarea>
+            @endif
         </label>
 
         <h2>Цена</h2>
 
-        {{--                    <div class="info-price">--}}
-        <div class="select-price">
-            <p>Цена</p>
-            <input type="hidden" name="price">
-            <div class="input-cont-price">
-                <input type="number" name="currency">
-                <div class="select-value rotate">
-                    <span>UA</span>
-                    <ul class="value-items">
-                        @foreach($currencies as $currency)
-                            <li>{{$currency->title}}</li>
-                        @endforeach
-                    </ul>
+        <div class="info-price">
+            <div class="select-price">
+                <p>Цена</p>
+                <input type="hidden" name="price">
+                <div class="input-cont-price">
+                    <input data-step-input type="number" name="currency">
+                    <div class="select-value rotate">
+                        <span>UA</span>
+                        <ul class="value-items">
+                            @foreach($currencies as $currency)
+                                <li>{{$currency->title}}</li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-
-        {{--                        <div class="price-modal-cont">--}}
-        {{--                            <div>Рекомендуемая цена: <span>4878.90 ₴</span> <img src="/images/icons/warning-lamp.svg"--}}
-        {{--                                                                                 alt="img"></div>--}}
-        {{--                            <p>--}}
-        {{--                                Для определения актуальной стоимости ваших--}}
-        {{--                                часов мы сравнили их с актуальными объявлениями на Сhrono24--}}
-        {{--                            </p>--}}
-        {{--                            <button class="price-chro btn-hover-w">Перенять цену</button>--}}
-        {{--                        </div>--}}
-        {{--                    </div>--}}
-
-
         <div class="btn-cont btn-cont_first">
             <button class="save-edit btn-hover-w" type="submit">Сохранить как черновик</button>
-            <button class="save-next btn-hover" type="submit">Перейти к шагу 2</button>
+            <button data-step="2" class="save-next btn-hover" type="button">Перейти к шагу 2</button>
         </div>
     </div>
+
 </div>
 

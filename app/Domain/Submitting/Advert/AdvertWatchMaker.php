@@ -5,6 +5,8 @@ namespace App\Domain\Submitting\Advert;
 use App\Contracts\Submitting\AdvertInterface;
 use App\Http\Requests\Submitting\WatchAdvertRequest;
 use App\Models\Advert;
+use App\Models\MechanismType;
+use App\Models\Sex;
 use App\Models\WatchMake;
 use App\Models\WatchModel;
 use App\Models\WatchType;
@@ -17,14 +19,50 @@ class AdvertWatchMaker extends AdvertTools implements AdvertInterface
         $this->advert = $advert;
     }
 
+    public function createWatchMake()
+    {
+        $watchMake =  WatchMake::where('title', $this->request->brand)->first();
+        if(!$watchMake){
+            $watchMake = new WatchMake();
+        }
+        $watchMake->title = $this->request->brand;
+        $watchMake->save();
+        $this->watchMake = $watchMake;
+    }
+
+    public function createWatchModel()
+    {
+        $watchModel = WatchModel::where('model_code', $this->request->model_code)->first();
+        if(!$watchModel){
+            $watchModel = new WatchModel();
+        }
+        $watchModel->title =  $this->request->model;
+        $watchModel->save();
+        $this->watchModel = $watchModel;
+    }
+
     public function makeDraft():void
     {
-        $this->recordAdvert();
+        $this->createWatchMake();
+        $this->createWatchModel();
+        $this->recordAdvert('watch');
 
         $watchAdvert = $this->advert->watchAdvert;
-        $watchAdvert->watch_type_id  = WatchType::where('title', $this->request->watchType)->first()->id;
-        $watchAdvert->watch_make_id  = WatchMake::where('title', $this->request->brand)->first()->id;
-        $watchAdvert->watch_make_id  = WatchModel::where('title', $this->request->brand)->first()->id;
+        $watchAdvert->watch_type_id = WatchType::where('title', $this->request->watchType)->first()->id;
+        $watchAdvert->watch_make_id = $this->watchMake->id;
+        $watchAdvert->watch_model_id = $this->watchModel->id;
+        $watchAdvert->watch_state = $this->request->state;
+        $watchAdvert->model_code = $this->request->model_code;
+        $watchAdvert->sex_id = Sex::where('title', $this->request->sex)->first()->id;
+        $watchAdvert->release_year = $this->request->release_year;
+        if($this->request->year){
+            $watchAdvert->is_release_year_confirmed	= 1;
+        } else {
+            $watchAdvert->is_release_year_confirmed	= 0;
+        }
+        $watchAdvert->height = $this->request->height;
+        $watchAdvert->width = $this->request->width;
+        $watchAdvert->mechanism_type_id = MechanismType::where('title', $this->request->typeMechanism)->first()->id;
         $watchAdvert->save();
     }
 

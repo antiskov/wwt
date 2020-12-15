@@ -15,6 +15,6 @@ class Status extends Model
 
     public function adverts()
     {
-        $this->hasOne(Advert::class);
+        $this->hasMany(Advert::class);
     }
 }

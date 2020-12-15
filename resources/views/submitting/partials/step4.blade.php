@@ -1,4 +1,4 @@
-<div class="tabs__content active">
+<div class="tabs__content" data-tab="4">
     <div class="tabs-item">
         <h2>Личные данные<span>* обязательное поле</span></h2>
         <p class="tabs-item__subtitle">предварительный просмотр</p>
@@ -121,12 +121,11 @@
         </div>
 
         <div class="btn-cont step-4-cont">
-            <button class="prev-step btn-hover">Вернуться к шагу 3</button>
+            <button data-step="3" class="prev-step btn-hover" type="button">Вернуться к шагу 3</button>
 
-            <button class="save-edit btn-hover-w">Сохранить как черновик</button>
+            <button data-fancybox data-src="#save-success" class="save-edit btn-hover-w" type="submit">Сохранить как черновик</button>
 
-            <button class="save-next btn-hover">Опубликовать</button>
-
+            <button class="save-next btn-hover" type="button">Опубликовать</button>
         </div>
     </div>
 </div>

@@ -3,6 +3,7 @@
 namespace App\Domain\Submitting\Init;
 
 use App\Contracts\Submitting\SubmittingInterface;
+use App\Domain\Submitting\Advert\AdvertTools;
 use App\Http\Requests\Submitting\SubmittingRequest;
 use App\Models\Currency;
 use App\Models\MechanismType;
@@ -10,7 +11,7 @@ use App\Models\Sex;
 use App\Models\WatchAdvert;
 use App\Models\WatchType;
 
-class SubmittingWatch extends ToolsForSub implements SubmittingInterface
+class SubmittingWatch extends AdvertTools implements SubmittingInterface
 {
     public $advert;
 

@@ -1,17 +1,17 @@
-<div class="tabs__content ">
+<div class="tabs__content " data-tab="3">
     <div class="tabs-item">
         <h2>Личные данные<span>* обязательное поле</span></h2>
         <label for="prof-surname-sub">
             Фамилия *
-            <input type="text" id="prof-surname-sub">
+            <input data-step-input type="text" id="prof-surname-sub">
         </label>
         <label for="prof-name-sub">
             Имя *
-            <input type="text" id="prof-name-sub">
+            <input data-step-input  type="text" id="prof-name-sub">
         </label>
         <label for="calendar">
             Дата рождения *
-            <input type="date" id="calendar">
+            <input data-step-input  type="date" id="calendar">
         </label>
 
         <h2>Местоположение часов</h2>
@@ -22,7 +22,7 @@
                 <p>Улица *</p>
                 <div class="autocomplete-input__block">
                     <div class="autocomplete-input__holder">
-                        <input type="text">
+                        <input type="text" data-step-input >
                     </div>
                     <div class="autocomplete-input__content">
                         <ul data-id="dropdownContent"></ul>
@@ -31,17 +31,17 @@
             </div>
             <label for="prof-stret-more">
                 Адресное дополнение
-                <input type="text" id="prof-stret-more">
+                <input type="text" data-step-input  id="prof-stret-more">
             </label>
             <label for="prof-index">
                 Почтовый индекс
-                <input type="text" id="prof-index">
+                <input type="text" data-step-input  id="prof-index">
             </label>
             <div class="autocomplete-input" data-autocomplete>
                 <p>Населенный пункт</p>
                 <div class="autocomplete-input__block">
                     <div class="autocomplete-input__holder">
-                        <input type="text">
+                        <input type="text" data-step-input >
                     </div>
                     <div class="autocomplete-input__content">
                         <ul data-id="dropdownContent"></ul>
@@ -52,7 +52,7 @@
                 <p>Страна *</p>
                 <div class="autocomplete-input__block">
                     <div class="autocomplete-input__holder">
-                        <input type="text">
+                        <input type="text" data-step-input >
                     </div>
                     <div class="autocomplete-input__content">
                         <ul data-id="dropdownContent"></ul>
@@ -63,7 +63,7 @@
                 <p>Область</p>
                 <div class="autocomplete-input__block">
                     <div class="autocomplete-input__holder">
-                        <input type="text">
+                        <input type="text" data-step-input>
                     </div>
                     <div class="autocomplete-input__content">
                         <ul data-id="dropdownContent"></ul>
@@ -113,12 +113,11 @@
         </div>
 
         <div class="btn-cont step-3-cont">
-            <button class="prev-step btn-hover">Вернуться к шагу 2</button>
+            <button data-step="2" class="prev-step btn-hover" type="button">Вернуться к шагу 2</button>
 
-            <button class="save-edit btn-hover-w">Сохранить как черновик</button>
+            <button data-fancybox data-src="#save-success" class="save-edit btn-hover-w" type="submit">Сохранить как черновик</button>
 
-            <button class="save-next btn-hover">Перейти к шагу 4</button>
-
+            <button data-step="4" class="save-next btn-hover" type="button">Перейти к шагу 4</button>
         </div>
     </div>
 </div>

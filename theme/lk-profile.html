@@ -818,58 +818,54 @@
                     <h2>Адресные данные</h2>
 
                     <!--    Двіжуха з автокомплітами       -->
-                    <div class="autocomplete-input" data-autocomplete>
-                        <p>Улица *</p>
-                        <div class="autocomplete-input__block">
-                            <div class="autocomplete-input__holder">
-                                <input type="text">
-                            </div>
-                            <div class="autocomplete-input__content">
-                                <ul data-id="dropdownContent"></ul>
-                            </div>
-                        </div>
-                    </div>
-                    <label for="prof-stret-more">
+                    <label for="route">
+                        Введите ваш адрес
+                        <input
+                                id="autocomplete"
+                                placeholder="Введите ваш адрес"
+                                type="text"
+                        />
+                    </label>
+
+                    <label for="route">
+                        Улица *
+                        <input type="text" id="route" disabled="true">
+                    </label>
+                    <label for="street_number">
                         Адресное дополнение
-                        <input type="text" id="prof-stret-more">
+                        <input type="text" id="street_number" disabled="true">
                     </label>
-                    <label for="prof-index">
+                    <label for="postal_code">
                         Почтовый индекс
-                        <input type="text" id="prof-index">
+                        <input type="text" id="postal_code" disabled="true">
                     </label>
-                    <div class="autocomplete-input" data-autocomplete>
-                        <p>Населенный пункт</p>
-                        <div class="autocomplete-input__block">
-                            <div class="autocomplete-input__holder">
-                                <input type="text">
-                            </div>
-                            <div class="autocomplete-input__content">
-                                <ul data-id="dropdownContent"></ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="autocomplete-input" data-autocomplete>
-                        <p>Страна *</p>
-                        <div class="autocomplete-input__block">
-                            <div class="autocomplete-input__holder">
-                                <input type="text">
-                            </div>
-                            <div class="autocomplete-input__content">
-                                <ul data-id="dropdownContent"></ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="autocomplete-input" data-autocomplete>
-                        <p>Область</p>
-                        <div class="autocomplete-input__block">
-                            <div class="autocomplete-input__holder">
-                                <input type="text">
-                            </div>
-                            <div class="autocomplete-input__content">
-                                <ul data-id="dropdownContent"></ul>
-                            </div>
-                        </div>
-                    </div>
+                    <label for="locality">
+                        Населенный пункт
+                        <input type="text" id="locality" disabled="true">
+                    </label>
+                    <label for="street_number">
+                        Страна *
+                        <input type="text" id="country" disabled="true">
+                    </label>
+                    <label for="street_number">
+                        Область
+                        <input type="text" id="administrative_area_level_1" disabled="true">
+                    </label>
+
+
+
+<!--       автокоплит, вдруг надо будет             -->
+<!--                    <div class="autocomplete-input" data-autocomplete>-->
+<!--                        <p>Область</p>-->
+<!--                        <div class="autocomplete-input__block">-->
+<!--                            <div class="autocomplete-input__holder">-->
+<!--                                <input type="text">-->
+<!--                            </div>-->
+<!--                            <div class="autocomplete-input__content">-->
+<!--                                <ul data-id="dropdownContent"></ul>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
 
                     <!--   Двіжуха з корами               -->
                     <input type="hidden" name="lat" data-id="lat">
@@ -954,7 +950,8 @@
     </div>
 </section>
 
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDmCYblB4cVMXS93Da6iBG1RFldOXY46hA"></script>
+<script src="https://maps.google.com/maps/api/js?key=AIzaSyA-M4C5q7VMtAjsrGwrf2rh1_rcRXi67zk&libraries=places&language=ru"
+        type="text/javascript"></script>
 <script src="js/g-autocomplete.js"></script>
 
 <footer class="footer">
@@ -1267,6 +1264,12 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<div id="save-success">
+  <div class="modal-cont">
+    <h2>Объявление сохранено</h2>
   </div>
 </div>
 

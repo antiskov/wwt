@@ -42,9 +42,8 @@ Route::middleware('set.locale')->group(function () {
         Route::post('/new-password', [\App\Http\Controllers\PasswordController::class, 'saveNewPassword'])->name('save_new_password');
     });
 
-
-    Route::group(['prefix' => 'profile'], function () {
-        Route::middleware('auth')->group(function () {
+    Route::middleware('auth')->group(function () {
+        Route::group(['prefix' => 'profile'], function () {
             Route::get('/settings', [\App\Http\Controllers\ProfileController::class, 'settingsIndex'])->name('profile-settings');
             Route::post('/settings-form', [\App\Http\Controllers\ProfileController::class, 'setBasicSettings'])->name('settings-form');
             Route::get('/editing-profile', [\App\Http\Controllers\ProfileController::class, 'editingProfileIndex'])->name('editing-profile');
@@ -61,6 +60,12 @@ Route::middleware('set.locale')->group(function () {
             Route::get('/referral', [\App\Http\Controllers\ProfileController::class, 'referralIndex'])->name('referral');
             Route::get('/payments', [\App\Http\Controllers\ProfileController::class, 'getPayments'])->name('payments');
             Route::post('/set_cost', [\App\Http\Controllers\ProfileController::class, 'setTransaction'])->name('set_transaction');
+        });
+        Route::group(['prefix' =>'submitting'], function() {
+            Route::get('/', [\App\Http\Controllers\SubmittingController::class, 'index'])->name('submitting');
+            Route::post('/draft/{advert}', [\App\Http\Controllers\SubmittingController::class, 'editDraft'])->name('submitting.edit_draft');
+            Route::get('/draft/{advert}', [\App\Http\Controllers\SubmittingController::class, 'getDraft'])->name('submitting.get_draft');
+            Route::post('/upload_image/{advert}', [\App\Http\Controllers\SubmittingController::class, 'uploadImage'])->name('submitting.upload_image');
         });
     });
 
@@ -82,11 +87,7 @@ Route::middleware('set.locale')->group(function () {
 
     Route::get('count_pagination/{countPagination?}', [\App\Http\Controllers\CatalogController::class, 'countPagination'])->name('count-pagination');
 
-    Route::group(['prefix' =>'submitting'], function() {
-        Route::get('/', [\App\Http\Controllers\SubmittingController::class, 'index'])->name('submitting');
-        Route::post('/create_draft/{advert}', [\App\Http\Controllers\SubmittingController::class, 'createDraft'])->name('submitting.create_draft');
-        Route::get('/draft/{advert}', [\App\Http\Controllers\SubmittingController::class, 'getDraft'])->name('submitting.get_draft');
-    });
+
 });
 
 Route::group(['prefix' => 'admin'], function () {

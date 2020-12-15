@@ -67,7 +67,6 @@ class ProfileController extends Controller
 
     public function editingProfileForm(ProfileRequest $request, ProfileService $form)
     {
-
         $form->saveFormData($request);
         if($request->avatar) {
             $form->createAvatar($request);

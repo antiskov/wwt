@@ -6396,3 +6396,31 @@
     </div>
   </form>
 </section>
+
+
+<div class="sidebar-block" id="leftSidebar">
+  <div class="sidebar-block__holder">
+    <button type="button" id="leftSidebarToggler">Inhaltsverzeichnis</button>
+    <ul>
+      <li><a href="#">Header 1</a></li>
+      <li>
+        <a href="#">Header 2</a>
+        <ul>
+          <li><a href="#">Header 3</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">Hauadegergewef</a>
+        <ul>
+          <li><a href="#">What is the return policy?</a></li>
+          <li><a href="#">What is the return policy?</a></li>
+          <li><a href="#">What is the return policy?</a></li>
+          <li><a href="#">What is the return policy?</a></li>
+          <li><a href="#">What is the return policy?</a></li>
+          <li><a href="#">What is the return policy?</a></li>
+          <li><a href="#">What is the return policy?</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
