@@ -207,21 +207,43 @@
         <h2>Цена</h2>
 
         <div class="info-price">
+            @if($position == 1)
+                <input data-step-input type="number" name="price" value="{{$price}}">
+            @else
+            <input data-step-input type="number" name="price" value="">
+            @endif
             <div class="select-price">
-                <p>Цена</p>
-                <input type="hidden" name="price">
-                <div class="input-cont-price">
-                    <input data-step-input type="number" name="currency">
+                @if($position == 1)
+                    <input type="hidden" name="currency" value="{{$advert->currency->title}}">
                     <div class="select-value rotate">
-                        <span>UA</span>
-                        <ul class="value-items">
-                            @foreach($currencies as $currency)
-                                <li>{{$currency->title}}</li>
-                            @endforeach
-                        </ul>
-                    </div>
+                        <span>{{$advert->currency->title}}</span>
+                @else
+                    <input type="hidden" name="currency">
+                    <div class="select-value rotate">
+                        <span>Выберите</span>
+                @endif
+                    <ul class="value-items">
+                        @foreach($currencies as $currency)
+                            <li>{{$currency->title}}</li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
+{{--            <div class="select-price">--}}
+{{--                <p>Цена</p>--}}
+{{--                <input type="hidden" name="price">--}}
+{{--                <div class="input-cont-price">--}}
+{{--                    <input data-step-input type="number" name="currency" value="">--}}
+{{--                    <div class="select-value rotate">--}}
+{{--                        <span>UA</span>--}}
+{{--                        <ul class="value-items">--}}
+{{--                            @foreach($currencies as $currency)--}}
+{{--                                <li>{{$currency->title}}</li>--}}
+{{--                            @endforeach--}}
+{{--                        </ul>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
         </div>
         <div class="btn-cont btn-cont_first">
             <button class="save-edit btn-hover-w" type="submit">Сохранить как черновик</button>

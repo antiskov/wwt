@@ -19,7 +19,7 @@
                         <div class="block">
                             <div class="price">
                                 <div class="new">
-                                    {{$advert->price*$currency['rate'].' '.$currency['symbol']}}
+                                    {{round($advert->price*$currency['rate']).' '.$currency['symbol']}}
                                 </div>
                                 {{--                    <div class="old">--}}
                                 {{--                        1500$--}}

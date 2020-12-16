@@ -47,6 +47,11 @@ class AdvertWatchMaker extends AdvertTools implements AdvertInterface
         $this->createWatchModel();
         $this->recordAdvert('watch');
 
+        if($this->request->main_photo){
+            $this->setBasicPhotoAdvert($this->request->main_photo);
+        }
+
+
         $watchAdvert = $this->advert->watchAdvert;
         $watchAdvert->watch_type_id = WatchType::where('title', $this->request->watchType)->first()->id;
         $watchAdvert->watch_make_id = $this->watchMake->id;
@@ -69,5 +74,12 @@ class AdvertWatchMaker extends AdvertTools implements AdvertInterface
     public function getResult():Advert
     {
         return $this->advert;
+    }
+
+    public function createAdvertName($type)
+    {
+        if($type == 'watch'){
+            return $this->watchMake->title.' '.$this->watchModel->title.' '.$this->watchModel->model_code;
+        }
     }
 }

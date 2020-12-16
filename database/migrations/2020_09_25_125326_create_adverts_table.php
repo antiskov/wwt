@@ -20,7 +20,7 @@ class CreateAdvertsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('title');
             $table->text('description')->nullable();
-            $table->integer('price')->nullable();
+            $table->float('price',35, 20)->nullable();
             $table->unsignedBigInteger('currency_id');
             $table->unsignedBigInteger('status_id')->default(0);
             $table->foreign('status_id')->references('id')->on('statuses');

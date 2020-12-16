@@ -3,77 +3,77 @@
         <h2>Личные данные<span>* обязательное поле</span></h2>
         <label for="prof-surname-sub">
             Фамилия *
-            <input data-step-input type="text" id="prof-surname-sub">
+            <input data-step-input type="text" id="prof-surname-sub" name="surname" value="{{auth()->user()->surname}}">
         </label>
         <label for="prof-name-sub">
             Имя *
-            <input data-step-input  type="text" id="prof-name-sub">
+            <input data-step-input  type="text" id="prof-name-sub" name="name" value="{{auth()->user()->name}}">
         </label>
         <label for="calendar">
             Дата рождения *
-            <input data-step-input  type="date" id="calendar">
+            <input data-step-input  type="date" id="calendar" name="birthday_date" value="{{auth()->user()->birthday_date}}">
         </label>
 
         <h2>Местоположение часов</h2>
 
-        <div class="block-imeni-fialka">
+        <div class="address-date">
+            <h2>Адресные данные</h2>
+
             <!--    Двіжуха з автокомплітами       -->
-            <div class="autocomplete-input" data-autocomplete>
-                <p>Улица *</p>
-                <div class="autocomplete-input__block">
-                    <div class="autocomplete-input__holder">
-                        <input type="text" data-step-input >
-                    </div>
-                    <div class="autocomplete-input__content">
-                        <ul data-id="dropdownContent"></ul>
-                    </div>
-                </div>
-            </div>
-            <label for="prof-stret-more">
+            <label for="route">
+                Введите ваш адрес
+                <input
+                    id="autocomplete"
+                    placeholder="Введите ваш адрес"
+                    type="text"
+                />
+            </label>
+
+            <label for="route">
+                Улица *
+                <input type="text" id="route" disabled="true" name='street' value="{{ auth()->user()->street }}">
+            </label>
+            <label for="street_number">
                 Адресное дополнение
-                <input type="text" data-step-input  id="prof-stret-more">
+                <input type="text" id="street_number" disabled="true" name="street_addition"
+                       value="{{auth()->user()->street_addition}}">
             </label>
-            <label for="prof-index">
+            <label for="postal_code">
                 Почтовый индекс
-                <input type="text" data-step-input  id="prof-index">
+                <input type="text" id="postal_code" disabled="true" name="zip_code" value="{{auth()->user()->zip_code}}">
             </label>
-            <div class="autocomplete-input" data-autocomplete>
-                <p>Населенный пункт</p>
-                <div class="autocomplete-input__block">
-                    <div class="autocomplete-input__holder">
-                        <input type="text" data-step-input >
-                    </div>
-                    <div class="autocomplete-input__content">
-                        <ul data-id="dropdownContent"></ul>
-                    </div>
-                </div>
-            </div>
-            <div class="autocomplete-input" data-autocomplete>
-                <p>Страна *</p>
-                <div class="autocomplete-input__block">
-                    <div class="autocomplete-input__holder">
-                        <input type="text" data-step-input >
-                    </div>
-                    <div class="autocomplete-input__content">
-                        <ul data-id="dropdownContent"></ul>
-                    </div>
-                </div>
-            </div>
-            <div class="autocomplete-input" data-autocomplete>
-                <p>Область</p>
-                <div class="autocomplete-input__block">
-                    <div class="autocomplete-input__holder">
-                        <input type="text" data-step-input>
-                    </div>
-                    <div class="autocomplete-input__content">
-                        <ul data-id="dropdownContent"></ul>
-                    </div>
-                </div>
-            </div>
+            <label for="locality">
+                Населенный пункт
+                <input type="text" id="locality" disabled="true" name="city" value="{{auth()->user()->city}}">
+            </label>
+            <label for="street_number">
+                Страна *
+                <input type="text" id="country" disabled="true" name="country" value="{{auth()->user()->country}}">
+            </label>
+            <label for="street_number">
+                Область
+                <input type="text" id="administrative_area_level_1" disabled="true" name="region" value="{{auth()->user()->region}}">
+            </label>
+
+
+
+            <!--       автокоплит, вдруг надо будет             -->
+            <!--                    <div class="autocomplete-input" data-autocomplete>-->
+            <!--                        <p>Область</p>-->
+            <!--                        <div class="autocomplete-input__block">-->
+            <!--                            <div class="autocomplete-input__holder">-->
+            <!--                                <input type="text">-->
+            <!--                            </div>-->
+            <!--                            <div class="autocomplete-input__content">-->
+            <!--                                <ul data-id="dropdownContent"></ul>-->
+            <!--                            </div>-->
+            <!--                        </div>-->
+            <!--                    </div>-->
 
             <!--   Двіжуха з корами               -->
             <input type="hidden" name="lat" data-id="lat">
             <input type="hidden" name="lng" data-id="lng">
+
         </div>
 
 
@@ -101,14 +101,14 @@
                     не
                     будут опубликованы.
                     <div class="img-cont">
-                        <img src="./images/icons/secure-data.svg" alt="img">
-                        <img src="./images/icons/shild.svg" alt="img">
+                        <img src="/images/icons/secure-data.svg" alt="img">
+                        <img src="/images/icons/shild.svg" alt="img">
                     </div>
                 </div>
             </div>
             <div class="img-cont">
-                <img src="./images/icons/secure-data.svg" alt="img">
-                <img src="./images/icons/shild.svg" alt="img">
+                <img src="/images/icons/secure-data.svg" alt="img">
+                <img src="/images/icons/shild.svg" alt="img">
             </div>
         </div>
 

@@ -28,13 +28,13 @@
 
                         <span class="delete-link" title="Удалить"></span>
                     </li>
+                    @include('submitting.partials.image_block')
                 </ul>
             </div>
         </div>
         <script>
             document.addEventListener("DOMContentLoaded", function(event) {
                 document.querySelector('#addImages').onchange = function () {
-                    console.log(this.files);
                     const data = new FormData();
                     const self = this;
                     Object.keys(this.files).forEach((key, idx) => {
@@ -53,52 +53,25 @@
                         cache: false,
                         processData: false,
                         success: function (data) {
-                            console.log('success');
+                            $('.saved-images').empty();
+                            $('.saved-images').html(data.output);
+                            deletePhoto()
                         },
                     })
                 }
+                function deletePhoto() {
+                    document.querySelectorAll('.delete_photo').forEach(function (item){
+                        item.onclick = function (e) {
+                            console.log(this.getAttribute('data-id'));
+                            $.ajax({
+                                url: `/submitting/delete_photo/${this.getAttribute('data-id')}`,
+                            })
+                        }
+                    })
+                }
+
             });
         </script>
-
-        <!-- <p class="img-text">
-            Просим Вас загрузить фото часов, на которых на
-            часах установлено следующее время. Тем самым
-            Вы докажете, что часы действительно находятся
-            в Вашем владении.
-        </p>
-
-        <div class="control-block-wrap">
-            <div class="control-photo">
-                <h3>Загрузить 1 контрольную фотографию *</h3>
-                <div class="head-cont">
-                    <div class="info-cont">
-                        <img src="./images/icons/watch-img.svg" alt="img">
-                        <span>1 : 40 h</span>
-                    </div>
-                    <div class="person-cont one-cont">
-                        <label for="lab"><img class="preview one-img"
-                                src='./images/icons/add-img.svg'></label>
-                        <span>Загрузить фото или вставить сюда</span>
-                        <input type="file" class="load" id="lab">
-                    </div>
-                </div>
-            </div>
-            <div class="control-photo">
-                <h3>Загрузить 2 контрольную фотографию *</h3>
-                <div class="head-cont">
-                    <div class="info-cont">
-                        <img src="./images/icons/watch-img.svg" alt="img">
-                        <span>1 : 50 h</span>
-                    </div>
-                    <div class="person-cont two-cont">
-                        <label for="lab-2"><img class="preview two-img"
-                                src='./images/icons/add-img.svg'></label>
-                        <span>Загрузить фото или вставить сюда</span>
-                        <input type="file" class="load" id="lab-2">
-                    </div>
-                </div>
-            </div>
-        </div> -->
 
         <div class="btn-cont step-2-cont">
             <button data-step="1" class="prev-step btn-hover" type="button">Вернуться к шагу 1</button>

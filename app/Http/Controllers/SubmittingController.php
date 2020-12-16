@@ -7,7 +7,9 @@ use App\Http\Requests\Submitting\SubmittingRequest;
 use App\Http\Requests\Submitting\UploadImageRequest;
 use App\Http\Requests\Submitting\WatchAdvertRequest;
 use App\Models\Advert;
+use App\Models\AdvertPhoto;
 use App\Services\SubmittingService;
+use Illuminate\Support\Facades\Storage;
 
 class SubmittingController extends Controller
 {
@@ -16,6 +18,7 @@ class SubmittingController extends Controller
         $request->merge(['start_model_code' => rand(10000,20000)]);
 
 //        return view('submitting.pages.advert', $service->getInfoForStep1(new WatchConnector($request)));
+
         return view('submitting.pages.advert', $service->getItemsForFirstStep($request));
     }
 
@@ -35,7 +38,16 @@ class SubmittingController extends Controller
     {
         $service->uploadPhoto($advert, $request);
 
-        return response(1);
+        $data = [
+            'output' => view('submitting.partials.image_block', ['advert' => $advert])->toHtml(),
+        ];
 
+        return response()->json($data);
+    }
+
+    public function deletePhoto(AdvertPhoto $photo, SubmittingService $service)
+    {
+        $service->deleteAdvertPhoto($photo);
+        return response('success');
     }
 }

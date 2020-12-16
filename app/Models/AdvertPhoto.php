@@ -12,6 +12,6 @@ class AdvertPhoto extends Model
 
     public function advert()
     {
-        $this->belongsTo(Advert::class);
+        return $this->belongsTo(Advert::class);
     }
 }

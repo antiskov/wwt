@@ -18,6 +18,7 @@ class CreateAdvertPhotosTable extends Migration
             $table->unsignedBigInteger('advert_id')->nullable();
             $table->foreign('advert_id')->references('id')->on('adverts');
             $table->string('photo');
+            $table->boolean('is_basic')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

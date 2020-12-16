@@ -80,45 +80,48 @@ abstract class ToolsForAdvertsFilters implements AdvertsFilters
 
     public function getNameAndCountFilters($user_id = 0, $additionalWhere = ' and 1', $nameView = 'user_adverts_view')
     {
-        $brands = DB::table($nameView)->select('watch_make_title')
+        $table = DB::table($nameView);
+        $rule = $this->getConditionUserId($user_id).$additionalWhere;
+
+        $brands = $table->select('watch_make_title')
             ->addSelect(DB::raw('COUNT(watch_make_title) as count_watch_make_title'))
-            ->groupBy('watch_make_title')->whereRaw($this->getConditionUserId($user_id).$additionalWhere)->get();
+            ->groupBy('watch_make_title')->whereRaw($rule)->get();
 
-        $models = DB::table($nameView)->select('watch_model_title')
+        $models = $table->select('watch_model_title')
             ->addSelect(DB::raw('COUNT(watch_model_title) as count_watch_model_title'))
-            ->groupBy('watch_model_title')->whereRaw($this->getConditionUserId($user_id).$additionalWhere)->get();
+            ->groupBy('watch_model_title')->whereRaw($rule)->get();
 
-        $diameters = DB::table($nameView)->select('height', 'width')
+        $diameters = $table->select('height', 'width')
             ->addSelect(DB::raw('COUNT(height) as count_height'))
-            ->groupBy('height', 'width')->whereRaw($this->getConditionUserId($user_id).$additionalWhere)->get();
+            ->groupBy('height', 'width')->whereRaw($rule)->get();
 
-        $years = DB::table($nameView)->select('release_year')
+        $years = $table->select('release_year')
             ->addSelect(DB::raw('COUNT(release_year) as count_release_year'))
-            ->groupBy('release_year')->whereRaw($this->getConditionUserId($user_id).$additionalWhere)->get();
+            ->groupBy('release_year')->whereRaw($rule)->get();
 
-        $regions = DB::table($nameView)->select('region')
+        $regions = $table->select('region')
             ->addSelect(DB::raw('COUNT(region) as count_region'))
-            ->groupBy('region')->whereRaw($this->getConditionUserId($user_id).$additionalWhere)->get();
+            ->groupBy('region')->whereRaw($rule)->get();
 
-        $mechanismTypes = DB::table($nameView)->select('mechanism_type_title')
+        $mechanismTypes = $table->select('mechanism_type_title')
             ->addSelect(DB::raw('COUNT(mechanism_type_title) as count_mechanism_type_title'))
-            ->groupBy('mechanism_type_title')->whereRaw($this->getConditionUserId($user_id).$additionalWhere)->get();
+            ->groupBy('mechanism_type_title')->whereRaw($rule)->get();
 
-        $states = DB::table($nameView)->select('watch_state')
+        $states = $table->select('watch_state')
             ->addSelect(DB::raw('COUNT(watch_state) as count_watch_state'))
-            ->groupBy('watch_state')->whereRaw($this->getConditionUserId($user_id).$additionalWhere)->get();
+            ->groupBy('watch_state')->whereRaw($rule)->get();
 
-        $deliveryVolumes = DB::table($nameView)->select('delivery_volume')
+        $deliveryVolumes = $table->select('delivery_volume')
             ->addSelect(DB::raw('COUNT(delivery_volume) as count_delivery_volume'))
-            ->groupBy('delivery_volume')->whereRaw($this->getConditionUserId($user_id).$additionalWhere)->get();
+            ->groupBy('delivery_volume')->whereRaw($rule)->get();
 
-        $sexes = DB::table($nameView)->select('sex_title')
+        $sexes = $table->select('sex_title')
             ->addSelect(DB::raw('COUNT(sex_title) as count_sex_title'))
-            ->groupBy('sex_title')->whereRaw($this->getConditionUserId($user_id).$additionalWhere)->get();
+            ->groupBy('sex_title')->whereRaw($rule)->get();
 
-        $types = DB::table($nameView)->select('watch_type_title')
+        $types = $table->select('watch_type_title')
             ->addSelect(DB::raw('COUNT(watch_type_title) as count_watch_type_title'))
-            ->groupBy('watch_type_title')->whereRaw($this->getConditionUserId($user_id).$additionalWhere)->get();
+            ->groupBy('watch_type_title')->whereRaw($rule)->get();
 
         return [
             'brands' => $brands,

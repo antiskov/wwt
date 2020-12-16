@@ -44,6 +44,7 @@
             })
         });
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDmCYblB4cVMXS93Da6iBG1RFldOXY46hA"></script>
+    <script src="https://maps.google.com/maps/api/js?key=AIzaSyA-M4C5q7VMtAjsrGwrf2rh1_rcRXi67zk&libraries=places&language=ru"
+            type="text/javascript"></script>
     <script src="/js/g-autocomplete.js"></script>
 @endsection
