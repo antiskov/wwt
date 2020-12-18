@@ -78,7 +78,6 @@ class SubmittingService
         $advert->user()->associate(auth()->user());
         $advert->title = 'none';
         $advert->currency_id = 1;
-        $advert->photo = 'none';
         $advert->vip_status = 0;
         $advert->status_id = Status::where('title', 'draft')->first()->id;
         $advert->price_rate = 1;

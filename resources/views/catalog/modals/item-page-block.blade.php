@@ -105,10 +105,6 @@
                         <span>{{ $advert->watchAdvert->watchModel->title }}</span>
                     </div>
                     <div class="setting-cont">
-                        <p>Код</p>
-                        <span>{{ $advert->watchAdvert->watchModel->model_code }}</span>
-                    </div>
-                    <div class="setting-cont">
                         <p>Тип механизма</p>
                         <span>{{ $advert->watchAdvert->mechanismType->title }}</span>
                     </div>

@@ -3,15 +3,35 @@
         <h2>Личные данные<span>* обязательное поле</span></h2>
         <label for="prof-surname-sub">
             Фамилия *
-            <input data-step-input type="text" id="prof-surname-sub" name="surname" value="{{auth()->user()->surname}}">
+            @if($advert->surname)
+                <input data-step-input type="text" id="prof-surname-sub" name="surname" value="{{$advert->surname}}">
+            @else
+                <input data-step-input type="text" id="prof-surname-sub" name="surname" value="{{auth()->user()->surname}}">
+            @endif
         </label>
         <label for="prof-name-sub">
             Имя *
-            <input data-step-input  type="text" id="prof-name-sub" name="name" value="{{auth()->user()->name}}">
+            @if($advert->name)
+                <input data-step-input  type="text" id="prof-name-sub" name="name" value="{{$advert->name}}">
+            @else
+                <input data-step-input  type="text" id="prof-name-sub" name="name" value="{{auth()->user()->name}}">
+            @endif
         </label>
-        <label for="calendar">
-            Дата рождения *
-            <input data-step-input  type="date" id="calendar" name="birthday_date" value="{{auth()->user()->birthday_date}}">
+{{--        <label for="calendar">--}}
+{{--            Дата рождения--}}
+{{--            @if($advert->birthday_date)--}}
+{{--                <input data-step-input type="text" id="prof-surname-sub" name="surname" value="{{$advert->birthday_date}}">--}}
+{{--            @else--}}
+{{--                <input data-step-input  type="date" id="calendar" name="birthday_date" value="{{auth()->user()->birthday_date}}">--}}
+{{--            @endif--}}
+{{--        </label>--}}
+        <label for="prof-phone">
+            Телефон *
+            @if($advert->phone)
+                <input data-step-input name="phone" type="tel" id="prof-phone"  value="{{$advert->phone}}">
+            @else
+                <input data-step-input name="phone" type="tel" id="prof-phone" value="{{ auth()->user()->phone }}">
+            @endif
         </label>
 
         <h2>Местоположение часов</h2>
@@ -31,28 +51,53 @@
 
             <label for="route">
                 Улица *
-                <input type="text" id="route" disabled="true" name='street' value="{{ auth()->user()->street }}">
+                @if($advert->street)
+                    <input type="text" id="route" readonly="true" name='street' value="{{ $advert->street }}">
+                @else
+                    <input type="text" id="route" readonly="true" name='street' value="{{ auth()->user()->street }}">
+                @endif
             </label>
             <label for="street_number">
                 Адресное дополнение
-                <input type="text" id="street_number" disabled="true" name="street_addition"
-                       value="{{auth()->user()->street_addition}}">
+                @if($advert->street_additional)
+                    <input type="text" id="street_number" readonly="true" name="street_additional"
+                           value="{{$advert->street_additional}}">
+                @else
+                    <input type="text" id="street_number" readonly="true" name="street_additional"
+                           value="{{auth()->user()->street_addition}}">
+                @endif
             </label>
             <label for="postal_code">
                 Почтовый индекс
-                <input type="text" id="postal_code" disabled="true" name="zip_code" value="{{auth()->user()->zip_code}}">
+                @if($advert->zip_code)
+                    <input type="text" id="postal_code" readonly="true" name="zip_code" value="{{$advert->zip_code}}">
+                @else
+                    <input type="text" id="postal_code" readonly="true" name="zip_code" value="{{auth()->user()->zip_code}}">
+                @endif
             </label>
             <label for="locality">
                 Населенный пункт
-                <input type="text" id="locality" disabled="true" name="city" value="{{auth()->user()->city}}">
+                @if($advert->city)
+                    <input type="text" id="locality" readonly="true" name="city" value="{{$advert->city}}">
+                @else
+                    <input type="text" id="locality" readonly="true" name="city" value="{{auth()->user()->city}}">
+                @endif
             </label>
             <label for="street_number">
                 Страна *
-                <input type="text" id="country" disabled="true" name="country" value="{{auth()->user()->country}}">
+                @if($advert->country)
+                    <input type="text" id="country" readonly="true" name="country" value="{{$advert->country}}">
+                @else
+                    <input type="text" id="country" readonly="true" name="country" value="{{auth()->user()->country}}">
+                @endif
             </label>
             <label for="street_number">
                 Область
-                <input type="text" id="administrative_area_level_1" disabled="true" name="region" value="{{auth()->user()->region}}">
+                @if($advert->region)
+                    <input type="text" id="administrative_area_level_1" readonly="true" name="region" value="{{$advert->region}}">
+                @else
+                    <input type="text" id="administrative_area_level_1" readonly="true" name="region" value="{{auth()->user()->region}}">
+                @endif
             </label>
 
 
@@ -79,7 +124,7 @@
 
         <div class="check-cont">
             <label class="checkbox-other">
-                <input type="checkbox" checked>
+                <input type="checkbox" name="hide_surname" checked value="1">
                 <span>я не хочу, чтобы моя фамилия была указана в объявлении *</span>
             </label>
         </div>
@@ -115,9 +160,9 @@
         <div class="btn-cont step-3-cont">
             <button data-step="2" class="prev-step btn-hover" type="button">Вернуться к шагу 2</button>
 
-            <button data-fancybox data-src="#save-success" class="save-edit btn-hover-w" type="submit">Сохранить как черновик</button>
+            <button class="save-edit btn-hover-w" type="submit">Сохранить как черновик</button>
 
-            <button data-step="4" class="save-next btn-hover" type="button">Перейти к шагу 4</button>
+            <button data-step="4" data-id-adv="{{$advert->id}}" class="save-next btn-hover" type="button">Перейти к шагу 4</button>
         </div>
     </div>
 </div>

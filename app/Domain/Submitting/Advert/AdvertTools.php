@@ -22,8 +22,28 @@ class AdvertTools
         $this->advert->description = $this->request->description;
         $this->advert->price_rate = $this->setPriceRate();
         $this->advert->price = $this->setPrice();
-
         $this->advert->currency_id = Currency::where('title', $this->request->currency)->first()->id;
+        $this->advert->surname = $this->request->surname;
+        $this->advert->name = $this->request->name;
+        $this->advert->birthday = $this->request->birthday;
+        $this->advert->phone = $this->request->phone;
+        $this->advert->country = $this->request->country;
+        $this->advert->country = $this->request->country;
+        $this->advert->city = $this->request->city;
+        $this->advert->region = $this->request->region;
+        $this->advert->street = $this->request->street;
+        $this->advert->zip_code = $this->request->zip_code;
+//        dd($this->request->street_additional);
+        $this->advert->street_additional = $this->request->street_additional;
+        $this->advert->delivery_volume = $this->request->deliveryVolume;
+        $this->advert->latitude = $this->request->lat;
+        $this->advert->longtitude = $this->request->lng;
+
+        if($this->request->hide_surname == 1){
+            $this->advert->hide_surname = $this->request->hide_surname;
+        } else {
+            $this->advert->hide_surname = 0;
+        }
 
         $this->advert->save();
 
@@ -46,14 +66,13 @@ class AdvertTools
 
     public function setBasicPhotoAdvert($photoId)
     {
-        $photo = AdvertPhoto::where('id', $photoId)->first();
-        $advert = $photo->advert;
-
-        foreach ($advert->photos as $thisPhoto){
-            $thisPhoto->is_basic = 0;
-            $thisPhoto->save();
+        if($oldBasicPhoto = AdvertPhoto::where('is_basic', 1)->first()){
+            $oldBasicPhoto->is_basic = 0;
+            $oldBasicPhoto->save();
         }
 
+
+        $photo = AdvertPhoto::where('id', $photoId)->first();
         $photo->is_basic = 1;
         $photo->save();
     }

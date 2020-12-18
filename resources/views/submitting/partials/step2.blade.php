@@ -9,27 +9,31 @@
         <div class="add-img-wrap">
             <p data-id="step-3-title">Загрузите от 2х фотографий и выберите основную</p>
             <div class="cont-img">
-                <ul id="uploadImagesList">
+                <ul>
                     <li class="added-images">
                         <img src="/images/icons/add-img.svg" alt="img">
                         <span>Загрузить фото или вставить сюда</span>
                         <input type="file" id="addImages" name="advert_images[]" multiple
                                accept="image/x-png,image/gif,image/jpeg">
                     </li>
-                    <li class="item template">
-                                        <span class="img-wrap">
-                                            <img src="" alt="">
-                                        </span>
-                        <label class="main-radio">
-                            <input  type="radio" name="main_photo">
-                            <div></div>
-                        </label>
-                        <span class="delete-link delete-link_dark" title="Удалить"></span>
+{{--                    <li class="item template">--}}
+{{--                                        <span class="img-wrap">--}}
+{{--                                            <img src="" alt="">--}}
+{{--                                        </span>--}}
+{{--                        <label class="main-radio">--}}
+{{--                            <input  type="radio" name="main_photo">--}}
+{{--                            <div></div>--}}
+{{--                        </label>--}}
+{{--                        <span class="delete-link delete-link_dark" title="Удалить"></span>--}}
 
-                        <span class="delete-link" title="Удалить"></span>
-                    </li>
+{{--                        <span class="delete-link" title="Удалить"></span>--}}
+{{--                    </li>--}}
+
+                </ul>
+                <ul id="uploadImagesList">
                     @include('submitting.partials.image_block')
                 </ul>
+
             </div>
         </div>
         <script>
@@ -53,8 +57,8 @@
                         cache: false,
                         processData: false,
                         success: function (data) {
-                            $('.saved-images').empty();
-                            $('.saved-images').html(data.output);
+                            $('#uploadImagesList').empty();
+                            $('#uploadImagesList').html(data.output);
                             deletePhoto()
                         },
                     })
@@ -70,15 +74,18 @@
                     })
                 }
 
+                deletePhoto();
+
+
             });
         </script>
 
         <div class="btn-cont step-2-cont">
             <button data-step="1" class="prev-step btn-hover" type="button">Вернуться к шагу 1</button>
 
-            <button data-fancybox data-src="#save-success" class="save-edit btn-hover-w"  type="submit">Сохранить как черновик</button>
+            <button class="save-edit btn-hover-w" type="submit">Сохранить как черновик</button>
 
-            <button data-step="3" class="save-next btn-hover" type="button">Перейти к шагу 3</button>
+            <button  data-step="3" class="save-next btn-hover" type="button">Перейти к шагу 3</button>
         </div>
     </div>
 </div>

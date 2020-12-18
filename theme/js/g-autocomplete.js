@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         for (const component in componentForm) {
             document.getElementById(component).value = "";
-            document.getElementById(component).disabled = false;
+            document.getElementById(component).readOnly = false;
         }
 
         for (const component of place.address_components) {

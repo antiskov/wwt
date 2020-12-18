@@ -14,7 +14,7 @@ class Update2AdvertsTable extends Migration
     public function up()
     {
         Schema::table('adverts', function (Blueprint $table) {
-            $table->string('photo');
+            $table->string('photo')->nullable();
         });
     }
 

@@ -789,10 +789,10 @@ $(document).ready(function () {
         continue;
       }
 
-      // preview(files[i]);
+      preview(files[i]);
     }
 
-    // this.value = '';
+    this.value = '';
   });
 
   // Создание превью

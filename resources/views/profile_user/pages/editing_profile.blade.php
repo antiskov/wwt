@@ -88,28 +88,28 @@
 
             <label for="route">
                 Улица *
-                <input type="text" id="route" disabled="true" name='street' value="{{ auth()->user()->street }}">
+                <input type="text" id="route" readonly="true" name='street' value="{{ auth()->user()->street }}">
             </label>
             <label for="street_number">
                 Адресное дополнение
-                <input type="text" id="street_number" disabled="true" name="street_addition"
+                <input type="text" id="street_number" readonly="true" name="street_addition"
                        value="{{auth()->user()->street_addition}}">
             </label>
             <label for="postal_code">
                 Почтовый индекс
-                <input type="text" id="postal_code" disabled="true" name="zip_code" value="{{auth()->user()->zip_code}}">
+                <input type="text" id="postal_code" readonly="true" name="zip_code" value="{{auth()->user()->zip_code}}">
             </label>
             <label for="locality">
                 Населенный пункт
-                <input type="text" id="locality" disabled="true" name="city" value="{{auth()->user()->city}}">
+                <input type="text" id="locality" readonly="true" name="city" value="{{auth()->user()->city}}">
             </label>
             <label for="street_number">
                 Страна *
-                <input type="text" id="country" disabled="true" name="country" value="{{auth()->user()->country}}">
+                <input type="text" id="country" readonly="true" name="country" value="{{auth()->user()->country}}">
             </label>
             <label for="street_number">
                 Область
-                <input type="text" id="administrative_area_level_1" disabled="true" name="region" value="{{auth()->user()->region}}">
+                <input type="text" id="administrative_area_level_1" readonly="true" name="region" value="{{auth()->user()->region}}">
             </label>
 
 

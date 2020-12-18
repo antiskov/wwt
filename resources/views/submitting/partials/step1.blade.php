@@ -91,7 +91,7 @@
                                 </span>
                 </p>
                 @if($position == 1)
-                    <input type="hidden" name="deliveryVolume" value="{{$advert->	delivery_volume}}">
+                    <input type="hidden" name="deliveryVolume" value="{{$advert->delivery_volume}}">
                     <div class="select-value rotate">
                         <span>{{$advert->delivery_volume}}</span>
                 @else
@@ -208,11 +208,12 @@
 
         <div class="info-price">
             @if($position == 1)
-                <input data-step-input type="number" name="price" value="{{$price}}">
+                <input data-step-input class="common-input" type="text" name="price" value="{{$price}}">
             @else
             <input data-step-input type="number" name="price" value="">
             @endif
             <div class="select-price">
+                <div class="input-cont-price">
                 @if($position == 1)
                     <input type="hidden" name="currency" value="{{$advert->currency->title}}">
                     <div class="select-value rotate">
@@ -228,22 +229,8 @@
                         @endforeach
                     </ul>
                 </div>
+                </div>
             </div>
-{{--            <div class="select-price">--}}
-{{--                <p>Цена</p>--}}
-{{--                <input type="hidden" name="price">--}}
-{{--                <div class="input-cont-price">--}}
-{{--                    <input data-step-input type="number" name="currency" value="">--}}
-{{--                    <div class="select-value rotate">--}}
-{{--                        <span>UA</span>--}}
-{{--                        <ul class="value-items">--}}
-{{--                            @foreach($currencies as $currency)--}}
-{{--                                <li>{{$currency->title}}</li>--}}
-{{--                            @endforeach--}}
-{{--                        </ul>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
         </div>
         <div class="btn-cont btn-cont_first">
             <button class="save-edit btn-hover-w" type="submit">Сохранить как черновик</button>

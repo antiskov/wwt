@@ -43,10 +43,8 @@
                                         <span>{{$payment->title}}</span>
                                     </div>
                                     <div class="pay-info">
-                                        <p>Цена:</p>
-                                        <span>{{$payment->price}} {{$currency}}</span>
                                         <p>{{__('messages.payments_price')}}</p>
-                                        <span>{{$payment->price}}$</span>
+                                        <span>{{$payment->price}} {{$currency}}</span>
                                     </div>
                                     <div class="pay-info">
                                         <p>{{__('messages.payments_status')}}</p>

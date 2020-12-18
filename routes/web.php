@@ -63,9 +63,14 @@ Route::middleware('set.locale')->group(function () {
         });
         Route::group(['prefix' =>'submitting'], function() {
             Route::get('/', [\App\Http\Controllers\SubmittingController::class, 'index'])->name('submitting');
-            Route::post('/draft/{advert}', [\App\Http\Controllers\SubmittingController::class, 'editDraft'])->name('submitting.edit_draft');
-            Route::get('/draft/{advert}', [\App\Http\Controllers\SubmittingController::class, 'getDraft'])->name('submitting.get_draft');
-            Route::post('/upload_image/{advert}', [\App\Http\Controllers\SubmittingController::class, 'uploadImage'])->name('submitting.upload_image');
+            Route::middleware('can:view,advert')->group(function (){
+                Route::post('/draft/{advert}', [\App\Http\Controllers\SubmittingController::class, 'editDraft'])->name('submitting.edit_draft');
+                Route::get('/draft/{advert}', [\App\Http\Controllers\SubmittingController::class, 'getDraft'])->name('submitting.get_draft');
+                Route::post('/upload_image/{advert}', [\App\Http\Controllers\SubmittingController::class, 'uploadImage'])->name('submitting.upload_image');
+                Route::get('/buy_vip/{advert}', [\App\Http\Controllers\SubmittingController::class, 'buyVip'])->name('submitting.buy_vip');
+                Route::get('/publish/{advert}', [\App\Http\Controllers\SubmittingController::class, 'publish'])->name('submitting.publish');
+                Route::post('/step4/{advert}', [\App\Http\Controllers\SubmittingController::class, 'getStep4']);
+            });
             Route::get('/delete_photo/{photo}', [\App\Http\Controllers\SubmittingController::class, 'deletePhoto'])->name('submitting.delete_photo');
         });
     });

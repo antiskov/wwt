@@ -4,24 +4,42 @@ document.addEventListener('DOMContentLoaded', function(e){
         const btns = document.querySelectorAll('[data-step]');
         const anchors = document.querySelectorAll('[data-anchor]');
         const tabs = document.querySelectorAll('[data-tab]');
+        const submitBtn = document.querySelector('[data-id-adv]');
         let step = 1;
 
-
         function checkInputs(inputs, step){
+            console.log(step);
             if(step === 2){
-                console.log('asdsad', checkImages())
                 return  !checkImages()
-            }else{
+            } else if(step === 3) {
+                return submitInfo();
+            }
+            else{
                 return [...inputs].some(input => !input.value)
             }
         }
 
+        function submitInfo(){
+            $.ajax({
+                data: $('#create_advert').serializeArray(),
+                type: 'post',
+                url:`/submitting/step4/${submitBtn.dataset.idAdv}`,
+                success: function (data) {
+                    // $('#step4').empty();
+                    $('#step4').html(data.output);
+                    return true;
+                },
+            })
+        }
+
         function getOffset(el) {
-            const rect = el.getBoundingClientRect();
-            return {
-                left: rect.left + window.scrollX,
-                top: rect.top + window.scrollY
-            };
+            if(el){
+                const rect = el.getBoundingClientRect();
+                return {
+                    left: rect.left + window.scrollX,
+                    top: rect.top + window.scrollY
+                };
+            }
         }
 
         function clearErrors(inputs){
@@ -77,6 +95,7 @@ document.addEventListener('DOMContentLoaded', function(e){
                         })
                     }
                 } else{
+                    console.log(nextStep)
                     document.querySelector(`[data-anchor='${nextStep}']`).click();
                     step--
                 }

@@ -43,6 +43,7 @@ class AdvertsSeeder extends Seeder
                     'photo' => 'small_acc.jpeg',
                     'vip_status' => rand(0, 1),
                     'price_rate' => 1,
+                    'hide_surname' => 1,
 
                 ]
             );

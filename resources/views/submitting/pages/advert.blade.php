@@ -15,7 +15,8 @@
                     @include('submitting.partials.step1')
                     @include('submitting.partials.step2')
                     @include('submitting.partials.step3')
-                    @include('submitting.partials.step4')
+                    <div id="step4" class="tabs__content" data-tab="4">
+                    </div>
                 </form>
             </div>
         </div>
@@ -38,7 +39,7 @@
                 },
                 afterClose: function () {
                     //тут мож нахуярить редирект
-                    window.location.replace({{route('submitting.edit_draft', $advert)}})
+                    window.location.replace('{{route('submitting.edit_draft', $advert)}}')
                     console.log(window.location.origin)
                 }
             })

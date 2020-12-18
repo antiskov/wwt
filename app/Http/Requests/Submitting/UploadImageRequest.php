@@ -24,7 +24,7 @@ class UploadImageRequest extends FormRequest
     public function rules()
     {
         return [
-            'advert_images.*' => 'mimes:jpeg,png,jpg,svg|max:2048'
+            'advert_images.*' => 'mimes:jpeg,png,jpg,svg|max:2048',
         ];
     }
 }

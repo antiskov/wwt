@@ -457,7 +457,6 @@
 </header>
 <script>
     document.addEventListener("DOMContentLoaded", function (event) {
-        console.log(222);
         document.querySelectorAll('.languages-btns input').forEach(function (item) {
             item.addEventListener('change', function (e) {
                 $.ajax({

@@ -13,7 +13,9 @@ use App\Models\Advert;
 use App\Models\Banner;
 use App\Models\HomeSlider;
 use App\Models\ManWomanPicture;
+use App\Models\Status;
 use App\Models\WatchMake;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -95,6 +97,11 @@ class AdminService
     {
         $advert->status_id = $status;
         $advert->save();
+
+        if($status == Status::where('title', 'published')->first()->id){
+            $advert->finish_date = Carbon::now()->addMonth(3);
+            $advert->save();
+        }
     }
 
     public function deleteAdvert(Advert $advert)

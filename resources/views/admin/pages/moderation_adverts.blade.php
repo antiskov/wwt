@@ -39,6 +39,7 @@
                                 <th>Название</th>
                                 <th>Цена</th>
                                 <th>Статус</th>
+                                <th>Дата окончания</th>
                                 <th>Действия</th>
                             </tr>
                             </thead>
@@ -48,14 +49,15 @@
                                     <td>{{$advert->id}}</td>
                                     <td>{{$advert->name}} {{$advert->surname}}</td>
                                     <td><a href="{{route('admin.item-page', [$advert->id])}}">{{$advert->title}}</a></td>
-                                    <td>{{$advert->price}}$</td>
+                                    <td>{{$advert->getPrice()}}$</td>
                                     <td>{{$advert->status->title}}</td>
+                                    <td>{{$advert->finish_date}}</td>
                                     <td>
                                         @if($advert->status->title == 'published')
-                                            <a href="{{ route('admin.change_status', [2, $advert->id]) }}">Отказать</a>
+                                            <a href="{{ route('admin.change_status', [\App\Models\Status::where('title', 'moderation')->first()->id, $advert->id]) }}">Отказать</a>
                                             <br>
                                         @else
-                                            <a href="{{ route('admin.change_status', [1, $advert->id]) }}">Опубликовать</a>
+                                            <a href="{{ route('admin.change_status', [\App\Models\Status::where('title', 'published')->first()->id, $advert->id]) }}">Опубликовать</a>
                                             <br>
                                         @endif
                                             <a href='{{ route('admin.delete_advert', [$advert->id]) }}'>Удалить</a>
@@ -70,6 +72,7 @@
                                 <th>Name</th>
                                 <th>Price</th>
                                 <th>Status</th>
+                                <th>Finish date</th>
                                 <th>Operations</th>
                             </tr>
                             </tfoot>

@@ -24,8 +24,31 @@ class WatchAdvertRequest extends FormRequest
     public function rules()
     {
         return [
-            'model_code' => 'required|numeric',
-            "watchType"=> 'required|max:255',
+            'model_code' => 'max:200',
+            "watchType"=> 'max:200',
+            "brand"=> 'max:200',
+            "model"=> 'max:200',
+            "state"=> 'max:200',
+            "deliveryVolume"=> 'max:200',
+            "sex"=> 'max:200',
+            "typeMechanism"=> 'max:200',
+            "currency"=> 'max:200',
+            "surname"=> 'max:200',
+            "name"=> 'max:200',
+            "phone"=> 'max:200',
+            "street"=> 'max:200',
+            "street_addition"=> 'max:200',
+            "zip_code"=> 'max:200',
+            "city"=> 'max:200',
+            "country"=> 'max:200',
+            "region"=> 'max:200',
+            "lat"=> 'max:200',
+            "lng"=> 'max:200',
+            "description"=> 'max:3000',
+            "release_year"=> 'numeric',
+            "price"=> 'numeric',
+            "width"=> 'numeric',
+            "height"=> 'numeric',
         ];
     }
 }

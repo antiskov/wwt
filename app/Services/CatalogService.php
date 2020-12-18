@@ -88,9 +88,7 @@ class CatalogService
     {
         $expiresAt = now()->addHours(24);
 
-        views($advert)
-            ->cooldown($expiresAt)
-            ->record();
+        views($advert)->cooldown($expiresAt)->record();
 
         if (auth()->user()) {
             $role = auth()->user()->role_id;
@@ -106,6 +104,9 @@ class CatalogService
             $mechanismType = SparePartsMechanismType::where('id', $advert->sparePartsAdvert->spare_parts_mechanism_type_id)->first();
         }
 
+        if(!isset($mechanismType)){
+            return redirect()->with();
+        }
         return [
             'role' => $role,
             'advert' => $advert,

@@ -47,10 +47,9 @@ class AdvertWatchMaker extends AdvertTools implements AdvertInterface
         $this->createWatchModel();
         $this->recordAdvert('watch');
 
-        if($this->request->main_photo){
-            $this->setBasicPhotoAdvert($this->request->main_photo);
+        if($photoId = $this->request->input('main_photo')){
+            $this->setBasicPhotoAdvert($photoId);
         }
-
 
         $watchAdvert = $this->advert->watchAdvert;
         $watchAdvert->watch_type_id = WatchType::where('title', $this->request->watchType)->first()->id;

@@ -174,6 +174,7 @@ class ProfileController extends Controller
     public function getPayments(PayService $service)
     {
         $service->checkTransaction();
+
         return \view('profile_user.pages.payments', [
             'score' => $service->getScore(),
             'payments' => UserTransaction::where('user_id', auth()->user()->id)->orderBy('id', 'desc')->get(),
