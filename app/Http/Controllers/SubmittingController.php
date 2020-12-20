@@ -15,14 +15,9 @@ use Illuminate\Support\Facades\Storage;
 
 class SubmittingController extends Controller
 {
-//    public function __construct()
-//    {
-//        if(auth()->user()->cannot('view', $advert))
-//    }
-
     public function index(SubmittingRequest $request, SubmittingService $service)
     {
-        $request->merge(['start_model_code' => rand(10000,20000)]);
+        $request->merge(['start_model_code' => rand(10000,20000)]); //todo remove
 
 //        return view('submitting.pages.advert', $service->getInfoForStep1(new WatchConnector($request)));
 

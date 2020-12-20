@@ -26,7 +26,13 @@
                 <div class="select-price">
                     <p>Сортировать:</p>
                     <div class="select-value rotate">
-                        <span>по возрастанию цены</span>
+                        @if(isset($_COOKIE['price_sort']))
+                            @if($_COOKIE['price_sort'] == 'dear')
+                                <span>по возрастанию цены</span>
+                            @else
+                                <span>по убыванию цены</span>
+                            @endif
+                        @endif
                         <ul class="value-items">
                             <li id="sort-dear">по возрастанию цены</li>
                             <li id="sort-cheap">по убыванию цены</li>

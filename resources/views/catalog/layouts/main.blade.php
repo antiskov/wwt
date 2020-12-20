@@ -47,6 +47,8 @@
     //     })
     // });
 
+
+
     document.addEventListener("DOMContentLoaded", function(event) {
         document.querySelector('#button-save-search').addEventListener('click', function (e) {
             document.cookie = 'search_title='+$('#input-save-search').val()+'; max-age=600'
@@ -71,9 +73,11 @@
         if(!(window.location.href.indexOf("&") > -1)){
             $('#sort-dear').on('click', function (e) {
                 window.location.replace(getCookie('url_catalog')+'?orderBy=dear')
+                document.cookie = "price_sort=dear; max-age=600"
             })
             $('#sort-cheap').on('click', function (e) {
                 window.location.replace(getCookie('url_catalog')+'?orderBy=cheap')
+                document.cookie = "price_sort=cheap; max-age=600"
             })
         } else {
             if (window.location.href.indexOf("?") > -1) {
