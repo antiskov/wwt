@@ -17,24 +17,31 @@ class SubmittingController extends Controller
 {
     public function index(SubmittingRequest $request, SubmittingService $service)
     {
-        $request->merge(['start_model_code' => rand(10000,20000)]); //todo remove
+//        $request->merge(['start_model_code' => rand(10000,20000)]); //todo remove
 
 //        return view('submitting.pages.advert', $service->getInfoForStep1(new WatchConnector($request)));
 
-        return view('submitting.pages.advert', $service->getItemsForFirstStep($request));
+//        return view('submitting.pages.advert', $service->getWatchItemsForFirstStep($request));
+        return view('submitting.pages.advert', $service->getWatchItemsForFirstStep());
+    }
+
+    public function createDraft(WatchAdvertRequest $request, SubmittingService $service)
+    {
+        $advert = $service->createDraft($request);
+
+        return redirect()->route('submitting.get_draft', $advert);
     }
 
     public function editDraft(Advert $advert, WatchAdvertRequest $request, SubmittingService $service)
     {
-//        dd($request->phone);
-        $advert = $service->createDraft(new AdvertWatchConnector($request, $advert));
+        $advert = $service->editDraft(new AdvertWatchConnector($request, $advert));
 
         return redirect()->route('submitting.get_draft', $advert);
     }
 
     public function getDraft(Advert $advert, SubmittingService $service)
     {
-        return view('submitting.pages.advert', $service->getDraftItemsForFirstStep($advert));
+        return view('submitting.pages.advert', $service->getDraftWatchItemsForFirstStep($advert));
     }
 
     public function uploadImage(Advert $advert, UploadImageRequest $request, SubmittingService $service)

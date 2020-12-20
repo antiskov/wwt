@@ -3,9 +3,12 @@
 namespace App\Services;
 
 use App\Domain\Submitting\Advert\AdvertAbstract;
+use App\Domain\Submitting\Advert\AdvertTools;
+use App\Domain\Submitting\Advert\AdvertWatchConnector;
 use App\Domain\Submitting\Init\AbstractSubmitting;
 use App\Http\Requests\Submitting\SubmittingRequest;
 use App\Http\Requests\Submitting\UploadImageRequest;
+use App\Http\Requests\Submitting\WatchAdvertRequest;
 use App\Models\Advert;
 use App\Models\AdvertPhoto;
 use App\Models\Currency;
@@ -23,9 +26,17 @@ class SubmittingService
         return $submitting->get();
     }
 
-    public function createDraft(AdvertAbstract $submitting): Advert
+    public function editDraft(AdvertAbstract $submitting): Advert
     {
         return $submitting->get();
+    }
+
+    public function createDraft(WatchAdvertRequest $request)
+    {
+        $advert = $this->createAdvert();
+        $this->editDraft(new AdvertWatchConnector($request, $advert));
+
+        return $advert;
     }
 
     public function uploadPhoto(Advert $advert, UploadImageRequest $request)
@@ -44,17 +55,19 @@ class SubmittingService
         }
     }
 
-    public function getItemsForFirstStep(SubmittingRequest $request)
+//    public function getWatchItemsForFirstStep(SubmittingRequest $request)
+    public function getWatchItemsForFirstStep()
     {
-        $advert = $this->createAdvert();
-        $this->createWatchAdvert($request, $advert);
-        $infoArr = $this->getInfoArr($request, $advert);
+//        $advert = $this->createAdvert();
+//        $this->createWatchAdvert($request, $advert);
+//        $infoArr = $this->getInfoArr($request, $advert);
+        $infoArr = $this->getPartInfoArr();
         $infoArr['position'] = 0;
 
         return $infoArr;
     }
 
-    public function getDraftItemsForFirstStep(Advert $advert)
+    public function getDraftWatchItemsForFirstStep(Advert $advert)
     {
         $infoArr = $this->getDraftInfoArr($advert);
         $infoArr['position'] = 1;
@@ -98,7 +111,8 @@ class SubmittingService
 
     private function getDraftInfoArr(Advert $advert)
     {
-        $infoArr = $this->getPartInfoArr($advert);
+        $infoArr = $this->getPartInfoArr();
+        $infoArr['advert'] = $advert;
         if ($advert) {
             $infoArr['model_code'] = $advert->watchAdvert->model_code;
         }
@@ -107,7 +121,8 @@ class SubmittingService
 
     }
 
-    private function getPartInfoArr(Advert $advert)
+//    private function getPartInfoArr(Advert $advert)
+    private function getPartInfoArr()
     {
         $infoArr['watchTypes'] = WatchType::all();
         $infoArr['deliveryVolumes'] = ['with box', 'with original documents', 'with original documents and box'];
@@ -116,9 +131,9 @@ class SubmittingService
         $infoArr['mechanismTypes'] = MechanismType::all();
         $infoArr['currencies'] = Currency::all();
 
-        if ($advert) {
-            $infoArr['advert'] = $advert;
-        }
+//        if ($advert) {
+//            $infoArr['advert'] = $advert;
+//        }
 
         return $infoArr;
     }

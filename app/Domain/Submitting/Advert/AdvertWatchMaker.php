@@ -7,6 +7,7 @@ use App\Http\Requests\Submitting\WatchAdvertRequest;
 use App\Models\Advert;
 use App\Models\MechanismType;
 use App\Models\Sex;
+use App\Models\WatchAdvert;
 use App\Models\WatchMake;
 use App\Models\WatchModel;
 use App\Models\WatchType;
@@ -51,7 +52,9 @@ class AdvertWatchMaker extends AdvertTools implements AdvertInterface
             $this->setBasicPhotoAdvert($photoId);
         }
 
-        $watchAdvert = $this->advert->watchAdvert;
+        $watchAdvert = new WatchAdvert();
+        $watchAdvert->advert()->associate($this->advert);
+//        $watchAdvert = $this->advert->watchAdvert;
         $watchAdvert->watch_type_id = WatchType::where('title', $this->request->watchType)->first()->id;
         $watchAdvert->watch_make_id = $this->watchMake->id;
         $watchAdvert->watch_model_id = $this->watchModel->id;

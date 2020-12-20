@@ -38,6 +38,7 @@
         </div>
         <script>
             document.addEventListener("DOMContentLoaded", function(event) {
+                @if(isset($advert))
                 document.querySelector('#addImages').onchange = function () {
                     const data = new FormData();
                     const self = this;
@@ -63,6 +64,7 @@
                         },
                     })
                 }
+                @endif
                 function deletePhoto() {
                     document.querySelectorAll('.delete_photo').forEach(function (item){
                         item.onclick = function (e) {

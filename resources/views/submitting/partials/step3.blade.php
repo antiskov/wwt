@@ -3,7 +3,7 @@
         <h2>Личные данные<span>* обязательное поле</span></h2>
         <label for="prof-surname-sub">
             Фамилия *
-            @if($advert->surname)
+            @if(isset($advert) && $advert->surname)
                 <input data-step-input type="text" id="prof-surname-sub" name="surname" value="{{$advert->surname}}">
             @else
                 <input data-step-input type="text" id="prof-surname-sub" name="surname" value="{{auth()->user()->surname}}">
@@ -11,7 +11,7 @@
         </label>
         <label for="prof-name-sub">
             Имя *
-            @if($advert->name)
+            @if(isset($advert) && $advert->name)
                 <input data-step-input  type="text" id="prof-name-sub" name="name" value="{{$advert->name}}">
             @else
                 <input data-step-input  type="text" id="prof-name-sub" name="name" value="{{auth()->user()->name}}">
@@ -19,7 +19,7 @@
         </label>
 {{--        <label for="calendar">--}}
 {{--            Дата рождения--}}
-{{--            @if($advert->birthday_date)--}}
+{{--            @if(isset($advert  &&$advert->birthday_date)--}}
 {{--                <input data-step-input type="text" id="prof-surname-sub" name="surname" value="{{$advert->birthday_date}}">--}}
 {{--            @else--}}
 {{--                <input data-step-input  type="date" id="calendar" name="birthday_date" value="{{auth()->user()->birthday_date}}">--}}
@@ -27,7 +27,7 @@
 {{--        </label>--}}
         <label for="prof-phone">
             Телефон *
-            @if($advert->phone)
+            @if(isset($advert) && $advert->phone)
                 <input data-step-input name="phone" type="tel" id="prof-phone"  value="{{$advert->phone}}">
             @else
                 <input data-step-input name="phone" type="tel" id="prof-phone" value="{{ auth()->user()->phone }}">
@@ -51,7 +51,7 @@
 
             <label for="route">
                 Улица *
-                @if($advert->street)
+                @if(isset($advert) && $advert->street)
                     <input type="text" id="route" readonly="true" name='street' value="{{ $advert->street }}">
                 @else
                     <input type="text" id="route" readonly="true" name='street' value="{{ auth()->user()->street }}">
@@ -59,7 +59,7 @@
             </label>
             <label for="street_number">
                 Адресное дополнение
-                @if($advert->street_additional)
+                @if(isset($advert) && $advert->street_additional)
                     <input type="text" id="street_number" readonly="true" name="street_additional"
                            value="{{$advert->street_additional}}">
                 @else
@@ -69,7 +69,7 @@
             </label>
             <label for="postal_code">
                 Почтовый индекс
-                @if($advert->zip_code)
+                @if(isset($advert) && $advert->zip_code)
                     <input type="text" id="postal_code" readonly="true" name="zip_code" value="{{$advert->zip_code}}">
                 @else
                     <input type="text" id="postal_code" readonly="true" name="zip_code" value="{{auth()->user()->zip_code}}">
@@ -77,7 +77,7 @@
             </label>
             <label for="locality">
                 Населенный пункт
-                @if($advert->city)
+                @if(isset($advert) && $advert->city)
                     <input type="text" id="locality" readonly="true" name="city" value="{{$advert->city}}">
                 @else
                     <input type="text" id="locality" readonly="true" name="city" value="{{auth()->user()->city}}">
@@ -85,7 +85,7 @@
             </label>
             <label for="street_number">
                 Страна *
-                @if($advert->country)
+                @if(isset($advert) && $advert->country)
                     <input type="text" id="country" readonly="true" name="country" value="{{$advert->country}}">
                 @else
                     <input type="text" id="country" readonly="true" name="country" value="{{auth()->user()->country}}">
@@ -93,7 +93,7 @@
             </label>
             <label for="street_number">
                 Область
-                @if($advert->region)
+                @if(isset($advert) && $advert->region)
                     <input type="text" id="administrative_area_level_1" readonly="true" name="region" value="{{$advert->region}}">
                 @else
                     <input type="text" id="administrative_area_level_1" readonly="true" name="region" value="{{auth()->user()->region}}">
@@ -159,10 +159,13 @@
 
         <div class="btn-cont step-3-cont">
             <button data-step="2" class="prev-step btn-hover" type="button">Вернуться к шагу 2</button>
-
+            @if(isset($advert))
             <button class="save-edit btn-hover-w" type="submit">Сохранить как черновик</button>
 
             <button data-step="4" data-id-adv="{{$advert->id}}" class="save-next btn-hover" type="button">Перейти к шагу 4</button>
+                @else
+                <button class="save-edit btn-hover-w" type="submit">Сохранить как черновик</button>
+                @endif
         </div>
     </div>
 </div>

@@ -10,7 +10,11 @@
                     <li data-anchor="3" class="disabled">шаг 3</li>
                     <li data-anchor="4" class="disabled">шаг 4</li>
                 </ul>
-                <form id="create_advert" action="{{route('submitting.edit_draft', $advert)}}" method="post">
+                @if(isset($advert))
+                    <form id="create_advert" action="{{route('submitting.edit_draft', $advert)}}" method="post">
+                @else
+                    <form id="create_advert" action="{{route('submitting.create_draft')}}" method="post">
+                @endif
                     @csrf
                     @include('submitting.partials.step1')
                     @include('submitting.partials.step2')
@@ -39,7 +43,9 @@
                 },
                 afterClose: function () {
                     //тут мож нахуярить редирект
+                    @if(isset($advert))
                     window.location.replace('{{route('submitting.edit_draft', $advert)}}')
+                    @endif
                     console.log(window.location.origin)
                 }
             })

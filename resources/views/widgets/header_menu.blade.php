@@ -136,8 +136,7 @@
                                 </ul>
                             </li>
                             <li>
-                                <a data-fancybox data-src="#referral_number" href="javascript:;"
-                                   class="thisMe">Продать</a>
+                                <a href='{{route('submitting')}}'><span>Продать</span></a>
                             </li>
                         </ul>
                     </li>
@@ -383,8 +382,7 @@
                                         </div>
                                     </li>
                                     <li>
-                                        <a data-fancybox data-src="#referral_number"
-                                           href="javascript:;"><span>Продать</span></a>
+                                        <a href='{{route('submitting')}}'><span>Продать</span></a>
                                     </li>
                                 </ul>
                             </li>

@@ -1,5 +1,5 @@
 {{--<div class="saved-images">--}}
-{{--    @if(isset($advert))--}}
+    @if(isset($advert))
         @foreach($advert->photos as $photo)
             <li class="item saved-item">
         <span class="img-wrap">
@@ -18,7 +18,7 @@
                 <span class="delete-link delete_photo" title="Удалить" data-id="{{$photo->id}}"></span>
             </li>
         @endforeach
-{{--    @endif--}}
+    @endif
 {{--</div>--}}
 
 
