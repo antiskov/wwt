@@ -13,6 +13,7 @@ class BannerController extends Controller
 {
     public function index()
     {
+        //todo: order by start_date
         $banners = Banner::orderBy('id', 'desc')->get();
 
         return view('admin.pages.banner_control', ['banners' => $banners]);

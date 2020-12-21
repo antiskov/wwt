@@ -113,9 +113,11 @@ class UserService
         } else {
             \Auth::login(auth()->user(), true);
         }
-
-        if ($setting = UserSettings::where('user_id', auth()->user()->id)->first()) {
+        //todo: refactor
+        $setting = UserSettings::where('user_id', auth()->user()->id)->first();
+        if ($setting) {
             $setting->receive_partners_adverts = $request->receive_partners_adverts ? 1 : 0;
+            //todo extract to method
             if ($request->language_communication == 'Русский' || $request->language_communication == 'Russian') {
                 $setting->language_communication = 'ru';
             } else {
@@ -123,6 +125,7 @@ class UserService
             }
             $setting->save();
         } else {
+
             $setting = new UserSettings();
             $setting->user()->associate(auth()->user());
             $setting->receive_partners_adverts = $request->receive_service_info ? 1 : 0;
@@ -138,7 +141,7 @@ class UserService
 
         return $setting;
     }
-
+    //todo: check чего? refactor
     public function check() {
         $check = [];
 

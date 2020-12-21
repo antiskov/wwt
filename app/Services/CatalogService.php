@@ -66,6 +66,7 @@ class CatalogService
 
     public function getFilterResults(Request $request, $type, $user_id = 0)
     {
+        //todo: user_id не информативно
         if($type == 3 && $user_id != 0) {
             $adverts = new SellerAdsGetter();
         } elseif ($type == 1 && $user_id == 0) {
@@ -83,7 +84,7 @@ class CatalogService
         }
 
     }
-
+    //todo: refactor в последнюю очередь
     public function goodsIndex(User $user, Advert $advert, UserService $userService)
     {
         $expiresAt = now()->addHours(24);

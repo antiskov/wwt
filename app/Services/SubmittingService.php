@@ -38,15 +38,17 @@ class SubmittingService
 
         return $advert;
     }
-
+    //todo: refactor
     public function uploadPhoto(Advert $advert, UploadImageRequest $request)
     {
         foreach ($request->file('advert_images') as $image) {
             $name = $image->getClientOriginalName();
             if (!AdvertPhoto::where('photo', $name)->where('advert_id', $advert->id)->first()) {
+
+
                 $path = '/images/advert_photos/' . $advert->type . '/number_' . $advert->id;
                 $image->storeAs($path, $name, 'public');
-
+                //todo: method
                 $imageAdvert = new AdvertPhoto();
                 $imageAdvert->advert_id = $advert->id;
                 $imageAdvert->photo = $name;
@@ -141,6 +143,7 @@ class SubmittingService
     public function deleteAdvertPhoto(AdvertPhoto $photo)
     {
         if ($photo) {
+            //todo: уточнить у Жени надо ли удалять исходник
             Storage::delete('/public/images/advert_photos/watch/number_' . $photo->advert->id . '/' . $photo->photo);
             $photo->delete();
         }
@@ -148,8 +151,6 @@ class SubmittingService
 
     public function getPrice(Advert $advert)
     {
-        $price = round($advert->price * $advert->price_rate);
-
-        return $price;
+        return round($advert->price * $advert->price_rate);
     }
 }

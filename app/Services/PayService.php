@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Session;
 
 class PayService
 {
+    //todo: to ENV
     public function getParameters()
     {
         return [
@@ -34,6 +35,7 @@ class PayService
             "description" => $description,
             "order_id" => $order_id,
 //            'server_url' => route('callback_pay'),
+            //todo: get from ENV
             'server_url' => 'http://d4348b050153.ngrok.io/api/callback_pay',
             'result_url' => route('status_pay', $order_id),
         ];
@@ -57,6 +59,7 @@ class PayService
 
     public function setTransactionDB(Request $request, $description = 'addition cost')
     {
+        //todo: extract to class TransactionCreator
         $userTransaction = new UserTransaction();
         $userTransaction->type = 'addition';
         $userTransaction->user_id = auth()->user()->id;
@@ -64,6 +67,7 @@ class PayService
         $userTransaction->title = $description;
         $userTransaction->status = 'none';
         $userTransaction->order_id = auth()->user()->id . '-' . rand(1000000, 2000000);
+        //todo: check
         $userTransaction->save();
 
         return $userTransaction->order_id;
@@ -71,6 +75,7 @@ class PayService
 
     public function setTransactionForSubmitting(Advert $advert)
     {
+        //todo: extract to class TransactionCreator
         $userTransaction = new UserTransaction();
         $userTransaction->type = 'addition';
         $userTransaction->user_id = auth()->user()->id;
@@ -123,6 +128,7 @@ class PayService
 
             \Log::info([$callbackPar['order_id'], $callbackPar['status']]);
         } else {
+            //todo: if error return error code to liqpay
             \Log::info('incorrect signature');
         }
     }
@@ -142,6 +148,7 @@ class PayService
         $vipArr = explode('-', $transaction->order_id);
 
         if($vipArr[0] == 'vip' && $transaction->status == 'success'){
+            //todo: extract to class TransactionCreator
             $userTransaction = new UserTransaction();
             $userTransaction->type = 'cost';
             $userTransaction->user_id = $transaction->user->id;
@@ -150,13 +157,14 @@ class PayService
             $userTransaction->status = 'success';
             $userTransaction->order_id = 'buy-vip-'.auth()->user()->id . '-' . rand(1000000, 2000000);
             $userTransaction->save();
-
+            //todo: extract to method
             $advert = Advert::where('id', $vipArr[2])->first();
             $advert->vip_status = 1;
+            //todo: check
             $advert->save();
         }
     }
-
+    //It's a balance
     public function getScore()
     {
         $score = 0;

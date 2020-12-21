@@ -13,7 +13,7 @@ class AdvertTools
     protected $request;
     public $watchMake;
     public $watchModel;
-
+    //todo: saves chack and errors checker
     protected function recordAdvert($type)
     {
         $this->advert->type = $type;
@@ -78,11 +78,9 @@ class AdvertTools
 
     public function setPrice()
     {
-        $price = $this->request->price / $this->advert->price_rate;
-
-        return $price;
+        return $this->request->price / $this->advert->price_rate;
     }
-
+    //todo: refactor to one query
     public function setPriceRate()
     {
         if($this->request->currency == 'EUR'){

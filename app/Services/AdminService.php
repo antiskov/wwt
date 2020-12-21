@@ -22,16 +22,21 @@ use Illuminate\Support\Facades\Storage;
 
 class AdminService
 {
+    //todo: to Banner servicse
+    //todo: banner deactivation to console script
+
     public function createBanner(Request $request)
     {
+
         $bannerOld = Banner::where('is_active', 1)->first();
+        //todo: remove check by time
         if($bannerOld && (date('Y-m-d') > $bannerOld->date_finish))  {
             $bannerOld->is_active = 0;
         }
-
+        //todo: to uploader
         $filename = $request->file('banner_image')->getClientOriginalName();
         $request->file('banner_image')->storeAs('banners', $filename, 'public');
-
+        //todo: проверка есть ли накладка по времени между datestart новго баннера и date_finish активного старого
         $banner = new Banner();
         $banner->description = $request->description;
         $banner->date_start = $request->date_start;
@@ -39,15 +44,16 @@ class AdminService
         $banner->banner_image = $filename;
         $banner->is_active = 1;
         $banner->link = $request->link;
+        //todo: check is success. Error message to log
         $banner->save();
     }
-
+    //todo: updateBanner($id,array $data). Get and save in one place
     public function closeBanner(Banner $banner)
     {
         $banner->is_active = 0;
         $banner->save();
     }
-
+    //todo: don't needed
     public function deleteBanner(Banner $banner)
     {
         $banner->delete();
@@ -70,12 +76,14 @@ class AdminService
 //        dd($man_image);
         $picture->man = $man_image;
         $picture->woman = $woman_image;
+        //todo: check is success. Error message to log
         $picture->save();
     }
 
     public function publishedWatchMake(Advert $advert)
     {
         $watchMake = $advert->watchAdvert->watchMake;
+        //todo: delete on prod
         dd($watchMake);
     }
 
@@ -122,19 +130,21 @@ class AdminService
     {
         $image = $request->file('image')->getClientOriginalName();
         $request->file('image')->storeAs('admin/sliders', $image, 'public');
-
+        //todo: To externall method CreateSlider
         $slider = new HomeSlider();
         $slider->image = $image;
         $slider->upper_text = $request->upper_text;
         $slider->middle_text = $request->middle_text;
         $slider->link = $request->link;
         $slider->is_active = 1;
+        //todo: check is success. Error message to log
         $slider->save();
     }
 
     public function createMaker(Request $request)
-    {
+    {   //todo: to FormRequest Validator
         if(!WatchMake::where('title', $request->title)->where('logo', $request->logo)->first()){
+            //todo: To externall method UploadMakerImage
             $logo = $request->file('logo')->getClientOriginalName();
             $request->file('logo')->storeAs('admin/makers', $logo, 'public');
 
@@ -142,6 +152,7 @@ class AdminService
             $maker->title = $request->title;
             $maker->logo = $logo;
             $maker->status = 0;
+            //todo: check is success. Error message to log
             $maker->save();
         }
     }

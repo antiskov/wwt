@@ -11,12 +11,27 @@ use Illuminate\Support\Str;
 
 class PasswordService
 {
+
+
+
     public function resetPassword(ManagePasswordRequest $request)
     {
+        /*$user=$userService->getUserByEmail($email);
+        if($user) {
+            $passwordService->resetPassword($user)
+        }
+        example
+
+        */
+
+        //todo: Сервис не должен заниматься редиректами. Он оперирует данными. Ерроры вынести в параметры
+        //todo: check before this method
         if( $user = User::where('email', $request->email)->first()){
             if ($user->count() < 1) {
                 return redirect()->back()->withErrors(['email' => trans('User does not exist')]);
             }
+
+            //todo: refactor one request
             DB::table('password_resets')->insert([
                 'email' => $request->email,
                 'token' => Str::random(10),
@@ -46,6 +61,7 @@ class PasswordService
             \Mail::to($email)->send(new ResetPassword($link));
             return true;
         } catch (\Exception $e) {
+
             return false;
         }
     }
