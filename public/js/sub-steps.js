@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function(e){
             if(step === 2){
                 return  !checkImages()
             } else if(step === 3) {
-                return submitInfo();
+                submitInfo();
             }
             else{
                 return [...inputs].some(input => !input.value)

@@ -1,13 +1,6 @@
 <div class="items-cont inline-view">
     <div class="inline-cart">
         <div class="vip-label"></div>
-        @auth
-            @if(\App\Models\UserFavoriteAdvert::where('user_id', auth()->user()->id)->where('advert_id', $advert->id)->first())
-                <div class="favorite-icon active catalog-heart" data-id="{{$advert->id}}"></div>
-            @else
-                <div class="favorite-icon catalog-heart" data-id="{{$advert->id}}"></div>
-            @endif
-        @endauth
         <a href="{{route('catalog.item-page', [$advert->id])}}" class="img-wrap">
             <img src="{{asset('/storage/images/advert_photos/watch/number_'.$advert->id.'/'.$advert->photos->where('is_basic', 1)->first()->photo)}}">
         </a>

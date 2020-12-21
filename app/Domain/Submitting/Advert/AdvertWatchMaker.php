@@ -22,13 +22,13 @@ class AdvertWatchMaker extends AdvertTools implements AdvertInterface
 
     public function createWatchMake()
     {
-        $watchMake =  WatchMake::where('title', $this->request->brand)->first();
-        if(!$watchMake){
-            $watchMake = new WatchMake();
+        $this->watchMake =  WatchMake::where('title', $this->request->brand)->first();
+        if(!$this->watchMake){
+            $this->watchMake = new WatchMake();
         }
-        $watchMake->title = $this->request->brand;
-        $watchMake->save();
-        $this->watchMake = $watchMake;
+        $this->watchMake->title = $this->request->brand;
+        $this->watchMake->is_moderated = 0;
+        $this->watchMake->save();
     }
 
     public function createWatchModel()

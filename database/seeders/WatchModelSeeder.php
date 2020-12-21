@@ -18,23 +18,27 @@ class WatchModelSeeder extends Seeder
     public function run()
     {
         WatchType::create([
-            'title' => 'Automatic',
+            'title' => 'Automatic'
         ]);
 //
         WatchMake::create([
-            'title' => 'Jordano'
+            'title' => 'Jordano',
+            'is_moderated' => 1,
         ]);
 
         WatchMake::create([
-            'title' => 'Apple'
+            'title' => 'Apple',
+            'is_moderated' => 1,
         ]);
 
         WatchMake::create([
-            'title' => 'Rolex'
+            'title' => 'Rolex',
+            'is_moderated' => 1,
         ]);
 
         WatchMake::create([
-            'title' => 'Xiaomi'
+            'title' => 'Xiaomi',
+            'is_moderated' => 1,
         ]);
 
         MechanismType::create([

@@ -75,7 +75,7 @@ class SubmittingController extends Controller
 
     public function getStep4(Advert $advert, WatchAdvertRequest $request, SubmittingService $service)
     {
-        $advert = $service->createDraft(new AdvertWatchConnector($request, $advert));
+        $advert = $service->editDraft(new AdvertWatchConnector($request, $advert));
 
         $data = [
             'output' => view('submitting.partials.step4', ['advert' => $advert])->toHtml(),

@@ -1,321 +1,321 @@
 <section class="filters">
-{{--    @if(isset($user))--}}
-{{--        <form class="filters-mob filter-search" method="get" action="{{route('catalog.seller-ads', $user)}}">--}}
-{{--    @elseif(isset($vipHome))--}}
-{{--        <form class="filters-mob filter-search" method="get" action="{{route('result_for_home')}}">--}}
-{{--    @else--}}
-{{--        <form class="filters-mob filter-search" method="get" action="{{route('catalog')}}">--}}
-{{--    @endif--}}
-{{--        <div class="filters-mob-btns">--}}
-{{--            <button class="reset-filters-btn btn-hover" type="reset">Сбросить</button>--}}
-{{--            <button class="open-mob-filter-btn" type="button">Фильтр</button>--}}
-{{--        </div>--}}
-{{--        <div class="filters-mob-content">--}}
-{{--            <ul class="filters-mob-list">--}}
-{{--                <li class="title">--}}
-{{--                    <h5>Общие данные</h5>--}}
-{{--                </li>--}}
-{{--                <li>--}}
-{{--                    <p>Марка</p>--}}
-{{--                    <div class="filters-mob-list__content">--}}
-{{--                        <div class="filters-search">--}}
-{{--                            <input class="filters-search-field" data-search-list="filters-mob-brand" type="text"--}}
-{{--                                   placeholder="Поиск по фильтру">--}}
-{{--                            <span class="clear-field-btn"></span>--}}
-{{--                        </div>--}}
-{{--                        <ul id="filters-mob-brand" class="checkboxes-list">--}}
-{{--                            @foreach($brands as $brand)--}}
-{{--                                <li>--}}
-{{--                                    <div class="checkbox-block">--}}
-{{--                                        <label class="checkbox-block__label">--}}
-{{--                                            <input class="watch-filter" type="checkbox" name="brands[]" value="{{$brand->watch_make_title}}" id="{{$brand->watch_make_title}}"--}}
-{{--                                                @if(isset(request()->brands))--}}
-{{--                                                    {{in_array($brand->watch_make_title, request()->brands)  ? 'checked' : ''}}--}}
-{{--                                                @endif--}}
-{{--                                            >--}}
-{{--                                            <p><span>{{$brand->watch_make_title.' ('.$brand->count_watch_make_title.')'}}</span></p>--}}
-{{--                                        </label>--}}
-{{--                                    </div>--}}
-{{--                                </li>--}}
-{{--                            @endforeach--}}
-{{--                        </ul>--}}
-{{--                    </div>--}}
-{{--                </li>--}}
-{{--                <li>--}}
-{{--                    <p>Модель</p>--}}
-{{--                    <div class="filters-mob-list__content">--}}
-{{--                        <div class="filters-search">--}}
-{{--                            <input class="filters-search-field" data-search-list="filters-mob-model" type="text"--}}
-{{--                                   placeholder="Поиск по фильтру">--}}
-{{--                            <span class="clear-field-btn"></span>--}}
-{{--                        </div>--}}
-{{--                        <ul id="filters-mob-model" class="checkboxes-list">--}}
-{{--                            @foreach($models as $model)--}}
-{{--                                <li>--}}
-{{--                                    <div class="checkbox-block">--}}
-{{--                                        <label class="checkbox-block__label">--}}
-{{--                                            <input class="watch-filter" type="checkbox" name="models[]" value="{{$model->watch_model_title}}" id="{{$model->watch_model_title}}"--}}
-{{--                                            @if(isset(request()->models))--}}
-{{--                                                {{in_array($model->watch_model_title, request()->models)  ? 'checked' : ''}}--}}
-{{--                                                @endif--}}
-{{--                                            >--}}
-{{--                                            <p><span>{{$model->watch_model_title.' ('.$model->count_watch_model_title.')'}}</span></p>--}}
-{{--                                        </label>--}}
-{{--                                    </div>--}}
-{{--                                </li>--}}
-{{--                            @endforeach--}}
-{{--                        </ul>--}}
-{{--                    </div>--}}
-{{--                </li>--}}
-{{--                <li>--}}
-{{--                    <p>Цена</p>--}}
-{{--                    <div class="filters-mob-list__content">--}}
-{{--                        <div class="price-slider price-slider_mob">--}}
-{{--                            <div class="price-slider__line">--}}
-{{--                                <input id="slider-price-mob" type="text" class="range-slider watch-filter" value=""--}}
-{{--                                       data-from="0" data-to="{{$maxPrice}}" data-min="0" data-max="{{$maxPrice}}"/>--}}
-{{--                            </div>--}}
-{{--                            <div class="price-slider__controls">--}}
-{{--                                <input id="slider-price-mob-from" type="text" class="price-slider__from watch-filter" name="prices[0]" value="0"/>--}}
-{{--                                <p>uah</p>--}}
-{{--                                <input id="slider-price-mob-to" type="text" class="price-slider__to watch-filter" name="prices[1]" value="300"/>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </li>--}}
-{{--                <li>--}}
-{{--                    <p>Диаметр</p>--}}
-{{--                    <div class="filters-mob-list__content">--}}
-{{--                        <div class="filters-search">--}}
-{{--                            <input class="filters-search-field" data-search-list="filters-mob-diameter" type="text"--}}
-{{--                                   placeholder="Поиск по фильтру">--}}
-{{--                            <span class="clear-field-btn"></span>--}}
-{{--                        </div>--}}
-{{--                        <ul id="filters-mob-diameter" class="checkboxes-list">--}}
-{{--                            @foreach($diameters as $diameter)--}}
-{{--                                <li>--}}
-{{--                                    <div class="checkbox-block">--}}
-{{--                                        <label class="checkbox-block__label">--}}
-{{--                                            @if($diameter->height == $diameter->width)--}}
-{{--                                                <input class="watch-filter" type="checkbox" name="diameters[]" value="{{$diameter->height}}" id="{{$diameter->height}}"--}}
-{{--                                                @if(isset(request()->diameters))--}}
-{{--                                                    {{in_array($diameter->height, request()->diameters)  ? 'checked' : ''}}--}}
-{{--                                                    @endif--}}
-{{--                                                >--}}
-{{--                                                <p>--}}
-{{--                                                    <span>{{$diameter->height.' ('.$diameter->count_height.')'}}</span>--}}
-{{--                                                </p>--}}
-{{--                                            @else--}}
-{{--                                                <input class="watch-filter" type="checkbox" name="diameters[]" value="{{$diameter->height.'/'.$diameter->width}}" id="{{$diameter->height.'/'.$diameter->width}}"--}}
-{{--                                                @if(isset(request()->diameters))--}}
-{{--                                                    {{in_array($diameter->height.'/'.$diameter->width, request()->diameters)  ? 'checked' : ''}}--}}
-{{--                                                    @endif--}}
-{{--                                                >--}}
-{{--                                                <p>--}}
-{{--                                                    <span>{{$diameter->height.'/'.$diameter->width.' ('.$diameter->count_height.')'}}</span>--}}
-{{--                                                </p>--}}
-{{--                                            @endif--}}
-{{--                                        </label>--}}
-{{--                                    </div>--}}
-{{--                                </li>--}}
-{{--                            @endforeach--}}
-{{--                        </ul>--}}
-{{--                    </div>--}}
-{{--                </li>--}}
-{{--                <li>--}}
-{{--                    <p>Год</p>--}}
-{{--                    <div class="filters-mob-list__content">--}}
-{{--                        <div class="filters-search">--}}
-{{--                            <input class="filters-search-field" data-search-list="filters-mob-year" type="text"--}}
-{{--                                   placeholder="Поиск по фильтру">--}}
-{{--                            <span class="clear-field-btn"></span>--}}
-{{--                        </div>--}}
-{{--                        <ul id="filters-mob-year" class="checkboxes-list">--}}
-{{--                            @foreach($years as $year)--}}
-{{--                                <li>--}}
-{{--                                    <div class="checkbox-block">--}}
-{{--                                        <label class="checkbox-block__label">--}}
-{{--                                            <input class="watch-filter" type="checkbox" name="years[]" value="{{$year->release_year}}" id="{{$year->release_year}}"--}}
-{{--                                            @if(isset(request()->years))--}}
-{{--                                                {{in_array($year->release_year, request()->years)  ? 'checked' : ''}}--}}
-{{--                                                @endif--}}
-{{--                                            >--}}
-{{--                                            <p><span>{{$year->release_year.' ('.$year->count_release_year.')'}}</span></p>--}}
-{{--                                        </label>--}}
-{{--                                    </div>--}}
-{{--                                </li>--}}
-{{--                            @endforeach--}}
-{{--                        </ul>--}}
-{{--                    </div>--}}
-{{--                </li>--}}
-{{--                <li>--}}
-{{--                    <p>Местоположение</p>--}}
-{{--                    <div class="filters-mob-list__content">--}}
-{{--                        <div class="filters-search">--}}
-{{--                            <input class="filters-search-field" data-search-list="filters-mob-location" type="text"--}}
-{{--                                   placeholder="Поиск по фильтру">--}}
-{{--                            <span class="clear-field-btn"></span>--}}
-{{--                        </div>--}}
-{{--                        <ul id="filters-mob-location" class="checkboxes-list">--}}
-{{--                            @foreach($regions as $region)--}}
-{{--                                <li>--}}
-{{--                                    <div class="checkbox-block">--}}
-{{--                                        <label class="checkbox-block__label">--}}
-{{--                                            <input class="watch-filter" type="checkbox" name="regions[]" value="{{$region->region}}" id="{{$region->region}}"--}}
-{{--                                                @if(request()->regions)--}}
-{{--                                                {{in_array($region->region, request()->regions)  ? 'checked' : ''}}--}}
-{{--                                                @endif--}}
-{{--                                                >--}}
-{{--                                            <p><span>{{$region->region.' ('.$region->count_region.')'}}</span></p>--}}
-{{--                                        </label>--}}
-{{--                                    </div>--}}
-{{--                                </li>--}}
-{{--                            @endforeach--}}
-{{--                        </ul>--}}
-{{--                    </div>--}}
-{{--                </li>--}}
-{{--                <li class="title">--}}
-{{--                    <h5>Дополнительно</h5>--}}
-{{--                </li>--}}
-{{--                <li>--}}
-{{--                    <p>Тип механизма</p>--}}
-{{--                    <div class="filters-mob-list__content">--}}
-{{--                        <div class="filters-search">--}}
-{{--                            <input class="filters-search-field" data-search-list="filters-mob-model" type="text"--}}
-{{--                                   placeholder="Поиск по фильтру">--}}
-{{--                            <span class="clear-field-btn"></span>--}}
-{{--                        </div>--}}
-{{--                        <ul id="filters-mob-model" class="checkboxes-list">--}}
-{{--                            @foreach($mechanismTypes as $mechanismType)--}}
-{{--                                <li>--}}
-{{--                                    <div class="checkbox-block">--}}
-{{--                                        <label class="checkbox-block__label">--}}
-{{--                                            <input  class="watch-filter" type="checkbox" name="mechanismTypes[]" value="{{$mechanismType->mechanism_type_title}}" id="{{$mechanismType->mechanism_type_title}}"--}}
-{{--                                                @if(request()->mechanismTypes)--}}
-{{--                                                {{in_array($mechanismType->mechanism_type_title, request()->mechanismTypes)  ? 'checked' : ''}}--}}
-{{--                                                @endif--}}
-{{--                                                >--}}
-{{--                                            <p><span>{{$mechanismType->mechanism_type_title.' ('.$mechanismType->count_mechanism_type_title.')'}}</span></p>--}}
-{{--                                        </label>--}}
-{{--                                    </div>--}}
-{{--                                </li>--}}
-{{--                            @endforeach--}}
-{{--                        </ul>--}}
-{{--                    </div>--}}
-{{--                </li>--}}
-{{--                <li>--}}
-{{--                    <p>Состояние</p>--}}
-{{--                    <div class="filters-mob-list__content">--}}
-{{--                        <div class="filters-search">--}}
-{{--                            <input class="filters-search-field" data-search-list="filters-mob-model" type="text"--}}
-{{--                                   placeholder="Поиск по фильтру">--}}
-{{--                            <span class="clear-field-btn"></span>--}}
-{{--                        </div>--}}
-{{--                        <ul>--}}
-{{--                            @foreach($states as $state)--}}
-{{--                                <li>--}}
-{{--                                    <div class="checkbox-block">--}}
-{{--                                        <label class="checkbox-block__label">--}}
-{{--                                            <input class="watch-filter" type="checkbox" name="states[]" value="{{$state->watch_state}}" id="{{$state->watch_state}}"--}}
-{{--                                                @if(request()->states)--}}
-{{--                                                {{in_array($state->watch_state, request()->states)  ? 'checked' : ''}}--}}
-{{--                                                @endif--}}
-{{--                                                >--}}
-{{--                                            <p><span>{{$state->watch_state.' ('.$state->count_watch_state.')'}}</span></p>--}}
-{{--                                        </label>--}}
-{{--                                    </div>--}}
-{{--                                </li>--}}
-{{--                            @endforeach--}}
-{{--                        </ul>--}}
-{{--                    </div>--}}
-{{--                </li>--}}
-{{--                <li>--}}
-{{--                    <p>Обьем доставки</p>--}}
-{{--                    <div class="filters-mob-list__content">--}}
-{{--                        <div class="filters-search">--}}
-{{--                            <input class="filters-search-field" data-search-list="filters-mob-model" type="text"--}}
-{{--                                   placeholder="Поиск по фильтру">--}}
-{{--                            <span class="clear-field-btn"></span>--}}
-{{--                        </div>--}}
-{{--                        <ul>--}}
-{{--                            @foreach($deliveryVolumes as $deliveryVolume)--}}
-{{--                                <li>--}}
-{{--                                    <div class="checkbox-block">--}}
-{{--                                        <label class="checkbox-block__label">--}}
-{{--                                            <input class="watch-filter" type="checkbox" name="deliveryVolumes[]" value="{{$deliveryVolume->delivery_volume}}" id="{{$deliveryVolume->delivery_volume}}"--}}
-{{--                                                @if(request()->deliveryVolumes)--}}
-{{--                                                {{in_array($deliveryVolume->delivery_volume, request()->deliveryVolumes)  ? 'checked' : ''}}--}}
-{{--                                                @endif--}}
-{{--                                                >--}}
-{{--                                            <p><span>{{$deliveryVolume->delivery_volume.' ('.$deliveryVolume->count_delivery_volume.')'}}</span></p>--}}
-{{--                                        </label>--}}
-{{--                                    </div>--}}
-{{--                                </li>--}}
-{{--                            @endforeach--}}
-{{--                        </ul>--}}
-{{--                    </div>--}}
-{{--                </li>--}}
-{{--                <li>--}}
-{{--                    <p>Пол</p>--}}
-{{--                    <div class="filters-mob-list__content">--}}
-{{--                        <div class="filters-search">--}}
-{{--                            <input class="filters-search-field" data-search-list="filters-mob-model" type="text"--}}
-{{--                                   placeholder="Поиск по фильтру">--}}
-{{--                            <span class="clear-field-btn"></span>--}}
-{{--                        </div>--}}
-{{--                        <ul>--}}
-{{--                            @foreach($sexes as $sex)--}}
-{{--                                <li>--}}
-{{--                                    <div class="checkbox-block">--}}
-{{--                                        <label class="checkbox-block__label">--}}
-{{--                                            <input class="watch-filter" type="checkbox" name="sexes[]" value="{{$sex->sex_title}}" id="{{$sex->sex_title}}"--}}
-{{--                                                @if(request()->sexes)--}}
-{{--                                                {{in_array($sex->sex_title, request()->sexes)  ? 'checked' : ''}}--}}
-{{--                                                @endif--}}
-{{--                                                >--}}
-{{--                                            <p><span>{{$sex->sex_title.' ('.$sex->count_sex_title.')'}}</span></p>--}}
-{{--                                        </label>--}}
-{{--                                    </div>--}}
-{{--                                </li>--}}
-{{--                            @endforeach--}}
-{{--                        </ul>--}}
-{{--                    </div>--}}
-{{--                </li>--}}
-{{--                <li>--}}
-{{--                    <p>Тип часов</p>--}}
-{{--                    <div class="filters-mob-list__content">--}}
-{{--                        <div class="filters-search">--}}
-{{--                            <input class="filters-search-field" data-search-list="filters-mob-model" type="text"--}}
-{{--                                   placeholder="Поиск по фильтру">--}}
-{{--                            <span class="clear-field-btn"></span>--}}
-{{--                        </div>--}}
-{{--                        <ul>--}}
-{{--                            @foreach($types as $type)--}}
-{{--                                <li>--}}
-{{--                                    <div class="checkbox-block">--}}
-{{--                                        <label class="checkbox-block__label">--}}
-{{--                                            <input class="watch-filter" type="checkbox" name="types[]" value="{{$type->watch_type_title}}" id="{{$type->watch_type_title}}"--}}
-{{--                                                @if(request()->types)--}}
-{{--                                                {{in_array($type->watch_type_title, request()->types)  ? 'checked' : ''}}--}}
-{{--                                                @endif--}}
-{{--                                                >--}}
-{{--                                            <p><span>{{$type->watch_type_title.' ('.$type->count_watch_type_title.')'}}</span></p>--}}
-{{--                                        </label>--}}
-{{--                                    </div>--}}
-{{--                                </li>--}}
-{{--                            @endforeach--}}
-{{--                        </ul>--}}
-{{--                    </div>--}}
-{{--                </li>--}}
-{{--            </ul>--}}
-{{--            <div class="filters-buttons">--}}
-{{--                @auth--}}
-{{--                    <button data-fancybox data-src="#save-filter-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>--}}
-{{--                @endauth--}}
-{{--                <button class="filters-submit-btn btn-hover" type="submit">Применить</button>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </form>--}}
+    @if(isset($user))
+        <form class="filters-mob filter-search" method="get" action="{{route('catalog.seller-ads', $user)}}">
+    @elseif(isset($vipHome))
+        <form class="filters-mob filter-search" method="get" action="{{route('result_for_home')}}">
+    @else
+        <form class="filters-mob filter-search" method="get" action="{{route('catalog')}}">
+    @endif
+        <div class="filters-mob-btns">
+            <button class="reset-filters-btn btn-hover" type="reset">Сбросить</button>
+            <button class="open-mob-filter-btn" type="button">Фильтр</button>
+        </div>
+        <div class="filters-mob-content">
+            <ul class="filters-mob-list">
+                <li class="title">
+                    <h5>Общие данные</h5>
+                </li>
+                <li>
+                    <p>Марка</p>
+                    <div class="filters-mob-list__content">
+                        <div class="filters-search">
+                            <input class="filters-search-field" data-search-list="filters-mob-brand" type="text"
+                                   placeholder="Поиск по фильтру">
+                            <span class="clear-field-btn"></span>
+                        </div>
+                        <ul id="filters-mob-brand" class="checkboxes-list">
+                            @foreach($brands as $brand)
+                                <li>
+                                    <div class="checkbox-block">
+                                        <label class="checkbox-block__label">
+                                            <input class="watch-filter" type="checkbox" name="brands[]" value="{{$brand->watch_make_title}}" id="{{$brand->watch_make_title}}"
+                                                @if(isset(request()->brands))
+                                                    {{in_array($brand->watch_make_title, request()->brands)  ? 'checked' : ''}}
+                                                @endif
+                                            >
+                                            <p><span>{{$brand->watch_make_title.' ('.$brand->count_watch_make_title.')'}}</span></p>
+                                        </label>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <p>Модель</p>
+                    <div class="filters-mob-list__content">
+                        <div class="filters-search">
+                            <input class="filters-search-field" data-search-list="filters-mob-model" type="text"
+                                   placeholder="Поиск по фильтру">
+                            <span class="clear-field-btn"></span>
+                        </div>
+                        <ul id="filters-mob-model" class="checkboxes-list">
+                            @foreach($models as $model)
+                                <li>
+                                    <div class="checkbox-block">
+                                        <label class="checkbox-block__label">
+                                            <input class="watch-filter" type="checkbox" name="models[]" value="{{$model->watch_model_title}}" id="{{$model->watch_model_title}}"
+                                            @if(isset(request()->models))
+                                                {{in_array($model->watch_model_title, request()->models)  ? 'checked' : ''}}
+                                                @endif
+                                            >
+                                            <p><span>{{$model->watch_model_title.' ('.$model->count_watch_model_title.')'}}</span></p>
+                                        </label>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <p>Цена</p>
+                    <div class="filters-mob-list__content">
+                        <div class="price-slider price-slider_mob">
+                            <div class="price-slider__line">
+                                <input id="slider-price-mob" type="text" class="range-slider watch-filter" value=""
+                                       data-from="0" data-to="{{$maxPrice}}" data-min="0" data-max="{{$maxPrice}}"/>
+                            </div>
+                            <div class="price-slider__controls">
+                                <input id="slider-price-mob-from" type="text" class="price-slider__from watch-filter" name="prices[0]" value="0"/>
+                                <p>uah</p>
+                                <input id="slider-price-mob-to" type="text" class="price-slider__to watch-filter" name="prices[1]" value="300"/>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <p>Диаметр</p>
+                    <div class="filters-mob-list__content">
+                        <div class="filters-search">
+                            <input class="filters-search-field" data-search-list="filters-mob-diameter" type="text"
+                                   placeholder="Поиск по фильтру">
+                            <span class="clear-field-btn"></span>
+                        </div>
+                        <ul id="filters-mob-diameter" class="checkboxes-list">
+                            @foreach($diameters as $diameter)
+                                <li>
+                                    <div class="checkbox-block">
+                                        <label class="checkbox-block__label">
+                                            @if($diameter->height == $diameter->width)
+                                                <input class="watch-filter" type="checkbox" name="diameters[]" value="{{$diameter->height}}" id="{{$diameter->height}}"
+                                                @if(isset(request()->diameters))
+                                                    {{in_array($diameter->height, request()->diameters)  ? 'checked' : ''}}
+                                                    @endif
+                                                >
+                                                <p>
+                                                    <span>{{$diameter->height.' ('.$diameter->count_height.')'}}</span>
+                                                </p>
+                                            @else
+                                                <input class="watch-filter" type="checkbox" name="diameters[]" value="{{$diameter->height.'/'.$diameter->width}}" id="{{$diameter->height.'/'.$diameter->width}}"
+                                                @if(isset(request()->diameters))
+                                                    {{in_array($diameter->height.'/'.$diameter->width, request()->diameters)  ? 'checked' : ''}}
+                                                    @endif
+                                                >
+                                                <p>
+                                                    <span>{{$diameter->height.'/'.$diameter->width.' ('.$diameter->count_height.')'}}</span>
+                                                </p>
+                                            @endif
+                                        </label>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <p>Год</p>
+                    <div class="filters-mob-list__content">
+                        <div class="filters-search">
+                            <input class="filters-search-field" data-search-list="filters-mob-year" type="text"
+                                   placeholder="Поиск по фильтру">
+                            <span class="clear-field-btn"></span>
+                        </div>
+                        <ul id="filters-mob-year" class="checkboxes-list">
+                            @foreach($years as $year)
+                                <li>
+                                    <div class="checkbox-block">
+                                        <label class="checkbox-block__label">
+                                            <input class="watch-filter" type="checkbox" name="years[]" value="{{$year->release_year}}" id="{{$year->release_year}}"
+                                            @if(isset(request()->years))
+                                                {{in_array($year->release_year, request()->years)  ? 'checked' : ''}}
+                                                @endif
+                                            >
+                                            <p><span>{{$year->release_year.' ('.$year->count_release_year.')'}}</span></p>
+                                        </label>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <p>Местоположение</p>
+                    <div class="filters-mob-list__content">
+                        <div class="filters-search">
+                            <input class="filters-search-field" data-search-list="filters-mob-location" type="text"
+                                   placeholder="Поиск по фильтру">
+                            <span class="clear-field-btn"></span>
+                        </div>
+                        <ul id="filters-mob-location" class="checkboxes-list">
+                            @foreach($regions as $region)
+                                <li>
+                                    <div class="checkbox-block">
+                                        <label class="checkbox-block__label">
+                                            <input class="watch-filter" type="checkbox" name="regions[]" value="{{$region->region}}" id="{{$region->region}}"
+                                                @if(request()->regions)
+                                                {{in_array($region->region, request()->regions)  ? 'checked' : ''}}
+                                                @endif
+                                                >
+                                            <p><span>{{$region->region.' ('.$region->count_region.')'}}</span></p>
+                                        </label>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </li>
+                <li class="title">
+                    <h5>Дополнительно</h5>
+                </li>
+                <li>
+                    <p>Тип механизма</p>
+                    <div class="filters-mob-list__content">
+                        <div class="filters-search">
+                            <input class="filters-search-field" data-search-list="filters-mob-model" type="text"
+                                   placeholder="Поиск по фильтру">
+                            <span class="clear-field-btn"></span>
+                        </div>
+                        <ul id="filters-mob-model" class="checkboxes-list">
+                            @foreach($mechanismTypes as $mechanismType)
+                                <li>
+                                    <div class="checkbox-block">
+                                        <label class="checkbox-block__label">
+                                            <input  class="watch-filter" type="checkbox" name="mechanismTypes[]" value="{{$mechanismType->mechanism_type_title}}" id="{{$mechanismType->mechanism_type_title}}"
+                                                @if(request()->mechanismTypes)
+                                                {{in_array($mechanismType->mechanism_type_title, request()->mechanismTypes)  ? 'checked' : ''}}
+                                                @endif
+                                                >
+                                            <p><span>{{$mechanismType->mechanism_type_title.' ('.$mechanismType->count_mechanism_type_title.')'}}</span></p>
+                                        </label>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <p>Состояние</p>
+                    <div class="filters-mob-list__content">
+                        <div class="filters-search">
+                            <input class="filters-search-field" data-search-list="filters-mob-model" type="text"
+                                   placeholder="Поиск по фильтру">
+                            <span class="clear-field-btn"></span>
+                        </div>
+                        <ul>
+                            @foreach($states as $state)
+                                <li>
+                                    <div class="checkbox-block">
+                                        <label class="checkbox-block__label">
+                                            <input class="watch-filter" type="checkbox" name="states[]" value="{{$state->watch_state}}" id="{{$state->watch_state}}"
+                                                @if(request()->states)
+                                                {{in_array($state->watch_state, request()->states)  ? 'checked' : ''}}
+                                                @endif
+                                                >
+                                            <p><span>{{$state->watch_state.' ('.$state->count_watch_state.')'}}</span></p>
+                                        </label>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <p>Обьем доставки</p>
+                    <div class="filters-mob-list__content">
+                        <div class="filters-search">
+                            <input class="filters-search-field" data-search-list="filters-mob-model" type="text"
+                                   placeholder="Поиск по фильтру">
+                            <span class="clear-field-btn"></span>
+                        </div>
+                        <ul>
+                            @foreach($deliveryVolumes as $deliveryVolume)
+                                <li>
+                                    <div class="checkbox-block">
+                                        <label class="checkbox-block__label">
+                                            <input class="watch-filter" type="checkbox" name="deliveryVolumes[]" value="{{$deliveryVolume->delivery_volume}}" id="{{$deliveryVolume->delivery_volume}}"
+                                                @if(request()->deliveryVolumes)
+                                                {{in_array($deliveryVolume->delivery_volume, request()->deliveryVolumes)  ? 'checked' : ''}}
+                                                @endif
+                                                >
+                                            <p><span>{{$deliveryVolume->delivery_volume.' ('.$deliveryVolume->count_delivery_volume.')'}}</span></p>
+                                        </label>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <p>Пол</p>
+                    <div class="filters-mob-list__content">
+                        <div class="filters-search">
+                            <input class="filters-search-field" data-search-list="filters-mob-model" type="text"
+                                   placeholder="Поиск по фильтру">
+                            <span class="clear-field-btn"></span>
+                        </div>
+                        <ul>
+                            @foreach($sexes as $sex)
+                                <li>
+                                    <div class="checkbox-block">
+                                        <label class="checkbox-block__label">
+                                            <input class="watch-filter" type="checkbox" name="sexes[]" value="{{$sex->sex_title}}" id="{{$sex->sex_title}}"
+                                                @if(request()->sexes)
+                                                {{in_array($sex->sex_title, request()->sexes)  ? 'checked' : ''}}
+                                                @endif
+                                                >
+                                            <p><span>{{$sex->sex_title.' ('.$sex->count_sex_title.')'}}</span></p>
+                                        </label>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <p>Тип часов</p>
+                    <div class="filters-mob-list__content">
+                        <div class="filters-search">
+                            <input class="filters-search-field" data-search-list="filters-mob-model" type="text"
+                                   placeholder="Поиск по фильтру">
+                            <span class="clear-field-btn"></span>
+                        </div>
+                        <ul>
+                            @foreach($types as $type)
+                                <li>
+                                    <div class="checkbox-block">
+                                        <label class="checkbox-block__label">
+                                            <input class="watch-filter" type="checkbox" name="types[]" value="{{$type->watch_type_title}}" id="{{$type->watch_type_title}}"
+                                                @if(request()->types)
+                                                {{in_array($type->watch_type_title, request()->types)  ? 'checked' : ''}}
+                                                @endif
+                                                >
+                                            <p><span>{{$type->watch_type_title.' ('.$type->count_watch_type_title.')'}}</span></p>
+                                        </label>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+            <div class="filters-buttons">
+                @auth
+                    <button data-fancybox data-src="#save-filter-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
+                @endauth
+                <button class="filters-submit-btn btn-hover" type="submit">Применить</button>
+            </div>
+        </div>
+    </form>
     @if(isset($user))
         <form class="filters-desc filter-search" method="get" action="{{route('catalog.seller-ads', $user)}}">
     @elseif(isset($vipHome))

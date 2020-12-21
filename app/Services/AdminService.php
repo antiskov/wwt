@@ -15,6 +15,7 @@ use App\Models\HomeSlider;
 use App\Models\ManWomanPicture;
 use App\Models\Status;
 use App\Models\WatchMake;
+use App\Models\WatchModel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -72,6 +73,12 @@ class AdminService
         $picture->save();
     }
 
+    public function publishedWatchMake(Advert $advert)
+    {
+        $watchMake = $advert->watchAdvert->watchMake;
+        dd($watchMake);
+    }
+
     public function getCreatorId(Filter $advert)
     {
         return $advert->getUserId();
@@ -93,12 +100,14 @@ class AdminService
         return $creator;
     }
 
-    public function changeStatus($status, Advert $advert)
+
+
+    public function changeStatus(Status $status, Advert $advert)
     {
-        $advert->status_id = $status;
+        $advert->status_id = $status->id;
         $advert->save();
 
-        if($status == Status::where('title', 'published')->first()->id){
+        if($status->title == 'published'){
             $advert->finish_date = Carbon::now()->addMonth(3);
             $advert->save();
         }

@@ -71,7 +71,6 @@ class AdvertTools
             $oldBasicPhoto->save();
         }
 
-
         $photo = AdvertPhoto::where('id', $photoId)->first();
         $photo->is_basic = 1;
         $photo->save();
