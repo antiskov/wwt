@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\Advert;
 use App\Models\User;
+use App\Services\UserService;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class AdvertPolicy
@@ -30,7 +31,9 @@ class AdvertPolicy
      */
     public function view(User $user, Advert $advert)
     {
-        return $user->id === $advert->user->id;
+        $role=(new UserService())->getRole($user);
+
+        return ($user->id === $advert->user->id) || ($role->title == 'admin' || $role->title == 'manager');
     }
 
     /**

@@ -66,7 +66,7 @@
                             <div class="item-infos">
                                 <p>Диаметр:</p>
                                 @if($advert->height == $advert->width)
-                                    <span>{{$advert->height.' ('.$advert->count_height.')'}}</span>
+                                    <span>{{$advert->height}}</span>
                                 @else
                                     <span>{{$advert->height.'/'.$advert->width}}</span>
                                 @endif

@@ -16,14 +16,11 @@ class WatchModelService
         $pathAdvertPhoto = 'public/images/advert_photos/' . $advert->type . '/number_' . $advert->id . '/' . $photo->photo;
         $pathModelPhoto = 'public/images/advert_models/watches/model_' . $this->watchModel->model_code . '/' . $photo->photo;
 
-        $this->watchModel->photo = 'none'; // todo remove
-
-//        if(!File::exists($pathModelPhoto)){
-//            dd($pathModelPhoto, Storage::disk('s3')->exists($pathModelPhoto));
-//            Storage::copy($pathAdvertPhoto, $pathModelPhoto);
-//            $this->watchModel->photo = $photo;
-//            $this->watchModel->save();
-//        }
+        if(!Storage::disk('local')->exists($pathAdvertPhoto)){
+            Storage::copy($pathAdvertPhoto, $pathModelPhoto);
+            $this->watchModel->photo = $photo;
+            $this->watchModel->save();
+        }
 
     }
 

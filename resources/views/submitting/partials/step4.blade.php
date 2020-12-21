@@ -60,7 +60,7 @@
 
         <button class="save-edit btn-hover-w" type="submit">Сохранить как черновик</button>
 
-        <button id="publish" class="save-next btn-hover" type="button"> <a href="{{route('submitting.publish', $advert)}}">Опубликовать</a></button>
+        <button id="publish" class="save-next btn-hover" type="button"> <a href="{{route('submitting.publish', $advert)}}">Отправить модератору</a></button>
     </div>
 </div>
 <script>

@@ -61,6 +61,8 @@
                                             <br>
                                         @endif
                                             <a href='{{ route('admin.delete_advert', [$advert->id]) }}'>Удалить</a>
+                                            <br>
+                                            <a href="{{route('submitting.get_draft', [$advert])}}">Редактировать</a>
                                     </td>
                                 </tr>
                             @endforeach

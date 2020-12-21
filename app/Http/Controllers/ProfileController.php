@@ -98,14 +98,14 @@ class ProfileController extends Controller
 
     public function myAdverts()
     {
-        $adverts = Advert::where('user_id', auth()->user()->id)->where('status_id', 1)->get();
+        $adverts = Advert::where('user_id', auth()->user()->id)->where('status_id', 1)->orderBy('id', 'desc')->get();
         return view('profile_user.pages.my_adverts', ['adverts' => $adverts]);
     }
 
     public function myAdvertsChange(int $status)
     {
         $data = [
-            'output' => view('profile_user.partials.my_advert_div', ['adverts' => Advert::where('user_id', auth()->user()->id)->where('status_id', $status)->get()])->toHtml(),
+            'output' => view('profile_user.partials.my_advert_div', ['adverts' => Advert::where('user_id', auth()->user()->id)->where('status_id', $status)->orderBy('id', 'desc')->get()])->toHtml(),
         ];
 
         return response()->json($data);

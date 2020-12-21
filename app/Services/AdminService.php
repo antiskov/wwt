@@ -18,6 +18,7 @@ use App\Models\WatchMake;
 use App\Models\WatchModel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class AdminService
@@ -83,8 +84,12 @@ class AdminService
     public function publishedWatchMake(Advert $advert)
     {
         $watchMake = $advert->watchAdvert->watchMake;
-        //todo: delete on prod
-        dd($watchMake);
+        $watchMake->is_moderated = 1;
+
+        if (!$watchMake->save()) {
+            Log::info("WatchMake #$watchMake->id not saved");
+            return false;
+        }
     }
 
     public function getCreatorId(Filter $advert)
@@ -96,17 +101,17 @@ class AdminService
     {
 
     }
-    public function getCreator(string $type): AdvertCreator
-    {
-        switch ($type) {
-            case 'watch':
-                $creator= new WatchesAdvertCreator();
-                break;
-            default:
-                throw new UnknownAdvertTypeException;
-        }
-        return $creator;
-    }
+//    public function getCreator(string $type): AdvertCreator
+//    {
+//        switch ($type) {
+//            case 'watch':
+//                $creator= new WatchesAdvertCreator();
+//                break;
+//            default:
+//                throw new UnknownAdvertTypeException;
+//        }
+//        return $creator;
+//    }
 
 
 

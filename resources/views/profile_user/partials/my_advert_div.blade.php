@@ -16,7 +16,10 @@
 
                 <div class="cont">
                     <div class="img-wrap">
-                        <img src="/images/content/watch-1.png" alt="img">
+{{--                        <img src="/images/content/watch-1.png" alt="img">--}}
+                        @if($advert->photos->where('is_basic', 1)->first())
+                        <img src="{{asset('/storage/images/advert_photos/watch/number_'.$advert->id.'/'.$advert->photos->where('is_basic', 1)->first()->photo)}}">
+                        @endif
                     </div>
                     <div class="ad-cont">
                         <div class="name-block">
@@ -48,8 +51,8 @@
                             </div>
                             <div class="set-block">
                                 <a href="{{route('catalog.item-page', [$advert])}}" class="sett">{{__('messages.my_adverts_div_show')}}</a>
-                                <a href="#/" class="sett">{{__('messages.my_adverts_div_edit')}}</a>
-                                <a href="#/" class="sett">{{__('messages.my_adverts_div_close')}}</a>
+                                <a href="{{route('submitting.get_draft', [$advert])}}" class="sett">{{__('messages.my_adverts_div_edit')}}</a>
+                                <a href="#/" class="sett">{{__('messages.my_adverts_div_close')}}</a> {{//todo change status}}
                                 <div class="soc-block">
                                     <input type="hidden" name="link-for-copy" value="{{route('catalog.item-page', [$advert])}}">
                                     <a href="#" class="sett btn-for-copy tooltip" title="Ссылка успешно скопирована в буффер обмена!">Поделиться</a>

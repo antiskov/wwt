@@ -57,6 +57,7 @@ class WatchModelSeeder extends Seeder
                 'width' => rand(1, 7),
                 'mechanism_type_id' => 1,
                 'photo' => 'a',
+                'is_moderated' => 1,
             ]);
         }
     }

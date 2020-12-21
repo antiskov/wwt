@@ -11,6 +11,7 @@ use App\Models\AdvertPhoto;
 use App\Models\Status;
 use App\Services\PayService;
 use App\Services\SubmittingService;
+use App\Services\UserService;
 use Illuminate\Support\Facades\Storage;
 
 class SubmittingController extends Controller
@@ -70,7 +71,15 @@ class SubmittingController extends Controller
     {
         $advert->status_id = Status::where('title', 'moderation')->first()->id;
         $advert->save();
-        return redirect()->route('home');
+
+        $user = $advert->user;
+        $role = (new UserService())->getRole($user);
+
+        if ($role->title == 'admin' || $role->title == 'manager'){
+            return redirect()->route('admin.moderation_adverts');
+        }
+
+        return redirect()->route('my_adverts');
     }
 
     public function getStep4(Advert $advert, WatchAdvertRequest $request, SubmittingService $service)
