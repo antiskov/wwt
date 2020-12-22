@@ -20,7 +20,7 @@
             </div>
         </div>
 
-{{--        <input type="hidden" data-step-input>--}}
+        {{--        <input type="hidden" data-step-input>--}}
 
         <div class="sale-premium ad-cost__sale-premium">
             <h5 class="sale-premium__title">Быстрая продажа при помощи объявления Premium</h5>
@@ -45,22 +45,27 @@
             </ul>
         </div>
     </div>
-    <h3><a href="{{route('submitting.buy_vip', $advert)}}">Купить ВИП</a></h3>
+    @if($advert->vip_status == 0)
+        <h3><a href="{{route('submitting.buy_vip', $advert)}}">Купить ВИП</a></h3>
+    @else
+        <h3>Куплен ВИП статус обьявления</h3>
+    @endif
 
-{{--    <div class="checkbox-block checkbox-block_submitting-page">--}}
-{{--        <label class="checkbox-block__label">--}}
-{{--            <input type="checkbox" name="Victorinox"--}}
-{{--                   value="Nouvelle Horlogerie Calabrese (NHC)">--}}
-{{--            <p><span>я не хочу, чтобы моя фамилия была указана в объявлении</span></p>--}}
-{{--        </label>--}}
-{{--    </div>--}}
+    {{--    <div class="checkbox-block checkbox-block_submitting-page">--}}
+    {{--        <label class="checkbox-block__label">--}}
+    {{--            <input type="checkbox" name="Victorinox"--}}
+    {{--                   value="Nouvelle Horlogerie Calabrese (NHC)">--}}
+    {{--            <p><span>я не хочу, чтобы моя фамилия была указана в объявлении</span></p>--}}
+    {{--        </label>--}}
+    {{--    </div>--}}
 
     <div class="btn-cont step-4-cont">
         <button data-step="3" class="prev-step btn-hover" type="button">Вернуться к шагу 3</button>
 
         <button class="save-edit btn-hover-w" type="submit">Сохранить как черновик</button>
 
-        <button id="publish" class="save-next btn-hover" type="button"> <a href="{{route('submitting.publish', $advert)}}">Отправить модератору</a></button>
+        <button id="publish" class="save-next btn-hover" type="button"><a
+                href="{{route('submitting.publish', $advert)}}">Отправить модератору</a></button>
     </div>
 </div>
 <script>
@@ -68,7 +73,7 @@
         $.ajax({
             data: $('#create_advert').serializeArray(),
             type: 'post',
-            url:"/submitting/draft/{{$advert->id}}",
+            url: "/submitting/draft/{{$advert->id}}",
         })
     }
 </script>

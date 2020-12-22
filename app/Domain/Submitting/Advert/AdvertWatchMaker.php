@@ -11,6 +11,7 @@ use App\Models\WatchAdvert;
 use App\Models\WatchMake;
 use App\Models\WatchModel;
 use App\Models\WatchType;
+use Illuminate\Support\Facades\Log;
 
 class AdvertWatchMaker extends AdvertTools implements AdvertInterface
 {
@@ -28,18 +29,22 @@ class AdvertWatchMaker extends AdvertTools implements AdvertInterface
         }
         $this->watchMake->title = $this->request->brand;
         $this->watchMake->is_moderated = 0;
-        $this->watchMake->save();
+        if (!$this->watchMake->save()) {
+            Log::info("WatchMake not saved");
+        }
     }
 
     public function createWatchModel()
     {
-        $watchModel = WatchModel::where('model_code', $this->request->model_code)->first();
-        if(!$watchModel){
-            $watchModel = new WatchModel();
+        $this->watchModel = WatchModel::where('model_code', $this->request->model_code)->first();
+        if(!$this->watchModel){
+            $this->watchModel = new WatchModel();
         }
-        $watchModel->title =  $this->request->model;
-        $watchModel->save();
-        $this->watchModel = $watchModel;
+        $this->watchModel->title =  $this->request->model;
+        $this->watchModel->save();
+        if (!$this->watchModel->save()) {
+            Log::info("WatchModel not saved");
+        }
     }
 
     public function makeDraft():void
@@ -54,7 +59,6 @@ class AdvertWatchMaker extends AdvertTools implements AdvertInterface
 
         $watchAdvert = new WatchAdvert();
         $watchAdvert->advert()->associate($this->advert);
-//        $watchAdvert = $this->advert->watchAdvert;
         $watchAdvert->watch_type_id = WatchType::where('title', $this->request->watchType)->first()->id;
         $watchAdvert->watch_make_id = $this->watchMake->id;
         $watchAdvert->watch_model_id = $this->watchModel->id;
@@ -70,7 +74,9 @@ class AdvertWatchMaker extends AdvertTools implements AdvertInterface
         $watchAdvert->height = $this->request->height;
         $watchAdvert->width = $this->request->width;
         $watchAdvert->mechanism_type_id = MechanismType::where('title', $this->request->typeMechanism)->first()->id;
-        $watchAdvert->save();
+        if (!$watchAdvert->save()) {
+            Log::info("WatchAdvert #$watchAdvert->id not saved");
+        }
     }
 
     public function getResult():Advert

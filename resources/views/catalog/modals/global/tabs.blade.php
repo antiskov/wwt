@@ -32,6 +32,8 @@
                             @else
                                 <span>по убыванию цены</span>
                             @endif
+                        @else
+                            <span>по возрастанию цены</span>
                         @endif
                         <ul class="value-items">
                             <li id="sort-dear">по возрастанию цены</li>

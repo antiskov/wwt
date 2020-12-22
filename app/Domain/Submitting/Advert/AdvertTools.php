@@ -6,6 +6,7 @@ use App\Models\Advert;
 use App\Models\AdvertPhoto;
 use App\Models\Currency;
 use App\Models\ExchangeRate;
+use Illuminate\Support\Facades\Log;
 
 class AdvertTools
 {
@@ -13,7 +14,7 @@ class AdvertTools
     protected $request;
     public $watchMake;
     public $watchModel;
-    //todo: saves chack and errors checker
+    //todo: saves chack and errors checker. done
     protected function recordAdvert($type)
     {
         $this->advert->type = $type;
@@ -33,7 +34,6 @@ class AdvertTools
         $this->advert->region = $this->request->region;
         $this->advert->street = $this->request->street;
         $this->advert->zip_code = $this->request->zip_code;
-//        dd($this->request->street_additional);
         $this->advert->street_additional = $this->request->street_additional;
         $this->advert->delivery_volume = $this->request->deliveryVolume;
         $this->advert->latitude = $this->request->lat;
@@ -45,7 +45,9 @@ class AdvertTools
             $this->advert->hide_surname = 0;
         }
 
-        $this->advert->save();
+        if (!$this->advert->save()) {
+            Log::info("Advert #" . $this->advert->id . 'not saved');
+        }
 
     }
 
@@ -59,7 +61,9 @@ class AdvertTools
         $advert->photo = 'none';
         $advert->vip_status = 0;
         $advert->status_id = 4;
-        $advert->save();
+        if (!$advert->save()) {
+            Log::info("Advert #" . $advert->id . 'not saved');
+        }
 
         return $advert;
     }
@@ -73,22 +77,25 @@ class AdvertTools
 
         $photo = AdvertPhoto::where('id', $photoId)->first();
         $photo->is_basic = 1;
-        $photo->save();
+        if (!$photo->save()) {
+            Log::info("AdvertPhoto #" . $photo->id . 'not saved');
+        }
     }
 
     public function setPrice()
     {
         return $this->request->price / $this->advert->price_rate;
     }
-    //todo: refactor to one query
+    //todo: refactor to one query. done
     public function setPriceRate()
     {
+        $currency = ExchangeRate::all();
         if($this->request->currency == 'EUR'){
-            $eur = ExchangeRate::where('pair_currencies', 'EUR/UAH')->first()->rate;
-            $usd = ExchangeRate::where('pair_currencies', 'USD/UAH')->first()->rate;
+            $eur = $currency->where('pair_currencies', 'EUR/UAH')->first()->rate;
+            $usd = $currency->where('pair_currencies', 'USD/UAH')->first()->rate;
             $rate = $eur / $usd;
         } elseif ($this->request->currency == 'UAH') {
-            $rate = ExchangeRate::where('pair_currencies', 'USD/UAH')->first()->rate;
+            $rate = $currency->where('pair_currencies', 'USD/UAH')->first()->rate;
         } elseif ($this->request->currency == 'USD') {
             $rate = 1;
         }

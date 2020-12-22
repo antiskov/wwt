@@ -10,7 +10,7 @@
                 <div class="block">
                     <div class="price">
                         <div class="new">
-                            {{$advert->getPrice().' '.$advert->currency->title}}
+                            {{$price.' '.$advert->currency->title}}
                         </div>
                         {{--                    <div class="old">--}}
                         {{--                        1500$--}}

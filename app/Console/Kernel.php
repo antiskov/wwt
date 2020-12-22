@@ -25,6 +25,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('rate:update')->hourly();
+        $schedule->command('banner:check')->hourly();
+        $schedule->command('advert_photos:clear')->daily();
     }
 
     /**

@@ -18,11 +18,6 @@ class SubmittingController extends Controller
 {
     public function index(SubmittingRequest $request, SubmittingService $service)
     {
-//        $request->merge(['start_model_code' => rand(10000,20000)]); //todo remove
-
-//        return view('submitting.pages.advert', $service->getInfoForStep1(new WatchConnector($request)));
-
-//        return view('submitting.pages.advert', $service->getWatchItemsForFirstStep($request));
         return view('submitting.pages.advert', $service->getWatchItemsForFirstStep());
     }
 
@@ -56,9 +51,10 @@ class SubmittingController extends Controller
         return response()->json($data);
     }
 
-    public function deletePhoto(AdvertPhoto $photo, SubmittingService $service)
+    public function deletePhoto(AdvertPhoto $photo)
     {
-        $service->deleteAdvertPhoto($photo);
+        $photo->delete();
+
         return response('success');
     }
 
@@ -87,7 +83,10 @@ class SubmittingController extends Controller
         $advert = $service->editDraft(new AdvertWatchConnector($request, $advert));
 
         $data = [
-            'output' => view('submitting.partials.step4', ['advert' => $advert])->toHtml(),
+            'output' => view('submitting.partials.step4', [
+                'advert' => $advert,
+                'price' => $service->getPrice($advert)
+            ])->toHtml(),
         ];
 
         return response()->json($data);

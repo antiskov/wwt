@@ -13,13 +13,13 @@ class BannerController extends Controller
 {
     public function index()
     {
-        //todo: order by start_date
-        $banners = Banner::orderBy('id', 'desc')->get();
+        //todo: order by start_date. done
+        $banners = Banner::orderBy('date_start', 'desc')->get();
 
         return view('admin.pages.banner_control', ['banners' => $banners]);
     }
 
-    public function createBanner(BannerRequest $request, AdminService $service)
+    public function createBanner(BannerRequest $request, BannerService $service)
     {
         $service->createBanner($request);
 
@@ -28,14 +28,18 @@ class BannerController extends Controller
 
     public function closeBanner(Banner $banner, AdminService $service)
     {
-        $service->closeBanner($banner);
+//        $service->closeBanner($banner);
+
+        $banner->is_active = 0;
+        $banner->save();
 
         return redirect()->back();
     }
 
     public function deleteBanner(Banner $banner, AdminService $service)
     {
-        $service->deleteBanner($banner);
+//        $service->deleteBanner($banner);
+        $banner->delete();
 
         return redirect()->back();
     }

@@ -3,21 +3,23 @@
 namespace App\Services;
 
 use App\Domain\Liqpay;
+use App\Domain\TransactionCreator;
 use App\Models\Advert;
 use App\Models\UserTransaction;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 
 class PayService
 {
-    //todo: to ENV
+    //todo: to ENV.done
     public function getParameters()
     {
         return [
-            'privateKey' => 'sandbox_1f1JbI1pp8NriSBW0Zjw0EI6dNrQNoBaLGvXHrMo',
-            'publicKey' => 'sandbox_i10140636412',
-            'url' => 'https://www.liqpay.ua/api/3/checkout',
+            'privateKey' => env('PRIVATE_KEY'),
+            'publicKey' => env('PUBLIC_KEY'),
+            'url' => env('LIQPAY_URL'),
         ];
 
     }
@@ -35,8 +37,8 @@ class PayService
             "description" => $description,
             "order_id" => $order_id,
 //            'server_url' => route('callback_pay'),
-            //todo: get from ENV
-            'server_url' => 'http://d4348b050153.ngrok.io/api/callback_pay',
+            //todo: get from ENV. done
+            'server_url' => env('SERVER_URL'),
             'result_url' => route('status_pay', $order_id),
         ];
 
@@ -59,33 +61,24 @@ class PayService
 
     public function setTransactionDB(Request $request, $description = 'addition cost')
     {
-        //todo: extract to class TransactionCreator
-        $userTransaction = new UserTransaction();
-        $userTransaction->type = 'addition';
-        $userTransaction->user_id = auth()->user()->id;
-        $userTransaction->price = $request->get('cost');
-        $userTransaction->title = $description;
-        $userTransaction->status = 'none';
-        $userTransaction->order_id = auth()->user()->id . '-' . rand(1000000, 2000000);
-        //todo: check
-        $userTransaction->save();
+        //todo: extract to class TransactionCreator.done
 
-        return $userTransaction->order_id;
+        $order_id = auth()->user()->id . '-' . rand(1000000, 2000000);
+        $transaction = new TransactionCreator();
+        $transaction->additionCost($request->input('cost'), $order_id);
+
+        return $transaction->getOrderId();
     }
 
     public function setTransactionForSubmitting(Advert $advert)
     {
-        //todo: extract to class TransactionCreator
-        $userTransaction = new UserTransaction();
-        $userTransaction->type = 'addition';
-        $userTransaction->user_id = auth()->user()->id;
-        $userTransaction->price = 50; //todo remake to admin
-        $userTransaction->title = 'addition cost';
-        $userTransaction->status = 'none';
-        $userTransaction->order_id = 'vip-adv-'.$advert->id.'-'.auth()->user()->id . '-' . rand(1000000, 2000000);
-        $userTransaction->save();
+        //todo: extract to class TransactionCreator.done
 
-        return $userTransaction->order_id;
+        $order_id = 'vip-adv-' . $advert->id . '-' . auth()->user()->id . '-' . rand(1000000, 2000000);;
+        $transaction = new TransactionCreator();
+        $transaction->additionCost(50, $order_id);
+
+        return $transaction->getOrderId();
     }
 
     public function checkTransaction()
@@ -95,7 +88,8 @@ class PayService
         }
     }
 
-    private function forCheckTransaction(UserTransaction $transaction){
+    private function forCheckTransaction(UserTransaction $transaction)
+    {
         $parameters = $this->getParameters();
 
         $liqpay = new Liqpay($parameters['publicKey'], $parameters['privateKey']);
@@ -118,7 +112,7 @@ class PayService
         $sign_string = $parameters['privateKey'] . $_POST['data'] . $parameters['privateKey'];
         $signature = base64_encode(sha1($sign_string, true));
 
-        if($signature == $_POST['signature']){
+        if ($signature == $_POST['signature']) {
             $callbackPar = json_decode(base64_decode($_POST['data']), true);
             $transaction = UserTransaction::where('order_id', $callbackPar['order_id'])->first();
             $transaction->status = $callbackPar['status'];
@@ -128,7 +122,7 @@ class PayService
 
             \Log::info([$callbackPar['order_id'], $callbackPar['status']]);
         } else {
-            //todo: if error return error code to liqpay
+            //todo: if error return error code to liqpay???
             \Log::info('incorrect signature');
         }
     }
@@ -147,32 +141,36 @@ class PayService
     {
         $vipArr = explode('-', $transaction->order_id);
 
-        if($vipArr[0] == 'vip' && $transaction->status == 'success'){
-            //todo: extract to class TransactionCreator
-            $userTransaction = new UserTransaction();
-            $userTransaction->type = 'cost';
-            $userTransaction->user_id = $transaction->user->id;
-            $userTransaction->price = $transaction->price; //todo remake to admin
-            $userTransaction->title = 'buy vip';
-            $userTransaction->status = 'success';
-            $userTransaction->order_id = 'buy-vip-'.auth()->user()->id . '-' . rand(1000000, 2000000);
-            $userTransaction->save();
-            //todo: extract to method
-            $advert = Advert::where('id', $vipArr[2])->first();
-            $advert->vip_status = 1;
-            //todo: check
-            $advert->save();
+        if ($vipArr[0] == 'vip' && $transaction->status == 'success') {
+            //todo: extract to class TransactionCreator.done
+
+            $order_id = 'buy-vip-' . auth()->user()->id . '-' . rand(1000000, 2000000);
+            $cost = new TransactionCreator();
+            $cost->additionCost($transaction->price, $order_id, 'cost', 'buy vip', 'success');
+
+            $this->setVipStatusAdvert($vipArr[2]);
         }
     }
+
+    public function setVipStatusAdvert($id)
+    {
+        $advert = Advert::find($id);
+        $advert->vip_status = 1;
+
+        if (!$advert->save()) {
+            Log::info("Advert #$advert->id not saved");
+        }
+    }
+
     //It's a balance
     public function getScore()
     {
         $score = 0;
         $transactions = UserTransaction::where('user_id', auth()->user()->id)->get();
         foreach ($transactions as $transaction) {
-            if($transaction->type == 'addition' && $transaction->status == 'success'){
+            if ($transaction->type == 'addition' && $transaction->status == 'success') {
                 $score = $score + $transaction->price;
-            } elseif($transaction->status == 'success') {
+            } elseif ($transaction->status == 'success') {
                 $score = $score - $transaction->price;
             }
         }

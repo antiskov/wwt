@@ -6,6 +6,7 @@ use App\Domain\Submitting\Advert\AdvertAbstract;
 use App\Domain\Submitting\Advert\AdvertTools;
 use App\Domain\Submitting\Advert\AdvertWatchConnector;
 use App\Domain\Submitting\Init\AbstractSubmitting;
+use App\Domain\Uploader;
 use App\Http\Requests\Submitting\SubmittingRequest;
 use App\Http\Requests\Submitting\UploadImageRequest;
 use App\Http\Requests\Submitting\WatchAdvertRequest;
@@ -17,6 +18,7 @@ use App\Models\Sex;
 use App\Models\Status;
 use App\Models\WatchAdvert;
 use App\Models\WatchType;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class SubmittingService
@@ -38,22 +40,30 @@ class SubmittingService
 
         return $advert;
     }
-    //todo: refactor
+    //todo: refactor???
     public function uploadPhoto(Advert $advert, UploadImageRequest $request)
     {
+//        dd($request->all());
         foreach ($request->file('advert_images') as $image) {
             $name = $image->getClientOriginalName();
             if (!AdvertPhoto::where('photo', $name)->where('advert_id', $advert->id)->first()) {
-
-
                 $path = '/images/advert_photos/' . $advert->type . '/number_' . $advert->id;
                 $image->storeAs($path, $name, 'public');
-                //todo: method
-                $imageAdvert = new AdvertPhoto();
-                $imageAdvert->advert_id = $advert->id;
-                $imageAdvert->photo = $name;
-                $imageAdvert->save();
+
+                //todo: method.done
+                $this->createAdvertPhoto($advert, $name);
+
             }
+        }
+    }
+
+    public function createAdvertPhoto(Advert $advert, $name)
+    {
+        $imageAdvert = new AdvertPhoto();
+        $imageAdvert->advert_id = $advert->id;
+        $imageAdvert->photo = $name;
+        if (!$imageAdvert->save()) {
+            Log::info("AdvertPhoto #$imageAdvert->id not saved");
         }
     }
 
@@ -83,7 +93,9 @@ class SubmittingService
             $watch_advert = new WatchAdvert();
             $watch_advert->advert()->associate($advert);
             $watch_advert->model_code = $model_code;
-            $watch_advert->save();
+            if (!$watch_advert->save()) {
+                Log::info("WatchAdvert #$watch_advert->id not saved");
+            }
         }
     }
 
@@ -96,7 +108,9 @@ class SubmittingService
         $advert->vip_status = 0;
         $advert->status_id = Status::where('title', 'draft')->first()->id;
         $advert->price_rate = 1;
-        $advert->save();
+        if (!$advert->save()) {
+            Log::info("Advert #$advert->id not saved");
+        }
 
         return $advert;
     }
@@ -138,15 +152,6 @@ class SubmittingService
 //        }
 
         return $infoArr;
-    }
-
-    public function deleteAdvertPhoto(AdvertPhoto $photo)
-    {
-        if ($photo) {
-            //todo: уточнить у Жени надо ли удалять исходник
-            Storage::delete('/public/images/advert_photos/watch/number_' . $photo->advert->id . '/' . $photo->photo);
-            $photo->delete();
-        }
     }
 
     public function getPrice(Advert $advert)

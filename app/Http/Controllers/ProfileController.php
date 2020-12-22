@@ -35,7 +35,7 @@ class ProfileController extends Controller
      */
     public function settingsIndex(UserService $user)
     {
-        $check = $user->check();
+        $check = $user->getSettings();
 
         return view('profile_user.pages.settings' , [
             'check' => $check,

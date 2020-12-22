@@ -54,10 +54,10 @@
                                     <td>{{$advert->finish_date}}</td>
                                     <td>
                                         @if($advert->status->title == 'published')
-                                            <a href="{{ route('admin.change_status', [\App\Models\Status::where('title', 'moderation')->first(), $advert->id]) }}">Отказать</a>
+                                            <a href="{{ route('admin.change_status', [$statuses->where('title', 'moderation')->first(), $advert->id]) }}">Отказать</a>
                                             <br>
                                         @else
-                                            <a href="{{ route('admin.change_status', [\App\Models\Status::where('title', 'published')->first(), $advert->id]) }}">Опубликовать</a>
+                                            <a href="{{ route('admin.change_status', [$statuses->where('title', 'published')->first(), $advert->id]) }}">Опубликовать</a>
                                             <br>
                                         @endif
                                             <a href='{{ route('admin.delete_advert', [$advert->id]) }}'>Удалить</a>

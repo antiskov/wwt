@@ -19,6 +19,7 @@ use App\Models\User;
 use App\Models\UserFavoriteAdvert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 
 class CatalogService
@@ -45,7 +46,9 @@ class CatalogService
         $search->filter = $filters;
         $search->link_search = route('catalog-favorite', [Session::get('searchLink')]);
         $search->title = $_COOKIE['search_title'];
-        $search->save();
+        if (!$search->save()) {
+            Log::info("Search request #$search->id not saved");
+        }
     }
 
     public function getResultForUser(Request $request, $user_id = 0)
@@ -66,12 +69,11 @@ class CatalogService
 
     public function getFilterResults(Request $request, $type, $user_id = 0)
     {
-        //todo: user_id не информативно
         if($type == 3 && $user_id != 0) {
             $adverts = new SellerAdsGetter();
-        } elseif ($type == 1 && $user_id == 0) {
+        } elseif ($type == 1) {
             $adverts = new AdvertsFiltersGetter();
-        } elseif ($type == 2 && $user_id == 0) {
+        } elseif ($type == 2) {
             $adverts = new VipAdvertsAndFiltersGetter();
         }
 
@@ -84,7 +86,7 @@ class CatalogService
         }
 
     }
-    //todo: refactor в последнюю очередь
+    //todo: refactor в последнюю очередь, когда станет известно про запчасти и акссесуары
     public function goodsIndex(User $user, Advert $advert, UserService $userService)
     {
         $expiresAt = now()->addHours(24);

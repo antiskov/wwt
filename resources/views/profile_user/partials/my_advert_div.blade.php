@@ -1,4 +1,4 @@
-<div id="advert" class="items-anno">
+    <div id="advert" class="items-anno">
     @foreach($adverts as $advert)
         <div class="items-wrap">
             <div class="announce-item">
@@ -36,7 +36,7 @@
                         <div class="price-block">
                             <div class="price">
                                 <div class="new">
-                                    {{$advert->price}}$
+                                    {{$advert->getPrice()}}$
                                 </div>
                                 {{--                                    <div class="old">--}}
                                 {{--                                        1500$--}}
@@ -52,7 +52,7 @@
                             <div class="set-block">
                                 <a href="{{route('catalog.item-page', [$advert])}}" class="sett">{{__('messages.my_adverts_div_show')}}</a>
                                 <a href="{{route('submitting.get_draft', [$advert])}}" class="sett">{{__('messages.my_adverts_div_edit')}}</a>
-                                <a href="#/" class="sett">{{__('messages.my_adverts_div_close')}}</a> {{//todo change status}}
+                                <a href="#/" class="sett">{{__('messages.my_adverts_div_close')}}</a>
                                 <div class="soc-block">
                                     <input type="hidden" name="link-for-copy" value="{{route('catalog.item-page', [$advert])}}">
                                     <a href="#" class="sett btn-for-copy tooltip" title="Ссылка успешно скопирована в буффер обмена!">Поделиться</a>

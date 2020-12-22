@@ -14,9 +14,12 @@ class ModerationAdvertsController extends Controller
 {
     public function index()
     {
-        $adverts = Advert::orderBy('status_id', 'desc')->orderBy('vip_status', 'desc')->paginate(30);
+        $adverts = Advert::orderBy('status_id', 'desc')->orderBy('vip_status', 'asc')->paginate(30);
 
-        return view('admin.pages.moderation_adverts', ['adverts' => $adverts]);
+        return view('admin.pages.moderation_adverts', [
+            'adverts' => $adverts,
+            'statuses' => Status::all(),
+        ]);
     }
 
     public function changeStatus(Status $status, Advert $advert, AdminService $advertsService, WatchModelService $modelService)
@@ -28,13 +31,12 @@ class ModerationAdvertsController extends Controller
             $advertsService->publishedWatchMake($advert);
         }
 
-
         return redirect()->route('admin.moderation_adverts');
     }
 
-    public function deleteAdvert(Advert $advert, AdminService $advertsService)
+    public function deleteAdvert(Advert $advert)
     {
-        $advertsService->deleteAdvert($advert);
+        $advert->delete();
 
         return redirect()->route('admin.moderation_adverts');
     }
