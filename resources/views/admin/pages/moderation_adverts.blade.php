@@ -60,7 +60,7 @@
                                             <a href="{{ route('admin.change_status', [$statuses->where('title', 'published')->first(), $advert->id]) }}">Опубликовать</a>
                                             <br>
                                         @endif
-                                            <a href='{{ route('admin.delete_advert', [$advert->id]) }}'>Удалить</a>
+                                            <a href="{{ route('admin.change_status', [$statuses->where('title', 'archive')->first(), $advert->id]) }}">Удалить</a>
                                             <br>
                                             <a href="{{route('submitting.get_draft', [$advert])}}">Редактировать</a>
                                     </td>

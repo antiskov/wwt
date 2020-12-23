@@ -103,6 +103,15 @@ class UserService
         }
     }
 
+    public function getLanguageKey(Request $request)
+    {
+        if ($request->language_communication == __('messages.russian')) {
+            return 'ru';
+        } else {
+            return 'en';
+        }
+    }
+
     public function setSetting(Request $request, SubscribeService $subscribeService)
     {
         if (!$request->stay_logged_in) {
@@ -118,12 +127,8 @@ class UserService
         $setting = UserSettings::where('user_id', auth()->user()->id)->first();
         if ($setting) {
             $setting->receive_partners_adverts = $request->receive_partners_adverts ? 1 : 0;
-            //todo extract to method???
-            if ($request->language_communication == __('messages.russian')) {
-                $setting->language_communication = 'ru';
-            } else {
-                $setting->language_communication = 'en';
-            }
+            //todo extract to method. done
+            $setting->language_communication = $this->getLanguageKey($request);
             if (!$setting->save()) {
                 Log::info('setting not saved');
             }

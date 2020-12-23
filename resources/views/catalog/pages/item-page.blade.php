@@ -18,7 +18,7 @@
                     } else {
                         console.log(0);
                         $.ajax({
-                            url: '/catalog/item_page_favorite/{{$advert->id}}/{{0}}',
+                            url: '/catalog/item_page_favorite/{{$advert->id}}/{{0  }}',
                         })
                     }
                 })
@@ -51,7 +51,11 @@
                     {{--                            <img src="./images/icons/stars.svg" alt="img">--}}
                     {{--                        </div>--}}
                     <div class="person-name">
-                        <h3>{{$advert->name}}</h3>
+                        <h3>{{$advert->name}}
+                            @if($advert->is_publish_surname == 1)
+                                {{$advert->surname}}
+                            @endif
+                        </h3>
                     </div>
                     <div class="phone-dropdown">
                         <button class="btn-hover button-show-phone" type="submit">Показать телефон</button>

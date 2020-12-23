@@ -39,11 +39,11 @@ abstract class ToolsForAdvertsFilters implements AdvertsFilters
         if (Session::has('currency')) {
             if (\Session::get('currency') == 'UAH') {
                 $rate = ExchangeRate::where('pair_currencies', 'USD/UAH')->first();
-                $currency['rate'] = round($rate->rate, -1);
+                $currency['rate'] = $rate->rate;
             } elseif (\Session::get('currency') == 'EUR') {
                 $eur = ExchangeRate::where('pair_currencies', 'EUR/UAH')->first()->rate;
                 $usd = ExchangeRate::where('pair_currencies', 'USD/UAH')->first()->rate;
-                $currency['rate'] = round($eur / $usd, 3);
+                $currency['rate'] = $eur / $usd;
             } else {
                 $currency['rate'] = 1;
             }
@@ -59,12 +59,12 @@ abstract class ToolsForAdvertsFilters implements AdvertsFilters
         if(Session::has('currency')){
             if (\Session::get('currency') == 'UAH') {
                 $rate = ExchangeRate::where('pair_currencies', 'USD/UAH')->first();
-                $currency['rate'] = round($rate->rate, -1);
+                $currency['rate'] = $rate->rate;
                 $currency['symbol'] = Currency::where('title', 'UAH')->first()->symbol;
             } elseif (\Session::get('currency') == 'EUR') {
                 $eur = ExchangeRate::where('pair_currencies', 'EUR/UAH')->first()->rate;
                 $usd = ExchangeRate::where('pair_currencies', 'USD/UAH')->first()->rate;
-                $currency['rate'] = round($eur / $usd, 3);
+                $currency['rate'] = $eur / $usd;
                 $currency['symbol'] = Currency::where('title', 'EUR')->first()->symbol;
             } else {
                 $currency['rate'] = 1;
@@ -258,10 +258,18 @@ abstract class ToolsForAdvertsFilters implements AdvertsFilters
 
     public function getOrderBy(Request $request)
     {
-        if($request->orderBy == 'dear') {
-            return  'desc';
+        if (isset($_COOKIE['price_sort'])) {
+            if ($_COOKIE['price_sort'] == 'cheap') {
+                return 'asc';
+            } else {
+                return 'desc';
+            }
+        }
+
+        if ($request->orderBy == 'cheap') {
+            return 'asc';
         } else {
-            return  'asc';
+            return 'desc';
         }
     }
 

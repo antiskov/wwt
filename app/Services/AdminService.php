@@ -82,10 +82,14 @@ class AdminService
         if (!$advert->save()) {
             Log::info("Advert #$advert->id not saved");
         }
-        $advert->save();
 
         if ($status->title == 'published') {
-            $advert->finish_date = Carbon::now()->addMonth(3);
+            $advert->finish_date_active_status = Carbon::now()->addMonth(2);
+
+            if ($advert->vip_status == 1 && !$advert->finish_date_vip){
+                $advert->finish_date_vip = Carbon::now()->addMonth(1);
+            }
+
             if (!$advert->save()) {
                 Log::info("Advert #$advert->id not saved");
             }

@@ -18,9 +18,10 @@
                     @csrf
                     @include('submitting.partials.step1')
                     @include('submitting.partials.step2')
+{{--                    @include('submitting.partials.step2')--}}
+{{--                    <div id="step2" class="tabs__content" data-tab="2"></div>--}}
                     @include('submitting.partials.step3')
-                    <div id="step4" class="tabs__content" data-tab="4">
-                    </div>
+                    <div id="step4" class="tabs__content" data-tab="4"></div>
                 </form>
             </div>
         </div>

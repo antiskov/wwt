@@ -8,10 +8,20 @@ document.addEventListener('DOMContentLoaded', function(e){
 
 
         function checkInputs(inputs, step){
-            if(step === 2){
-                console.log('asdsad', checkImages())
+            if(step === 1){
+                // ajax();
+                //от тут місце кароч, при переході з 1-о на 2
+                console.log('ajax')
+                return [...inputs].some(input => !input.value)
+            }
+            else if(step === 2){
                 return  !checkImages()
-            }else{
+            }else if (step === 3){
+                // ajax();
+                //от тут місце кароч, при переході з 3-о на 4
+                console.log('ajax')
+                return [...inputs].some(input => !input.value)
+            } else{
                 return [...inputs].some(input => !input.value)
             }
         }
@@ -31,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function(e){
         function checkImages(){
             const items = document.querySelector('#uploadImagesList').querySelectorAll('li');
             document.querySelector('[data-id="step-3-title"]').classList.add('txt-red');
-            return items.length > 2
+            return items.length >= 2
         }
 
         anchors.forEach(el => {
@@ -58,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function(e){
             btn.onclick = function(){
                 const nextStep = this.dataset.step;
                 const nextTab = document.querySelector(`[data-anchor='${nextStep}']`);
-                if(nextStep > step){
+                if(nextStep >= step){
                     const inputs = document.querySelector(`[data-tab="${nextStep - 1}"]`)
                         .querySelectorAll('[data-step-input]');
                     if(!checkInputs(inputs, step)){
@@ -69,16 +79,18 @@ document.addEventListener('DOMContentLoaded', function(e){
                         step++
                     }else{
                         const el = [...inputs].find(input => !input.value);
-                        const position = getOffset(el).top;
-                        window.scroll({top: (position - 100), left: 0, behavior: 'smooth'});
-                        nextTab.classList.add('disabled');
-                        inputs.forEach(input => {
-                            !input.value && input.classList.add('input-error')
-                        })
+                        if(el){
+                            console.log('second')
+                            const position = getOffset(el).top;
+                            window.scroll({top: (position - 100), left: 0, behavior: 'smooth'});
+                            nextTab.classList.add('disabled');
+                            inputs.forEach(input => {
+                                !input.value && input.classList.add('input-error')
+                            })
+                        }
                     }
                 } else{
                     document.querySelector(`[data-anchor='${nextStep}']`).click();
-                    step--
                 }
             }
         })

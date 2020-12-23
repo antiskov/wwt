@@ -197,7 +197,7 @@
             Описание
             @if($position == 1)
                 <textarea id="description" name="description"
-                          placeholder="Примеры: Где Вы купили часы?">{{$advert->watchAdvert->release_year}}</textarea>
+                          placeholder="Примеры: Где Вы купили часы?">{{$advert->description}}</textarea>
             @else
             <textarea id="description" name="description"
                       placeholder="Примеры: Где Вы купили часы?"></textarea>
@@ -210,7 +210,7 @@
             @if($position == 1)
                 <input data-step-input class="common-input" type="text" name="price" value="{{$price}}">
             @else
-            <input data-step-input type="number" name="price" value="">
+                <input data-step-input class="common-input" type="text" name="price">
             @endif
             <div class="select-price">
                 <div class="input-cont-price">
@@ -233,8 +233,12 @@
             </div>
         </div>
         <div class="btn-cont btn-cont_first">
-            <button class="save-edit btn-hover-w" type="submit">Сохранить как черновик</button>
-            <button data-step="2" class="save-next btn-hover" type="button">Перейти к шагу 2</button>
+            @if(isset($advert))
+                <button class="save-edit btn-hover-w" type="submit">Сохранить как черновик</button>
+                <button data-step="2" class="save-next btn-hover" type="button">Перейти к шагу 2</button>
+            @else
+                <button class="save-edit btn-hover-w" type="submit">Сохранить как черновик</button>
+            @endif
         </div>
     </div>
 

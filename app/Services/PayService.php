@@ -24,6 +24,18 @@ class PayService
 
     }
 
+    public function bayVipStatusFromCost(Advert $advert)
+    {
+        $order_id = 'buy-vip-' . auth()->user()->id . '-' . rand(1000000, 2000000);
+        $transaction = new TransactionCreator();
+        $transaction->additionCost(50, $order_id, 'cost', 'buy vip', 'success' );
+
+        $advert->vip_status = 1;
+        if (!$advert->save()) {
+            Log::info("Transaction #$advert->id not changed vip_status");
+        }
+    }
+
     public function setPay($order_id, $description = 'пополнение счета', $currency = 'UAH')
     {
         $transaction = UserTransaction::where('order_id', $order_id)->first();
@@ -101,7 +113,9 @@ class PayService
         ));
 
         $transaction->status = $res->status;
-        $transaction->save();
+        if (!$transaction->save()) {
+            Log::info("Transaction #$transaction->id not saved");
+        }
 
         return $transaction;
     }
@@ -125,6 +139,11 @@ class PayService
             //todo: if error return error code to liqpay???
             \Log::info('incorrect signature');
         }
+    }
+
+    public function submitAnswerLiqpay()
+    {
+
     }
 
     public function getCheckStatusPay($order_id)

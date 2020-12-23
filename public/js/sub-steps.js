@@ -7,39 +7,65 @@ document.addEventListener('DOMContentLoaded', function(e){
         const submitBtn = document.querySelector('[data-id-adv]');
         let step = 1;
 
+
         function checkInputs(inputs, step){
-            console.log(step);
+            // if(step === 1){
+            //     // ajax();
+            //     //от тут місце кароч, при переході з 1-о на 2
+            //     console.log('ajax')
+            //     submitInfoFoStep2()
+            //     return [...inputs].some(input => !input.value)
+            // }
+            // else
+
             if(step === 2){
                 return  !checkImages()
-            } else if(step === 3) {
-                submitInfo();
-            }
-            else{
+            }else if (step === 3){
+                // ajax();
+                //от тут місце кароч, при переході з 3-о на 4
+
+                submitInfoFoStep4();
+                console.log('ajax3');
+
+                return [...inputs].some(input => !input.value)
+            } else{
                 return [...inputs].some(input => !input.value)
             }
         }
 
-        function submitInfo(){
+        // function submitInfoFoStep2(){
+        //     console.log(submitBtn.dataset.idAdv);
+        //     $.ajax({
+        //         data: $('#create_advert').serializeArray(),
+        //         type: 'post',
+        //         url:`/submitting/step2/${submitBtn.dataset.idAdv}`,
+        //         success: function (data) {
+        //             console.log(data.output);
+        //             $('#step2').html(data.output);
+        //         }
+        //     })
+        // }
+
+
+
+        function submitInfoFoStep4(){
             $.ajax({
                 data: $('#create_advert').serializeArray(),
                 type: 'post',
                 url:`/submitting/step4/${submitBtn.dataset.idAdv}`,
                 success: function (data) {
-                    // $('#step4').empty();
-                    $('#step4').html(data.output);
-                    return true;
-                },
+                // $('#step4').empty();
+                $('#step4').html(data.output);
+                }
             })
         }
 
         function getOffset(el) {
-            if(el){
-                const rect = el.getBoundingClientRect();
-                return {
-                    left: rect.left + window.scrollX,
-                    top: rect.top + window.scrollY
-                };
-            }
+            const rect = el.getBoundingClientRect();
+            return {
+                left: rect.left + window.scrollX,
+                top: rect.top + window.scrollY
+            };
         }
 
         function clearErrors(inputs){
@@ -49,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function(e){
         function checkImages(){
             const items = document.querySelector('#uploadImagesList').querySelectorAll('li');
             document.querySelector('[data-id="step-3-title"]').classList.add('txt-red');
-            return items.length > 2
+            return items.length >= 2
         }
 
         anchors.forEach(el => {
@@ -76,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function(e){
             btn.onclick = function(){
                 const nextStep = this.dataset.step;
                 const nextTab = document.querySelector(`[data-anchor='${nextStep}']`);
-                if(nextStep > step){
+                if(nextStep >= step){
                     const inputs = document.querySelector(`[data-tab="${nextStep - 1}"]`)
                         .querySelectorAll('[data-step-input]');
                     if(!checkInputs(inputs, step)){
@@ -87,17 +113,18 @@ document.addEventListener('DOMContentLoaded', function(e){
                         step++
                     }else{
                         const el = [...inputs].find(input => !input.value);
-                        const position = getOffset(el).top;
-                        window.scroll({top: (position - 100), left: 0, behavior: 'smooth'});
-                        nextTab.classList.add('disabled');
-                        inputs.forEach(input => {
-                            !input.value && input.classList.add('input-error')
-                        })
+                        if(el){
+                            console.log('second')
+                            const position = getOffset(el).top;
+                            window.scroll({top: (position - 100), left: 0, behavior: 'smooth'});
+                            nextTab.classList.add('disabled');
+                            inputs.forEach(input => {
+                                !input.value && input.classList.add('input-error')
+                            })
+                        }
                     }
                 } else{
-                    console.log(nextStep)
                     document.querySelector(`[data-anchor='${nextStep}']`).click();
-                    step--
                 }
             }
         })

@@ -60,6 +60,7 @@
     {{--    </div>--}}
 
     <div class="btn-cont step-4-cont">
+{{--        <button data-step="3" class="prev-step btn-hover" type="button">Вернуться к шагу 3</button>--}}
         <button data-step="3" class="prev-step btn-hover" type="button">Вернуться к шагу 3</button>
 
         <button class="save-edit btn-hover-w" type="submit">Сохранить как черновик</button>

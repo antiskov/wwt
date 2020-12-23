@@ -20,7 +20,7 @@ class TransactionCreator
         $this->userTransaction->title = $title;
         $this->userTransaction->status = $status;
         $this->userTransaction->order_id = $order_id;
-        //todo: check
+        //todo: check.done
         if (!$this->userTransaction->save()) {
             Log::info("Transaction #$this->userTransaction->id not saved");
         }

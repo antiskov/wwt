@@ -7,6 +7,7 @@ use App\Models\Advert;
 use App\Models\Currency;
 use App\Models\Referral;
 use App\Models\SearchLink;
+use App\Models\Status;
 use App\Models\TestCallback;
 use App\Models\Timezone;
 use App\Models\User;
@@ -99,7 +100,10 @@ class ProfileController extends Controller
     public function myAdverts()
     {
         $adverts = Advert::where('user_id', auth()->user()->id)->where('status_id', 1)->orderBy('id', 'desc')->get();
-        return view('profile_user.pages.my_adverts', ['adverts' => $adverts]);
+        return view('profile_user.pages.my_adverts', [
+            'adverts' => $adverts,
+            'statuses' => Status::all(),
+        ]);
     }
 
     public function myAdvertsChange(int $status)

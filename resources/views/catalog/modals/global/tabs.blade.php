@@ -17,7 +17,7 @@
             <label for="tab-btn-2" class="block-2"><img src="/images/icons/line-item.svg" alt=""></label>
 
             <div class="wrap2">
-                <div class="currency-block">
+                <div id="currencies" class="currency-block">
                     @foreach($currencies as $item)
                     <a href="{{route('catalog.set_rate', $item->title)}}">{{$item->title}}</a>
                     @endforeach
@@ -28,16 +28,16 @@
                     <div class="select-value rotate">
                         @if(isset($_COOKIE['price_sort']))
                             @if($_COOKIE['price_sort'] == 'dear')
-                                <span>по возрастанию цены</span>
-                            @else
                                 <span>по убыванию цены</span>
+                            @else
+                                <span>по возрастанию цены</span>
                             @endif
                         @else
                             <span>по возрастанию цены</span>
                         @endif
                         <ul class="value-items">
-                            <li id="sort-dear">по возрастанию цены</li>
-                            <li id="sort-cheap">по убыванию цены</li>
+                            <li id="sort-dear">по убыванию цены</li>
+                            <li id="sort-cheap">по возрастанию цены</li>
                         </ul>
                     </div>
                 </div>
@@ -58,4 +58,10 @@
             @include('catalog.modals.pagination')
         </div>
     </div>
+    <script>
+        document.querySelector('#currencies').onclick = function () {
+            console.log('11111p');
+            document.cookie = "price_sort= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
+        }
+    </script>
 </section>

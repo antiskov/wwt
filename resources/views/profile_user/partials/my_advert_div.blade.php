@@ -26,11 +26,16 @@
                             <h2>{{$advert->title}}</h2>
 {{--                            <button class="advertice">Реклама</button>--}}
                             <div class="data">
-                                {{--                                    <p>--}}
-                                {{--                                        <span>С: 26. 07. 12</span>--}}
-                                {{--                                        <span>По: 26. 07. 12</span>--}}
-                                {{--                                    </p>--}}
-{{--                                <button class="advertice">Реклама</button>--}}
+                                <p>
+                                    <span>С: 26. 07. 12</span>
+                                    <span>По: 26. 07. 12</span>
+                                </p>
+                                @if($advert->vip_status == 1)
+                                    <div>Куплен ВИП статус</div>
+                                @else
+                                    <button class="advertice"><a
+                                            href="{{route('submitting.buy_vip', $advert)}}">Реклама</a></button>
+                                @endif
                             </div>
                         </div>
                         <div class="price-block">
@@ -46,9 +51,9 @@
                                     <a href="#/" class="soc-icon"></a>
                                 </div>
                             </div>
-                            <div class="data">
-                                <button class="advertice">Реклама</button>
-                            </div>
+{{--                            <div class="data">--}}
+{{--                                <button class="advertice">Реклама</button>--}}
+{{--                            </div>--}}
                             <div class="set-block">
                                 <a href="{{route('catalog.item-page', [$advert])}}" class="sett">{{__('messages.my_adverts_div_show')}}</a>
                                 <a href="{{route('submitting.get_draft', [$advert])}}" class="sett">{{__('messages.my_adverts_div_edit')}}</a>

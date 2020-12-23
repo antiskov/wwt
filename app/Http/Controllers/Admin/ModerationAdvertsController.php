@@ -14,7 +14,7 @@ class ModerationAdvertsController extends Controller
 {
     public function index()
     {
-        $adverts = Advert::orderBy('status_id', 'desc')->orderBy('vip_status', 'asc')->paginate(30);
+        $adverts = Advert::orderBy('status_id', 'asc')->orderBy('vip_status', 'desc')->paginate(30);
 
         return view('admin.pages.moderation_adverts', [
             'adverts' => $adverts,

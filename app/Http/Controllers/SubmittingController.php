@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Domain\Submitting\Advert\AdvertWatchConnector;
+use App\Domain\TransactionCreator;
 use App\Http\Requests\Submitting\SubmittingRequest;
 use App\Http\Requests\Submitting\UploadImageRequest;
 use App\Http\Requests\Submitting\WatchAdvertRequest;
@@ -30,7 +31,12 @@ class SubmittingController extends Controller
 
     public function editDraft(Advert $advert, WatchAdvertRequest $request, SubmittingService $service)
     {
-        $advert = $service->editDraft(new AdvertWatchConnector($request, $advert));
+        if($service->checkChangedAdvertWatch($advert, $request)) {
+            $advert = $service->editDraft(new AdvertWatchConnector($request, $advert));
+
+            $advert->status_id = Status::where('title', 'draft')->first()->id;
+            $advert->save();
+        }
 
         return redirect()->route('submitting.get_draft', $advert);
     }
@@ -42,7 +48,7 @@ class SubmittingController extends Controller
 
     public function uploadImage(Advert $advert, UploadImageRequest $request, SubmittingService $service)
     {
-        $service->uploadPhoto($advert, $request);
+        $service->uploadPhoto($advert->id, $advert->type, $request);
 
         $data = [
             'output' => view('submitting.partials.image_block', ['advert' => $advert])->toHtml(),
@@ -60,13 +66,21 @@ class SubmittingController extends Controller
 
     public function buyVip(PayService $service, Advert $advert)
     {
+        if ($service->getScore() >= 50){
+            $service->bayVipStatusFromCost($advert);
+
+            return redirect()->back();
+        }
         return redirect()->route('go_to_liqpay', $service->setTransactionForSubmitting($advert));
     }
 
     public function publish(Advert $advert)
     {
+
         $advert->status_id = Status::where('title', 'moderation')->first()->id;
         $advert->save();
+
+//        dd(Status::where('title', 'moderation')->first()->id, $advert);
 
         $user = $advert->user;
         $role = (new UserService())->getRole($user);
@@ -91,4 +105,17 @@ class SubmittingController extends Controller
 
         return response()->json($data);
     }
+
+//    public function getStep2(Advert $advert, WatchAdvertRequest $request, SubmittingService $service)
+//    {
+//        $advert = $service->editDraft(new AdvertWatchConnector($request, $advert));
+//
+//        $data = [
+//            'output' => view('submitting.partials.step2', [
+//                'advert' => $advert,
+//            ])->toHtml(),
+//        ];
+//
+//        return response()->json($data);
+//    }
 }

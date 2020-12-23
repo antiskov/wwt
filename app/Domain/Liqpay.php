@@ -123,8 +123,6 @@ class Liqpay extends Model
 
         return sprintf('
             <form method="POST" action="%s" accept-charset="utf-8">
-                %s
-                %s
                 <input type="image" src="//static.liqpay.ua/buttons/p1%s.radius.png" name="btn_text" />
             </form>
             ',

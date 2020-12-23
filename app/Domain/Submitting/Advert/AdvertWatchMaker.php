@@ -26,12 +26,13 @@ class AdvertWatchMaker extends AdvertTools implements AdvertInterface
         $this->watchMake =  WatchMake::where('title', $this->request->brand)->first();
         if(!$this->watchMake){
             $this->watchMake = new WatchMake();
+            $this->watchMake->title = $this->request->brand;
+            $this->watchMake->is_moderated = 0;
+            if (!$this->watchMake->save()) {
+                Log::info("WatchMake not saved");
+            }
         }
-        $this->watchMake->title = $this->request->brand;
-        $this->watchMake->is_moderated = 0;
-        if (!$this->watchMake->save()) {
-            Log::info("WatchMake not saved");
-        }
+
     }
 
     public function createWatchModel()
@@ -39,26 +40,31 @@ class AdvertWatchMaker extends AdvertTools implements AdvertInterface
         $this->watchModel = WatchModel::where('model_code', $this->request->model_code)->first();
         if(!$this->watchModel){
             $this->watchModel = new WatchModel();
-        }
-        $this->watchModel->title =  $this->request->model;
-        $this->watchModel->save();
-        if (!$this->watchModel->save()) {
-            Log::info("WatchModel not saved");
+            $this->watchModel->title =  $this->request->model;
+            $this->watchModel->save();
+            if (!$this->watchModel->save()) {
+                Log::info("WatchModel not saved");
+            }
         }
     }
 
     public function makeDraft():void
     {
+//        dd(333);
         $this->createWatchMake();
         $this->createWatchModel();
         $this->recordAdvert('watch');
+        $this->setBasicPhotoAdvert($this->request->input('main_photo'));
 
-        if($photoId = $this->request->input('main_photo')){
-            $this->setBasicPhotoAdvert($photoId);
+        $watchAdvert =  WatchAdvert::where('advert_id', $this->advert->id)->first();
+        if(!$watchAdvert){
+//            dd(22);
+            $watchAdvert = new WatchAdvert();
+            $watchAdvert->advert()->associate($this->advert);
         }
 
-        $watchAdvert = new WatchAdvert();
-        $watchAdvert->advert()->associate($this->advert);
+//        dd($this->advert->id, $watchAdvert);
+
         $watchAdvert->watch_type_id = WatchType::where('title', $this->request->watchType)->first()->id;
         $watchAdvert->watch_make_id = $this->watchMake->id;
         $watchAdvert->watch_model_id = $this->watchModel->id;
@@ -82,12 +88,5 @@ class AdvertWatchMaker extends AdvertTools implements AdvertInterface
     public function getResult():Advert
     {
         return $this->advert;
-    }
-
-    public function createAdvertName($type)
-    {
-        if($type == 'watch'){
-            return $this->watchMake->title.' '.$this->watchModel->title.' '.$this->watchModel->model_code;
-        }
     }
 }

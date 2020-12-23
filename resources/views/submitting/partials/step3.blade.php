@@ -124,7 +124,11 @@
 
         <div class="check-cont">
             <label class="checkbox-other">
-                <input type="checkbox" name="hide_surname" checked value="1">
+                @if(isset($advert) && $advert->is_publish_surname == 0)
+                    <input type="checkbox" name="is_publish_surname" checked value="1">
+                @else
+                    <input type="checkbox" name="is_publish_surname" value="1">
+                @endif
                 <span>я не хочу, чтобы моя фамилия была указана в объявлении *</span>
             </label>
         </div>

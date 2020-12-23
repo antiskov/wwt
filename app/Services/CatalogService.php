@@ -117,6 +117,7 @@ class CatalogService
             'userLanguages' => $userService->userLanguages($user),
             'user' => $user,
             'favorite' => UserFavoriteAdvert::where('user_id', $user->id)->where('advert_id', $advert->id)->first(),
+            'currency' => (new AdvertsFiltersGetter())->checkRate(),
         ];
     }
 }

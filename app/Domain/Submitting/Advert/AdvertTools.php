@@ -2,6 +2,8 @@
 
 namespace App\Domain\Submitting\Advert;
 
+use App\Http\Controllers\PasswordController;
+use App\Http\Requests\Submitting\WatchAdvertRequest;
 use App\Models\Advert;
 use App\Models\AdvertPhoto;
 use App\Models\Currency;
@@ -14,12 +16,13 @@ class AdvertTools
     protected $request;
     public $watchMake;
     public $watchModel;
+
     //todo: saves chack and errors checker. done
     protected function recordAdvert($type)
     {
         $this->advert->type = $type;
         $this->advert->user()->associate(auth()->user());
-        $this->advert->title = $this->createAdvertName($type);
+        $this->advert->title = $this->createAdvertName();
         $this->advert->description = $this->request->description;
         $this->advert->price_rate = $this->setPriceRate();
         $this->advert->price = $this->setPrice();
@@ -39,10 +42,10 @@ class AdvertTools
         $this->advert->latitude = $this->request->lat;
         $this->advert->longtitude = $this->request->lng;
 
-        if($this->request->hide_surname == 1){
-            $this->advert->hide_surname = $this->request->hide_surname;
+        if ($this->request->is_publish_surname == 1) {
+            $this->advert->is_publish_surname = 0;
         } else {
-            $this->advert->hide_surname = 0;
+            $this->advert->is_publish_surname = 1;
         }
 
         if (!$this->advert->save()) {
@@ -52,7 +55,7 @@ class AdvertTools
     }
 
 
-    protected function createAdvert():Advert
+    protected function createAdvert(): Advert
     {
         $advert = new Advert();
         $advert->user()->associate(auth()->user());
@@ -70,27 +73,45 @@ class AdvertTools
 
     public function setBasicPhotoAdvert($photoId)
     {
-        if($oldBasicPhoto = AdvertPhoto::where('is_basic', 1)->first()){
+
+        $oldBasicPhoto = $this->advert->photos->where('is_basic', 1)->first();
+
+        if ($oldBasicPhoto) {
             $oldBasicPhoto->is_basic = 0;
-            $oldBasicPhoto->save();
+            if (!$oldBasicPhoto->save()) {
+                Log::info("AdvertPhoto #" . $oldBasicPhoto->id . 'not changed is_basic');
+            }
         }
 
-        $photo = AdvertPhoto::where('id', $photoId)->first();
-        $photo->is_basic = 1;
-        if (!$photo->save()) {
-            Log::info("AdvertPhoto #" . $photo->id . 'not saved');
+        $photos = $this->advert->photos;
+
+        if ($photos->first()) {
+            if ($photoId) {
+                $photo = $photos->where('id', $photoId)->first();
+                $photo->is_basic = 1;
+                if (!$photo->save()) {
+                    Log::info("AdvertPhoto #" . $photo->id . 'not saved');
+                }
+            } else {
+                $advertPhoto = $this->advert->photos->first();
+                $advertPhoto->is_basic = 1;
+                $advertPhoto->save();
+            }
         }
+
+
     }
 
     public function setPrice()
     {
         return $this->request->price / $this->advert->price_rate;
     }
+
     //todo: refactor to one query. done
     public function setPriceRate()
     {
         $currency = ExchangeRate::all();
-        if($this->request->currency == 'EUR'){
+        if ($this->request->currency == 'EUR') {
             $eur = $currency->where('pair_currencies', 'EUR/UAH')->first()->rate;
             $usd = $currency->where('pair_currencies', 'USD/UAH')->first()->rate;
             $rate = $eur / $usd;
@@ -100,5 +121,57 @@ class AdvertTools
             $rate = 1;
         }
         return $rate;
+    }
+
+    public function checkChangedWatchAdvert(Advert $advert, WatchAdvertRequest $request)
+    {
+
+        $this->advert = $advert;
+        $this->request = $request;
+
+//        dd($this->advert->price, $this->setPrice(), $this->advert->price == $this->setPrice());
+        if(
+        $this->advert->title == $this->createAdvertName() &&
+        $this->advert->description == $this->request->description &&
+        $this->advert->price_rate == $this->setPriceRate() &&
+        $this->advert->price == $this->setPrice() &&
+        $this->advert->currency_id == Currency::where('title', $this->request->currency)->first()->id &&
+        $this->advert->surname == $this->request->surname &&
+        $this->advert->name == $this->request->name &&
+        $this->advert->birthday == $this->request->birthday &&
+        $this->advert->phone == $this->request->phone &&
+        $this->advert->country == $this->request->country &&
+        $this->advert->country == $this->request->country &&
+        $this->advert->city == $this->request->city &&
+        $this->advert->region == $this->request->region &&
+        $this->advert->street == $this->request->street &&
+        $this->advert->zip_code == $this->request->zip_code &&
+        $this->advert->street_additional == $this->request->street_additional &&
+        $this->advert->delivery_volume == $this->request->deliveryVolume &&
+        $this->advert->latitude == $this->request->lat &&
+        $this->advert->longtitude == $this->request->lng &&
+        $this->advert->is_publish_surname != 0
+        ) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public function createAdvertName()
+    {
+        $this->setParametersMakeAndModel();
+
+        if($this->advert->type == 'watch'){
+            return $this->watchMake->title.' '.$this->watchModel->title.' '.$this->watchModel->model_code;
+        }
+    }
+
+    public function setParametersMakeAndModel()
+    {
+        if(isset($this->advert->watchAdvert->watchMake, $this->advert->watchAdvert->watchModel)){
+            $this->watchMake = $this->advert->watchAdvert->watchMake;
+            $this->watchModel = $this->advert->watchAdvert->watchModel;
+        }
     }
 }

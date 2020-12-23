@@ -40,27 +40,26 @@ class SubmittingService
 
         return $advert;
     }
-    //todo: refactor???
-    public function uploadPhoto(Advert $advert, UploadImageRequest $request)
+    //todo: refactor.done
+    public function uploadPhoto($advertID, $advertType, UploadImageRequest $request)
     {
 //        dd($request->all());
         foreach ($request->file('advert_images') as $image) {
             $name = $image->getClientOriginalName();
-            if (!AdvertPhoto::where('photo', $name)->where('advert_id', $advert->id)->first()) {
-                $path = '/images/advert_photos/' . $advert->type . '/number_' . $advert->id;
+            if (!AdvertPhoto::where('photo', $name)->where('advert_id', $advertID)->first()) {
+                $path = '/images/advert_photos/' . $advertType . '/number_' . $advertID;
                 $image->storeAs($path, $name, 'public');
-
                 //todo: method.done
-                $this->createAdvertPhoto($advert, $name);
+                $this->createAdvertPhoto($advertID, $name);
 
             }
         }
     }
 
-    public function createAdvertPhoto(Advert $advert, $name)
+    public function createAdvertPhoto($advertID, $name)
     {
         $imageAdvert = new AdvertPhoto();
-        $imageAdvert->advert_id = $advert->id;
+        $imageAdvert->advert_id = $advertID;
         $imageAdvert->photo = $name;
         if (!$imageAdvert->save()) {
             Log::info("AdvertPhoto #$imageAdvert->id not saved");
@@ -157,5 +156,10 @@ class SubmittingService
     public function getPrice(Advert $advert)
     {
         return round($advert->price * $advert->price_rate);
+    }
+
+    public function checkChangedAdvertWatch(Advert $advert, WatchAdvertRequest $request)
+    {
+        return (new AdvertTools())->checkChangedWatchAdvert($advert, $request);
     }
 }
