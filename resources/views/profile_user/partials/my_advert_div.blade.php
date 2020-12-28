@@ -17,8 +17,8 @@
                 <div class="cont">
                     <div class="img-wrap">
 {{--                        <img src="/images/content/watch-1.png" alt="img">--}}
-                        @if($advert->photos->where('is_basic', 1)->first())
-                        <img src="{{asset('/storage/images/advert_photos/watch/number_'.$advert->id.'/'.$advert->photos->where('is_basic', 1)->first()->photo)}}">
+                        @if(isset($advert->photos->where('is_basic', 1)->first()->photo))
+                            <img src="{{asset('/storage/images/advert_photos/'.$advert->type.'/number_'.$advert->id.'/'.$advert->photos->where('is_basic', 1)->first()->photo)}}">
                         @endif
                     </div>
                     <div class="ad-cont">
@@ -27,8 +27,8 @@
 {{--                            <button class="advertice">Реклама</button>--}}
                             <div class="data">
                                 <p>
-                                    <span>С: 26. 07. 12</span>
-                                    <span>По: 26. 07. 12</span>
+                                    <span>C: {{\Carbon\Carbon::create($advert->finish_date_active_status)->subMonth(2)->toDateString()}}</span>
+                                    <span>По: {{$advert->finish_date_active_status}}</span>
                                 </p>
                                 @if($advert->vip_status == 1)
                                     <div>Куплен ВИП статус</div>
@@ -55,9 +55,16 @@
 {{--                                <button class="advertice">Реклама</button>--}}
 {{--                            </div>--}}
                             <div class="set-block">
-                                <a href="{{route('catalog.item-page', [$advert])}}" class="sett">{{__('messages.my_adverts_div_show')}}</a>
-                                <a href="{{route('submitting.get_draft', [$advert])}}" class="sett">{{__('messages.my_adverts_div_edit')}}</a>
-                                <a href="#/" class="sett">{{__('messages.my_adverts_div_close')}}</a>
+                                @if($advert->status->title != 'moderation')
+                                    <a href="{{route('catalog.item-page', [$advert])}}"
+                                       class="sett">{{__('messages.my_adverts_div_show')}}</a>
+                                    <a href="{{route('submitting.get_draft', [$advert])}}"
+                                       class="sett">{{__('messages.my_adverts_div_edit')}}</a>
+                                    @if($advert->status->title != 'archive')
+                                        <a href="{{ route('change_status', [$statusArchive, $advert->id]) }}"
+                                           class="sett">{{__('messages.my_adverts_div_close')}}</a>
+                                    @endif
+                                @endif
                                 <div class="soc-block">
                                     <input type="hidden" name="link-for-copy" value="{{route('catalog.item-page', [$advert])}}">
                                     <a href="#" class="sett btn-for-copy tooltip" title="Ссылка успешно скопирована в буффер обмена!">Поделиться</a>

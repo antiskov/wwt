@@ -58,12 +58,9 @@ class AdvertWatchMaker extends AdvertTools implements AdvertInterface
 
         $watchAdvert =  WatchAdvert::where('advert_id', $this->advert->id)->first();
         if(!$watchAdvert){
-//            dd(22);
             $watchAdvert = new WatchAdvert();
             $watchAdvert->advert()->associate($this->advert);
         }
-
-//        dd($this->advert->id, $watchAdvert);
 
         $watchAdvert->watch_type_id = WatchType::where('title', $this->request->watchType)->first()->id;
         $watchAdvert->watch_make_id = $this->watchMake->id;

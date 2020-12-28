@@ -2,9 +2,12 @@
 
 @section('content')
     @if($role == 3 or $role == 2)
-        <button><a href='{{ route('admin.delete_advert', [$advert->id]) }}'>Удалить</a></button>
-        <button><a href="{{ route('admin.change_status', [3, $advert->id]) }}">Отказать</a></button>
-        <button><a href="{{ route('admin.change_status', [4, $advert->id]) }}">Опубликовать</a></button>
+        @if($advert->status->title == 'published')
+            <button><a href="{{ route('admin.change_status', [$statuses->where('title', 'moderation')->first(), $advert->id]) }}">Отказать</a></button>
+        @else
+            <button><a href="{{ route('admin.change_status', [$statuses->where('title', 'published')->first(), $advert->id]) }}">Опубликовать</a></button>
+        @endif
+        <button><a href="{{ route('change_status', [$statuses->where('title', 'archive')->first(), $advert->id]) }}">Удалить</a></button>
     @endif
     <section class="item-page">
         <script>

@@ -2,7 +2,7 @@
     <div class="inline-cart">
         <div class="vip-label"></div>
         <a href="{{route('catalog.item-page', [$advert->id])}}" class="img-wrap">
-            <img src="{{asset('/storage/images/advert_photos/watch/number_'.$advert->id.'/'.$advert->photos->where('is_basic', 1)->first()->photo)}}">
+            <img src="{{asset('/storage/images/advert_photos/watch/number_'.$advert->id.'/small_'.$advert->photos->where('is_basic', 1)->first()->photo)}}">
         </a>
         <div class="info-cart">
             <a href="{{route('catalog.item-page', [$advert->id])}}" class="cart-name">{{$advert->title}}</a>

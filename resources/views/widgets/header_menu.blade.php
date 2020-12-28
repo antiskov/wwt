@@ -40,61 +40,61 @@
                     </div>
                 @endif
             </div>
-            <div class="search">
-                <form action="/" class="search-field">
-                    <div class="search-input-holder">
-                        <input type="text" name="search" placeholder="Поиск...">
-                        <div class="search-input-holder__buttons">
-              <span class="clear-field-btn">
-                <img src="/images/icons/close-dark.svg" alt="Очистить поиск">
-              </span>
-                            <button class="search-field__send-btn">
-                                <img src="/images/icons/search.svg" alt="Поиск">
-                            </button>
-                        </div>
-                    </div>
-                    <div class="search__result">
-                        <div class="search__categories">
-                            <label>
-                                <input type="radio" name="category" checked>
-                                <span>Часы</span>
-                            </label>
-                            {{--                            <label>--}}
-                            {{--                                <input type="radio" name="category">--}}
-                            {{--                                <span>Аксессуары</span>--}}
-                            {{--                            </label>--}}
-                            {{--                            <label>--}}
-                            {{--                                <input type="radio" name="category">--}}
-                            {{--                                <span>Запчасти</span>--}}
-                            {{--                            </label>--}}
-                        </div>
-                        <div class="search__items">
-                            <p style="display: none;">Ничего не найдено</p>
-                            <!-- ДЛЯ БЭКА: Убрать атрибут стайл и выводить, если нет товаров -->
-                            <ul>
-                                <li>
-                                    <a href="#"><span>Hublot</span> Big Bang</a>
-                                </li>
-                                <li>
-                                    <a href="#"><span>Hublot</span> Big Bang</a>
-                                </li>
-                                <li>
-                                    <a href="#"><span>Hublot</span> Big Bang</a>
-                                </li>
-                                <li>
-                                    <a href="#"><span>Hublot</span> Big Bang</a>
-                                </li>
-                                <li>
-                                    <a href="#"><span>Hublot</span> Big Bang Kroko Kautschukband</a>
-                                </li>
-                                <li>
-                                    <a href="#"><span>Hublot</span> Big Bang Fusion Dark Brown Alligator Strap</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </form>
-            </div>
+{{--            <div class="search">--}}
+{{--                <form action="/" class="search-field">--}}
+{{--                    <div class="search-input-holder">--}}
+{{--                        <input type="text" name="search" placeholder="Поиск...">--}}
+{{--                        <div class="search-input-holder__buttons">--}}
+{{--              <span class="clear-field-btn">--}}
+{{--                <img src="/images/icons/close-dark.svg" alt="Очистить поиск">--}}
+{{--              </span>--}}
+{{--                            <button class="search-field__send-btn">--}}
+{{--                                <img src="/images/icons/search.svg" alt="Поиск">--}}
+{{--                            </button>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="search__result">--}}
+{{--                        <div class="search__categories">--}}
+{{--                            <label>--}}
+{{--                                <input type="radio" name="category" checked>--}}
+{{--                                <span>Часы</span>--}}
+{{--                            </label>--}}
+{{--                            --}}{{--                            <label>--}}
+{{--                            --}}{{--                                <input type="radio" name="category">--}}
+{{--                            --}}{{--                                <span>Аксессуары</span>--}}
+{{--                            --}}{{--                            </label>--}}
+{{--                            --}}{{--                            <label>--}}
+{{--                            --}}{{--                                <input type="radio" name="category">--}}
+{{--                            --}}{{--                                <span>Запчасти</span>--}}
+{{--                            --}}{{--                            </label>--}}
+{{--                        </div>--}}
+{{--                        <div class="search__items">--}}
+{{--                            <p style="display: none;">Ничего не найдено</p>--}}
+{{--                            <!-- ДЛЯ БЭКА: Убрать атрибут стайл и выводить, если нет товаров -->--}}
+{{--                            <ul>--}}
+{{--                                <li>--}}
+{{--                                    <a href="#"><span>Hublot</span> Big Bang</a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="#"><span>Hublot</span> Big Bang</a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="#"><span>Hublot</span> Big Bang</a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="#"><span>Hublot</span> Big Bang</a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="#"><span>Hublot</span> Big Bang Kroko Kautschukband</a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="#"><span>Hublot</span> Big Bang Fusion Dark Brown Alligator Strap</a>--}}
+{{--                                </li>--}}
+{{--                            </ul>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </form>--}}
+{{--            </div>--}}
         </div>
         <div class="mob-menu">
             <div class="mob-menu__top">
@@ -232,17 +232,17 @@
                     <div class="header-desc__top">
                         <div class="search search_desc">
                             <form action="/" class="search-field">
-                                <div class="search-input-holder">
-                                    <input type="text" name="search" placeholder="Поиск">
-                                    <div class="search-input-holder__buttons">
-                    <span class="clear-field-btn">
-                      <img src="/images/icons/close-dark.svg" alt="Очистить поиск">
-                    </span>
-                                        <button class="search-field__send-btn">
-                                            <img src="/images/icons/search.svg" alt="Поиск">
-                                        </button>
-                                    </div>
-                                </div>
+{{--                                <div class="search-input-holder">--}}
+{{--                                    <input type="text" name="search" placeholder="Поиск">--}}
+{{--                                    <div class="search-input-holder__buttons">--}}
+{{--                    <span class="clear-field-btn">--}}
+{{--                      <img src="/images/icons/close-dark.svg" alt="Очистить поиск">--}}
+{{--                    </span>--}}
+{{--                                        <button class="search-field__send-btn">--}}
+{{--                                            <img src="/images/icons/search.svg" alt="Поиск">--}}
+{{--                                        </button>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
                                 <div class="search__result">
                                     <div class="search__categories">
                                         <label>

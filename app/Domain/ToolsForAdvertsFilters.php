@@ -64,7 +64,7 @@ abstract class ToolsForAdvertsFilters implements AdvertsFilters
             } elseif (\Session::get('currency') == 'EUR') {
                 $eur = ExchangeRate::where('pair_currencies', 'EUR/UAH')->first()->rate;
                 $usd = ExchangeRate::where('pair_currencies', 'USD/UAH')->first()->rate;
-                $currency['rate'] = $eur / $usd;
+                $currency['rate'] =  $usd / $eur;
                 $currency['symbol'] = Currency::where('title', 'EUR')->first()->symbol;
             } else {
                 $currency['rate'] = 1;
@@ -81,45 +81,56 @@ abstract class ToolsForAdvertsFilters implements AdvertsFilters
     public function getNameAndCountFilters($user_id = 0, $additionalWhere = ' and 1', $nameView = 'user_adverts_view')
     {
         $table = DB::table($nameView);
+
         $rule = $this->getConditionUserId($user_id).$additionalWhere;
 
-        $brands = $table->select('watch_make_title')
+        $newTable = clone $table;
+        $brands = $newTable->select('watch_make_title')
             ->addSelect(DB::raw('COUNT(watch_make_title) as count_watch_make_title'))
             ->groupBy('watch_make_title')->whereRaw($rule)->get();
 
-        $models = $table->select('watch_model_title')
+        $newTable = clone $table;
+        $models = $newTable->select('watch_model_title')
             ->addSelect(DB::raw('COUNT(watch_model_title) as count_watch_model_title'))
             ->groupBy('watch_model_title')->whereRaw($rule)->get();
 
-        $diameters = $table->select('height', 'width')
+        $newTable = clone $table;
+        $diameters = $newTable->select('height', 'width')
             ->addSelect(DB::raw('COUNT(height) as count_height'))
             ->groupBy('height', 'width')->whereRaw($rule)->get();
 
-        $years = $table->select('release_year')
+        $newTable = clone $table;
+        $years = $newTable->select('release_year')
             ->addSelect(DB::raw('COUNT(release_year) as count_release_year'))
             ->groupBy('release_year')->whereRaw($rule)->get();
 
-        $regions = $table->select('region')
+        $newTable = clone $table;
+        $regions = $newTable->select('region')
             ->addSelect(DB::raw('COUNT(region) as count_region'))
             ->groupBy('region')->whereRaw($rule)->get();
 
-        $mechanismTypes = $table->select('mechanism_type_title')
+        $newTable = clone $table;
+        $mechanismTypes = $newTable->select('mechanism_type_title')
             ->addSelect(DB::raw('COUNT(mechanism_type_title) as count_mechanism_type_title'))
             ->groupBy('mechanism_type_title')->whereRaw($rule)->get();
 
-        $states = $table->select('watch_state')
+        $newTable = clone $table;
+        $states = $newTable->select('watch_state')
             ->addSelect(DB::raw('COUNT(watch_state) as count_watch_state'))
             ->groupBy('watch_state')->whereRaw($rule)->get();
 
-        $deliveryVolumes = $table->select('delivery_volume')
+        $newTable = clone $table;
+        $deliveryVolumes = $newTable->select('delivery_volume')
             ->addSelect(DB::raw('COUNT(delivery_volume) as count_delivery_volume'))
             ->groupBy('delivery_volume')->whereRaw($rule)->get();
 
-        $sexes = $table->select('sex_title')
+        $newTable = clone $table;
+        $sexes = $newTable->select('sex_title')
             ->addSelect(DB::raw('COUNT(sex_title) as count_sex_title'))
             ->groupBy('sex_title')->whereRaw($rule)->get();
 
-        $types = $table->select('watch_type_title')
+        $newTable = clone $table;
+        $types = $newTable->select('watch_type_title')
             ->addSelect(DB::raw('COUNT(watch_type_title) as count_watch_type_title'))
             ->groupBy('watch_type_title')->whereRaw($rule)->get();
 

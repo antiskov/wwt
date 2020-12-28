@@ -7,6 +7,7 @@ use App\Domain\TransactionCreator;
 use App\Models\Advert;
 use App\Models\UserTransaction;
 use Carbon\Carbon;
+use http\Header;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
@@ -100,7 +101,7 @@ class PayService
         }
     }
 
-    private function forCheckTransaction(UserTransaction $transaction)
+    public function forCheckTransaction(UserTransaction $transaction)
     {
         $parameters = $this->getParameters();
 
@@ -130,14 +131,18 @@ class PayService
             $callbackPar = json_decode(base64_decode($_POST['data']), true);
             $transaction = UserTransaction::where('order_id', $callbackPar['order_id'])->first();
             $transaction->status = $callbackPar['status'];
-            $transaction->save();
+            if (!$transaction->save()) {
+                Log::info("Transaction #$transaction->id not saved");
+                abort(400);
+            }
 
             $this->checkStatusPayForSubmitting($transaction);
 
             \Log::info([$callbackPar['order_id'], $callbackPar['status']]);
         } else {
-            //todo: if error return error code to liqpay???
+            //todo: if error return error code to liqpay. done
             \Log::info('incorrect signature');
+            abort(400);
         }
     }
 

@@ -46,6 +46,8 @@ class AdvertsSeeder extends Seeder
 
                 ]
             );
+
+
         }
     }
 }

@@ -14,7 +14,6 @@ class CatalogController extends Controller
 {
     public function getFilterResult(CatalogService $service, Request $request)
     {
-//        dd( $service->getFilterResult($request));
         return view('catalog.pages.main', $service->getFilterResult($request));
     }
 

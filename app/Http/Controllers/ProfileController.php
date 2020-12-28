@@ -100,17 +100,27 @@ class ProfileController extends Controller
     public function myAdverts()
     {
         $adverts = Advert::where('user_id', auth()->user()->id)->where('status_id', 1)->orderBy('id', 'desc')->get();
+        $statusArchive = Status::where('title', 'archive')->first()->id;
+
         return view('profile_user.pages.my_adverts', [
             'adverts' => $adverts,
             'statuses' => Status::all(),
+            'statusArchive' => $statusArchive,
         ]);
     }
 
     public function myAdvertsChange(int $status)
     {
+        $adverts = Advert::where('user_id', auth()->user()->id)->where('status_id', $status)->orderBy('id', 'desc')->get();
+        $statusArchive = Status::where('title', 'archive')->first()->id;
         $data = [
-            'output' => view('profile_user.partials.my_advert_div', ['adverts' => Advert::where('user_id', auth()->user()->id)->where('status_id', $status)->orderBy('id', 'desc')->get()])->toHtml(),
+            'output' => view('profile_user.partials.my_advert_div', [
+                'adverts' => $adverts,
+                'statusArchive' => $statusArchive,
+            ])->toHtml(),
         ];
+
+
 
         return response()->json($data);
     }
@@ -132,6 +142,7 @@ class ProfileController extends Controller
 
     public function changeFavorite(int $status, ProfileService $service)
     {
+
         $data = [
             'output' => view('profile_user.partials.favorite_block', [
                 'status' => $status,
@@ -193,6 +204,7 @@ class ProfileController extends Controller
 
     public function callbackPay(Request $request, PayService $service)
     {
+        if ($request->input('data')) abort(200);
         $service->setCallback();
     }
 

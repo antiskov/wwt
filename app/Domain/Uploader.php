@@ -2,6 +2,7 @@
 
 namespace App\Domain;
 
+use App\Services\ImageMinificationService;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 
@@ -16,6 +17,8 @@ class Uploader
     {
         $this->filename = $this->request->file($this->nameAttribute)->getClientOriginalName();
         $this->request->file($this->nameAttribute)->storeAs($this->directory, $this->filename, 'public');
+
+        (new ImageMinificationService())->minify($this->filename, ['small'], 'public/'.$this->directory);
     }
 
     public function uploadImage(Request $request, $nameAttribute, $directory)

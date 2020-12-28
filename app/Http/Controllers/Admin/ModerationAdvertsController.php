@@ -31,7 +31,7 @@ class ModerationAdvertsController extends Controller
             $advertsService->publishedWatchMake($advert);
         }
 
-        return redirect()->route('admin.moderation_adverts');
+        return redirect()->back();
     }
 
     public function deleteAdvert(Advert $advert)

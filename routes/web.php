@@ -34,6 +34,8 @@ Route::middleware('set.locale')->group(function () {
     Route::post('/send_about', [\App\Http\Controllers\HomeController::class, 'sendAbout'])->name('send_about');
     Route::get('/set_locale/{lang}', [\App\Http\Controllers\HomeController::class, 'setLocale'])->name('set_locale');
     Route::get('/vip', [\App\Http\Controllers\CatalogController::class, 'getResultForHome'])->name('result_for_home');
+    Route::get('/change-status/{status}/{advert}', [ModerationAdvertsController::class, 'changeStatus'])
+        ->middleware('can:update,advert')->name('change_status');
 
     Route::group(['prefix' => 'forgot_password'], function (){
         Route::get('/', [\App\Http\Controllers\PasswordController::class, 'resetPasswordIndex'])->name('forgot_password');
@@ -65,12 +67,14 @@ Route::middleware('set.locale')->group(function () {
             Route::get('/', [\App\Http\Controllers\SubmittingController::class, 'index'])->name('submitting');
             Route::post('/create_draft/', [\App\Http\Controllers\SubmittingController::class, 'createDraft'])->name('submitting.create_draft');
             Route::middleware('can:view,advert')->group(function (){
-                Route::post('/draft/{advert}', [\App\Http\Controllers\SubmittingController::class, 'editDraft'])->name('submitting.edit_draft');
-                Route::get('/draft/{advert}', [\App\Http\Controllers\SubmittingController::class, 'getDraft'])->name('submitting.get_draft');
-                Route::post('/upload_image/{advert}', [\App\Http\Controllers\SubmittingController::class, 'uploadImage'])->name('submitting.upload_image');
-                Route::get('/buy_vip/{advert}', [\App\Http\Controllers\SubmittingController::class, 'buyVip'])->name('submitting.buy_vip');
-                Route::get('/publish/{advert}', [\App\Http\Controllers\SubmittingController::class, 'publish'])->name('submitting.publish');
-                Route::post('/step4/{advert}', [\App\Http\Controllers\SubmittingController::class, 'getStep4']);
+                Route::middleware('can:update,advert')->group(function () {
+                    Route::post('/draft/{advert}', [\App\Http\Controllers\SubmittingController::class, 'editDraft'])->name('submitting.edit_draft');
+                    Route::get('/draft/{advert}', [\App\Http\Controllers\SubmittingController::class, 'getDraft'])->name('submitting.get_draft');
+                    Route::post('/upload_image/{advert}', [\App\Http\Controllers\SubmittingController::class, 'uploadImage'])->name('submitting.upload_image');
+                    Route::get('/buy_vip/{advert}', [\App\Http\Controllers\SubmittingController::class, 'buyVip'])->name('submitting.buy_vip');
+                    Route::get('/publish/{advert}', [\App\Http\Controllers\SubmittingController::class, 'publish'])->name('submitting.publish');
+                    Route::post('/step4/{advert}', [\App\Http\Controllers\SubmittingController::class, 'getStep4']);
+                });
             });
             Route::get('/delete_photo/{photo}', [\App\Http\Controllers\SubmittingController::class, 'deletePhoto'])->name('submitting.delete_photo');
         });

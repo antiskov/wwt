@@ -15,6 +15,7 @@ use App\Models\ExchangeRate;
 use App\Models\MechanismType;
 use App\Models\SearchLink;
 use App\Models\SparePartsMechanismType;
+use App\Models\Status;
 use App\Models\User;
 use App\Models\UserFavoriteAdvert;
 use Illuminate\Http\Request;
@@ -118,6 +119,7 @@ class CatalogService
             'user' => $user,
             'favorite' => UserFavoriteAdvert::where('user_id', $user->id)->where('advert_id', $advert->id)->first(),
             'currency' => (new AdvertsFiltersGetter())->checkRate(),
+            'statuses' => Status::all(),
         ];
     }
 }

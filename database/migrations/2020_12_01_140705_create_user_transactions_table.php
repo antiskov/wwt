@@ -20,7 +20,7 @@ class CreateUserTransactionsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('price');
             $table->string('title');
-            $table->enum('status', ['error', 'failure', 'reversed', 'success', 'none']);
+            $table->enum('status', ['error', 'failure', 'reversed', 'success', 'none', 'wait_accept', 'wait_secure']);
             $table->string('order_id');
             $table->timestamps();
         });

@@ -33,7 +33,7 @@ class AdvertPolicy
     {
         $role=(new UserService())->getRole($user);
 
-        return ($user->id === $advert->user->id) || ($role->title == 'admin' || $role->title == 'manager');
+        return (auth()->user()->id === $advert->user->id) || ($role->title == 'admin' || $role->title == 'manager');
     }
 
     /**
@@ -56,7 +56,9 @@ class AdvertPolicy
      */
     public function update(User $user, Advert $advert)
     {
-        return $user->id === $advert->user->id;
+        $role=(new UserService())->getRole($user);
+
+        return (auth()->user()->id === $advert->user->id) || ($role->title == 'admin' || $role->title == 'manager');
     }
 
     /**

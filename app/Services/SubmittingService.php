@@ -47,10 +47,14 @@ class SubmittingService
         foreach ($request->file('advert_images') as $image) {
             $name = $image->getClientOriginalName();
             if (!AdvertPhoto::where('photo', $name)->where('advert_id', $advertID)->first()) {
-                $path = '/images/advert_photos/' . $advertType . '/number_' . $advertID;
+                $path = 'images/advert_photos/' . $advertType . '/number_' . $advertID;
                 $image->storeAs($path, $name, 'public');
                 //todo: method.done
                 $this->createAdvertPhoto($advertID, $name);
+
+                $minifyPath = 'public/'.$path;
+
+                (new ImageMinificationService())->minify($name, ['small'], $minifyPath);
 
             }
         }

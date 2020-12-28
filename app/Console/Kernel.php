@@ -27,6 +27,9 @@ class Kernel extends ConsoleKernel
         $schedule->command('rate:update')->hourly();
         $schedule->command('banner:check')->hourly();
         $schedule->command('advert_photos:clear')->daily();
+        $schedule->command('adverts:check')->daily();
+        $schedule->command('adverts:check_vip')->daily();
+        $schedule->command('pay:check')->daily();
     }
 
     /**
