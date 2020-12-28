@@ -19,13 +19,7 @@ class VipAdvertsAndFiltersGetter extends ToolsForAdvertsFilters
     {
         $query = DB::table($nameView)->where('vip_status', 1);
 
-        $adverts = $this->paginateCustom(
-            $this->getQuery($query, $request)
-                ->orderBy('vip_status', 'desc')
-                ->orderBy('price', $this->getOrderBy($request)),
-            $request->fullUrl(),
-            $this->getCountPagination()
-        );
+        $adverts = $this->getAdverts($query, $request);
 
         $this->setSearchLink($request);
 

@@ -19,13 +19,7 @@ class AdvertsFiltersGetter extends ToolsForAdvertsFilters
     {
         $query = DB::table($nameView);
 
-        $adverts = $this->paginateCustom(
-            $this->getQuery($query, $request)
-                ->orderBy('vip_status', 'desc')
-                ->orderBy('price', $this->getOrderBy($request)),
-            $request->fullUrl(),
-            $this->getCountPagination()
-        );
+        $adverts = $this->getAdverts($query, $request);
 
         $this->setSearchLink($request);
 

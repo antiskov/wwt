@@ -12,7 +12,9 @@
                 @endauth
                 <a href="{{route('catalog.item-page', [$advert->id])}}" class="img-wrap">
                     @if($modelAdvert = \App\Models\Advert::find($advert->id))
+                        @isset($modelAdvert->photos->where('is_basic', 1)->first()->photo)
                         <img src="{{asset('/storage/images/advert_photos/'.$modelAdvert->type.'/number_'.$advert->id.'/small_'.$modelAdvert->photos->where('is_basic', 1)->first()->photo)}}">
+                        @endisset
                     @endif
                 </a>
                 <div class="info-cart">

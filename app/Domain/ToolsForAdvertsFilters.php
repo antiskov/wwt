@@ -15,6 +15,18 @@ use Illuminate\Support\Facades\Session;
 
 abstract class ToolsForAdvertsFilters implements AdvertsFilters
 {
+
+    public function getAdverts($query, Request $request)
+    {
+        $adverts = $this->getQuery($query, $request)
+            ->orderBy('vip_status', 'desc')
+            ->orderBy('price', $this->getOrderBy($request))
+            ->paginate($this->getCountPagination());
+
+        $adverts->withPath($request->getUri());
+
+        return $adverts;
+    }
     public function changeToCurrencyPriceFilter($nameView = 'user_adverts_view')
     {
         $currency = $this->transRate();
@@ -174,17 +186,6 @@ abstract class ToolsForAdvertsFilters implements AdvertsFilters
         }
 
         return $query;
-    }
-    public function paginateCustom($thisPaginate, $path, $perPage = 15, $columns = ['*'], $pageName = 'page', $page = null)
-    {
-        $page = $page ?: Paginator::resolveCurrentPage($pageName);
-
-        $total = $thisPaginate->getCountForPagination();
-        if(!$perPage) $perPage = 50;
-        $results = $total ? $thisPaginate->forPage($page, $perPage)->get($columns) : collect();
-        return new LengthAwarePaginator($results, $total, $perPage, $page, [
-            'path' => $path,
-        ]);
     }
 
     public function getBindsArr(Request $request)
