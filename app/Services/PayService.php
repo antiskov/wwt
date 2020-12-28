@@ -97,7 +97,7 @@ class PayService
     public function checkTransaction()
     {
         if ($transaction = UserTransaction::where('user_id', auth()->user()->id)->where('type', 'addition')->latest()->first()) {
-            $transaction = $this->forCheckTransaction($transaction);
+            $this->forCheckTransaction($transaction);
         }
     }
 
@@ -134,11 +134,10 @@ class PayService
             if (!$transaction->save()) {
                 Log::info("Transaction #$transaction->id not saved");
                 abort(400);
+            } else {
+                $this->checkStatusPayForSubmitting($transaction);
+                http_response_code(200);
             }
-
-            $this->checkStatusPayForSubmitting($transaction);
-
-            \Log::info([$callbackPar['order_id'], $callbackPar['status']]);
         } else {
             //todo: if error return error code to liqpay. done
             \Log::info('incorrect signature');
