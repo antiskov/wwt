@@ -40,7 +40,7 @@ class VipAdvertsAndFiltersGetter extends ToolsForAdvertsFilters
         return $this->result;
     }
 
-    public function getFilterCountResults(Request $request)
+    public function getFilterCountResults(Request $request, $user_id = 0)
     {
         $nameView = 'user_adverts_view';
         $countQuery = $this->getQuery(DB::table($nameView)->where('vip_status', 1), $request);

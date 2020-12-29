@@ -6,7 +6,7 @@
         </div>
         <form id="password-form" method="post" class="check-login" action="{{ route('login-password') }}">
             @CSRF
-            <h1>fidshsdjhfsdfhf;</h1>
+            <h1>{{__('messages.modal_welcome')}}</h1>
             <div class="change-input">
                 <input id="password-form-email" name="email" type="text" placeholder="{{__('messages.modal_placeholder')}}"
                        required

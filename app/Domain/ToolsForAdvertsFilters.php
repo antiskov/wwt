@@ -7,8 +7,6 @@ use App\Models\Currency;
 use App\Models\ExchangeRate;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -107,9 +105,7 @@ abstract class ToolsForAdvertsFilters implements AdvertsFilters
             ->groupBy('watch_model_title')->whereRaw($rule)->get();
 
         $newTable = clone $table;
-        $diameters = $newTable->select('height', 'width')
-            ->addSelect(DB::raw('COUNT(height) as count_height'))
-            ->groupBy('height', 'width')->whereRaw($rule)->get();
+        $diameters = $newTable->select('height', 'width')->whereRaw($rule)->get();
 
         $newTable = clone $table;
         $years = $newTable->select('release_year')
@@ -174,8 +170,10 @@ abstract class ToolsForAdvertsFilters implements AdvertsFilters
     }
     public function getQuery($query, Request $request)
     {
-        if($this->getBindsArr($request)){
-            foreach ($this->getBindsArr($request) as $key => $value) {
+        $bindsArr = $this->getBindsArr($request);
+
+        if($bindsArr){
+            foreach ($bindsArr as $key => $value) {
                 $query->whereIn($key, $value);
             }
         }
@@ -191,6 +189,7 @@ abstract class ToolsForAdvertsFilters implements AdvertsFilters
     public function getBindsArr(Request $request)
     {
         $bindsArr = [];
+
         if ($brandsArr = $request->get('brands', false)) {
             $bindsArr['watch_make_title'] = $brandsArr;
         }
@@ -199,13 +198,15 @@ abstract class ToolsForAdvertsFilters implements AdvertsFilters
             $bindsArr['watch_model_title'] = $modelsArr;
         }
 
-        if ($diametersArr = $request->get('diameters', false)) {
+        if ($diametersArr = $request->get('diameters')) {
             $heightWidth = explode('/', $diametersArr[0]);
             foreach ($diametersArr as $diameter) {
                 $heightWidth = explode('/', $diameter);
                 $bindsArr['height'][] = $heightWidth[0];
                 $bindsArr['width'][] = $heightWidth[1];
             }
+            $bindsArr['height'] = array_unique($bindsArr['height']);
+            $bindsArr['width'] = array_unique($bindsArr['width']);
         }
 
         if ($yearsArr = $request->get('years', false)) {

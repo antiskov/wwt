@@ -49,7 +49,6 @@ class CatalogController extends Controller
 
     public function countResults(CatalogService $service, Request $request, $type, $user = 0)
     {
-//        dump($request->all());
         $a = $service->getFilterResults($request, $type, $user);
 
         $data = [

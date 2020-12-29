@@ -39,9 +39,10 @@ class AdvertsFiltersGetter extends ToolsForAdvertsFilters
         return $this->result;
     }
 
-    public function getFilterCountResults(Request $request, $user_id = 0, $nameView = 'user_adverts_view')
+    public function getFilterCountResults(Request $request, $user_id = 0)
     {
         $nameView = 'user_adverts_view';
+
         $countQuery = $this->getQuery(DB::table($nameView), $request);
 
         $this->result = ['countResults' => $countQuery->get()->count()];

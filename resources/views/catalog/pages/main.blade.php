@@ -9,10 +9,10 @@
             $.ajax({
                 type: "get",
                 url: '/catalog/count_results/1',
-                data: $('.filter-search').serializeArray(),
+                data: $('.filters-desc').serializeArray(),
                 success: function (data) {
                     console.log('success');
-                    $('.filters-submit-btn').text('Применить (' + data.count + ")");
+                    $('.desc-submit-btn').text('Применить (' + data.count + ")");
                 },
                 error: function (xhr) {
                     console.log('error');
@@ -22,8 +22,28 @@
             })
         };
 
-        $('.watch-filter').on('click', query);
-        $('.watch-filter').on('change', query);
+        function queryMobile() {
+            $.ajax({
+                type: "get",
+                url: '/catalog/count_results/1',
+                data: $('.filters-mob').serializeArray(),
+                success: function (data) {
+                    console.log('success');
+                    $('.mobile-submit-btn').text('Применить (' + data.count + ")");
+                },
+                error: function (xhr) {
+                    console.log('error');
+                }
+            }).done(function () {
+                $(this).addClass("done");
+            })
+        };
+
+        $('.desc-filter').on('click', query);
+        $('.desc-filter').on('change', query);
+
+        $('.mobile-filter').on('click', queryMobile);
+        $('.mobile-filter').on('change', queryMobile);
     });
 </script>
 @endsection
