@@ -73,4 +73,14 @@ class Advert extends Model implements Viewable
     {
         return $this->hasMany(UserFavoriteAdvert::class);
     }
+
+    public function photos()
+    {
+        return $this->hasMany(AdvertPhoto::class);
+    }
+
+    public function getPrice()
+    {
+        return round($this->price);
+    }
 }

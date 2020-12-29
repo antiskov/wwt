@@ -10,12 +10,15 @@ class AuthController extends Controller
 {
     public function showLogin()
     {
+        if (Auth::check()){
+            return redirect()->route('admin.dashboard');
+        }
+
         return view('admin.login');
     }
 
     public function login(Request $request)
     {
-        //dd(Auth::attempt(['email' => $request->email, 'password' => $request->password]));
         \Log::info($request->email.' '.$request->password);
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             \Log::info('logged in');

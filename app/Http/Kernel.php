@@ -5,6 +5,7 @@ namespace App\Http;
 use App\Http\Middleware\AuthCheckProfile;
 use App\Http\Middleware\IsLogginedManagerMiddleware;
 use App\Http\Middleware\SetLocale;
+use App\Http\Middleware\SubmittingMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -59,6 +60,7 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = array(
         'managerauth'=>IsLogginedManagerMiddleware::class,
+        'submitting' => SubmittingMiddleware::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,

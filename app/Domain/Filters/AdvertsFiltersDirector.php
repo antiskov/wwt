@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain;
+namespace App\Domain\Filters;
 
 use App\Contracts\AdvertsFilters;
 use Illuminate\Http\Request;

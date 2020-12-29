@@ -2,11 +2,10 @@
 
 namespace App\Http\Middleware;
 
-use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Session;
-use Locale;
+use Illuminate\Support\Facades\Cookie;
+use Closure;
 
 class SetLocale
 {
@@ -19,22 +18,16 @@ class SetLocale
      */
     public function handle(Request $request, Closure $next)
     {
-        $languages = ['ru_RU', 'ru_UA',  'en_EN', 'ua_UA'];
-        $locale = Locale::acceptFromHttp($_SERVER['HTTP_ACCEPT_LANGUAGE']);
-
-        if (!isset($_COOKIE['language']) and in_array($locale, $languages)) {
-            Session::put('language', $locale);
-            App::setLocale(Session::get('language'));
-
-            return $next($request);
-        } elseif (isset($_COOKIE['language']) and in_array($locale, $languages)) {
-            App::setLocale(Session::get('language'));
-
-            return $next($request);
-        } elseif (in_array($locale, $languages) == false) {
-            App::setLocale(config('app.locale'));
+        if(\Cookie::has('language')){
+            App::setLocale(Cookie::get('language'));
+        } else {
+            Cookie::queue(Cookie::make('language', config('app.locale')));
+            App::setLocale('app.locale');
 
             return $next($request);
         }
+
+        return $next($request);
+
     }
 }

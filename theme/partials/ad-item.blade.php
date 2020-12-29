@@ -14,7 +14,6 @@
     <div class="cont">
         <div class="img-wrap">
             <img src="./images/content/watch-1.png" alt="img">
-            <img src="./images/content/watch-2.png" alt="img">
         </div>
         <div class="ad-cont">
         <div class="name-block">

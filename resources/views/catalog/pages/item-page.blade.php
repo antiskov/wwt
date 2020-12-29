@@ -2,9 +2,12 @@
 
 @section('content')
     @if($role == 3 or $role == 2)
-        <button><a href='{{ route('admin.delete_advert', [$advert->id]) }}'>Удалить</a></button>
-        <button><a href="{{ route('admin.change_status', [3, $advert->id]) }}">Отказать</a></button>
-        <button><a href="{{ route('admin.change_status', [4, $advert->id]) }}">Опубликовать</a></button>
+        @if($advert->status->title == 'published')
+            <button><a href="{{ route('admin.change_status', [$statuses->where('title', 'moderation')->first(), $advert->id]) }}">Отказать</a></button>
+        @else
+            <button><a href="{{ route('admin.change_status', [$statuses->where('title', 'published')->first(), $advert->id]) }}">Опубликовать</a></button>
+        @endif
+        <button><a href="{{ route('change_status', [$statuses->where('title', 'archive')->first(), $advert->id]) }}">Удалить</a></button>
     @endif
     <section class="item-page">
         <script>
@@ -18,7 +21,7 @@
                     } else {
                         console.log(0);
                         $.ajax({
-                            url: '/catalog/item_page_favorite/{{$advert->id}}/{{0}}',
+                            url: '/catalog/item_page_favorite/{{$advert->id}}/{{0  }}',
                         })
                     }
                 })
@@ -51,7 +54,11 @@
                     {{--                            <img src="./images/icons/stars.svg" alt="img">--}}
                     {{--                        </div>--}}
                     <div class="person-name">
-                        <h3>{{$advert->name}}</h3>
+                        <h3>{{$advert->name}}
+                            @if($advert->is_publish_surname == 1)
+                                {{$advert->surname}}
+                            @endif
+                        </h3>
                     </div>
                     <div class="phone-dropdown">
                         <button class="btn-hover button-show-phone" type="submit">Показать телефон</button>

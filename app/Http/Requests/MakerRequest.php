@@ -24,8 +24,7 @@ class MakerRequest extends FormRequest
     public function rules()
     {
         return [
-            'logo' => 'required|image',
-            'title' => 'required|max:200'
+            'title'=>'required|unique:watch_makes',
         ];
     }
 }

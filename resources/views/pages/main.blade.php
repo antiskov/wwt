@@ -1,5 +1,10 @@
 @extends('layouts.main')
 @section('content')
+    <div>
+        @if(Session::has('status_password'))
+            <h1>{!! Session::get('status_password') !!}</h1>
+        @endif
+    </div>
     <div class="site-holder">
         @widget('slider')
         @widget('man_woman_pictures')
@@ -96,9 +101,11 @@
             if(!(window.location.href.indexOf("&") > -1)){
                 $('#sort-dear').on('click', function (e) {
                     window.location.replace(getCookie('url_catalog')+'?orderBy=dear')
+                    document.cookie = "price_sort=dear; max-age=600"
                 })
                 $('#sort-cheap').on('click', function (e) {
                     window.location.replace(getCookie('url_catalog')+'?orderBy=cheap')
+                    document.cookie = "price_sort=cheap; max-age=600"
                 })
             } else {
                 if (window.location.href.indexOf("?") > -1) {

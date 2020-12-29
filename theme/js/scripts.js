@@ -619,6 +619,25 @@ $(document).ready(function () {
     }
   });
 
+  function initialCheck() {
+    $('.filters-desc-category').find('input[type="checkbox"]').each(function () {
+      const selectedBlock = $(this).closest('.filters-desc-category').find('.filters-desc-choices-list');
+      const label = selectedBlock.find(`label[for=${$(this).prop('id')}]`);
+
+      if ($(this).prop('checked')) {
+        selectedBlock.append(`
+        <li>
+          <div>${$(this).val()} <label for="${$(this).prop('id')}"><span class="delete-choice-btn"></span></label></div>
+        </li>
+      `)
+      } else {
+        label.closest('li').remove();
+      }
+    })
+  }
+
+  initialCheck()
+
   $('.filters-desc').on('click', '.reset-filters-btn', function () {
     $(this).closest('.filters-desc').find('input').prop('checked', false);
     $(this).closest('.filters-desc').find('.filters-desc-choices-list').empty();

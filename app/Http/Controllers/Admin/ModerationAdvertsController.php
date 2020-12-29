@@ -5,28 +5,38 @@ namespace App\Http\Controllers\Admin;
 use App\DataObjects\Admin\ShowShortAdvert;
 use App\Http\Controllers\Controller;
 use App\Models\Advert;
+use App\Models\Status;
 use App\Services\AdminService;
 use App\Services\AdvertsService;
+use App\Services\WatchModelService;
 
 class ModerationAdvertsController extends Controller
 {
-    public function index(AdminService $advertsService)
+    public function index()
     {
-        $adverts=$advertsService->getAllAdverts();
+        $adverts = Advert::orderBy('status_id', 'asc')->orderBy('vip_status', 'desc')->paginate(30);
 
-        return view('admin.pages.moderation_adverts', ['adverts' => $adverts]);
+        return view('admin.pages.moderation_adverts', [
+            'adverts' => $adverts,
+            'statuses' => Status::all(),
+        ]);
     }
 
-    public function changeStatus($status, Advert $advert, AdminService $advertsService)
+    public function changeStatus(Status $status, Advert $advert, AdminService $advertsService, WatchModelService $modelService)
     {
         $advertsService->changeStatus($status, $advert);
+        if($status->title == 'published')
+        {
+            $modelService->updateWatchModel($advert);
+            $advertsService->publishedWatchMake($advert);
+        }
 
-        return redirect()->route('admin.moderation_adverts');
+        return redirect()->back();
     }
 
-    public function deleteAdvert(Advert $advert, AdminService $advertsService)
+    public function deleteAdvert(Advert $advert)
     {
-        $advertsService->deleteAdvert($advert);
+        $advert->delete();
 
         return redirect()->route('admin.moderation_adverts');
     }

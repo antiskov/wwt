@@ -12,32 +12,34 @@
                 </div>
             </div>
             <input type="radio" name="tab-btn" id="tab-btn-1" value="" checked>
-            <label for="tab-btn-1" class="block-1"><img src="./images/icons/block-item.svg" alt=""></label>
+            <label for="tab-btn-1" class="block-1"><img src="/images/icons/block-item.svg" alt=""></label>
             <input type="radio" name="tab-btn" id="tab-btn-2" value="" >
-            <label for="tab-btn-2" class="block-2"><img src="./images/icons/line-item.svg" alt=""></label>
+            <label for="tab-btn-2" class="block-2"><img src="/images/icons/line-item.svg" alt=""></label>
 
             <div class="wrap2">
-                <div class="currency-block">
-                    <a href="#/">USD</a>
-                    <a href="#/">UAH</a>
-                    <a href="#/">EUR</a>
+                <div id="currencies" class="currency-block">
+                    @foreach($currencies as $item)
+                    <a href="{{route('catalog.set_rate', $item->title)}}">{{$item->title}}</a>
+                    @endforeach
                 </div>
 
                 <div class="select-price">
                     <p>Сортировать:</p>
-
-                    <div class="select-value">
-                        <p id="sort-dear">Дорогие</p>
-                        <p id="sort-cheap">Дешевые</p>
-{{--                        Самые дорогие--}}
+                    <div class="select-value rotate">
+                        @if(isset($_COOKIE['price_sort']))
+                            @if($_COOKIE['price_sort'] == 'dear')
+                                <span>по убыванию цены</span>
+                            @else
+                                <span>по возрастанию цены</span>
+                            @endif
+                        @else
+                            <span>по возрастанию цены</span>
+                        @endif
+                        <ul class="value-items">
+                            <li id="sort-dear">по убыванию цены</li>
+                            <li id="sort-cheap">по возрастанию цены</li>
+                        </ul>
                     </div>
-{{--                    <ul class="value-items">--}}
-{{--                        <li><a href="#/">Самые дорогие</a></li>--}}
-{{--                        <li><a href="#/">по релевантности</a></li>--}}
-{{--                        <li><a href="#/">по возрастанию цены</a></li>--}}
-{{--                        <li><a href="#/">по убыванию цены</a></li>--}}
-{{--                        <li><a href="#/">по популярности</a></li>--}}
-{{--                    </ul>--}}
                 </div>
             </div>
 
@@ -56,4 +58,10 @@
             @include('catalog.modals.pagination')
         </div>
     </div>
+    <script>
+        document.querySelector('#currencies').onclick = function () {
+            console.log('11111p');
+            document.cookie = "price_sort= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
+        }
+    </script>
 </section>

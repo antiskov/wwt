@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             SexesSeeder::class,
             UserRolesSeeder::class,
             UsersSeeder::class,
+            CurrencySeeder::class,
             AdvertsSeeder::class,
             AdvertsImageSeeder::class,
             CategorySeeder::class,

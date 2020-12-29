@@ -16,16 +16,16 @@ class CreateWatchModelsTable extends Migration
         Schema::create('watch_models', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('category_id')->nullable();
-            $table->unsignedBigInteger('watch_type_id');
-            $table->unsignedBigInteger('watch_make_id');
+            $table->unsignedBigInteger('watch_type_id')->nullable();
+            $table->unsignedBigInteger('watch_make_id')->nullable();
             $table->string('title');
             $table->string('model_code')->nullable();
-            $table->unsignedBigInteger('sex_id');
-            $table->float('height');
-            $table->float('width');
-            $table->unsignedBigInteger('mechanism_type_id');
+            $table->unsignedBigInteger('sex_id')->nullable();
+            $table->float('height')->nullable();
+            $table->float('width')->nullable();
+            $table->unsignedBigInteger('mechanism_type_id')->nullable();
             $table->boolean('is_moderated')->default(0);
-            $table->string('photo');
+            $table->string('photo')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -7,82 +7,67 @@ namespace App\Services;
 use App\Contracts\AdvertCreator;
 use App\Contracts\Filter;
 use App\DataObjects\WatchEntity;
+use App\Domain\Uploader;
 use App\Domain\WatchesAdvertCreator;
 use App\Exceptions\UnknownAdvertTypeException;
+use App\Http\Requests\MakerRequest;
 use App\Models\Advert;
 use App\Models\Banner;
 use App\Models\HomeSlider;
 use App\Models\ManWomanPicture;
+use App\Models\Status;
 use App\Models\WatchMake;
+use App\Models\WatchModel;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class AdminService
 {
-    public function createBanner(Request $request)
-    {
-        $bannerOld = Banner::where('is_active', 1)->first();
-        if($bannerOld && (date('Y-m-d') > $bannerOld->date_finish))  {
-            $bannerOld->is_active = 0;
-        }
-
-        $filename = $request->file('banner_image')->getClientOriginalName();
-        $request->file('banner_image')->storeAs('banners', $filename, 'public');
-
-        $banner = new Banner();
-        $banner->description = $request->description;
-        $banner->date_start = $request->date_start;
-        $banner->date_finish = $request->date_finish;
-        $banner->banner_image = $filename;
-        $banner->is_active = 1;
-        $banner->link = $request->link;
-        $banner->save();
-    }
-
-    public function closeBanner(Banner $banner)
-    {
-        $banner->is_active = 0;
-        $banner->save();
-    }
-
-    public function deleteBanner(Banner $banner)
-    {
-        $banner->delete();
-    }
+    //todo: to Banner servicse.done
+    //todo: banner deactivation to console script.done
 
     public function createManWomanPictures(Request $request)
     {
-        $man_image = 'man_'.$request->file('man_image')->getClientOriginalName();
-        $woman_image = 'woman_'.$request->file('woman_image')->getClientOriginalName();
-        $request->file('man_image')->storeAs('admin/man_woman_pictures', $man_image, 'public');
-        $request->file('woman_image')->storeAs('admin/man_woman_pictures', $woman_image, 'public');
+        $uploader = new Uploader();
 
-        if($picture = ManWomanPicture::latest()->first()) {
+        $uploader->uploadImage($request, 'man_image', 'admin/man_woman_pictures');
+        $man_image = $uploader->getFilename();
+
+        $uploader->uploadImage($request, 'woman_image', 'admin/man_woman_pictures');
+        $woman_image = $uploader->getFilename();
+
+        if ($picture = ManWomanPicture::latest()->first()) {
             $picture->delete();
-            Storage::delete('public/admin/man_woman_pictures/'.$picture->man);
-            Storage::delete('public/admin/man_woman_pictures/'.$picture->woman);
+            Storage::delete('/public/admin/man_woman_pictures/' . $picture->man);
+            Storage::delete('/public/admin/man_woman_pictures/' . $picture->woman);
         }
 
         $picture = new ManWomanPicture();
         $picture->man = $man_image;
         $picture->woman = $woman_image;
-        $picture->save();
+        //todo: check is success. Error message to log. done
+        if (!$picture->save()) {
+            Log::info("ManWomanPicture #$picture->id not saved");
+        }
     }
 
-    public function getCreatorId(Filter $advert)
+    public function publishedWatchMake(Advert $advert)
     {
-        return $advert->getUserId();
+        $watchMake = $advert->watchAdvert->watchMake;
+        $watchMake->is_moderated = 1;
+
+        if (!$watchMake->save()) {
+            Log::info("WatchMake #$watchMake->id not saved");
+        }
     }
 
-    public function create(WatchEntity $watchEntity, AdvertCreator $creator)
-    {
-
-    }
     public function getCreator(string $type): AdvertCreator
     {
         switch ($type) {
             case 'watch':
-                $creator= new WatchesAdvertCreator();
+                $creator = new WatchesAdvertCreator();
                 break;
             default:
                 throw new UnknownAdvertTypeException;
@@ -90,47 +75,65 @@ class AdminService
         return $creator;
     }
 
-    public function getAllAdverts()
-    {
-        return Advert::all();
-    }
 
-    public function changeStatus($status, Advert $advert)
+    public function changeStatus(Status $status, Advert $advert)
     {
-        $advert->status_id = $status;
-        $advert->save();
-    }
+        $advert->status_id = $status->id;
+        if (!$advert->save()) {
+            Log::info("Advert #$advert->id not saved");
+        }
 
-    public function deleteAdvert(Advert $advert)
-    {
-        $advert->delete();
+        if ($status->title == 'published') {
+            $advert->finish_date_active_status = Carbon::now()->addMonth(2);
+
+            if ($advert->vip_status == 1 && !$advert->finish_date_vip){
+                $advert->finish_date_vip = Carbon::now()->addMonth(1);
+            }
+
+            if (!$advert->save()) {
+                Log::info("Advert #$advert->id not saved");
+            }
+        }
     }
 
     public function uploadSlider(Request $request)
     {
-        $image = $request->file('image')->getClientOriginalName();
-        $request->file('image')->storeAs('admin/sliders', $image, 'public');
+        $service = new Uploader();
+        $service->uploadImage($request, 'image', 'admin/sliders');
 
+        $this->createSlider($request, $service->getFilename());
+    }
+
+    public function createSlider(Request $request, $image)
+    {
+        //todo: To externall method CreateSlider.done
         $slider = new HomeSlider();
         $slider->image = $image;
         $slider->upper_text = $request->upper_text;
         $slider->middle_text = $request->middle_text;
         $slider->link = $request->link;
         $slider->is_active = 1;
-        $slider->save();
+        //todo: check is success. Error message to log.done
+        if (!$slider->save()) {
+            Log::info("Slider #$slider->id not checked");
+        }
     }
 
-    public function createMaker(Request $request)
-    {
-        if(!WatchMake::where('title', $request->title)->where('logo', $request->logo)->first()){
-            $logo = $request->file('logo')->getClientOriginalName();
-            $request->file('logo')->storeAs('admin/makers', $logo, 'public');
+    public function createMaker(MakerRequest $request)
+    {   //todo: to FormRequest Validator.done
+        //todo: To externall method UploadMakerImage.done
 
-            $maker = new WatchMake();
-            $maker->title = $request->title;
-            $maker->logo = $logo;
-            $maker->status = 0;
-            $maker->save();
+        $service = new Uploader();
+        $service->uploadImageForFormRequest($request, 'logo', 'admin/makers');
+
+        $maker = new WatchMake();
+        $maker->title = $request->title;
+        $maker->logo = $service->getFilename();
+        $maker->status = 0;
+        $maker->is_moderated = 1;
+        //todo: check is success. Error message to log.done
+        if (!$maker->save()) {
+            Log::info("Maker #$maker->id not checked");
         }
     }
 }

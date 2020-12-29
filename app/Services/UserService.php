@@ -56,7 +56,6 @@ class UserService
         $user->is_active = $request->getActivity();
         if (!$user->save()) {
             Log::info('user not saved');
-            return false;
         }
 
         $this->setUserReferral($user);
@@ -87,7 +86,7 @@ class UserService
      */
     public function sendVerificationCode($user)
     {
-        $data['codeEmail']=route('activation_link', [$user->email_verification_code]);
+        $data['codeEmail'] = route('activation_link', [$user->email_verification_code]);
         Mail::to($user->email)->send(new ActivationMail($user));
         Log::info('mail sended');
 
@@ -99,12 +98,23 @@ class UserService
     public function setActivity(User $user)
     {
         $user->is_active = 1;
-        $user->save();
+        if (!$user->save()) {
+            Log::info('user not activation');
+        }
     }
 
-        public function setSetting(Request $request, SubscribeService $subscribeService)
+    public function getLanguageKey(Request $request)
     {
-        if(!$request->stay_logged_in) {
+        if ($request->language_communication == __('messages.russian')) {
+            return 'ru';
+        } else {
+            return 'en';
+        }
+    }
+
+    public function setSetting(Request $request, SubscribeService $subscribeService)
+    {
+        if (!$request->stay_logged_in) {
             foreach (array_keys($_COOKIE) as $value) {
                 if (mb_substr($value, 0, 12) == 'remember_web') {
                     Cookie::queue(Cookie::forget($value));
@@ -113,24 +123,27 @@ class UserService
         } else {
             \Auth::login(auth()->user(), true);
         }
-
-        if ($setting = UserSettings::where('user_id', auth()->user()->id)->first()) {
+        //todo: refactor.done
+        $setting = UserSettings::where('user_id', auth()->user()->id)->first();
+        if ($setting) {
             $setting->receive_partners_adverts = $request->receive_partners_adverts ? 1 : 0;
-            if ($request->language_communication == 'Русский') {
-                $setting->language_communication = 'ru';
-            } else {
-                $setting->language_communication = 'en';
+            //todo extract to method. done
+            $setting->language_communication = $this->getLanguageKey($request);
+            if (!$setting->save()) {
+                Log::info('setting not saved');
             }
-            $setting->save();
         } else {
+
             $setting = new UserSettings();
             $setting->user()->associate(auth()->user());
             $setting->receive_partners_adverts = $request->receive_service_info ? 1 : 0;
             $setting->language_communication = $request->language_communication ? 1 : 0;
-            $setting->save();
+            if (!$setting->save()) {
+                Log::info('setting not saved');
+            }
         }
 
-        if($request->receive_service_info == 'on') {
+        if ($request->receive_service_info == 'on') {
             $subscribeService->changeSubscribe(auth()->user()->email, 1);
         } else {
             $subscribeService->changeSubscribe(auth()->user()->email, 0);
@@ -139,7 +152,9 @@ class UserService
         return $setting;
     }
 
-    public function check() {
+    //todo: check чего? refactor.done
+    public function getSettings()
+    {
         $check = [];
 
         foreach (array_keys($_COOKIE) as $value) {
@@ -148,7 +163,7 @@ class UserService
             }
         }
 
-        if($settings = UserSettings::where('user_id', auth()->user()->id)->first()) {
+        if ($settings = UserSettings::where('user_id', auth()->user()->id)->first()) {
             $check['receive_partners_adverts'] = $settings->receive_partners_adverts;
             $check['language_communication'] = $settings->language_communication;
         } else {
@@ -158,7 +173,7 @@ class UserService
 
         $subscribe = Subscription::where('email', auth()->user()->email)->first();
 
-        if(isset($subscribe->status) && $subscribe->status == 1) {
+        if (isset($subscribe->status) && $subscribe->status == 1) {
             $check['receive_service_info'] = 1;
         } else {
             $check['receive_service_info'] = 0;
@@ -179,12 +194,19 @@ class UserService
 
     public function setUserReferral(User $referralUser)
     {
-        if(Cookie::get('referral_code')){
+        if (Cookie::get('referral_code')) {
             $user = User::where('referral_code', Cookie::get('referral_code'))->first();
 
             $referralUser->referral_user_id = $user->id;
-            $referralUser->save();
+            if (!$referralUser->save()) {
+                Log::info('referral now activation');
+            }
         }
+    }
+
+    public function getUserByEmail($email)
+    {
+        return User::where('email', $email)->first();
     }
 
 }

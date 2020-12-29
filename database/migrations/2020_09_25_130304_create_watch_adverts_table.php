@@ -19,7 +19,7 @@ class CreateWatchAdvertsTable extends Migration
             $table->unsignedBigInteger('watch_type_id')->nullable();
             $table->unsignedBigInteger('watch_make_id')->nullable();
             $table->unsignedBigInteger('watch_model_id')->nullable();
-            $table->enum('watch_state',['new','userd'])->nullable();
+            $table->enum('watch_state',['new','used'])->nullable();
             $table->string('model_code')->nullable();
             $table->unsignedBigInteger('sex_id')->nullable();
             $table->integer('release_year')->nullable();

@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileRequest;
 use App\Models\Advert;
+use App\Models\Currency;
 use App\Models\Referral;
 use App\Models\SearchLink;
+use App\Models\Status;
 use App\Models\TestCallback;
 use App\Models\Timezone;
 use App\Models\User;
@@ -34,7 +36,7 @@ class ProfileController extends Controller
      */
     public function settingsIndex(UserService $user)
     {
-        $check = $user->check();
+        $check = $user->getSettings();
 
         return view('profile_user.pages.settings' , [
             'check' => $check,
@@ -66,7 +68,6 @@ class ProfileController extends Controller
 
     public function editingProfileForm(ProfileRequest $request, ProfileService $form)
     {
-
         $form->saveFormData($request);
         if($request->avatar) {
             $form->createAvatar($request);
@@ -98,15 +99,28 @@ class ProfileController extends Controller
 
     public function myAdverts()
     {
-        $adverts = Advert::where('user_id', auth()->user()->id)->where('status_id', 1)->get();
-        return view('profile_user.pages.my_adverts', ['adverts' => $adverts]);
+        $adverts = Advert::where('user_id', auth()->user()->id)->where('status_id', 1)->orderBy('id', 'desc')->get();
+        $statusArchive = Status::where('title', 'archive')->first()->id;
+
+        return view('profile_user.pages.my_adverts', [
+            'adverts' => $adverts,
+            'statuses' => Status::all(),
+            'statusArchive' => $statusArchive,
+        ]);
     }
 
     public function myAdvertsChange(int $status)
     {
+        $adverts = Advert::where('user_id', auth()->user()->id)->where('status_id', $status)->orderBy('id', 'desc')->get();
+        $statusArchive = Status::where('title', 'archive')->first()->id;
         $data = [
-            'output' => view('profile_user.partials.my_advert_div', ['adverts' => Advert::where('user_id', auth()->user()->id)->where('status_id', $status)->get()])->toHtml(),
+            'output' => view('profile_user.partials.my_advert_div', [
+                'adverts' => $adverts,
+                'statusArchive' => $statusArchive,
+            ])->toHtml(),
         ];
+
+
 
         return response()->json($data);
     }
@@ -128,6 +142,7 @@ class ProfileController extends Controller
 
     public function changeFavorite(int $status, ProfileService $service)
     {
+
         $data = [
             'output' => view('profile_user.partials.favorite_block', [
                 'status' => $status,
@@ -174,9 +189,11 @@ class ProfileController extends Controller
     public function getPayments(PayService $service)
     {
         $service->checkTransaction();
+
         return \view('profile_user.pages.payments', [
             'score' => $service->getScore(),
-            'payments' => UserTransaction::where('user_id', auth()->user()->id)->orderBy('id', 'desc')->get()
+            'payments' => UserTransaction::where('user_id', auth()->user()->id)->orderBy('id', 'desc')->get(),
+            'currency' => Currency::where('title', 'UAH')->first()->title,
         ]);
     }
 
@@ -187,12 +204,16 @@ class ProfileController extends Controller
 
     public function callbackPay(Request $request, PayService $service)
     {
+        if ($request->input('data')) abort(200);
         $service->setCallback();
     }
 
     public function goToLiqPay(PayService $service, $order_id)
     {
-        return \view('pages.additing_cost', ["pay" => $service->setPay($order_id)]);
+        return \view('pages.additing_cost', [
+            "pay" => $service->setPay($order_id),
+            'currency' => Currency::where('title', 'UAH')->first()->title,
+            ]);
     }
 
 }

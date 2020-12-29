@@ -1,12 +1,12 @@
-<div id="advert" class="items-anno">
+    <div id="advert" class="items-anno">
     @foreach($adverts as $advert)
         <div class="items-wrap">
             <div class="announce-item">
                 <div class="chek_cont_set">
-                    <label class="checkbox-other">
-                        <input type="checkbox" checked>
-                        <span></span>
-                    </label>
+{{--                    <label class="checkbox-other">--}}
+{{--                        <input type="checkbox" checked>--}}
+{{--                        <span></span>--}}
+{{--                    </label>--}}
                 </div>
 
                 <!--    <div class="chek_cont">-->
@@ -16,24 +16,32 @@
 
                 <div class="cont">
                     <div class="img-wrap">
-                        <img src="/images/content/watch-1.png" alt="img">
-                        <img src="/images/content/watch-1.png" alt="img">
+{{--                        <img src="/images/content/watch-1.png" alt="img">--}}
+                        @if(isset($advert->photos->where('is_basic', 1)->first()->photo))
+                            <img src="{{asset('/storage/images/advert_photos/'.$advert->type.'/number_'.$advert->id.'/'.$advert->photos->where('is_basic', 1)->first()->photo)}}">
+                        @endif
                     </div>
                     <div class="ad-cont">
                         <div class="name-block">
                             <h2>{{$advert->title}}</h2>
+{{--                            <button class="advertice">Реклама</button>--}}
                             <div class="data">
-                                {{--                                    <p>--}}
-                                {{--                                        <span>С: 26. 07. 12</span>--}}
-                                {{--                                        <span>По: 26. 07. 12</span>--}}
-                                {{--                                    </p>--}}
-                                <button class="advertice">Реклама</button>
+                                <p>
+                                    <span>C: {{\Carbon\Carbon::create($advert->finish_date_active_status)->subMonth(2)->toDateString()}}</span>
+                                    <span>По: {{$advert->finish_date_active_status}}</span>
+                                </p>
+                                @if($advert->vip_status == 1)
+                                    <div>Куплен ВИП статус</div>
+                                @else
+                                    <button class="advertice"><a
+                                            href="{{route('submitting.buy_vip', $advert)}}">Реклама</a></button>
+                                @endif
                             </div>
                         </div>
                         <div class="price-block">
                             <div class="price">
                                 <div class="new">
-                                    {{$advert->price}}$
+                                    {{$advert->getPrice()}}$
                                 </div>
                                 {{--                                    <div class="old">--}}
                                 {{--                                        1500$--}}
@@ -43,13 +51,20 @@
                                     <a href="#/" class="soc-icon"></a>
                                 </div>
                             </div>
-                            <div class="data">
-                                <button class="advertice">Реклама</button>
-                            </div>
+{{--                            <div class="data">--}}
+{{--                                <button class="advertice">Реклама</button>--}}
+{{--                            </div>--}}
                             <div class="set-block">
-                                <a href="{{route('catalog.item-page', [$advert])}}" class="sett">посмотреть</a>
-                                <a href="#/" class="sett">редактировать</a>
-                                <a href="#/" class="sett">деактивировать</a>
+                                @if($advert->status->title != 'moderation')
+                                    <a href="{{route('catalog.item-page', [$advert])}}"
+                                       class="sett">{{__('messages.my_adverts_div_show')}}</a>
+                                    <a href="{{route('submitting.get_draft', [$advert])}}"
+                                       class="sett">{{__('messages.my_adverts_div_edit')}}</a>
+                                    @if($advert->status->title != 'archive')
+                                        <a href="{{ route('change_status', [$statusArchive, $advert->id]) }}"
+                                           class="sett">{{__('messages.my_adverts_div_close')}}</a>
+                                    @endif
+                                @endif
                                 <div class="soc-block">
                                     <input type="hidden" name="link-for-copy" value="{{route('catalog.item-page', [$advert])}}">
                                     <a href="#" class="sett btn-for-copy tooltip" title="Ссылка успешно скопирована в буффер обмена!">Поделиться</a>
@@ -58,18 +73,18 @@
                         </div>
                         <div class="statistics-cont">
                             <div class="set-mob">
-                                <a href="#/" class="sett">посмотреть</a>
-                                <a href="#/" class="sett">редактировать</a>
-                                <a href="#/" class="sett">деактивировать</a>
+                                <a href="#/" class="sett">{{__('messages.my_adverts_div_show')}}</a>
+                                <a href="#/" class="sett">{{__('messages.my_adverts_div_edit')}}</a>
+                                <a href="#/" class="sett">{{__('messages.my_adverts_div_close')}}</a>
                             </div>
                             <div class="static-items">
-                                <div class="">Статистика:</div>
+                                <div class="">{{__('messages.my_adverts_div_statics')}}</div>
                                 <div class="text"><img src="/images/icons/viewing.svg" alt="img">
-                                    <p>Просмотров: </p><span>{{views($advert)->count()}}</span></div>
+                                    <p>{{__('messages.my_adverts_div_views')}}</p><span>{{views($advert)->count()}}</span></div>
                                 <div class="text"><img src="/images/icons/phone.svg" alt="img">
-                                    <p>Тел: </p><span>{{$advert->number_phone_show}}</span></div>
+                                    <p>{{__('messages.my_adverts_div_calls')}}</p><span>{{$advert->number_phone_show}}</span></div>
                                 <div class="text"><img src="/images/icons/lk-star.svg" alt="img">
-                                    <p>В избранном: </p><span>{{$advert->favoriteAdverts->count()}}</span></div>
+                                    <p>{{__('messages.my_adverts_div_favorite')}} </p><span>{{$advert->favoriteAdverts->count()}}</span></div>
                                 <div class="text"><img src="/images/icons/email.svg" alt="img">
                                     <p>: </p><span>7</span></div>
                             </div>
@@ -77,15 +92,15 @@
                     </div>
                     <div class="statistics-cont">
                         <div class="set-mob">
-                            <a href="#/" class="sett">посмотреть</a>
-                            <a href="#/" class="sett">редактировать</a>
-                            <a href="#/" class="sett">деактивировать</a>
+                            <a href="#/" class="sett">{{__('messages.my_adverts_div_show')}}</a>
+                            <a href="#/" class="sett">{{__('messages.my_adverts_div_edit')}}</a>
+                            <a href="#/" class="sett">{{__('messages.my_adverts_div_close')}}</a>
                         </div>
                         <div class="static-items">
-                            <div class="name-static">Статистика:</div>
-                            <div class="text"><img src="/images/icons/viewing.svg" alt="img">: <p>Просмотров</p><span>11</span></div>
-                            <div class="text"><img src="/images/icons/phone.svg" alt="img">: <p>Тел: </p><span>11</span></div>
-                            <div class="text"><img src="/images/icons/lk-star.svg" alt="img">: <p>В избранном: </p><span>8</span></div>
+                            <div class="name-static">{{__('messages.my_adverts_div_statics')}}</div>
+                            <div class="text"><img src="/images/icons/viewing.svg" alt="img">: <p>{{__('messages.my_adverts_div_views')}}</p><span>{{views($advert)->count()}}</span></div>
+                            <div class="text"><img src="/images/icons/phone.svg" alt="img">: <p>{{__('messages.my_adverts_div_calls')}}</p><span>{{$advert->number_phone_show}}</span></div>
+                            <div class="text"><img src="/images/icons/lk-star.svg" alt="img">: <p>{{__('messages.my_adverts_div_favorite')}}</p><span>{{$advert->favoriteAdverts->count()}}</span></div>
                             <div class="text"><img src="/images/icons/email.svg" alt="img">: <p>: </p><span>7</span></div>
                         </div>
                     </div>

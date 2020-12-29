@@ -14,7 +14,9 @@ class MakersController extends Controller
 {
     public function index()
     {
-        return view('admin.pages.manage_makers', ['makers' => WatchMake::all()]);
+        $watchMakes = WatchMake::where('is_moderated', 1)->get();
+
+        return view('admin.pages.manage_makers', ['makers' => $watchMakes]);
     }
 
     public function upload(MakerRequest $request, AdminService $service)

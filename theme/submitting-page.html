@@ -730,17 +730,18 @@
     <div class="form-cont">
         <div class="tabs-mess">
             <ul class="tabs__caption">
-                <li class="">шаг 1</li>
-                <li class="">шаг 2</li>
-                <li class="">шаг 3</li>
-                <li class="active">шаг 4</li>
+                <li data-anchor="1" class="active">шаг 1</li>
+                <li data-anchor="2" class="disabled">шаг 2</li>
+                <li data-anchor="3" class="disabled">шаг 3</li>
+                <li data-anchor="4" class="disabled">шаг 4</li>
             </ul>
-            <div class="tabs__content ">
-                <div class="tabs-item">
+            <div class="tabs__content " data-tab="1">
+                <div class="tabs-item" >
                     <h2>Предложение <span>* обязательное поле</span></h2>
                     <div class="input-case">
                         <div class="select-price">
                             <p>Тип часов *</p>
+                            <input  type="hidden" name="">
                             <div class="select-value rotate">
                                 <span>Выберите</span>
                                 <ul class="value-items">
@@ -751,46 +752,17 @@
                         </div>
                         <div class="select-price">
                             <p>Марка *</p>
-                            <div class="cont">
-                                <input type="hidden" name="">
-                                <div class="select-value rotate">
-                                    <span>Выберите</span>
-                                    <ul class="value-items">
-                                        <li>Casio</li>
-                                        <li>R&R</li>
-                                        <li>Orion</li>
-                                    </ul>
-                                </div>
-
-                                <span>
-                                    Производитель не включен в список?
-                                </span>
-                            </div>
+                            <input data-step-input class="common-input" type="text">
                         </div>
                         <div class="select-price">
-                            <p>Модель *
+                            <p class="ai-fe">Модель *
                                 <img src="./images/icons/information-icon.svg" alt="img" class="info-icon">
                                 <span class="input-info">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                                     Dolores earum, ipsa ipsum iste laborum nihil tempore? Ea
                                     laboriosam officiis possimus quam quas quod sed totam?
                                 </span>
                             </p>
-                            <div class="cont">
-                                <input type="hidden" name="">
-                                <div class="select-value rotate">
-                                    <span>Выберите</span>
-                                    <ul class="value-items">
-                                        <li>Casio</li>
-                                        <li>R&R</li>
-                                        <li>Orion</li>
-                                    </ul>
-                                </div>
-    
-                                <span>
-                                    Вы можете добавить к названию модели дополнительную
-                                    информацию, например, конкретный вариант модели.
-                                </span>
-                            </div>
+                            <input data-step-input class="common-input" type="text">
                         </div>
                         <div class="select-price">
                             <p>Идент. номер
@@ -800,14 +772,7 @@
                                     laboriosam officiis possimus quam quas quod sed totam?
                                 </span>
                             </p>
-                            <input type="hidden" name="">
-                            <div class="select-value rotate">
-                                <span>Выберите</span>
-                                <ul class="value-items">
-                                    <li>0000 0000 0000 0000</li>
-                                    <li>0000 0000 0000 0000</li>
-                                </ul>
-                            </div>
+                            <input data-step-input class="common-input" type="text">
                         </div>
                         <div class="select-price">
                             <p>Состояние *
@@ -817,7 +782,7 @@
                                     laboriosam officiis possimus quam quas quod sed totam?
                                 </span>
                             </p>
-                            <input type="hidden" name="">
+                            <input  type="hidden" name="">
                             <div class="select-value rotate">
                                 <span>Выберите</span>
                                 <ul class="value-items">
@@ -849,7 +814,7 @@
                     <h2>Базовые данные</h2>
                     <div class="select-price">
                         <p>Пол</p>
-                        <input type="hidden" name="">
+                        <input  type="hidden" name="">
                         <div class="select-value rotate">
                             <span>Выберите</span>
                             <ul class="value-items">
@@ -863,10 +828,10 @@
                     <label for="made-watch">
                         Год выпуска *
                         <span class="cont-wrap">
-                            <input type="text" id="made-watch">
+                            <input data-step-input type="text" id="made-watch">
                             <span class="check-cont">
                                 <label class="checkbox-other">
-                                    <input type="radio" name="year">
+                                    <input  type="radio" name="year">
                                     <span>Приблизительно</span>
                                 </label>
                                 <label class="checkbox-other">
@@ -879,14 +844,14 @@
                     <label>
                         Диаметр *
                         <span class="size-cont">
-                            <input type="number">
+                            <input data-step-input type="number">
                             X
-                            <input type="number">
+                            <input data-step-input type="number">
                         </span>
                     </label>
                     <div class="select-price">
                         <p>Тип механизма</p>
-                        <input type="hidden" name="">
+                        <input  type="hidden" name="">
                         <div class="select-value rotate">
                             <span>Выберите</span>
                             <ul class="value-items">
@@ -905,9 +870,9 @@
                     <div class="info-price">
                         <div class="select-price">
                             <p>Цена</p>
-                            <input type="hidden" name="">
+                            <input  type="hidden" name="">
                             <div class="input-cont-price">
-                                <input type="number">
+                                <input data-step-input type="number">
                                 <div class="select-value rotate">
                                     <span>UA</span>
                                     <ul class="value-items">
@@ -919,30 +884,30 @@
                             </div>
                         </div>
 
-                        <div class="price-modal-cont">
-                            <div>Рекомендуемая цена: <span>4878.90 ₴</span> <img src="./images/icons/warning-lamp.svg"
-                                    alt="img"></div>
-                            <p>
-                                Для определения актуальной стоимости ваших
-                                часов мы сравнили их с актуальными объявлениями на Сhrono24
-                            </p>
-                            <button class="price-chro btn-hover-w">Перенять цену</button>
-                        </div>
+<!--                        <div class="price-modal-cont">-->
+<!--                            <div>Рекомендуемая цена: <span>4878.90 ₴</span> <img src="./images/icons/warning-lamp.svg"-->
+<!--                                    alt="img"></div>-->
+<!--                            <p>-->
+<!--                                Для определения актуальной стоимости ваших-->
+<!--                                часов мы сравнили их с актуальными объявлениями на Сhrono24-->
+<!--                            </p>-->
+<!--                            <button class="price-chro btn-hover-w">Перенять цену</button>-->
+<!--                        </div>-->
                     </div>
 
 
                     <div class="btn-cont btn-cont_first">
-                        <button class="save-edit btn-hover-w">Сохранить как черновик</button>
+                        <button data-fancybox data-src="#save-success" class="save-edit btn-hover-w">Сохранить как черновик</button>
 
-                        <button class="save-next btn-hover">Перейти к шагу 2</button>
+                        <button data-step="2" class="save-next btn-hover">Перейти к шагу 2</button>
 
                     </div>
 
                 </div>
             </div>
 
-            <div class="tabs__content ">
-                <div class="tabs-item">
+            <div class="tabs__content" data-tab="2">
+                <div class="tabs-item" >
                     <h2>Изображение ваших часов <span>* обязательное поле</span></h2>
                     <p class="img-text">
                         Хорошие фотографии залог быстрой продажи вашего объявления.
@@ -950,22 +915,27 @@
                         вашему покупателю более полное впечатление о ваших часах.
                     </p>
                     <div class="add-img-wrap">
-                        <p>Загрузите от 2х фотографий</p>
+                        <p data-id="step-3-title">Загрузите от 2х фотографий и выберите основную</p>
                         <div class="cont-img">
                             <form method="post" enctype="multipart/form-data" id="uploadImages">
-                                <ul id="uploadImagesList">
+                                <ul>
                                     <li class="added-images">
                                         <img src="./images/icons/add-img.svg" alt="img">
                                         <span>Загрузить фото или вставить сюда</span>
                                         <input type="file" id="addImages" multiple="">
-
                                         <input type="hidden" name="azaza" value="zazaza">
-                                    </li>
+                                     </li>
+                                </ul>
+                                <ul id="uploadImagesList">
                                     <li class="item template">
                                         <span class="img-wrap">
                                             <img src="" alt="">
                                         </span>
-                                        <span class="delete-link" title="Удалить"></span>
+                                        <label class="main-radio">
+                                            <input  type="radio" name="main_photo">
+                                            <div></div>
+                                        </label>
+                                        <span class="delete-link delete-link_dark" title="Удалить"></span>
                                     </li>
                                 </ul>
                                 <p>Загружено <span>0</span> из <span>10</span> фото</p>
@@ -1014,104 +984,93 @@
                     </div> -->
 
                     <div class="btn-cont step-2-cont">
-                        <button class="prev-step btn-hover">Вернуться к шагу 1</button>
+                        <button data-step="1" class="prev-step btn-hover">Вернуться к шагу 1</button>
 
-                        <button class="save-edit btn-hover-w">Сохранить как черновик</button>
+                        <button data-fancybox data-src="#save-success" class="save-edit btn-hover-w">Сохранить как черновик</button>
 
-                        <button class="save-next btn-hover">Перейти к шагу 3</button>
+                        <button data-step="3" class="save-next btn-hover">Перейти к шагу 3</button>
                     </div>
                 </div>
             </div>
 
-            <div class="tabs__content ">
+            <div class="tabs__content " data-tab="3">
                 <div class="tabs-item">
                     <h2>Личные данные<span>* обязательное поле</span></h2>
                     <label for="prof-surname-sub">
                         Фамилия *
-                        <input type="text" id="prof-surname-sub">
+                        <input data-step-input type="text" id="prof-surname-sub">
                     </label>
                     <label for="prof-name-sub">
                         Имя *
-                        <input type="text" id="prof-name-sub">
+                        <input data-step-input type="text" id="prof-name-sub">
                     </label>
                     <label for="calendar">
                         Дата рождения *
-                        <input type="date" id="calendar">
+                        <input data-step-input type="date" id="calendar">
                     </label>
 
                     <h2>Местоположение часов</h2>
-                    <!-- <label for="prof-stret">
-                        Улица *
-                        <input type="text" id="prof-stret">
-                    </label> -->
 
-                    <div class="select-price">
-                        <p>Улица *</p>
-                        <input type="hidden" name="">
-                        <div class="select-value rotate">
-                            <span>Выберите</span>
-                            <ul class="value-items">
-                                <li>Ukraine</li>
-                                <li>USA</li>
-                                <li>Mexico</li>
-                                <li>Italian</li>
-                            </ul>
+                    <div class="block-imeni-fialka">
+                        <!--    Двіжуха з автокомплітами       -->
+                        <div class="autocomplete-input" data-autocomplete>
+                            <p>Улица *</p>
+                            <div class="autocomplete-input__block">
+                                <div class="autocomplete-input__holder">
+                                    <input type="text" data-step-input>
+                                </div>
+                                <div class="autocomplete-input__content">
+                                    <ul data-id="dropdownContent"></ul>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <label for="prof-stret-index">
-                        Почтовый индекс и населенный пункт *
-                        <span class="input-cont">
-                            <input type="number" id="prof-stret-index">
-                            <input type="number" id="prof-stret-index-2">
-                        </span>
-                    </label>
-                    <div class="select-price">
-                        <p>Страна *</p>
-                        <input type="hidden" name="">
-                        <div class="select-value rotate">
-                            <span>Выберите</span>
-                            <ul class="value-items">
-                                <li>Ukraine</li>
-                                <li>USA</li>
-                                <li>Mexico</li>
-                                <li>Italian</li>
-                            </ul>
+                        <label for="prof-stret-more">
+                            Адресное дополнение
+                            <input type="text" data-step-input id="prof-stret-more">
+                        </label>
+                        <label for="prof-index">
+                            Почтовый индекс
+                            <input type="text" data-step-input id="prof-index">
+                        </label>
+                        <div class="autocomplete-input" data-autocomplete>
+                            <p>Населенный пункт</p>
+                            <div class="autocomplete-input__block">
+                                <div class="autocomplete-input__holder">
+                                    <input type="text" data-step-input>
+                                </div>
+                                <div class="autocomplete-input__content">
+                                    <ul data-id="dropdownContent"></ul>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <!-- <label for="prof-region">
-                        Область
-                        <input type="text" id="prof-region">
-                    </label> -->
-                    <div class="select-price">
-                        <p>Область</p>
-                        <input type="hidden" name="">
-                        <div class="select-value rotate">
-                            <span>Выберите</span>
-                            <ul class="value-items">
-                                <li>Ukraine</li>
-                                <li>USA</li>
-                                <li>Mexico</li>
-                                <li>Italian</li>
-                            </ul>
+                        <div class="autocomplete-input" data-autocomplete>
+                            <p>Страна *</p>
+                            <div class="autocomplete-input__block">
+                                <div class="autocomplete-input__holder">
+                                    <input type="text" data-step-input>
+                                </div>
+                                <div class="autocomplete-input__content">
+                                    <ul data-id="dropdownContent"></ul>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <label for="prof-phone">
-                        Телефон *
-                        <input type="email" id="prof-phone">
-                    </label>
-                    <div class="select-price">
-                        <p>Область</p>
-                        <input type="hidden" name="">
-                        <div class="select-value rotate">
-                            <span>Выберите</span>
-                            <ul class="value-items">
-                                <li>Ukraine</li>
-                                <li>USA</li>
-                                <li>Mexico</li>
-                                <li>Italian</li>
-                            </ul>
+                        <div class="autocomplete-input" data-autocomplete>
+                            <p>Область</p>
+                            <div class="autocomplete-input__block">
+                                <div class="autocomplete-input__holder">
+                                    <input data-step-input type="text">
+                                </div>
+                                <div class="autocomplete-input__content">
+                                    <ul data-id="dropdownContent"></ul>
+                                </div>
+                            </div>
                         </div>
+
+                        <!--   Двіжуха з корами               -->
+                        <input type="hidden" name="lat" data-id="lat">
+                        <input type="hidden" name="lng" data-id="lng">
                     </div>
+
 
                     <div class="check-cont">
                         <label class="checkbox-other">
@@ -1146,17 +1105,17 @@
                     </div>
 
                     <div class="btn-cont step-3-cont">
-                        <button class="prev-step btn-hover">Вернуться к шагу 2</button>
+                        <button data-step="2" class="prev-step btn-hover">Вернуться к шагу 2</button>
 
-                        <button class="save-edit btn-hover-w">Сохранить как черновик</button>
+                        <button data-fancybox data-src="#save-success" class="save-edit btn-hover-w">Сохранить как черновик</button>
 
-                        <button class="save-next btn-hover">Перейти к шагу 4</button>
+                        <button data-step="4" class="save-next btn-hover">Перейти к шагу 4</button>
 
                     </div>
                 </div>
             </div>
 
-            <div class="tabs__content active">
+            <div class="tabs__content active" data-tab="4">
                 <div class="tabs-item">
                     <h2>Личные данные<span>* обязательное поле</span></h2>
                     <p class="tabs-item__subtitle">предварительный просмотр</p>
@@ -1186,7 +1145,7 @@
                                         </div>
                                     </div>
                                 </div>
-                    
+
                                 <div class="block-grid bord">
                                     <div class="item-infos">
                                         <p>Тип механизма: </p>
@@ -1205,7 +1164,7 @@
                                         <span>Очень хорошее</span>
                                     </div>
                                 </div>
-                    
+
                                 <div class="block-grid">
                                     <div class="item-infos">
                                         <p>ИИ номер:</p>
@@ -1275,19 +1234,39 @@
                     </div>
 
                     <div class="btn-cont step-4-cont">
-                        <button class="prev-step btn-hover">Вернуться к шагу 3</button>
+                        <button data-step="3" class="prev-step btn-hover">Вернуться к шагу 3</button>
 
-                        <button class="save-edit btn-hover-w">Сохранить как черновик</button>
+                        <button data-fancybox data-src="#save-success" class="save-edit btn-hover-w">Сохранить как черновик</button>
 
                         <button class="save-next btn-hover">Опубликовать</button>
 
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 </section>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/iamdustan-smoothscroll/0.4.0/smoothscroll.min.js" integrity="sha512-PQGSWbnnXnUjuWs360EBQTfInjWdrxv18r3Bp9b5LRtbP+rjPVvET4l/3bZQDrLKzLbbujjm3hveYvUQQcAxSQ==" crossorigin="anonymous"></script>
+<script src="js/sub-steps.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function(e){
+        $('[data-src="#save-success"]').fancybox({
+            afterShow: function (instance) {
+                setTimeout(() => {
+                    instance.close()
+                }, 3000)
+            },
+            afterClose: function () {
+                //тут мож нахуярить редирект
+                console.log(window.location.origin)
+            }
+        })
+    });
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDmCYblB4cVMXS93Da6iBG1RFldOXY46hA"></script>
+<script src="js/g-autocomplete.js"></script>
 
 <footer class="footer">
     <div class="sent-wrap">
@@ -1429,6 +1408,7 @@
         <a href="#">Напомнить пароль</a>
       </div>
       <button class="btn-arrow">Далее</button>
+      <pre data-fancybox data-src="#registration-modal" class="common-link">Нет аккаунта?</pre>
     </form>
   </div>
 </div>
@@ -1598,6 +1578,12 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<div id="save-success">
+  <div class="modal-cont">
+    <h2>Объявление сохранено</h2>
   </div>
 </div>
 

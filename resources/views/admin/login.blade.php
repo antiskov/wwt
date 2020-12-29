@@ -20,7 +20,7 @@
             </div>--}}
 
             <!-- Login Form -->
-            <form method="POST" target="{{route('admin.login')}}">
+            <form method="POST" action="{{route('admin.login')}}">
                 {!! session()->get('error') !!}
                 @csrf
                 <input type="text" id="login" class="fadeIn second" name="email" placeholder="email">

@@ -10,14 +10,14 @@
             <div class="peron-name">{{auth()->user()->name}}</div>
         </div>
         <ul class="link-items">
-            <li><img src="/images/icons/my-order.svg" alt=""><a href="{{route('my_adverts')}}">Мои объявления</a></li>
-            <li><img src="/images/icons/email.svg" alt=""><a href="#/">Сообщения</a></li>
-            <li><img src="/images/icons/pay.svg" alt=""><a href="{{route('payments')}}">Платежи</a></li>
-            <li><img src="/images/icons/profile.svg" alt=""><a href="{{ route('editing-profile') }}">Профиль</a></li>
-            <li><img src="/images/icons/setting.svg" alt=""><a href="{{route('profile-settings')}}">Настройки</a></li>
-            <li><img src="/images/icons/favor.svg" alt=""><a href="{{route('favorite')}}">Избранное</a></li>
-            <li><img src="/images/icons/ref-link.svg" alt=""><a href="{{route('referral')}}">Создать реферальную ссылку</a></li>
-            <li><img src="/images/icons/exit.svg" alt=""><a href="{{route('logout')}}">Выход</a></li>
+            <li><img src="/images/icons/my-order.svg" alt=""><a href="{{route('my_adverts')}}">{{__('messages.menu_my_adverts')}}</a></li>
+            <li><img src="/images/icons/email.svg" alt=""><a href="#/">{{__('messages.menu_messages')}}</a></li>
+            <li><img src="/images/icons/pay.svg" alt=""><a href="{{route('payments')}}">{{__('messages.menu_payments')}}</a></li>
+            <li><img src="/images/icons/profile.svg" alt=""><a href="{{ route('editing-profile') }}">{{__('messages.menu_editing_profile')}}</a></li>
+            <li><img src="/images/icons/setting.svg" alt=""><a href="{{route('profile-settings')}}">{{__('messages.menu_profile_settings')}}</a></li>
+            <li><img src="/images/icons/favor.svg" alt=""><a href="{{route('favorite')}}">{{__('messages.menu_favorite')}}</a></li>
+            <li><img src="/images/icons/ref-link.svg" alt=""><a href="{{route('referral')}}">{{__('messages.menu_referral')}}</a></li>
+            <li><img src="/images/icons/exit.svg" alt=""><a href="{{route('logout')}}">{{__('messages.menu_logout')}}</a></li>
         </ul>
     </div>
 </div>

@@ -9,54 +9,34 @@ use App\Domain\AdvertsAndFilters\AdvertsFiltersGetter;
 use App\Domain\AdvertsAndFilters\SellerAdsGetter;
 use App\Domain\AdvertsAndFilters\VipAdvertsAndFiltersGetter;
 use App\Domain\AdvertsFiltersDirector;
-use App\Http\Controllers\CatalogController;
 use App\Models\AccessoryMechanismType;
 use App\Models\Advert;
-use App\Models\Category;
-use App\Models\DeliveryVolume;
-use App\Models\DiameterWatch;
-use App\Models\Glass;
-use App\Models\MaterialsClasp;
+use App\Models\ExchangeRate;
 use App\Models\MechanismType;
-use App\Models\Option;
 use App\Models\SearchLink;
-use App\Models\Sex;
 use App\Models\SparePartsMechanismType;
-use App\Models\State;
+use App\Models\Status;
 use App\Models\User;
 use App\Models\UserFavoriteAdvert;
-use App\Models\WatchAdvert;
-use App\Models\WatchBezel;
-use App\Models\WatchDial;
-use App\Models\WatchFigure;
-use App\Models\WatchMake;
-use App\Models\WatchMaterial;
-use App\Models\WatchModel;
-use App\Models\WatchThickness;
-use App\Models\WatchType;
-use App\Models\WatchWaterproof;
-use App\Models\WidthClasp;
-use App\Models\YearAdvert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
-use phpDocumentor\Reflection\Type;
 
 class CatalogService
 {
     public function getFilterResult(Request $request)
     {
         $advertFilter = new AdvertsFiltersGetter();
-        $director = new AdvertsFiltersDirector();
-        $director->setQueryToDB($request, $advertFilter);
+        $advertFilter->index($request);
 
-        return $director->getResult();
+        return $advertFilter->getResult();
     }
 
-    public function getTabs(Request $request, $nameView = 'catalog_view')
-    {
-        return ['adverts' => DB::table($nameView)->whereRaw($this->getFilter($request))->paginate(6)];
-    }
+//    public function getTabs(Request $request, $nameView = 'catalog_view')
+//    {
+//        return ['adverts' => DB::table($nameView)->whereRaw($this->getFilter($request))->paginate(6)];
+//    }
 
     public function saveSearch($serviceArray)
     {
@@ -67,7 +47,9 @@ class CatalogService
         $search->filter = $filters;
         $search->link_search = route('catalog-favorite', [Session::get('searchLink')]);
         $search->title = $_COOKIE['search_title'];
-        $search->save();
+        if (!$search->save()) {
+            Log::info("Search request #$search->id not saved");
+        }
     }
 
     public function getResultForUser(Request $request, $user_id = 0)
@@ -78,13 +60,21 @@ class CatalogService
         return $adverts->getResult();
     }
 
+    public function getResultForHome(Request $request, $user_id = 0)
+    {
+        $adverts = new VipAdvertsAndFiltersGetter();
+        $adverts->index($request, $user_id);
+
+        return $adverts->getResult();
+    }
+
     public function getFilterResults(Request $request, $type, $user_id = 0)
     {
         if($type == 3 && $user_id != 0) {
             $adverts = new SellerAdsGetter();
-        } elseif ($type == 1 && $user_id == 0) {
+        } elseif ($type == 1) {
             $adverts = new AdvertsFiltersGetter();
-        } elseif ($type == 2 && $user_id == 0) {
+        } elseif ($type == 2) {
             $adverts = new VipAdvertsAndFiltersGetter();
         }
 
@@ -97,14 +87,12 @@ class CatalogService
         }
 
     }
-
+    //todo: refactor в последнюю очередь, когда станет известно про запчасти и акссесуары
     public function goodsIndex(User $user, Advert $advert, UserService $userService)
     {
         $expiresAt = now()->addHours(24);
 
-        views($advert)
-            ->cooldown($expiresAt)
-            ->record();
+        views($advert)->cooldown($expiresAt)->record();
 
         if (auth()->user()) {
             $role = auth()->user()->role_id;
@@ -120,6 +108,9 @@ class CatalogService
             $mechanismType = SparePartsMechanismType::where('id', $advert->sparePartsAdvert->spare_parts_mechanism_type_id)->first();
         }
 
+        if(!isset($mechanismType)){
+            return redirect()->with();
+        }
         return [
             'role' => $role,
             'advert' => $advert,
@@ -127,6 +118,8 @@ class CatalogService
             'userLanguages' => $userService->userLanguages($user),
             'user' => $user,
             'favorite' => UserFavoriteAdvert::where('user_id', $user->id)->where('advert_id', $advert->id)->first(),
+            'currency' => (new AdvertsFiltersGetter())->checkRate(),
+            'statuses' => Status::all(),
         ];
     }
 }

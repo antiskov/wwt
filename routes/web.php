@@ -22,19 +22,30 @@ Route::middleware('set.locale')->group(function () {
     Route::post('/register-user', [\App\Http\Controllers\AjaxController::class, 'registerUser'])->name('register-user');
     Route::post('/check-login-email', [\App\Http\Controllers\AjaxController::class, 'checkLoginEmail'])->name('check-login-email');
     Route::post('/login-password', [\App\Http\Controllers\AjaxController::class, 'authUser'])->name('login-password');
-    Route::get('/reset-password/{email}', [\App\Http\Controllers\UserController::class, 'resetPassword'])->name('reset-password');
     Route::get('/email_verification_code/{email_verification_code}', [\App\Http\Controllers\UserController::class, 'emailVerificationCode'])->name('activation_link');
     Route::get('/seller/{user}', [\App\Http\Controllers\CatalogController::class, 'sellerPage'])->name('seller-page');
     Route::post('/subscribe', [\App\Http\Controllers\HomeController::class, 'subscribe'])->name('subscribe');
     Route::post('/unsubscribe', [\App\Http\Controllers\HomeController::class, 'unsubscribe'])->name('unsubscribe');
-//    Route::get('/set_transaction/{order_id}', [\App\Http\Controllers\ProfileController::class, 'setTransaction'])->name('set_transaction');
     Route::get('/status_pay/{order_id}', [\App\Http\Controllers\HomeController::class, 'getStatusPay'])->name('status_pay');
     Route::post('/set_cost', [\App\Http\Controllers\ProfileController::class, 'setTransaction'])->name('set_transaction');
     Route::get('/go_to_liqpay/{order_id}', [\App\Http\Controllers\ProfileController::class, 'goToLiqPay'])->name('go_to_liqpay');
+    Route::get('/update_rate', [\App\Http\Controllers\RateController::class])->name('update_rate');
+    Route::get('/about', [\App\Http\Controllers\HomeController::class, 'getAbout'])->name('about');
+    Route::post('/send_about', [\App\Http\Controllers\HomeController::class, 'sendAbout'])->name('send_about');
+    Route::get('/set_locale/{lang}', [\App\Http\Controllers\HomeController::class, 'setLocale'])->name('set_locale');
+    Route::get('/vip', [\App\Http\Controllers\CatalogController::class, 'getResultForHome'])->name('result_for_home');
+    Route::get('/change-status/{status}/{advert}', [ModerationAdvertsController::class, 'changeStatus'])
+        ->middleware('can:update,advert')->name('change_status');
 
+    Route::group(['prefix' => 'forgot_password'], function (){
+        Route::get('/', [\App\Http\Controllers\PasswordController::class, 'resetPasswordIndex'])->name('forgot_password');
+        Route::post('/', [\App\Http\Controllers\PasswordController::class, 'resetPasswordStore'])->name('forgot_password_store');
+        Route::get('/token/{token?}', [\App\Http\Controllers\PasswordController::class, 'resetPasswordToken'])->name('forgot_password_token');
+        Route::post('/new-password', [\App\Http\Controllers\PasswordController::class, 'saveNewPassword'])->name('save_new_password');
+    });
 
-    Route::group(['prefix' => 'profile'], function () {
-        Route::middleware('auth')->group(function () {
+    Route::middleware('auth')->group(function () {
+        Route::group(['prefix' => 'profile'], function () {
             Route::get('/settings', [\App\Http\Controllers\ProfileController::class, 'settingsIndex'])->name('profile-settings');
             Route::post('/settings-form', [\App\Http\Controllers\ProfileController::class, 'setBasicSettings'])->name('settings-form');
             Route::get('/editing-profile', [\App\Http\Controllers\ProfileController::class, 'editingProfileIndex'])->name('editing-profile');
@@ -52,11 +63,25 @@ Route::middleware('set.locale')->group(function () {
             Route::get('/payments', [\App\Http\Controllers\ProfileController::class, 'getPayments'])->name('payments');
             Route::post('/set_cost', [\App\Http\Controllers\ProfileController::class, 'setTransaction'])->name('set_transaction');
         });
+        Route::group(['prefix' =>'submitting'], function() {
+            Route::get('/', [\App\Http\Controllers\SubmittingController::class, 'index'])->name('submitting');
+            Route::post('/create_draft/', [\App\Http\Controllers\SubmittingController::class, 'createDraft'])->name('submitting.create_draft');
+            Route::middleware('can:view,advert')->group(function (){
+                Route::middleware('can:update,advert')->group(function () {
+                    Route::post('/draft/{advert}', [\App\Http\Controllers\SubmittingController::class, 'editDraft'])->name('submitting.edit_draft');
+                    Route::get('/draft/{advert}', [\App\Http\Controllers\SubmittingController::class, 'getDraft'])->name('submitting.get_draft');
+                    Route::post('/upload_image/{advert}', [\App\Http\Controllers\SubmittingController::class, 'uploadImage'])->name('submitting.upload_image');
+                    Route::get('/buy_vip/{advert}', [\App\Http\Controllers\SubmittingController::class, 'buyVip'])->name('submitting.buy_vip');
+                    Route::get('/publish/{advert}', [\App\Http\Controllers\SubmittingController::class, 'publish'])->name('submitting.publish');
+                    Route::post('/step4/{advert}', [\App\Http\Controllers\SubmittingController::class, 'getStep4']);
+                });
+            });
+            Route::get('/delete_photo/{photo}', [\App\Http\Controllers\SubmittingController::class, 'deletePhoto'])->name('submitting.delete_photo');
+        });
     });
 
     Route::group(['prefix' =>'catalog'], function() {
         Route::get('/', [\App\Http\Controllers\CatalogController::class, 'getFilterResult'])->name('catalog');
-        Route::get('/filter_json', [\App\Http\Controllers\CatalogController::class, 'filterJson'])->name('catalog.filter-json');
         Route::get('/save_search', [\App\Http\Controllers\CatalogController::class, 'saveSearch'])->name('catalog.save-search');
         Route::get('/sort/{status}', [\App\Http\Controllers\CatalogController::class, 'sort'])->name('catalog.sort');
         Route::get('/count_results/{type}', [\App\Http\Controllers\CatalogController::class, 'countResults'])->name('catalog.count-results');
@@ -65,12 +90,15 @@ Route::middleware('set.locale')->group(function () {
         Route::get('/item_page_favorite/{advert}/{favorite}', [\App\Http\Controllers\GoodsController::class, 'setFavorite'])->name('catalog.item_page_favorite');
         Route::get('{user}/seller_ads', [\App\Http\Controllers\CatalogController::class, 'sellerAds'])->name('catalog.seller-ads');
         Route::get('{type}/{user}/seller_ads/count_results/', [\App\Http\Controllers\CatalogController::class, 'countResults'])->name('catalog.seller-ads.count-results');
+        Route::get('/set_rate/{currency}', [\App\Http\Controllers\CatalogController::class, 'setRate'])->name('catalog.set_rate');
 
         Route::get('/{search}', [\App\Http\Controllers\CatalogController::class, 'getFilterResult'])->name('catalog-favorite');
     });
     Route::get('/count_results/{type}', [\App\Http\Controllers\CatalogController::class, 'countResults'])->name('home.count-results');
 
     Route::get('count_pagination/{countPagination?}', [\App\Http\Controllers\CatalogController::class, 'countPagination'])->name('count-pagination');
+
+
 });
 
 Route::group(['prefix' => 'admin'], function () {
@@ -114,7 +142,7 @@ Route::group(['prefix' => 'admin'], function () {
         });
         Route::group(['prefix' => 'manage_makers'], function () {
             Route::get('/', [\App\Http\Controllers\Admin\MakersController::class, 'index'])->name('admin.manage_makers');
-            Route::post('/upload', [\App\Http\Controllers\Admin\MakersController::class, 'upload'])->name('admin.upload_picture');
+            Route::post('/upload', [\App\Http\Controllers\Admin\MakersController::class, 'upload'])->name('admin.upload_makers_picture');
             Route::get('/change_status/{status}/{maker}', [\App\Http\Controllers\Admin\MakersController::class, 'changeStatus'])->name('admin.change_status_maker');
         });
 

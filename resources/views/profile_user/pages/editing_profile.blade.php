@@ -75,71 +75,62 @@
         </div>
         <div class="address-date">
             <h2>Адресные данные</h2>
-            <div class="select-price">
-                <p>Улица *</p>
-                <label for="street">
-                    <input name='street' type="text" value="{{ auth()->user()->street }}">
-                </label>
-                {{--                <div class="select-value rotate">--}}
-                {{--                    @if(auth()->user()->country)--}}
-                {{--                        <span>{{auth()->user()->country}}</span>--}}
-                {{--                    @else--}}
-                {{--                        <span>Выберите</span>--}}
-                {{--                    @endif--}}
-                {{--                    <ul class="value-items">--}}
-                {{--                        <li>Ukraine</li>--}}
-                {{--                        <li>USA</li>--}}
-                {{--                        <li>Mexico</li>--}}
-                {{--                        <li>Italian</li>--}}
-                {{--                    </ul>--}}
-                {{--                </div>--}}
-            </div>
-            <label for="prof-stret-more">
+
+            <!--    Двіжуха з автокомплітами       -->
+            <label for="route">
+                Введите ваш адрес
+                <input
+                    id="autocomplete"
+                    placeholder="Введите ваш адрес"
+                    type="text"
+                />
+            </label>
+
+            <label for="route">
+                Улица *
+                <input type="text" id="route" readonly="true" name='street' value="{{ auth()->user()->street }}">
+            </label>
+            <label for="street_number">
                 Адресное дополнение
-                <input type="text" id="prof-stret-more" name="street_addition"
+                <input type="text" id="street_number" readonly="true" name="street_addition"
                        value="{{auth()->user()->street_addition}}">
             </label>
-            <label for="prof-stret-index">
-                Почтовый индекс и населенный пункт *
-                <span class="input-cont">
-        <input name="zip_code" type="number" id="prof-stret-index" value="{{auth()->user()->zip_code}}">
-        <input name="city" type="text" id="prof-stret-index-2" value="{{auth()->user()->city}}">
-    </span>
+            <label for="postal_code">
+                Почтовый индекс
+                <input type="text" id="postal_code" readonly="true" name="zip_code" value="{{auth()->user()->zip_code}}">
             </label>
-            <div class="select-price">
-                <p>Страна *</p>
-                <input name="country" type="hidden" value="{{auth()->user()->country}}">
-                <div class="select-value rotate">
-                    @if(auth()->user()->country)
-                        <span>{{auth()->user()->country}}</span>
-                    @else
-                        <span>Выберите</span>
-                    @endif
-                    <ul class="value-items">
-                        <li>Ukraine</li>
-                        <li>USA</li>
-                        <li>Mexico</li>
-                        <li>Italian</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="select-price">
-                <p>Область</p>
-                <input name="region" type="hidden" value="{{auth()->user()->region}}">
-                <div class="select-value rotate">
-                    @if(auth()->user()->region)
-                        <span>{{auth()->user()->region}}</span>
-                    @else
-                        <span>Выберите</span>
-                    @endif
-                    <ul class="value-items">
-                        <li>Ukraine</li>
-                        <li>USA</li>
-                        <li>Mexico</li>
-                        <li>Italian</li>
-                    </ul>
-                </div>
-            </div>
+            <label for="locality">
+                Населенный пункт
+                <input type="text" id="locality" readonly="true" name="city" value="{{auth()->user()->city}}">
+            </label>
+            <label for="street_number">
+                Страна *
+                <input type="text" id="country" readonly="true" name="country" value="{{auth()->user()->country}}">
+            </label>
+            <label for="street_number">
+                Область
+                <input type="text" id="administrative_area_level_1" readonly="true" name="region" value="{{auth()->user()->region}}">
+            </label>
+
+
+
+            <!--       автокоплит, вдруг надо будет             -->
+            <!--                    <div class="autocomplete-input" data-autocomplete>-->
+            <!--                        <p>Область</p>-->
+            <!--                        <div class="autocomplete-input__block">-->
+            <!--                            <div class="autocomplete-input__holder">-->
+            <!--                                <input type="text">-->
+            <!--                            </div>-->
+            <!--                            <div class="autocomplete-input__content">-->
+            <!--                                <ul data-id="dropdownContent"></ul>-->
+            <!--                            </div>-->
+            <!--                        </div>-->
+            <!--                    </div>-->
+
+            <!--   Двіжуха з корами               -->
+            <input type="hidden" name="lat" data-id="lat">
+            <input type="hidden" name="lng" data-id="lng">
+
         </div>
         <div class="about-me">
             <h2>Больше обо мне</h2>
@@ -235,7 +226,7 @@
         </div>
         <div class="option-prof">
             <div class="cont">
-                <a href="{{route('reset-password')}}" class="change-pass">
+                <a href="{{route('forgot_password')}}" class="change-pass">
                     Изменить пароль
                 </a>
             </div>
@@ -247,4 +238,7 @@
             удалить аккаунт пользователя
         </a>
     </form>
+    <script src="https://maps.google.com/maps/api/js?key=AIzaSyA-M4C5q7VMtAjsrGwrf2rh1_rcRXi67zk&libraries=places&language=ru"
+            type="text/javascript"></script>
+    <script src="/js/g-autocomplete.js"></script>
 @endsection
