@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain;
+namespace App\Domain\AdvertsAndFilters;
 
 use App\Contracts\AdvertsFilters;
 use App\Models\Currency;

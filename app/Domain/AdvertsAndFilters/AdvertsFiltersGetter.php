@@ -2,13 +2,7 @@
 
 namespace App\Domain\AdvertsAndFilters;
 
-use App\Contracts\AdvertsFilters;
-use App\Domain\ToolsForAdvertsFilters;
-use App\Models\Currency;
-use App\Models\ExchangeRate;
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 
 class AdvertsFiltersGetter extends ToolsForAdvertsFilters

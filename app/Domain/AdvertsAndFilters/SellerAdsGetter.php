@@ -2,9 +2,6 @@
 
 namespace App\Domain\AdvertsAndFilters;
 
-use App\Contracts\AdvertsFilters;
-use App\Domain\ToolsForAdvertsFilters;
-use App\Models\Currency;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 

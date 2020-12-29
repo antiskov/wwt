@@ -2,14 +2,8 @@
 
 namespace App\Domain\AdvertsAndFilters;
 
-use App\Contracts\AdvertsFilters;
-use App\Domain\FilterDirector;
-use App\Domain\Filters\MainPageFilter;
-use App\Domain\ToolsForAdvertsFilters;
-use App\Models\Currency;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Session;
 
 class VipAdvertsAndFiltersGetter extends ToolsForAdvertsFilters
 {
