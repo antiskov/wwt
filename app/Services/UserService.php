@@ -87,6 +87,7 @@ class UserService
     public function sendVerificationCode($user)
     {
         $data['codeEmail'] = route('activation_link', [$user->email_verification_code]);
+        dd($user->email);
         Mail::to($user->email)->send(new ActivationMail($user));
         Log::info('mail sended');
 
@@ -123,11 +124,10 @@ class UserService
         } else {
             \Auth::login(auth()->user(), true);
         }
-        //todo: refactor.done
+
         $setting = UserSettings::where('user_id', auth()->user()->id)->first();
         if ($setting) {
             $setting->receive_partners_adverts = $request->receive_partners_adverts ? 1 : 0;
-            //todo extract to method. done
             $setting->language_communication = $this->getLanguageKey($request);
             if (!$setting->save()) {
                 Log::info('setting not saved');
@@ -152,7 +152,7 @@ class UserService
         return $setting;
     }
 
-    //todo: check чего? refactor.done
+
     public function getSettings()
     {
         $check = [];

@@ -14,11 +14,6 @@ class PasswordService
 
     public function resetPassword(ManagePasswordRequest $request)
     {
-
-        //todo: Сервис не должен заниматься редиректами. Он оперирует данными. Ерроры вынести в параметры.done
-        //todo: check before this method.done
-
-        //todo: refactor one request.done
         $data = DB::table('password_resets');
 
         $data->insert([

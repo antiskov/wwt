@@ -4,8 +4,7 @@ namespace App\Domain\AdvertsAndFilters;
 
 use App\Contracts\AdvertsFilters;
 use App\Models\Currency;
-use App\Models\ExchangeRate;
-use App\Models\User;
+use App\Services\RateService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
@@ -13,7 +12,6 @@ use Illuminate\Support\Facades\Session;
 
 abstract class ToolsForAdvertsFilters implements AdvertsFilters
 {
-
     public function getAdverts($query, Request $request)
     {
         $adverts = $this->getQuery($query, $request)
@@ -27,7 +25,7 @@ abstract class ToolsForAdvertsFilters implements AdvertsFilters
     }
     public function changeToCurrencyPriceFilter($nameView = 'user_adverts_view')
     {
-        $currency = $this->transRate();
+        $currency = (new RateService())->transRate();
 
         $maxPrice = DB::table($nameView)->max('price') * $currency['rate'];
 
@@ -36,56 +34,12 @@ abstract class ToolsForAdvertsFilters implements AdvertsFilters
 
     public function changeFromCurrencyPriceFilter(Request $request)
     {
-        $currency = $this->transRate();
+        $currency = (new RateService())->transRate();
 
         $prices[0] = $request->prices[0] / $currency['rate'];
         $prices[1] = $request->prices[1] / $currency['rate'];
 
         return $prices;
-    }
-
-    public function transRate()
-    {
-        if (Session::has('currency')) {
-            if (\Session::get('currency') == 'UAH') {
-                $rate = ExchangeRate::where('pair_currencies', 'USD/UAH')->first();
-                $currency['rate'] = $rate->rate;
-            } elseif (\Session::get('currency') == 'EUR') {
-                $eur = ExchangeRate::where('pair_currencies', 'EUR/UAH')->first()->rate;
-                $usd = ExchangeRate::where('pair_currencies', 'USD/UAH')->first()->rate;
-                $currency['rate'] = $eur / $usd;
-            } else {
-                $currency['rate'] = 1;
-            }
-        } else {
-            $currency['rate'] = 1;
-        }
-
-        return $currency;
-    }
-
-    public function checkRate()
-    {
-        if(Session::has('currency')){
-            if (\Session::get('currency') == 'UAH') {
-                $rate = ExchangeRate::where('pair_currencies', 'USD/UAH')->first();
-                $currency['rate'] = $rate->rate;
-                $currency['symbol'] = Currency::where('title', 'UAH')->first()->symbol;
-            } elseif (\Session::get('currency') == 'EUR') {
-                $eur = ExchangeRate::where('pair_currencies', 'EUR/UAH')->first()->rate;
-                $usd = ExchangeRate::where('pair_currencies', 'USD/UAH')->first()->rate;
-                $currency['rate'] =  $usd / $eur;
-                $currency['symbol'] = Currency::where('title', 'EUR')->first()->symbol;
-            } else {
-                $currency['rate'] = 1;
-                $currency['symbol'] = Currency::where('title', 'USD')->first()->symbol;
-            }
-        } else {
-            $currency['rate'] = 1;
-            $currency['symbol'] = Currency::where('title', 'USD')->first()->symbol;
-        }
-
-        return $currency;
     }
 
     public function getNameAndCountFilters($user_id = 0, $additionalWhere = ' and 1', $nameView = 'user_adverts_view')
@@ -155,7 +109,7 @@ abstract class ToolsForAdvertsFilters implements AdvertsFilters
             'types' => $types,
             'maxPrice' => $this->changeToCurrencyPriceFilter(),
             'filter_currency' => $this->getFilterCurrency(),
-            'currency' => $this->checkRate(),
+            'currency' => (new RateService())->checkRate(),
             'currencies' => Currency::all(),
         ];
     }
@@ -302,10 +256,5 @@ abstract class ToolsForAdvertsFilters implements AdvertsFilters
         $count = DB::table($nameView)->select(DB::raw('COUNT(id) as count'))->whereRaw("user_id = $user_id")->get();
 
         return $count[0];
-    }
-
-    public function getUser($user_id)
-    {
-        return User::where('id', $user_id)->first();
     }
 }

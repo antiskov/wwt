@@ -8,10 +8,8 @@ namespace App\Services;
 use App\Domain\AdvertsAndFilters\AdvertsFiltersGetter;
 use App\Domain\AdvertsAndFilters\SellerAdsGetter;
 use App\Domain\AdvertsAndFilters\VipAdvertsAndFiltersGetter;
-use App\Domain\AdvertsFiltersDirector;
 use App\Models\AccessoryMechanismType;
 use App\Models\Advert;
-use App\Models\ExchangeRate;
 use App\Models\MechanismType;
 use App\Models\SearchLink;
 use App\Models\SparePartsMechanismType;
@@ -19,7 +17,6 @@ use App\Models\Status;
 use App\Models\User;
 use App\Models\UserFavoriteAdvert;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 
@@ -118,7 +115,7 @@ class CatalogService
             'userLanguages' => $userService->userLanguages($user),
             'user' => $user,
             'favorite' => UserFavoriteAdvert::where('user_id', $user->id)->where('advert_id', $advert->id)->first(),
-            'currency' => (new AdvertsFiltersGetter())->checkRate(),
+            'currency' => (new RateService())->checkRate(),
             'statuses' => Status::all(),
         ];
     }

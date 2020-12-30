@@ -25,9 +25,6 @@ use Illuminate\Support\Facades\Storage;
 
 class AdminService
 {
-    //todo: to Banner servicse.done
-    //todo: banner deactivation to console script.done
-
     public function createManWomanPictures(Request $request)
     {
         $uploader = new Uploader();
@@ -47,7 +44,7 @@ class AdminService
         $picture = new ManWomanPicture();
         $picture->man = $man_image;
         $picture->woman = $woman_image;
-        //todo: check is success. Error message to log. done
+
         if (!$picture->save()) {
             Log::info("ManWomanPicture #$picture->id not saved");
         }
@@ -106,23 +103,20 @@ class AdminService
 
     public function createSlider(Request $request, $image)
     {
-        //todo: To externall method CreateSlider.done
         $slider = new HomeSlider();
         $slider->image = $image;
         $slider->upper_text = $request->upper_text;
         $slider->middle_text = $request->middle_text;
         $slider->link = $request->link;
         $slider->is_active = 1;
-        //todo: check is success. Error message to log.done
+
         if (!$slider->save()) {
             Log::info("Slider #$slider->id not checked");
         }
     }
 
     public function createMaker(MakerRequest $request)
-    {   //todo: to FormRequest Validator.done
-        //todo: To externall method UploadMakerImage.done
-
+    {
         $service = new Uploader();
         $service->uploadImageForFormRequest($request, 'logo', 'admin/makers');
 
@@ -131,7 +125,7 @@ class AdminService
         $maker->logo = $service->getFilename();
         $maker->status = 0;
         $maker->is_moderated = 1;
-        //todo: check is success. Error message to log.done
+
         if (!$maker->save()) {
             Log::info("Maker #$maker->id not checked");
         }

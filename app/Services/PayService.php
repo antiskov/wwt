@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Session;
 
 class PayService
 {
-    //todo: to ENV.done
     public function getParameters()
     {
         return [
@@ -50,7 +49,6 @@ class PayService
             "description" => $description,
             "order_id" => $order_id,
 //            'server_url' => route('callback_pay'),
-            //todo: get from ENV. done
             'server_url' => env('SERVER_URL'),
             'result_url' => route('status_pay', $order_id),
         ];
@@ -74,8 +72,6 @@ class PayService
 
     public function setTransactionDB(Request $request, $description = 'addition cost')
     {
-        //todo: extract to class TransactionCreator.done
-
         $order_id = auth()->user()->id . '-' . rand(1000000, 2000000);
         $transaction = new TransactionCreator();
         $transaction->additionCost($request->input('cost'), $order_id);
@@ -85,8 +81,6 @@ class PayService
 
     public function setTransactionForSubmitting(Advert $advert)
     {
-        //todo: extract to class TransactionCreator.done
-
         $order_id = 'vip-adv-' . $advert->id . '-' . auth()->user()->id . '-' . rand(1000000, 2000000);;
         $transaction = new TransactionCreator();
         $transaction->additionCost(50, $order_id);
@@ -139,7 +133,6 @@ class PayService
                 http_response_code(200);
             }
         } else {
-            //todo: if error return error code to liqpay. done
             \Log::info('incorrect signature');
             abort(400);
         }
@@ -165,7 +158,6 @@ class PayService
         $vipArr = explode('-', $transaction->order_id);
 
         if ($vipArr[0] == 'vip' && $transaction->status == 'success') {
-            //todo: extract to class TransactionCreator.done
 
             $order_id = 'buy-vip-' . auth()->user()->id . '-' . rand(1000000, 2000000);
             $cost = new TransactionCreator();
