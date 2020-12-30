@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\DataObjects\Admin\ShowShortAdvert;
 use App\Http\Controllers\Controller;
 use App\Models\Advert;
 use App\Models\Status;
-use App\Services\AdminService;
-use App\Services\AdvertsService;
+use App\Services\ModerationService;
 use App\Services\WatchModelService;
 
 class ModerationAdvertsController extends Controller
@@ -22,7 +20,7 @@ class ModerationAdvertsController extends Controller
         ]);
     }
 
-    public function changeStatus(Status $status, Advert $advert, AdminService $advertsService, WatchModelService $modelService)
+    public function changeStatus(Status $status, Advert $advert, ModerationService $advertsService, WatchModelService $modelService)
     {
         $advertsService->changeStatus($status, $advert);
         if($status->title == 'published')

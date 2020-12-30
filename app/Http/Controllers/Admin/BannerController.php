@@ -5,9 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BannerRequest;
 use App\Models\Banner;
-use App\Services\AdminService;
 use App\Services\BannerService;
-use Illuminate\Http\Request;
 
 class BannerController extends Controller
 {
@@ -25,19 +23,16 @@ class BannerController extends Controller
         return redirect()->back();
     }
 
-    public function closeBanner(Banner $banner, AdminService $service)
+    public function closeBanner(Banner $banner)
     {
-//        $service->closeBanner($banner);
-
         $banner->is_active = 0;
         $banner->save();
 
         return redirect()->back();
     }
 
-    public function deleteBanner(Banner $banner, AdminService $service)
+    public function deleteBanner(Banner $banner)
     {
-//        $service->deleteBanner($banner);
         $banner->delete();
 
         return redirect()->back();
