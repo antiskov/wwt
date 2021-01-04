@@ -9,6 +9,9 @@ use App\Services\BannerService;
 
 class BannerController extends Controller
 {
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         $banners = Banner::orderBy('date_start', 'desc')->get();
@@ -16,6 +19,11 @@ class BannerController extends Controller
         return view('admin.pages.banner_control', ['banners' => $banners]);
     }
 
+    /**
+     * @param BannerRequest $request
+     * @param BannerService $service
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function createBanner(BannerRequest $request, BannerService $service)
     {
         $service->createBanner($request);
@@ -23,6 +31,10 @@ class BannerController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * @param Banner $banner
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function closeBanner(Banner $banner)
     {
         $banner->is_active = 0;
@@ -31,6 +43,11 @@ class BannerController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * @param Banner $banner
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
     public function deleteBanner(Banner $banner)
     {
         $banner->delete();

@@ -128,4 +128,15 @@ class ProfileService
 
         return $searchLinks;
     }
+
+    public function getAvatar($userId)
+    {
+        $user = User::find($userId);
+
+        if ($user->avatar) {
+            return '/storage/images/profiles/'.$user->email.'/small_'.$user->avatar;
+        } else {
+            return '/images/icons/wwt_profile_avatar.png';
+        }
+    }
 }

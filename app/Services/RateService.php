@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Session;
 
 class RateService
 {
+    /**
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
     public function update()
     {
         $client = new Client();
@@ -48,6 +51,9 @@ class RateService
         }
     }
 
+    /**
+     * @return array
+     */
     public function transRate()
     {
         if (Session::has('currency')) {
@@ -68,6 +74,9 @@ class RateService
         return $currency;
     }
 
+    /**
+     * @return array
+     */
     public function checkRate()
     {
         if(Session::has('currency')){
@@ -92,6 +101,10 @@ class RateService
         return $currency;
     }
 
+    /**
+     * @param FormRequest $request
+     * @return float|int
+     */
     public function setPriceRate(FormRequest $request)
     {
         $currency = ExchangeRate::all();

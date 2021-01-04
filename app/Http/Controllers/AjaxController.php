@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\Mail;
 
 class AjaxController extends Controller
 {
+    /**
+     * @param CheckEmailRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function checkLoginEmail(CheckEmailRequest $request)
     {
         $user = User::where('email', "=", $request->email)->first();
@@ -33,6 +37,10 @@ class AjaxController extends Controller
         return response()->json($data);
     }
 
+    /**
+     * @param LoginFormRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function authUser(LoginFormRequest $request)
     {
         $email = $request->email;
@@ -54,6 +62,13 @@ class AjaxController extends Controller
         return response()->json($data);
     }
 
+    /**
+     * @param RegisterFormRequest $request
+     * @param UserService $userService
+     * @param SubscribeService $subscribeService
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \App\Exceptions\EmailCodeValidException
+     */
     public function registerUser(RegisterFormRequest $request, UserService $userService, SubscribeService $subscribeService)
     {
         $user = $userService->create($request->getDto());

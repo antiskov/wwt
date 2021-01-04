@@ -9,6 +9,9 @@ use App\Services\SliderService;
 
 class SliderController extends Controller
 {
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         if(HomeSlider::all()) {
@@ -18,6 +21,11 @@ class SliderController extends Controller
         }
     }
 
+    /**
+     * @param SliderRequest $request
+     * @param SliderService $service
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function upload(SliderRequest $request, SliderService $service)
     {
         $service->uploadSlider($request);
@@ -25,6 +33,10 @@ class SliderController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * @param HomeSlider $slider
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function deactivation(HomeSlider $slider)
     {
         $slider->is_active = 0;
@@ -33,6 +45,10 @@ class SliderController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * @param HomeSlider $slider
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function activation(HomeSlider $slider)
     {
         $slider->is_active = 1;
@@ -41,6 +57,11 @@ class SliderController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * @param HomeSlider $slider
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
     public function delete(HomeSlider $slider)
     {
         $slider->delete();

@@ -10,6 +10,9 @@ use App\Services\WatchModelService;
 
 class ModerationAdvertsController extends Controller
 {
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         $adverts = Advert::orderBy('status_id', 'asc')->orderBy('vip_status', 'desc')->paginate(30);
@@ -20,6 +23,13 @@ class ModerationAdvertsController extends Controller
         ]);
     }
 
+    /**
+     * @param Status $status
+     * @param Advert $advert
+     * @param ModerationService $advertsService
+     * @param WatchModelService $modelService
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function changeStatus(Status $status, Advert $advert, ModerationService $advertsService, WatchModelService $modelService)
     {
         $advertsService->changeStatus($status, $advert);
@@ -32,6 +42,11 @@ class ModerationAdvertsController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * @param Advert $advert
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
     public function deleteAdvert(Advert $advert)
     {
         $advert->delete();

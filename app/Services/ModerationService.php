@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Log;
 
 class ModerationService
 {
+    /**
+     * @param Advert $advert
+     */
     public function publishedWatchMake(Advert $advert)
     {
         $watchMake = $advert->watchAdvert->watchMake;
@@ -19,6 +22,10 @@ class ModerationService
         }
     }
 
+    /**
+     * @param Status $status
+     * @param Advert $advert
+     */
     public function changeStatus(Status $status, Advert $advert)
     {
         $advert->status_id = $status->id;

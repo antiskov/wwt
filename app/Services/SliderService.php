@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Log;
 
 class SliderService
 {
+    /**
+     * @param Request $request
+     */
     public function uploadSlider(Request $request)
     {
         $service = new Uploader();
@@ -17,6 +20,10 @@ class SliderService
         $this->createSlider($request, $service->getFilename());
     }
 
+    /**
+     * @param Request $request
+     * @param $image
+     */
     public function createSlider(Request $request, $image)
     {
         $slider = new HomeSlider();

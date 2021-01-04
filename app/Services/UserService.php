@@ -87,12 +87,9 @@ class UserService
     public function sendVerificationCode($user)
     {
         $data['codeEmail'] = route('activation_link', [$user->email_verification_code]);
-        dd($user->email);
         Mail::to($user->email)->send(new ActivationMail($user));
         Log::info('mail sended');
 
-        /*dd($result);
-        $checkSend = Mail::to($user)->send(new RegisterEmail($user));*/
         return true;
     }
 
@@ -153,6 +150,9 @@ class UserService
     }
 
 
+    /**
+     * @return array
+     */
     public function getSettings()
     {
         $check = [];

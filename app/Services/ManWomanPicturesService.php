@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Storage;
 
 class ManWomanPicturesService
 {
+    /**
+     * @param Request $request
+     */
     public function createManWomanPictures(Request $request)
     {
         $uploader = new Uploader();

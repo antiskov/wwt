@@ -107,7 +107,7 @@ abstract class ToolsForAdvertsFilters implements AdvertsFilters
             'deliveryVolumes' => $deliveryVolumes,
             'sexes' => $sexes,
             'types' => $types,
-            'maxPrice' => $this->changeToCurrencyPriceFilter(),
+            'maxPrice' => round($this->changeToCurrencyPriceFilter()),
             'filter_currency' => $this->getFilterCurrency(),
             'currency' => (new RateService())->checkRate(),
             'currencies' => Currency::all(),

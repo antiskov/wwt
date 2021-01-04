@@ -13,6 +13,9 @@ class Uploader
     protected $nameAttribute;
     protected $directory;
 
+    /**
+     *
+     */
     private function upload()
     {
         $this->filename = $this->request->file($this->nameAttribute)->getClientOriginalName();
@@ -21,6 +24,11 @@ class Uploader
         (new ImageMinificationService())->minify($this->filename, ['small'], 'public/'.$this->directory);
     }
 
+    /**
+     * @param Request $request
+     * @param $nameAttribute
+     * @param $directory
+     */
     public function uploadImage(Request $request, $nameAttribute, $directory)
     {
         $this->request = $request;
@@ -30,6 +38,11 @@ class Uploader
         $this->upload();
     }
 
+    /**
+     * @param FormRequest $request
+     * @param $nameAttribute
+     * @param $directory
+     */
     public function uploadImageForFormRequest(FormRequest $request, $nameAttribute, $directory)
     {
         $this->request = $request;
@@ -39,6 +52,9 @@ class Uploader
         $this->upload();
     }
 
+    /**
+     * @return mixed
+     */
     public function getFilename()
     {
         return $this->filename;

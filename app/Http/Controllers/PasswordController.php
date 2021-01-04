@@ -15,11 +15,20 @@ class PasswordController
         \Auth::logout();
     }
 
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function resetPasswordIndex()
     {
         return view('password.reset_password');
     }
 
+    /**
+     * @param ManagePasswordRequest $request
+     * @param PasswordService $passwordService
+     * @param UserService $userService
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function resetPasswordStore(ManagePasswordRequest $request, PasswordService $passwordService, UserService $userService)
     {
         $user = $userService->getUserByEmail($request->input('email'));
@@ -30,13 +39,16 @@ class PasswordController
 
         if ($user) {
             $response = $passwordService->resetPassword($request);
-//            dd($response);
             return redirect()->back()->with($response[0], trans($response[1]));
         }else {
             return redirect()->back()->withErrors(['error' => trans('Incorrect email')]);
         }
     }
 
+    /**
+     * @param $token
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function resetPasswordToken($token)
     {
         if ($passwordReset = DB::table('password_resets')->where('token', $token)->first()) {
@@ -44,6 +56,10 @@ class PasswordController
         }
     }
 
+    /**
+     * @param ManagePasswordRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function saveNewPassword(ManagePasswordRequest $request)
     {
         if ($user = User::where('email', $request->email)->first()) {

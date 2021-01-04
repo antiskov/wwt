@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Log;
 
 class WatchMakerService
 {
+    /**
+     * @param MakerRequest $request
+     */
     public function createMaker(MakerRequest $request)
     {
         $service = new Uploader();

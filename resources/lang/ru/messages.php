@@ -16,7 +16,7 @@ return [
     'modal_password_remember' => 'Запомнить меня',
     'modal_password_remind_pass' => 'Напомнить пароль',
 
-    'modal_registration_change_login' => 'Изменить логин',
+    'modal_registration_email' => 'Введите електронную почту',
     'modal_registration_password' => 'Введите пароль',
     'modal_registration_password_again' => 'Повторите пароль',
     'passwords_dont_match' => 'Пароли не совпадают',

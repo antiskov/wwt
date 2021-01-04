@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\Log;
 
 class UsersController extends Controller
 {
+    /**
+     * @param UserService $userService
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index(UserService $userService)
     {
         $users=$userService->getAllUsers();
@@ -22,6 +26,10 @@ class UsersController extends Controller
             'users'=>collect($users)->map(function($user) { return new ShowShortUser($user); })
             ]);
     }
+
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function showCreateUser()
     {
         $roles=Role::all();
@@ -30,6 +38,12 @@ class UsersController extends Controller
             'roles'=>$roles
         ]);
     }
+
+    /**
+     * @param CreateUserFormRequest $request
+     * @param UserService $userService
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(CreateUserFormRequest $request, UserService $userService)
     {
 
@@ -39,6 +53,11 @@ class UsersController extends Controller
         return redirect()->back();
 
     }
+
+    /**
+     * @param User $user
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function showEditUser(User $user)
     {
         $roles=Role::all();
@@ -47,6 +66,13 @@ class UsersController extends Controller
             'roles'=>$roles
         ]);
     }
+
+    /**
+     * @param UpdateUserFormRequest $request
+     * @param UserService $userService
+     * @param User $user
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(UpdateUserFormRequest $request, UserService $userService, User $user)
     {
         $userService->update($user,$request->getDto());

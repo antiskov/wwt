@@ -15,12 +15,23 @@ use Illuminate\Http\Request;
 
 class GoodsController extends Controller
 {
+    /**
+     * @param Advert $advert
+     * @param CatalogService $service
+     * @param UserService $userService
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index(Advert $advert, CatalogService $service, UserService $userService)
     {
         $user = User::where('id', $advert->user_id)->first();
         return view('catalog.pages.item-page', $service->goodsIndex($user, $advert, $userService));
     }
 
+    /**
+     * @param Advert $advert
+     * @param $favorite
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function setFavorite(Advert $advert, $favorite)
     {
         $user = auth()->user();
@@ -34,10 +45,13 @@ class GoodsController extends Controller
         return response()->json($favorite);
     }
 
+    /**
+     * @param Advert $advert
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function showPhone(Advert $advert, Request $request)
     {
-//        dd($request);
-
         $advert->number_phone_show = $advert->number_phone_show + 1;
         $advert->save();
 

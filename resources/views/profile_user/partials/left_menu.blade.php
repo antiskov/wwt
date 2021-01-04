@@ -4,7 +4,7 @@
         <div class="person-info">
             <div class="img-cont">
                 <img
-                    src="{{asset('/storage/images/profiles/'.auth()->user()->email.'/small_'.auth()->user()->avatar)}}"
+                    src="{{asset((new \App\Services\ProfileService())->getAvatar(auth()->user()->id))}}"
                     alt="img">
             </div>
             <div class="peron-name">{{auth()->user()->name}}</div>

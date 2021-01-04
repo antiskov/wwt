@@ -9,6 +9,9 @@ use App\Services\WatchMakerService;
 
 class MakersController extends Controller
 {
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         $watchMakes = WatchMake::where('is_moderated', 1)->get();
@@ -16,6 +19,11 @@ class MakersController extends Controller
         return view('admin.pages.manage_makers', ['makers' => $watchMakes]);
     }
 
+    /**
+     * @param MakerRequest $request
+     * @param WatchMakerService $service
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function upload(MakerRequest $request, WatchMakerService $service)
     {
         $service->createMaker($request);
@@ -23,6 +31,11 @@ class MakersController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * @param int $status
+     * @param WatchMake $maker
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function changeStatus(int $status, WatchMake $maker)
     {
         if($status == 1) {

@@ -12,6 +12,10 @@ use Illuminate\Support\Str;
 class PasswordService
 {
 
+    /**
+     * @param ManagePasswordRequest $request
+     * @return string[]
+     */
     public function resetPassword(ManagePasswordRequest $request)
     {
         $data = DB::table('password_resets');
@@ -32,6 +36,11 @@ class PasswordService
         }
     }
 
+    /**
+     * @param $email
+     * @param $token
+     * @return bool
+     */
     private function sendResetEmail($email, $token)
     {
         $link = route('forgot_password_token', $token);

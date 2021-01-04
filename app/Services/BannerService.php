@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Log;
 
 class BannerService
 {
+    /**
+     * @param Request $request
+     */
     public function createBanner(Request $request)
     {
         $service = new Uploader();
@@ -31,6 +34,9 @@ class BannerService
         }
     }
 
+    /**
+     *
+     */
     public function checkActive()
     {
         $bannerOld = Banner::where('is_active', 1)->first();

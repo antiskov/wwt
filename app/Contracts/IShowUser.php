@@ -3,12 +3,20 @@
 
 namespace App\Contracts;
 
-
-use App\Models\User;
-
 interface IShowUser
 {
+    /**
+     * @return mixed
+     */
     public function getId();
+
+    /**
+     * @return mixed
+     */
     public function getEmail();
+
+    /**
+     * @return mixed
+     */
     public function getName();
 }

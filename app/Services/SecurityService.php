@@ -14,6 +14,11 @@ use Illuminate\Support\Str;
 
 class SecurityService
 {
+    /**
+     * @param User $user
+     * @param Filter $advert
+     * @return bool
+     */
     public function can(User $user, Filter $advert)
     {
         $role=(new UserService())->getRole($user);
@@ -25,6 +30,10 @@ class SecurityService
         return false;
     }
 
+    /**
+     * @param User $user
+     * @return User
+     */
     public function resetPassword(User $user)
     {
         $passwordSend = Str::random(8);

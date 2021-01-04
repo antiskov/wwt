@@ -11,6 +11,13 @@ class TransactionCreator
 {
     protected $userTransaction;
 
+    /**
+     * @param int $cost
+     * @param string $order_id
+     * @param string $type
+     * @param string $title
+     * @param string $status
+     */
     public function additionCost(int $cost, string $order_id, $type = 'addition', $title = 'addition cost', string $status = 'none')
     {
         $this->userTransaction = new UserTransaction();
@@ -26,6 +33,9 @@ class TransactionCreator
         }
     }
 
+    /**
+     * @return mixed
+     */
     public function getOrderId()
     {
         return $this->userTransaction->order_id;
