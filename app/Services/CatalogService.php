@@ -8,10 +8,8 @@ namespace App\Services;
 use App\Domain\AdvertsAndFilters\AdvertsFiltersGetter;
 use App\Domain\AdvertsAndFilters\SellerAdsGetter;
 use App\Domain\AdvertsAndFilters\VipAdvertsAndFiltersGetter;
-use App\Domain\AdvertsFiltersDirector;
 use App\Models\AccessoryMechanismType;
 use App\Models\Advert;
-use App\Models\ExchangeRate;
 use App\Models\MechanismType;
 use App\Models\SearchLink;
 use App\Models\SparePartsMechanismType;
@@ -19,12 +17,15 @@ use App\Models\Status;
 use App\Models\User;
 use App\Models\UserFavoriteAdvert;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 
 class CatalogService
 {
+    /**
+     * @param Request $request
+     * @return mixed
+     */
     public function getFilterResult(Request $request)
     {
         $advertFilter = new AdvertsFiltersGetter();
@@ -33,11 +34,9 @@ class CatalogService
         return $advertFilter->getResult();
     }
 
-//    public function getTabs(Request $request, $nameView = 'catalog_view')
-//    {
-//        return ['adverts' => DB::table($nameView)->whereRaw($this->getFilter($request))->paginate(6)];
-//    }
-
+    /**
+     * @param $serviceArray
+     */
     public function saveSearch($serviceArray)
     {
         $filters = json_encode($serviceArray['adverts']);
@@ -52,6 +51,11 @@ class CatalogService
         }
     }
 
+    /**
+     * @param Request $request
+     * @param int $user_id
+     * @return mixed
+     */
     public function getResultForUser(Request $request, $user_id = 0)
     {
         $adverts = new SellerAdsGetter();
@@ -60,6 +64,11 @@ class CatalogService
         return $adverts->getResult();
     }
 
+    /**
+     * @param Request $request
+     * @param int $user_id
+     * @return mixed
+     */
     public function getResultForHome(Request $request, $user_id = 0)
     {
         $adverts = new VipAdvertsAndFiltersGetter();
@@ -68,6 +77,12 @@ class CatalogService
         return $adverts->getResult();
     }
 
+    /**
+     * @param Request $request
+     * @param $type
+     * @param int $user_id
+     * @return null
+     */
     public function getFilterResults(Request $request, $type, $user_id = 0)
     {
         if($type == 3 && $user_id != 0) {
@@ -118,7 +133,7 @@ class CatalogService
             'userLanguages' => $userService->userLanguages($user),
             'user' => $user,
             'favorite' => UserFavoriteAdvert::where('user_id', $user->id)->where('advert_id', $advert->id)->first(),
-            'currency' => (new AdvertsFiltersGetter())->checkRate(),
+            'currency' => (new RateService())->checkRate(),
             'statuses' => Status::all(),
         ];
     }

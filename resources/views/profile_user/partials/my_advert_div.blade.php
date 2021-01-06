@@ -61,7 +61,7 @@
                                     <a href="{{route('submitting.get_draft', [$advert])}}"
                                        class="sett">{{__('messages.my_adverts_div_edit')}}</a>
                                     @if($advert->status->title != 'archive')
-                                        <a href="{{ route('change_status', [$statusArchive, $advert->id]) }}"
+                                        <a href="{{ route('change_status', [$statuses->where('title', 'archive')->first()->id, $advert->id]) }}"
                                            class="sett">{{__('messages.my_adverts_div_close')}}</a>
                                     @endif
                                 @endif
@@ -108,4 +108,11 @@
             </div>
         </div>
     @endforeach
+        @if($adverts->count() >= 50)
+            <div class="pagination">
+                <div class="link-wrap">
+                    {{$adverts->links('catalog.modals.custom_pagination')}}
+                </div>
+            </div>
+        @endif
 </div>

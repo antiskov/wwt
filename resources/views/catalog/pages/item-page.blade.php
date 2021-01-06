@@ -46,7 +46,7 @@
                 <div class="person">
                     <div class="person-prof">
                         <a href="{{route('seller-page', $user->id)}}">
-                            <img src="{{asset('/storage/images/profiles/'.$user->email.'/small_'.$user->avatar)}}"
+                            <img src="{{asset((new \App\Services\ProfileService())->getAvatar(auth()->user()->id))}}"
                                  alt="img">
                         </a>
                     </div>

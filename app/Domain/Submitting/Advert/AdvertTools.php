@@ -2,12 +2,10 @@
 
 namespace App\Domain\Submitting\Advert;
 
-use App\Http\Controllers\PasswordController;
 use App\Http\Requests\Submitting\WatchAdvertRequest;
 use App\Models\Advert;
-use App\Models\AdvertPhoto;
 use App\Models\Currency;
-use App\Models\ExchangeRate;
+use App\Services\RateService;
 use Illuminate\Support\Facades\Log;
 
 class AdvertTools
@@ -17,14 +15,13 @@ class AdvertTools
     public $watchMake;
     public $watchModel;
 
-    //todo: saves chack and errors checker. done
     protected function recordAdvert($type)
     {
         $this->advert->type = $type;
         $this->advert->user()->associate(auth()->user());
         $this->advert->title = $this->createAdvertName();
         $this->advert->description = $this->request->description;
-        $this->advert->price_rate = $this->setPriceRate();
+        $this->advert->price_rate = (new RateService())->setPriceRate($this->request);
         $this->advert->price = $this->setPrice();
         $this->advert->currency_id = Currency::where('title', $this->request->currency)->first()->id;
         $this->advert->surname = $this->request->surname;
@@ -107,34 +104,16 @@ class AdvertTools
         return $this->request->price / $this->advert->price_rate;
     }
 
-    //todo: refactor to one query. done
-    public function setPriceRate()
-    {
-        $currency = ExchangeRate::all();
-        if ($this->request->currency == 'EUR') {
-            $eur = $currency->where('pair_currencies', 'EUR/UAH')->first()->rate;
-            $usd = $currency->where('pair_currencies', 'USD/UAH')->first()->rate;
-            $rate = $usd / $eur;
-        } elseif ($this->request->currency == 'UAH') {
-            $rate = $currency->where('pair_currencies', 'USD/UAH')->first()->rate;
-        } elseif ($this->request->currency == 'USD') {
-            $rate = 1;
-        }
-        return $rate;
-    }
-
     public function checkChangedWatchAdvert(Advert $advert, WatchAdvertRequest $request)
     {
 
         $this->advert = $advert;
         $this->request = $request;
 
-//        dd($this->advert->price, $this->setPrice(), round($this->advert->price, 5) == round($this->setPrice(), 5));
-//        dd($this->advert->price_rate, $this->setPriceRate(), $this->advert->price_rate === $this->setPriceRate(), round($this->advert->price_rate, 5) == round($this->setPriceRate(), 5));
         if(
         $this->advert->title == $this->createAdvertName() &&
         $this->advert->description == $this->request->description &&
-        round($this->advert->price_rate, 5) == round($this->setPriceRate(), 5) &&
+        round($this->advert->price_rate, 5) == round((new RateService())->setPriceRate($this->request), 5) &&
         round($this->advert->price, 5) == round($this->setPrice(), 5) &&
         $this->advert->currency_id == Currency::where('title', $this->request->currency)->first()->id &&
         $this->advert->surname == $this->request->surname &&

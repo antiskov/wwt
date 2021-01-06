@@ -14,7 +14,7 @@
                     </div>
                     <div class="person-img">
                         <img
-                            src="{{asset('/storage/images/profiles/'.auth()->user()->email.'/small_'.auth()->user()->avatar)}}"
+                            src="{{asset($avatarPath)}}"
                             alt="img">
                     </div>
                 </div>

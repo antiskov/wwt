@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\DataObjects\Admin\ShowShortAdvert;
 use App\Http\Controllers\Controller;
 use App\Models\Advert;
 use App\Models\Status;
-use App\Services\AdminService;
-use App\Services\AdvertsService;
+use App\Services\ModerationService;
 use App\Services\WatchModelService;
 
 class ModerationAdvertsController extends Controller
 {
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         $adverts = Advert::orderBy('status_id', 'asc')->orderBy('vip_status', 'desc')->paginate(30);
@@ -22,7 +23,14 @@ class ModerationAdvertsController extends Controller
         ]);
     }
 
-    public function changeStatus(Status $status, Advert $advert, AdminService $advertsService, WatchModelService $modelService)
+    /**
+     * @param Status $status
+     * @param Advert $advert
+     * @param ModerationService $advertsService
+     * @param WatchModelService $modelService
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function changeStatus(Status $status, Advert $advert, ModerationService $advertsService, WatchModelService $modelService)
     {
         $advertsService->changeStatus($status, $advert);
         if($status->title == 'published')
@@ -34,6 +42,11 @@ class ModerationAdvertsController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * @param Advert $advert
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
     public function deleteAdvert(Advert $advert)
     {
         $advert->delete();

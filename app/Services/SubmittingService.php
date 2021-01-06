@@ -23,16 +23,19 @@ use Illuminate\Support\Facades\Storage;
 
 class SubmittingService
 {
-    public function getInfoForStep1(AbstractSubmitting $submitting): array
-    {
-        return $submitting->get();
-    }
-
+    /**
+     * @param AdvertAbstract $submitting
+     * @return Advert
+     */
     public function editDraft(AdvertAbstract $submitting): Advert
     {
         return $submitting->get();
     }
 
+    /**
+     * @param WatchAdvertRequest $request
+     * @return Advert
+     */
     public function createDraft(WatchAdvertRequest $request)
     {
         $advert = $this->createAdvert();
@@ -40,26 +43,33 @@ class SubmittingService
 
         return $advert;
     }
-    //todo: refactor.done
+
+    /**
+     * @param $advertID
+     * @param $advertType
+     * @param UploadImageRequest $request
+     */
     public function uploadPhoto($advertID, $advertType, UploadImageRequest $request)
     {
-//        dd($request->all());
         foreach ($request->file('advert_images') as $image) {
             $name = $image->getClientOriginalName();
             if (!AdvertPhoto::where('photo', $name)->where('advert_id', $advertID)->first()) {
                 $path = 'images/advert_photos/' . $advertType . '/number_' . $advertID;
                 $image->storeAs($path, $name, 'public');
-                //todo: method.done
+
                 $this->createAdvertPhoto($advertID, $name);
 
                 $minifyPath = 'public/'.$path;
 
                 (new ImageMinificationService())->minify($name, ['small'], $minifyPath);
-
             }
         }
     }
 
+    /**
+     * @param $advertID
+     * @param $name
+     */
     public function createAdvertPhoto($advertID, $name)
     {
         $imageAdvert = new AdvertPhoto();
@@ -70,18 +80,21 @@ class SubmittingService
         }
     }
 
-//    public function getWatchItemsForFirstStep(SubmittingRequest $request)
+    /**
+     * @return array
+     */
     public function getWatchItemsForFirstStep()
     {
-//        $advert = $this->createAdvert();
-//        $this->createWatchAdvert($request, $advert);
-//        $infoArr = $this->getInfoArr($request, $advert);
         $infoArr = $this->getPartInfoArr();
         $infoArr['position'] = 0;
 
         return $infoArr;
     }
 
+    /**
+     * @param Advert $advert
+     * @return array
+     */
     public function getDraftWatchItemsForFirstStep(Advert $advert)
     {
         $infoArr = $this->getDraftInfoArr($advert);
@@ -90,6 +103,10 @@ class SubmittingService
         return $infoArr;
     }
 
+    /**
+     * @param SubmittingRequest $request
+     * @param Advert $advert
+     */
     public function createWatchAdvert(SubmittingRequest $request, Advert $advert)
     {
         if ($model_code = $request->input('start_model_code', false)) {
@@ -102,6 +119,9 @@ class SubmittingService
         }
     }
 
+    /**
+     * @return Advert
+     */
     protected function createAdvert(): Advert
     {
         $advert = new Advert();
@@ -118,16 +138,10 @@ class SubmittingService
         return $advert;
     }
 
-    private function getInfoArr(SubmittingRequest $request, Advert $advert)
-    {
-        $infoArr = $this->getPartInfoArr($advert);
-        if ($request->start_model_code) {
-            $infoArr['model_code'] = $request->start_model_code;
-        }
-
-        return $infoArr;
-    }
-
+    /**
+     * @param Advert $advert
+     * @return array
+     */
     private function getDraftInfoArr(Advert $advert)
     {
         $infoArr = $this->getPartInfoArr();
@@ -140,7 +154,9 @@ class SubmittingService
 
     }
 
-//    private function getPartInfoArr(Advert $advert)
+    /**
+     * @return array
+     */
     private function getPartInfoArr()
     {
         $infoArr['watchTypes'] = WatchType::all();
@@ -150,18 +166,23 @@ class SubmittingService
         $infoArr['mechanismTypes'] = MechanismType::all();
         $infoArr['currencies'] = Currency::all();
 
-//        if ($advert) {
-//            $infoArr['advert'] = $advert;
-//        }
-
         return $infoArr;
     }
 
+    /**
+     * @param Advert $advert
+     * @return float
+     */
     public function getPrice(Advert $advert)
     {
         return round($advert->price * $advert->price_rate);
     }
 
+    /**
+     * @param Advert $advert
+     * @param WatchAdvertRequest $request
+     * @return bool
+     */
     public function checkChangedAdvertWatch(Advert $advert, WatchAdvertRequest $request)
     {
         return (new AdvertTools())->checkChangedWatchAdvert($advert, $request);

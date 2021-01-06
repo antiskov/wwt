@@ -6,9 +6,8 @@
             <div class="seller-cont">
                 <div class="person">
                     <div class="person-prof">
-                        <img
-                            src="{{asset('/storage/images/profiles/'.$user->email.'/small_'.$user->avatar)}}"
-                            alt="img">
+                        <img src="{{asset((new \App\Services\ProfileService())->getAvatar(auth()->user()->id))}}"
+                             alt="img">
                     </div>
                     <div class="person-rating">
                         <img src="/images/icons/stars.svg" alt="img">

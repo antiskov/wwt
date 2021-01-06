@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
     public function showLogin()
     {
         if (Auth::check()){
@@ -17,6 +20,10 @@ class AuthController extends Controller
         return view('admin.login');
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function login(Request $request)
     {
         \Log::info($request->email.' '.$request->password);
@@ -30,12 +37,18 @@ class AuthController extends Controller
         );
     }
 
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function logout()
     {
         Auth::logout();
         return redirect()->route('admin.showlogin');
     }
 
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function dashboard() {
         return view('admin.pages.dashboard');
     }

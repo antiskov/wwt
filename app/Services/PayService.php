@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\Session;
 
 class PayService
 {
-    //todo: to ENV.done
+    /**
+     * @return array
+     */
     public function getParameters()
     {
         return [
@@ -25,6 +27,9 @@ class PayService
 
     }
 
+    /**
+     * @param Advert $advert
+     */
     public function bayVipStatusFromCost(Advert $advert)
     {
         $order_id = 'buy-vip-' . auth()->user()->id . '-' . rand(1000000, 2000000);
@@ -37,6 +42,12 @@ class PayService
         }
     }
 
+    /**
+     * @param $order_id
+     * @param string $description
+     * @param string $currency
+     * @return array
+     */
     public function setPay($order_id, $description = 'пополнение счета', $currency = 'UAH')
     {
         $transaction = UserTransaction::where('order_id', $order_id)->first();
@@ -49,8 +60,6 @@ class PayService
             "currency" => $currency,
             "description" => $description,
             "order_id" => $order_id,
-//            'server_url' => route('callback_pay'),
-            //todo: get from ENV. done
             'server_url' => env('SERVER_URL'),
             'result_url' => route('status_pay', $order_id),
         ];
@@ -72,10 +81,13 @@ class PayService
         return $payArr;
     }
 
+    /**
+     * @param Request $request
+     * @param string $description
+     * @return mixed
+     */
     public function setTransactionDB(Request $request, $description = 'addition cost')
     {
-        //todo: extract to class TransactionCreator.done
-
         $order_id = auth()->user()->id . '-' . rand(1000000, 2000000);
         $transaction = new TransactionCreator();
         $transaction->additionCost($request->input('cost'), $order_id);
@@ -83,10 +95,12 @@ class PayService
         return $transaction->getOrderId();
     }
 
+    /**
+     * @param Advert $advert
+     * @return mixed
+     */
     public function setTransactionForSubmitting(Advert $advert)
     {
-        //todo: extract to class TransactionCreator.done
-
         $order_id = 'vip-adv-' . $advert->id . '-' . auth()->user()->id . '-' . rand(1000000, 2000000);;
         $transaction = new TransactionCreator();
         $transaction->additionCost(50, $order_id);
@@ -94,6 +108,9 @@ class PayService
         return $transaction->getOrderId();
     }
 
+    /**
+     *
+     */
     public function checkTransaction()
     {
         if ($transaction = UserTransaction::where('user_id', auth()->user()->id)->where('type', 'addition')->latest()->first()) {
@@ -101,6 +118,10 @@ class PayService
         }
     }
 
+    /**
+     * @param UserTransaction $transaction
+     * @return UserTransaction
+     */
     public function forCheckTransaction(UserTransaction $transaction)
     {
         $parameters = $this->getParameters();
@@ -121,6 +142,9 @@ class PayService
         return $transaction;
     }
 
+    /**
+     *
+     */
     public function setCallback()
     {
         $parameters = $this->getParameters();
@@ -139,17 +163,15 @@ class PayService
                 http_response_code(200);
             }
         } else {
-            //todo: if error return error code to liqpay. done
             \Log::info('incorrect signature');
             abort(400);
         }
     }
 
-    public function submitAnswerLiqpay()
-    {
-
-    }
-
+    /**
+     * @param $order_id
+     * @return mixed
+     */
     public function getCheckStatusPay($order_id)
     {
         $transaction = UserTransaction::where('order_id', $order_id)->where('type', 'addition')->first();
@@ -160,12 +182,14 @@ class PayService
         return $transaction->status;
     }
 
+    /**
+     * @param UserTransaction $transaction
+     */
     private function checkStatusPayForSubmitting(UserTransaction $transaction)
     {
         $vipArr = explode('-', $transaction->order_id);
 
         if ($vipArr[0] == 'vip' && $transaction->status == 'success') {
-            //todo: extract to class TransactionCreator.done
 
             $order_id = 'buy-vip-' . auth()->user()->id . '-' . rand(1000000, 2000000);
             $cost = new TransactionCreator();
@@ -175,6 +199,9 @@ class PayService
         }
     }
 
+    /**
+     * @param $id
+     */
     public function setVipStatusAdvert($id)
     {
         $advert = Advert::find($id);
@@ -186,6 +213,10 @@ class PayService
     }
 
     //It's a balance
+
+    /**
+     * @return int
+     */
     public function getScore()
     {
         $score = 0;

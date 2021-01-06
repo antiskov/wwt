@@ -11,6 +11,13 @@ class TransactionCreator
 {
     protected $userTransaction;
 
+    /**
+     * @param int $cost
+     * @param string $order_id
+     * @param string $type
+     * @param string $title
+     * @param string $status
+     */
     public function additionCost(int $cost, string $order_id, $type = 'addition', $title = 'addition cost', string $status = 'none')
     {
         $this->userTransaction = new UserTransaction();
@@ -20,12 +27,15 @@ class TransactionCreator
         $this->userTransaction->title = $title;
         $this->userTransaction->status = $status;
         $this->userTransaction->order_id = $order_id;
-        //todo: check.done
+
         if (!$this->userTransaction->save()) {
             Log::info("Transaction #$this->userTransaction->id not saved");
         }
     }
 
+    /**
+     * @return mixed
+     */
     public function getOrderId()
     {
         return $this->userTransaction->order_id;

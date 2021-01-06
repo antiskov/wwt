@@ -5,20 +5,25 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BannerRequest;
 use App\Models\Banner;
-use App\Services\AdminService;
 use App\Services\BannerService;
-use Illuminate\Http\Request;
 
 class BannerController extends Controller
 {
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
-        //todo: order by start_date. done
         $banners = Banner::orderBy('date_start', 'desc')->get();
 
         return view('admin.pages.banner_control', ['banners' => $banners]);
     }
 
+    /**
+     * @param BannerRequest $request
+     * @param BannerService $service
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function createBanner(BannerRequest $request, BannerService $service)
     {
         $service->createBanner($request);
@@ -26,19 +31,25 @@ class BannerController extends Controller
         return redirect()->back();
     }
 
-    public function closeBanner(Banner $banner, AdminService $service)
+    /**
+     * @param Banner $banner
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function closeBanner(Banner $banner)
     {
-//        $service->closeBanner($banner);
-
         $banner->is_active = 0;
         $banner->save();
 
         return redirect()->back();
     }
 
-    public function deleteBanner(Banner $banner, AdminService $service)
+    /**
+     * @param Banner $banner
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
+    public function deleteBanner(Banner $banner)
     {
-//        $service->deleteBanner($banner);
         $banner->delete();
 
         return redirect()->back();

@@ -90,8 +90,6 @@ class UserService
         Mail::to($user->email)->send(new ActivationMail($user));
         Log::info('mail sended');
 
-        /*dd($result);
-        $checkSend = Mail::to($user)->send(new RegisterEmail($user));*/
         return true;
     }
 
@@ -123,11 +121,10 @@ class UserService
         } else {
             \Auth::login(auth()->user(), true);
         }
-        //todo: refactor.done
+
         $setting = UserSettings::where('user_id', auth()->user()->id)->first();
         if ($setting) {
             $setting->receive_partners_adverts = $request->receive_partners_adverts ? 1 : 0;
-            //todo extract to method. done
             $setting->language_communication = $this->getLanguageKey($request);
             if (!$setting->save()) {
                 Log::info('setting not saved');
@@ -152,7 +149,10 @@ class UserService
         return $setting;
     }
 
-    //todo: check чего? refactor.done
+
+    /**
+     * @return array
+     */
     public function getSettings()
     {
         $check = [];

@@ -4,10 +4,7 @@
         <form id="registration-form" method='post' class="registration" action="{{ url('/register-user') }}">
             @csrf
             <div class="change-input">
-                <input id="reg-form-email" name="email" type="text" placeholder="{{__('messages.modal_placeholder')}}" disabled
-                       value="someMail@gmail.com" required>
-                <span></span>
-                <img src="/images/icons/eraser.svg" alt="{{__('messages.modal_registration_change_login')}}">
+                <input id="reg-form-email" name="email" type="text" placeholder="{{__('messages.modal_registration_email')}}" required>
             </div>
             <input id="reg-pass" name="password" type="password" placeholder="{{__('messages.modal_registration_password')}}" required>
             <input name="repeat-password" type="password" placeholder="{{__('messages.modal_registration_password_again')}}" required>

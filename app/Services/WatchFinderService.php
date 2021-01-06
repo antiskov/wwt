@@ -10,13 +10,12 @@ use Illuminate\Support\Collection;
 
 class WatchFinderService
 {
+    /**
+     * @param string $term
+     * @return mixed
+     */
     public function find(string $term)
     {
         return WatchModel::where('model_code','like', '%' . $term . '%')->orWhere('title','like', '%' . $term . '%')->get();
-    }
-
-    public function getWatchById(int $id )
-    {
-        return WatchModel::find($id);
     }
 }

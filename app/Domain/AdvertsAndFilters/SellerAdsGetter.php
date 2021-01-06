@@ -2,6 +2,7 @@
 
 namespace App\Domain\AdvertsAndFilters;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -23,7 +24,7 @@ class SellerAdsGetter extends ToolsForAdvertsFilters
             'linkSearch' => $request->fullUrl(),
             'stateNew' =>  $this->setStateNew($request),
             'countUserAdverts' => $this->getCountUserAdverts($nameView, $user_id),
-            'user' => $this->getUser($user_id),
+            'user' => User::find($user_id),
         ];
 
         $this->result = array_merge($itemsArr, $this->getNameAndCountFilters($user_id));

@@ -34,6 +34,7 @@ class UpdateRate extends Command
     /**
      * Execute the console command.
      *
+     * @param RateService $service
      * @return int
      */
     public function handle(RateService $service)

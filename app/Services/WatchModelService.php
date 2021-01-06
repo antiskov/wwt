@@ -10,6 +10,9 @@ class WatchModelService
 {
     protected $watchModel;
 
+    /**
+     * @param Advert $advert
+     */
     private function setWatchModelPhoto(Advert $advert)
     {
         $photo = $advert->photos()->where('is_basic', 1)->first();
@@ -24,6 +27,9 @@ class WatchModelService
 
     }
 
+    /**
+     * @param Advert $advert
+     */
     public function updateWatchModel(Advert $advert)
     {
         $watchAdvert = $advert->watchAdvert;

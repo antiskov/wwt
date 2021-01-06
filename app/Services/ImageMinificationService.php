@@ -8,12 +8,16 @@ use Intervention\Image\Facades\Image;
 
 class ImageMinificationService
 {
+    /**
+     * @param string $image_url
+     * @param array $image_sizes
+     * @param string $path
+     */
     public function minify(string $image_url, array $image_sizes, $path = '')
     {
         $sizes = config('image_sizes');
 
         $image        = Storage::path($path.'/'.$image_url);
-//        dd($image);
         $image_resize = Image::make($image);
 
         $images_resized = ['original' => $image_url];
@@ -27,6 +31,5 @@ class ImageMinificationService
             $image_resize->save($save_path);
             $images_resized[$size]   = $save_path;
         }
-//        return $images_resized;
     }
 }

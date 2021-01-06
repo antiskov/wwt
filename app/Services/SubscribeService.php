@@ -6,6 +6,9 @@ use App\Models\Subscription;
 
 class SubscribeService
 {
+    /**
+     * @param string $email
+     */
     public function setSubscribe(string $email)
     {
         if(!Subscription::where('email', $email)->first()){
@@ -15,6 +18,10 @@ class SubscribeService
         }
     }
 
+    /**
+     * @param string $email
+     * @param $status
+     */
     public function changeSubscribe(string $email, $status)
     {
         if($subscription = Subscription::where('email', $email)->first()){

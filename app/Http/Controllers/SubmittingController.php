@@ -17,11 +17,21 @@ use Illuminate\Support\Facades\Storage;
 
 class SubmittingController extends Controller
 {
+    /**
+     * @param SubmittingRequest $request
+     * @param SubmittingService $service
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index(SubmittingRequest $request, SubmittingService $service)
     {
         return view('submitting.pages.advert', $service->getWatchItemsForFirstStep());
     }
 
+    /**
+     * @param WatchAdvertRequest $request
+     * @param SubmittingService $service
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function createDraft(WatchAdvertRequest $request, SubmittingService $service)
     {
         $advert = $service->createDraft($request);
@@ -29,6 +39,12 @@ class SubmittingController extends Controller
         return redirect()->route('submitting.get_draft', $advert);
     }
 
+    /**
+     * @param Advert $advert
+     * @param WatchAdvertRequest $request
+     * @param SubmittingService $service
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function editDraft(Advert $advert, WatchAdvertRequest $request, SubmittingService $service)
     {
         if($service->checkChangedAdvertWatch($advert, $request)) {
@@ -41,6 +57,11 @@ class SubmittingController extends Controller
         return redirect()->route('submitting.get_draft', $advert);
     }
 
+    /**
+     * @param Advert $advert
+     * @param SubmittingService $service
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getDraft(Advert $advert, SubmittingService $service)
     {
         return view('submitting.pages.advert', $service->getDraftWatchItemsForFirstStep($advert));
@@ -57,6 +78,11 @@ class SubmittingController extends Controller
         return response()->json($data);
     }
 
+    /**
+     * @param AdvertPhoto $photo
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @throws \Exception
+     */
     public function deletePhoto(AdvertPhoto $photo)
     {
         $photo->delete();
@@ -64,6 +90,11 @@ class SubmittingController extends Controller
         return response('success');
     }
 
+    /**
+     * @param PayService $service
+     * @param Advert $advert
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function buyVip(PayService $service, Advert $advert)
     {
         if ($service->getScore() >= 50){
@@ -74,13 +105,15 @@ class SubmittingController extends Controller
         return redirect()->route('go_to_liqpay', $service->setTransactionForSubmitting($advert));
     }
 
+    /**
+     * @param Advert $advert
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function publish(Advert $advert)
     {
 
         $advert->status_id = Status::where('title', 'moderation')->first()->id;
         $advert->save();
-
-//        dd(Status::where('title', 'moderation')->first()->id, $advert);
 
         $user = $advert->user;
         $role = (new UserService())->getRole($user);
@@ -92,6 +125,12 @@ class SubmittingController extends Controller
         return redirect()->route('my_adverts');
     }
 
+    /**
+     * @param Advert $advert
+     * @param WatchAdvertRequest $request
+     * @param SubmittingService $service
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getStep4(Advert $advert, WatchAdvertRequest $request, SubmittingService $service)
     {
         $advert = $service->editDraft(new AdvertWatchConnector($request, $advert));

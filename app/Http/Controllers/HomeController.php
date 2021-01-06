@@ -38,11 +38,16 @@ class HomeController extends Controller
      */
     public function test(ImageMinificationService $req)
     {
-        $req->minify('public/acc.jpeg', ['medium', 'big', 'small']);
+        $req->minify('public/small_acc.jpeg', ['medium', 'big', 'small']);
 
         return view('pages.main');
     }
 
+    /**
+     * @param Request $request
+     * @param SubscribeService $service
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function subscribe(Request $request, SubscribeService $service)
     {
         $service->setSubscribe($request->get('email'));
@@ -50,6 +55,11 @@ class HomeController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * @param Request $request
+     * @param SubscribeService $service
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function unsubscribe(Request $request, SubscribeService $service)
     {
         $service->changeSubscribe($request->get('email'), 0);
@@ -57,6 +67,11 @@ class HomeController extends Controller
         return redirect()->route('home');
     }
 
+    /**
+     * @param $order_id
+     * @param PayService $service
+     * @return Application|Factory|\Illuminate\View\View
+     */
     public function getStatusPay($order_id, PayService $service)
     {
         if($service->getCheckStatusPay($order_id) == 'success'){
@@ -65,11 +80,19 @@ class HomeController extends Controller
             return view('pages.status_pay', ['status' => 0  ]);
         }
     }
+
+    /**
+     * @return Application|Factory|\Illuminate\View\View
+     */
     public function getAbout()
     {
         return view('pages.about');
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function sendAbout(Request $request)
     {
         Mail::to($request->email)->send(new SendAbout($request));
@@ -77,6 +100,9 @@ class HomeController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * @param string $lang
+     */
     public function setLocale(string $lang)
     {
         Cookie::queue(Cookie::make('language', $lang));
