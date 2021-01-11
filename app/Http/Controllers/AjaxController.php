@@ -76,6 +76,12 @@ class AjaxController extends Controller
             $subscribeService->setSubscribe($request->get('email'));
         }
 
-        return response()->json($userService->sendVerificationCode($user));
+        $userService->sendVerificationCode($user);
+
+        $data = [
+            'output' => 'Мы отправили ссылку для активации аккаунта на Вашу почту.',
+        ];
+
+        return response()->json($data);
     }
 }

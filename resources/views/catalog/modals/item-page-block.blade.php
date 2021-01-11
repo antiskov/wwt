@@ -75,7 +75,7 @@
                         </div>
                     </div>
                     <div class="img-seller">
-                        <img src="{{asset((new \App\Services\ProfileService())->getAvatar($user->id))}}" alt="img">
+                        <img src="{{asset($linkAvatar)}}" alt="img">
                     </div>
                 </div>
                 <button class="call-seller btn-hover">Связатся с продавцом</button>

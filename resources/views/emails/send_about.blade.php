@@ -1,4 +1,4 @@
-<img src="{{asset('/storage/logo.png')}}">
+<img src="{{asset('/images/logo.png')}}">
 <br>
 <h3>Message from guest</h3>
 

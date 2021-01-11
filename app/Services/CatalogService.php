@@ -135,6 +135,7 @@ class CatalogService
             'favorite' => UserFavoriteAdvert::where('user_id', $user->id)->where('advert_id', $advert->id)->first(),
             'currency' => (new RateService())->checkRate(),
             'statuses' => Status::all(),
+            'linkAvatar' => (new \App\Services\ProfileService())->getAvatar($user->id),
         ];
     }
 }
