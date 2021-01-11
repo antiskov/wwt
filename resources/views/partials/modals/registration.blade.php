@@ -1,5 +1,5 @@
 <div id="registration-modal" class="modal">
-    <div class="modal__content">
+    <div id="registration-div" class="modal__content">
         <h5 class="modal__title">{{__('messages.modal_welcome')}}</h5>
         <form id="registration-form" method='post' class="registration" action="{{ url('/register-user') }}">
             @csrf
@@ -21,7 +21,7 @@
                     <input type="checkbox" name="mailing" required value="1">
                     <p><span>{{__('messages.mailing')}}</span>
                     </p>
-                    <span>{{__('messages.required_filed')}}</span>
+{{--                    <span>{{__('messages.required_filed')}}</span>--}}
                 </label>
             </div>
             <button type="submit" class="btn-arrow">{{__('messages.registration_button')}}</button>

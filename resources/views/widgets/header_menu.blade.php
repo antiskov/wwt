@@ -476,11 +476,8 @@
                 data: $('#registration-form').serializeArray(),
                 datatype: 'html',
                 success: function (data) {
-                    $('#registration-form').empty();
-                    $('#registration-form').html(data.output);
-
-                    console.log(data.output);
-                    console.log(data.errors);
+                    $('#registration-div').empty();
+                    $('#registration-div').html(data.output);
                 },
                 error: function (xhr) {
                     if (xhr.status === 422) {
