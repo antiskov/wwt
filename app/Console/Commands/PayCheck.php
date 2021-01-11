@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\PayCheckJob;
 use App\Models\UserTransaction;
 use App\Services\PayService;
 use Carbon\Carbon;
@@ -46,7 +47,9 @@ class PayCheck extends Command
 
         foreach ($transactions as $transaction) {
             if ($date->diffInDays($transaction->created_at) <= 3){
-                $service->forCheckTransaction($transaction);
+//                $service->forCheckTransaction($transaction);
+                $job = new PayCheckJob($transaction);
+                $job::dispatch();
             }
         }
     }
