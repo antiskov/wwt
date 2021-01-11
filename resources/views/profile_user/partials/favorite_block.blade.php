@@ -6,8 +6,14 @@
                     <a href="{{route('delete_favorite', [$advert->id])}}"><img src="/images/icons/favorit-active.svg" alt="img" class="del-fav"></a>
                     <div class="item-info">
                         <div class="img-wrap">
-                            <img src="/images/content/watch-1.png" alt="img">
-                            <img src="/images/content/watch-2.png" alt="img">
+                            @if(isset($advert->photos->where('is_basic', 1)->first()->photo))
+                                <a href="{{route('catalog.item-page', [$advert])}}">
+                                    <img
+                                        src="{{asset('/storage/images/advert_photos/'.$advert->type.'/number_'.$advert->id.'/'.$advert->photos->where('is_basic', 1)->first()->photo)}}">
+                                    <img
+                                        src="{{asset('/storage/images/advert_photos/'.$advert->type.'/number_'.$advert->id.'/'.$advert->photos->where('is_basic', 1)->first()->photo)}}">
+                                </a>
+                            @endif
                         </div>
                         <div class="desc-cont">
                             <div class="item-name">
@@ -16,7 +22,7 @@
                             <div class="desc-main">
                                 <div class="price-cont">
                                     <div class="new">
-                                        {{$advert->price}}$
+                                        {{$advert->getPrice()}}$
                                     </div>
                                     {{--                                <div class="old">--}}
                                     {{--                                    1500 $--}}
