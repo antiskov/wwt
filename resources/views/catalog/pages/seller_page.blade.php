@@ -6,7 +6,7 @@
             <div class="seller-cont">
                 <div class="person">
                     <div class="person-prof">
-                        <img src="{{asset((new \App\Services\ProfileService())->getAvatar(auth()->user()->id))}}"
+                        <img src="{{asset((new \App\Services\ProfileService())->getAvatar($user->id))}}"
                              alt="img">
                     </div>
                     <div class="person-rating">
