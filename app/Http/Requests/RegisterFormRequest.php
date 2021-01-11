@@ -26,7 +26,7 @@ class RegisterFormRequest extends FormRequest
     {
         return [
             'referrer'=>'string',
-            'email'=>'required|unique:users',
+            'email'=>'required|email|unique:users',
             'password'=>'required|min:8',
             'data-protection' => 'required'
         ];

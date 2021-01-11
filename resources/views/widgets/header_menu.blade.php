@@ -480,7 +480,8 @@
                     $('#registration-div').html(data.output);
                 },
                 error: function (xhr) {
-                    if (xhr.status === 422) {
+                    console.log(xhr.responseJSON.errors.email[0]);
+                    if (xhr.status === 422 && xhr.responseJSON.errors.email[0] === 'The email must be a valid email address.') {
                         $('#reg-form-email').addClass('form-elem_err').removeClass('form-elem_success');
                         $('#reg-form-email + span').text(xhr.responseJSON.errors.email[0]);
                     }

@@ -5,7 +5,7 @@
     <div class="seller-prod">
         <div class="prs-cont">
             <div class="img-wrap">
-                <img src="{{asset((new \App\Services\ProfileService())->getAvatar(auth()->user()->id))}}"
+                <img src="{{asset($linkAvatar)}}"
                      alt="img">
             </div>
             <div class="cont">

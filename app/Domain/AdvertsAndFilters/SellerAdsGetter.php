@@ -18,6 +18,8 @@ class SellerAdsGetter extends ToolsForAdvertsFilters
 
         $this->setSearchLink($request);
 
+
+
         $itemsArr = [
             'adverts' => $adverts,
             'countResults' => $query->get()->count(),
@@ -25,6 +27,7 @@ class SellerAdsGetter extends ToolsForAdvertsFilters
             'stateNew' =>  $this->setStateNew($request),
             'countUserAdverts' => $this->getCountUserAdverts($nameView, $user_id),
             'user' => User::find($user_id),
+            'linkAvatar' => (new \App\Services\ProfileService())->getAvatar($user_id),
         ];
 
         $this->result = array_merge($itemsArr, $this->getNameAndCountFilters($user_id));

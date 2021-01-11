@@ -52,6 +52,7 @@ class CatalogController extends Controller
             'user' => $user,
             'userLanguages' => $service->userLanguages($user),
             'adverts' => Advert::where('user_id', $user->id)->get(),
+            'linkAvatar' => (new \App\Services\ProfileService())->getAvatar($user->id),
         ]);
     }
 
