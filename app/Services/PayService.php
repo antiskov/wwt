@@ -22,7 +22,7 @@ class PayService
         return [
             'privateKey' => env('PRIVATE_KEY'),
             'publicKey' => env('PUBLIC_KEY'),
-            'url' => env('LIQPAY_URL'),
+            'url' => env('LIQPAY_URL').'api/3/checkout',
         ];
 
     }
@@ -60,7 +60,7 @@ class PayService
             "currency" => $currency,
             "description" => $description,
             "order_id" => $order_id,
-            'server_url' => env('SERVER_URL'),
+            'server_url' => env('APP_URL').env('PAYMENT_CALLBACK_URL'),
             'result_url' => route('status_pay', $order_id),
         ];
 
