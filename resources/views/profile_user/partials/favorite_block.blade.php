@@ -17,7 +17,9 @@
                         </div>
                         <div class="desc-cont">
                             <div class="item-name">
+                                <a href="{{route('catalog.item-page', [$advert])}}">
                                 {{$advert->title}}
+                                </a>
                             </div>
                             <div class="desc-main">
                                 <div class="price-cont">

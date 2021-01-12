@@ -1,16 +1,11 @@
 <div id="password-modal" class="modal">
     <div class="modal__content">
         <h5 class="modal__title">{{__('messages.modal_welcome')}}</h5>
-        <div class="login-modal-img login-modal-img_portrait">
-            <img src="/images/content/person.png" alt="login photo">
-        </div>
         <form id="password-form" method="post" class="check-login" action="{{ route('login-password') }}">
             @CSRF
-            <h1>{{__('messages.modal_welcome')}}</h1>
             <div class="change-input">
-                <input id="password-form-email" name="email" type="text" placeholder="{{__('messages.modal_placeholder')}}"
-                       required
-                       value="someMail@gmail.com">
+                <input id="password-form-email" name="email" type="text" placeholder="{{__('messages.modal_registration_email')}}"
+                       required>
                 <span></span>
 {{--                <img src="/images/icons/eraser.svg" alt="Изменить логин">--}}
             </div>
