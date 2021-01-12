@@ -11,6 +11,7 @@
     @include('partials.modals.login')
     @include('partials.modals.registration')
     @include('partials.modals.password')
+    @include('partials.modals.need_authorization')
 @show
 @section('scripts')
 

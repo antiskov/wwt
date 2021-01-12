@@ -3,6 +3,7 @@
 
 namespace App\Services;
 
+use App\Http\Requests\ProfileRequest;
 use App\Models\Language;
 use App\Models\Timezone;
 use App\Models\User;
@@ -54,7 +55,7 @@ class ProfileService
         }
     }
 
-    public function saveFormData(Request $request)
+    public function saveFormData(ProfileRequest $request)
     {
         $user = auth()->user();
         $user->email = $request->email;

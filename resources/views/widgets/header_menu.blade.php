@@ -136,7 +136,12 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href='{{route('submitting')}}'><span>Продать</span></a>
+                                @if(Auth::check())
+                                    <a class="sell" href='{{route('submitting')}}'><span>Продать</span></a>
+                                @else
+                                    <a data-fancybox data-src="#need_authorization" href="javascript:;"
+                                       href="#">Продать</a>
+                                @endif
                             </li>
                         </ul>
                     </li>
@@ -356,33 +361,38 @@
                                 <ul class="header-desc-nav__btns">
                                     <li class="list-btn">
                                         <a href="#"><span>Купить</span></a>
-                                        <div class="header-nav-lists header-nav-lists_first">
-                                            <div class="header-nav-list header-nav-list_few-columns">
-                                                <h3>Марки</h3>
-                                                <div>
-                                                    <ul>
-                                                        @foreach($brands as $brand)
-                                                            <li>
-                                                                <a href="#">{{ $brand->title.' ('.count($brand->watchAdverts).')'}}</a>
-                                                            </li>
-                                                        @endforeach
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            {{--                                            <div class="header-nav-list">--}}
-                                            {{--                                                <h3>Категории</h3>--}}
-                                            {{--                                                <ul>--}}
-                                            {{--                                                    @foreach($categories as $category)--}}
-                                            {{--                                                        <li>--}}
-                                            {{--                                                            <a href="#">{{$category->title.' ('.count($category->watchModels).')'}}</a>--}}
-                                            {{--                                                        </li>--}}
-                                            {{--                                                    @endforeach--}}
-                                            {{--                                                </ul>--}}
-                                            {{--                                            </div>--}}
-                                        </div>
+{{--                                        <div class="header-nav-lists header-nav-lists_first">--}}
+{{--                                            <div class="header-nav-list header-nav-list_few-columns">--}}
+{{--                                                <h3>Марки</h3>--}}
+{{--                                                <div>--}}
+{{--                                                    <ul>--}}
+{{--                                                        @foreach($brands as $brand)--}}
+{{--                                                            <li>--}}
+{{--                                                                <a href="#">{{ $brand->title.' ('.count($brand->watchAdverts).')'}}</a>--}}
+{{--                                                            </li>--}}
+{{--                                                        @endforeach--}}
+{{--                                                    </ul>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                            --}}{{--                                            <div class="header-nav-list">--}}
+{{--                                            --}}{{--                                                <h3>Категории</h3>--}}
+{{--                                            --}}{{--                                                <ul>--}}
+{{--                                            --}}{{--                                                    @foreach($categories as $category)--}}
+{{--                                            --}}{{--                                                        <li>--}}
+{{--                                            --}}{{--                                                            <a href="#">{{$category->title.' ('.count($category->watchModels).')'}}</a>--}}
+{{--                                            --}}{{--                                                        </li>--}}
+{{--                                            --}}{{--                                                    @endforeach--}}
+{{--                                            --}}{{--                                                </ul>--}}
+{{--                                            --}}{{--                                            </div>--}}
+{{--                                        </div>--}}
                                     </li>
                                     <li>
-                                        <a href='{{route('submitting')}}'><span>Продать</span></a>
+                                        @if(Auth::check())
+                                            <a class="sell" href='{{route('submitting')}}'><span>Продать</span></a>
+                                        @else
+                                            <a data-fancybox data-src="#need_authorization" href="javascript:;"
+                                               href="#">Продать</a>
+                                        @endif
                                     </li>
                                 </ul>
                             </li>
@@ -481,9 +491,17 @@
                 },
                 error: function (xhr) {
                     console.log(xhr.responseJSON.errors.email[0]);
-                    if (xhr.status === 422 && xhr.responseJSON.errors.email[0] === 'The email must be a valid email address.') {
-                        $('#reg-form-email').addClass('form-elem_err').removeClass('form-elem_success');
-                        $('#reg-form-email + span').text(xhr.responseJSON.errors.email[0]);
+                    if (xhr.status === 422) {
+                        if (xhr.responseJSON.errors.email[0] === 'The email must be a valid email address.') {
+                            $('#reg-form-email').addClass('form-elem_err').removeClass('form-elem_success');
+                            $('#reg-form-email + span').text(xhr.responseJSON.errors.email[0]);
+                        }
+
+                        if (xhr.responseJSON.errors.email[0] === 'The email has already been taken.') {
+                            $('#reg-form-email').addClass('form-elem_err').removeClass('form-elem_success');
+                            $('#reg-form-email + span').text(xhr.responseJSON.errors.email[0]);
+                        }
+
                     }
                 }
             }).done(function () {
