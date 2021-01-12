@@ -60,7 +60,7 @@ class PayService
             "currency" => $currency,
             "description" => $description,
             "order_id" => $order_id,
-            'server_url' => route('home').env('PAYMENT_CALLBACK_URL'),
+            'server_url' => env('APP_URL').env('PAYMENT_CALLBACK_URL'),
             'result_url' => route('status_pay', $order_id),
         ];
 
