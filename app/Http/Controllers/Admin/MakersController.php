@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MakerRequest;
 use App\Models\WatchMake;
 use App\Services\WatchMakerService;
+use Illuminate\Http\Request;
+use Validator;
 
 class MakersController extends Controller
 {
@@ -44,6 +46,19 @@ class MakersController extends Controller
             $maker->status = 0;
         }
         $maker->save();
+
+        return redirect()->back();
+    }
+
+    public function updateMakerIndex(WatchMake $maker)
+    {
+        return view('admin.pages.update_maker', ['maker' => $maker]);
+    }
+
+    public function updateMaker(Request $request, WatchMake $maker, WatchMakerService $service)
+    {
+        $request->validate(['logo' => 'required|image']);
+        $service->updateMaker($request, $maker);
 
         return redirect()->back();
     }

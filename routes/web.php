@@ -144,6 +144,8 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('/', [\App\Http\Controllers\Admin\MakersController::class, 'index'])->name('admin.manage_makers');
             Route::post('/upload', [\App\Http\Controllers\Admin\MakersController::class, 'upload'])->name('admin.upload_makers_picture');
             Route::get('/change_status/{status}/{maker}', [\App\Http\Controllers\Admin\MakersController::class, 'changeStatus'])->name('admin.change_status_maker');
+            Route::get('/update_maker/{maker}', [\App\Http\Controllers\Admin\MakersController::class, 'updateMakerIndex'])->name('admin.update_maker_index');
+            Route::post('/update_maker/{maker}', [\App\Http\Controllers\Admin\MakersController::class, 'updateMaker'])->name('admin.update_maker');
         });
 
     });

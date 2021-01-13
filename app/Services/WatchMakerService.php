@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Domain\Uploader;
 use App\Http\Requests\MakerRequest;
 use App\Models\WatchMake;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class WatchMakerService
@@ -25,6 +26,18 @@ class WatchMakerService
 
         if (!$maker->save()) {
             Log::info("Maker #$maker->id not checked");
+        }
+    }
+
+    public function updateMaker(Request $request, WatchMake $maker)
+    {
+        $service = new Uploader();
+        $service->uploadImage($request, 'logo', 'admin/makers');
+
+        $maker->logo = $service->getFilename();
+
+        if (!$maker->save()) {
+            Log::info("Maker #$maker->id not saved");
         }
     }
 }

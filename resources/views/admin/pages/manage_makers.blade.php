@@ -62,7 +62,7 @@
                                             <a href="{{ route('admin.change_status_maker', [1, $maker->id]) }}">Выложить</a>
                                             <br>
                                         @endif
-{{--                                        <a href='{{ route('admin.delete_advert', [$maker->id]) }}'>Удалить</a>--}}
+                                            <a href="{{route('admin.update_maker_index', [$maker->id])}}">Изменить фото</a>
                                     </td>
                                 </tr>
                             @endforeach
