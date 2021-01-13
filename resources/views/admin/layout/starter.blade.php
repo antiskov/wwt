@@ -29,7 +29,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="{{route('admin.dashboard')}}" class="nav-link">Home</a>
+                <a href="{{route('home')}}" class="nav-link">Home</a>
             </li>
             <li>
                 <a href="{{route('admin.logout')}}" class="nav-link">Logout</a>
