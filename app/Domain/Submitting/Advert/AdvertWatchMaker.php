@@ -50,7 +50,6 @@ class AdvertWatchMaker extends AdvertTools implements AdvertInterface
 
     public function makeDraft():void
     {
-//        dd(333);
         $this->createWatchMake();
         $this->createWatchModel();
         $this->recordAdvert('watch');

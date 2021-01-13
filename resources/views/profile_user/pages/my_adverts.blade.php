@@ -5,6 +5,7 @@
 <div class="block-content">
     <h2 class="name-lk">Мои объявления </h2>
     <div class="radio-wrap">
+        <a href="{{route('submitting')}}">Добавить обьявление</a>
         <input type="radio" name="tab-btn" id="abu-1" value="{{$statuses->where('title', 'moderation')->first()->id}}"
                @if(Session::get('advertStatus') == $statuses->where('title', 'moderation')->first()->id)
                checked
