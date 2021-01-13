@@ -50,11 +50,21 @@ class MakersController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * @param WatchMake $maker
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function updateMakerIndex(WatchMake $maker)
     {
         return view('admin.pages.update_maker', ['maker' => $maker]);
     }
 
+    /**
+     * @param Request $request
+     * @param WatchMake $maker
+     * @param WatchMakerService $service
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function updateMaker(Request $request, WatchMake $maker, WatchMakerService $service)
     {
         $request->validate(['logo' => 'required|image']);

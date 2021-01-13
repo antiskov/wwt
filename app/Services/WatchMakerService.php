@@ -29,6 +29,10 @@ class WatchMakerService
         }
     }
 
+    /**
+     * @param Request $request
+     * @param WatchMake $maker
+     */
     public function updateMaker(Request $request, WatchMake $maker)
     {
         $service = new Uploader();
