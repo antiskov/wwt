@@ -18,7 +18,7 @@
                     <div class="img-wrap">
 {{--                        <img src="/images/content/watch-1.png" alt="img">--}}
                         @if(isset($advert->photos->where('is_basic', 1)->first()->photo))
-                            <img src="{{asset('/storage/images/advert_photos/'.$advert->type.'/number_'.$advert->id.'/'.$advert->photos->where('is_basic', 1)->first()->photo)}}">
+                            <img src="{{asset('/storage/images/notice_photos/'.$advert->type.'/number_'.$advert->id.'/'.$advert->photos->where('is_basic', 1)->first()->photo)}}">
                         @endif
                     </div>
                     <div class="ad-cont">

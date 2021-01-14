@@ -55,6 +55,7 @@ class SubmittingService
             $name = $image->getClientOriginalName();
             if (!AdvertPhoto::where('photo', $name)->where('advert_id', $advertID)->first()) {
                 $path = 'images/advert_photos/' . $advertType . '/number_' . $advertID;
+                $path = 'images/notice_photos/' . $advertType . '/number_' . $advertID;
                 $image->storeAs($path, $name, 'public');
 
                 $this->createAdvertPhoto($advertID, $name);

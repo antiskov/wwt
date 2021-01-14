@@ -566,14 +566,12 @@ $(document).ready(function () {
     loop: true,
     slidesPerView: 4,
     spaceBetween: 30,
-    speed: 1000,
+    speed: 700,
     centeredSlides: true,
-
     autoplay: {
-      delay: 3000,
+      delay: 2000,
       disableOnInteraction: false,
     },
-
     breakpoints: {
       768: {
         slidesPerView: 6,

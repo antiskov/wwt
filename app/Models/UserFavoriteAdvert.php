@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * @method static where(string $string, $id)
+ */
 class UserFavoriteAdvert extends Pivot
 {
     use HasFactory, SoftDeletes;

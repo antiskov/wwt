@@ -3,7 +3,7 @@
     @foreach($advert->photos as $photo)
         <li class="item saved-item">
         <span class="img-wrap">
-            <img src="{{asset('/storage/images/advert_photos/watch/number_'.$photo->advert->id.'/'.$photo->photo)}}"
+            <img src="{{asset('/storage/images/notice_photos/watch/number_'.$photo->advert->id.'/'.$photo->photo)}}"
                  alt="">
         </span>
             <label class="main-radio">
