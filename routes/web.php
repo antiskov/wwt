@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('set.locale')->group(function () {
     Route::get('/test{language}', [\App\Http\Controllers\SetLocaleController::class, 'setLocal'])->name('test');
     Route::get('/', [\App\Http\Controllers\HomeController::class, 'main'])->name('home');
-    Route::get('/test', [\App\Http\Controllers\HomeController::class, 'test']);
     Route::get('/logout', [\App\Http\Controllers\UserController::class, 'logout'])->name('logout');
     Route::post('/register-user', [\App\Http\Controllers\AjaxController::class, 'registerUser'])->name('register-user');
     Route::post('/check-login-email', [\App\Http\Controllers\AjaxController::class, 'checkLoginEmail'])->name('check-login-email');

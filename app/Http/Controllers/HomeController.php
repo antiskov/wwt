@@ -33,17 +33,6 @@ class HomeController extends Controller
     }
 
     /**
-     * @param ProfileService $req
-     * @return Application|Factory|View
-     */
-    public function test(ImageMinificationService $req)
-    {
-        $req->minify('public/small_acc.jpeg', ['medium', 'big', 'small']);
-
-        return view('pages.main');
-    }
-
-    /**
      * @param Request $request
      * @param SubscribeService $service
      * @return \Illuminate\Http\RedirectResponse
