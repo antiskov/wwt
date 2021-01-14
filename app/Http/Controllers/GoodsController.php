@@ -23,7 +23,7 @@ class GoodsController extends Controller
      */
     public function index(Advert $advert, CatalogService $service, UserService $userService)
     {
-        return view('catalog.pages.item-page', $service->goodsIndex(auth()->user(), $advert, $userService));
+        return view('catalog.pages.item-page', $service->goodsIndex($advert->user, $advert, $userService));
     }
 
     /**
