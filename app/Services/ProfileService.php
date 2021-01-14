@@ -4,10 +4,8 @@
 namespace App\Services;
 
 use App\Http\Requests\ProfileRequest;
-use App\Models\Language;
 use App\Models\Timezone;
 use App\Models\User;
-use App\Models\UserLanguage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
