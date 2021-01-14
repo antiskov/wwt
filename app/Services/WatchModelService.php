@@ -16,8 +16,8 @@ class WatchModelService
     private function setWatchModelPhoto(Advert $advert)
     {
         $photo = $advert->photos()->where('is_basic', 1)->first();
-        $pathAdvertPhoto = 'public/images/advert_photos/' . $advert->type . '/number_' . $advert->id . '/' . $photo->photo;
-        $pathModelPhoto = 'public/images/advert_models/watches/model_' . $this->watchModel->model_code . '/' . $photo->photo;
+        $pathAdvertPhoto = 'public/images/notice_photos/' . $advert->type . '/number_' . $advert->id . '/' . $photo->photo;
+        $pathModelPhoto = 'public/images/models/watches/model_' . $this->watchModel->model_code . '/' . $photo->photo;
 
         if(!Storage::disk('local')->exists($pathAdvertPhoto)){
             Storage::copy($pathAdvertPhoto, $pathModelPhoto);

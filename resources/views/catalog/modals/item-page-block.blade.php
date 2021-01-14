@@ -17,7 +17,7 @@
                                    class="swiper-slide">
                                     {{--                                    <img src="{{asset('/storage/'.$advertImage->full_path)}}" alt="img"--}}
                                     {{--                                         class="swiper-slide-item">--}}
-                                    <img src="{{asset('/storage/images/advert_photos/watch/number_'.$advert->id.'/'.$photo->photo)}}" alt="img"
+                                    <img src="{{asset('/storage/images/notice_photos/watch/number_'.$advert->id.'/'.$photo->photo)}}" alt="img"
                                          class="swiper-slide-item">
                                 </a>
                             @endforeach

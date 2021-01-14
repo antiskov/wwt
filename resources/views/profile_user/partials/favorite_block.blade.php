@@ -9,9 +9,9 @@
                             @if(isset($advert->photos->where('is_basic', 1)->first()->photo))
                                 <a href="{{route('catalog.item-page', [$advert])}}">
                                     <img
-                                        src="{{asset('/storage/images/advert_photos/'.$advert->type.'/number_'.$advert->id.'/'.$advert->photos->where('is_basic', 1)->first()->photo)}}">
+                                        src="{{asset('/storage/images/notice_photos/'.$advert->type.'/number_'.$advert->id.'/'.$advert->photos->where('is_basic', 1)->first()->photo)}}">
                                     <img
-                                        src="{{asset('/storage/images/advert_photos/'.$advert->type.'/number_'.$advert->id.'/'.$advert->photos->where('is_basic', 1)->first()->photo)}}">
+                                        src="{{asset('/storage/images/notice_photos/'.$advert->type.'/number_'.$advert->id.'/'.$advert->photos->where('is_basic', 1)->first()->photo)}}">
                                 </a>
                             @endif
                         </div>
