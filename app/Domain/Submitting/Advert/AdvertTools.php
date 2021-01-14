@@ -18,7 +18,9 @@ class AdvertTools
     protected function recordAdvert($type)
     {
         $this->advert->type = $type;
-        $this->advert->user()->associate(auth()->user());
+        if (!$this->advert->user){
+            $this->advert->user()->associate(auth()->user());
+        }
         $this->advert->title = $this->createAdvertName();
         $this->advert->description = $this->request->description;
         $this->advert->price_rate = (new RateService())->setPriceRate($this->request);

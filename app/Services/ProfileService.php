@@ -57,9 +57,10 @@ class ProfileService
 
     public function saveFormData(ProfileRequest $request)
     {
-        dd($request->all());
         $user = auth()->user();
-        $user->email = $request->email;
+        if (!User::where('email', $request->email)->first()){
+            $user->email = $request->email;
+        }
         $user->name = $request->name;
         $user->surname = $request->surname;
         if($request->sex == 'Женский') {

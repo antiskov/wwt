@@ -45,7 +45,7 @@
             </ul>
         </div>
     </div>
-    @if($advert->vip_status == 0)
+    @if($advert->vip_status == 0 && ($advert->user_id == auth()->user()->id))
         <h3><a href="{{route('submitting.buy_vip', $advert)}}">Купить ВИП</a></h3>
     @else
         <h3>Куплен ВИП статус обьявления</h3>
