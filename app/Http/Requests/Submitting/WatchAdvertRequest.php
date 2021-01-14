@@ -24,14 +24,14 @@ class WatchAdvertRequest extends FormRequest
     public function rules()
     {
         return [
-            'model_code' => 'max:200',
-            "watchType"=> 'max:200',
-            "brand"=> 'max:200',
-            "model"=> 'max:200',
-            "state"=> 'max:200',
-            "deliveryVolume"=> 'max:200',
-            "sex"=> 'max:200',
-            "typeMechanism"=> 'max:200',
+            'model_code' => 'required|max:200',
+            "watchType"=> 'required|max:200',
+            "brand"=> 'required|max:200',
+            "model"=> 'required|max:200',
+            "state"=> 'required|max:200',
+            "deliveryVolume"=> 'required|max:200',
+            "sex"=> 'required|max:200',
+            "typeMechanism"=> 'required|max:200',
             "currency"=> 'max:200',
             "surname"=> 'max:200',
             "name"=> 'max:200',

@@ -23,8 +23,7 @@ class GoodsController extends Controller
      */
     public function index(Advert $advert, CatalogService $service, UserService $userService)
     {
-        $user = User::where('id', $advert->user_id)->first();
-        return view('catalog.pages.item-page', $service->goodsIndex($user, $advert, $userService));
+        return view('catalog.pages.item-page', $service->goodsIndex(auth()->user(), $advert, $userService));
     }
 
     /**

@@ -57,6 +57,7 @@ class ProfileService
 
     public function saveFormData(ProfileRequest $request)
     {
+        dd($request->all());
         $user = auth()->user();
         $user->email = $request->email;
         $user->name = $request->name;
