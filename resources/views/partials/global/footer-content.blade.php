@@ -82,13 +82,13 @@
                         <img src="/images/content/App-store.png" alt="Apple">
                     </a>
                 </div>
-                <div class="order-advert">
+                <a data-fancybox href="#advertisement-modal" class="order-advert">
                     <div class="text-block">
                         <p>Заказать рекламу на нашем сайте</p>
                         <!--                        <p></p>-->
                     </div>
                     <img src="/images/content/reclama-footer.png" alt="img" class="adv-img">
-                </div>
+                </a>
             </div>
         </div>
         <div class="mob-phone">

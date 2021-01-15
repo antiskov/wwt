@@ -1037,13 +1037,13 @@
                         <img src="./images/content/App-store.png" alt="Apple">
                     </a>
                 </div>
-                <div class="order-advert">
+                <a data-fancybox href="#advertisement-modal" class="order-advert">
                     <div class="text-block">
                         <p>Заказать рекламу на нашем сайте</p>
 <!--                        <p></p>-->
                     </div>
                     <img src="./images/content/reclama-footer.png" alt="img" class="adv-img">
-                </div>
+                </a>
             </div>
         </div>
         <div class="mob-phone">
@@ -1448,6 +1448,28 @@
       </div>
       <p>Найдено характеристик </p>
     </div>
+  </div>
+</div>
+
+
+<div id="advertisement-modal" class="modal advertisement-modal">
+  <div class="modal__content">
+    <h5 class="modal__title">Заказать рекламу</h5>
+    <form id="advertisement-form" class="advertisement-form">
+      <div class="input-wrap">
+        <label for="advertisement-name">Имя</label>
+        <input name="name" type="text" id="advertisement-name" placeholder="Введите имя" required>
+      </div>
+      <div class="input-wrap">
+        <label for="advertisement-email">E-MAIL</label>
+        <input name="email" type="email" id="advertisement-email" placeholder="Введите почту" required>
+      </div>
+      <div class="input-wrap">
+        <label for="advertisement-message">Сообщение</label>
+        <textarea name="message" id="advertisement-message" placeholder="Введите сообщение"></textarea>
+      </div>
+      <button type="submit" class="primary-btn">Отправить</button>
+    </form>
   </div>
 </div>
 <!--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->

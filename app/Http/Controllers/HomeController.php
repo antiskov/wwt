@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 
 use App\Domain\AdvertsAndFilters\VipAdvertsAndFiltersGetter;
+use App\Mail\OrderAd;
+use App\Mail\SendAbout;
 use App\Services\ImageMinificationService;
 use App\Services\PayService;
 use App\Services\ProfileService;
@@ -84,6 +86,7 @@ class HomeController extends Controller
      */
     public function sendAbout(Request $request)
     {
+        $request->validate(['email' => 'required|email']);
         Mail::to($request->email)->send(new SendAbout($request));
 
         return redirect()->back();
@@ -95,5 +98,13 @@ class HomeController extends Controller
     public function setLocale(string $lang)
     {
         Cookie::queue(Cookie::make('language', $lang));
+    }
+
+    public function sendAdEMail(Request $request)
+    {
+        $request->validate(['email' => 'required|email']);
+        Mail::to($request->email)->send(new OrderAd($request));
+
+        return redirect()->back();
     }
 }

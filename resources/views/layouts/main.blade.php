@@ -12,6 +12,7 @@
     @include('partials.modals.registration')
     @include('partials.modals.password')
     @include('partials.modals.need_authorization')
+    @include('partials.modals.advertisement-modal')
 @show
 @section('scripts')
 
