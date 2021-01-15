@@ -441,7 +441,7 @@
                     <div class="price-slider__controls">
                         <input id="slider-price-desc-from" type="text" class="price-slider__from watch-filter desc-filter" name="prices[0]" value="0"/>
                         <p>{{$filter_currency}}</p>
-                        <input id="slider-price-desc-to" type="text" class="price-slider__to watch-filter desc-filter" name="prices[1]" value="300"/>
+                        <input id="slider-price-desc-to" type="text" class="price-slider__to watch-filter desc-filter" name="prices[1]" value="{{$maxPrice}}"/>
                     </div>
                 </div>
                 <div class="filters-buttons">
