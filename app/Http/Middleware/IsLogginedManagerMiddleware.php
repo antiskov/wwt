@@ -24,9 +24,9 @@ class IsLogginedManagerMiddleware
             return redirect()->route('admin.showlogin');
         }
 
-        $user=User::find(1);
-
+        $user=User::find(auth()->user()->id);
         $role=(new UserService())->getRole($user);
+
         if($role->title == 'admin' || $role->title == 'manager') {
             Log::info('permitted operation by middleware');
             return $next($request);

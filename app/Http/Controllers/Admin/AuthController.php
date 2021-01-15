@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
 {
@@ -14,7 +17,13 @@ class AuthController extends Controller
     public function showLogin()
     {
         if (Auth::check()){
-            return redirect()->route('admin.dashboard');
+            $user=User::find(auth()->user()->id);
+            $role=(new UserService())->getRole($user);
+
+            if($role->title == 'admin' || $role->title == 'manager') {
+                Log::info('permitted operation by middleware');
+                return redirect()->route('admin.dashboard');
+            }
         }
 
         return view('admin.login');
