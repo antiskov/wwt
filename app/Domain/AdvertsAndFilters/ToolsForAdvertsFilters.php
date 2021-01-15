@@ -28,14 +28,19 @@ abstract class ToolsForAdvertsFilters implements AdvertsFilters
         $currency = (new RateService())->transRate();
 
         $maxPrice = DB::table($nameView)->max('price') * $currency['rate'];
+        $minPrice = DB::table($nameView)->min('price') * $currency['rate'];
 
-        return $maxPrice;
+        return [
+            'maxPrice' => round($maxPrice),
+            'minPrice' => round($minPrice),
+            ];
     }
 
     public function changeFromCurrencyPriceFilter(Request $request)
     {
         $currency = (new RateService())->transRate();
 
+        dd($request->prices[0], $request->prices[1]);
         $prices[0] = $request->prices[0] / $currency['rate'];
         $prices[1] = $request->prices[1] / $currency['rate'];
 
@@ -96,6 +101,8 @@ abstract class ToolsForAdvertsFilters implements AdvertsFilters
             ->addSelect(DB::raw('COUNT(watch_type_title) as count_watch_type_title'))
             ->groupBy('watch_type_title')->whereRaw($rule)->get();
 
+        $prices = $this->changeToCurrencyPriceFilter();
+
         return [
             'brands' => $brands,
             'models' => $models,
@@ -107,7 +114,8 @@ abstract class ToolsForAdvertsFilters implements AdvertsFilters
             'deliveryVolumes' => $deliveryVolumes,
             'sexes' => $sexes,
             'types' => $types,
-            'maxPrice' => round($this->changeToCurrencyPriceFilter()),
+            'maxPrice' => $prices['maxPrice'],
+            'minPrice' => $prices['minPrice'],
             'filter_currency' => $this->getFilterCurrency(),
             'currency' => (new RateService())->checkRate(),
             'currencies' => Currency::all(),
@@ -132,9 +140,10 @@ abstract class ToolsForAdvertsFilters implements AdvertsFilters
             }
         }
 
+
         if($request->has('prices')){
             $pricesArr = $this->changeFromCurrencyPriceFilter($request);
-            $query->whereBetween('price', [$pricesArr[0], $pricesArr[1]]);
+            $query->whereBetween('price', [$pricesArr[0], 4000]);
         }
 
         return $query;

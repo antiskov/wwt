@@ -179,6 +179,8 @@ $(document).ready(function () {
     });
   });
 
+
+
   var $priceRangeDesc = $("#slider-price-desc"),
     $priceInputFromDesc = $("#slider-price-desc-from"),
     $priceInputToDesc = $("#slider-price-desc-to"),
@@ -205,6 +207,11 @@ $(document).ready(function () {
   }
 
   instance = $priceRangeDesc.data("ionRangeSlider");
+
+  function resetRangeSlider(item) {
+    let slider = item.data("ionRangeSlider");
+    slider.reset()
+  }
 
   $priceInputFromDesc.on("input", function () {
     var val = $(this).prop("value");
@@ -639,6 +646,11 @@ $(document).ready(function () {
   $('.filters-desc').on('click', '.reset-filters-btn', function () {
     $(this).closest('.filters-desc').find('input').prop('checked', false);
     $(this).closest('.filters-desc').find('.filters-desc-choices-list').empty();
+    resetRangeSlider($priceRangeDesc);
+  })
+  $('.filters-mob').on('click', '.reset-filters-btn', function () {
+    $(this).closest('.filters-mob').find('input').prop('checked', false);
+    resetRangeSlider($priceRangeMob);
   })
   $('.filters-desc').on('click', '.clear-filter-choices-btn', function () {
     $(this).closest('.filters-desc-category').find('input').prop('checked', false);
