@@ -116,6 +116,6 @@ class CatalogController extends Controller
     {
         \Session::put('currency', $currency);
 
-        return redirect()->route('catalog');
+        return redirect()->back();
     }
 }

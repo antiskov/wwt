@@ -19,7 +19,11 @@
             <div class="wrap2">
                 <div id="currencies" class="currency-block">
                     @foreach($currencies as $item)
-                    <a href="{{route('catalog.set_rate', $item->title)}}">{{$item->title}}</a>
+                    <a href="{{route('catalog.set_rate', $item->title)}}"
+                    @if(Session::get('currency') == $item->title)
+                        class="active"
+                    @endif
+                    >{{$item->title}}</a>
                     @endforeach
                 </div>
 

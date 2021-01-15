@@ -40,7 +40,6 @@ abstract class ToolsForAdvertsFilters implements AdvertsFilters
     {
         $currency = (new RateService())->transRate();
 
-        dd($request->prices[0], $request->prices[1]);
         $prices[0] = $request->prices[0] / $currency['rate'];
         $prices[1] = $request->prices[1] / $currency['rate'];
 
@@ -103,6 +102,10 @@ abstract class ToolsForAdvertsFilters implements AdvertsFilters
 
         $prices = $this->changeToCurrencyPriceFilter();
 
+        if (!Session::has('currency')) {
+            \Session::put('currency', 'USD');
+        }
+
         return [
             'brands' => $brands,
             'models' => $models,
@@ -143,7 +146,7 @@ abstract class ToolsForAdvertsFilters implements AdvertsFilters
 
         if($request->has('prices')){
             $pricesArr = $this->changeFromCurrencyPriceFilter($request);
-            $query->whereBetween('price', [$pricesArr[0], 4000]);
+            $query->whereBetween('price', [$pricesArr[0], $pricesArr[1]]);
         }
 
         return $query;
