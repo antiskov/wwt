@@ -35,6 +35,8 @@ Route::middleware('set.locale')->group(function () {
     Route::get('/vip', [\App\Http\Controllers\CatalogController::class, 'getResultForHome'])->name('result_for_home');
     Route::get('/change-status/{status}/{advert}', [ModerationAdvertsController::class, 'changeStatus'])
         ->middleware('can:update,advert')->name('change_status');
+    Route::post('/send_ad_email', [\App\Http\Controllers\HomeController::class, 'sendAdEMail'])->name('email_ad');
+
 
     Route::group(['prefix' => 'forgot_password'], function (){
         Route::get('/', [\App\Http\Controllers\PasswordController::class, 'resetPasswordIndex'])->name('forgot_password');
