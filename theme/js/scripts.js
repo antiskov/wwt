@@ -604,7 +604,7 @@ $(document).ready(function () {
 
   $('.filters-desc-category').on('change', 'input[type="checkbox"]', function () {
     const selectedBlock = $(this).closest('.filters-desc-category').find('.filters-desc-choices-list');
-    const label = selectedBlock.find(`label[for=${$(this).prop('id')}]`);
+    const label = selectedBlock.find(`label[for="${$(this).prop('id')}"]`);
 
     if ($(this).prop('checked')) {
       selectedBlock.append(`
@@ -620,7 +620,7 @@ $(document).ready(function () {
   function initialCheck() {
     $('.filters-desc-category').find('input[type="checkbox"]').each(function () {
       const selectedBlock = $(this).closest('.filters-desc-category').find('.filters-desc-choices-list');
-      const label = selectedBlock.find(`label[for=${$(this).prop('id')}]`);
+      const label = selectedBlock.find(`label[for="${$(this).prop('id')}"]`);
 
       if ($(this).prop('checked')) {
         selectedBlock.append(`
