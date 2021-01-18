@@ -19,3 +19,27 @@
         </form>
     </div>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+        $('#advertisement-form').on('submit', function (e){
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: '/send_ad_email',
+                data: $('#advertisement-form').serializeArray(),
+                success: function (){
+                    $.fancybox.close({
+                        src: '#advertisement-form',
+                    });
+                    $(`#advertisement-name`).val("");
+                    $(`#advertisement-email`).val("");
+                    $(`#advertisement-message`).val("");
+                    $.fancybox.open({
+                        src: '#success-modal',
+                    });
+                }
+            })
+        })
+    });
+
+</script>

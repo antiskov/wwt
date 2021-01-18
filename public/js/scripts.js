@@ -1012,3 +1012,9 @@ for (i = 0; i < acc.length; i++) {
     }
   });
 }
+
+
+function clearForm (id) {
+  $(`#${id}`).find("input, textarea").val("");
+  console.log(2322);
+}
