@@ -51,9 +51,18 @@
             <span class="vip">VIP</span>
 
             <div class="counter-more">
-                <a href="{{route('count-pagination', [50])}}" class="item-more">50</a>
-                <a href="{{route('count-pagination', [100])}}" class="item-more">100</a>
-                <a href="{{route('count-pagination', [150])}}" class="item-more">150</a>
+                @if(Cookie::has('countPagination'))
+                    <a href="{{route('count-pagination', [50])}}"
+                       class="item-more @if(Cookie::get('countPagination') == 50) active @endif">50</a>
+                    <a href="{{route('count-pagination', [100])}}"
+                       class="item-more @if(Cookie::get('countPagination') == 100) active @endif">100</a>
+                    <a href="{{route('count-pagination', [150])}}"
+                       class="item-more @if(Cookie::get('countPagination') == 150) active @endif">150</a>
+                @else
+                    <a href="{{route('count-pagination', [50])}}" class="item-more active">50</a>
+                    <a href="{{route('count-pagination', [100])}}" class="item-more">100</a>
+                    <a href="{{route('count-pagination', [150])}}" class="item-more">150</a>
+                @endif
             </div>
 
             @include('catalog.modals.item-cart', ['adverts' => $adverts])
@@ -64,7 +73,6 @@
     </div>
     <script>
         document.querySelector('#currencies').onclick = function () {
-            console.log('11111p');
             document.cookie = "price_sort= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
         }
     </script>

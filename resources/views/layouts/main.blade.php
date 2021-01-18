@@ -1,7 +1,6 @@
 @include('partials.global.head')
 @widget('header_menu')
 {{--@include('partials.global.header')--}}
-@widget('ad_banner')
 @section('content')
 
 @show

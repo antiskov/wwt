@@ -28,12 +28,10 @@
 
                 $('.button-show-phone').on('click', function(e){
                     e.preventDefault();
-                    // console.log(111);
                     $.ajax({
                         url: '/catalog/show_phone/{{$advert->id}}',
                         data: {"_token": "{{ csrf_token() }}"},
                         success: function (data) {
-                            console.log(111);
                             $('.phone-dropdown').html(data.output);
                         },
                     })

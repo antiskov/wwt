@@ -149,6 +149,13 @@ Route::group(['prefix' => 'admin'], function () {
             Route::post('/update_maker/{maker}', [\App\Http\Controllers\Admin\MakersController::class, 'updateMaker'])->name('admin.update_maker');
         });
 
+        Route::group(['prefix' => 'links'], function (){
+            Route::get('/', [\App\Http\Controllers\Admin\FooterController::class, 'mediaLinksIndex'])->name('admin.footer_index');
+            Route::get('/{mediaLink}/status/{status}', [\App\Http\Controllers\Admin\FooterController::class, 'changeStatus'])->name('admin.change_status_link');
+            Route::get('/update/{mediaLink}', [\App\Http\Controllers\Admin\FooterController::class, 'updateLinkIndex'])->name('admin.update_links_index');
+            Route::post('/update/{mediaLink}', [\App\Http\Controllers\Admin\FooterController::class, 'updateLink'])->name('admin.update_links');
+        });
+
     });
     Route::get('login', [AuthController::class, 'showLogin'])->name('admin.showlogin');
     Route::post('login', [AuthController::class, 'login'])->name('admin.login');

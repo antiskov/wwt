@@ -1,1 +1,1 @@
-<a href='tel:{{$advert->user->phone}}' class="phone">{{$advert->user->phone}}</a>
+<a href='tel:{{$advert->phone}}' class="phone">{{$advert->phone}}</a>

@@ -6,9 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @method static where(string $string, string $email)
+ * @method static create(array $array)
+ * @method static where(string $string, int $int)
  */
-class Subscription extends Model
+class MediaLink extends Model
 {
     use HasFactory;
 }
