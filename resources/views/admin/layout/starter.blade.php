@@ -100,6 +100,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <p>Марки производителей</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{route('admin.footer_index')}}" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>Футтер</p>
+                        </a>
+                    </li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->

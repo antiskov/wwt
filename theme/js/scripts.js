@@ -905,6 +905,40 @@ $(document).ready(function () {
     }
   })
 
+  $('.chat-types__choose').click(function (){
+    $(this).toggleClass('active')
+    $('.chat-types__dropdown').slideToggle(300)
+  })
+
+  $('body').click(function (e){
+    if (!e.target.closest('.chat-types')){
+      $('.chat-types__dropdown').slideUp(300)
+      $('.chat-types__choose').removeClass('active')
+    }
+  });
+
+  $('.chat-types__dropdown li').click(function (){
+    const id = $(this).data('id')
+    const value = $(this).html()
+    let span = $('.chat-types__choose')
+    span.data("choose", id)
+    span.html(value)
+    switch (id) {
+      case 'unread':
+          $('.item-messages').hide()
+          $('.unread').show()
+        break;
+      case 'unanswered' :
+        $('.item-messages').hide()
+        $('.unanswered').show()
+        break;
+      default:
+        $('.item-messages').show()
+    }
+    $('.chat-types__dropdown').slideUp(300)
+    $('.chat-types__choose').removeClass('active')
+  })
+
 })
 
 let prof = document.querySelector('.prof-control');
@@ -1017,3 +1051,6 @@ for (i = 0; i < acc.length; i++) {
 function clearForm (id) {
   $(`#${id}`).find("input, textarea").val("");
 }
+
+var objDiv = document.querySelector(".communication-items");
+objDiv.scrollTop = objDiv.scrollHeight;

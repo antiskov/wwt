@@ -41,6 +41,7 @@ class HomeController extends Controller
      */
     public function subscribe(Request $request, SubscribeService $service)
     {
+        $request->validate(['email' => 'required|email']);
         $service->setSubscribe($request->get('email'));
 
         return redirect()->back();

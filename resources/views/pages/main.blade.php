@@ -9,6 +9,7 @@
         @widget('slider')
         @widget('man_woman_pictures')
         @widget('makers')
+        @widget('ad_banner')
         @include('catalog.modals.filter')
         @include('catalog.modals.global.tabs')
     </div>
