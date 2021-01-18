@@ -7,7 +7,6 @@
                 <input id="password-form-email" name="email" type="text" placeholder="{{__('messages.modal_registration_email')}}"
                        required>
                 <span></span>
-{{--                <img src="/images/icons/eraser.svg" alt="Изменить логин">--}}
             </div>
             <div class="password-input">
                 <input id='password-login-form' name="password" type="password" placeholder="Введите пароль" required>
@@ -24,7 +23,7 @@
                 <a href="{{route('forgot_password')}}">{{__('messages.modal_password_remind_pass')}}</a>
             </div>
             <button type="submit" class="btn-arrow">{{__('messages.next_button')}}</button>
-            <pre data-fancybox data-src="#registration-modal" class="common-link">Нет аккаунта?</pre>
+            <pre data-fancybox href="#registration-modal" class="common-link">Нет аккаунта?</pre>
         </form>
     </div>
 </div>

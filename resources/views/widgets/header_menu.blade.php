@@ -200,7 +200,7 @@
                     {{--                        </ul>--}}
                     {{--                    </li>--}}
                     <li>
-                        {{__('messages.contacts')}}
+                        <a href="{{route('about')}}">{{__('messages.contacts')}}</a>
                     </li>
                 </ul>
             </nav>

@@ -13,6 +13,7 @@
     @include('partials.modals.password')
     @include('partials.modals.need_authorization')
     @include('partials.modals.advertisement-modal')
+    @include('partials.modals.success-modal')
 @show
 @section('scripts')
 

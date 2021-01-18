@@ -115,7 +115,7 @@ class SubmittingController extends Controller
         $advert->status_id = Status::where('title', 'moderation')->first()->id;
         $advert->save();
 
-        $user = $advert->user;
+        $user = auth()->user();
         $role = (new UserService())->getRole($user);
 
         if ($role->title == 'admin' || $role->title == 'manager'){

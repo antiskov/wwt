@@ -105,6 +105,6 @@ class HomeController extends Controller
         $request->validate(['email' => 'required|email']);
         Mail::to($request->email)->send(new OrderAd($request));
 
-        return redirect()->back();
+        return response(1);
     }
 }
