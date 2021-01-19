@@ -156,6 +156,24 @@ Route::group(['prefix' => 'admin'], function () {
             Route::post('/update/{mediaLink}', [\App\Http\Controllers\Admin\FooterController::class, 'updateLink'])->name('admin.update_links');
         });
 
+        Route::group(['prefix' => 'data'], function(){
+            Route::get('/', [\App\Http\Controllers\Admin\AdminDataController::class, 'index'])->name('admin.data_index');
+            Route::get('/change_status_watch_type/{watchType}/{status}', [\App\Http\Controllers\Admin\AdminDataController::class, 'changeStatusWatchType'])
+                ->name('admin.change_status_watch_type');
+            Route::get('/update_watch_type/{watchType}', [\App\Http\Controllers\Admin\AdminDataController::class, 'updateWatchTypeIndex'])
+                ->name('admin.update_watch_type_index');
+            Route::post('/update_watch_type/{watchType}', [\App\Http\Controllers\Admin\AdminDataController::class, 'updateWatchType'])
+                ->name('admin.update_watch_type');
+            Route::post('/create_watch_type', [\App\Http\Controllers\Admin\AdminDataController::class, 'createWatchType'])->name('admin.create_watch_type');
+            Route::get('/change_status_mechanism_type/{mechanismType}/{status}', [\App\Http\Controllers\Admin\AdminDataController::class, 'changeStatusMechanismType'])
+                ->name('admin.change_status_mechanism_type');
+            Route::get('/update_mechanism_type/{mechanismType}', [\App\Http\Controllers\Admin\AdminDataController::class, 'updateMechanismTypeIndex'])
+                ->name('admin.update_mechanism_type_index');
+            Route::post('/update_mechanism_type/{mechanismType}', [\App\Http\Controllers\Admin\AdminDataController::class, 'updateMechanismType'])
+                ->name('admin.update_mechanism_type');
+            Route::post('/create_mechanism_type', [\App\Http\Controllers\Admin\AdminDataController::class, 'createMechanismType'])->name('admin.create_mechanism_type');
+        });
+
     });
     Route::get('login', [AuthController::class, 'showLogin'])->name('admin.showlogin');
     Route::post('login', [AuthController::class, 'login'])->name('admin.login');
