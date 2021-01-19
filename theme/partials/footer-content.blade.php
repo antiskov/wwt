@@ -34,7 +34,7 @@
             </div>
             <div class="search-wrap">
                 <input type="search" name="search" class="footer-search" placeholder="Введите email">
-                <button class="email-push">
+                <button class="email-push" data-fancybox data-src="#success-news-modal">
                     <span>Подписаться</span>
                     <img src="./images/icons/push-email.svg" alt="img">
                 </button>

@@ -771,7 +771,7 @@
             </div>
             <div class="search-wrap">
                 <input type="search" name="search" class="footer-search" placeholder="Введите email">
-                <button class="email-push">
+                <button class="email-push" data-fancybox data-src="#success-news-modal">
                     <span>Подписаться</span>
                     <img src="./images/icons/push-email.svg" alt="img">
                 </button>
@@ -949,10 +949,7 @@
           <p><span>Получать новые объявления по эл. почте</span></p>
         </label>
       </div>
-      <div class="modal__buttons">
-        <a data-fancybox-close href="#">Отменить</a>
-        <button class="btn-arrow">Сохранить</button>
-      </div>
+      <a href="#" class="primary-btn">Сохранить</a>
     </form>
   </div>
 </div>
@@ -1256,6 +1253,11 @@
 
 <div id="success-modal" class="modal info-modal">
   <h2>Ваша заявка принята. Скоро с Вами свяжутся</h2>
+</div>
+
+
+<div id="success-news-modal" class="modal info-modal">
+  <h2>Вы оформили новостную подписку.</h2>
 </div>
 <!--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
 

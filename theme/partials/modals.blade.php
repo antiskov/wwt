@@ -114,10 +114,7 @@
           <p><span>Получать новые объявления по эл. почте</span></p>
         </label>
       </div>
-      <div class="modal__buttons">
-        <a data-fancybox-close href="#">Отменить</a>
-        <button class="btn-arrow">Сохранить</button>
-      </div>
+      <a href="#" class="primary-btn">Сохранить</a>
     </form>
   </div>
 </div>
@@ -313,4 +310,9 @@
 
 <div id="success-modal" class="modal info-modal">
   <h2>Ваша заявка принята. Скоро с Вами свяжутся</h2>
+</div>
+
+
+<div id="success-news-modal" class="modal info-modal">
+  <h2>Вы оформили новостную подписку.</h2>
 </div>

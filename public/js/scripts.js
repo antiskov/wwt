@@ -1052,5 +1052,8 @@ function clearForm (id) {
   $(`#${id}`).find("input, textarea").val("");
 }
 
-var objDiv = document.querySelector(".communication-items");
-objDiv.scrollTop = objDiv.scrollHeight;
+
+if (document.querySelector(".communication-items")){
+  var objDiv = document.querySelector(".communication-items");
+  objDiv.scrollTop = objDiv.scrollHeight;
+}
