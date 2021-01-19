@@ -32,7 +32,7 @@
                         url: '/catalog/show_phone/{{$advert->id}}',
                         data: {"_token": "{{ csrf_token() }}"},
                         success: function (data) {
-                            $('.phone-dropdown').html(data.output);
+                            $('.phone-dropdown').html(data.output).addClass('active');
                         },
                     })
                 })
