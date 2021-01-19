@@ -44,14 +44,18 @@ class CatalogService
         $search = new SearchLink();
         $search->user()->associate(auth()->user());
         $search->filter = $filters;
+
         if (Session::get('searchLink')){
             $search->link_search = route('catalog-favorite', [Session::get('searchLink')]);
         } else {
             $search->link_search = route('catalog-favorite', '');
         }
-        $search->title = $_COOKIE['search_title'];
-        if (!$search->save()) {
-            Log::info("Search request #$search->id not saved");
+
+        if ($_COOKIE['search_title']){
+            $search->title = $_COOKIE['search_title'];
+            if (!$search->save()) {
+                Log::info("Search request #$search->id not saved");
+            }
         }
     }
 

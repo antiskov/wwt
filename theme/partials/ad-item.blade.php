@@ -23,7 +23,7 @@
                     <span>С: 26. 07. 12</span>
                     <span>По: 26. 07. 12</span>
                 </p>
-                <button class="advertice">Реклама</button>
+                <a href="#" class="advertice">Реклама</a>
             </div>
         </div>
         <div class="price-block">
@@ -44,7 +44,7 @@
                     <span>С: 26. 07. 12</span>
                     <span>По: 26. 07. 12</span>
                 </p>
-                <button class="advertice">Реклама</button>
+                <a href="#" class="advertice">Реклама</a>
             </div>
             <div class="set-block">
                 <a href="#/" class="sett">посмотреть</a>
