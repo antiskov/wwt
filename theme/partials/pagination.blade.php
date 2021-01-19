@@ -1,5 +1,5 @@
 <div class="pagination-wrap">
-    <a href="#/" class="save-search">Сохранить поисковый запрос</a>
+    <a href="javascript:;" data-fancybox data-src="#save-search-modal"  class="save-search">Сохранить поисковый запрос</a>
     <div class="pagination">
         <div class="link-wrap">
             <a href="#/" class="text-link with-ico cont"></a>

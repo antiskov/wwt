@@ -337,12 +337,9 @@
         </div>
         <div id="save-filter-modal" class="modal">
             <div class="modal__content">
-                <h5 class="modal__title">Сохранение фильтра</h5>
-                <p class="modal__text">
-                    Введите, пожалуйста, название фильтра для сохранения.
-                </p>
+                <h5 class="modal__title">Сохранить результат поиска</h5>
                 <div id="save-filter-form" class="change-pass-mail">
-                    <input id="input-save-search" name="title_search" type="text" placeholder="Введите название фильтра">
+                    <input id="input-save-search" name="title_search" type="text" placeholder="Название поиска">
                     <span>Обязательное поле*</span>
                     <a href="{{route('catalog.save-search')}}"><button id="button-save-search" class="btn-arrow" type="button">Сохранить запрос</button></a>
                 </div>

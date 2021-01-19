@@ -6,9 +6,9 @@
             <img src="./images/content/watch-2.png" alt="img">
         </div>
         <div class="desc-cont">
-            <div class="item-name">
+            <a href="#" class="item-name">
                 Hublot Big Bang 44MM Evolution Steel Ceramic Watch 301.SM.1770.RX
-            </div>
+            </a>
             <div class="desc-main">
                 <div class="price-cont">
                     <div class="new">

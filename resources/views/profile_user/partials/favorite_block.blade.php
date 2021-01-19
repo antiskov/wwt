@@ -17,7 +17,7 @@
                         </div>
                         <div class="desc-cont">
                             <div class="item-name">
-                                <a href="{{route('catalog.item-page', [$advert])}}">
+                                <a href="{{route('catalog.item-page', [$advert])}}" class="item-name">
                                 {{$advert->title}}
                                 </a>
                             </div>
@@ -69,17 +69,15 @@
         @endforeach
     @else
         @foreach($searchLinks as $searchLink)
-            {{--        @foreach(auth()->user()->favoriteAdverts as $searchLink)--}}
             <div class="items-wrap">
                 <div class="search-item">
                     <a href="{{route('delete_search', [$searchLink['id']])}}"><div class="search-item__delete-btn"></div></a>
                     <div class="search-item__text">
                         <h5>
-                            <a href="{{$searchLink['link']}}">{{$searchLink['title']}}</a>
+                            <a href="{{$searchLink['link']}}" class="search-item__title">{{$searchLink['title']}}</a>
                         </h5>
                         <p>{{__('messages.save_search_from_date').strstr($searchLink['created_at'], ' ', true)}}</p>
                     </div>
-{{--                    <a href="#" class="search-item__link">Все объявления</a>--}}
                 </div>
             </div>
         @endforeach

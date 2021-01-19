@@ -32,7 +32,7 @@
                     </span>
                 </a>
             </div>
-            <form class="search-wrap" action="{{route('subscribe')}}" method="post">
+            <form id="subscribe-form" class="search-wrap" action="{{route('subscribe')}}" method="post">
                 @csrf
                 <input type="search" name="email" class="footer-search" placeholder="Введите email">
                 <button class="email-push" type="submit">
@@ -52,3 +52,21 @@
         </div>
     </div>
 </footer>
+<script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+        $('#subscribe-form').on('submit', function (e){
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: '/subscribe',
+                data: $('#subscribe-form').serializeArray(),
+                success: function (){
+                    $.fancybox.open({
+                        src: '#success-news-modal',
+                    });
+                }
+            })
+        })
+    });
+
+</script>
