@@ -1,6 +1,7 @@
 <div class="pagination-wrap">
     @auth
-    <button data-fancybox data-src="#save-filter-modal" href="javascript:;" class="save-search" type="button">Сохранить поисковый запрос</button>
+        <a data-fancybox data-src="#save-filter-modal" href="javascript:;" class="save-search">Сохранить
+            поисковый запрос</a>
     @endauth
     <div class="pagination">
         <div class="link-wrap">
@@ -8,3 +9,4 @@
         </div>
     </div>
 </div>
+<br>

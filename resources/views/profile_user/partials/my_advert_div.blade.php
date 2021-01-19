@@ -26,8 +26,7 @@
                                 @if($advert->vip_status == 1)
                                     <div>Куплен ВИП статус</div>
                                 @else
-                                    <button class="advertice"><a
-                                            href="{{route('submitting.buy_vip', $advert)}}">Реклама</a></button>
+                                    <a href="{{route('submitting.buy_vip', $advert)}}" class="advertice">Реклама</a>
                                 @endif
                             </div>
                         </div>
@@ -52,8 +51,7 @@
                                 @if($advert->vip_status == 1)
                                     <div>Куплен ВИП статус</div>
                                 @else
-                                    <button class="advertice"><a
-                                            href="{{route('submitting.buy_vip', $advert)}}">Реклама</a></button>
+                                    <a href="{{route('submitting.buy_vip', $advert)}}" class="advertice">Реклама</a>
                                 @endif
                             </div>
                             <div class="set-block">
@@ -75,9 +73,16 @@
                         </div>
                         <div class="statistics-cont">
                             <div class="set-mob">
-                                <a href="#/" class="sett">осмотреть</a>
-                                <a href="#/" class="sett">редактировать</a>
-                                <a href="#/" class="sett">деактивировать</a>
+                                <a href="{{route('catalog.item-page', [$advert])}}"
+                                   class="sett">{{__('messages.my_adverts_div_show')}}</a>
+                                @if($advert->status->title != 'moderation')
+                                    <a href="{{route('submitting.get_draft', [$advert])}}"
+                                       class="sett">{{__('messages.my_adverts_div_edit')}}</a>
+                                    @if($advert->status->title != 'archive')
+                                        <a href="{{ route('change_status', [$statuses->where('title', 'archive')->first()->id, $advert->id]) }}"
+                                           class="sett">{{__('messages.my_adverts_div_close')}}</a>
+                                    @endif
+                                @endif
                             </div>
                             <div class="static-items">
                                 <div class="name-static">{{__('messages.my_adverts_div_statics')}}</div>
