@@ -160,7 +160,7 @@ class SubmittingService
      */
     private function getPartInfoArr()
     {
-        $infoArr['watchTypes'] = WatchType::all();
+        $infoArr['watchTypes'] = WatchType::where('is_active', 1)->get();
         $infoArr['deliveryVolumes'] = ['with box', 'with original documents', 'with original documents and box'];
         $infoArr['states'] = ['new', 'used'];
         $infoArr['sexes'] = Sex::all();
