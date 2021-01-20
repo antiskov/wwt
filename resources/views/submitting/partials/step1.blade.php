@@ -91,9 +91,9 @@
                                 </span>
                 </p>
                 @if($position == 1)
-                    <input type="hidden" name="deliveryVolume" value="{{$advert->delivery_volume}}">
+                    <input type="hidden" name="deliveryVolume" value="{{$advert->deliveryVolume->title}}">
                     <div class="select-value rotate">
-                        <span>{{$advert->delivery_volume}}</span>
+                        <span>{{$advert->deliveryVolume->title}}</span>
                 @else
                     <input type="hidden" name="deliveryVolume">
                     <div class="select-value rotate">
@@ -101,7 +101,7 @@
                 @endif
                     <ul class="value-items">
                         @foreach($deliveryVolumes as $deliveryVolume)
-                            <li>{{$deliveryVolume}}</li>
+                            <li>{{$deliveryVolume->title}}</li>
                         @endforeach
                     </ul>
                 </div>

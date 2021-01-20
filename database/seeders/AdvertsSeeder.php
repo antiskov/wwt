@@ -22,7 +22,7 @@ class AdvertsSeeder extends Seeder
             Advert::create(
                 [
                     'type' => 'watch',
-                    'user_id' => rand(1, 2),
+                    'user_id' => 1,
                     'title' => 'watch' . $i,
                     'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
                     'price' => rand(100, 5000),
@@ -39,7 +39,7 @@ class AdvertsSeeder extends Seeder
                     'zip_code' => 23000,
 //                    'latitude' = '50°27′16″',
 //                    'longtitude' = '30°31′25″',
-                    'delivery_volume' => 'with box',
+                    'delivery_volume_id' => rand(1,4),
                     'photo' => 'small_acc.jpeg',
                     'vip_status' => rand(0, 1),
                     'price_rate' => 1,

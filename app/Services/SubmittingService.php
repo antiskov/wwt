@@ -13,6 +13,7 @@ use App\Http\Requests\Submitting\WatchAdvertRequest;
 use App\Models\Advert;
 use App\Models\AdvertPhoto;
 use App\Models\Currency;
+use App\Models\DeliveryVolume;
 use App\Models\MechanismType;
 use App\Models\Sex;
 use App\Models\Status;
@@ -38,7 +39,7 @@ class SubmittingService
      */
     public function createDraft(WatchAdvertRequest $request)
     {
-        $advert = $this->createAdvert();
+        $advert = $this->createAdvert($request);
         $this->editDraft(new AdvertWatchConnector($request, $advert));
 
         return $advert;
@@ -123,7 +124,7 @@ class SubmittingService
     /**
      * @return Advert
      */
-    protected function createAdvert(): Advert
+    protected function createAdvert(WatchAdvertRequest $request): Advert
     {
         $advert = new Advert();
         $advert->user()->associate(auth()->user());
@@ -132,6 +133,7 @@ class SubmittingService
         $advert->vip_status = 0;
         $advert->status_id = Status::where('title', 'draft')->first()->id;
         $advert->price_rate = 1;
+        $advert->delivery_volume_id = DeliveryVolume::where('title', $request->deliveryVolume)->first()->id;
         if (!$advert->save()) {
             Log::info("Advert #$advert->id not saved");
         }
@@ -161,7 +163,7 @@ class SubmittingService
     private function getPartInfoArr()
     {
         $infoArr['watchTypes'] = WatchType::where('is_active', 1)->get();
-        $infoArr['deliveryVolumes'] = ['with box', 'with original documents', 'with original documents and box'];
+        $infoArr['deliveryVolumes'] = DeliveryVolume::where('is_active', 1)->get();
         $infoArr['states'] = ['new', 'used'];
         $infoArr['sexes'] = Sex::all();
         $infoArr['mechanismTypes'] = MechanismType::all();

@@ -3,16 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\AdminDataRequest;
+use App\Models\DeliveryVolume;
 use App\Models\MechanismType;
 use App\Models\WatchType;
-use Illuminate\Http\Request;
 
 class AdminDataController extends Controller
 {
     public function index()
     {
         $infoArr['watchTypes'] = WatchType::all();
-        $infoArr['deliveryVolumes'] = ['with box', 'with original documents', 'with original documents and box'];
+        $infoArr['deliveryVolumes'] = DeliveryVolume::all();
         $infoArr['states'] = ['new', 'used'];
         $infoArr['mechanismTypes'] = MechanismType::all();
 
@@ -36,23 +37,26 @@ class AdminDataController extends Controller
         return view('admin.pages.update_watch_type', ['watchType' => $watchType]);
     }
 
-    public function updateWatchType(WatchType $watchType, Request $request)
+    public function updateWatchType(WatchType $watchType, AdminDataRequest $request)
     {
-        $request->validate(['name' => 'min:1|max:100']);
-
         $watchType->title = $request->name;
         $watchType->save();
 
         return redirect()->back();
     }
 
-    public function createWatchType(Request $request)
+    public function createWatchType(AdminDataRequest $request)
     {
-        $request->validate(['name' => 'min:1|max:100']);
-
         $watchType = new WatchType();
         $watchType->title = $request->name;
         $watchType->save();
+
+        return redirect()->back();
+    }
+
+    public function deleteWatchType(WatchType $watchType)
+    {
+        $watchType->delete();
 
         return redirect()->back();
     }
@@ -74,23 +78,53 @@ class AdminDataController extends Controller
         return view('admin.pages.update_mechanism_type', ['mechanismType' => $mechanismType]);
     }
 
-    public function updateMechanismType(MechanismType $mechanismType, Request $request)
+    public function updateMechanismType(MechanismType $mechanismType, AdminDataRequest $request)
     {
-        $request->validate(['name' => 'min:1|max:100']);
-
         $mechanismType->title = $request->name;
         $mechanismType->save();
 
         return redirect()->back();
     }
 
-    public function createMechanismType(Request $request)
+    public function createMechanismType(AdminDataRequest $request)
     {
-        $request->validate(['name' => 'min:1|max:100']);
-
         $mechanismType = new MechanismType();
         $mechanismType->title = $request->name;
         $mechanismType->save();
+
+        return redirect()->back();
+    }
+
+    public function changeStatusDeliveryVolume(DeliveryVolume $deliveryVolume, $status)
+    {
+        if ($status != 0 && $status != 1){
+            return redirect()->back();
+        }
+
+        $deliveryVolume->is_active = $status;
+        $deliveryVolume->save();
+
+        return redirect()->back();
+    }
+
+    public function updateDeliveryVolumeIndex(DeliveryVolume $deliveryVolume)
+    {
+        return view('admin.pages.update_delivery_volume', ['deliveryVolume' => $deliveryVolume]);
+    }
+
+    public function updateDeliveryVolume(DeliveryVolume $deliveryVolume, AdminDataRequest $request)
+    {
+        $deliveryVolume->title = $request->name;
+        $deliveryVolume->save();
+
+        return redirect()->back();
+    }
+
+    public function createDeliveryVolume(AdminDataRequest $request)
+    {
+        $deliveryVolume = new DeliveryVolume();
+        $deliveryVolume->title = $request->name;
+        $deliveryVolume->save();
 
         return redirect()->back();
     }

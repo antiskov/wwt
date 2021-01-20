@@ -15,7 +15,8 @@ class AddCollumnAdvertsTable extends Migration
     {
         Schema::table('adverts', function (Blueprint $table) {
             $table->enum('availability_status', ['In stock', 'Pending', 'Not available'])->default('In stock');
-            $table->enum('delivery_volume', ['with box', 'with original documents', 'with original documents and box', 'without documents and box']);
+            $table->unsignedBigInteger('delivery_volume_id');
+            $table->foreign('delivery_volume_id')->references('id')->on('delivery_volumes');
         });
     }
 
