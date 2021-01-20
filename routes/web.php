@@ -158,20 +158,19 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::group(['prefix' => 'data'], function(){
             Route::get('/', [\App\Http\Controllers\Admin\AdminDataController::class, 'index'])->name('admin.data_index');
-            Route::get('/change_status_watch_type/{watchType}/{status}', [\App\Http\Controllers\Admin\AdminDataController::class, 'changeStatusWatchType'])
-                ->name('admin.change_status_watch_type');
-            Route::get('/update_watch_type/{watchType}', [\App\Http\Controllers\Admin\AdminDataController::class, 'updateWatchTypeIndex'])
-                ->name('admin.update_watch_type_index');
-            Route::post('/update_watch_type/{watchType}', [\App\Http\Controllers\Admin\AdminDataController::class, 'updateWatchType'])
-                ->name('admin.update_watch_type');
+            Route::get('/change_status_watch_type/{watchType}/{status}', [\App\Http\Controllers\Admin\AdminDataController::class, 'changeStatusWatchType'])->name('admin.change_status_watch_type');
+            Route::get('/update_watch_type/{watchType}', [\App\Http\Controllers\Admin\AdminDataController::class, 'updateWatchTypeIndex'])->name('admin.update_watch_type_index');
+            Route::post('/update_watch_type/{watchType}', [\App\Http\Controllers\Admin\AdminDataController::class, 'updateWatchType'])->name('admin.update_watch_type');
             Route::post('/create_watch_type', [\App\Http\Controllers\Admin\AdminDataController::class, 'createWatchType'])->name('admin.create_watch_type');
-            Route::get('/change_status_mechanism_type/{mechanismType}/{status}', [\App\Http\Controllers\Admin\AdminDataController::class, 'changeStatusMechanismType'])
-                ->name('admin.change_status_mechanism_type');
-            Route::get('/update_mechanism_type/{mechanismType}', [\App\Http\Controllers\Admin\AdminDataController::class, 'updateMechanismTypeIndex'])
-                ->name('admin.update_mechanism_type_index');
-            Route::post('/update_mechanism_type/{mechanismType}', [\App\Http\Controllers\Admin\AdminDataController::class, 'updateMechanismType'])
-                ->name('admin.update_mechanism_type');
+            Route::get('/delete_watch_type/{watchType}', [\App\Http\Controllers\Admin\AdminDataController::class, 'deleteWatchType'])->name('admin.delete_watch_type');
+            Route::get('/change_status_mechanism_type/{mechanismType}/{status}', [\App\Http\Controllers\Admin\AdminDataController::class, 'changeStatusMechanismType'])->name('admin.change_status_mechanism_type');
+            Route::get('/update_mechanism_type/{mechanismType}', [\App\Http\Controllers\Admin\AdminDataController::class, 'updateMechanismTypeIndex'])->name('admin.update_mechanism_type_index');
+            Route::post('/update_mechanism_type/{mechanismType}', [\App\Http\Controllers\Admin\AdminDataController::class, 'updateMechanismType'])->name('admin.update_mechanism_type');
             Route::post('/create_mechanism_type', [\App\Http\Controllers\Admin\AdminDataController::class, 'createMechanismType'])->name('admin.create_mechanism_type');
+            Route::get('/change_status_delivery_volume/{deliveryVolume}/{status}', [\App\Http\Controllers\Admin\AdminDataController::class, 'changeStatusDeliveryVolume'])->name('admin.change_status_delivery_volume');
+            Route::get('/update_delivery_volume/{deliveryVolume}', [\App\Http\Controllers\Admin\AdminDataController::class, 'updateDeliveryVolumeIndex'])->name('admin.update_delivery_volume_index');
+            Route::post('/update_delivery_volume/{deliveryVolume}', [\App\Http\Controllers\Admin\AdminDataController::class, 'updateDeliveryVolume'])->name('admin.update_delivery_volume');
+            Route::post('/create_delivery_volume', [\App\Http\Controllers\Admin\AdminDataController::class, 'createDeliveryVolume'])->name('admin.create_delivery_volume');
         });
 
     });

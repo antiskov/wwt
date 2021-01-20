@@ -7,6 +7,7 @@ use App\Models\AccessoryMake;
 use App\Models\AccessoryMechanismType;
 use App\Models\AccessoryModel;
 use App\Models\AccessoryType;
+use App\Models\DeliveryVolume;
 use Illuminate\Database\Seeder;
 
 class AccessoryModelSeeder extends Seeder

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\DeliveryVolume;
 use App\Models\MechanismType;
 use App\Models\WatchMake;
 use App\Models\WatchModel;
@@ -59,6 +60,12 @@ class WatchModelSeeder extends Seeder
                 'photo' => 'a',
                 'is_moderated' => 1,
             ]);
+        }
+
+        $arr = ['with box', 'with original documents', 'with original documents and box', 'without documents and box'];
+
+        foreach ($arr as $item){
+            DeliveryVolume::create(['title' => $item]);
         }
     }
 }

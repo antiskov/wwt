@@ -16,6 +16,7 @@ class CreateDeliveryVolumesTable extends Migration
         Schema::create('delivery_volumes', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->boolean('is_active')->default(0);
             $table->timestamps();
         });
     }

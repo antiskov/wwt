@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @method static where(string $string, int $int)
+ * @method static create(array $array)
  */
 class WatchMake extends Model
 {

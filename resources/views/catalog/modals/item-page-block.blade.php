@@ -112,8 +112,8 @@
                         <span>{{ $advert->watchAdvert->watchModel->title }}</span>
                     </div>
                     <div class="setting-cont">
-                        <p>Тип механизма</p>
-                        <span>{{ $advert->watchAdvert->mechanismType->title }}</span>
+                        <p>Тип часов</p>
+                        <span>{{ $advert->watchAdvert->watchType->title }}</span>
                     </div>
                     <div class="setting-cont">
                         <p>Год</p>
@@ -129,7 +129,7 @@
                     </div>
                     <div class="setting-cont">
                         <p>Объем доставки</p>
-                        <span>{{$advert->delivery_volume}}</span>
+                        <span>{{$advert->deliveryVolume->title}}</span>
                     </div>
                     <div class="setting-cont">
                         <p>Местоположение</p>

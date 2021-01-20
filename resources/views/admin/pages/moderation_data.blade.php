@@ -54,6 +54,7 @@
                                             <br>
                                         @endif
                                         <a href="{{route('admin.update_watch_type_index', [$watchType->id])}}">Изменить</a>
+                                            <br>
                                     </td>
                                 </tr>
                             @endforeach
@@ -111,6 +112,63 @@
                                             <br>
                                         @endif
                                         <a href="{{route('admin.update_mechanism_type_index', [$mechanismType->id])}}">Изменить</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <th>Id</th>
+                                <th>Название</th>
+                                <th>Статус</th>
+                                <th>Действие</th>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h3>Дополнение к часам</h3>
+                <div class="card">
+                    <div class="card-body">
+                        <form action="{{route('admin.create_delivery_volume')}}" method="post" enctype='multipart/form-data'>
+                            @csrf
+                            <label for="">Название</label>
+                            <input type="text" required name="name">
+                            <input type="submit" value="Добавить">
+                        </form>
+                    </div>
+                </div>
+                <div class="card">
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="users_table" class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Название</th>
+                                <th>Статус</th>
+                                <th>Действие</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($deliveryVolumes as $deliveryVolume)
+                                <tr>
+                                    <td>{{$deliveryVolume->id}}</td>
+                                    <td>{{$deliveryVolume->title}}</td>
+                                    <td>{{$deliveryVolume->is_active}}</td>
+                                    <td>
+                                        @if($deliveryVolume->is_active == 1)
+                                            <a href="{{ route('admin.change_status_delivery_volume', [$deliveryVolume->id, 0]) }}">Снять</a>
+                                            <br>
+                                        @else
+                                            <a href="{{ route('admin.change_status_delivery_volume', [$deliveryVolume->id, 1]) }}">Выложить</a>
+                                            <br>
+                                        @endif
+                                        <a href="{{route('admin.update_delivery_volume_index', [$deliveryVolume->id])}}">Изменить</a>
                                     </td>
                                 </tr>
                             @endforeach

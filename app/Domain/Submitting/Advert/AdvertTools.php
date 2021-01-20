@@ -5,6 +5,7 @@ namespace App\Domain\Submitting\Advert;
 use App\Http\Requests\Submitting\WatchAdvertRequest;
 use App\Models\Advert;
 use App\Models\Currency;
+use App\Models\DeliveryVolume;
 use App\Services\RateService;
 use Illuminate\Support\Facades\Log;
 
@@ -37,9 +38,9 @@ class AdvertTools
         $this->advert->street = $this->request->street;
         $this->advert->zip_code = $this->request->zip_code;
         $this->advert->street_additional = $this->request->street_additional;
-        $this->advert->delivery_volume = $this->request->deliveryVolume;
         $this->advert->latitude = $this->request->lat;
         $this->advert->longtitude = $this->request->lng;
+        $this->advert->delivery_volume_id = DeliveryVolume::where('title', $this->request->deliveryVolume)->first()->id;
 
         if ($this->request->is_publish_surname == 1) {
             $this->advert->is_publish_surname = 0;
