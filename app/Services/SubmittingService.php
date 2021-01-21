@@ -18,6 +18,7 @@ use App\Models\MechanismType;
 use App\Models\Sex;
 use App\Models\Status;
 use App\Models\WatchAdvert;
+use App\Models\WatchMake;
 use App\Models\WatchType;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -166,8 +167,9 @@ class SubmittingService
         $infoArr['deliveryVolumes'] = DeliveryVolume::where('is_active', 1)->get();
         $infoArr['states'] = ['new', 'used'];
         $infoArr['sexes'] = Sex::all();
-        $infoArr['mechanismTypes'] = MechanismType::all();
+        $infoArr['mechanismTypes'] = MechanismType::where('is_active', 1)->get();
         $infoArr['currencies'] = Currency::all();
+        $infoArr['brands'] = WatchMake::where('is_moderated', 1)->get();
 
         return $infoArr;
     }

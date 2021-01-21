@@ -147,6 +147,7 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('/change_status/{status}/{maker}', [\App\Http\Controllers\Admin\MakersController::class, 'changeStatus'])->name('admin.change_status_maker');
             Route::get('/update_maker/{maker}', [\App\Http\Controllers\Admin\MakersController::class, 'updateMakerIndex'])->name('admin.update_maker_index');
             Route::post('/update_maker/{maker}', [\App\Http\Controllers\Admin\MakersController::class, 'updateMaker'])->name('admin.update_maker');
+            Route::get('/change_moderation/{status}/{maker}', [\App\Http\Controllers\Admin\MakersController::class, 'setModeration'])->name('admin.change_moderation');
         });
 
         Route::group(['prefix' => 'links'], function (){
