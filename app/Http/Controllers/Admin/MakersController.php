@@ -16,7 +16,7 @@ class MakersController extends Controller
      */
     public function index()
     {
-        $watchMakes = WatchMake::where('is_moderated', 1)->get();
+        $watchMakes = WatchMake::all();
 
         return view('admin.pages.manage_makers', ['makers' => $watchMakes]);
     }
@@ -69,6 +69,18 @@ class MakersController extends Controller
     {
         $request->validate(['logo' => 'required|image']);
         $service->updateMaker($request, $maker);
+
+        return redirect()->back();
+    }
+
+    public function setModeration($status, WatchMake $maker)
+    {
+        if ($status != 0 && $status != 1){
+            return redirect()->back();
+        }
+
+        $maker->is_moderated = $status;
+        $maker->save();
 
         return redirect()->back();
     }

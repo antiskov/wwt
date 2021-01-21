@@ -21,15 +21,29 @@
                 </div>
             </div>
             <div class="select-price">
-            </div>
-            <div class="select-price">
-                <p>Марка *</p>
+                <p>Марка *
+                    <img src="/images/icons/information-icon.svg" alt="img" class="info-icon">
+                    <span class="input-info">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            Dolores earum, ipsa ipsum iste laborum nihil tempore? Ea
+                            laboriosam officiis possimus quam quas quod sed totam?
+                        </span>
+                </p>
                 @if($position == 1)
-                    <input data-step-input class="common-input" type="text" name="brand" value="{{$advert->watchAdvert->watchMake->title}}">
-                @else
-                    <input data-step-input class="common-input" type="text" name="brand" value="">
-                @endif
-            </div>
+                    <input type="hidden" name="brand" value="{{$advert->watchAdvert->watchMake->title}}">
+                    <div class="select-value rotate">
+                        <span>{{$advert->watchAdvert->watchMake->title}}</span>
+                        @else
+                            <input type="hidden" name="brand">
+                            <div class="select-value rotate">
+                                <span>Выберите</span>
+                                @endif
+                                <ul class="value-items">
+                                    @foreach($brands as $brand)
+                                        <li>{{$brand->title}}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                    </div>
             <div class="select-price">
                 <p class="ai-fe">Модель *
                     <img src="/images/icons/information-icon.svg" alt="img" class="info-icon">

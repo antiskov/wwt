@@ -43,7 +43,8 @@
                                 <th>Id</th>
                                 <th>Название</th>
                                 <th>Логотип</th>
-                                <th>Статус</th>
+                                <th>Выложен на главной?</th>
+                                <th>Доступен в выпадющем списке в добавлении обьявления?</th>
                                 <th>Действие</th>
                             </tr>
                             </thead>
@@ -53,13 +54,29 @@
                                     <td>{{$maker->id}}</td>
                                     <td>{{$maker->title}}</td>
                                     <td>{{$maker->logo}}</td>
-                                    <td>{{$maker->status}}</td>
+                                    @if($maker->status == 1)
+                                        <td>Да</td>
+                                    @else
+                                        <td>Нет</td>
+                                    @endif
+                                    @if($maker->is_moderated == 1)
+                                        <td>Да</td>
+                                    @else
+                                        <td>Нет</td>
+                                    @endif
                                     <td>
                                         @if($maker->status == 1)
-                                            <a href="{{ route('admin.change_status_maker', [0, $maker->id]) }}">Снять</a>
+                                            <a href="{{ route('admin.change_status_maker', [0, $maker->id]) }}">Снять с главной</a>
                                             <br>
                                         @else
-                                            <a href="{{ route('admin.change_status_maker', [1, $maker->id]) }}">Выложить</a>
+                                            <a href="{{ route('admin.change_status_maker', [1, $maker->id]) }}">Выложить на главную</a>
+                                            <br>
+                                        @endif
+                                        @if($maker->is_moderated == 1)
+                                            <a href="{{ route('admin.change_moderation', [0, $maker->id]) }}">Убрать из списка</a>
+                                            <br>
+                                        @else
+                                            <a href="{{ route('admin.change_moderation', [1, $maker->id]) }}">Добавить в список</a>
                                             <br>
                                         @endif
                                             <a href="{{route('admin.update_maker_index', [$maker->id])}}">Изменить фото</a>
@@ -72,7 +89,8 @@
                                 <th>Id</th>
                                 <th>Название</th>
                                 <th>Логотип</th>
-                                <th>Статус</th>
+                                <th>Выложен на главной?</th>
+                                <th>Доступен в выпадющем списке в добавлении обьявления?</th>
                                 <th>Действие</th>
                             </tr>
                             </tfoot>
