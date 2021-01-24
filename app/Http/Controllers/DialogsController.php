@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Services\DialogsService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class DialogsController extends Controller
 {
     public function show($id = null, DialogsService $service)
     {
         $dialogs=$service->getUserDialogs(Auth::id());
+        Log::info($dialogs);
         if($id) {
             $currentDialogId=isset($dialogs[0])?$dialogs[0]->id:0;
         }
