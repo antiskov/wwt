@@ -68,8 +68,6 @@
         </div>
         </div>
     </section>
-@endsection
-@section('scripts')
     <script>
         document.addEventListener("DOMContentLoaded", function (event) {
             document.querySelector('#heart').addEventListener('click', function (e) {
@@ -108,4 +106,7 @@
             })
         });
     </script>
+@endsection
+@section('scripts')
+
 @endsection
