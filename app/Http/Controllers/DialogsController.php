@@ -9,6 +9,6 @@ class DialogsController extends Controller
 {
     public function show($id = null, DialogsService $service)
     {
-
+        return view('profile_user.pages.my_messages');
     }
 }
