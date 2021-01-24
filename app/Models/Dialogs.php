@@ -11,17 +11,17 @@ class Dialogs extends Model
 
     public function initiator()
     {
-        return $this->belongsTo(User::class, 'id','initiator_id');
+        return $this->belongsTo(User::class,'initiator_id', 'id');
     }
 
     public function respondent()
     {
-        return $this->belongsTo(User::class,'id','respondent_id');
+        return $this->belongsTo(User::class,'respondent_id','id');
     }
 
     public function advert()
     {
-        return $this->belongsTo(Advert::class,'id','advert_id');
+        return $this->belongsTo(Advert::class,'advert_id','id');
     }
     public function messages()
     {
