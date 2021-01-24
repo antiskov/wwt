@@ -78,7 +78,7 @@
                         <img src="{{asset($linkAvatar)}}" alt="img">
                     </div>
                 </div>
-                <button class="call-seller btn-hover">Связатся с продавцом</button>
+                <button id="contact_to_seller" class="call-seller btn-hover">Связатся с продавцом</button>
             </div>
         </div>
     </div>

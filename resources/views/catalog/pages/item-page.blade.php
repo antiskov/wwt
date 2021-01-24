@@ -36,6 +36,16 @@
                         },
                     })
                 })
+                $('.contact_to_seller').on('click', function(e){
+                    e.preventDefault();
+                    $.ajax({
+                        url: '{{route('getLinkToDialog',['advert'=>$advert->id])}}',
+                        data: {"_token": "{{ csrf_token() }}"},
+                        success: function (data) {
+                            console.log(data);
+                        },
+                    })
+                })
             });
         </script>
         @include('catalog.modals.item-page-block')

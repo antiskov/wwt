@@ -87,6 +87,7 @@ Route::middleware('set.locale')->group(function () {
         Route::get('/sort/{status}', [\App\Http\Controllers\CatalogController::class, 'sort'])->name('catalog.sort');
         Route::get('/count_results/{type}', [\App\Http\Controllers\CatalogController::class, 'countResults'])->name('catalog.count-results');
         Route::get('/item_page/{advert}', [\App\Http\Controllers\GoodsController::class, 'index'])->name('catalog.item-page');
+        Route::get('/item_page/{advert}/getItemDialog', [\App\Http\Controllers\AjaxController::class, 'getLinkToDialog'])->name('getLinkToDialog');
         Route::get('/show_phone/{advert}', [\App\Http\Controllers\GoodsController::class, 'showPhone'])->name('catalog.show_phone');
         Route::get('/item_page_favorite/{advert}/{favorite}', [\App\Http\Controllers\GoodsController::class, 'setFavorite'])->name('catalog.item_page_favorite');
         Route::get('{user}/seller_ads', [\App\Http\Controllers\CatalogController::class, 'sellerAds'])->name('catalog.seller-ads');
@@ -94,6 +95,9 @@ Route::middleware('set.locale')->group(function () {
         Route::get('/set_rate/{currency}', [\App\Http\Controllers\CatalogController::class, 'setRate'])->name('catalog.set_rate');
 
         Route::get('/{search}', [\App\Http\Controllers\CatalogController::class, 'getFilterResult'])->name('catalog-favorite');
+    });
+    Route::group(['prefix'=>'dialog'], function() {
+        Route::get('/{id?}',[\App\Http\Controllers\DialogsController::class,'show'])->name('DialogShow');
     });
     Route::get('/count_results/{type}', [\App\Http\Controllers\CatalogController::class, 'countResults'])->name('home.count-results');
 
