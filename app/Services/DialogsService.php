@@ -19,6 +19,7 @@ class DialogsService
             $dialog->advert_id=$advert->id;
             $dialog->initiator_id=Auth::id();
             $dialog->respondent_id=$advert->user_id;
+            $dialog->save();
         }
         return $dialog;
     }
