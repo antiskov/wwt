@@ -12,6 +12,8 @@ class Dialogs extends Model
 
     protected $appends = array('unreaded');
 
+    protected $with = ['messages'];
+
     public function initiator()
     {
         return $this->belongsTo(User::class,'initiator_id', 'id');
