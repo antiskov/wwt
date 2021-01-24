@@ -6,7 +6,9 @@ use App\Http\Requests\CheckEmailRequest;
 use App\Http\Requests\LoginFormRequest;
 use App\Http\Requests\RegisterFormRequest;
 use App\Mail\TestMail;
+use App\Models\Advert;
 use App\Models\User;
+use App\Services\DialogsService;
 use App\Services\SubscribeService;
 use App\Services\UserService;
 use Illuminate\Support\Facades\Auth;
@@ -83,5 +85,9 @@ class AjaxController extends Controller
         ];
 
         return response()->json($data);
+    }
+    public function getLinkToDialog(Advert $advert, DialogsService $service)
+    {
+        return response()->json(['url'=>$service->getLinkToTheDialog($advert)]);
     }
 }
