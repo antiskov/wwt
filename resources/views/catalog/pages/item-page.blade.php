@@ -42,7 +42,8 @@
                         url: '{{route('getLinkToDialog',['advert'=>$advert->id])}}',
                         data: {"_token": "{{ csrf_token() }}"},
                         success: function (data) {
-                            console.log(data);
+                            json=JSON.parse(data)
+                            window.location.replace(json.url);
                         },
                     })
                 })
