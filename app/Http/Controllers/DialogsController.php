@@ -12,10 +12,13 @@ class DialogsController extends Controller
     public function show($id = null, DialogsService $service)
     {
         $dialogs=$service->getUserDialogs(Auth::id());
-        Log::info($dialogs);
         if($id) {
-            $currentDialogId=isset($dialogs[0])?$dialogs[0]->id:0;
+            $currentDialog=isset($dialogs[0])?$dialogs[0]:0;
         }
+        if($currentDialog) {
+            $service->setMessagesReadedInDialogForUser($currentDialog, Auth::id());
+        }
+        Log::info($currentDialog->unreaded);
         return view('profile_user.pages.my_messages');
     }
 }

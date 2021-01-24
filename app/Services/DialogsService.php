@@ -6,6 +6,7 @@ namespace App\Services;
 
 use App\Models\Advert;
 use App\Models\Dialogs;
+use App\Models\Messages;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
@@ -34,5 +35,9 @@ class DialogsService
     {
         $dialogs=Dialogs::where('respondent_id', $user_id)->orWhere('initiator_id',$user_id)->with(['initiator','respondent','advert'])->get();
         return $dialogs;
+    }
+    public function setMessagesReadedInDialogForUser($dialog_id, $user_id)
+    {
+        Messages::where('responded_id', $user_id)->where('dialog_id',$dialog_id)->update(['is_readed',1]);
     }
 }
