@@ -10,44 +10,6 @@
         <button><a href="{{ route('change_status', [$statuses->where('title', 'archive')->first(), $advert->id]) }}">Удалить</a></button>
     @endif
     <section class="item-page">
-        <script>
-            document.addEventListener("DOMContentLoaded", function (event) {
-                document.querySelector('#heart').addEventListener('click', function (e) {
-                    if (!this.classList.contains('active')) {
-                        console.log(1);
-                        $.ajax({
-                            url: '/catalog/item_page_favorite/{{$advert->id}}/{{1}}',
-                        })
-                    } else {
-                        console.log(0);
-                        $.ajax({
-                            url: '/catalog/item_page_favorite/{{$advert->id}}/{{0  }}',
-                        })
-                    }
-                })
-
-                $('.button-show-phone').on('click', function(e){
-                    e.preventDefault();
-                    $.ajax({
-                        url: '/catalog/show_phone/{{$advert->id}}',
-                        data: {"_token": "{{ csrf_token() }}"},
-                        success: function (data) {
-                            $('.phone-dropdown').html(data.output).addClass('active');
-                        },
-                    })
-                })
-                $('.contact_to_seller').on('click', function(e){
-                    e.preventDefault();
-                    $.ajax({
-                        url: '{{route('getLinkToDialog',['advert'=>$advert->id])}}',
-                        data: {"_token": "{{ csrf_token() }}"},
-                        success: function (data) {
-                            console.log(data);
-                        },
-                    })
-                })
-            });
-        </script>
         @include('catalog.modals.item-page-block')
         <div class="tabs__content">
             <div class="container">
@@ -106,4 +68,44 @@
         </div>
         </div>
     </section>
+@endsection
+@section('scripts')
+    <script>
+        document.addEventListener("DOMContentLoaded", function (event) {
+            document.querySelector('#heart').addEventListener('click', function (e) {
+                if (!this.classList.contains('active')) {
+                    console.log(1);
+                    $.ajax({
+                        url: '/catalog/item_page_favorite/{{$advert->id}}/{{1}}',
+                    })
+                } else {
+                    console.log(0);
+                    $.ajax({
+                        url: '/catalog/item_page_favorite/{{$advert->id}}/{{0  }}',
+                    })
+                }
+            })
+
+            $('.button-show-phone').on('click', function(e){
+                e.preventDefault();
+                $.ajax({
+                    url: '/catalog/show_phone/{{$advert->id}}',
+                    data: {"_token": "{{ csrf_token() }}"},
+                    success: function (data) {
+                        $('.phone-dropdown').html(data.output).addClass('active');
+                    },
+                })
+            })
+            $('#contact_to_seller').on('click', function(e){
+                e.preventDefault();
+                $.ajax({
+                    url: '{{route('getLinkToDialog',['advert'=>$advert->id])}}',
+                    data: {"_token": "{{ csrf_token() }}"},
+                    success: function (data) {
+                        console.log(data);
+                    },
+                })
+            })
+        });
+    </script>
 @endsection
