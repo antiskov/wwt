@@ -18,7 +18,10 @@ class DialogsController extends Controller
         if($currentDialog) {
             $service->setMessagesReadedInDialogForUser($currentDialog, Auth::id());
         }
-        Log::info($currentDialog->unreaded);
-        return view('profile_user.pages.my_messages');
+        return view('profile_user.pages.my_messages',
+        [
+            'dialogs'=>$dialogs,
+            'currentDialog'=>$currentDialog
+        ]);
     }
 }
