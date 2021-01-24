@@ -14,7 +14,7 @@
                             <ul class="chat-types__dropdown">
                                 <li data-id="all-messages" class="active">Все сообщения</li>
                                 <li data-id="unread">Непрочитаные</li>
-                                <li data-id="unanswered">Неотвеченые</li>
+                                {{--<li data-id="unanswered">Неотвеченые</li>--}}
                             </ul>
                         </div>
                         <ul class="mess-items">

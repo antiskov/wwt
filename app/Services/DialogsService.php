@@ -29,4 +29,10 @@ class DialogsService
         $dialog=$this->findOrCreateDialogByAdvertId($advert);
         return route('DialogShow',['id'=>$dialog->id]);
     }
+
+    public function getUserDialogs(int $user_id)
+    {
+        $dialogs=Dialogs::where('respondent_id', $user_id)->orWhere('initiator_id',$user_id)->with(['initiator','respondent','advert'])->get();
+        return $dialogs;
+    }
 }
