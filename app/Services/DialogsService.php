@@ -7,6 +7,7 @@ namespace App\Services;
 use App\Models\Advert;
 use App\Models\Dialogs;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class DialogsService
 {
@@ -25,6 +26,7 @@ class DialogsService
     public function getLinkToTheDialog(Advert $advert)
     {
         $dialog=$this->findOrCreateDialogByAdvertId($advert);
+        Log::info($dialog);
         return route('DialogShow',['id'=>$dialog->id]);
     }
 }
