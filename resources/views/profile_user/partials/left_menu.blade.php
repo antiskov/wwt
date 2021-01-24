@@ -11,7 +11,7 @@
         </div>
         <ul class="link-items">
             <li><img src="/images/icons/my-order.svg" alt=""><a href="{{route('my_adverts')}}">{{__('messages.menu_my_adverts')}}</a></li>
-            <li><img src="/images/icons/email.svg" alt=""><a href="#/">{{__('messages.menu_messages')}}</a></li>
+            <li><img src="/images/icons/email.svg" alt=""><a href="{{route('DialogShow')}}">{{__('messages.menu_messages')}}</a></li>
             <li><img src="/images/icons/pay.svg" alt=""><a href="{{route('payments')}}">{{__('messages.menu_payments')}}</a></li>
             <li><img src="/images/icons/profile.svg" alt=""><a href="{{ route('editing-profile') }}">{{__('messages.menu_editing_profile')}}</a></li>
             <li><img src="/images/icons/setting.svg" alt=""><a href="{{route('profile-settings')}}">{{__('messages.menu_profile_settings')}}</a></li>
