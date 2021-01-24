@@ -27,8 +27,6 @@ class DialogsService
     public function getLinkToTheDialog(Advert $advert)
     {
         $dialog=$this->findOrCreateDialogByAdvertId($advert);
-        Log::info($dialog);
-        Log::info(route('DialogShow',['id'=>$dialog->id]));
         return route('DialogShow',['id'=>$dialog->id]);
     }
 }
