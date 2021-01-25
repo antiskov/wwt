@@ -2,27 +2,27 @@
     <div class="container">
         {{messages.join('\n')}}
         <div class="communication-items">
-            <div class="data">05. 06. 20</div>
+<!--            <div class="data">05. 06. 20</div>
             <div class="communication-items-in">
-<!--                <img src="./images/content/person.png" alt="img">-->
+&lt;!&ndash;                <img src="./images/content/person.png" alt="img">&ndash;&gt;
                 <div class="text-mas-in">
                     <p>
                         Вы купили эти часы? Я не покупал эти часы
                     </p>
                     <div class="time">18.06</div>
-<!--                    <img class="label-del" src="images/icons/ok-white.svg">-->
+&lt;!&ndash;                    <img class="label-del" src="images/icons/ok-white.svg">&ndash;&gt;
                 </div>
             </div>
             <div class="communication-items-out">
-<!--                <img src="./images/content/person.png" alt="img">-->
+&lt;!&ndash;                <img src="./images/content/person.png" alt="img">&ndash;&gt;
                 <div class="text-mas-in">
                     <p>
                         Вы купили эти часы? Я не покупал эти часы
                     </p>
                     <div class="time">18.06</div>
-<!--                    <img class="label-del" src="./images/icons/ok-white.svg">-->
+&lt;!&ndash;                    <img class="label-del" src="./images/icons/ok-white.svg">&ndash;&gt;
                 </div>
-            </div>
+            </div>-->
         </div>
         <div class="cont">
             <textarea class="communication-mess" ref="messageField" placeholder="Введите текст" v-model="textMessage"></textarea>
