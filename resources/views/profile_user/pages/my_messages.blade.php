@@ -21,7 +21,7 @@
                             @foreach($dialogs as $dialog)
                             <li class="item-messages @if($dialog->unreaded) unread @endif">
                                 <div class="img-wrap">
-                                    <img src="./images/content/watch-1.png" alt="img">
+                                    <img src="{{asset('/storage/images/notice_photos/watch/number_'.$advert->id.'/'.$photo->photo)}}" alt="img">
                                 </div>
                                 <div class="item-cont">
                                     <div class="from">
