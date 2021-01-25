@@ -154,15 +154,15 @@
                             </li>--}}
                         </ul>
                     </div>
-                    @if($currenDialog)
+                    @if($currentDialog)
                     <div class="chat-cont">
                         <div class="chat-person">
                             <button class="back-chat"></button>
                             <div class="name">
-                                {{$currenDialog->advert->title}}
+                                {{$currentDialog->advert->title}}
                             </div>
                             <div class="img-wrap">
-                                <img src="{{asset((new \App\Services\ProfileService())->getAvatar($currenDialog->advert->user_id))}}" alt="img">
+                                <img src="{{asset((new \App\Services\ProfileService())->getAvatar($currentDialog->advert->user_id))}}" alt="img">
                             </div>
                         </div>
                         <div class="communication-items">
