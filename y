@@ -1,5 +1,5 @@
 {
-	"authHost": "http://localhost",
+	"authHost": "http://wwt.dda.digital",
 	"authEndpoint": "/broadcasting/auth",
 	"clients": [],
 	"database": "redis",
