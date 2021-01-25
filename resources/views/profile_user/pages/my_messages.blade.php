@@ -1,7 +1,7 @@
 @extends('profile_user.layouts.main')
 
 @section('profile-content')
-    <section class="messages">
+    <section id="app" class="messages">
         <div class="">
             <div class="container-wrap">
                 @include('profile_user.partials.left_menu')
