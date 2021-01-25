@@ -24,10 +24,10 @@
                 </div>
             </div>
         </div>
-        <form class="cont">
+        <div class="cont">
             <textarea class="communication-mess" ref="messageField" placeholder="Введите текст" v-model="textMessage"></textarea>
             <button type="submit"  class="sent-comm btn-hover" @click="sendMessage">Отправить</button>
-        </form>
+        </div>
     </div>
 </template>
 <script>
