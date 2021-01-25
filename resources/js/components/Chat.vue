@@ -41,7 +41,7 @@
         mounted() {
             window.Echo.channel('chat')
                 .listen('Message', ({message}) => {
-                    this.messages.push(message.body)
+                    this.messages.push(message)
                 })
         },
         methods: {
