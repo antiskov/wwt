@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/css/style.css">
     <script defer src="/js/plugins.js"></script>
     <script defer src="/js/scripts.js"></script>
-
+    <script src="{{ asset('js/app.js') }}" defer></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
 </head>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\Message;
 use App\Models\Dialogs;
 use App\Services\DialogsService;
 use Illuminate\Http\Request;
@@ -26,5 +27,9 @@ class DialogsController extends Controller
             'dialogs'=>$dialogs,
             'currentDialog'=>$currentDialog
         ]);
+    }
+    public function sendMessage(Request $request)
+    {
+        Message::dispatch($request->input('body'));
     }
 }
