@@ -162,7 +162,7 @@
                                 {{$currenDialog->advert->title}}
                             </div>
                             <div class="img-wrap">
-                                <img src="./images/content/person.png" alt="img">
+                                <img src="{{asset((new \App\Services\ProfileService())->getAvatar($currenDialog->advert->user_id))}}" alt="img">
                             </div>
                         </div>
                         <div class="communication-items">
