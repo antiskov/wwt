@@ -43,3 +43,9 @@ php artisan migrate:fresh --seed
 php artisan rate:update
 php artisan schedule:work
 ```
+
+4. Комманды для чата
+```
+laravel-echo-server start
+php artisan queue:work
+```
