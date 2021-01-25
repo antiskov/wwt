@@ -33,7 +33,7 @@
                                     </div>
                                     <div class="price-wrap">
                                         <div class="new">
-                                            {{$dialog->advert->price}}
+                                            {{round($dialog->advert->price*$currency['rate']).' '.$currency['symbol']}}
                                         </div>
                                         <div class="data">
                                             {{$dialog->advert->created_at}}

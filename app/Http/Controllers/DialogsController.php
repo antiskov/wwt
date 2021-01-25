@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dialogs;
 use App\Services\DialogsService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +14,9 @@ class DialogsController extends Controller
     {
         $dialogs=$service->getUserDialogs(Auth::id());
         if($id) {
-            $currentDialog=isset($dialogs[0])?$dialogs[0]:0;
+            $currentDialog = isset($dialogs[0]) ? $dialogs[0] : 0;
+        } else {
+            $currentDialog=Dialogs::findOrFail($id);
         }
         if($currentDialog) {
             $service->setMessagesReadedInDialogForUser($currentDialog, Auth::id());
