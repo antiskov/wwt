@@ -165,119 +165,122 @@
                                 <img src="{{asset((new \App\Services\ProfileService())->getAvatar($currentDialog->advert->user_id))}}" alt="img">
                             </div>
                         </div>
-                        <div class="communication-items">
-                            <div class="data">05. 06. 20</div>
-                            <div class="communication-items-in">
-                                <img src="./images/content/person.png" alt="img">
-                                <div class="text-mas-in">
-                                    <p>
-                                        Вы купили эти часы? Я не покупал эти часы
-                                    </p>
-                                    <div class="time">18.06</div>
-                                    <img class="label-del" src="images/icons/ok-white.svg">
+                        <div id="chat_block">
+                            <div class="communication-items">
+                                <div class="data">05. 06. 20</div>
+                                <div class="communication-items-in">
+                                    <img src="./images/content/person.png" alt="img">
+                                    <div class="text-mas-in">
+                                        <p>
+                                            Вы купили эти часы? Я не покупал эти часы
+                                        </p>
+                                        <div class="time">18.06</div>
+                                        <img class="label-del" src="images/icons/ok-white.svg">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="communication-items-out">
-                                <img src="./images/content/person.png" alt="img">
-                                <div class="text-mas-in">
-                                    <p>
-                                        Вы купили эти часы? Я не покупал эти часы
-                                    </p>
-                                    <div class="time">18.06</div>
-                                    <img class="label-del" src="./images/icons/ok-white.svg">
+                                <div class="communication-items-out">
+                                    <img src="./images/content/person.png" alt="img">
+                                    <div class="text-mas-in">
+                                        <p>
+                                            Вы купили эти часы? Я не покупал эти часы
+                                        </p>
+                                        <div class="time">18.06</div>
+                                        <img class="label-del" src="./images/icons/ok-white.svg">
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="data">05. 06. 20</div>
-                            <div class="communication-items-in">
-                                <img src="./images/content/person.png" alt="img">
-                                <div class="text-mas-in">
-                                    <p>
-                                        Вы купили эти часы? Я не покупал эти часы
-                                    </p>
-                                    <div class="time">18.06</div>
-                                    <img class="label-del" src="images/icons/ok-white.svg">
+                                <div class="data">05. 06. 20</div>
+                                <div class="communication-items-in">
+                                    <img src="./images/content/person.png" alt="img">
+                                    <div class="text-mas-in">
+                                        <p>
+                                            Вы купили эти часы? Я не покупал эти часы
+                                        </p>
+                                        <div class="time">18.06</div>
+                                        <img class="label-del" src="images/icons/ok-white.svg">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="communication-items-out">
-                                <img src="./images/content/person.png" alt="img">
-                                <div class="text-mas-in">
-                                    <p>
-                                        Вы купили эти часы? Я не покупал эти часы
-                                    </p>
-                                    <div class="time">18.06</div>
-                                    <img class="label-del" src="./images/icons/ok-white.svg">
+                                <div class="communication-items-out">
+                                    <img src="./images/content/person.png" alt="img">
+                                    <div class="text-mas-in">
+                                        <p>
+                                            Вы купили эти часы? Я не покупал эти часы
+                                        </p>
+                                        <div class="time">18.06</div>
+                                        <img class="label-del" src="./images/icons/ok-white.svg">
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="data">05. 06. 20</div>
-                            <div class="communication-items-in">
-                                <img src="./images/content/person.png" alt="img">
-                                <div class="text-mas-in">
-                                    <p>
-                                        Вы купили эти часы? Я не покупал эти часы
-                                    </p>
-                                    <div class="time">18.06</div>
-                                    <img class="label-del" src="images/icons/ok-white.svg">
+                                <div class="data">05. 06. 20</div>
+                                <div class="communication-items-in">
+                                    <img src="./images/content/person.png" alt="img">
+                                    <div class="text-mas-in">
+                                        <p>
+                                            Вы купили эти часы? Я не покупал эти часы
+                                        </p>
+                                        <div class="time">18.06</div>
+                                        <img class="label-del" src="images/icons/ok-white.svg">
+                                    </div>
+                                </div>
+                                <div class="communication-items-out">
+                                    <img src="./images/content/person.png" alt="img">
+                                    <div class="text-mas-in">
+                                        <p>
+                                            Вы купили эти часы? Я не покупал эти часы
+                                        </p>
+                                        <div class="time">18.06</div>
+                                        <img class="label-del" src="./images/icons/ok-white.svg">
+                                    </div>
+                                </div>
+                                <div class="data">05. 06. 20</div>
+                                <div class="communication-items-in">
+                                    <img src="./images/content/person.png" alt="img">
+                                    <div class="text-mas-in">
+                                        <p>
+                                            Вы купили эти часы? Я не покупал эти часы
+                                        </p>
+                                        <div class="time">18.06</div>
+                                        <img class="label-del" src="images/icons/ok-white.svg">
+                                    </div>
+                                </div>
+                                <div class="communication-items-out">
+                                    <img src="./images/content/person.png" alt="img">
+                                    <div class="text-mas-in">
+                                        <p>
+                                            Вы купили эти часы? Я не покупал эти часы
+                                        </p>
+                                        <div class="time">18.06</div>
+                                        <img class="label-del" src="./images/icons/ok-white.svg">
+                                    </div>
+                                </div>
+                                <div class="data">05. 06. 20</div>
+                                <div class="communication-items-in">
+                                    <img src="./images/content/person.png" alt="img">
+                                    <div class="text-mas-in">
+                                        <p>
+                                            Вы купили эти часы? Я не покупал эти часы
+                                        </p>
+                                        <div class="time">18.06</div>
+                                        <img class="label-del" src="images/icons/ok-white.svg">
+                                    </div>
+                                </div>
+                                <div class="communication-items-out">
+                                    <img src="./images/content/person.png" alt="img">
+                                    <div class="text-mas-in">
+                                        <p>
+                                            Вы купили эти часы? Я не покупал эти часы
+                                        </p>
+                                        <div class="time">18.06</div>
+                                        <img class="label-del" src="./images/icons/ok-white.svg">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="communication-items-out">
-                                <img src="./images/content/person.png" alt="img">
-                                <div class="text-mas-in">
-                                    <p>
-                                        Вы купили эти часы? Я не покупал эти часы
-                                    </p>
-                                    <div class="time">18.06</div>
-                                    <img class="label-del" src="./images/icons/ok-white.svg">
-                                </div>
-                            </div>
-                            <div class="data">05. 06. 20</div>
-                            <div class="communication-items-in">
-                                <img src="./images/content/person.png" alt="img">
-                                <div class="text-mas-in">
-                                    <p>
-                                        Вы купили эти часы? Я не покупал эти часы
-                                    </p>
-                                    <div class="time">18.06</div>
-                                    <img class="label-del" src="images/icons/ok-white.svg">
-                                </div>
-                            </div>
-                            <div class="communication-items-out">
-                                <img src="./images/content/person.png" alt="img">
-                                <div class="text-mas-in">
-                                    <p>
-                                        Вы купили эти часы? Я не покупал эти часы
-                                    </p>
-                                    <div class="time">18.06</div>
-                                    <img class="label-del" src="./images/icons/ok-white.svg">
-                                </div>
-                            </div>
-                            <div class="data">05. 06. 20</div>
-                            <div class="communication-items-in">
-                                <img src="./images/content/person.png" alt="img">
-                                <div class="text-mas-in">
-                                    <p>
-                                        Вы купили эти часы? Я не покупал эти часы
-                                    </p>
-                                    <div class="time">18.06</div>
-                                    <img class="label-del" src="images/icons/ok-white.svg">
-                                </div>
-                            </div>
-                            <div class="communication-items-out">
-                                <img src="./images/content/person.png" alt="img">
-                                <div class="text-mas-in">
-                                    <p>
-                                        Вы купили эти часы? Я не покупал эти часы
-                                    </p>
-                                    <div class="time">18.06</div>
-                                    <img class="label-del" src="./images/icons/ok-white.svg">
-                                </div>
-                            </div>
+                            <form class="cont">
+                                <textarea class="communication-mess" placeholder="Введите текст"></textarea>
+                                <button type="submit" class="sent-comm btn-hover">Отправить</button>
+                            </form>
                         </div>
-                        <form class="cont">
-                            <textarea class="communication-mess" placeholder="Введите текст"></textarea>
-                            <button type="submit" class="sent-comm btn-hover">Отправить</button>
-                        </form>
+
                     </div>
                     @endif
                 </div>
