@@ -41,6 +41,7 @@
         mounted() {
             window.Echo.channel('chat')
                 .listen('Message', ({message}) => {
+                    console.log('hello');
                     this.messages.push(message)
                 })
         },
