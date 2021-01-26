@@ -62,11 +62,14 @@ class PasswordController
      */
     public function saveNewPassword(ManagePasswordRequest $request)
     {
-        if ($user = User::where('email', $request->email)->first()) {
+        $user = User::where('email', $request->email)->first();
+        if ($user && strlen($request->password) >= 8 && $request->password == $request->repeat_password) {
             $user->password = \Hash::make($request->password);
             $user->save();
+        } else {
+            return redirect()->route('home')->with('status_password', trans(__('messages.not_changed_pass')));
         }
 
-        return redirect()->route('home')->with('status_password', trans('Password has been changed.'));
+        return redirect()->route('home')->with('status_password', trans(__('messages.changed_pass')));
     }
 }

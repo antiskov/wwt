@@ -1,6 +1,6 @@
 <div class="tabs__content active" data-tab="1">
     <div class="tabs-item">
-        <h2>Предложение <span>* обязательное поле</span></h2>
+        <h2>{{__('messages.offer')}} <span>* {{__('messages.modal_password_span')}}</span></h2>
         <div class="input-case">
             <div class="select-price">
                 <p>Тип часов *</p>
@@ -11,7 +11,7 @@
                 @else
                     <input type="hidden" name="watchType">
                     <div class="select-value rotate">
-                        <span>Выберите</span>
+                        <span>{{__('messages.settings_choose')}}</span>
                 @endif
                     <ul class="value-items">
                         @foreach($watchTypes as $watchType)
@@ -21,12 +21,12 @@
                 </div>
             </div>
             <div class="select-price">
-                <p>Марка *
-                    <img src="/images/icons/information-icon.svg" alt="img" class="info-icon">
-                    <span class="input-info">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                            Dolores earum, ipsa ipsum iste laborum nihil tempore? Ea
-                            laboriosam officiis possimus quam quas quod sed totam?
-                        </span>
+                <p>{{__('messages.brand')}} *
+{{--                    <img src="/images/icons/information-icon.svg" alt="img" class="info-icon">--}}
+{{--                    <span class="input-info">Lorem ipsum dolor sit amet, consectetur adipisicing elit.--}}
+{{--                            Dolores earum, ipsa ipsum iste laborum nihil tempore? Ea--}}
+{{--                            laboriosam officiis possimus quam quas quod sed totam?--}}
+{{--                        </span>--}}
                 </p>
                 @if($position == 1)
                     <input type="hidden" name="brand" value="{{$advert->watchAdvert->watchMake->title}}">
@@ -35,7 +35,7 @@
                         @else
                             <input type="hidden" name="brand">
                             <div class="select-value rotate">
-                                <span>Выберите</span>
+                                <span>{{__('messages.settings_choose')}}</span>
                                 @endif
                                 <ul class="value-items">
                                     @foreach($brands as $brand)
@@ -45,12 +45,12 @@
                             </div>
                     </div>
             <div class="select-price">
-                <p class="ai-fe">Модель *
-                    <img src="/images/icons/information-icon.svg" alt="img" class="info-icon">
-                    <span class="input-info">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    Dolores earum, ipsa ipsum iste laborum nihil tempore? Ea
-                                    laboriosam officiis possimus quam quas quod sed totam?
-                                </span>
+                <p class="ai-fe">{{__('messages.model')}} *
+{{--                    <img src="/images/icons/information-icon.svg" alt="img" class="info-icon">--}}
+{{--                    <span class="input-info">Lorem ipsum dolor sit amet, consectetur adipisicing elit.--}}
+{{--                                    Dolores earum, ipsa ipsum iste laborum nihil tempore? Ea--}}
+{{--                                    laboriosam officiis possimus quam quas quod sed totam?--}}
+{{--                                </span>--}}
                 </p>
                 @if($position == 1)
                     <input data-step-input class="common-input" type="text" name="model" value="{{$advert->watchAdvert->watchModel->title}}">
@@ -59,12 +59,12 @@
                 @endif
             </div>
             <div class="select-price">
-                <p>Идент. номер
-                    <img src="/images/icons/information-icon.svg" alt="img" class="info-icon">
-                    <span class="input-info">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    Dolores earum, ipsa ipsum iste laborum nihil tempore? Ea
-                                    laboriosam officiis possimus quam quas quod sed totam?
-                                </span>
+                <p>{{__('messages.ii_number')}}
+{{--                    <img src="/images/icons/information-icon.svg" alt="img" class="info-icon">--}}
+{{--                    <span class="input-info">Lorem ipsum dolor sit amet, consectetur adipisicing elit.--}}
+{{--                                    Dolores earum, ipsa ipsum iste laborum nihil tempore? Ea--}}
+{{--                                    laboriosam officiis possimus quam quas quod sed totam?--}}
+{{--                                </span>--}}
                 </p>
                 @if(isset($model_code))
                     <input data-step-input type="text" class="common-input" name="model_code" value="{{$model_code}}">
@@ -73,12 +73,12 @@
                 @endif
             </div>
             <div class="select-price">
-                <p>Состояние *
-                    <img src="/images/icons/information-icon.svg" alt="img" class="info-icon">
-                    <span class="input-info">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    Dolores earum, ipsa ipsum iste laborum nihil tempore? Ea
-                                    laboriosam officiis possimus quam quas quod sed totam?
-                                </span>
+                <p>{{__('messages.state')}} *
+{{--                    <img src="/images/icons/information-icon.svg" alt="img" class="info-icon">--}}
+{{--                    <span class="input-info">Lorem ipsum dolor sit amet, consectetur adipisicing elit.--}}
+{{--                                    Dolores earum, ipsa ipsum iste laborum nihil tempore? Ea--}}
+{{--                                    laboriosam officiis possimus quam quas quod sed totam?--}}
+{{--                                </span>--}}
                 </p>
                 @if($position == 1)
                     <input type="hidden" name="state" value="{{$advert->watchAdvert->watch_state}}">
@@ -87,7 +87,7 @@
                 @else
                     <input type="hidden" name="state">
                     <div class="select-value rotate">
-                        <span>Выберите</span>
+                        <span>{{__('messages.settings_choose')}}</span>
                 @endif
                     <ul class="value-items">
                         @foreach($states as $state)
@@ -97,12 +97,12 @@
                 </div>
             </div>
             <div class="select-price">
-                <p>Объем доставки *
-                    <img src="/images/icons/information-icon.svg" alt="img" class="info-icon">
-                    <span class="input-info">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    Dolores earum, ipsa ipsum iste laborum nihil tempore? Ea
-                                    laboriosam officiis possimus quam quas quod sed totam?
-                                </span>
+                <p>{{__('messages.delivery_volume')}} *
+{{--                    <img src="/images/icons/information-icon.svg" alt="img" class="info-icon">--}}
+{{--                    <span class="input-info">Lorem ipsum dolor sit amet, consectetur adipisicing elit.--}}
+{{--                                    Dolores earum, ipsa ipsum iste laborum nihil tempore? Ea--}}
+{{--                                    laboriosam officiis possimus quam quas quod sed totam?--}}
+{{--                                </span>--}}
                 </p>
                 @if($position == 1)
                     <input type="hidden" name="deliveryVolume" value="{{$advert->deliveryVolume->title}}">
@@ -111,7 +111,7 @@
                 @else
                     <input type="hidden" name="deliveryVolume">
                     <div class="select-value rotate">
-                        <span>Выберите</span>
+                        <span>{{__('messages.settings_choose')}}</span>
                 @endif
                     <ul class="value-items">
                         @foreach($deliveryVolumes as $deliveryVolume)
@@ -122,9 +122,9 @@
             </div>
         </div>
 
-        <h2>Базовые данные</h2>
+        <h2>{{__('messages.common_data')}}</h2>
         <div class="select-price">
-            <p>Пол</p>
+            <p>{{__('messages.sex')}}</p>
             @if($position == 1)
                 <input type="hidden" name="sex" value="{{$advert->watchAdvert->sex->title}}">
                 <div class="select-value rotate">
@@ -132,7 +132,7 @@
             @else
                 <input type="hidden" name="sex">
                 <div class="select-value rotate">
-                    <span>Выберите</span>
+                    <span>{{__('messages.settings_choose')}}</span>
             @endif
                 <ul class="value-items">
                     @foreach($sexes as $sex)
@@ -144,7 +144,7 @@
 
 
         <label for="made-watch">
-            Год выпуска *
+            {{__('messages.year')}} *
             <span class="cont-wrap">
                 @if($position == 1)
                     <input data-step-input type="text" id="made-watch" name="release_year" value="{{$advert->watchAdvert->release_year}}">
@@ -155,28 +155,28 @@
                         <span class="check-cont">
                                 <label class="checkbox-other">
                                     <input type="radio" name="year" checked value="1">
-                                    <span>Приблизительно</span>
+                                    <span>{{__('messages.approximately')}}</span>
                                 </label>
                                 <label class="checkbox-other">
                                     <input type="radio" name="year" value="0">
-                                    <span>Неизвестно</span>
+                                    <span>{{__('messages.unknown')}}</span>
                                 </label>
                             </span>
                     @else
                         <span class="check-cont">
                                 <label class="checkbox-other">
                                     <input type="radio" name="year" value="1">
-                                    <span>Приблизительно</span>
+                                    <span>{{__('messages.approximately')}}</span>
                                 </label>
                                 <label class="checkbox-other">
                                     <input type="radio" name="year" checked value="0">
-                                    <span>Неизвестно</span>
+                                    <span>{{__('messages.unknown')}}</span>
                                 </label>
                             </span>
                     @endif
         </label>
         <label>
-            Диаметр *
+            {{__('messages.diameter')}} *
             <span class="size-cont">
                 @if($position == 1)
                     <input data-step-input type="number" name="width" value="{{$advert->watchAdvert->width}}">
@@ -190,7 +190,7 @@
             @endif
         </label>
         <div class="select-price">
-            <p>Тип механизма</p>
+            <p>{{__('messages.mechanism_type')}}</p>
             @if($position == 1)
                 <input type="hidden" name="typeMechanism" value="{{$advert->watchAdvert->mechanismType->title}}">
                 <div class="select-value rotate">
@@ -198,7 +198,7 @@
             @else
                 <input type="hidden" name="typeMechanism">
                 <div class="select-value rotate">
-                    <span>Выберите</span>
+                    <span>{{__('messages.settings_choose')}}</span>
             @endif
                 <ul class="value-items">
                     @foreach($mechanismTypes as $mechanismType)
@@ -208,17 +208,17 @@
             </div>
         </div>
         <label for="description" class="description">
-            Описание
+            {{__('messages.description')}}
             @if($position == 1)
                 <textarea id="description" name="description"
-                          placeholder="Примеры: Где Вы купили часы?">{{$advert->description}}</textarea>
+                          placeholder="{{__('messages.describe_advert')}}">{{$advert->description}}</textarea>
             @else
             <textarea id="description" name="description"
-                      placeholder="Примеры: Где Вы купили часы?"></textarea>
+                      placeholder="{{__('messages.describe_advert')}}"></textarea>
             @endif
         </label>
 
-        <h2>Цена</h2>
+        <h2>{{__('messages.payments_price')}}</h2>
 
         <div class="info-price">
             @if($position == 1)
@@ -235,7 +235,7 @@
                 @else
                     <input type="hidden" name="currency">
                     <div class="select-value rotate">
-                        <span>Выберите</span>
+                        <span>{{__('messages.settings_choose')}}</span>
                 @endif
                     <ul class="value-items">
                         @foreach($currencies as $currency)
@@ -248,10 +248,10 @@
         </div>
         <div class="btn-cont btn-cont_first">
             @if(isset($advert))
-                <button class="save-edit btn-hover-w" type="submit">Сохранить как черновик</button>
-                <button data-step="2" class="save-next btn-hover" type="button">Перейти к шагу 2</button>
+                <button class="save-edit btn-hover-w" type="submit">{{__('messages.save_like_draft')}}</button>
+                <button data-step="2" class="save-next btn-hover" type="button">{{__('messages.go_to_step2')}}</button>
             @else
-                <button class="save-edit btn-hover-w" type="submit">Сохранить как черновик</button>
+                <button class="save-edit btn-hover-w" type="submit">{{__('messages.save_like_draft')}}</button>
             @endif
         </div>
     </div>

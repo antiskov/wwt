@@ -1,18 +1,16 @@
 <div class="tabs__content" data-tab="2">
     <div class="tabs-item" >
-    <h2>Изображение ваших часов <span>* обязательное поле</span></h2>
+    <h2>{{__('messages.image_your_watch')}} <span>{{__('messages.modal_password_span')}}</span></h2>
         <p class="img-text">
-            Хорошие фотографии залог быстрой продажи вашего объявления.
-            Сфотографируйте ваши часы с разных ракурсов, чтобы предоставить
-            вашему покупателю более полное впечатление о ваших часах.
+            {{__('messages.image_watch_text')}}
         </p>
         <div class="add-img-wrap">
-            <p data-id="step-3-title">Загрузите от 2х фотографий и выберите основную</p>
+            <p data-id="step-3-title">{{__('messages.describe_downloading')}}</p>
             <div class="cont-img">
                 <ul>
                     <li class="added-images">
                         <img src="/images/icons/add-img.svg" alt="img">
-                        <span>Загрузить фото или вставить сюда</span>
+                        <span>{{__('messages.describe_downloading_here')}}</span>
                         <input type="file" id="addImages" name="advert_images[]" multiple
                                accept="image/x-png,image/gif,image/jpeg">
                     </li>
@@ -83,11 +81,11 @@
         </script>
 
         <div class="btn-cont step-2-cont">
-            <button data-step="1" class="prev-step btn-hover" type="button">Вернуться к шагу 1</button>
+            <button data-step="1" class="prev-step btn-hover" type="button">{{__('messages.go_to_step1')}}</button>
 
-            <button class="save-edit btn-hover-w" type="submit">Сохранить как черновик</button>
+            <button class="save-edit btn-hover-w" type="submit">{{__('messages.save_like_draft')}}</button>
 
-            <button  data-step="3" class="save-next btn-hover" type="button">Перейти к шагу 3</button>
+            <button  data-step="3" class="save-next btn-hover" type="button">{{__('messages.go_to_step3')}}</button>
         </div>
     </div>
 </div>

@@ -24,9 +24,9 @@
                                     <span>По: {{$advert->finish_date_active_status}}</span>
                                 </p>
                                 @if($advert->vip_status == 1)
-                                    <div>Куплен ВИП статус</div>
+                                    <div>{{__('messages.bought_vip')}}</div>
                                 @else
-                                    <a href="{{route('submitting.buy_vip', $advert)}}" class="advertice">Реклама</a>
+                                    <a href="{{route('submitting.buy_vip', $advert)}}" class="advertice">{{__('messages.ad')}}</a>
                                 @endif
                             </div>
                         </div>
@@ -49,9 +49,9 @@
                                     <span>По: {{$advert->finish_date_active_status}}</span>
                                 </p>
                                 @if($advert->vip_status == 1)
-                                    <div>Куплен ВИП статус</div>
+                                    <div>{{__('messages.bought_vip')}}</div>
                                 @else
-                                    <a href="{{route('submitting.buy_vip', $advert)}}" class="advertice">Реклама</a>
+                                    <a href="{{route('submitting.buy_vip', $advert)}}" class="advertice">{{__('messages.ad')}}</a>
                                 @endif
                             </div>
                             <div class="set-block">
@@ -67,7 +67,7 @@
                                 @endif
                                     <div class="soc-block">
                                         <input type="hidden" name="link-for-copy" value="{{route('catalog.item-page', [$advert])}}">
-                                        <a href="#" class="sett btn-for-copy tooltip" title="Ссылка успешно скопирована в буффер обмена!">Поделиться</a>
+                                        <a href="#" class="sett btn-for-copy tooltip" title="{{__('messages.link_copied')}}">{{__('messages.share')}}</a>
                                     </div>
                             </div>
                         </div>

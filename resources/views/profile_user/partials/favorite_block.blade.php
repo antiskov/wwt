@@ -57,11 +57,11 @@
                     <div class="publication-cont">
                         <div class="cont">
                             <p>{{__('messages.favorite_date')}}</p>
-                            <span>26. 07. 12</span>
+                            <span>{{strstr($advert->created_at, ' ', true)}}</span>
                         </div>
                         <div class="cont">
                             <p>>{{__('messages.favorite_time')}}</p>
-                            <span>16:45</span>
+                            <span>{{strstr($advert->created_at, ' ')}}</span>
                         </div>
                     </div>
                 </div>

@@ -13,14 +13,14 @@
         <div class="filters-mob-content">
             <ul class="filters-mob-list">
                 <li class="title">
-                    <h5>Общие данные</h5>
+                    <h5>{{__('messages.common_data')}}</h5>
                 </li>
                 <li>
-                    <p>Марка</p>
+                    <p>{{__('messages.brand')}}</p>
                     <div class="filters-mob-list__content">
                         <div class="filters-search">
                             <input class="filters-search-field" data-search-list="filters-mob-brand" type="text"
-                                   placeholder="Поиск по фильтру">
+                                   placeholder="{{__('messages.filter_search')}}">
                             <span class="clear-field-btn"></span>
                         </div>
                         <ul id="filters-mob-brand" class="checkboxes-list">
@@ -42,11 +42,11 @@
                     </div>
                 </li>
                 <li>
-                    <p>Модель</p>
+                    <p>{{__('messages.model')}}</p>
                     <div class="filters-mob-list__content">
                         <div class="filters-search">
                             <input class="filters-search-field" data-search-list="filters-mob-model" type="text"
-                                   placeholder="Поиск по фильтру">
+                                   placeholder="{{__('messages.filter_search')}}">
                             <span class="clear-field-btn"></span>
                         </div>
                         <ul id="filters-mob-model" class="checkboxes-list">
@@ -68,7 +68,7 @@
                     </div>
                 </li>
                 <li>
-                    <p>Цена</p>
+                    <p>{{__('messages.price')}}</p>
                     <div class="filters-mob-list__content">
                         <div class="price-slider price-slider_mob">
                             <div class="price-slider__line">
@@ -84,11 +84,11 @@
                     </div>
                 </li>
                 <li>
-                    <p>Диаметр</p>
+                    <p>{{__('messages.diameter')}}</p>
                     <div class="filters-mob-list__content">
                         <div class="filters-search">
                             <input class="filters-search-field" data-search-list="filters-mob-diameter" type="text"
-                                   placeholder="Поиск по фильтру">
+                                   placeholder="{{__('messages.filter_search')}}">
                             <span class="clear-field-btn"></span>
                         </div>
                         <ul id="filters-mob-diameter" class="checkboxes-list">
@@ -123,11 +123,11 @@
                     </div>
                 </li>
                 <li>
-                    <p>Год</p>
+                    <p>{{__('messages.year')}}</p>
                     <div class="filters-mob-list__content">
                         <div class="filters-search">
                             <input class="filters-search-field" data-search-list="filters-mob-year" type="text"
-                                   placeholder="Поиск по фильтру">
+                                   placeholder="{{__('messages.filter_search')}}">
                             <span class="clear-field-btn"></span>
                         </div>
                         <ul id="filters-mob-year" class="checkboxes-list">
@@ -149,11 +149,11 @@
                     </div>
                 </li>
                 <li>
-                    <p>Местоположение</p>
+                    <p>{{__('messages.space')}}</p>
                     <div class="filters-mob-list__content">
                         <div class="filters-search">
                             <input class="filters-search-field" data-search-list="filters-mob-location" type="text"
-                                   placeholder="Поиск по фильтру">
+                                   placeholder="{{__('messages.filter_search')}}">
                             <span class="clear-field-btn"></span>
                         </div>
                         <ul id="filters-mob-location" class="checkboxes-list">
@@ -175,14 +175,14 @@
                     </div>
                 </li>
                 <li class="title">
-                    <h5>Дополнительно</h5>
+                    <h5>{{__('messages.additionally')}}</h5>
                 </li>
                 <li>
-                    <p>Тип механизма</p>
+                    <p>{{__('messages.mechanism_type')}}</p>
                     <div class="filters-mob-list__content">
                         <div class="filters-search">
                             <input class="filters-search-field" data-search-list="filters-mob-model" type="text"
-                                   placeholder="Поиск по фильтру">
+                                   placeholder="{{__('messages.filter_search')}}">
                             <span class="clear-field-btn"></span>
                         </div>
                         <ul id="filters-mob-model" class="checkboxes-list">
@@ -204,11 +204,11 @@
                     </div>
                 </li>
                 <li>
-                    <p>Состояние</p>
+                    <p>{{__('messages.state')}}</p>
                     <div class="filters-mob-list__content">
                         <div class="filters-search">
                             <input class="filters-search-field" data-search-list="filters-mob-model" type="text"
-                                   placeholder="Поиск по фильтру">
+                                   placeholder="{{__('messages.filter_search')}}">
                             <span class="clear-field-btn"></span>
                         </div>
                         <ul>
@@ -230,11 +230,11 @@
                     </div>
                 </li>
                 <li>
-                    <p>Обьем доставки</p>
+                    <p>{{__('messages.delivery_volume')}}</p>
                     <div class="filters-mob-list__content">
                         <div class="filters-search">
                             <input class="filters-search-field" data-search-list="filters-mob-model" type="text"
-                                   placeholder="Поиск по фильтру">
+                                   placeholder="{{__('messages.filter_search')}}">
                             <span class="clear-field-btn"></span>
                         </div>
                         <ul>
@@ -256,11 +256,11 @@
                     </div>
                 </li>
                 <li>
-                    <p>Пол</p>
+                    <p>{{__('messages.sex')}}</p>
                     <div class="filters-mob-list__content">
                         <div class="filters-search">
                             <input class="filters-search-field" data-search-list="filters-mob-model" type="text"
-                                   placeholder="Поиск по фильтру">
+                                   placeholder="{{__('messages.filter_search')}}">
                             <span class="clear-field-btn"></span>
                         </div>
                         <ul>
@@ -282,11 +282,11 @@
                     </div>
                 </li>
                 <li>
-                    <p>Тип часов</p>
+                    <p>{{__('messages.watch_type')}}</p>
                     <div class="filters-mob-list__content">
                         <div class="filters-search">
                             <input class="filters-search-field" data-search-list="filters-mob-model" type="text"
-                                   placeholder="Поиск по фильтру">
+                                   placeholder="{{__('messages.filter_search')}}">
                             <span class="clear-field-btn"></span>
                         </div>
                         <ul>
@@ -310,9 +310,9 @@
             </ul>
             <div class="filters-buttons">
                 @auth
-                    <button data-fancybox data-src="#save-filter-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
+                    <button data-fancybox data-src="#save-filter-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">{{__('messages.save_search_query')}}</button>
                 @endauth
-                <button class="filters-submit-btn btn-hover mobile-submit-btn" type="submit">Применить</button>
+                <button class="filters-submit-btn btn-hover mobile-submit-btn" type="submit">{{__('messages.apply')}}</button>
             </div>
         </div>
     </form>
@@ -324,24 +324,24 @@
         <form class="filters-desc filter-search" method="get" action="{{route('catalog')}}">
     @endif
         <div class="filters-desc-tabs">
-            <button class="reset-filters-btn btn-hover" type="reset">Сбросить</button>
+            <button class="reset-filters-btn btn-hover" type="reset">{{__('messages.reset')}}</button>
             <ul class="filters-desc-nav">
-                <li data-tab="filters-desc-brand">Марка</li>
-                <li data-tab="filters-desc-model">Модель</li>
-                <li data-tab="filters-desc-price">Цена</li>
-                <li data-tab="filters-desc-diameter">Диаметр</li>
-                <li data-tab="filters-desc-year">Год</li>
-                <li data-tab="filters-desc-location">Местоположение</li>
-                <li data-tab="filters-desc-more">Больше</li>
+                <li data-tab="filters-desc-brand">{{__('messages.brand')}}</li>
+                <li data-tab="filters-desc-model">{{__('messages.model')}}</li>
+                <li data-tab="filters-desc-price">{{__('messages.price')}}</li>
+                <li data-tab="filters-desc-diameter">{{__('messages.diameter')}}</li>
+                <li data-tab="filters-desc-year">{{__('messages.year')}}</li>
+                <li data-tab="filters-desc-location">{{__('messages.space')}}</li>
+                <li data-tab="filters-desc-more">{{__('messages.more')}}</li>
             </ul>
         </div>
         <div id="save-filter-modal" class="modal">
             <div class="modal__content">
-                <h5 class="modal__title">Сохранить результат поиска</h5>
+                <h5 class="modal__title">{{__('messages.save_search_query')}}</h5>
                 <div id="save-filter-form" class="change-pass-mail">
-                    <input id="input-save-search" name="title_search" type="text" placeholder="Название поиска">
-                    <span>Обязательное поле*</span>
-                    <a href="{{route('catalog.save-search')}}"><button id="button-save-search" class="btn-arrow" type="button">Сохранить запрос</button></a>
+                    <input id="input-save-search" name="title_search" type="text" placeholder="{{__('messages.name_search')}}">
+                    <span>{{__('messages.required_filed')}}</span>
+                    <a href="{{route('catalog.save-search')}}"><button id="button-save-search" class="btn-arrow" type="button">{{__('messages.save_search')}}</button></a>
                 </div>
             </div>
         </div>
@@ -350,7 +350,7 @@
                 <span class="filters-desc__close-btn"></span>
                 <div class="filters-desc-choices">
                     <div class="filters-desc-choices__items">
-                        <h4>ВАШ ВЫБОР<span class="clear-filter-choices-btn"></span></h4>
+                        <h4>{{__('messages.your_choice')}}<span class="clear-filter-choices-btn"></span></h4>
                         <ul data-list="filters-desc-diameter-list" class="filters-desc-choices-list">
 
                         </ul>
@@ -360,7 +360,7 @@
                 <div class="filters-desc-inputs">
                     <div class="filters-search">
                         <input class="filters-search-field" data-search-list="filters-desc-brand-list" type="text"
-                               placeholder="Поиск по фильтру">
+                               placeholder="{{__('messages.filter_search')}}">
                         <span class="clear-field-btn"></span>
                     </div>
                     <ul id="filters-desc-brand-list" class="checkboxes-list">
@@ -381,9 +381,9 @@
                     </ul>
                     <div class="filters-buttons">
                         @auth
-                        <button data-fancybox data-src="#save-filter-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
+                        <button data-fancybox data-src="#save-filter-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">{{__('messages.save_search_query')}}</button>
                         @endauth
-                        <button class="filters-submit-btn desc-submit-btn btn-hover" type="submit">Применить</button>
+                        <button class="filters-submit-btn desc-submit-btn btn-hover" type="submit">{{__('messages.apply')}}</button>
                     </div>
                 </div>
             </div>
@@ -391,7 +391,7 @@
                 <span class="filters-desc__close-btn"></span>
                 <div class="filters-desc-choices">
                     <div class="filters-desc-choices__items">
-                        <h4>ВАШ ВЫБОР<span class="clear-filter-choices-btn"></span></h4>
+                        <h4>{{__('messages.your_choice')}}<span class="clear-filter-choices-btn"></span></h4>
                         <ul data-list="filters-desc-brand-list" class="filters-desc-choices-list">
                         </ul>
                     </div>
@@ -400,7 +400,7 @@
                 <div class="filters-desc-inputs">
                     <div class="filters-search">
                         <input class="filters-search-field" data-search-list="filters-desc-model-list" type="text"
-                               placeholder="Поиск по фильтру">
+                               placeholder="{{__('messages.filter_search')}}">
                         <span class="clear-field-btn"></span>
                     </div>
                     <ul id="filters-desc-model-list" class="checkboxes-list">
@@ -421,9 +421,9 @@
                     </ul>
                     <div class="filters-buttons">
                         @auth
-                            <button data-fancybox data-src="#save-filter-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
+                            <button data-fancybox data-src="#save-filter-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">{{__('messages.save_search_query')}}</button>
                         @endauth
-                        <button class="filters-submit-btn desc-submit-btn btn-hover" type="submit">Применить</button>
+                        <button class="filters-submit-btn desc-submit-btn btn-hover" type="submit">{{__('messages.apply')}}</button>
                     </div>
                 </div>
             </div>
@@ -442,15 +442,15 @@
                     </div>
                 </div>
                 <div class="filters-buttons">
-                    <button data-fancybox data-src="#save-filter-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
-                    <button class="filters-submit-btn desc-submit-btn btn-hover" type="submit">Применить</button>
+                    <button data-fancybox data-src="#save-filter-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">{{__('messages.save_search_query')}}</button>
+                    <button class="filters-submit-btn desc-submit-btn btn-hover" type="submit">{{__('messages.apply')}}</button>
                 </div>
             </div>
             <div id="filters-desc-diameter" class="filters-desc-category">
                 <span class="filters-desc__close-btn"></span>
                 <div class="filters-desc-choices">
                     <div class="filters-desc-choices__items">
-                        <h4>ВАШ ВЫБОР<span class="clear-filter-choices-btn"></span></h4>
+                        <h4>{{__('messages.your_choice')}}<span class="clear-filter-choices-btn"></span></h4>
                         <ul data-list="filters-desc-diameter-list" class="filters-desc-choices-list">
                         </ul>
                     </div>
@@ -459,7 +459,7 @@
                 <div class="filters-desc-inputs">
                     <div class="filters-search">
                         <input class="filters-search-field" data-search-list="filters-desc-diameter-list" type="text"
-                               placeholder="Поиск по фильтру">
+                               placeholder="{{__('messages.filter_search')}}">
                         <span class="clear-field-btn"></span>
                     </div>
                     <ul id="filters-desc-diameter-list" class="checkboxes-list">
@@ -493,9 +493,9 @@
                     </ul>
                     <div class="filters-buttons">
                         @auth
-                            <button data-fancybox data-src="#save-filter-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
+                            <button data-fancybox data-src="#save-filter-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">{{__('messages.save_search_query')}}</button>
                         @endauth
-                        <button class="filters-submit-btn desc-submit-btn btn-hover" type="submit">Применить</button>
+                        <button class="filters-submit-btn desc-submit-btn btn-hover" type="submit">{{__('messages.apply')}}</button>
                     </div>
                 </div>
             </div>
@@ -503,7 +503,7 @@
                 <span class="filters-desc__close-btn"></span>
                 <div class="filters-desc-choices">
                     <div class="filters-desc-choices__items">
-                        <h4>ВАШ ВЫБОР<span class="clear-filter-choices-btn"></span></h4>
+                        <h4>{{__('messages.your_choice')}}<span class="clear-filter-choices-btn"></span></h4>
                         <ul data-list="filters-desc-year-list" class="filters-desc-choices-list">
                         </ul>
                     </div>
@@ -512,7 +512,7 @@
                 <div class="filters-desc-inputs">
                     <div class="filters-search">
                         <input class="filters-search-field" data-search-list="filters-desc-year-list" type="text"
-                               placeholder="Поиск по фильтру">
+                               placeholder="{{__('messages.filter_search')}}">
                         <span class="clear-field-btn"></span>
                     </div>
                     <ul id="filters-desc-brand-year" class="checkboxes-list">
@@ -543,9 +543,9 @@
                     </ul>
                     <div class="filters-buttons">
                         @auth
-                            <button data-fancybox data-src="#save-filter-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
+                            <button data-fancybox data-src="#save-filter-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">{{__('messages.save_search_query')}}</button>
                         @endauth
-                        <button class="filters-submit-btn desc-submit-btn btn-hover" type="submit">Применить</button>
+                        <button class="filters-submit-btn desc-submit-btn btn-hover" type="submit">{{__('messages.apply')}}</button>
                     </div>
                 </div>
             </div>
@@ -553,7 +553,7 @@
                 <span class="filters-desc__close-btn"></span>
                 <div class="filters-desc-choices">
                     <div class="filters-desc-choices__items">
-                        <h4>ВАШ ВЫБОР<span class="clear-filter-choices-btn"></span></h4>
+                        <h4>{{__('messages.your_choice')}}<span class="clear-filter-choices-btn"></span></h4>
                         <ul data-list="filters-desc-location-list" class="filters-desc-choices-list">
                         </ul>
                     </div>
@@ -562,7 +562,7 @@
                 <div class="filters-desc-inputs">
                     <div class="filters-search">
                         <input class="filters-search-field" data-search-list="filters-desc-location-list" type="text"
-                               placeholder="Поиск по фильтру">
+                               placeholder="{{__('messages.filter_search')}}">
                         <span class="clear-field-btn"></span>
                     </div>
                     <ul id="filters-desc-location-list" class="checkboxes-list">
@@ -583,9 +583,9 @@
                     </ul>
                     <div class="filters-buttons">
                         @auth
-                            <button data-fancybox data-src="#save-filter-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
+                            <button data-fancybox data-src="#save-filter-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">{{__('messages.save_search_query')}}</button>
                         @endauth
-                        <button class="filters-submit-btn desc-submit-btn btn-hover" type="submit">Применить</button>
+                        <button class="filters-submit-btn desc-submit-btn btn-hover" type="submit">{{__('messages.apply')}}</button>
                     </div>
                 </div>
             </div>
@@ -595,12 +595,12 @@
                     <div class="filters-more__content">
                         <div class="filters-more-item filters-more__item">
                             <div class="filters-more-item__title">
-                                <h4>Дополнительно</h4>
+                                <h4>{{__('messages.additionally')}}</h4>
                             </div>
                             <div class="filters-more-item__content">
                                 <div>
                                     <div class="filters-more-item__list">
-                                        <p>Тип механизма</p>
+                                        <p>{{__('messages.mechanism_type')}}</p>
                                         <ul>
                                             @foreach($mechanismTypes as $mechanismType)
                                                 <li>
@@ -619,7 +619,7 @@
                                         </ul>
                                     </div>
                                     <div class="filters-more-item__list">
-                                        <p>Состояние</p>
+                                        <p>{{__('messages.state')}}</p>
                                         <ul>
                                             @foreach($states as $state)
                                                 <li>
@@ -638,7 +638,7 @@
                                         </ul>
                                     </div>
                                     <div class="filters-more-item__list">
-                                        <p>Обьем доставки</p>
+                                        <p>{{__('messages.delivery_volume')}}</p>
                                         <ul>
                                             @foreach($deliveryVolumes as $deliveryVolume)
                                                 <li>
@@ -660,7 +660,7 @@
                                 </div>
                                 <div class="filters-more-item__lists">
                                     <div class="filters-more-item__list">
-                                        <p>Пол</p>
+                                        <p>{{__('messages.sex')}}</p>
                                         <ul>
                                             @foreach($sexes as $sex)
                                                 <li>
@@ -679,7 +679,7 @@
                                         </ul>
                                     </div>
                                     <div class="filters-more-item__list">
-                                        <p>Тип часов</p>
+                                        <p>{{__('messages.watch_type')}}</p>
                                         <ul>
                                             @foreach($types as $type)
                                                 <li>
@@ -704,9 +704,9 @@
 
                     <div class="filters-buttons">
                         @auth
-                            <button data-fancybox data-src="#save-filter-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">Сохранить поисковый запрос</button>
+                            <button data-fancybox data-src="#save-filter-modal" href="javascript:;" class="filters-save-btn btn-hover-w" type="button">{{__('messages.save_search_query')}}</button>
                         @endauth
-                         <button class="filters-submit-btn desc-submit-btn btn-hover" type="submit">Применить</button>
+                         <button class="filters-submit-btn desc-submit-btn btn-hover" type="submit">{{__('messages.apply')}}</button>
                     </div>
                 </div>
             </div>

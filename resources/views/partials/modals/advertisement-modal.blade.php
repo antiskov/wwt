@@ -1,21 +1,21 @@
 <div id="advertisement-modal" class="modal advertisement-modal">
     <div class="modal__content">
-        <h5 class="modal__title">Заказать рекламу</h5>
+        <h5 class="modal__title">{{__('messages.buy_add')}}</h5>
         <form id="advertisement-form" class="advertisement-form" method="post" action="{{route('email_ad')}}">
             @csrf
             <div class="input-wrap">
-                <label for="advertisement-name">Имя</label>
-                <input name="name" type="text" id="advertisement-name" placeholder="Введите имя" required>
+                <label for="advertisement-name">{{__('messages.name')}}</label>
+                <input name="name" type="text" id="advertisement-name" placeholder="{{__('messages.put_name')}}" required>
             </div>
             <div class="input-wrap">
-                <label for="advertisement-email">E-MAIL</label>
-                <input name="email" type="email" id="advertisement-email" placeholder="Введите почту" required>
+                <label for="advertisement-email">{{__('messages.email')}}</label>
+                <input name="email" type="email" id="advertisement-email" placeholder="{{__('messages.put_email')}}" required>
             </div>
             <div class="input-wrap">
-                <label for="advertisement-message">Сообщение</label>
-                <textarea name="message" id="advertisement-message" placeholder="Введите сообщение"></textarea>
+                <label for="advertisement-message">{{__('messages.message')}}</label>
+                <textarea name="message" id="advertisement-message" placeholder="{{__('messages.put_message')}}"></textarea>
             </div>
-            <button type="submit" class="primary-btn">Отправить</button>
+            <button type="submit" class="primary-btn">{{__('messages.submit')}}</button>
         </form>
     </div>
 </div>

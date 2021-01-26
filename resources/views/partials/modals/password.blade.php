@@ -9,7 +9,7 @@
                 <span></span>
             </div>
             <div class="password-input">
-                <input id='password-login-form' name="password" type="password" placeholder="Введите пароль" required>
+                <input id='password-login-form' name="password" type="password" placeholder="{{__('messages.put_password')}}" required>
                 <span>{{__('messages.modal_password_span')}}</span>
                 <img src="/images/icons/yey-close.svg" alt="{{__('messages.modal_password_show_pass')}}">
             </div>
@@ -23,7 +23,7 @@
                 <a href="{{route('forgot_password')}}">{{__('messages.modal_password_remind_pass')}}</a>
             </div>
             <button type="submit" class="btn-arrow">{{__('messages.next_button')}}</button>
-            <pre data-fancybox href="#registration-modal" class="common-link">Нет аккаунта?</pre>
+            <pre data-fancybox href="#registration-modal" class="common-link">{{__('messages.have_account')}}</pre>
         </form>
     </div>
 </div>

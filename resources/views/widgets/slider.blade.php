@@ -8,7 +8,7 @@
                         <div class="container">
                             <p>{{$slider->upper_text}}</p>
                             <h3>{{$slider->middle_text}}</h3>
-                            <a href="{{$slider->link}}">Перейти</a>
+                            <a href="{{$slider->link}}">{{__('messages.go')}}</a>
                         </div>
                     </div>
                 </div>

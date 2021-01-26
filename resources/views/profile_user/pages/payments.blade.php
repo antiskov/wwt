@@ -23,7 +23,7 @@
                             <div class="payment-cont">
                                 <div class="cont">
                                     <div class="money">
-                                        <div>На вашем счету:</div>
+                                        <div>{{__('messages.payments_your_cost')}}:</div>
                                         <p>{{$score}}<span> {{$currency}}</span></p>
                                     </div>
                                     <button class="replenish" data-fancybox data-src="#save-search-modal" href="javascript:;" type="submit">{{__('messages.payments_addition_button')}}</button>
