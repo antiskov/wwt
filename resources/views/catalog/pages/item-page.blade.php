@@ -69,7 +69,7 @@
                         </h3>
                     </div>
                     <div class="phone-dropdown">
-                        <button class="btn-hover button-show-phone" type="submit">Показать телефон</button>
+                        <button class="btn-hover button-show-phone" type="submit">{{__('messages.show_phone')}}</button>
                     </div>
                     <br>
                     <div class="person-social">
@@ -78,29 +78,28 @@
                         <a href="#/"></a>
                     </div>
                     <div class="person-laung">
-                        <p>Говорит на :</p>
+                        <p>{{__('messages.speak_on')}} :</p>
                         @if(in_array('ua', $userLanguages))
-                            <span>Украинский</span>
+                            <span>{{__('messages.ukrainian')}}</span>
                         @endif
                         @if(in_array('ru', $userLanguages))
-                            <span>Русский</span>
+                            <span>{{__('messages.russian')}}</span>
                         @endif
                         @if(in_array('en', $userLanguages))
-                            <span>English</span>
+                            <span>{{__('messages.english')}}</span>
                         @endif
                     </div>
                     <div class="person-address">
                         <div class="address">
-                            <p>Город:</p>
+                            <p>{{__('messages.city')}}:</p>
                             <span>{{$advert->user->city}}</span>
                         </div>
                         <div class="address">
-                            <p>Страна:</p>
+                            <p>{{__('messages.country')}}:</p>
                             <span>{{$advert->user->country}}</span>
                         </div>
                     </div>
-                    <a href="{{route('catalog.seller-ads', [$advert->user_id])}}" class="all-ads btn-hover-w">Все
-                        объявления продавца</a>
+                    <a href="{{route('catalog.seller-ads', [$advert->user_id])}}" class="all-ads btn-hover-w">{{__('messages.all_seller_adverts')}}</a>
                 </div>
             </div>
         </div>

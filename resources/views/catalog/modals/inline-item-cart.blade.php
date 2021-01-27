@@ -40,35 +40,35 @@
 
                         <div class="block-grid bord">
                             <div class="item-infos">
-                                <p>Тип механизма: </p>
+                                <p>{{__('messages.mechanism_type')}}: </p>
                                 <span>{{$advert->mechanism_type_title}}</span>
                             </div>
                             <div class="item-infos">
-                                <p>Год: </p>
+                                <p>{{__('messages.year')}}: </p>
                                 <span>{{$advert->release_year}}</span>
                             </div>
                             <div class="item-infos">
-                                <p>Состояние: </p>
+                                <p>{{__('messages.state')}}: </p>
                                 <span>{{ $advert->watch_state }}</span>
                             </div>
 
                             <div class="item-infos">
-                                <p>ИИ номер:</p>
+                                <p>{{__('messages.ii_number')}}:</p>
                                 <span>{{ $advert->model_code}}</span>
                             </div>
 
                         </div>
                         <div class="block-grid">
                             <div class="item-infos">
-                                <p>Объем доставки:</p>
+                                <p>{{__('messages.delivery_volume')}}:</p>
                                 <span>{{ $advert->delivery_volume}}</span>
                             </div>
                             <div class="item-infos">
-                                <p>Местоположение:</p>
+                                <p>{{__('messages.space')}}:</p>
                                 <span>{{$advert->region}}</span>
                             </div>
                             <div class="item-infos">
-                                <p>Диаметр:</p>
+                                <p>{{__('messages.diameter')}}:</p>
                                 @if($advert->height == $advert->width)
                                     <span>{{$advert->height}}</span>
                                 @else
@@ -76,7 +76,7 @@
                                 @endif
                             </div>
                             <div class="item-infos">
-                                <p>Пол:</p>
+                                <p>{{__('messages.sex')}}:</p>
                                 <span>{{ $advert->sex_title}}</span>
                             </div>
                         </div>

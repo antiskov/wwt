@@ -6,9 +6,9 @@
             <div class="container-wrap">
                 @include('profile_user.partials.left_menu')
                 <div class="block-content">
-                    <h2 class="name-lk">Мои объявления </h2>
+                    <h2 class="name-lk">{{__('messages.my_adverts')}}</h2>
                     <div class="radio-wrap">
-                        <a href="{{route('submitting')}}" class="primary-btn">Добавить обьявление</a>
+                        <a href="{{route('submitting')}}" class="primary-btn">{{__('messages.add_advert')}}</a>
                         <input type="radio" name="tab-btn" id="abu-1"
                                value="{{$statuses->where('title', 'moderation')->first()->id}}"
                                @if(Session::get('advertStatus') == $statuses->where('title', 'moderation')->first()->id)

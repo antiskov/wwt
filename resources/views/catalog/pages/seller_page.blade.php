@@ -20,32 +20,32 @@
                         <a href="#/"></a>
                     </div>
                     <div class="person-laung">
-                        <p>Говорит на :</p>
+                        <p>{{__('messages.speak_on')}} :</p>
                         @if(in_array('ua', $userLanguages))
-                            <span>Украинский</span>
+                            <span>{{__('messages.ukrainian')}}</span>
                         @endif
                         @if(in_array('ru', $userLanguages))
-                            <span>Русский</span>
+                            <span>{{__('messages.russian')}}</span>
                         @endif
                         @if(in_array('en', $userLanguages))
-                            <span>English</span>
+                            <span>{{__('messages.english')}}</span>
                         @endif
                     </div>
                     <div class="person-address">
                         <div class="address">
-                            <p>Город:</p>
+                            <p>{{__('messages.city')}}:</p>
                             <span>{{$user->city}}</span>
                         </div>
                         <div class="address">
-                            <p>Страна:</p>
+                            <p>{{__('messages.country')}}:</p>
                             <span>{{$user->country}}</span>
                         </div>
                     </div>
-                    <a href="#/" class="all-ads btn-hover-w">Все объявления продавца</a>
+                    <a href="#/" class="all-ads btn-hover-w">{{__('messages.all_seller_adverts')}}</a>
                 </div>
 
                 <div class="about-shop">
-                    <h2>О магазине</h2>
+                    <h2>{{__('messages.about_shop')}}</h2>
                     <span class="line"></span>
                     <p>
                         {{$user->description}}
@@ -63,16 +63,16 @@
         </div>
         <div class="seller-main">
             <div class="container">
-                <h2>Лучшие <span>предложения продавца</span></h2>
+                <h2>{{__('messages.best_of')}} <span>{{__('messages.author_suggestion')}}</span></h2>
                 <div class="seller-slider">
                     @include('catalog.modals.item-card-seller-page')
                 </div>
-                <a href="#/" class="all-seller-ads btn-hover">Все объявления продавца</a>
+                <a href="#/" class="all-seller-ads btn-hover">{{__('messages.all_seller_adverts')}}</a>
             </div>
         </div>
         <div class="map-wrap">
             <div class="container">
-                <h2>Как добраться</h2>
+                <h2>{{__('messages.how_to_get_there')}}</h2>
                 <style type="text/css">
                     #map{
                         height:350px;

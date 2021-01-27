@@ -1,3 +1,3 @@
 <div id="success-modal" class="modal info-modal">
-    <h2>Ваша заявка принята. Скоро с Вами свяжутся</h2>
+    <h2>{{__('messages.your_application_is_accepted')}}</h2>
 </div>

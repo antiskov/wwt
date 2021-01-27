@@ -10,7 +10,7 @@
             </div>
             <div class="cont">
                 <div class="person-name">{{$user->name}}</div>
-                <span>{{$countUserAdverts->count}} объявлений </span>
+                <span>{{$countUserAdverts->count}} {{__('messages.count_adverts')}}</span>
             </div>
 
         </div>
@@ -20,9 +20,9 @@
             <div class="choose-filter">
                 <ul class="choose-filter__content">
 {{--                    <li class="active"><a href="#">Все</a></li>--}}
-                    <li class="active"><a href="#">Часы</a></li>
-                    <li><a href="#">Аксессуары</a></li>
-                    <li><a href="#">Запчасти</a></li>
+                    <li class="active"><a href="#">{{__('messages.watches')}}</a></li>
+                    <li><a href="#">{{__('messages.accessories')}}</a></li>
+                    <li><a href="#">{{__('messages.spare_parts')}}</a></li>
                 </ul>
             </div>
             @include('catalog.modals.filter')

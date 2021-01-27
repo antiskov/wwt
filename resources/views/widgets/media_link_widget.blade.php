@@ -1,5 +1,5 @@
 <div class="social-cont">
-    <h2>Мы в соцсетях</h2>
+    <h2>{{__('messages.we_in_media')}}</h2>
     <div class="social-wrap">
         @foreach($mediaLinks as $mediaLink)
             <a href="http://{{$mediaLink->link_address}}" class="social-wrap_link" target="_blank">
@@ -8,12 +8,12 @@
         @endforeach
     </div>
     <div class="hot-line">
-        <p>Горячая линия </p>
+        <p>{{__('messages.hot_line')}} </p>
         <a href="tel:+49721906693">+49 721 906693</a>
     </div>
 </div>
 <div class="application-cont">
-    <h2>Приложение</h2>
+    <h2>{{__('messages.application')}}</h2>
     <div class="store-cont">
         <div class="stores">
             @foreach($mediaImages as $mediaImage)
@@ -24,7 +24,7 @@
         </div>
         <a data-fancybox href="#advertisement-modal" class="order-advert">
             <div class="text-block">
-                <p>Заказать рекламу на нашем сайте</p>
+                <p>{{__('messages.buy_ad')}}</p>
                 <!--                        <p></p>-->
             </div>
             <img src="/images/content/reclama-footer.png" alt="img" class="adv-img">

@@ -6,6 +6,8 @@ namespace App\Http\Controllers;
 use App\Models\Advert;
 use App\Models\User;
 use App\Services\CatalogService;
+use App\Services\RateService;
+use App\Services\SubmittingService;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
@@ -53,6 +55,7 @@ class CatalogController extends Controller
             'userLanguages' => $service->userLanguages($user),
             'adverts' => Advert::where('user_id', $user->id)->get(),
             'linkAvatar' => (new \App\Services\ProfileService())->getAvatar($user->id),
+            'currency' => (new RateService())->checkRate(),
         ]);
     }
 

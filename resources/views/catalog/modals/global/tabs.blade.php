@@ -28,20 +28,20 @@
                 </div>
 
                 <div class="select-price">
-                    <p>Сортировать:</p>
+                    <p>{{__('messages.sort')}}</p>
                     <div class="select-value rotate">
                         @if(isset($_COOKIE['price_sort']))
                             @if($_COOKIE['price_sort'] == 'dear')
-                                <span>по убыванию цены</span>
+                                <span>{{__('messages.price_reduction')}}</span>
                             @else
-                                <span>по возрастанию цены</span>
+                                <span>{{__('messages.rising_prices')}}</span>
                             @endif
                         @else
-                            <span>по возрастанию цены</span>
+                            <span>{{__('messages.rising_prices')}}</span>
                         @endif
                         <ul class="value-items">
-                            <li id="sort-dear">по убыванию цены</li>
-                            <li id="sort-cheap">по возрастанию цены</li>
+                            <li id="sort-dear">{{__('messages.price_reduction')}}</li>
+                            <li id="sort-cheap">{{__('messages.rising_prices')}}</li>
                         </ul>
                     </div>
                 </div>

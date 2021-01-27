@@ -52,37 +52,7 @@ class HeaderMenu extends AbstractWidget
         return view('widgets.header_menu', [
             'config' => $this->config,
             'adverts' => Advert::where('type', 'watch')->get(),
-            'brands' => WatchMake::all(),
-            'models' => WatchModel::all(),
-//            'diameters' => DiameterWatch::all(),
-//            'years' => YearAdvert::all(),
-//            'provinces' => Province::all(),
-//            'types' => WatchType::all(),
-//            'categories' => Category::all(),
-//            'watchAdverts' => WatchAdvert::all(),
-//            'watchModels' => WatchModel::all(),
-//            'sex_man' => Sex::where('title', 'man')->first(),
-//            'sex_woman' => Sex::where('title', 'woman')->first(),
-//            'states' => State::all(),
-//            'deliveryVolumes' => DeliveryVolume::all(),
-//            'mechanismTypes' => MechanismType::all(),
-//            'watchMaterials' => WatchMaterial::all(),
-//            'watchDials' => WatchDial::all(),
-//            'glasses' => Glass::all(),
-//            'options' => Option::all(),
-//            'thicknesses' => WatchThickness::all(),
-//            'bezels' => WatchBezel::all(),
-//            'figures' => WatchFigure::all(),
-//            'waterproofs' => WatchWaterproof::all(),
-//            'bracelets' => BraceletMaterial::all(),
-//            'clasps' => BraceletClasp::all(),
-//            'materialsClasps' => MaterialsClasp::all(),
-//            'braceletColors' => BraceletColor::all(),
-//            'widthClasps' => WidthClasp::all(),
-
-            'accessoryMakes' => AccessoryMake::all(),
-
-            'sparePartsMakes' => SparePartsMake::all(),
+            'brands' => WatchMake::where('status', 1)->get(),
         ]);
     }
 }

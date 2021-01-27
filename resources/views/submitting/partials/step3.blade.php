@@ -1,8 +1,8 @@
 <div class="tabs__content " data-tab="3">
     <div class="tabs-item">
-        <h2>Личные данные<span>* обязательное поле</span></h2>
+        <h2>{{__('messages.personal_data')}}<span>{{__('messages.modal_password_span')}}</span></h2>
         <label for="prof-surname-sub">
-            Фамилия *
+            {{__('messages.surname')}} *
             @if(isset($advert) && $advert->surname)
                 <input data-step-input type="text" id="prof-surname-sub" name="surname" value="{{$advert->surname}}">
             @else
@@ -10,7 +10,7 @@
             @endif
         </label>
         <label for="prof-name-sub">
-            Имя *
+            {{__('messages.name')}} *
             @if(isset($advert) && $advert->name)
                 <input data-step-input  type="text" id="prof-name-sub" name="name" value="{{$advert->name}}">
             @else
@@ -26,7 +26,7 @@
 {{--            @endif--}}
 {{--        </label>--}}
         <label for="prof-phone">
-            Телефон *
+            {{__('messages.phone')}} *
             @if(isset($advert) && $advert->phone)
                 <input data-step-input name="phone" type="tel" id="prof-phone"  value="{{$advert->phone}}">
             @else
@@ -35,20 +35,20 @@
         </label>
 
         <div class="address-date">
-            <h2>Местоположение часов</h2>
+            <h2>{{__('messages.space')}}</h2>
 
             <!--    Двіжуха з автокомплітами       -->
             <label for="route">
-                Введите ваш адрес
+                {{__('messages.put_address')}}
                 <input
                     id="autocomplete"
-                    placeholder="Введите ваш адрес"
+                    placeholder="{{__('messages.put_address')}} "
                     type="text"
                 />
             </label>
 
             <label for="route">
-                Улица *
+                {{__('messages.street')}} *
                 @if(isset($advert) && $advert->street)
                     <input type="text" id="route" readonly="true" name='street' value="{{ $advert->street }}">
                 @else
@@ -56,7 +56,7 @@
                 @endif
             </label>
             <label for="street_number">
-                Адресное дополнение
+                {{__('messages.street_addition')}}
                 @if(isset($advert) && $advert->street_additional)
                     <input type="text" id="street_number" readonly="true" name="street_additional"
                            value="{{$advert->street_additional}}">
@@ -66,7 +66,7 @@
                 @endif
             </label>
             <label for="postal_code">
-                Почтовый индекс
+                {{__('messages.mail_index')}}
                 @if(isset($advert) && $advert->zip_code)
                     <input type="text" id="postal_code" readonly="true" name="zip_code" value="{{$advert->zip_code}}">
                 @else
@@ -74,7 +74,7 @@
                 @endif
             </label>
             <label for="locality">
-                Населенный пункт
+                {{__('messages.town')}}
                 @if(isset($advert) && $advert->city)
                     <input type="text" id="locality" readonly="true" name="city" value="{{$advert->city}}">
                 @else
@@ -82,7 +82,7 @@
                 @endif
             </label>
             <label for="street_number">
-                Страна *
+                {{__('messages.country')}}  *
                 @if(isset($advert) && $advert->country)
                     <input type="text" id="country" readonly="true" name="country" value="{{$advert->country}}">
                 @else
@@ -90,7 +90,7 @@
                 @endif
             </label>
             <label for="street_number">
-                Область
+                {{__('messages.region')}}
                 @if(isset($advert) && $advert->region)
                     <input type="text" id="administrative_area_level_1" readonly="true" name="region" value="{{$advert->region}}">
                 @else
@@ -127,26 +127,21 @@
                 @else
                     <input type="checkbox" name="is_publish_surname" value="1">
                 @endif
-                <span>я не хочу, чтобы моя фамилия была указана в объявлении *</span>
+                <span>{{__('messages.shadow_surname')}} *</span>
             </label>
         </div>
 
         <div class="block-data-cont">
             <div class="text-cont">
-                <h3>Ваши данные в надежных руках</h3>
+                <h3>{{__('messages.security_personal_data')}}</h3>
                 <p class="text-item">
-                    Мы строго придерживаемся законов о защите информации.
+                    {{__('messages.security_personal_data_1')}}
                 </p>
                 <p class="text-item">
-                    Все данные, которые Вы вносите на наш сайт, зашифрованы и передаются по
-                    надежному
-                    интернет соединению.
+                    {{__('messages.security_personal_data_2')}}
                 </p>
                 <div class="text-item">
-                    Ваши личные данные будут использованы исключительно для продажи артикулов на
-                    сайте и
-                    не
-                    будут опубликованы.
+                    {{__('messages.security_personal_data_3')}}
                     <div class="img-cont">
                         <img src="/images/icons/secure-data.svg" alt="img">
                         <img src="/images/icons/shild.svg" alt="img">
@@ -160,13 +155,13 @@
         </div>
 
         <div class="btn-cont step-3-cont">
-            <button data-step="2" class="prev-step btn-hover" type="button">Вернуться к шагу 2</button>
+            <button data-step="2" class="prev-step btn-hover" type="button">{{__('messages.go_to_step2')}}</button>
             @if(isset($advert))
-            <button class="save-edit btn-hover-w" type="submit">Сохранить как черновик</button>
+            <button class="save-edit btn-hover-w" type="submit">{{__('messages.save_like_draft')}}</button>
 
-            <button data-step="4" data-id-adv="{{$advert->id}}" class="save-next btn-hover" type="button">Перейти к шагу 4</button>
+            <button data-step="4" data-id-adv="{{$advert->id}}" class="save-next btn-hover" type="button">{{__('messages.go_to_step4')}}</button>
                 @else
-                <button class="save-edit btn-hover-w" type="submit">Сохранить как черновик</button>
+                <button class="save-edit btn-hover-w" type="submit">{{__('messages.save_like_draft')}}</button>
                 @endif
         </div>
     </div>

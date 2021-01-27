@@ -27,7 +27,7 @@
                         </div>
                         <ul class="header-cabinet-list">
                             <li><a href="{{route('my_adverts')}}">{{__('messages.menu_my_adverts')}}</a></li>
-                            <li><a href="#">{{__('messages.menu_messages')}}</a></li>
+                            <li><a href="{{route('DialogShow')}}">{{__('messages.menu_messages')}}</a></li>
                             <li><a href="{{route('payments')}}">{{__('messages.menu_payments')}}</a></li>
                             <li><a href="{{ route('editing-profile') }}">{{__('messages.menu_editing_profile')}}</a>
                             </li>
@@ -46,79 +46,97 @@
                         <input type="text" name="search" placeholder="Поиск...">
                         <div class="search-input-holder__buttons">
               <span class="clear-field-btn">
-                <img src="/images/icons/close-dark.svg" alt="Очистить поиск">
+                <img src="/images/icons/close-dark.svg">
               </span>
                             <button class="search-field__send-btn" class="button">
-                                <img src="/images/icons/search.svg" alt="Поиск">
+                                <img src="/images/icons/search.svg" alt="{{__('messages.search')}}">
                             </button>
                         </div>
                     </div>
-                    <div class="search__result">
-                        <div class="search__categories">
-                            <label>
-                                <input type="radio" name="category" checked>
-                                <span>Часы</span>
-                            </label>
-                            <label>
-                                <input type="radio" name="category">
-                                <span>Аксессуары</span>
-                            </label>
-                            <label>
-                                <input type="radio" name="category">
-                                <span>Запчасти</span>
-                            </label>
-                        </div>
-                        <div class="search__items">
-                            <p style="display: none;">Ничего не найдено</p>
-                            <!-- ДЛЯ БЭКА: Убрать атрибут стайл и выводить, если нет товаров -->
-                            <ul>
-                                <li>
-                                    <a href="#"><span>Hublot</span> Big Bang</a>
-                                </li>
-                                <li>
-                                    <a href="#"><span>Hublot</span> Big Bang</a>
-                                </li>
-                                <li>
-                                    <a href="#"><span>Hublot</span> Big Bang</a>
-                                </li>
-                                <li>
-                                    <a href="#"><span>Hublot</span> Big Bang</a>
-                                </li>
-                                <li>
-                                    <a href="#"><span>Hublot</span> Big Bang Kroko Kautschukband</a>
-                                </li>
-                                <li>
-                                    <a href="#"><span>Hublot</span> Big Bang Fusion Dark Brown Alligator Strap</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+{{--                    <div class="search__result">--}}
+{{--                        <div class="search__categories">--}}
+{{--                            <label>--}}
+{{--                                <input type="radio" name="category" checked>--}}
+{{--                                <span>Часы</span>--}}
+{{--                            </label>--}}
+{{--                            <label>--}}
+{{--                                <input type="radio" name="category">--}}
+{{--                                <span>Аксессуары</span>--}}
+{{--                            </label>--}}
+{{--                            <label>--}}
+{{--                                <input type="radio" name="category">--}}
+{{--                                <span>Запчасти</span>--}}
+{{--                            </label>--}}
+{{--                        </div>--}}
+{{--                        <div class="search__items">--}}
+{{--                            <p style="display: none;">Ничего не найдено</p>--}}
+{{--                            <!-- ДЛЯ БЭКА: Убрать атрибут стайл и выводить, если нет товаров -->--}}
+{{--                            <ul>--}}
+{{--                                <li>--}}
+{{--                                    <a href="#"><span>Hublot</span> Big Bang</a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="#"><span>Hublot</span> Big Bang</a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="#"><span>Hublot</span> Big Bang</a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="#"><span>Hublot</span> Big Bang</a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="#"><span>Hublot</span> Big Bang Kroko Kautschukband</a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="#"><span>Hublot</span> Big Bang Fusion Dark Brown Alligator Strap</a>--}}
+{{--                                </li>--}}
+{{--                            </ul>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                 </form>
             </div>
         </div>
         <div class="mob-menu">
             <div class="mob-menu__top">
                 <div class="mob-menu-btn-close"></div>
-                <div class="languages-btns">
-                    <a href="#" class="active">ру</a>
-                    <a href="#">en</a>
-                </div>
+                <form class="languages-btns">
+                    @csrf
+                    @if(Cookie::get('language') == 'ru')
+                        <label>
+                            <input type="radio" name="language" checked value="ru">
+                            <span>ру</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="language" value="en">
+                            <span>en</span>
+                        </label>
+                    @else
+                        <label>
+                            <input type="radio" name="language" value="ru">
+                            <span>ру</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="language" checked value="en">
+                            <span>en</span>
+                        </label>
+                    @endif
+                </form>
             </div>
             <nav class="catalog-mob">
                 <ul class="catalog-mob__gen-list">
                     <li class="has-menu">
-                        <span>{{__('messages.swiss_watches')}}</span>
+                        <span>{{__('messages.watches')}}</span>
                         <ul class="catalog-mob__menu">
                             <li class="has-menu">
-                                <span>Купить</span>
+                                <span>{{__('messages.buy')}}</span>
                                 <ul class="catalog-mob__list">
-                                    <a href="{{route('catalog')}}">Показать все результаты</a>
+                                    <a href="{{route('catalog')}}">{{__('messages.show_all_results')}}</a>
                                     <li>
-                                        <span>Марки</span>
+                                        <span>{{__('messages.brands')}}</span>
                                         <ul>
                                             @foreach($brands as $brand)
                                                 <li>
-                                                    <a href="#">{{ $brand->title.' ('.count($brand->watchAdverts).')'}}</a>
+                                                    <a href="{{route('catalog', ['brands[]' => $brand->title])}}&">{{ $brand->title.' ('.count($brand->watchAdverts).')'}}</a>
                                                 </li>
                                             @endforeach
                                         </ul>
@@ -137,21 +155,21 @@
                             </li>
                             <li>
                                 @if(Auth::check())
-                                    <a class="sell" href='{{route('submitting')}}'><span>Продать</span></a>
+                                    <a class="sell" href='{{route('submitting')}}'><span>{{__('messages.sell')}}</span></a>
                                 @else
                                     <a data-fancybox data-src="#need_authorization" href="javascript:;"
-                                       href="#">Продать</a>
+                                       href="#">{{__('messages.sell')}}</a>
                                 @endif
                             </li>
                         </ul>
                     </li>
                     <li class="has-menu">
-                        <span>Аксессуары</span>
+                        <span>{{__('messages.accessories')}}</span>
                         <ul class="catalog-mob__menu">
                             <li class="has-menu">
-                                <span>Купить</span>
+                                <span>{{__('messages.buy')}}</span>
                                 {{--                                                    <ul class="catalog-mob__list">--}}
-                                {{--                                                        <a href="{{route('catalog.accessory')}}">Показать все результаты</a>--}}
+                                {{--                                                        <a href="{{route('catalog.accessory')}}">{{__('messages.show_all_results')}}</a>--}}
                                 {{--                                                        <li>--}}
                                 {{--                                                            <span>Марки</span>--}}
                                 {{--                                                            <ul>--}}
@@ -165,20 +183,20 @@
                                 {{--                                                    </ul>--}}
                             </li>
                             <li>
-                                <a data-fancybox data-src="#referral_number" href="javascript:;" class="thisMe">Продать</a>
+                                <a data-fancybox data-src="#referral_number" href="javascript:;" class="thisMe">{{__('messages.sell')}}</a>
                             </li>
                             <ul class="catalog-mob__list">
-                                <a href="">Показать все результаты</a>
+                                <a href="">{{__('messages.show_all_results')}}</a>
                             </ul>
                         </ul>
                     </li>
                     <li class="has-menu">
-                        <span>Запчасти</span>
+                        <span>{{__('messages.spare_parts')}}</span>
                         <ul class="catalog-mob__menu">
                             <li class="has-menu">
-                                <span>Купить</span>
+                                <span>{{__('messages.buy')}}</span>
                                 {{--                                                    <ul class="catalog-mob__list">--}}
-                                {{--                                                        <a href="{{route('catalog.spare-parts')}}">Показать все результаты</a>--}}
+                                {{--                                                        <a href="{{route('catalog.spare-parts')}}">{{__('messages.show_all_results')}}</a>--}}
                                 {{--                                                        <li>--}}
                                 {{--                                                            <span>Марки</span>--}}
                                 {{--                                                            <ul>--}}
@@ -192,10 +210,10 @@
                                 {{--                                                    </ul>--}}
                             </li>
                             <li>
-                                <a data-fancybox data-src="#referral_number" href="javascript:;" class="thisMe">Продать</a>
+                                <a data-fancybox data-src="#referral_number" href="javascript:;" class="thisMe">{{__('messages.sell')}}</a>
                             </li>
                             <ul class="catalog-mob__list">
-                                <a href="">Показать все результаты</a>
+                                <a href="">{{__('messages.show_all_results')}}</a>
                             </ul>
                         </ul>
                     </li>
@@ -357,10 +375,10 @@
                     <nav class="header-desc__nav">
                         <ul class="header-desc-nav">
                             <li>
-                                <a href="{{route('catalog')}}">{{__('messages.swiss_watches')}}</a>
+                                <a href="{{route('catalog')}}">{{__('messages.watches')}}</a>
                                 <ul class="header-desc-nav__btns">
                                     <li class="list-btn">
-                                        <a href="#"><span>Купить</span></a>
+                                        <a href="#"><span>{{__('messages.buy')}}</span></a>
                                         {{--                                        <div class="header-nav-lists header-nav-lists_first">--}}
                                         {{--                                            <div class="header-nav-list header-nav-list_few-columns">--}}
                                         {{--                                                <h3>Марки</h3>--}}
@@ -388,19 +406,19 @@
                                     </li>
                                     <li>
                                         @if(Auth::check())
-                                            <a class="sell" href='{{route('submitting')}}'><span>Продать</span></a>
+                                            <a class="sell" href='{{route('submitting')}}'><span>{{__('messages.sell')}}</span></a>
                                         @else
                                             <a data-fancybox data-src="#need_authorization" href="javascript:;"
-                                               href="#">Продать</a>
+                                               href="#">{{__('messages.sell')}}</a>
                                         @endif
                                     </li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="#">Аксессуары</a>
+                                <a href="#">{{__('messages.accessories')}}</a>
                                 {{--                                                            <ul class="header-desc-nav__btns">--}}
                                 {{--                                                                <li class="list-btn">--}}
-                                {{--                                                                    <a href="#"><span>Купить</span></a>--}}
+                                {{--                                                                    <a href="#"><span>{{__('messages.buy')}}</span></a>--}}
                                 {{--                                                                    <div class="header-nav-lists header-nav-lists_second">--}}
                                 {{--                                                                        <div class="header-nav-list header-nav-list_few-columns">--}}
                                 {{--                                                                            <h3>Марки</h3>--}}
@@ -424,15 +442,15 @@
                                 {{--                                                                    </div>--}}
                                 {{--                                                                </li>--}}
                                 {{--                                                                <li>--}}
-                                {{--                                                                    <a data-fancybox data-src="#referral_number" href="javascript:;"><span>Продать</span></a>--}}
+                                {{--                                                                    <a data-fancybox data-src="#referral_number" href="javascript:;"><span>{{__('messages.sell')}}</span></a>--}}
                                 {{--                                                                </li>--}}
                                 {{--                                                            </ul>--}}
                             </li>
                             <li>
-                                <a href="#">Запчасти</a>
+                                <a href="#">{{__('messages.spare_parts')}}</a>
                                 {{--                                                            <ul class="header-desc-nav__btns">--}}
                                 {{--                                                                <li class="list-btn">--}}
-                                {{--                                                                    <a href="#"><span>Купить</span></a>--}}
+                                {{--                                                                    <a href="#"><span>{{__('messages.buy')}}</span></a>--}}
                                 {{--                                                                    <div class="header-nav-lists header-nav-lists_third">--}}
                                 {{--                                                                        <div class="header-nav-list header-nav-list_few-columns">--}}
                                 {{--                                                                            <h3>Марки</h3>--}}
@@ -449,7 +467,7 @@
                                 {{--                                                                    </div>--}}
                                 {{--                                                                </li>--}}
                                 {{--                                                                <li>--}}
-                                {{--                                                                    <a data-fancybox data-src="#referral_number" href="javascript:;"><span>Продать</span></a>--}}
+                                {{--                                                                    <a data-fancybox data-src="#referral_number" href="javascript:;"><span>{{__('messages.sell')}}</span></a>--}}
                                 {{--                                                                </li>--}}
                                 {{--                                                            </ul>--}}
                             </li>

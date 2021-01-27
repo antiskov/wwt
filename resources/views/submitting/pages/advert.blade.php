@@ -5,10 +5,10 @@
         <div class="form-cont">
             <div class="tabs-mess">
                 <ul class="tabs__caption">
-                    <li data-anchor="1" class="active">шаг 1</li>
-                    <li data-anchor="2" class="disabled">шаг 2</li>
-                    <li data-anchor="3" class="disabled">шаг 3</li>
-                    <li data-anchor="4" class="disabled">шаг 4</li>
+                    <li data-anchor="1" class="active">{{__('messages.step1')}}</li>
+                    <li data-anchor="2" class="disabled">{{__('messages.step2')}}</li>
+                    <li data-anchor="3" class="disabled">{{__('messages.step3')}}</li>
+                    <li data-anchor="4" class="disabled">{{__('messages.step4')}}</li>
                 </ul>
                 @if(isset($advert))
                     <form id="create_advert" action="{{route('submitting.edit_draft', $advert)}}" method="post">

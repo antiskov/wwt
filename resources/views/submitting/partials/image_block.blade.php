@@ -14,9 +14,9 @@
                 @endif
                 <div></div>
             </label>
-            <span class="delete-link delete-link_dark" title="Удалить"></span>
+            <span class="delete-link delete-link_dark" title="{{__('messages.delete')}}"></span>
 
-            <span class="delete-link delete_photo" title="Удалить" data-id="{{$photo->id}}"></span>
+            <span class="delete-link delete_photo" title="{{__('messages.delete')}}" data-id="{{$photo->id}}"></span>
         </li>
     @endforeach
 @endif

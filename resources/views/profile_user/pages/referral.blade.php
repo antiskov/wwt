@@ -8,7 +8,7 @@
                 <section class="referral">
                     <div class="">
                         <div class="block-referral">
-                            <h2 class="name-lk">Создать реферальную ссылку</h2>
+                            <h2 class="name-lk">{{__('messages.create_referral')}}</h2>
                             {{--                <p>--}}
                             {{--                    Если вы хотите порекомендовать кому-то нашу платформу ---}}
                             {{--                    вы можете создать реферальную ссылку введя данные нового пользователя--}}

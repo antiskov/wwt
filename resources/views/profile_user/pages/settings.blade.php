@@ -68,7 +68,7 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="save-setting btn-hover">Сохранить</button>
+                    <button type="submit" class="save-setting btn-hover">{{__('messages.save')}}</button>
                 </form>
             </div>
         </div>
