@@ -18,7 +18,7 @@
         <div class="stores">
             @foreach($mediaImages as $mediaImage)
             <a href="http://{{$mediaImage->link_address}}" class="google-play" target="_blank">
-                <img src="/images/content/{{$mediaImage->path}}" alt="google">
+                <img src="/images/content/{{$mediaImage->path}}" alt="{{$mediaImage->link_address}}">
             </a>
             @endforeach
         </div>

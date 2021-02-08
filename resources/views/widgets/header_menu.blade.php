@@ -222,23 +222,7 @@
                     </li>
                 </ul>
             </nav>
-            <div class="mob-menu-social">
-                <h3>Мы в соцсетях</h3>
-                <div class="mob-menu-social__content">
-                    <a href="#/" class="social-wrap_link">
-                        <img src="/images/icons/facebock.svg" alt="img">
-                    </a>
-                    <a href="#/" class="social-wrap_link">
-                        <img src="/images/icons/insta.svg" alt="img">
-                    </a>
-                    <a href="#/" class="social-wrap_link">
-                        <img src="/images/icons/youtube.svg" alt="img">
-                    </a>
-                    <a href="#/" class="social-wrap_link">
-                        <img src="/images/icons/twiter.svg" alt="img">
-                    </a>
-                </div>
-            </div>
+            @widget('mob_media_icons')
         </div>
     </div>
     <div class="header-desc">

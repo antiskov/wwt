@@ -12,10 +12,8 @@
                 <div class="swiper-container gallery-top">
                     <div class="swiper-wrapper">
                         @foreach($advert->photos as $photo)
-                            <a data-fancybox data-src="#item-page-modal" href="javascript:;"
+                            <a href="javascript:;"
                                class="swiper-slide">
-                                {{--                                    <img src="{{asset('/storage/'.$advertImage->full_path)}}" alt="img"--}}
-                                {{--                                         class="swiper-slide-item">--}}
                                 <img
                                     src="{{asset('/storage/images/notice_photos/watch/number_'.$advert->id.'/'.$photo->photo)}}"
                                     alt="img"

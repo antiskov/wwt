@@ -4,10 +4,12 @@ $(document).ready(function () {
   });
 
   $('.mob-menu-btn').click(function () {
+    $('body').addClass('ov-hidden');
     $('.mob-menu').addClass('open');
   });
 
   $('.mob-menu-btn-close').click(function () {
+    $('body').removeClass('ov-hidden');
     $('.mob-menu').removeClass('open');
     $('.catalog-mob__gen-list li').removeClass('active');
   });
