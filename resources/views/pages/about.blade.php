@@ -11,7 +11,7 @@
                 <div class="item">
                     <img src="./images/icons/contacts.svg" alt="img">
                     <p>{{__('messages.contacts')}}</p>
-                    <span>+38(063)874-69-92 </span>
+                    <a href="tel:+380638746992">+38(063)874-69-92</a>
                     <span>Worldwatchtrade@gmail.com</span>
                 </div>
                 <div class="item">
