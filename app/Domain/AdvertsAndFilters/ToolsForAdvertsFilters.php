@@ -169,10 +169,16 @@ abstract class ToolsForAdvertsFilters implements AdvertsFilters
             foreach ($diametersArr as $diameter) {
                 $heightWidth = explode('/', $diameter);
                 $bindsArr['height'][] = $heightWidth[0];
-                $bindsArr['width'][] = $heightWidth[1];
+                if (isset($heightWidth[1])){
+                    $bindsArr['width'][] = $heightWidth[1];
+                }
+
             }
             $bindsArr['height'] = array_unique($bindsArr['height']);
-            $bindsArr['width'] = array_unique($bindsArr['width']);
+            if (isset( $bindsArr['width'])){
+                $bindsArr['width'] = array_unique($bindsArr['width']);
+            }
+
         }
 
         if ($yearsArr = $request->get('years', false)) {
