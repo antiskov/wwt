@@ -43,7 +43,7 @@
         </div>
     </div>
     @if($advert->vip_status == 0 && ($advert->user_id == auth()->user()->id))
-        <h3><a class="primary-btn buy-vip" href="{{route('submitting.buy_vip', $advert)}}">{{__('messages.buy_vip')}}</a></h3>
+        <h3><a class="primary-btn buy-vip " href="{{route('submitting.buy_vip', $advert)}}">{{__('messages.buy_vip')}}</a></h3>
     @elseif($advert->vip_status == 1)
         <h3>{{__('messages.bought_vip')}}</h3>
     @endif
