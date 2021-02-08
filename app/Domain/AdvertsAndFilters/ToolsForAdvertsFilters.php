@@ -146,7 +146,7 @@ abstract class ToolsForAdvertsFilters implements AdvertsFilters
 
         if($request->has('prices')){
             $pricesArr = $this->changeFromCurrencyPriceFilter($request);
-            $query->whereBetween('price', [$pricesArr[0], $pricesArr[1]]);
+            $query->whereBetween('price', [$pricesArr[0], $pricesArr[1]+1]);
         }
 
         return $query;
