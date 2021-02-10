@@ -116,7 +116,7 @@
                 </div>
                 <div class="setting-cont">
                     <p>{{__('messages.year')}}</p>
-                    <span>2019</span>
+                    <span>{{$advert->watchAdvert->release_year}}</span>
                 </div>
                 <div class="setting-cont">
                     <p>{{__('messages.state')}}</p>
