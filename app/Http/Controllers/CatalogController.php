@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Advert;
+use App\Models\Status;
 use App\Models\User;
 use App\Services\CatalogService;
 use App\Services\RateService;
@@ -50,10 +51,12 @@ class CatalogController extends Controller
      */
     public function sellerPage(User $user, UserService $service)
     {
+        $status_id = Status::where('title', 'published')->first()->id;
+
         return view('catalog.pages.seller_page', [
             'user' => $user,
             'userLanguages' => $service->userLanguages($user),
-            'adverts' => Advert::where('user_id', $user->id)->get(),
+            'adverts' => Advert::where('user_id', $user->id)->where('status_id', $status_id)->get(),
             'linkAvatar' => (new \App\Services\ProfileService())->getAvatar($user->id),
             'currency' => (new RateService())->checkRate(),
         ]);

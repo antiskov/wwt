@@ -48,15 +48,11 @@
                     <h2>{{__('messages.about_shop')}}</h2>
                     <span class="line"></span>
                     <p>
-                        {{$user->description}}
                     </p>
 
-                    {{--                    <div class="panel">--}}
-                    {{--                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aut distinctio dolores--}}
-                    {{--                        doloribus ea eius exercitationem explicabo fugit illum itaque, laboriosam magnam minima--}}
-                    {{--                        molestiae optio quae quo rem repellat sequi.--}}
-                    {{--                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias deserunt dolore earum hic in maiores nemo nesciunt nisi numquam sunt?--}}
-                    {{--                    </div>--}}
+                    <div class="panel">
+                        {{$user->description}}
+                    </div>
                     <button class="accordion"></button>
                 </div>
             </div>
@@ -68,40 +64,6 @@
                     @include('catalog.modals.item-card-seller-page')
                 </div>
                 <a href="#/" class="all-seller-ads btn-hover">{{__('messages.all_seller_adverts')}}</a>
-            </div>
-        </div>
-        <div class="map-wrap">
-            <div class="container">
-                <h2>{{__('messages.how_to_get_there')}}</h2>
-                <style type="text/css">
-                    #map{
-                        height:350px;
-                    }
-                </style>
-                <div class="gradient">
-                    <div class="map-cont" id="map" height='300px'>
-                        <script>
-                            function initMap() {
-                                // The location of Uluru
-                                const uluru = { lat: {{$user->latitude}}, lng: {{$user->longtitude}} };
-                                // The map, centered at Uluru
-                                const map = new google.maps.Map(document.getElementById("map"), {
-                                    zoom: 10,
-                                    center: uluru,
-                                });
-                                // The marker, positioned at Uluru
-                                const marker = new google.maps.Marker({
-                                    position: uluru,
-                                    map: map,
-                                });
-                            }
-                        </script>
-                        <script
-                            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmCYblB4cVMXS93Da6iBG1RFldOXY46hA&callback=initMap&libraries=&v=weekly"
-                            defer
-                        ></script>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
