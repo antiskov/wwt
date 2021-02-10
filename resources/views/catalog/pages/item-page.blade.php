@@ -12,25 +12,11 @@
     <section class="item-page">
         <script>
             document.addEventListener("DOMContentLoaded", function (event) {
-                document.querySelector('#heart').addEventListener('click', function (e) {
-                    if (!this.classList.contains('active')) {
-                        console.log(1);
-                        $.ajax({
-                            url: '/catalog/item_page_favorite/{{$advert->id}}/{{1}}',
-                        })
-                    } else {
-                        console.log(0);
-                        $.ajax({
-                            url: '/catalog/item_page_favorite/{{$advert->id}}/{{0  }}',
-                        })
-                    }
-                })
-
                 $('.button-show-phone').on('click', function(e){
                     e.preventDefault();
                     $.ajax({
                         url: '/catalog/show_phone/{{$advert->id}}',
-                        data: {"_token": "{{ csrf_token() }}"},
+                        {{--data: {"_token": "{{ csrf_token() }}"},--}}
                         success: function (data) {
                             $('.phone-dropdown').html(data.output).addClass('active');
                         },
@@ -45,6 +31,19 @@
                             window.location.replace(data.url);
                         },
                     })
+                })
+                document.querySelector('#heart').addEventListener('click', function (e) {
+                    if (!this.classList.contains('active')) {
+                        console.log(1);
+                        $.ajax({
+                            url: '/catalog/item_page_favorite/{{$advert->id}}/{{1}}',
+                        })
+                    } else {
+                        console.log(0);
+                        $.ajax({
+                            url: '/catalog/item_page_favorite/{{$advert->id}}/{{0  }}',
+                        })
+                    }
                 })
             });
         </script>

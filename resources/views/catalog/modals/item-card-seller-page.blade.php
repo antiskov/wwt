@@ -2,11 +2,13 @@
     <div class="item-cont">
         <div class="item-cart">
             <div class="vip-label"></div>
+            @auth
             @if((\App\Models\UserFavoriteAdvert::where('user_id', auth()->user()->id)->where('advert_id', $advert->id)->first()))
                 <div class="favorite-icon active catalog-heart" data-id="{{$advert->id}}"></div>
             @else
                 <div class="favorite-icon catalog-heart" data-id="{{$advert->id}}"></div>
             @endif
+            @endauth
 
             <a href="{{route('catalog.item-page', [$advert->id])}}" class="img-wrap">
                 @isset($advert->photos->where('is_basic', 1)->first()->photo)
