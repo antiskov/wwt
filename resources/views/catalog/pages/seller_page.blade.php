@@ -47,11 +47,10 @@
                 <div class="about-shop">
                     <h2>{{__('messages.about_shop')}}</h2>
                     <span class="line"></span>
+                    <div class="about-shop__info">
                     <p>
-                    </p>
-
-                    <div class="panel">
                         {{$user->description}}
+                    </p>
                     </div>
                     <button class="accordion"></button>
                 </div>

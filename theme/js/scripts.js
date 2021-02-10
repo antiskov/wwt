@@ -8,6 +8,11 @@ $(document).ready(function () {
     $('.mob-menu').addClass('open');
   });
 
+
+  if($('.about-shop__info').height() < 450) {
+    $('.about-shop__info').next('.accordion').hide()
+  }
+
   $('.mob-menu-btn-close').click(function () {
     $('body').removeClass('ov-hidden');
     $('.mob-menu').removeClass('open');
