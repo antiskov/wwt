@@ -801,7 +801,7 @@ $(document).ready(function () {
   //---added images step 2
   $('#addImages').attr('title', '');
 
-  var maxFileSize = 2 * 1024 * 1024; // (байт) Максимальный размер файла (2мб)
+  var maxFileSize = 10485760; // (байт) Максимальный размер файла (2мб)
   var queue = {};
   var form = $('form#uploadImages');
   var imagesList = $('#uploadImagesList');
@@ -822,7 +822,8 @@ $(document).ready(function () {
         continue;
       }
       if (file.size > maxFileSize) {
-        alert('Размер фотографии не должен превышать 2 Мб');
+          console.log(file.size, maxFileSize)
+        alert('Размер фотографии не должен превышать 10 Мб');
         continue;
       }
 
