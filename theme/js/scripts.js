@@ -821,7 +821,6 @@ $(document).ready(function () {
         // alert( 'Фотография должна быть в формате jpg, png или gif' );
         continue;
       }
-
       if (file.size > maxFileSize) {
         alert('Размер фотографии не должен превышать 2 Мб');
         continue;
