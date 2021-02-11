@@ -151,7 +151,18 @@
                 @else
                     <input data-step-input type="text" id="made-watch" name="release_year">
                 @endif
-                    @if($position == 1 && $advert->watchAdvert->is_release_year_confirmed == 1)
+                    @if($position == 0 && $advert->watchAdvert->is_release_year_confirmed == 0)
+                        <span class="check-cont">
+                                <label class="checkbox-other">
+                                    <input type="radio" name="year"  value="1">
+                                    <span>{{__('messages.approximately')}}</span>
+                                </label>
+                                <label class="checkbox-other">
+                                    <input type="radio" name="year" checked value="0">
+                                    <span>{{__('messages.unknown')}}</span>
+                                </label>
+                            </span>
+                    @else
                         <span class="check-cont">
                                 <label class="checkbox-other">
                                     <input type="radio" name="year" checked value="1">
@@ -159,17 +170,6 @@
                                 </label>
                                 <label class="checkbox-other">
                                     <input type="radio" name="year" value="0">
-                                    <span>{{__('messages.unknown')}}</span>
-                                </label>
-                            </span>
-                    @else
-                        <span class="check-cont">
-                                <label class="checkbox-other">
-                                    <input type="radio" name="year" value="1">
-                                    <span>{{__('messages.approximately')}}</span>
-                                </label>
-                                <label class="checkbox-other">
-                                    <input type="radio" name="year" checked value="0">
                                     <span>{{__('messages.unknown')}}</span>
                                 </label>
                             </span>
