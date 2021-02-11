@@ -62,7 +62,7 @@
                 <div class="seller-slider">
                     @include('catalog.modals.item-card-seller-page')
                 </div>
-                <a href="#/" class="all-seller-ads btn-hover">{{__('messages.all_seller_adverts')}}</a>
+                <a href="{{route('catalog.seller-ads', [$user->id])}}" class="all-seller-ads btn-hover">{{__('messages.all_seller_adverts')}}</a>
             </div>
         </div>
     </section>
