@@ -63,7 +63,7 @@ abstract class ToolsForAdvertsFilters implements AdvertsFilters
             ->groupBy('watch_model_title')->whereRaw($rule)->get();
 
         $newTable = clone $table;
-        $diameters = $newTable->select('height', 'width')->whereRaw($rule)->get();
+        $diameters = $newTable->select('height', 'width')->whereRaw($rule)->groupBy('height', 'width')->get();
 
         $newTable = clone $table;
         $years = $newTable->select('release_year')
