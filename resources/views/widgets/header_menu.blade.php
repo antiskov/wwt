@@ -362,7 +362,7 @@
                                 <a href="{{route('catalog')}}">{{__('messages.watches')}}</a>
                                 <ul class="header-desc-nav__btns">
                                     <li class="list-btn">
-                                        <a href="#"><span>{{__('messages.buy')}}</span></a>
+                                        <a href="{{route('catalog')}}"><span>{{__('messages.buy')}}</span></a>
                                         {{--                                        <div class="header-nav-lists header-nav-lists_first">--}}
                                         {{--                                            <div class="header-nav-list header-nav-list_few-columns">--}}
                                         {{--                                                <h3>Марки</h3>--}}
@@ -400,60 +400,83 @@
                             </li>
                             <li>
                                 <a href="#">{{__('messages.accessories')}}</a>
-                                {{--                                                            <ul class="header-desc-nav__btns">--}}
-                                {{--                                                                <li class="list-btn">--}}
-                                {{--                                                                    <a href="#"><span>{{__('messages.buy')}}</span></a>--}}
-                                {{--                                                                    <div class="header-nav-lists header-nav-lists_second">--}}
-                                {{--                                                                        <div class="header-nav-list header-nav-list_few-columns">--}}
-                                {{--                                                                            <h3>Марки</h3>--}}
-                                {{--                                                                            <div>--}}
-                                {{--                                                                                <ul>--}}
-                                {{--                                                                                    @foreach($accessoryMakes as $accessoryMake)--}}
-                                {{--                                                                                        <li>--}}
-                                {{--                                                                                            <a href="#">{{$accessoryMake->title.' ('.count($accessoryMake->accessoryAdverts).')'}}</a>--}}
-                                {{--                                                                                        </li>--}}
-                                {{--                                                                                    @endforeach--}}
-                                {{--                                                                                </ul>--}}
-                                {{--                                                                            </div>--}}
-                                {{--                                                                        </div>--}}
-                                {{--                                                                        <div class="header-nav-list">--}}
-                                {{--                                                                            <h3>Категории</h3>--}}
-                                {{--                                                                            <ul>--}}
-                                {{--                                                                                    <a href="#">Браслеты и ремешки / Детали и аксессуары</a>--}}
-                                {{--                                                                                </li>--}}
-                                {{--                                                                            </ul>--}}
-                                {{--                                                                        </div>--}}
-                                {{--                                                                    </div>--}}
-                                {{--                                                                </li>--}}
-                                {{--                                                                <li>--}}
-                                {{--                                                                    <a data-fancybox data-src="#referral_number" href="javascript:;"><span>{{__('messages.sell')}}</span></a>--}}
-                                {{--                                                                </li>--}}
-                                {{--                                                            </ul>--}}
+                                <ul class="header-desc-nav__btns">
+                                    <li class="list-btn">
+                                        <a href="{{route('catalog')}}"><span>{{__('messages.buy')}}</span></a>
+                                        {{--                                        <div class="header-nav-lists header-nav-lists_first">--}}
+                                        {{--                                            <div class="header-nav-list header-nav-list_few-columns">--}}
+                                        {{--                                                <h3>Марки</h3>--}}
+                                        {{--                                                <div>--}}
+                                        {{--                                                    <ul>--}}
+                                        {{--                                                        @foreach($brands as $brand)--}}
+                                        {{--                                                            <li>--}}
+                                        {{--                                                                <a href="#">{{ $brand->title.' ('.count($brand->watchAdverts).')'}}</a>--}}
+                                        {{--                                                            </li>--}}
+                                        {{--                                                        @endforeach--}}
+                                        {{--                                                    </ul>--}}
+                                        {{--                                                </div>--}}
+                                        {{--                                            </div>--}}
+                                        {{--                                            --}}{{--                                            <div class="header-nav-list">--}}
+                                        {{--                                            --}}{{--                                                <h3>Категории</h3>--}}
+                                        {{--                                            --}}{{--                                                <ul>--}}
+                                        {{--                                            --}}{{--                                                    @foreach($categories as $category)--}}
+                                        {{--                                            --}}{{--                                                        <li>--}}
+                                        {{--                                            --}}{{--                                                            <a href="#">{{$category->title.' ('.count($category->watchModels).')'}}</a>--}}
+                                        {{--                                            --}}{{--                                                        </li>--}}
+                                        {{--                                            --}}{{--                                                    @endforeach--}}
+                                        {{--                                            --}}{{--                                                </ul>--}}
+                                        {{--                                            --}}{{--                                            </div>--}}
+                                        {{--                                        </div>--}}
+                                    </li>
+                                    <li>
+                                        @if(Auth::check())
+                                            <a class="sell" href='{{route('submitting')}}'><span>{{__('messages.sell')}}</span></a>
+                                        @else
+                                            <a data-fancybox data-src="#need_authorization" href="javascript:;"
+                                               href="#">{{__('messages.sell')}}</a>
+                                        @endif
+                                    </li>
+                                </ul>
                             </li>
                             <li>
                                 <a href="#">{{__('messages.spare_parts')}}</a>
-                                {{--                                                            <ul class="header-desc-nav__btns">--}}
-                                {{--                                                                <li class="list-btn">--}}
-                                {{--                                                                    <a href="#"><span>{{__('messages.buy')}}</span></a>--}}
-                                {{--                                                                    <div class="header-nav-lists header-nav-lists_third">--}}
-                                {{--                                                                        <div class="header-nav-list header-nav-list_few-columns">--}}
-                                {{--                                                                            <h3>Марки</h3>--}}
-                                {{--                                                                            <div>--}}
-                                {{--                                                                                <ul>--}}
-                                {{--                                                                                    @foreach($sparePartsMakes as $sparePartsMake)--}}
-                                {{--                                                                                        <li>--}}
-                                {{--                                                                                            <a href="#">{{$sparePartsMake->title.' ('.count($sparePartsMake->sparePartsAdverts).')'}}</a>--}}
-                                {{--                                                                                        </li>--}}
-                                {{--                                                                                    @endforeach--}}
-                                {{--                                                                                </ul>--}}
-                                {{--                                                                            </div>--}}
-                                {{--                                                                        </div>--}}
-                                {{--                                                                    </div>--}}
-                                {{--                                                                </li>--}}
-                                {{--                                                                <li>--}}
-                                {{--                                                                    <a data-fancybox data-src="#referral_number" href="javascript:;"><span>{{__('messages.sell')}}</span></a>--}}
-                                {{--                                                                </li>--}}
-                                {{--                                                            </ul>--}}
+                                <ul class="header-desc-nav__btns">
+                                    <li class="list-btn">
+                                        <a href="#"><span>{{__('messages.buy')}}</span></a>
+                                        {{--                                        <div class="header-nav-lists header-nav-lists_first">--}}
+                                        {{--                                            <div class="header-nav-list header-nav-list_few-columns">--}}
+                                        {{--                                                <h3>Марки</h3>--}}
+                                        {{--                                                <div>--}}
+                                        {{--                                                    <ul>--}}
+                                        {{--                                                        @foreach($brands as $brand)--}}
+                                        {{--                                                            <li>--}}
+                                        {{--                                                                <a href="#">{{ $brand->title.' ('.count($brand->watchAdverts).')'}}</a>--}}
+                                        {{--                                                            </li>--}}
+                                        {{--                                                        @endforeach--}}
+                                        {{--                                                    </ul>--}}
+                                        {{--                                                </div>--}}
+                                        {{--                                            </div>--}}
+                                        {{--                                            --}}{{--                                            <div class="header-nav-list">--}}
+                                        {{--                                            --}}{{--                                                <h3>Категории</h3>--}}
+                                        {{--                                            --}}{{--                                                <ul>--}}
+                                        {{--                                            --}}{{--                                                    @foreach($categories as $category)--}}
+                                        {{--                                            --}}{{--                                                        <li>--}}
+                                        {{--                                            --}}{{--                                                            <a href="#">{{$category->title.' ('.count($category->watchModels).')'}}</a>--}}
+                                        {{--                                            --}}{{--                                                        </li>--}}
+                                        {{--                                            --}}{{--                                                    @endforeach--}}
+                                        {{--                                            --}}{{--                                                </ul>--}}
+                                        {{--                                            --}}{{--                                            </div>--}}
+                                        {{--                                        </div>--}}
+                                    </li>
+                                    <li>
+                                        @if(Auth::check())
+                                            <a class="sell" href='#'><span>{{__('messages.sell')}}</span></a>
+                                        @else
+                                            <a data-fancybox data-src="#need_authorization" href="javascript:;"
+                                               href="#">{{__('messages.sell')}}</a>
+                                        @endif
+                                    </li>
+                                </ul>
                             </li>
                             <li>
                                 <a href="{{route('about')}}">{{__('messages.contacts')}}</a>
