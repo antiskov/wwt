@@ -63,7 +63,7 @@
         <button class="save-edit btn-hover-w" type="submit">{{__('messages.save_like_draft')}}</button>
 
         <button id="publish" class="btn-hover save-next" type="button"><a
-                href="{{route('submitting.publish', $advert)}}">{{__('messages.send_to_moderator')}}fdfsdfsfsdf</a></button>
+                href="{{route('submitting.publish', $advert)}}">{{__('messages.send_to_moderator')}}</a></button>
     </div>
 </div>
 <script>
