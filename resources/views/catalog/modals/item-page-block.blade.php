@@ -55,7 +55,7 @@
                 </div>
                 <div class="cont">
                     <p>{{__('messages.delivery_volume')}}</p>
-                    <span>{{ $advert->delivery_volume }}</span>
+                    <span>{{ $advert->->deliveryVolume->title }}</span>
                 </div>
                 {{--                    <div class="cont">--}}
                 {{--                        <p>Наличие</p>--}}
