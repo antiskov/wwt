@@ -41,7 +41,7 @@
                             <span>{{$user->country}}</span>
                         </div>
                     </div>
-                    <a href="#/" class="all-ads btn-hover-w">{{__('messages.all_seller_adverts')}}</a>
+                    <a href="{{route('catalog.seller-ads', [$user->id])}}" class="all-ads btn-hover-w">{{__('messages.all_seller_adverts')}}</a>
                 </div>
 
                 <div class="about-shop">
