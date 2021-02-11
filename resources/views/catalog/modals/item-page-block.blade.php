@@ -138,6 +138,14 @@
                     <p>{{__('messages.mechanism_type')}}</p>
                     <span>{{$mechanismType}}</span>
                 </div>
+                <div class="setting-cont">
+                    <p>{{__('messages.diameter')}}</p>
+                    @if($advert->watchAdvert->width == $advert->watchAdvert->height)
+                    <span>{{$advert->watchAdvert->width}}</span>
+                    @else
+                    <span>{{$advert->watchAdvert->width.'/'.$advert->watchAdvert->height}}</span>
+                    @endif
+                </div>
             </div>
 
         </div>

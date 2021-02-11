@@ -134,6 +134,7 @@ class CatalogService
         if(!isset($mechanismType)){
             return redirect()->with();
         }
+
         return [
             'role' => $role,
             'advert' => $advert,
