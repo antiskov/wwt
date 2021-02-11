@@ -1,5 +1,4 @@
 @foreach($adverts as $advert)
-    <div class="item-cont">
         <div class="item-cart">
             <div class="vip-label"></div>
             @auth
@@ -31,5 +30,4 @@
                 <span class="new">{{round($advert->price*$currency['rate']).' '.$currency['symbol']}}</span>
             </div>
         </div>
-    </div>
 @endforeach
