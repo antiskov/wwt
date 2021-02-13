@@ -17,6 +17,12 @@ use Illuminate\Support\Facades\Storage;
 
 class SubmittingController extends Controller
 {
+
+    function __construct()
+    {
+        ini_set('memory_limit', '5048M');
+    }
+
     /**
      * @param SubmittingRequest $request
      * @param SubmittingService $service

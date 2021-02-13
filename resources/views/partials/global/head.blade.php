@@ -14,6 +14,7 @@
     <script defer src="/js/scripts.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="format-detection" content="telephone=no">
 
 </head>
 
