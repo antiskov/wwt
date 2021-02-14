@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\Message;
 use App\Models\Dialogs;
+use App\Models\Messages;
 use App\Services\DialogsService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,10 +23,12 @@ class DialogsController extends Controller
         if($currentDialog) {
             $service->setMessagesReadedInDialogForUser($currentDialog, Auth::id());
         }
+        $messages=Messages::where('dialog_id',$currentDialog->id)->all();
         return view('profile_user.pages.my_messages',
         [
             'dialogs'=>$dialogs,
-            'currentDialog'=>$currentDialog
+            'currentDialog'=>$currentDialog,
+            'messages'=>$messages
         ]);
     }
     public function sendMessage(Request $request)

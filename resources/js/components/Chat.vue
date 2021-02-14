@@ -32,6 +32,9 @@
 </template>
 <script>
     export default {
+        props: [
+            'messagesList','user_id','respondent_id'
+        ],
         data() {
             return {
                 messages: [],
@@ -39,15 +42,14 @@
             }
         },
         mounted() {
-            window.Echo.channel('chat')
+            console.log(messagesList);
+            console.log(user_id);
+            console.log(respondent_id);
+            window.Echo.private('chat')
                 .listen('Message', ({message}) => {
                     console.log('hello');
                     this.messages.push(message)
                 })
-            window.Echo.channel('taskCreated').listen('.task.created', (e) => {
-                console.log(message)
-                this.messages.push(message)
-            });
         },
         methods: {
             sendMessage() {
