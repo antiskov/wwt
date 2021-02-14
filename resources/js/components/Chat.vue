@@ -69,7 +69,7 @@
 
                 const m=await axios.post('/dialog/'+this.dialog_id+'/messages', data);
                 console.log(m);
-                this.messages.push(m);
+                this.messages.push(m.config.data);
                 console.log(this.messages)
                 this.$refs.messageField='';
             }
