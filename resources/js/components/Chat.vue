@@ -30,10 +30,11 @@
             }
         },
         mounted() {
+            var self = this;
             var f = async function() {
                 const messages = await axios.get(location.pathname+'/messages');
-                console.log(this.messages)
-                this.messages=messages.data;
+                console.log(self.messages)
+                self.messages=messages.data;
             }
             this.messages=this.messages_list;
             window.Echo.private('chat')
@@ -42,7 +43,7 @@
                     this.messages.push(message)
                 })
             if (!window.Echo.connector.socket.connected && this.dialog_id) {
-                setInterval(f, 10000);
+                setInterval(f, 2000);
             }
 
 
