@@ -53,12 +53,14 @@
         },
         methods: {
             sendMessage() {
-                axios.post('/dialog/1/messages', {
+                const data= {
                     text: this.textMessage,
                     author_id: this.user_id,
                     respondent_id: this.respondent_id,
                     dialog_id: this.dialog_id
-                });
+                }
+                console.log(data)
+                axios.post('/dialog/1/messages', data);
                 this.messages.push(this.textMessage);
                 this.$refs.messageField='';
             }
