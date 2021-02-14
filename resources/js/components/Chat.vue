@@ -37,7 +37,6 @@
                     this.messages.push(message)
                 })
             if (!window.Echo.connector.socket.connected && this.dialog_id) {
-                console.log('dialog_id', d_id)
                 setInterval(async function(d_id){
                     console.log(location.pathname)
                     const messages = await axios.get(location.pathname+'/messages');
