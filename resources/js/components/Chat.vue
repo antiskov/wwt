@@ -12,7 +12,7 @@
                 </div>
             </div>
             <div class="communication-items-out">
-<img src="./images/content/person.png" alt="img">
+<img src="/images/content/person.png" alt="img">
                 <div class="text-mas-in">
                     <p>
                         Вы купили эти часы? Я не покупал эти часы
