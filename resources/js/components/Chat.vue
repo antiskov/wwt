@@ -37,11 +37,10 @@
                     this.messages.push(message)
                 })
             if (!window.Echo.connector.socket.connected && this.dialog_id) {
-                setInterval(async function(d_id){
-                    console.log(location.pathname)
+                setInterval(async function(){
                     const messages = await axios.get(location.pathname+'/messages');
-                    console.log(messages.data)
-                }, 2000);
+                    this.messages=messages.data;
+                }, 10000);
             }
         },
         methods: {
