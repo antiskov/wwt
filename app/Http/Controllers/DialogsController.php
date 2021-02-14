@@ -37,6 +37,11 @@ class DialogsController extends Controller
             'user_avatar'=>$user_avatar
         ]);
     }
+
+    public function getMessage($id) {
+        return Messages::where('dialog_id',$id)->get();
+    }
+
     public function sendMessage(Request $request)
     {
         $m=new Messages();

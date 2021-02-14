@@ -36,7 +36,12 @@
                     console.log('hello');
                     this.messages.push(message)
                 })
-            console.log(window.Echo.connector.socket.connected)
+            if (!window.Echo.connector.socket.connected && this.dialog_id) {
+                setInterval(async function(){
+                    const messages = await axios.get('/dialog/'+this.dialog_id+'/messages', d);
+                    console.log(messages.data)
+                }, 10000);
+            }
         },
         methods: {
             is_readed(message) {

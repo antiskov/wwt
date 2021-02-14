@@ -99,6 +99,7 @@ Route::middleware('set.locale')->group(function () {
     Route::group(['prefix'=>'dialog'], function() {
         Route::get('/{id?}',[\App\Http\Controllers\DialogsController::class,'show'])->name('DialogShow');
         Route::post('/{id?}/messages',[\App\Http\Controllers\DialogsController::class,'sendMessage']);
+        Route::get('/{id}/messages',[\App\Http\Controllers\DialogsController::class,'getMessage']);
     });
     Route::get('/count_results/{type}', [\App\Http\Controllers\CatalogController::class, 'countResults'])->name('home.count-results');
 
