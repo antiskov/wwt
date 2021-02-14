@@ -23,7 +23,7 @@ class DialogsController extends Controller
         if($currentDialog) {
             $service->setMessagesReadedInDialogForUser($currentDialog, Auth::id());
         }
-        $messages=Messages::where('dialog_id',$currentDialog->id)->all();
+        $messages=Messages::where('dialog_id',$currentDialog->id)->get();
         return view('profile_user.pages.my_messages',
         [
             'dialogs'=>$dialogs,
