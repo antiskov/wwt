@@ -2,12 +2,12 @@
     <div class="container">
         <div class="communication-items">
             <div v-for="message in messages" :key="message.text" :class="checkClass(message)" >
-                <img src="/images/content/person.png" alt="img">
+                <img :src="getAvatar(message)" alt="img">
                 <div class="text-mas-in">
                     <p>
                         {{ message.text }}
                     </p>
-                    <div class="time">18.06</div>
+                    <div class="time">{{message.created_at}}</div>
                     <img class="label-del" src="/images/icons/ok-white.svg">
                 </div>
             </div>
@@ -21,7 +21,7 @@
 <script>
     export default {
         props: [
-            'messages_list','user_id','respondent_id', 'dialog_id'
+            'messages_list','user_id','respondent_id', 'dialog_id','respondent_avatar','user_avatar'
         ],
         data() {
             return {
@@ -38,6 +38,13 @@
                 })
         },
         methods: {
+            getAvatar(message) {
+                if (message.initiator_id==this.user_id) {
+                    return this.user_avatar
+                } else {
+                    return this.respondent_avatar
+                }
+            },
             checkClass(message) {
                 if (message.initiator_id==this.user_id) {
                     return 'communication-items-out'
