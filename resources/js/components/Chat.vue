@@ -60,14 +60,14 @@
                 }
             },
             async sendMessage() {
-                const data= {
+                const d= {
                     text: this.textMessage,
                     initiator_id: this.user_id,
                     respondent_id: this.respondent_id,
                     dialog_id: this.dialog_id
                 }
 
-                const m=await axios.post('/dialog/'+this.dialog_id+'/messages', data);
+                const m = await axios.post('/dialog/'+this.dialog_id+'/messages', d);
                 const mes=JSON.parse(m.config.data)
                 console.log(mes);
                 this.messages.push(mes);
