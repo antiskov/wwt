@@ -7,10 +7,10 @@ SELECT adverts.id              AS id,
        adverts.title           AS title,
        adverts.price           AS price,
        adverts.region          AS region,
-       adverts.delivery_volume AS delivery_volume,
        adverts.photo           AS photo,
        adverts.user_id         AS user_id,
        adverts.vip_status      AS vip_status,
+       delivery_volumes.title  as deliver_volume,
        watch_makes.title       AS watch_make_title,
        mechanism_types.title   AS mechanism_type_title,
        watch_types.title       AS watch_type_title,
@@ -30,6 +30,7 @@ FROM watch_adverts
          INNER JOIN watch_makes ON watch_adverts.watch_make_id = watch_makes.id
          INNER JOIN mechanism_types ON watch_adverts.mechanism_type_id = mechanism_types.id
          INNER JOIN watch_types on watch_adverts.watch_type_id = watch_types.id
+         INNER JOIN delivery_volumes on adverts.delivery_volume_id = delivery_volumes.id
          INNER JOIN statuses on adverts.status_id = statuses.id
            where statuses.id = 2 and watch_makes.is_moderated = 1 and watch_models.is_moderated = 1
 ```           
