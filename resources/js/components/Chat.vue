@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="communication-items">
-            <div v-for="message in messages" :key="message.text" class="communication-items-in {{ checkClass(message)}}" >
+            <div v-for="message in messages" :key="message.text" class="communication-items-in" :class="checkClass(message)" >
                 <img src="./images/content/person.png" alt="img">
                 <div class="text-mas-in">
                     <p>
@@ -46,6 +46,11 @@
                     console.log('hello');
                     this.messages.push(message)
                 })
+        },
+        computed: {
+            checkClass(message) {
+                console.log(1,message);
+            }
         },
         methods: {
             sendMessage() {
