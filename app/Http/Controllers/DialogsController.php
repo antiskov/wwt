@@ -30,6 +30,7 @@ class DialogsController extends Controller
     }
     public function sendMessage(Request $request)
     {
+        Log::info($request);
         Message::dispatch($request->input('body'));
     }
 }
