@@ -68,7 +68,9 @@
                 }
 
                 const m=axios.post('/dialog/'+this.dialog_id+'/messages', data);
+                console.log(m);
                 this.messages.push(m);
+                console.log(this.messages)
                 this.$refs.messageField='';
             }
         }
