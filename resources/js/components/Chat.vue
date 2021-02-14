@@ -49,8 +49,11 @@
         },
         methods: {
             checkClass(message) {
-                console.log(message);
-                return 'aha';
+                if (message.initiator_id==this.user_id) {
+                    return 'communication-items-out'
+                } else {
+                    return 'communication-items-in'
+                }
             },
             sendMessage() {
                 const data= {
