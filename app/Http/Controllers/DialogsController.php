@@ -46,6 +46,7 @@ class DialogsController extends Controller
         $m->text=$request->text;
         $m->is_readed=0;
         $m->save();
+        Log::info($m);
         Message::dispatch($m);
     }
 }
