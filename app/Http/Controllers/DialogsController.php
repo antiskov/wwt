@@ -38,6 +38,7 @@ class DialogsController extends Controller
         $m->dialog_id=$request->dialog_id;
         $m->initiator_id=$request->initiator_id;
         $m->respondent_id=$request->respondent_id;
+        $m->text=$request->text;
         $m->is_readed=0;
         $m->save();
         Message::dispatch($m);
