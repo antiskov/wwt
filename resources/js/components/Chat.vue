@@ -68,8 +68,9 @@
                 }
 
                 const m=await axios.post('/dialog/'+this.dialog_id+'/messages', data);
-                console.log(m);
-                this.messages.push(JSON.parse(m.config.data));
+                const mes=JSON.parse(m.data)
+                console.log(mes);
+                this.messages.push(mes);
                 console.log(this.messages)
                 this.$refs.messageField='';
             }
