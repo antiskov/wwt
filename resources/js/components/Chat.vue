@@ -59,7 +59,7 @@
                     return 'communication-items-in'
                 }
             },
-            sendMessage() {
+            async sendMessage() {
                 const data= {
                     text: this.textMessage,
                     initiator_id: this.user_id,
@@ -67,7 +67,7 @@
                     dialog_id: this.dialog_id
                 }
 
-                const m=axios.post('/dialog/'+this.dialog_id+'/messages', data);
+                const m=await axios.post('/dialog/'+this.dialog_id+'/messages', data);
                 console.log(m);
                 this.messages.push(m);
                 console.log(this.messages)
