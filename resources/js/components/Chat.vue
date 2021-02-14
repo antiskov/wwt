@@ -38,7 +38,7 @@
                 })
             if (!window.Echo.connector.socket.connected && this.dialog_id) {
                 setInterval(async function(){
-                    const messages = await axios.get('/dialog/'+this.dialog_id+'/messages', d);
+                    const messages = await axios.get('/dialog/'+this.dialog_id+'/messages');
                     console.log(messages.data)
                 }, 10000);
             }
