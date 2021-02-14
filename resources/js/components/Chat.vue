@@ -36,6 +36,7 @@
                     console.log('hello');
                     this.messages.push(message)
                 })
+            console.log(window.Echo)
         },
         methods: {
             is_readed(message) {
