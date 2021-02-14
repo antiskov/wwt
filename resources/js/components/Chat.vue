@@ -67,7 +67,7 @@
                     dialog_id: this.dialog_id
                 }
 
-                axios.post('/dialog/'+dialog_id+'/messages', data);
+                axios.post('/dialog/'+this.dialog_id+'/messages', data);
                 this.messages.push(this.data);
                 console.log(this.messages);
                 this.$refs.messageField='';
