@@ -36,7 +36,7 @@
                     console.log('hello');
                     this.messages.push(message)
                 })
-            console.log(window.Echo)
+            console.log(window.Echo.connector.socket.connected)
         },
         methods: {
             is_readed(message) {
