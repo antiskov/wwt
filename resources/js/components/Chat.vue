@@ -2,7 +2,7 @@
     <div class="container">
         <div class="communication-items">
             <div v-for="message in messages" :key="message.text" :class="checkClass(message)" >
-                <img src="getAvatar(message)" alt="img">
+                <img :src="getAvatar(message)" alt="img">
                 <div class="text-mas-in">
                     <p>
                         {{ message.text }}
