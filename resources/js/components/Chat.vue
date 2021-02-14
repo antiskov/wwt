@@ -44,6 +44,10 @@
                     console.log('hello');
                     this.messages.push(message)
                 })
+            window.Echo.channel('taskCreated').listen('.task.created', (e) => {
+                console.log(message)
+                this.messages.push(message)
+            });
         },
         methods: {
             sendMessage() {

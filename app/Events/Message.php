@@ -34,4 +34,9 @@ class Message implements ShouldBroadcast
     {
         return new Channel('chat');
     }
+
+    public function broadcastAs()
+    {
+        return 'task.created';
+    }
 }

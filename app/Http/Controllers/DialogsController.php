@@ -31,5 +31,6 @@ class DialogsController extends Controller
     public function sendMessage(Request $request)
     {
         Message::dispatch($request->input('body'));
+        event(new Message($request->input('body')));
     }
 }
