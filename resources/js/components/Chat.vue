@@ -33,7 +33,7 @@
 <script>
     export default {
         props: [
-            'messagesList','user_id','respondent_id'
+            'messagesList','user_id','respondent_id', 'dialog_id'
         ],
         data() {
             return {
@@ -55,7 +55,7 @@
             sendMessage() {
                 const data= {
                     text: this.textMessage,
-                    author_id: this.user_id,
+                    initiator_id: this.user_id,
                     respondent_id: this.respondent_id,
                     dialog_id: this.dialog_id
                 }
