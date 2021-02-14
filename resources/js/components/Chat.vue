@@ -54,7 +54,7 @@
         methods: {
             sendMessage() {
                 axios.post('/dialog/1/messages', {
-                    body: this.textMessage,
+                    text: this.textMessage,
                     author_id: this.user_id,
                     respondent_id: this.respondent_id,
                     dialog_id: this.dialog_id
