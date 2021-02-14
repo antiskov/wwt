@@ -20,6 +20,7 @@
                         <ul class="mess-items">
                             @foreach($dialogs as $dialog)
                             <li class="item-messages @if($dialog->unreaded) unread @endif">
+                                <a href="{{route('DialogShow', ['id'=>$dialog->id])}}">
                                 <div class="img-wrap">
                                     <img src="{{asset('/storage/images/notice_photos/watch/number_'.$dialog->advert->id.'/'.$dialog->advert->photos[0]->photo)}}" alt="img">
                                 </div>
@@ -40,6 +41,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                </a>
                             </li>
                             @endforeach
                             {{--<li class="item-messages unread">
