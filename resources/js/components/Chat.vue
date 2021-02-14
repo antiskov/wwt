@@ -42,9 +42,9 @@
             }
         },
         mounted() {
-            console.log(messagesList);
-            console.log(user_id);
-            console.log(respondent_id);
+            console.log(this.messagesList);
+            console.log(this.user_id);
+            console.log(this.respondent_id);
             window.Echo.private('chat')
                 .listen('Message', ({message}) => {
                     console.log('hello');
