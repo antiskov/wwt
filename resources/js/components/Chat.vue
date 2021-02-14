@@ -47,12 +47,11 @@
                     this.messages.push(message)
                 })
         },
-        computed: {
-            checkClass(message) {
-                console.log(1,message);
-            }
-        },
         methods: {
+            checkClass(message) {
+                console.log(message);
+                return 'aha';
+            },
             sendMessage() {
                 const data= {
                     text: this.textMessage,
@@ -65,9 +64,6 @@
                 axios.post('/dialog/1/messages', data);
                 this.messages.push(this.data);
                 this.$refs.messageField='';
-            },
-            checkClass(message) {
-                console.log(message);
             }
         }
     }
