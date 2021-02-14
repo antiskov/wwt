@@ -166,7 +166,7 @@
                                 {{$currentDialog->advert->title}}
                             </div>
                             <div class="img-wrap">
-                                <img src="{{asset((new \App\Services\ProfileService())->getAvatar($currentDialog->advert->user_id))}}" alt="img">
+                                <img src="{{asset($respondent_avatar)}}" alt="img">
                             </div>
                         </div>
                         <div id="chatd_block">

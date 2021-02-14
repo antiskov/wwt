@@ -24,11 +24,13 @@ class DialogsController extends Controller
             $service->setMessagesReadedInDialogForUser($currentDialog, Auth::id());
         }
         $messages=Messages::where('dialog_id',$currentDialog->id)->get();
+        $respondent_avatar=$currentDialog?(new \App\Services\ProfileService())->getAvatar($currentDialog->advert->user_id):'';
         return view('profile_user.pages.my_messages',
         [
             'dialogs'=>$dialogs,
             'currentDialog'=>$currentDialog,
-            'messages'=>$messages
+            'messages'=>$messages,
+            'respondent_avatar'=>$respondent_avatar,
         ]);
     }
     public function sendMessage(Request $request)
