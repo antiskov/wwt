@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="communication-items">
-            <div v-for="message in messages" :key="message.text" :class="checkClass(message)" >
+            <div v-for="message in messages" :key="message.id" :class="checkClass(message)" >
                 <img :src="getAvatar(message)" alt="img">
                 <div class="text-mas-in">
                     <p>
@@ -68,8 +68,6 @@
                 }
 
                 axios.post('/dialog/'+this.dialog_id+'/messages', data);
-                this.messages.push(this.data);
-                console.log(this.messages);
                 this.$refs.messageField='';
             }
         }
