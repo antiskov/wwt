@@ -69,6 +69,7 @@
 
                 const m = await axios.post('/dialog/'+this.dialog_id+'/messages', d);
                 const mes=JSON.parse(m.config.data)
+                console.log(m.data)
                 console.log(mes);
                 this.messages.push(mes);
                 console.log(this.messages)
