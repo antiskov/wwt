@@ -33,7 +33,7 @@
 <script>
     export default {
         props: [
-            'messagesList','user_id','respondent_id', 'dialog_id'
+            'messages_list','user_id','respondent_id', 'dialog_id'
         ],
         data() {
             return {
@@ -42,7 +42,7 @@
             }
         },
         mounted() {
-            console.log(this.messagesList);
+            console.log(this.messages_list);
             console.log(this.user_id);
             console.log(this.respondent_id);
             window.Echo.private('chat')

@@ -16,7 +16,7 @@ class DialogsController extends Controller
     {
         $dialogs=$service->getUserDialogs(Auth::id());
         if($id) {
-            $currentDialog = isset($dialogs[0]) ? $dialogs[0] : 0;
+            $currentDialog = count($dialogs)>0 ? $dialogs[0] : 0;
         } else {
             $currentDialog=Dialogs::findOrFail($id);
         }
@@ -33,8 +33,6 @@ class DialogsController extends Controller
     }
     public function sendMessage(Request $request)
     {
-        Log::info($request);
-
         $m=new Messages();
         $m->dialog_id=$request->dialog_id;
         $m->initiator_id=$request->initiator_id;

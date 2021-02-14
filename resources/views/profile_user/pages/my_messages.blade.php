@@ -170,7 +170,7 @@
                             </div>
                         </div>
                         <div id="chatd_block">
-                            <chat :dialog_id="{{$currentDialog->id}}" :messagesList="{{ $messages  }}" :user_id="{{Auth::id()}}" :respondent_id="{{$currentDialog->advert->user_id}}"></chat>
+                            <chat :dialog_id="{{$currentDialog->id}}" :messages_list="{{ $messages  }}" :user_id="{{Auth::id()}}" :respondent_id="{{$currentDialog->advert->user_id}}"></chat>
                         </div>
 
                     </div>
