@@ -33,17 +33,15 @@
             var self = this;
             var f = async function() {
                 const messages = await axios.get(location.pathname+'/messages');
-                console.log(self.messages)
                 self.messages=messages.data;
             }
             this.messages=this.messages_list;
             window.Echo.private('chat')
                 .listen('Message', ({message}) => {
-                    console.log('hello');
                     this.messages.push(message)
                 })
             if (!window.Echo.connector.socket.connected && this.dialog_id) {
-                setInterval(f, 2000);
+                setInterval(f, 10000);
             }
 
 
