@@ -8,7 +8,7 @@
                         {{ message.text }}
                     </p>
                     <div class="time">{{message.created_at}}</div>
-                    <img class="label-del" src="/images/icons/ok-white.svg">
+                    <img class="label-del" :src="is_readed(message)">
                 </div>
             </div>
         </div>
@@ -38,6 +38,13 @@
                 })
         },
         methods: {
+            is_readed(message) {
+                if (message.is_readed) {
+                    return '/images/icons/ok-white.svg'
+                } else {
+                    return '/images/icons/ok-white.svg'
+                }
+            },
             getAvatar(message) {
                 if (message.initiator_id==this.user_id) {
                     return this.user_avatar
@@ -60,9 +67,9 @@
                     dialog_id: this.dialog_id
                 }
 
-                console.log(data)
-                axios.post('/dialog/1/messages', data);
+                axios.post('/dialog/'+dialog_id+'/messages', data);
                 this.messages.push(this.data);
+                console.log(this.messages);
                 this.$refs.messageField='';
             }
         }
