@@ -33,7 +33,12 @@ class DialogsController extends Controller
     }
     public function sendMessage(Request $request)
     {
-        Message::dispatch($request->input('body'));
-        event(new Message($request->input('body')));
+        $m=new Messages();
+        $m->dialog_id=$request->dialog_id;
+        $m->initiator_id=$request->initiator_id;
+        $m->respondent_id=$request->respondent_id;
+        $m->is_readed=0;
+        $m->save();
+        Message::dispatch($m);
     }
 }
