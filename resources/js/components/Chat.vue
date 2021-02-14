@@ -30,6 +30,7 @@
             }
         },
         mounted() {
+
             this.messages=this.messages_list;
             window.Echo.private('chat')
                 .listen('Message', ({message}) => {
@@ -37,11 +38,14 @@
                     this.messages.push(message)
                 })
             if (!window.Echo.connector.socket.connected && this.dialog_id) {
-                setInterval(async function(){
-                    const messages = await axios.get(location.pathname+'/messages');
-                    this.messages=messages.data;
-                }, 10000);
+                setInterval(f, 10000);
             }
+            var f = async function() {
+                const messages = await axios.get(location.pathname+'/messages');
+                console.log(this.messages)
+                this.messages=messages.data;
+            }
+
         },
         methods: {
             is_readed(message) {
