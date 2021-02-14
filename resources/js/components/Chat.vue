@@ -1,6 +1,5 @@
 <template>
     <div class="container">
-        {{messages.join('\n')}}
         <div class="communication-items">
             <div v-for="message in messages" :key="message.text" class="communication-items-in {{ checkClass(message)}}" >
                 <img src="./images/content/person.png" alt="img">
