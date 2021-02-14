@@ -36,7 +36,7 @@
                 self.messages=messages.data;
             }
             this.messages=this.messages_list;
-            window.Echo.private('chat')
+            window.Echo.private('chat.'+this.dialog_id)
                 .listen('Message', ({message}) => {
                     this.messages.push(message)
                 })

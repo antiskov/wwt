@@ -14,5 +14,9 @@ use Illuminate\Support\Facades\Broadcast;
 */
 
 Broadcast::channel('chat.{id}', function ($user, $id) {
-    return (int) $user->id === (int) $id;
+    $dialog=\App\Models\Dialogs::where('initiator_id', $user->id)->orWhere('respondent_id',$user->id);
+    if($dialog) {
+        return true;
+    }
+    return false;
 });
