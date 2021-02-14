@@ -40,7 +40,7 @@
                 console.log('dialog_id', d_id)
                 setInterval(async function(d_id){
                     console.log(location.pathname)
-                    const messages = await axios.get('/dialog/'+d_id+'/messages');
+                    const messages = await axios.get(location.pathname+'/messages');
                     console.log(messages.data)
                 }, 2000);
             }
