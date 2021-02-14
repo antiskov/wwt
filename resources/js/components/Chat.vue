@@ -67,7 +67,8 @@
                     dialog_id: this.dialog_id
                 }
 
-                axios.post('/dialog/'+this.dialog_id+'/messages', data);
+                const m=axios.post('/dialog/'+this.dialog_id+'/messages', data);
+                this.messages.push(m);
                 this.$refs.messageField='';
             }
         }
