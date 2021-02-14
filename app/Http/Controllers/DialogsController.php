@@ -15,8 +15,8 @@ class DialogsController extends Controller
     public function show($id = null, DialogsService $service)
     {
         $dialogs=$service->getUserDialogs(Auth::id());
-        if($id) {
-            $currentDialog = count($dialogs)>0 ? $dialogs[0] : 0;
+        if(!$id) {
+            $currentDialog = isset($dialogs[0])? $dialogs[0] : 0;
         } else {
             $currentDialog=Dialogs::findOrFail($id);
         }
