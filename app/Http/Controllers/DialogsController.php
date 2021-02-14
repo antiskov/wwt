@@ -34,6 +34,10 @@ class DialogsController extends Controller
     public function sendMessage(Request $request)
     {
         Log::info($request);
+        die();
+
+
+
         $m=new Messages();
         $m->dialog_id=$request->dialog_id;
         $m->initiator_id=$request->initiator_id;
