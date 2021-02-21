@@ -8,6 +8,7 @@
 
                 <div class="block-messages">
                     <h2 class="name-lk">Сообщения</h2>
+                    @if(count($dialogs))
                     <div class="tabs-mess">
                         <div class="chat-types">
                             <span class="chat-types__choose" data-choose="all-messages">Все сообщения</span>
@@ -175,6 +176,10 @@
 
                     </div>
                     @endif
+                    @else
+                    <h3>У вас нет сообщений</h3>
+                        @endif
+
                 </div>
             </div>
         </div>
