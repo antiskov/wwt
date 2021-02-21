@@ -23,7 +23,12 @@ class DialogsController extends Controller
         if($currentDialog) {
             $service->setMessagesReadedInDialogForUser($currentDialog->id, Auth::id());
         }
-        $messages=Messages::where('dialog_id',$currentDialog->id)->get();
+        if($currentDialog) {
+            $messages=Messages::where('dialog_id',$currentDialog->id)->get();
+        } else {
+            $messages=[];
+        }
+
         $respondent_avatar=$currentDialog?(new \App\Services\ProfileService())->getAvatar($currentDialog->advert->user_id):'/images/content/person.png';
         $ua=(new \App\Services\ProfileService())->getAvatar(Auth::id());
         $user_avatar=$ua?$ua:'/images/icons/wwt_profile_avatar.png';
