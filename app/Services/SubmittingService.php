@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Domain\RefactorNameImage;
 use App\Domain\Submitting\Advert\AdvertAbstract;
 use App\Domain\Submitting\Advert\AdvertTools;
 use App\Domain\Submitting\Advert\AdvertWatchConnector;
@@ -54,7 +55,7 @@ class SubmittingService
     public function uploadPhoto($advertID, $advertType, UploadImageRequest $request)
     {
         foreach ($request->file('advert_images') as $image) {
-            $name = $image->getClientOriginalName();
+            $name = RefactorNameImage::setTimestamp($image->getClientOriginalName());
             if (!AdvertPhoto::where('photo', $name)->where('advert_id', $advertID)->first()) {
                 $path = 'images/advert_photos/' . $advertType . '/number_' . $advertID;
                 $path = 'images/notice_photos/' . $advertType . '/number_' . $advertID;

@@ -18,7 +18,8 @@ class Uploader
      */
     private function upload()
     {
-        $this->filename = $this->request->file($this->nameAttribute)->getClientOriginalName();
+        $testfilename = $this->request->file($this->nameAttribute)->getClientOriginalName();
+        $this->filename = RefactorNameImage::setTimestamp($testfilename);
         $this->request->file($this->nameAttribute)->storeAs($this->directory, $this->filename, 'public');
 
         (new ImageMinificationService())->minify($this->filename, ['small'], 'public/'.$this->directory);
