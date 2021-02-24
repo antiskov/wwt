@@ -45,7 +45,6 @@ class WatchAdvertRequest extends FormRequest
             "lat"=> 'max:200',
             "lng"=> 'max:200',
             "description"=> 'max:3000',
-            "release_year"=> 'numeric',
             "price"=> 'numeric',
             "width"=> 'numeric',
             "height"=> 'numeric',

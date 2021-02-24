@@ -16,22 +16,19 @@ class ManWomanPicturesService
     public function createManWomanPictures(Request $request)
     {
         $uploader = new Uploader();
-
-        $uploader->uploadImage($request, 'man_image', 'admin/man_woman_pictures');
-        $man_image = $uploader->getFilename();
-
-        $uploader->uploadImage($request, 'woman_image', 'admin/man_woman_pictures');
-        $woman_image = $uploader->getFilename();
-
-        if ($picture = ManWomanPicture::latest()->first()) {
-            $picture->delete();
-            Storage::delete('/public/admin/man_woman_pictures/' . $picture->man);
-            Storage::delete('/public/admin/man_woman_pictures/' . $picture->woman);
+        $picture = ManWomanPicture::latest()->first();
+        if(!$picture){
+            $picture = new ManWomanPicture();
+        }
+        if ($request->man_image){
+            $uploader->uploadImage($request, 'man_image', 'admin/man_woman_pictures');
+            $picture->man = $uploader->getFilename();
         }
 
-        $picture = new ManWomanPicture();
-        $picture->man = $man_image;
-        $picture->woman = $woman_image;
+        if ($request->woman_image){
+            $uploader->uploadImage($request, 'woman_image', 'admin/man_woman_pictures');
+            $picture->woman = $uploader->getFilename();
+        }
 
         if (!$picture->save()) {
             Log::info("ManWomanPicture #$picture->id not saved");

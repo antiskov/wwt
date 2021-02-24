@@ -40,6 +40,7 @@ class SubmittingController extends Controller
      */
     public function createDraft(WatchAdvertRequest $request, SubmittingService $service)
     {
+
         $advert = $service->createDraft($request);
 
         return redirect()->route('submitting.get_draft', $advert);
@@ -53,6 +54,16 @@ class SubmittingController extends Controller
      */
     public function editDraft(Advert $advert, WatchAdvertRequest $request, SubmittingService $service)
     {
+        if ($request->release_year){
+            $validator = \Validator::make($request->all(), [
+                'release_year' => 'numeric',
+            ]);
+
+            if($validator->fails()){
+                return redirect()->route('submitting.get_draft', $advert);
+            }
+        }
+
         if($service->checkChangedAdvertWatch($advert, $request)) {
             $advert = $service->editDraft(new AdvertWatchConnector($request, $advert));
 
