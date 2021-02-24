@@ -3,7 +3,6 @@
 
 namespace App\Services;
 
-use App\Domain\RefactorNameImage;
 use App\Http\Requests\ProfileRequest;
 use App\Models\Timezone;
 use App\Models\User;
@@ -24,7 +23,7 @@ class ProfileService
             Storage::delete('public/'.$userDir.$user->avatar);
             Storage::delete('public/'.$userDir.'small_'.$user->avatar);
         }
-        $avatarName =RefactorNameImage::setTimestamp($request->file('avatar')->getClientOriginalName());
+        $avatarName = $user->email . '_' . $request->file('avatar')->getClientOriginalName();
         $request->file('avatar')->storeAs($userDir, $avatarName, 'public');
         $user->avatar = $avatarName;
         $user->save();
