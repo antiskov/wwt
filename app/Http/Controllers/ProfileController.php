@@ -23,6 +23,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
@@ -78,6 +79,20 @@ class ProfileController extends Controller
      */
     public function editingProfileForm(ProfileRequest $request, ProfileService $form)
     {
+        if ($request->phone){
+            $validArr['phone'] = 'numeric';
+        }
+
+        if ($request->zip_code){
+            $validArr['zip_code'] = 'numeric';
+        }
+        if (isset($validArr)){
+            $validator = Validator::make($request->all(), $validArr);
+            if ($validator->fails()){
+                return redirect()->back();
+            }
+        }
+
         $form->saveFormData($request);
         if ($request->avatar) {
             $form->createAvatar($request);
