@@ -86,6 +86,7 @@ class SubmittingController extends Controller
 
     public function uploadImage(Advert $advert, UploadImageRequest $request, SubmittingService $service)
     {
+        dd($request->all());
         $service->uploadPhoto($advert->id, $advert->type, $request);
 
         $data = [

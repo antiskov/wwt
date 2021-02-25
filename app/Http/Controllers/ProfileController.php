@@ -22,6 +22,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
@@ -305,6 +306,19 @@ class ProfileController extends Controller
             "pay" => $service->setPay($order_id),
             'currency' => Currency::where('title', 'UAH')->first()->title,
         ]);
+    }
+
+    public function uploadAvatar(Request $request, ProfileService $service)
+    {
+        $service->createAvatar($request);
+
+        $data = [
+            'output' => \Illuminate\Support\Facades\View::make('profile_user.partials.avatar', [
+                'avatarPath' => $service->getAvatar(auth()->user()->id),
+            ])->toHtml(),
+        ];
+
+        return Response::json($data);
     }
 
 }

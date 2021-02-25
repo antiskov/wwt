@@ -6,7 +6,7 @@
             <div class="container-wrap">
                 @include('profile_user.partials.left_menu')
                 <form action="{{ route('editing-profile-form') }}" method="post" class="block-profile"
-                      enctype='multipart/form-data'>
+                      enctype='multipart/form-data' id="profile_form">
                     @csrf
                     <h2 class="name-lk">{{__('messages.menu_editing_profile')}}</h2>
                     <div class="profile-header">
@@ -26,9 +26,8 @@
                         <div class="name-setting">
                             <div class="photo-set">
                                 <span>{{__('messages.editing_avatar')}}</span>
-                                <input type="file" name="avatar" accept="image/x-png,image/gif,image/jpeg">
-                                <br><br>
-                                <a href="{{ route('delete-avatar') }}" class="delete-photo">{{__('messages.editing_avatar')}}</a>
+                                <input type="file" name="avatar" class="delete-photo" accept="image/x-png,image/gif,image/jpeg"
+                                       id="input_avatar">
                             </div>
                             <div class="load-prof">
                                 <p>{{__('messages.profile_filled')}}</p>
@@ -63,7 +62,8 @@
                         </div>
                         <label for="calendar">
                             {{__('messages.date_born')}}
-                            <input name="birthday_date" type="date" id="calendar" value="{{auth()->user()->birthday_date}}">
+                            <input name="birthday_date" type="date" id="calendar"
+                                   value="{{auth()->user()->birthday_date}}">
                         </label>
                     </div>
                     <div class="contact-date">
@@ -92,7 +92,8 @@
 
                         <label for="route">
                             {{__('messages.street')}} *
-                            <input type="text" id="route" readonly="true" name='street' value="{{ auth()->user()->street }}">
+                            <input type="text" id="route" readonly="true" name='street'
+                                   value="{{ auth()->user()->street }}">
                         </label>
                         <label for="street_number">
                             {{__('messages.street_addition')}}
@@ -101,21 +102,24 @@
                         </label>
                         <label for="postal_code">
                             {{__('messages.mail_index')}}
-                            <input type="text" id="postal_code" readonly="true" name="zip_code" value="{{auth()->user()->zip_code}}">
+                            <input type="text" id="postal_code" readonly="true" name="zip_code"
+                                   value="{{auth()->user()->zip_code}}">
                         </label>
                         <label for="locality">
                             {{__('messages.town')}}
-                            <input type="text" id="locality" readonly="true" name="city" value="{{auth()->user()->city}}">
+                            <input type="text" id="locality" readonly="true" name="city"
+                                   value="{{auth()->user()->city}}">
                         </label>
                         <label for="street_number">
                             {{__('messages.country')}} *
-                            <input type="text" id="country" readonly="true" name="country" value="{{auth()->user()->country}}">
+                            <input type="text" id="country" readonly="true" name="country"
+                                   value="{{auth()->user()->country}}">
                         </label>
                         <label for="street_number">
                             {{__('messages.region')}}
-                            <input type="text" id="administrative_area_level_1" readonly="true" name="region" value="{{auth()->user()->region}}">
+                            <input type="text" id="administrative_area_level_1" readonly="true" name="region"
+                                   value="{{auth()->user()->region}}">
                         </label>
-
 
 
                         <!--       автокоплит, вдруг надо будет             -->
@@ -244,7 +248,34 @@
             </div>
         </div>
     </section>
-    <script src="https://maps.google.com/maps/api/js?key=AIzaSyA-M4C5q7VMtAjsrGwrf2rh1_rcRXi67zk&libraries=places&language=ru"
-            type="text/javascript"></script>
+    <script
+        src="https://maps.google.com/maps/api/js?key=AIzaSyA-M4C5q7VMtAjsrGwrf2rh1_rcRXi67zk&libraries=places&language=ru"
+        type="text/javascript"></script>
     <script src="/js/g-autocomplete.js"></script>
+    <script>
+        document.querySelector('#input_avatar').onchange = function () {
+            const data = new FormData();
+            const self = this;
+            Object.keys(this.files).forEach((key, idx) => {
+                console.log(self.files[idx])
+                data.append(`avatar`, self.files[idx])
+            });
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                type: "POST",
+                url: '{{route('upload_avatar')}}',
+                data: data,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function (data) {
+                    $('.person-img').html(data.output);
+                },
+            })
+        }
+    </script>
 @endsection
