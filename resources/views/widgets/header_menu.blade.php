@@ -314,7 +314,7 @@
                                         <ul class="header-cabinet-list">
                                             <li><a href="{{route('my_adverts')}}">{{__('messages.menu_my_adverts')}}</a>
                                             </li>
-                                            <li><a href="#">{{__('messages.menu_messages')}}</a></li>
+                                            <li><a href="{{route('DialogShow')}}">{{__('messages.menu_messages')}}</a></li>
                                             <li><a href="{{route('payments')}}">{{__('messages.menu_payments')}}</a>
                                             </li>
                                             <li>
