@@ -93,7 +93,7 @@
                                 <div class="text"><img src="/images/icons/lk-star.svg" alt="img">
                                     <p>{{__('messages.my_adverts_div_favorite')}} </p><span>{{$advert->favoriteAdverts->count()}}</span></div>
                                 <div class="text"><img src="/images/icons/email.svg" alt="img">
-                                    <p>: </p><span>7</span>
+                                    <p>: </p><span>{{$advert->dialogsCount()}}</span>
                                 </div>
                             </div>
                         </div>

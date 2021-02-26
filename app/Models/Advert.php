@@ -7,6 +7,7 @@ use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 
 /**
  * @method static where(string $string, $id)
@@ -15,14 +16,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Advert extends Model implements Viewable
 {
     use HasFactory, SoftDeletes, InteractsWithViews;
-
-//    protected $fillable = [
-//        'type',
-//        'title',
-//        'price',
-//        'name',
-//        'surname',
-//    ];
 
     public function currency()
     {
@@ -86,5 +79,10 @@ class Advert extends Model implements Viewable
     public function getPrice()
     {
         return round($this->price);
+    }
+
+    public function dialogsCount()
+    {
+        return DB::table('dialogs')->where('advert_id', $this->id)->count();
     }
 }
