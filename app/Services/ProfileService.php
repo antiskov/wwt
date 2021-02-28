@@ -53,7 +53,7 @@ class ProfileService
         }
     }
 
-    public function saveFormData(ProfileRequest $request)
+    public function saveFormData(Request $request)
     {
         $user = auth()->user();
         if (!User::where('email', $request->email)->first()){

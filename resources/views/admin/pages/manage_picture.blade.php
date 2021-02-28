@@ -27,10 +27,10 @@
                         <form action="{{route('admin.upload_picture')}}" method="post" enctype='multipart/form-data'>
                             @csrf
                             <label for="">Мужские</label>
-                            <input type="file" required name="man_image" accept="image/x-png,image/gif,image/jpeg">
+                            <input type="file" name="man_image" accept="image/x-png,image/gif,image/jpeg">
                             <br>
                             <label for="">Женские</label>
-                            <input type="file" required name="woman_image" accept="image/x-png,image/gif,image/jpeg">
+                            <input type="file" name="woman_image" accept="image/x-png,image/gif,image/jpeg">
                             <input type="submit" value="Загрузить">
                         </form>
                         @widget('man_woman_pictures')

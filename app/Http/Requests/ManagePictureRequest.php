@@ -24,8 +24,8 @@ class ManagePictureRequest extends FormRequest
     public function rules()
     {
         return [
-            'man_image' => 'required|image',
-            'woman_image' => 'required|image',
+            'man_image' => 'image',
+            'woman_image' => 'image',
         ];
     }
 }

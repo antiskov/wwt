@@ -27,12 +27,10 @@ class ProfileRequest extends FormRequest
             'email' => 'required|email',
             'name' => 'max:20',
             'surname' => 'max:20',
-            'phone' => 'numeric',
             'country' => 'max:30',
             'region' => 'max:30',
             'city' => 'max:30',
             'street' => 'max:60',
-            'zip_code' => 'numeric',
             'specialisation' => 'max:50',
             'timezone_id' => 'max:22',
         ];

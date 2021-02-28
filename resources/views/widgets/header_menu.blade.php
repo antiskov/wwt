@@ -53,46 +53,46 @@
                             </button>
                         </div>
                     </div>
-{{--                    <div class="search__result">--}}
-{{--                        <div class="search__categories">--}}
-{{--                            <label>--}}
-{{--                                <input type="radio" name="category" checked>--}}
-{{--                                <span>Часы</span>--}}
-{{--                            </label>--}}
-{{--                            <label>--}}
-{{--                                <input type="radio" name="category">--}}
-{{--                                <span>Аксессуары</span>--}}
-{{--                            </label>--}}
-{{--                            <label>--}}
-{{--                                <input type="radio" name="category">--}}
-{{--                                <span>Запчасти</span>--}}
-{{--                            </label>--}}
-{{--                        </div>--}}
-{{--                        <div class="search__items">--}}
-{{--                            <p style="display: none;">Ничего не найдено</p>--}}
-{{--                            <!-- ДЛЯ БЭКА: Убрать атрибут стайл и выводить, если нет товаров -->--}}
-{{--                            <ul>--}}
-{{--                                <li>--}}
-{{--                                    <a href="#"><span>Hublot</span> Big Bang</a>--}}
-{{--                                </li>--}}
-{{--                                <li>--}}
-{{--                                    <a href="#"><span>Hublot</span> Big Bang</a>--}}
-{{--                                </li>--}}
-{{--                                <li>--}}
-{{--                                    <a href="#"><span>Hublot</span> Big Bang</a>--}}
-{{--                                </li>--}}
-{{--                                <li>--}}
-{{--                                    <a href="#"><span>Hublot</span> Big Bang</a>--}}
-{{--                                </li>--}}
-{{--                                <li>--}}
-{{--                                    <a href="#"><span>Hublot</span> Big Bang Kroko Kautschukband</a>--}}
-{{--                                </li>--}}
-{{--                                <li>--}}
-{{--                                    <a href="#"><span>Hublot</span> Big Bang Fusion Dark Brown Alligator Strap</a>--}}
-{{--                                </li>--}}
-{{--                            </ul>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
+                    {{--                    <div class="search__result">--}}
+                    {{--                        <div class="search__categories">--}}
+                    {{--                            <label>--}}
+                    {{--                                <input type="radio" name="category" checked>--}}
+                    {{--                                <span>Часы</span>--}}
+                    {{--                            </label>--}}
+                    {{--                            <label>--}}
+                    {{--                                <input type="radio" name="category">--}}
+                    {{--                                <span>Аксессуары</span>--}}
+                    {{--                            </label>--}}
+                    {{--                            <label>--}}
+                    {{--                                <input type="radio" name="category">--}}
+                    {{--                                <span>Запчасти</span>--}}
+                    {{--                            </label>--}}
+                    {{--                        </div>--}}
+                    {{--                        <div class="search__items">--}}
+                    {{--                            <p style="display: none;">Ничего не найдено</p>--}}
+                    {{--                            <!-- ДЛЯ БЭКА: Убрать атрибут стайл и выводить, если нет товаров -->--}}
+                    {{--                            <ul>--}}
+                    {{--                                <li>--}}
+                    {{--                                    <a href="#"><span>Hublot</span> Big Bang</a>--}}
+                    {{--                                </li>--}}
+                    {{--                                <li>--}}
+                    {{--                                    <a href="#"><span>Hublot</span> Big Bang</a>--}}
+                    {{--                                </li>--}}
+                    {{--                                <li>--}}
+                    {{--                                    <a href="#"><span>Hublot</span> Big Bang</a>--}}
+                    {{--                                </li>--}}
+                    {{--                                <li>--}}
+                    {{--                                    <a href="#"><span>Hublot</span> Big Bang</a>--}}
+                    {{--                                </li>--}}
+                    {{--                                <li>--}}
+                    {{--                                    <a href="#"><span>Hublot</span> Big Bang Kroko Kautschukband</a>--}}
+                    {{--                                </li>--}}
+                    {{--                                <li>--}}
+                    {{--                                    <a href="#"><span>Hublot</span> Big Bang Fusion Dark Brown Alligator Strap</a>--}}
+                    {{--                                </li>--}}
+                    {{--                            </ul>--}}
+                    {{--                        </div>--}}
+                    {{--                    </div>--}}
                 </form>
             </div>
         </div>
@@ -314,7 +314,7 @@
                                         <ul class="header-cabinet-list">
                                             <li><a href="{{route('my_adverts')}}">{{__('messages.menu_my_adverts')}}</a>
                                             </li>
-                                            <li><a href="#">{{__('messages.menu_messages')}}</a></li>
+                                            <li><a href="{{route('DialogShow')}}">{{__('messages.menu_messages')}}</a></li>
                                             <li><a href="{{route('payments')}}">{{__('messages.menu_payments')}}</a>
                                             </li>
                                             <li>

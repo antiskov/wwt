@@ -10,15 +10,11 @@ document.addEventListener('DOMContentLoaded', function(e){
 
         function checkInputs(inputs, step){
             if(step === 1){
-                // ajax();
-                //от тут місце кароч, при переході з 1-о на 2
                 return [...inputs].some(input => !input.value)
             }
             else if(step === 2){
                 return  !checkImages()
             }else if (step === 3){
-                // ajax();
-                //от тут місце кароч, при переході з 3-о на 4
                 submitInfoFoStep4();
                 return [...inputs].some(input => !input.value)
             } else{
@@ -103,7 +99,8 @@ document.addEventListener('DOMContentLoaded', function(e){
                     if(nextStep >= step){
                         const inputs = document.querySelector(`[data-tab="${nextStep - 1}"]`)
                             .querySelectorAll('[data-step-input]');
-                        if(!checkInputs(inputs, step)){
+                        const year = [...inputs].find(input => !input.value);
+                        if(!checkInputs(inputs, step) || (year.id === 'made-watch')){
                             nextTab.classList.remove('disabled');
                             clearErrors(inputs);
                             changeTab(nextStep);
@@ -111,14 +108,14 @@ document.addEventListener('DOMContentLoaded', function(e){
                             step++
                         }else{
                             const el = [...inputs].find(input => !input.value);
-                            if(el){
-                                console.log('second')
+                            if(el && (el.id !== 'made-watch')){
                                 const position = getOffset(el).top;
                                 window.scroll({top: (position - 100), left: 0, behavior: 'smooth'});
                                 nextTab.classList.add('disabled');
                                 inputs.forEach(input => {
                                     !input.value && input.classList.add('input-error')
                                 })
+                                document.getElementById('made-watch').classList.remove('input-error')
                             }
                         }
                     } else{

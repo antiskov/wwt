@@ -63,6 +63,7 @@ Route::middleware('set.locale')->group(function () {
             Route::get('/referral', [\App\Http\Controllers\ProfileController::class, 'referralIndex'])->name('referral');
             Route::get('/payments', [\App\Http\Controllers\ProfileController::class, 'getPayments'])->name('payments');
             Route::post('/set_cost', [\App\Http\Controllers\ProfileController::class, 'setTransaction'])->name('set_transaction');
+            Route::post('/upload_avatar', [\App\Http\Controllers\ProfileController::class, 'uploadAvatar'])->name('upload_avatar');
         });
         Route::group(['prefix' =>'submitting'], function() {
             Route::get('/', [\App\Http\Controllers\SubmittingController::class, 'index'])->name('submitting');
@@ -78,6 +79,11 @@ Route::middleware('set.locale')->group(function () {
                 });
             });
             Route::get('/delete_photo/{photo}', [\App\Http\Controllers\SubmittingController::class, 'deletePhoto'])->name('submitting.delete_photo');
+        });
+        Route::group(['prefix'=>'dialog'], function() {
+            Route::get('/{id?}',[\App\Http\Controllers\DialogsController::class,'show'])->name('DialogShow');
+            Route::post('/{id?}/messages',[\App\Http\Controllers\DialogsController::class,'sendMessage']);
+            Route::get('/{id}/messages',[\App\Http\Controllers\DialogsController::class,'getMessage']);
         });
     });
 
@@ -95,11 +101,6 @@ Route::middleware('set.locale')->group(function () {
         Route::get('/set_rate/{currency}', [\App\Http\Controllers\CatalogController::class, 'setRate'])->name('catalog.set_rate');
 
         Route::get('/{search}', [\App\Http\Controllers\CatalogController::class, 'getFilterResult'])->name('catalog-favorite');
-    });
-    Route::group(['prefix'=>'dialog'], function() {
-        Route::get('/{id?}',[\App\Http\Controllers\DialogsController::class,'show'])->name('DialogShow');
-        Route::post('/{id?}/messages',[\App\Http\Controllers\DialogsController::class,'sendMessage']);
-        Route::get('/{id}/messages',[\App\Http\Controllers\DialogsController::class,'getMessage']);
     });
     Route::get('/count_results/{type}', [\App\Http\Controllers\CatalogController::class, 'countResults'])->name('home.count-results');
 
