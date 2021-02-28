@@ -27,12 +27,13 @@
                                 </div>
                                 <div class="item-cont">
                                     <div class="from">
-                                        <a href="{{route('DialogShow', ['id'=>$dialog->id])}}">
-                                        {{$dialog->advert->title}}
-                                        </a>
+                                        {{ $dialog->initiator_id == \Illuminate\Support\Facades\Auth::id() ? $dialog->respondent->name : $dialog->initiator->name  }}
                                     </div>
                                     <div class="item-name">
-                                        <span>{{ $dialog->initiator_id == \Illuminate\Support\Facades\Auth::id() ? $dialog->respondent->name : $dialog->initiator->name  }}</span>
+                                        <a href="{{route('DialogShow', ['id'=>$dialog->id])}}">
+                                            {{$dialog->advert->title}}
+                                        </a>
+
                                     </div>
                                     <div class="price-wrap">
                                         <div class="new">
