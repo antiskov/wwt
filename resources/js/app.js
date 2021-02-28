@@ -1,5 +1,4 @@
 require('./bootstrap');
-import moment from 'moment'
 
 window.Vue = require('vue');
 
