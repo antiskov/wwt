@@ -32,12 +32,11 @@
                                         </a>
                                     </div>
                                     <div class="item-name">
-                                        {{$dialog->advert->description}}
                                         <span>{{ $dialog->initiator_id == \Illuminate\Support\Facades\Auth::id() ? $dialog->respondent->name : $dialog->initiator->name  }}</span>
                                     </div>
                                     <div class="price-wrap">
                                         <div class="new">
-                                            1500$
+                                            {{$dialog->advert->getPrice()}}
                                         </div>
                                         <div class="data">
                                             {{$dialog->advert->created_at}}
