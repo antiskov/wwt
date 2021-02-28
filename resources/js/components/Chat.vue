@@ -78,7 +78,7 @@
 
                 const m = await axios.post('/dialog/'+this.dialog_id+'/messages', d);
                 this.messages.push(m.data);
-                this.$refs.messageField='';
+                this.textMessage='';
             }
         }
     }
