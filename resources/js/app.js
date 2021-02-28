@@ -1,4 +1,5 @@
 require('./bootstrap');
+import moment from 'moment'
 
 window.Vue = require('vue');
 
@@ -6,7 +7,7 @@ Vue.component('chat', require('./components/Chat').default)
 
 Vue.filter('formatDate', function(value) {
     if (value) {
-        return String(value).format('MM/DD/YYYY hh:mm:ss')
+        return moment(String(value)).format('MM/DD/YYYY hh:mm:ss')
     }
 })
 
