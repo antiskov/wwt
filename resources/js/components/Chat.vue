@@ -41,7 +41,7 @@
                     this.messages.push(message)
                 })
             if (!window.Echo.connector.socket.connected && this.dialog_id) {
-                setInterval(f, 10000);
+                setInterval(f, 5000);
             }
 
 
