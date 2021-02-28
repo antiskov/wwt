@@ -33,7 +33,7 @@
                         <div class="price-block">
                             <div class="price">
                                 <div class="new">
-                                    {{$advert->getPrice()}}$
+                                    {{$advert->getPrice()}} $
                                 </div>
 {{--                                <div class="old">--}}
 {{--                                    1500$--}}

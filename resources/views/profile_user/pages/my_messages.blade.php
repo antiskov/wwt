@@ -36,7 +36,7 @@
                                     </div>
                                     <div class="price-wrap">
                                         <div class="new">
-                                            {{$dialog->advert->getPrice()}}
+                                            {{$dialog->advert->getPrice()}} $
                                         </div>
                                         <div class="data">
                                             {{$dialog->advert->created_at}}
