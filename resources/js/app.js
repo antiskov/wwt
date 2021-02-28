@@ -7,7 +7,7 @@ Vue.component('chat', require('./components/Chat').default)
 Vue.filter('formatDate', function(value) {
     if (value) {
         var msUTC = Date.parse(value);
-        return dateFormat(msUTC, 'MM/DD/YYYY hh:mm:ss');
+        return new Date(msUTC).format('MM/DD/YYYY hh:mm:ss');
     }
 })
 
