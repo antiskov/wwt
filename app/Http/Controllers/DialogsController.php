@@ -32,7 +32,6 @@ class DialogsController extends Controller
         $respondent_avatar=$currentDialog?(new \App\Services\ProfileService())->getAvatar($respondentId):'/images/content/person.png';
         $ua=(new \App\Services\ProfileService())->getAvatar(Auth::id());
         $user_avatar=$ua?$ua:'/images/icons/wwt_profile_avatar.png';
-
         return view('profile_user.pages.my_messages',
         [
             'dialogs'=>$dialogs,

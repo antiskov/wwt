@@ -7,7 +7,7 @@
                     <p>
                         {{ message.text }}
                     </p>
-                    <div class="time">{{message.created_at}}</div>
+                    <div class="time">{{message.created_at | formatDate}}</div>
                     <img class="label-del" :src="is_readed(message)">
                 </div>
             </div>
