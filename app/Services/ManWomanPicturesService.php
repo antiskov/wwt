@@ -21,7 +21,7 @@ class ManWomanPicturesService
             $picture = new ManWomanPicture();
         }
         if ($request->man_image){
-            $uploader->uploadImage($request, 'man_image', 'admin/man_woman_pictures');
+            $uploader->uploadImage($request, 'man_image', 'admin/man_woman_pictures');  
             $picture->man = $uploader->getFilename();
         }
 

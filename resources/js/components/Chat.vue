@@ -7,7 +7,7 @@
                     <p>
                         {{ message.text }}
                     </p>
-                    <div class="time">{{message.created_at}}</div>
+                    <div class="time">{{message.created_at | formatDate}}</div>
                     <img class="label-del" :src="is_readed(message)">
                 </div>
             </div>
@@ -41,7 +41,7 @@
                     this.messages.push(message)
                 })
             if (!window.Echo.connector.socket.connected && this.dialog_id) {
-                setInterval(f, 10000);
+                setInterval(f, 5000);
             }
 
 
@@ -78,7 +78,7 @@
 
                 const m = await axios.post('/dialog/'+this.dialog_id+'/messages', d);
                 this.messages.push(m.data);
-                this.$refs.messageField='';
+                this.textMessage='';
             }
         }
     }

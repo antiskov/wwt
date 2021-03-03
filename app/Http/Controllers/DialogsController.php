@@ -28,8 +28,8 @@ class DialogsController extends Controller
         } else {
             $messages=[];
         }
-
-        $respondent_avatar=$currentDialog?(new \App\Services\ProfileService())->getAvatar($currentDialog->advert->user_id):'/images/content/person.png';
+        $respondentId=Auth::id()==$currentDialog->advert->user_id?$currentDialog->initiator_id:$currentDialog->respondent_id;
+        $respondent_avatar=$currentDialog?(new \App\Services\ProfileService())->getAvatar($respondentId):'/images/content/person.png';
         $ua=(new \App\Services\ProfileService())->getAvatar(Auth::id());
         $user_avatar=$ua?$ua:'/images/icons/wwt_profile_avatar.png';
         return view('profile_user.pages.my_messages',

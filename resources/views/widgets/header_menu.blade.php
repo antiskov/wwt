@@ -53,46 +53,46 @@
                             </button>
                         </div>
                     </div>
-{{--                    <div class="search__result">--}}
-{{--                        <div class="search__categories">--}}
-{{--                            <label>--}}
-{{--                                <input type="radio" name="category" checked>--}}
-{{--                                <span>Часы</span>--}}
-{{--                            </label>--}}
-{{--                            <label>--}}
-{{--                                <input type="radio" name="category">--}}
-{{--                                <span>Аксессуары</span>--}}
-{{--                            </label>--}}
-{{--                            <label>--}}
-{{--                                <input type="radio" name="category">--}}
-{{--                                <span>Запчасти</span>--}}
-{{--                            </label>--}}
-{{--                        </div>--}}
-{{--                        <div class="search__items">--}}
-{{--                            <p style="display: none;">Ничего не найдено</p>--}}
-{{--                            <!-- ДЛЯ БЭКА: Убрать атрибут стайл и выводить, если нет товаров -->--}}
-{{--                            <ul>--}}
-{{--                                <li>--}}
-{{--                                    <a href="#"><span>Hublot</span> Big Bang</a>--}}
-{{--                                </li>--}}
-{{--                                <li>--}}
-{{--                                    <a href="#"><span>Hublot</span> Big Bang</a>--}}
-{{--                                </li>--}}
-{{--                                <li>--}}
-{{--                                    <a href="#"><span>Hublot</span> Big Bang</a>--}}
-{{--                                </li>--}}
-{{--                                <li>--}}
-{{--                                    <a href="#"><span>Hublot</span> Big Bang</a>--}}
-{{--                                </li>--}}
-{{--                                <li>--}}
-{{--                                    <a href="#"><span>Hublot</span> Big Bang Kroko Kautschukband</a>--}}
-{{--                                </li>--}}
-{{--                                <li>--}}
-{{--                                    <a href="#"><span>Hublot</span> Big Bang Fusion Dark Brown Alligator Strap</a>--}}
-{{--                                </li>--}}
-{{--                            </ul>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
+                    {{--                    <div class="search__result">--}}
+                    {{--                        <div class="search__categories">--}}
+                    {{--                            <label>--}}
+                    {{--                                <input type="radio" name="category" checked>--}}
+                    {{--                                <span>Часы</span>--}}
+                    {{--                            </label>--}}
+                    {{--                            <label>--}}
+                    {{--                                <input type="radio" name="category">--}}
+                    {{--                                <span>Аксессуары</span>--}}
+                    {{--                            </label>--}}
+                    {{--                            <label>--}}
+                    {{--                                <input type="radio" name="category">--}}
+                    {{--                                <span>Запчасти</span>--}}
+                    {{--                            </label>--}}
+                    {{--                        </div>--}}
+                    {{--                        <div class="search__items">--}}
+                    {{--                            <p style="display: none;">Ничего не найдено</p>--}}
+                    {{--                            <!-- ДЛЯ БЭКА: Убрать атрибут стайл и выводить, если нет товаров -->--}}
+                    {{--                            <ul>--}}
+                    {{--                                <li>--}}
+                    {{--                                    <a href="#"><span>Hublot</span> Big Bang</a>--}}
+                    {{--                                </li>--}}
+                    {{--                                <li>--}}
+                    {{--                                    <a href="#"><span>Hublot</span> Big Bang</a>--}}
+                    {{--                                </li>--}}
+                    {{--                                <li>--}}
+                    {{--                                    <a href="#"><span>Hublot</span> Big Bang</a>--}}
+                    {{--                                </li>--}}
+                    {{--                                <li>--}}
+                    {{--                                    <a href="#"><span>Hublot</span> Big Bang</a>--}}
+                    {{--                                </li>--}}
+                    {{--                                <li>--}}
+                    {{--                                    <a href="#"><span>Hublot</span> Big Bang Kroko Kautschukband</a>--}}
+                    {{--                                </li>--}}
+                    {{--                                <li>--}}
+                    {{--                                    <a href="#"><span>Hublot</span> Big Bang Fusion Dark Brown Alligator Strap</a>--}}
+                    {{--                                </li>--}}
+                    {{--                            </ul>--}}
+                    {{--                        </div>--}}
+                    {{--                    </div>--}}
                 </form>
             </div>
         </div>
@@ -515,7 +515,6 @@
                     $('#registration-div').html(data.output);
                 },
                 error: function (xhr) {
-                    console.log(xhr.responseJSON.errors.email[0]);
                     if (xhr.status === 422) {
                         if (xhr.responseJSON.errors.email[0] === 'The email must be a valid email address.') {
                             $('#reg-form-email').addClass('form-elem_err').removeClass('form-elem_success');
