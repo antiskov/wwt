@@ -103,7 +103,8 @@ document.addEventListener('DOMContentLoaded', function(e){
                     if(nextStep >= step){
                         const inputs = document.querySelector(`[data-tab="${nextStep - 1}"]`)
                             .querySelectorAll('[data-step-input]');
-                        if(!checkInputs(inputs, step)){
+                        const year = [...inputs].find(input => !input.value);
+                        if(!checkInputs(inputs, step) || (year.id === 'made-watch')){
                             nextTab.classList.remove('disabled');
                             clearErrors(inputs);
                             changeTab(nextStep);
@@ -111,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function(e){
                             step++
                         }else{
                             const el = [...inputs].find(input => !input.value);
-                            if(el){
+                            if(el && (el.id !== 'made-watch')){
                                 console.log('second')
                                 const position = getOffset(el).top;
                                 window.scroll({top: (position - 100), left: 0, behavior: 'smooth'});
@@ -119,6 +120,7 @@ document.addEventListener('DOMContentLoaded', function(e){
                                 inputs.forEach(input => {
                                     !input.value && input.classList.add('input-error')
                                 })
+                                document.getElementById('made-watch').classList.remove('input-error')
                             }
                         }
                     } else{
