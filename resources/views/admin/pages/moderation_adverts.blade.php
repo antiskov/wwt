@@ -51,7 +51,7 @@
                                     <td><a href="{{route('admin.item-page', [$advert->id])}}">{{$advert->title}}</a></td>
                                     <td>{{$advert->getPrice()}}$</td>
                                     <td>{{$advert->status->title}}</td>
-                                    <td>{{$advert->finish_date}}</td>
+                                    <td>{{$advert->finish_date_active_status}}</td>
                                     <td>
                                         @if($advert->status->title == 'published')
                                             <a href="{{ route('admin.change_status', [$statuses->where('title', 'moderation')->first(), $advert->id]) }}">Отказать</a>

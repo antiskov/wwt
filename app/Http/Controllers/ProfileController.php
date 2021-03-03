@@ -11,6 +11,7 @@ use App\Models\Timezone;
 use App\Models\User;
 use App\Models\UserFavoriteAdvert;
 use App\Models\UserTransaction;
+use App\Services\FixStatusAdvert;
 use App\Services\PayService;
 use App\Services\ProfileService;
 use App\Services\SecurityService;
@@ -140,6 +141,7 @@ class ProfileController extends Controller
      */
     public function myAdverts()
     {
+        FixStatusAdvert::fix();
         if (!Session::exists('advertStatus')){
             Session::put('advertStatus', 1);
         }

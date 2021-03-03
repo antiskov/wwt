@@ -192,4 +192,11 @@ class SubmittingService
     {
         return (new AdvertTools())->checkChangedWatchAdvert($advert, $request);
     }
+
+    public function setModerationStatus($id)
+    {
+        $advert = Advert::find($id);
+        $advert->status_id = 1;
+        $advert->save();
+    }
 }

@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller
 {
@@ -73,9 +74,28 @@ class UsersController extends Controller
      * @param User $user
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UpdateUserFormRequest $request, UserService $userService, User $user)
+
+    public function update(Request $request, User $user)
     {
-        $userService->update($user,$request->getDto());
+        $validator = Validator::make($request->all(), [
+            'email'=>'required',
+            'name'=>'string',
+            'surname'=>'string',
+            'role'=>'required|numeric',
+        ]);
+
+        if (!$validator->fails()) {
+            if (!User::where('email', $request->email)->first()){
+                $user->email = $request->email;
+            }
+            $user->name = $request->name;
+            $user->surname = $request->surname;
+            $user->role_id = $request->role;
+            $user->is_active = 1;
+            if (!$user->save()) {
+                Log::info('user not saved on admin panel');
+            }
+        }
 
         return redirect()->back();
     }

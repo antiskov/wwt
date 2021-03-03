@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 /**
  * @method static where(string $string, $id)
  * @method static orderBy(string $string, string $string1)
+ * @method static find(mixed $id)
  */
 class Advert extends Model implements Viewable
 {

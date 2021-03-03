@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Advert;
 use App\Models\Status;
+use App\Services\FixStatusAdvert;
 use App\Services\ModerationService;
 use App\Services\WatchModelService;
 
@@ -15,6 +16,7 @@ class ModerationAdvertsController extends Controller
      */
     public function index()
     {
+        FixStatusAdvert::fix();
         $adverts = Advert::orderBy('status_id', 'asc')->orderBy('vip_status', 'desc')->paginate(30);
 
         return view('admin.pages.moderation_adverts', [

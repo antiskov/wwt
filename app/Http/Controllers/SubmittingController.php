@@ -10,19 +10,15 @@ use App\Http\Requests\Submitting\WatchAdvertRequest;
 use App\Models\Advert;
 use App\Models\AdvertPhoto;
 use App\Models\Status;
+use App\Services\FixStatusAdvert;
 use App\Services\PayService;
 use App\Services\SubmittingService;
 use App\Services\UserService;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class SubmittingController extends Controller
 {
-
-    function __construct()
-    {
-        ini_set('memory_limit', '5048M');
-    }
-
     /**
      * @param SubmittingRequest $request
      * @param SubmittingService $service
@@ -124,20 +120,30 @@ class SubmittingController extends Controller
 
     /**
      * @param Advert $advert
+     * @param SubmittingService $service
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function publish(Advert $advert)
+    public function publish(Advert $advert, SubmittingService $service)
     {
+        $service->setModerationStatus($advert->id);
+        $statusId = Status::where('title', 'moderation')->first()->id;
 
-        $advert->status_id = Status::where('title', 'moderation')->first()->id;
-        $advert->save();
+        FixStatusAdvert::set($advert->id, $statusId);
 
+        $ADVERT = DB::table('adverts')
+            ->select('id', 'status_id')
+            ->where('id', $advert->id)
+            ->get();
+
+        \Log::info( "advertId $advert->id status $advert->status_id - ".$ADVERT);
+        //todo чомусь пілся редагування адміном і відприавки ним на модерацію в оголошення стає статус драфт, а не модератіон
         $user = auth()->user();
         $role = (new UserService())->getRole($user);
 
         if ($role->title == 'admin' || $role->title == 'manager'){
             return redirect()->route('admin.moderation_adverts');
         }
+        //todo прослідкувати де може бути перезапис статус айді
 
         return redirect()->route('my_adverts');
     }
@@ -161,17 +167,4 @@ class SubmittingController extends Controller
 
         return response()->json($data);
     }
-
-//    public function getStep2(Advert $advert, WatchAdvertRequest $request, SubmittingService $service)
-//    {
-//        $advert = $service->editDraft(new AdvertWatchConnector($request, $advert));
-//
-//        $data = [
-//            'output' => view('submitting.partials.step2', [
-//                'advert' => $advert,
-//            ])->toHtml(),
-//        ];
-//
-//        return response()->json($data);
-//    }
 }
