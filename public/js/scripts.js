@@ -801,7 +801,7 @@ $(document).ready(function () {
   //---added images step 2
   $('#addImages').attr('title', '');
 
-  var maxFileSize = 10485760; // (байт) Максимальный размер файла (2мб)
+  var maxFileSize = 2 * 1024 * 1024; // (байт) Максимальный размер файла (2мб)
   var queue = {};
   var form = $('form#uploadImages');
   var imagesList = $('#uploadImagesList');
@@ -822,8 +822,7 @@ $(document).ready(function () {
         continue;
       }
       if (file.size > maxFileSize) {
-          console.log(file.size, maxFileSize)
-        alert('Размер фотографии не должен превышать 10 Мб');
+        alert('Размер фотографии не должен превышать 2 Мб');
         continue;
       }
 
@@ -951,6 +950,8 @@ $(document).ready(function () {
     let span = $('.chat-types__choose')
     span.data("choose", id)
     span.html(value)
+    $('.chat-types__dropdown li').removeClass('active')
+    $(this).addClass('active')
     switch (id) {
       case 'unread':
           $('.item-messages').hide()

@@ -950,6 +950,8 @@ $(document).ready(function () {
     let span = $('.chat-types__choose')
     span.data("choose", id)
     span.html(value)
+    $('.chat-types__dropdown li').removeClass('active')
+    $(this).addClass('active')
     switch (id) {
       case 'unread':
           $('.item-messages').hide()

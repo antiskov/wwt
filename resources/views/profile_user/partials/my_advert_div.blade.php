@@ -1,18 +1,14 @@
-    <div id="advert" class="items-anno">
+<div id="advert" class="items-anno">
     @foreach($adverts as $advert)
         <div class="items-wrap">
             <div class="announce-item">
-
-{{--                <div class="chek_cont_set">--}}
-{{--                    <label class="checkbox-other">--}}
-{{--                        <input type="checkbox" checked>--}}
-{{--                        <span></span>--}}
-{{--                    </label>--}}
-{{--                </div>--}}
                 <div class="cont">
                     <div class="img-wrap">
                         @if(isset($advert->photos->where('is_basic', 1)->first()->photo))
-                            <img src="{{asset('/storage/images/notice_photos/'.$advert->type.'/number_'.$advert->id.'/'.$advert->photos->where('is_basic', 1)->first()->photo)}}">
+                            <div class="img-wrap__content">
+                                <img
+                                    src="{{asset('/storage/images/notice_photos/'.$advert->type.'/number_'.$advert->id.'/'.$advert->photos->where('is_basic', 1)->first()->photo)}}">
+                            </div>
                         @endif
                     </div>
                     <div class="ad-cont">
@@ -26,7 +22,8 @@
                                 @if($advert->vip_status == 1)
                                     <div>{{__('messages.bought_vip')}}</div>
                                 @else
-                                    <a href="{{route('submitting.buy_vip', $advert)}}" class="advertice">{{__('messages.ad')}}</a>
+                                    <a href="{{route('submitting.buy_vip', $advert)}}"
+                                       class="advertice">{{__('messages.ad')}}</a>
                                 @endif
                             </div>
                         </div>
@@ -35,13 +32,13 @@
                                 <div class="new">
                                     {{$advert->getPrice()}} $
                                 </div>
-{{--                                <div class="old">--}}
-{{--                                    1500$--}}
-{{--                                </div>--}}
-{{--                                <div class="soc-block">--}}
-{{--                                    <a href="#/" class="soc-icon"></a>--}}
-{{--                                    <a href="#/" class="soc-icon"></a>--}}
-{{--                                </div>--}}
+                                {{--                                <div class="old">--}}
+                                {{--                                    1500$--}}
+                                {{--                                </div>--}}
+                                {{--                                <div class="soc-block">--}}
+                                {{--                                    <a href="#/" class="soc-icon"></a>--}}
+                                {{--                                    <a href="#/" class="soc-icon"></a>--}}
+                                {{--                                </div>--}}
                             </div>
                             <div class="data">
                                 <p>
@@ -51,7 +48,8 @@
                                 @if($advert->vip_status == 1)
                                     <div>{{__('messages.bought_vip')}}</div>
                                 @else
-                                    <a href="{{route('submitting.buy_vip', $advert)}}" class="advertice">{{__('messages.ad')}}</a>
+                                    <a href="{{route('submitting.buy_vip', $advert)}}"
+                                       class="advertice">{{__('messages.ad')}}</a>
                                 @endif
                             </div>
                             <div class="set-block">
@@ -65,10 +63,12 @@
                                            class="sett">{{__('messages.my_adverts_div_close')}}</a>
                                     @endif
                                 @endif
-                                    <div class="soc-block">
-                                        <input type="hidden" name="link-for-copy" value="{{route('catalog.item-page', [$advert])}}">
-                                        <a href="#" class="sett btn-for-copy tooltip" title="{{__('messages.link_copied')}}">{{__('messages.share')}}</a>
-                                    </div>
+                                <div class="soc-block">
+                                    <input type="hidden" name="link-for-copy"
+                                           value="{{route('catalog.item-page', [$advert])}}">
+                                    <a href="#" class="sett btn-for-copy tooltip"
+                                       title="{{__('messages.link_copied')}}">{{__('messages.share')}}</a>
+                                </div>
                             </div>
                         </div>
                         <div class="statistics-cont">
@@ -87,11 +87,14 @@
                             <div class="static-items">
                                 <div class="name-static">{{__('messages.my_adverts_div_statics')}}</div>
                                 <div class="text"><img src="/images/icons/viewing.svg" alt="img">
-                                    <p>{{__('messages.my_adverts_div_views')}}</p><span>{{views($advert)->count()}}</span></div>
+                                    <p>{{__('messages.my_adverts_div_views')}}</p>
+                                    <span>{{views($advert)->count()}}</span></div>
                                 <div class="text"><img src="/images/icons/phone.svg" alt="img">
-                                    <p>{{__('messages.my_adverts_div_calls')}}</p><span>{{$advert->number_phone_show}}</span></div>
+                                    <p>{{__('messages.my_adverts_div_calls')}}</p>
+                                    <span>{{$advert->number_phone_show}}</span></div>
                                 <div class="text"><img src="/images/icons/lk-star.svg" alt="img">
-                                    <p>{{__('messages.my_adverts_div_favorite')}} </p><span>{{$advert->favoriteAdverts->count()}}</span></div>
+                                    <p>{{__('messages.my_adverts_div_favorite')}} </p>
+                                    <span>{{$advert->favoriteAdverts->count()}}</span></div>
                                 <div class="text"><img src="/images/icons/email.svg" alt="img">
                                     <p>: </p><span>{{$advert->dialogsCount()}}</span>
                                 </div>
@@ -117,9 +120,11 @@
                         <div class="text"><img src="/images/icons/viewing.svg" alt="img">
                             <p>{{__('messages.my_adverts_div_views')}}</p><span>{{views($advert)->count()}}</span></div>
                         <div class="text"><img src="/images/icons/phone.svg" alt="img">
-                            <p>{{__('messages.my_adverts_div_calls')}}</p><span>{{$advert->number_phone_show}}</span></div>
+                            <p>{{__('messages.my_adverts_div_calls')}}</p><span>{{$advert->number_phone_show}}</span>
+                        </div>
                         <div class="text"><img src="/images/icons/lk-star.svg" alt="img">
-                            <p>{{__('messages.my_adverts_div_favorite')}} </p><span>{{$advert->favoriteAdverts->count()}}</span></div>
+                            <p>{{__('messages.my_adverts_div_favorite')}} </p>
+                            <span>{{$advert->favoriteAdverts->count()}}</span></div>
                         <div class="text"><img src="/images/icons/email.svg" alt="img">
                             <p>: </p><span>7</span>
                         </div>
@@ -128,11 +133,12 @@
             </div>
         </div>
     @endforeach
-        @if($adverts->count() >= 50)
-            <div class="pagination">
-                <div class="link-wrap">
-                    {{$adverts->links('catalog.modals.custom_pagination')}}
-                </div>
+
+    @if($adverts->count() >= 50)
+        <div class="pagination">
+            <div class="link-wrap">
+                {{$adverts->links('catalog.modals.custom_pagination')}}
             </div>
-        @endif
+        </div>
+    @endif
 </div>
