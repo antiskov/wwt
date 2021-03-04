@@ -14,21 +14,22 @@
                             <span class="chat-types__choose" data-choose="all-messages">Все сообщения</span>
                             <ul class="chat-types__dropdown">
                                 <li data-id="all-messages" class="active">Все сообщения</li>
-                                <li data-id="unread">Непрочитаные</li>
+                                <li data-id="unread">Непрочитанные</li>
                                 {{--<li data-id="unanswered">Неотвеченые</li>--}}
                             </ul>
                         </div>
                         <ul class="mess-items">
                             @foreach($dialogs as $dialog)
-                            <li class="item-messages @if($dialog->unreaded) unread @endif">
-
+                            <li class="item-messages @if($dialog->id == $id) active @endif">
                                 <div class="img-wrap">
+                                    <div class="img-wrap__content">
                                     <img src="{{asset('/storage/images/notice_photos/watch/number_'.$dialog->advert->id.'/'.$dialog->advert->photos[0]->photo)}}" alt="img">
+                                    </div>
                                 </div>
                                 <div class="item-cont">
-                                    <div class="from">
+                                    <a href="#" class="from">
                                         {{ $dialog->initiator_id == \Illuminate\Support\Facades\Auth::id() ? $dialog->respondent->name : $dialog->initiator->name  }}
-                                    </div>
+                                    </a>
                                     <div class="item-name">
                                         <a href="{{route('DialogShow', ['id'=>$dialog->id])}}">
                                             {{$dialog->advert->title}}
@@ -47,120 +48,10 @@
 
                             </li>
                             @endforeach
-                            {{--<li class="item-messages unread">
-                                <div class="img-wrap">
-                                    <img src="./images/content/watch-1.png" alt="img">
-                                </div>
-                                <div class="item-cont">
-                                    <div class="from">
-                                        Chronometrie Stäuble AG
-                                    </div>
-                                    <div class="item-name">
-                                        Hublot Big Bang 44MM Evolution Steel Ceramic Watch 301.SM.1770.RX
-                                        <span>Ivan</span>
-                                    </div>
-                                    <div class="price-wrap">
-                                        <div class="new">
-                                            1500 $
-                                        </div>
-                                        <div class="data">
-                                            05.10.20
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="item-messages unanswered">
-                                <div class="img-wrap">
-                                    <img src="./images/content/watch-1.png" alt="img">
-                                </div>
-                                <div class="item-cont">
-                                    <div class="from">
-                                        Chronometrie Stäuble AG
-                                    </div>
-                                    <div class="item-name">
-                                        Hublot Big Bang 44MM Evolution Steel Ceramic Watch 301.SM.1770.RX
-                                        <span>Ivan</span>
-                                    </div>
-                                    <div class="price-wrap">
-                                        <div class="new">
-                                            1500 $
-                                        </div>
-                                        <div class="data">
-                                            05.10.20
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="item-messages">
-                                <div class="img-wrap">
-                                    <img src="./images/content/watch-1.png" alt="img">
-                                </div>
-                                <div class="item-cont">
-                                    <div class="from">
-                                        Chronometrie Stäuble AG
-                                    </div>
-                                    <div class="item-name">
-                                        Hublot Big Bang 44MM Evolution Steel Ceramic Watch 301.SM.1770.RX
-                                        <span>Ivan</span>
-                                    </div>
-                                    <div class="price-wrap">
-                                        <div class="new">
-                                            1500 $
-                                        </div>
-                                        <div class="data">
-                                            05.10.20
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="item-messages unread">
-                                <div class="img-wrap">
-                                    <img src="./images/content/watch-1.png" alt="img">
-                                </div>
-                                <div class="item-cont">
-                                    <div class="from">
-                                        Chronometrie Stäuble AG
-                                    </div>
-                                    <div class="item-name">
-                                        Hublot Big Bang 44MM Evolution Steel Ceramic Watch 301.SM.1770.RX
-                                        <span>Ivan</span>
-                                    </div>
-                                    <div class="price-wrap">
-                                        <div class="new">
-                                            1500 $
-                                        </div>
-                                        <div class="data">
-                                            05.10.20
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="item-messages unanswered">
-                                <div class="img-wrap">
-                                    <img src="./images/content/watch-1.png" alt="img">
-                                </div>
-                                <div class="item-cont">
-                                    <div class="from">
-                                        Chronometrie Stäuble AG
-                                    </div>
-                                    <div class="item-name">
-                                        Hublot Big Bang 44MM Evolution Steel Ceramic Watch 301.SM.1770.RX
-                                        <span>Ivan</span>
-                                    </div>
-                                    <div class="price-wrap">
-                                        <div class="new">
-                                            1500 $
-                                        </div>
-                                        <div class="data">
-                                            05.10.20
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>--}}
                         </ul>
                     </div>
                     @if($currentDialog)
-                    <div class="chat-cont">
+                    <div class="chat-cont" id="chatd_block">
                         <div class="chat-person">
                             <button class="back-chat"></button>
                             <div class="name">
@@ -170,9 +61,7 @@
                                 <img src="{{asset($respondent_avatar)}}" alt="img">
                             </div>
                         </div>
-                        <div id="chatd_block">
-                            <chat :respondent_avatar="'{{$respondent_avatar}}'" :user_avatar="'{{$user_avatar}}'" :dialog_id="{{$currentDialog->id}}" :messages_list="{{ $messages  }}" :user_id="{{Auth::id()}}" :respondent_id="{{$currentDialog->advert->user_id}}"></chat>
-                        </div>
+                        <chat :respondent_avatar="'{{$respondent_avatar}}'" :user_avatar="'{{$user_avatar}}'" :dialog_id="{{$currentDialog->id}}" :messages_list="{{ $messages  }}" :user_id="{{Auth::id()}}" :respondent_id="{{$currentDialog->advert->user_id}}"></chat>
 
                     </div>
                     @endif

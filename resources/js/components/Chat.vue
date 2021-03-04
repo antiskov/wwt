@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div>
         <div class="communication-items">
             <div v-for="message in messages" :key="message.id" :class="checkClass(message)" >
                 <img :src="getAvatar(message)" alt="img">
@@ -7,7 +7,7 @@
                     <p>
                         {{ message.text }}
                     </p>
-                    <div class="time">{{message.created_at | formatDate}}</div>
+                    <div class="time">{{message.created_at}}</div>
                     <img class="label-del" :src="is_readed(message)">
                 </div>
             </div>

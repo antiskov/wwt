@@ -38,7 +38,8 @@ class DialogsController extends Controller
             'currentDialog'=>$currentDialog,
             'messages'=>$messages,
             'respondent_avatar'=>$respondent_avatar,
-            'user_avatar'=>$user_avatar
+            'user_avatar'=>$user_avatar,
+            'id' => $id,
         ]);
     }
 
