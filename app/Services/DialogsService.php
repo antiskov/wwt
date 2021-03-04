@@ -38,9 +38,6 @@ class DialogsService
     }
     public function setMessagesReadedInDialogForUser($dialog_id, $user_id)
     {
-        Messages::where('dialog_id',$dialog_id)
-//            ->where('respondent_id', $user_id)
-            ->where('initiator_id',$user_id)
-            ->update(['is_readed'=>1]);
+        Messages::where('respondent_id', $user_id)->where('dialog_id',$dialog_id)->update(['is_readed'=>1]);
     }
 }
