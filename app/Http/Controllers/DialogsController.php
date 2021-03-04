@@ -20,6 +20,7 @@ class DialogsController extends Controller
         } else {
             $currentDialog=Dialogs::findOrFail($id);
         }
+
         if($currentDialog) {
             $service->setMessagesReadedInDialogForUser($currentDialog->id, Auth::id());
         }
@@ -28,6 +29,7 @@ class DialogsController extends Controller
         } else {
             $messages=[];
         }
+
         $respondentId=Auth::id()==$currentDialog->advert->user_id?$currentDialog->initiator_id:$currentDialog->respondent_id;
         $respondent_avatar=$currentDialog?(new \App\Services\ProfileService())->getAvatar($respondentId):'/images/content/person.png';
         $ua=(new \App\Services\ProfileService())->getAvatar(Auth::id());
@@ -52,12 +54,23 @@ class DialogsController extends Controller
         $m=new Messages();
         $m->dialog_id=$request->dialog_id;
         $m->initiator_id=$request->initiator_id;
-        $m->respondent_id=$request->respondent_id;
+        if ($request->initiator_id == $request->respondent_id) {
+            $respondent_id = Messages::where('dialog_id', $request->dialog_id)
+                ->where('respondent_id', $request->respondent_id)
+                ->where('initiator_id',  '!=',  $request->initiator_id)
+                ->first()->initiator_id;
+
+            $m->respondent_id = $respondent_id;
+
+        } else {
+            $m->respondent_id= $request->respondent_id;
+        }
         $m->text=$request->text;
         $m->is_readed=0;
         $m->save();
 
         Message::dispatch($m);
+
         return $m;
     }
 }

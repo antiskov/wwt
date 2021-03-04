@@ -46,7 +46,11 @@
                                     @else
                                         <td><img src="/images/content/{{$mediaLink->path}}" alt="img"></td>
                                     @endif
-                                    <td>{{$mediaLink->is_active}}</td>
+                                    @if($mediaLink->is_active === 1)
+                                    <td>Включен</td>
+                                    @else
+                                    <td>Выключен</td>
+                                    @endif
                                     <td><a href="http://{{$mediaLink->link_address}}" target="_blank">{{$mediaLink->link_address}}</a></td>
                                     <td>
                                         @if($mediaLink->is_active == 1)

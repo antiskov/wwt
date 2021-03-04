@@ -20,7 +20,7 @@
                         </div>
                         <ul class="mess-items">
                             @foreach($dialogs as $dialog)
-                            <li class="item-messages @if($dialog->id == $id) active @endif">
+                            <li class="item-messages @if($dialog->unreaded) unread @endif @if($dialog->id == $id) active @endif">
                                 <div class="img-wrap">
                                     <div class="img-wrap__content">
                                     <img src="{{asset('/storage/images/notice_photos/watch/number_'.$dialog->advert->id.'/'.$dialog->advert->photos[0]->photo)}}" alt="img">

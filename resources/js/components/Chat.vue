@@ -7,21 +7,21 @@
                     <p>
                         {{ message.text }}
                     </p>
-                    <div class="time">{{message.created_at}}</div>
+                    <div class="time">{{dateToString(message.created_at)}}</div>
                     <img class="label-del" :src="is_readed(message)">
                 </div>
             </div>
         </div>
         <div class="cont">
             <textarea class="communication-mess" ref="messageField" placeholder="Введите текст" v-model="textMessage"></textarea>
-            <button type="submit"  class="sent-comm btn-hover" @click="sendMessage">Отправить</button>
+            <button type="submit"  class="sent-comm btn-hover" @click="sendMessage()">Отправить</button>
         </div>
     </div>
 </template>
 <script>
     export default {
         props: [
-            'messages_list','user_id','respondent_id', 'dialog_id','respondent_avatar','user_avatar'
+            'messages_list','user_id', 'initiator_id', 'respondent_id', 'dialog_id','respondent_avatar','user_avatar'
         ],
         data() {
             return {
@@ -55,6 +55,7 @@
                 }
             },
             getAvatar(message) {
+                // console.log(message.initiator_id)
                 if (message.initiator_id==this.user_id) {
                     return this.user_avatar
                 } else {
@@ -68,7 +69,11 @@
                     return 'communication-items-in'
                 }
             },
+            dateToString(date){
+                return new Date(Date.parse(date)).toLocaleString();
+            },
             async sendMessage() {
+                console.log(this.textMessage, this.user_id, this.respondent_id, this.dialog_id, this.initiator_id)
                 const d= {
                     text: this.textMessage,
                     initiator_id: this.user_id,
