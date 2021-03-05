@@ -79,14 +79,13 @@
                     </div>
                     <div class="address-date">
                         <h2>{{__('messages.address_data')}}</h2>
-
-                        <!--    Двіжуха з автокомплітами       -->
                         <label for="route">
                             {{__('messages.put_address')}}
                             <input
                                 id="autocomplete"
                                 placeholder="{{__('messages.put_address')}}"
                                 type="text"
+                                autocomplete="nope"
                             />
                         </label>
 
@@ -257,7 +256,6 @@
             const data = new FormData();
             const self = this;
             Object.keys(this.files).forEach((key, idx) => {
-                console.log(self.files[idx])
                 data.append(`avatar`, self.files[idx])
             });
             $.ajaxSetup({
