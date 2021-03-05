@@ -41,7 +41,6 @@
                     }, 3000)
                 },
                 afterClose: function () {
-                    //тут мож нахуярить редирект
                     @if(isset($advert))
                     window.location.replace('{{route('submitting.edit_draft', $advert)}}')
                     @endif
@@ -50,7 +49,7 @@
             })
         });
     </script>
-    <script src="https://maps.google.com/maps/api/js?key=AIzaSyA-M4C5q7VMtAjsrGwrf2rh1_rcRXi67zk&libraries=places&language=ru"
+    <script src="https://maps.google.com/maps/api/js?key={{env('GOOGLE_MAPS_API_KEY')}}=places&language=ru"
             type="text/javascript"></script>
     <script src="/js/g-autocomplete.js"></script>
 @endsection

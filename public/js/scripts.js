@@ -801,7 +801,7 @@ $(document).ready(function () {
   //---added images step 2
   $('#addImages').attr('title', '');
 
-  var maxFileSize = 2 * 1024 * 1024; // (байт) Максимальный размер файла (2мб)
+  var maxFileSize = 10 * 1024 * 1024; // (байт) Максимальный размер файла (2мб)
   var queue = {};
   var form = $('form#uploadImages');
   var imagesList = $('#uploadImagesList');
