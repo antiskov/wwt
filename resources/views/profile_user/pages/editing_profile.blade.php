@@ -274,6 +274,7 @@
                 processData: false,
                 success: function (data) {
                     $('.person-img').html(data.output);
+                    $('.img-cont').html(data.output);
                 },
             })
         }
