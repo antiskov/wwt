@@ -130,20 +130,12 @@ class SubmittingController extends Controller
 
         FixStatusAdvert::set($advert->id, $statusId);
 
-        $ADVERT = DB::table('adverts')
-            ->select('id', 'status_id')
-            ->where('id', $advert->id)
-            ->get();
-
-        \Log::info( "advertId $advert->id status $advert->status_id - ".$ADVERT);
-        //todo чомусь пілся редагування адміном і відприавки ним на модерацію в оголошення стає статус драфт, а не модератіон
         $user = auth()->user();
         $role = (new UserService())->getRole($user);
 
         if ($role->title == 'admin' || $role->title == 'manager'){
             return redirect()->route('admin.moderation_adverts');
         }
-        //todo прослідкувати де може бути перезапис статус айді
 
         return redirect()->route('my_adverts');
     }

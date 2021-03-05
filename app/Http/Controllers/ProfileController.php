@@ -312,6 +312,11 @@ class ProfileController extends Controller
 
     public function uploadAvatar(Request $request, ProfileService $service)
     {
+        $validArr['avatar'] = 'mimes:jpeg,png,jpg,svg|max:10485';
+        $validator = Validator::make($request->all(), $validArr);
+        if ($validator->fails()){
+            return redirect()->back();
+        }
         $service->createAvatar($request);
 
         $data = [
