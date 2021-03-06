@@ -40,6 +40,7 @@ class ProfileController extends Controller
 
         return view('profile_user.pages.settings', [
             'check' => $check,
+            'pageTitle' => 'WWT | '.__('messages.menu_profile_settings'),
         ]);
     }
 
@@ -71,6 +72,7 @@ class ProfileController extends Controller
             'userLanguages' => $userService->userLanguages(auth()->user()),
             'percentage' => $percentage,
             'avatarPath' => $service->getAvatar(auth()->user()->id),
+            'pageTitle' => 'WWT | '.__('messages.menu_editing_profile'),
         ]);
     }
 
@@ -193,6 +195,7 @@ class ProfileController extends Controller
             'status' => $status,
             'adverts' => auth()->user()->favoriteAdverts,
             'searchLinks' => $service->getSearchLinks(),
+            'pageTitle' => 'WWT | '.__('messages.menu_favorite'),
         ]);
     }
 
@@ -246,7 +249,12 @@ class ProfileController extends Controller
      */
     public function referralIndex()
     {
-        return \view('profile_user.pages.referral', ['referral_link' => route('home', ['referral_code' => auth()->user()->referral_code])]);
+        return \view('profile_user.pages.referral', [
+            'referral_link' => route('home', [
+                'referral_code' => auth()->user()->referral_code
+            ]),
+            'pageTitle' => 'WWT | '.__('messages.menu_referral'),
+        ]);
     }
 
     /**
@@ -274,6 +282,7 @@ class ProfileController extends Controller
             'score' => $service->getScore(),
             'payments' => UserTransaction::where('user_id', auth()->user()->id)->orderBy('id', 'desc')->get(),
             'currency' => Currency::where('title', 'UAH')->first()->title,
+            'pageTitle' => 'WWT | '.__('messages.menu_payments'),
         ]);
     }
 
@@ -307,6 +316,7 @@ class ProfileController extends Controller
         return \view('pages.additing_cost', [
             "pay" => $service->setPay($order_id),
             'currency' => Currency::where('title', 'UAH')->first()->title,
+            'pageTitle' => 'WWT | '.__('messages.cost_pay'),
         ]);
     }
 

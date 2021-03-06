@@ -122,6 +122,7 @@ abstract class ToolsForAdvertsFilters implements AdvertsFilters
             'filter_currency' => $this->getFilterCurrency(),
             'currency' => (new RateService())->checkRate(),
             'currencies' => Currency::all(),
+            'pageTitle' => 'WWT',
         ];
     }
 

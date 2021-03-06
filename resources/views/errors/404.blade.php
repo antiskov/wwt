@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.main', ['pageTitle' => __('messages.404_error')])
 
 @section('content')
     <section class="e404">

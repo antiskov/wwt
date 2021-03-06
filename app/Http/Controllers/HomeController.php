@@ -78,7 +78,7 @@ class HomeController extends Controller
      */
     public function getAbout()
     {
-        return view('pages.about');
+        return view('pages.about', ['pageTitle' => 'WWT | '.__('messages.contacts')]);
     }
 
     /**

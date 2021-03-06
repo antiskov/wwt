@@ -145,6 +145,7 @@ class CatalogService
             'currency' => (new RateService())->checkRate(),
             'statuses' => Status::all(),
             'linkAvatar' => (new \App\Services\ProfileService())->getAvatar($user->id),
+            'pageTitle' => 'WWT | '.$advert->title
         ];
     }
 }

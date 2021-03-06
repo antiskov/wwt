@@ -42,6 +42,7 @@ class DialogsController extends Controller
             'respondent_avatar'=>$respondent_avatar,
             'user_avatar'=>$user_avatar,
             'id' => $id,
+            'pageTitle' => 'WWT | '.__('messages.menu_messages'),
         ]);
     }
 

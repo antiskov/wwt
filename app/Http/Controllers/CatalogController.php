@@ -59,6 +59,7 @@ class CatalogController extends Controller
             'adverts' => Advert::where('user_id', $user->id)->where('status_id', $status_id)->get(),
             'linkAvatar' => (new \App\Services\ProfileService())->getAvatar($user->id),
             'currency' => (new RateService())->checkRate(),
+            'pageTitle' => 'WWT | '.$user->name,
         ]);
     }
 
