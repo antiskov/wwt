@@ -23,7 +23,11 @@
                     <div class="header-login-block__portrait header-login-block__portrait_cabinet">
                         <div class="header-cabinet-list-btn">
                             <img src="/images/icons/profile-w.svg">
-                            <span class="notification-btn">1</span>
+                            @php($countNotReaded = new \App\Services\MessagesService())
+                            @if($countNotReaded->getResult() != 0)
+                                <span
+                                    class="notification-btn">{{$countNotReaded->getResult()}}</span>
+                            @endif
                         </div>
                         <ul class="header-cabinet-list">
                             <li><a href="{{route('my_adverts')}}">{{__('messages.menu_my_adverts')}}</a></li>
@@ -309,7 +313,10 @@
                                     <div class="header-login-block__portrait header-login-block__portrait_cabinet">
                                         <div class="header-cabinet-list-btn">
                                             <img src="/images/icons/profile-w.svg">
-                                            <span class="notification-btn">1</span>
+                                            @if($countNotReaded->getResult() != 0)
+                                                <span
+                                                    class="notification-btn">{{$countNotReaded->getResult()}}</span>
+                                            @endif
                                         </div>
                                         <ul class="header-cabinet-list">
                                             <li><a href="{{route('my_adverts')}}">{{__('messages.menu_my_adverts')}}</a>
