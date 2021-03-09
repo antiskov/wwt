@@ -1,0 +1,11 @@
+.message-block {
+    max-height: 100%;
+    overflow-y: auto;
+}
+
+@media (min-width: 1024px) {
+    .messages .container-wrap .block-messages .chat-cont {
+        padding: 120px 0 81px;
+    }
+}
+
