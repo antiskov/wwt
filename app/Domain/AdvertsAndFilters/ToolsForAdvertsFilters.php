@@ -9,14 +9,30 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use function GuzzleHttp\Promise\all;
 
 abstract class ToolsForAdvertsFilters implements AdvertsFilters
 {
     public function getAdverts($query, Request $request)
     {
+        if ($request->has('states') && !Session::has('orderNew')){
+            $condition = 0;
+            foreach ($request->states as $item){
+                if(in_array($item, $this->setOrderState())){
+                    $condition += 1;
+                }
+            }
+            if ($condition != 2){
+                \Session::put('orderNew', $request->states);
+            }
+
+            $request->request->remove('states');
+        }
+
         $adverts = $this->getQuery($query, $request)
             ->orderBy('vip_status', 'desc')
             ->orderBy('price', $this->getOrderBy())
+            ->whereIn('watch_state', $this->setOrderState())
             ->paginate($this->getCountPagination());
 
         $adverts->withPath($request->getUri());
@@ -272,5 +288,14 @@ abstract class ToolsForAdvertsFilters implements AdvertsFilters
         $count = DB::table($nameView)->select(DB::raw('COUNT(id) as count'))->whereRaw("user_id = $user_id")->get();
 
         return $count[0];
+    }
+
+    public function setOrderState()
+    {
+        if (\Session::has('orderNew')){
+            return ['new'];
+        } else {
+            return ['used', 'new'];
+        }
     }
 }

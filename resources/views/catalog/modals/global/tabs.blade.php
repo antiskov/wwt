@@ -3,10 +3,10 @@
         <div class="tabs">
             <div class="change-option">
                 <div class="chek_cont">
-                    @if($stateNew == 1)
-                        <input type="checkbox" id="check_call" value="111" checked>
+                    @if(Session::has('orderNew') && Session::get('orderNew') == 1)
+                        <input type="checkbox" id="check_call" checked>
                     @else
-                        <input type="checkbox" id="check_call" value="111">
+                        <input type="checkbox" id="check_call">
                     @endif
                     <label class="caption placeholder" for="check_call"><p>Новые <span>/неношеные</span></p></label>
                 </div>

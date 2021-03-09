@@ -117,10 +117,22 @@ class CatalogController extends Controller
         return redirect()->back();
     }
 
-    public function setOrderBy($value)
+    public function setOrderPrice($value)
     {
         \Session::put('orderPrice', $value);
 
+        return redirect()->back();
+    }
+
+    public function setOrderNew()
+    {
+        if (\Session::has('orderNew')){
+            \Session::remove('orderNew');
+        } else {
+            \Session::put('orderNew', 1);
+        }
+
+        dump(\Session::get('orderNew'));
         return redirect()->back();
     }
 }

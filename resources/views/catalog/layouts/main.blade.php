@@ -55,7 +55,7 @@
         })
         $('#sort-dear').on('click', function (e) {
             $.ajax({
-                url: '/set_order_by/dear',
+                url: '/set_order_price/dear',
                 success: function (){
                     document.location.reload()
                 }
@@ -63,7 +63,15 @@
         })
         $('#sort-cheap').on('click', function (e) {
             $.ajax({
-                url: '/set_order_by/cheap',
+                url: '/set_order_price/cheap',
+                success: function (){
+                    document.location.reload()
+                }
+            })
+        })
+        $('#check_call').on('click', function (){
+            $.ajax({
+                url: '/set_order_new/',
                 success: function (){
                     document.location.reload()
                 }
@@ -71,20 +79,4 @@
         })
     });
 
-    document.addEventListener("DOMContentLoaded", function(event) {
-        document.querySelectorAll('.catalog-heart').forEach(function (item){
-            item.addEventListener('click', function (e){
-                if(!this.classList.contains('active')) {
-                    console.log(this);
-                    $.ajax({
-                        url: `/catalog/item_page_favorite/${this.getAttribute('data-id')}/1`,
-                    })
-                } else {
-                    $.ajax({
-                        url: `/catalog/item_page_favorite/${this.getAttribute('data-id')}/0`,
-                    })
-                }
-            })
-        })
-    });
 </script>

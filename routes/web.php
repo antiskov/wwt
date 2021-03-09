@@ -36,7 +36,8 @@ Route::middleware('set.locale')->group(function () {
     Route::get('/change-status/{status}/{advert}', [ModerationAdvertsController::class, 'changeStatus'])
         ->middleware('can:update,advert')->name('change_status');
     Route::post('/send_ad_email', [\App\Http\Controllers\HomeController::class, 'sendAdEMail'])->name('email_ad');
-    Route::get('/set_order_by/{value}', [\App\Http\Controllers\CatalogController::class, 'setOrderBy']);
+    Route::get('/set_order_price/{value}', [\App\Http\Controllers\CatalogController::class, 'setOrderPrice']);
+    Route::get('/set_order_new/', [\App\Http\Controllers\CatalogController::class, 'setOrderNew']);
 
 
     Route::group(['prefix' => 'forgot_password'], function (){

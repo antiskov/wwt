@@ -86,7 +86,7 @@
 
             $('#sort-dear').on('click', function (e) {
                 $.ajax({
-                    url: '/set_order_by/dear',
+                    url: '/set_order_price/dear',
                     success: function (){
                         document.location.reload()
                     }
@@ -94,7 +94,15 @@
             })
             $('#sort-cheap').on('click', function (e) {
                 $.ajax({
-                    url: '/set_order_by/cheap',
+                    url: '/set_order_price/cheap',
+                    success: function (){
+                        document.location.reload()
+                    }
+                })
+            })
+            $('#check_call').on('click', function (){
+                $.ajax({
+                    url: '/set_order_new/',
                     success: function (){
                         document.location.reload()
                     }
