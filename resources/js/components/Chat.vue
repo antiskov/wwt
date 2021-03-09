@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="message-block">
         <div class="communication-items">
             <div v-for="message in messages" :key="message.id" :class="checkClass(message)" >
                 <img :src="getAvatar(message)" alt="img">
