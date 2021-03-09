@@ -30,8 +30,8 @@
                 <div class="select-price">
                     <p>{{__('messages.sort')}}</p>
                     <div class="select-value rotate">
-                        @if(isset($_COOKIE['price_sort']))
-                            @if($_COOKIE['price_sort'] == 'dear')
+                        @if(Session::has('orderPrice'))
+                            @if(Session::get('orderPrice') == 'dear')
                                 <span>{{__('messages.price_reduction')}}</span>
                             @else
                                 <span>{{__('messages.rising_prices')}}</span>

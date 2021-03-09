@@ -35,15 +35,6 @@ class CatalogController extends Controller
         return view('pages.main', $service->getResultForHome($request));
     }
 
-//    public function filterJson(Request $request, CatalogService $service)
-//    {
-//        $data = [
-//            'output' => view('catalog.modals.global.tabs', $service->getTabs($request))->toHtml(),
-//        ];
-//
-//        return response()->json($data);
-//    }
-
     /**
      * @param User $user
      * @param UserService $service
@@ -122,6 +113,13 @@ class CatalogController extends Controller
     public function setRate($currency)
     {
         \Session::put('currency', $currency);
+
+        return redirect()->back();
+    }
+
+    public function setOrderBy($value)
+    {
+        \Session::put('orderPrice', $value);
 
         return redirect()->back();
     }

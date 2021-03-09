@@ -16,7 +16,7 @@ abstract class ToolsForAdvertsFilters implements AdvertsFilters
     {
         $adverts = $this->getQuery($query, $request)
             ->orderBy('vip_status', 'desc')
-            ->orderBy('price', $this->getOrderBy($request))
+            ->orderBy('price', $this->getOrderBy())
             ->paginate($this->getCountPagination());
 
         $adverts->withPath($request->getUri());
@@ -237,25 +237,22 @@ abstract class ToolsForAdvertsFilters implements AdvertsFilters
 
     public function setSearchLink(Request $request)
     {
-        if(strstr($request->fullUrl(), '?')){
-            Session::put('searchLink', strstr($request->fullUrl(), '?'));
+        $link = strstr($request->fullUrl(), '?');
+        if($link){
+            Session::put('searchLink', $link);
         }
     }
 
-    public function getOrderBy(Request $request)
+    public function getOrderBy()
     {
-        if (isset($_COOKIE['price_sort'])) {
-            if ($_COOKIE['price_sort'] == 'cheap') {
+        if (Session::has('orderPrice')) {
+            if (Session::get('orderPrice') == 'cheap') {
                 return 'asc';
             } else {
                 return 'desc';
             }
-        }
-
-        if ($request->orderBy == 'cheap') {
-            return 'asc';
         } else {
-            return 'desc';
+            return 'asc';
         }
     }
 

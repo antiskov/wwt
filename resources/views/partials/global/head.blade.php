@@ -13,6 +13,7 @@
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/custom.css">
     <script defer src="/js/plugins.js"></script>
     <script defer src="/js/scripts.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>

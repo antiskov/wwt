@@ -20230,7 +20230,3 @@ section.announcements .container-wrap .block-content .items-anno {
         right: 75px
     }
 }
-.message-block {
-    max-height: 100%;
-    overflow-y: auto;
-}
