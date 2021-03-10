@@ -30,8 +30,11 @@ class ProfileService
         $user->save();
 
         $avatar        = Storage::path('public/'.$userDir.$user->avatar);
+        $original_image_sizes = getimagesize($avatar);
         $avatar_small = Image::make($avatar);
-        $avatar_small->resize($sizes['width'], $sizes['height']);
+        $width = $original_image_sizes[0]*$sizes['width'];
+        $height = $original_image_sizes[1]*$sizes['height'];
+        $avatar_small->resize($width, $height);
         $avatar_small_name = 'small_'.$user->avatar;
         $small_url_avatar = 'public/'.$userDir.$avatar_small_name;
         $avatar_small->save(Storage::path($small_url_avatar));

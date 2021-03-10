@@ -13,6 +13,7 @@ class ManagePrice extends Controller
     public function show()
     {
         $price = Price::where('title', 'vip')->first();
+
         return view('admin.pages.manage_price', ['price' => $price]);
     }
 

@@ -27,7 +27,11 @@
                         <form action="{{route('admin.set_price')}}" method="post" enctype='multipart/form-data'>
                             @csrf
                             <label for="">Цена ВИП обьялвения в $</label>
-                            <input type="text" name="price_vip" value="{{$price->value}}">
+                            @if(isset($price))
+                                <input type="text" name="price_vip" value="{{$price->value}}">
+                            @else
+                                <input type="text" name="price_vip">
+                            @endif
                             <br>
                             <input type="submit" value="Зафиксировать">
                         </form>
