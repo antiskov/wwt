@@ -77,7 +77,12 @@
                     <img src="{{asset($linkAvatar)}}" alt="img">
                 </div>
             </div>
-            <button id="contact_to_seller" class="call-seller btn-hover">{{__('messages.connect_with_seller')}}</button>
+            @auth
+                @if(auth()->user()->id != $advert->user_id)
+                    <button id="contact_to_seller"
+                            class="call-seller btn-hover">{{__('messages.connect_with_seller')}}</button>
+                @endif
+            @endauth
         </div>
     </div>
 </div>
