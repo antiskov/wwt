@@ -14,8 +14,10 @@ class DialogsController extends Controller
 {
     public function show($id = null, DialogsService $service)
     {
+
         $dialogs=$service->getUserDialogs(Auth::id());
         if(!$id) {
+
             $currentDialog = isset($dialogs[0])? $dialogs[0] : 0;
         } else {
             $currentDialog=Dialogs::findOrFail($id);
@@ -28,6 +30,9 @@ class DialogsController extends Controller
             $messages=Messages::where('dialog_id',$currentDialog->id)->get();
         } else {
             $messages=[];
+        }
+        if (count($dialogs) == 0){
+            return redirect()->back();
         }
 
         $respondentId=Auth::id()==$currentDialog->advert->user_id?$currentDialog->initiator_id:$currentDialog->respondent_id;
