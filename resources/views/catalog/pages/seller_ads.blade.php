@@ -47,10 +47,14 @@
             }).done(function () {
                 $(this).addClass("done");
             })
-        };
+        }
 
         $('.watch-filter').on('click', query);
         $('.watch-filter').on('change', query);
+
+        $('.reset-filters-btn').on('click', function (){
+            document.location.replace('/catalog/{{$user->id.'/seller_ads'}}');
+        })
     });
 </script>
 @endsection

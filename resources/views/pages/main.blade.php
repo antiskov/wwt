@@ -108,6 +108,9 @@
                     }
                 })
             })
+            $('.reset-filters-btn').on('click', function (){
+                document.location.replace('/');
+            })
         });
 
         document.addEventListener("DOMContentLoaded", function(event) {
