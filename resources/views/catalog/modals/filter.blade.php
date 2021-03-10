@@ -7,7 +7,7 @@
         <form class="filters-mob filter-search" method="get" action="{{route('catalog')}}">
     @endif
         <div class="filters-mob-btns">
-            <button class="reset-filters-btn btn-hover" type="reset">Сбросить</button>
+            <button class="reset-filters-btn btn-hover" type="reset">{{__('messages.reset')}}</button>
             <button class="open-mob-filter-btn" type="button">Фильтр</button>
         </div>
         <div class="filters-mob-content">

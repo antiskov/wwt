@@ -14,7 +14,6 @@
                     <a data-fancybox data-src="#password-modal" href="javascript:;"
                        class="header-mob__login-btn login-btn">
                         <img src="/images/person.png" alt="account">
-                        <span class="notification-btn">2</span>
                     </a>
                 @else
 
@@ -132,30 +131,7 @@
                         <span>{{__('messages.watches')}}</span>
                         <ul class="catalog-mob__menu">
                             <li class="has-menu">
-                                <span>{{__('messages.buy')}}</span>
-                                <ul class="catalog-mob__list">
-                                    <a href="{{route('catalog')}}">{{__('messages.show_all_results')}}</a>
-                                    <li>
-                                        <span>{{__('messages.brands')}}</span>
-                                        <ul>
-                                            @foreach($brands as $brand)
-                                                <li>
-                                                    <a href="{{route('catalog', ['brands[]' => $brand->title])}}&">{{ $brand->title.' ('.count($brand->watchAdverts).')'}}</a>
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    </li>
-                                    {{--                                    <li>--}}
-                                    {{--                                        <span>Категории</span>--}}
-                                    {{--                                        <ul>--}}
-                                    {{--                                            @foreach($categories as $category)--}}
-                                    {{--                                                <li>--}}
-                                    {{--                                                    <a href="#">{{$category->title.' ('.count($category->watchModels).')'}}</a>--}}
-                                    {{--                                                </li>--}}
-                                    {{--                                            @endforeach--}}
-                                    {{--                                        </ul>--}}
-                                    {{--                                    </li>--}}
-                                </ul>
+                                <a class="sell" href='{{route('catalog')}}'><span>{{__('messages.buy')}}</span></a>
                             </li>
                             <li>
                                 @if(Auth::check())
