@@ -55,7 +55,6 @@
                 }
             },
             getAvatar(message) {
-                // console.log(message.initiator_id)
                 if (message.initiator_id==this.user_id) {
                     return this.user_avatar
                 } else {
@@ -73,7 +72,6 @@
                 return new Date(Date.parse(date)).toLocaleString();
             },
             async sendMessage() {
-                console.log(this.textMessage, this.user_id, this.respondent_id, this.dialog_id, this.initiator_id)
                 const d= {
                     text: this.textMessage,
                     initiator_id: this.user_id,

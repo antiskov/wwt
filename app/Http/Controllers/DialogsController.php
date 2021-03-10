@@ -60,7 +60,6 @@ class DialogsController extends Controller
                 ->where('respondent_id', $request->respondent_id)
                 ->where('initiator_id',  '!=',  $request->initiator_id)
                 ->first()->initiator_id;
-
             $m->respondent_id = $respondent_id;
 
         } else {

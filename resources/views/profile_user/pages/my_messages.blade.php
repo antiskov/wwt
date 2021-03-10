@@ -23,7 +23,7 @@
                             <li class="item-messages @if($dialog->unreaded) unread @endif @if($dialog->id == $id) active @endif">
                                 <div class="img-wrap">
                                     <div class="img-wrap__content">
-                                    <img src="{{asset('/storage/images/notice_photos/watch/number_'.$dialog->advert->id.'/'.$dialog->advert->photos[0]->photo)}}" alt="img">
+                                    <img src="{{asset('/storage/images/notice_photos/watch/number_'.$dialog->advert->id.'/small_'.$dialog->advert->photos[0]->photo)}}" alt="img">
                                     </div>
                                 </div>
                                 <div class="item-cont">
