@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Domain\Liqpay;
 use App\Domain\TransactionCreator;
 use App\Models\Advert;
+use App\Models\Price;
 use App\Models\UserTransaction;
 use Carbon\Carbon;
 use http\Header;
@@ -34,7 +35,8 @@ class PayService
     {
         $order_id = 'buy-vip-' . auth()->user()->id . '-' . rand(1000000, 2000000);
         $transaction = new TransactionCreator();
-        $transaction->additionCost(50, $order_id, 'cost', 'buy vip', 'success' );
+        $price = Price::where('title', 'vip')->first()->value;
+        $transaction->additionCost($price, $order_id, 'cost', 'buy vip', 'success' );
 
         $advert->vip_status = 1;
         if (!$advert->save()) {
@@ -103,7 +105,8 @@ class PayService
     {
         $order_id = 'vip-adv-' . $advert->id . '-' . auth()->user()->id . '-' . rand(1000000, 2000000);;
         $transaction = new TransactionCreator();
-        $transaction->additionCost(50, $order_id);
+        $price = Price::where('title', 'vip')->first()->value;
+        $transaction->additionCost($price, $order_id);
 
         return $transaction->getOrderId();
     }

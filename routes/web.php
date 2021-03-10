@@ -185,6 +185,11 @@ Route::group(['prefix' => 'admin'], function () {
             Route::post('/create_delivery_volume', [\App\Http\Controllers\Admin\AdminDataController::class, 'createDeliveryVolume'])->name('admin.create_delivery_volume');
         });
 
+        Route::group(['prefix' => 'pay'], function (){
+            Route::post('/set_pay', [\App\Http\Controllers\Admin\ManagePrice::class, 'setPrice'])->name('admin.set_price');
+            Route::get('/set_pay', [\App\Http\Controllers\Admin\ManagePrice::class, 'show'])->name('admin.show_pay');
+        });
+
     });
     Route::get('login', [AuthController::class, 'showLogin'])->name('admin.showlogin');
     Route::post('login', [AuthController::class, 'login'])->name('admin.login');

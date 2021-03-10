@@ -112,6 +112,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <p>Контент обьявлений</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{route('admin.show_pay')}}" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>Платежи</p>
+                        </a>
+                    </li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->

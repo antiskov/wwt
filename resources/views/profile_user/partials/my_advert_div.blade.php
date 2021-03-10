@@ -9,6 +9,11 @@
                                 <img
                                     src="{{asset('/storage/images/notice_photos/'.$advert->type.'/number_'.$advert->id.'/small_'.$advert->photos->where('is_basic', 1)->first()->photo)}}">
                             </div>
+                        @else
+                            <div class="img-wrap__content">
+                                <img
+                                    src="/images/empty_advert_photo.png">
+                            </div>
                         @endif
                     </div>
                     <div class="ad-cont">
