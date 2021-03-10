@@ -7,7 +7,7 @@
                         @if(isset($advert->photos->where('is_basic', 1)->first()->photo))
                             <div class="img-wrap__content">
                                 <img
-                                    src="{{asset('/storage/images/notice_photos/'.$advert->type.'/number_'.$advert->id.'/'.$advert->photos->where('is_basic', 1)->first()->photo)}}">
+                                    src="{{asset('/storage/images/notice_photos/'.$advert->type.'/number_'.$advert->id.'/small_'.$advert->photos->where('is_basic', 1)->first()->photo)}}">
                             </div>
                         @endif
                     </div>
