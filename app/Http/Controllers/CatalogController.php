@@ -113,7 +113,12 @@ class CatalogController extends Controller
     public function setRate($currency)
     {
         \Session::put('currency', $currency);
+        $link = redirect()->back()->getSession()->all();
+        $new_link = strstr($link['_previous']['url'], '?', true);
 
+        if ($new_link){
+            return redirect($new_link);
+        }
         return redirect()->back();
     }
 
