@@ -135,7 +135,12 @@
                             </li>
                             <li>
                                 @if(Auth::check())
+                                    @if(!$userCountAdvert || $userCountAdvert->adverts_count < $limit || $userCountAdvert->paid == 1)
                                     <a class="sell" href='{{route('submitting')}}'><span>{{__('messages.sell')}}</span></a>
+                                    @else
+                                        <a data-fancybox data-src="#need_paid" href="javascript:;"
+                                           href="#">{{__('messages.sell')}}</a>
+                                    @endif
                                 @else
                                     <a data-fancybox data-src="#need_authorization" href="javascript:;"
                                        href="#">{{__('messages.sell')}}</a>
@@ -373,7 +378,12 @@
                                     </li>
                                     <li>
                                         @if(Auth::check())
-                                            <a class="sell" href='{{route('submitting')}}'><span>{{__('messages.sell')}}</span></a>
+                                            @if(!$userCountAdvert || $userCountAdvert->adverts_count < $limit || $userCountAdvert->paid == 1)
+                                                <a class="sell" href='{{route('submitting')}}'><span>{{__('messages.sell')}}</span></a>
+                                            @else
+                                                <a data-fancybox data-src="#need_paid" href="javascript:;"
+                                                   href="#">{{__('messages.sell')}}</a>
+                                            @endif
                                         @else
                                             <a data-fancybox data-src="#need_authorization" href="javascript:;"
                                                href="#">{{__('messages.sell')}}</a>
@@ -413,7 +423,12 @@
                                     </li>
                                     <li>
                                         @if(Auth::check())
-                                            <a class="sell" href='{{route('submitting')}}'><span>{{__('messages.sell')}}</span></a>
+                                            @if(!$userCountAdvert || $userCountAdvert->adverts_count < $limit || $userCountAdvert->paid == 1)
+                                                <a class="sell" href='{{route('submitting')}}'><span>{{__('messages.sell')}}</span></a>
+                                            @else
+                                                <a data-fancybox data-src="#need_paid" href="javascript:;"
+                                                   href="#">{{__('messages.sell')}}</a>
+                                            @endif
                                         @else
                                             <a data-fancybox data-src="#need_authorization" href="javascript:;"
                                                href="#">{{__('messages.sell')}}</a>
@@ -453,7 +468,12 @@
                                     </li>
                                     <li>
                                         @if(Auth::check())
-                                            <a class="sell" href='#'><span>{{__('messages.sell')}}</span></a>
+                                            @if(!$userCountAdvert || $userCountAdvert->adverts_count < $limit || $userCountAdvert->paid == 1)
+                                                <a class="sell" href='{{route('submitting')}}'><span>{{__('messages.sell')}}</span></a>
+                                            @else
+                                                <a data-fancybox data-src="#need_paid" href="javascript:;"
+                                                   href="#">{{__('messages.sell')}}</a>
+                                            @endif
                                         @else
                                             <a data-fancybox data-src="#need_authorization" href="javascript:;"
                                                href="#">{{__('messages.sell')}}</a>

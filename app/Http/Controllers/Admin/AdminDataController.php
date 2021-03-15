@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\AdminDataRequest;
 use App\Models\DeliveryVolume;
+use App\Models\LimitNotVipAdvert;
 use App\Models\MechanismType;
+use App\Models\Price;
 use App\Models\WatchType;
+use Illuminate\Http\Request;
 
 class AdminDataController extends Controller
 {
@@ -16,6 +19,7 @@ class AdminDataController extends Controller
         $infoArr['deliveryVolumes'] = DeliveryVolume::all();
         $infoArr['states'] = ['new', 'used'];
         $infoArr['mechanismTypes'] = MechanismType::all();
+        $infoArr['limitFreeAdverts'] = LimitNotVipAdvert::first();
 
         return view('admin.pages.moderation_data', $infoArr);
     }
@@ -127,6 +131,25 @@ class AdminDataController extends Controller
         $deliveryVolume->save();
 
         return redirect()->back();
+    }
+
+    public function setCountFreeAdverts(Request $request)
+    {
+        $validator = \Validator::make($request->all(), [
+            'count_free_adverts' => 'numeric'
+        ]);
+        if ($validator->fails()){
+            return redirect()->back();
+        }
+
+        $limit = LimitNotVipAdvert::first();
+        if (!$limit){
+            $limit = new LimitNotVipAdvert();
+        }
+        $limit->value = $request->count_free_adverts;
+        $limit->save();
+        return redirect()->back();
+
     }
 
 }

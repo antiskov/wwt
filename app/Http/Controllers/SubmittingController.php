@@ -9,7 +9,9 @@ use App\Http\Requests\Submitting\UploadImageRequest;
 use App\Http\Requests\Submitting\WatchAdvertRequest;
 use App\Models\Advert;
 use App\Models\AdvertPhoto;
+use App\Models\LimitNotVipAdvert;
 use App\Models\Status;
+use App\Models\UserCountAdvert;
 use App\Services\FixStatusAdvert;
 use App\Services\PayService;
 use App\Services\SubmittingService;
@@ -26,7 +28,15 @@ class SubmittingController extends Controller
      */
     public function index(SubmittingRequest $request, SubmittingService $service)
     {
-        return view('submitting.pages.advert', $service->getWatchItemsForFirstStep());
+        $limit = LimitNotVipAdvert::first();
+        $userCountAdvert = UserCountAdvert::where('user_id', auth()->user()->id)->first();
+        if (!$userCountAdvert || $userCountAdvert->adverts_count < $limit->value || $userCountAdvert->paid == 1){
+            return view('submitting.pages.advert', $service->getWatchItemsForFirstStep());
+        } else {
+            return redirect()->back();
+        }
+
+
     }
 
     /**

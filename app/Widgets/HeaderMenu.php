@@ -11,6 +11,7 @@ use App\Models\Category;
 use App\Models\DeliveryVolume;
 use App\Models\DiameterWatch;
 use App\Models\Glass;
+use App\Models\LimitNotVipAdvert;
 use App\Models\MaterialsClasp;
 use App\Models\MechanismType;
 use App\Models\Option;
@@ -18,6 +19,7 @@ use App\Models\Province;
 use App\Models\Sex;
 use App\Models\SparePartsMake;
 use App\Models\State;
+use App\Models\UserCountAdvert;
 use App\Models\WatchAdvert;
 use App\Models\WatchBezel;
 use App\Models\WatchDial;
@@ -47,12 +49,15 @@ class HeaderMenu extends AbstractWidget
      */
     public function run()
     {
-        //
+        $userCountAdvert = UserCountAdvert::where('user_id', auth()->user()->id)->first();
+        $limit = LimitNotVipAdvert::first()->value;
 
         return view('widgets.header_menu', [
             'config' => $this->config,
             'adverts' => Advert::where('type', 'watch')->get(),
             'brands' => WatchMake::where('status', 1)->get(),
+            'userCountAdvert' => $userCountAdvert,
+            'limit' => $limit,
         ]);
     }
 }

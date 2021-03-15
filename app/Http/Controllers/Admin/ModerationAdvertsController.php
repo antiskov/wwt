@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Advert;
 use App\Models\Status;
+use App\Models\UserCountAdvert;
 use App\Services\FixStatusAdvert;
 use App\Services\ModerationService;
 use App\Services\WatchModelService;
@@ -39,6 +40,18 @@ class ModerationAdvertsController extends Controller
         {
             $modelService->updateWatchModel($advert);
             $advertsService->publishedWatchMake($advert);
+
+            $userCountAdvert = UserCountAdvert::where('user_id', $advert->user_id)->first();
+            if ($userCountAdvert){
+                $userCountAdvert->adverts_count += 1;
+                $userCountAdvert->save();
+            } else {
+                $userCountAdvert = new UserCountAdvert();
+                $userCountAdvert->user_id = $advert->user_id;
+                $userCountAdvert->adverts_count = 1;
+                $userCountAdvert->save();
+            }
+
         }
 
         return redirect()->back();

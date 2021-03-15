@@ -183,11 +183,14 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('/update_delivery_volume/{deliveryVolume}', [\App\Http\Controllers\Admin\AdminDataController::class, 'updateDeliveryVolumeIndex'])->name('admin.update_delivery_volume_index');
             Route::post('/update_delivery_volume/{deliveryVolume}', [\App\Http\Controllers\Admin\AdminDataController::class, 'updateDeliveryVolume'])->name('admin.update_delivery_volume');
             Route::post('/create_delivery_volume', [\App\Http\Controllers\Admin\AdminDataController::class, 'createDeliveryVolume'])->name('admin.create_delivery_volume');
+            Route::post('/set_count_free_adverts', [\App\Http\Controllers\Admin\AdminDataController::class, 'setCountFreeAdverts'])->name('admin.set_count_free_adverts');
         });
 
         Route::group(['prefix' => 'pay'], function (){
             Route::post('/set_pay', [\App\Http\Controllers\Admin\ManagePrice::class, 'setPrice'])->name('admin.set_price');
             Route::get('/set_pay', [\App\Http\Controllers\Admin\ManagePrice::class, 'show'])->name('admin.show_pay');
+            Route::post('/set_pay_not_vip', [\App\Http\Controllers\Admin\ManagePrice::class, 'setNotVipPrice'])
+                ->name('admin.set_nop_vip_price');
         });
 
     });

@@ -13,8 +13,12 @@ class ManagePrice extends Controller
     public function show()
     {
         $price = Price::where('title', 'vip')->first();
+        $priceNotVip = Price::where('title', 'notVip')->first();
 
-        return view('admin.pages.manage_price', ['price' => $price]);
+        return view('admin.pages.manage_price', [
+            'price' => $price,
+            'priceNotVip' => $priceNotVip,
+        ]);
     }
 
     public function setPrice(Request $request)
@@ -35,5 +39,24 @@ class ManagePrice extends Controller
 
         return redirect()->back();
 
+    }
+
+    public function setNotVipPrice(Request $request)
+    {
+        $validator = \Validator::make($request->all(), [
+            'price_not_vip' => 'numeric'
+        ]);
+        if ($validator->fails()){
+            return redirect()->back();
+        }
+
+        $price = Price::where('title', 'notVip')->first();
+        if (!$price){
+            $price = new Price();
+        }
+        $price->title = 'notVip';
+        $price->value = $request->price_not_vip;
+        $price->save();
+        return redirect()->back();
     }
 }

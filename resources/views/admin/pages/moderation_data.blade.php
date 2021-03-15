@@ -184,6 +184,21 @@
                         </table>
                     </div>
                 </div>
+                <div class="card">
+                    <div class="card-body">
+                        <form action="{{route('admin.set_count_free_adverts')}}" method="post" enctype='multipart/form-data'>
+                            @csrf
+                            <label for="">Количество бесплатных обьявлений</label>
+                            @if(isset($limitFreeAdverts))
+                                <input type="text" name="count_free_adverts" value="{{$limitFreeAdverts->value}}">
+                            @else
+                                <input type="text" name="count_free_adverts">
+                            @endif
+                            <br>
+                            <input type="submit" value="Зафиксировать">
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

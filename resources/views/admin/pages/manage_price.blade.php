@@ -26,11 +26,26 @@
                     <div class="card-body">
                         <form action="{{route('admin.set_price')}}" method="post" enctype='multipart/form-data'>
                             @csrf
-                            <label for="">Цена ВИП обьялвения в $</label>
+                            <label for="">Цена ВИП обьялвения в гривнах</label>
                             @if(isset($price))
                                 <input type="text" name="price_vip" value="{{$price->value}}">
                             @else
                                 <input type="text" name="price_vip">
+                            @endif
+                            <br>
+                            <input type="submit" value="Зафиксировать">
+                        </form>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <form action="{{route('admin.set_nop_vip_price')}}" method="post" enctype='multipart/form-data'>
+                            @csrf
+                            <label for="">Цена обычных обьялвения в гривнах</label>
+                            @if(isset($priceNotVip))
+                                <input type="text" name="price_not_vip" value="{{$priceNotVip->value}}">
+                            @else
+                                <input type="text" name="price_not_vip">
                             @endif
                             <br>
                             <input type="submit" value="Зафиксировать">
