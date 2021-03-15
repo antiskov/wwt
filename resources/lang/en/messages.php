@@ -293,6 +293,6 @@ return [
     'we_in_media' => 'We in social media',
 
     'need_paid_1' => 'You have used ',
-    'need_paid_2' => ' free ads. Please pay',
+    'need_paid_2' => ' free ads. Please pay ',
     'need_paid_3' => 'UAH for filing an advertisement.'
 ];
