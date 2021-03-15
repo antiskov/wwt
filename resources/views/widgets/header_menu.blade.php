@@ -135,7 +135,7 @@
                             </li>
                             <li>
                                 @if(Auth::check())
-                                    @if(!$userCountAdvert || $userCountAdvert->adverts_count < $limit || $userCountAdvert->paid == 1)
+                                    @if(!$userCountAdvert || $userCountAdvert->adverts_count < $limit || $rule_price == 1)
                                     <a class="sell" href='{{route('submitting')}}'><span>{{__('messages.sell')}}</span></a>
                                     @else
                                         <a data-fancybox data-src="#need_paid" href="javascript:;"
@@ -378,7 +378,7 @@
                                     </li>
                                     <li>
                                         @if(Auth::check())
-                                            @if(!$userCountAdvert || $userCountAdvert->adverts_count < $limit || $userCountAdvert->paid == 1)
+                                            @if(!$userCountAdvert || $userCountAdvert->adverts_count < $limit || $rule_price == 1)
                                                 <a class="sell" href='{{route('submitting')}}'><span>{{__('messages.sell')}}</span></a>
                                             @else
                                                 <a data-fancybox data-src="#need_paid" href="javascript:;"
@@ -423,7 +423,7 @@
                                     </li>
                                     <li>
                                         @if(Auth::check())
-                                            @if(!$userCountAdvert || $userCountAdvert->adverts_count < $limit || $userCountAdvert->paid == 1)
+                                            @if(!$userCountAdvert || $userCountAdvert->adverts_count < $limit || $rule_price == 1)
                                                 <a class="sell" href='{{route('submitting')}}'><span>{{__('messages.sell')}}</span></a>
                                             @else
                                                 <a data-fancybox data-src="#need_paid" href="javascript:;"
@@ -468,7 +468,7 @@
                                     </li>
                                     <li>
                                         @if(Auth::check())
-                                            @if(!$userCountAdvert || $userCountAdvert->adverts_count < $limit || $userCountAdvert->paid == 1)
+                                            @if(!$userCountAdvert || $userCountAdvert->adverts_count < $limit || $rule_price == 1)
                                                 <a class="sell" href='{{route('submitting')}}'><span>{{__('messages.sell')}}</span></a>
                                             @else
                                                 <a data-fancybox data-src="#need_paid" href="javascript:;"

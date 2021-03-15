@@ -40,4 +40,19 @@ class TransactionCreator
     {
         return $this->userTransaction->order_id;
     }
+
+    public function additionCostUser(int $user_id, int $cost, string $order_id, $type = 'addition', $title = 'addition cost', string $status = 'none')
+    {
+        $this->userTransaction = new UserTransaction();
+        $this->userTransaction->type = $type;
+        $this->userTransaction->user_id = $user_id;
+        $this->userTransaction->price = $cost;
+        $this->userTransaction->title = $title;
+        $this->userTransaction->status = $status;
+        $this->userTransaction->order_id = $order_id;
+
+        if (!$this->userTransaction->save()) {
+            Log::info("Transaction #$this->userTransaction->id not saved");
+        }
+    }
 }

@@ -234,4 +234,19 @@ class PayService
 
         return $score;
     }
+
+    public function getScoreUser($id)
+    {
+        $score = 0;
+        $transactions = UserTransaction::where('user_id',$id)->get();
+        foreach ($transactions as $transaction) {
+            if ($transaction->type == 'addition' && $transaction->status == 'success') {
+                $score = $score + $transaction->price;
+            } elseif ($transaction->status == 'success') {
+                $score = $score - $transaction->price;
+            }
+        }
+
+        return $score;
+    }
 }

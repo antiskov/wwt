@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserCountAdvertsTable extends Migration
+class CreateModeratedAdvertsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateUserCountAdvertsTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_count_adverts', function (Blueprint $table) {
+        Schema::create('moderated_adverts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users');
-            $table->integer('adverts_count');
+            $table->foreignId('advert_id')->references('id')->on('adverts');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateUserCountAdvertsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('moderated_adverts');
     }
 }

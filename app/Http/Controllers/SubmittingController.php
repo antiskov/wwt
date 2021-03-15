@@ -10,6 +10,7 @@ use App\Http\Requests\Submitting\WatchAdvertRequest;
 use App\Models\Advert;
 use App\Models\AdvertPhoto;
 use App\Models\LimitNotVipAdvert;
+use App\Models\Price;
 use App\Models\Status;
 use App\Models\UserCountAdvert;
 use App\Services\FixStatusAdvert;
@@ -26,11 +27,13 @@ class SubmittingController extends Controller
      * @param SubmittingService $service
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index(SubmittingRequest $request, SubmittingService $service)
+    public function index(SubmittingRequest $request, SubmittingService $service, PayService $payService)
     {
         $limit = LimitNotVipAdvert::first();
         $userCountAdvert = UserCountAdvert::where('user_id', auth()->user()->id)->first();
-        if (!$userCountAdvert || $userCountAdvert->adverts_count < $limit->value || $userCountAdvert->paid == 1){
+        $price = Price::where('title', 'notVip')->first()->value;
+        if (!$userCountAdvert || $userCountAdvert->adverts_count < $limit->value
+            || $payService->getScore() > $price){
             return view('submitting.pages.advert', $service->getWatchItemsForFirstStep());
         } else {
             return redirect()->back();
@@ -120,7 +123,8 @@ class SubmittingController extends Controller
      */
     public function buyVip(PayService $service, Advert $advert)
     {
-        if ($service->getScore() >= 50){
+        $price = Price::where('title', 'vip')->first()->value;
+        if ($service->getScore() >= $price){
             $service->bayVipStatusFromCost($advert);
 
             return redirect()->back();
@@ -133,7 +137,7 @@ class SubmittingController extends Controller
      * @param SubmittingService $service
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function publish(Advert $advert, SubmittingService $service)
+    public function publish(Advert $advert, SubmittingService $service, PayService $payService)
     {
         $service->setModerationStatus($advert->id);
         $statusId = Status::where('title', 'moderation')->first()->id;

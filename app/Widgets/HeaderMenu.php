@@ -15,6 +15,7 @@ use App\Models\LimitNotVipAdvert;
 use App\Models\MaterialsClasp;
 use App\Models\MechanismType;
 use App\Models\Option;
+use App\Models\Price;
 use App\Models\Province;
 use App\Models\Sex;
 use App\Models\SparePartsMake;
@@ -32,6 +33,7 @@ use App\Models\WatchType;
 use App\Models\WatchWaterproof;
 use App\Models\WidthClasp;
 use App\Models\YearAdvert;
+use App\Services\PayService;
 use Arrilot\Widgets\AbstractWidget;
 
 class HeaderMenu extends AbstractWidget
@@ -49,15 +51,25 @@ class HeaderMenu extends AbstractWidget
      */
     public function run()
     {
-        $userCountAdvert = UserCountAdvert::where('user_id', auth()->user()->id)->first();
-        $limit = LimitNotVipAdvert::first()->value;
+        $viewArr['config'] = $this->config;
+        $viewArr['adverts'] = Advert::where('type', 'watch')->get();
+        $viewArr['brands'] = WatchMake::where('status', 1)->get();
 
-        return view('widgets.header_menu', [
-            'config' => $this->config,
-            'adverts' => Advert::where('type', 'watch')->get(),
-            'brands' => WatchMake::where('status', 1)->get(),
-            'userCountAdvert' => $userCountAdvert,
-            'limit' => $limit,
-        ]);
+        if (\Auth::check()){
+            $userCountAdvert = UserCountAdvert::where('user_id', auth()->user()->id)->first();
+            $limit = LimitNotVipAdvert::first()->value;
+            $viewArr['userCountAdvert'] = $userCountAdvert;
+            $viewArr['limit'] = $limit;
+
+            $payService = new PayService();
+            $price = Price::where('title', 'notVip')->first()->value;
+            if ($payService->getScore() > $price){
+                $viewArr['rule_price'] = 1;
+            } else {
+                $viewArr['rule_price'] = 0;
+            }
+        }
+
+        return view('widgets.header_menu', $viewArr);
     }
 }
