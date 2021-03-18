@@ -9,10 +9,18 @@ use App\Models\LimitNotVipAdvert;
 use App\Models\MechanismType;
 use App\Models\Price;
 use App\Models\WatchType;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
+use Validator;
 
 class AdminDataController extends Controller
 {
+    /**
+     * @return Application|Factory|View
+     */
     public function index()
     {
         $infoArr['watchTypes'] = WatchType::all();
@@ -24,7 +32,12 @@ class AdminDataController extends Controller
         return view('admin.pages.moderation_data', $infoArr);
     }
 
-    public function changeStatusWatchType(WatchType $watchType, int $status)
+    /**
+     * @param WatchType $watchType
+     * @param int $status
+     * @return RedirectResponse
+     */
+    public function changeStatusWatchType(WatchType $watchType, int $status): RedirectResponse
     {
         $watchType->is_active = $status;
         $watchType->save();
@@ -32,12 +45,21 @@ class AdminDataController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * @param WatchType $watchType
+     * @return Application|Factory|View
+     */
     public function updateWatchTypeIndex(WatchType $watchType)
     {
         return view('admin.pages.update_watch_type', ['watchType' => $watchType]);
     }
 
-    public function updateWatchType(WatchType $watchType, AdminDataRequest $request)
+    /**
+     * @param WatchType $watchType
+     * @param AdminDataRequest $request
+     * @return RedirectResponse
+     */
+    public function updateWatchType(WatchType $watchType, AdminDataRequest $request): RedirectResponse
     {
         $watchType->title = $request->name;
         $watchType->save();
@@ -45,7 +67,11 @@ class AdminDataController extends Controller
         return redirect()->back();
     }
 
-    public function createWatchType(AdminDataRequest $request)
+    /**
+     * @param AdminDataRequest $request
+     * @return RedirectResponse
+     */
+    public function createWatchType(AdminDataRequest $request): RedirectResponse
     {
         $watchType = new WatchType();
         $watchType->title = $request->name;
@@ -54,14 +80,24 @@ class AdminDataController extends Controller
         return redirect()->back();
     }
 
-    public function deleteWatchType(WatchType $watchType)
+    /**
+     * @param WatchType $watchType
+     * @return RedirectResponse
+     * @throws \Exception
+     */
+    public function deleteWatchType(WatchType $watchType): RedirectResponse
     {
         $watchType->delete();
 
         return redirect()->back();
     }
 
-    public function changeStatusMechanismType(MechanismType $mechanismType, int $status)
+    /**
+     * @param MechanismType $mechanismType
+     * @param int $status
+     * @return RedirectResponse
+     */
+    public function changeStatusMechanismType(MechanismType $mechanismType, int $status): RedirectResponse
     {
         if ($status != 0 && $status != 1){
             return redirect()->back();
@@ -73,12 +109,21 @@ class AdminDataController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * @param MechanismType $mechanismType
+     * @return Application|Factory|View
+     */
     public function updateMechanismTypeIndex(MechanismType $mechanismType)
     {
         return view('admin.pages.update_mechanism_type', ['mechanismType' => $mechanismType]);
     }
 
-    public function updateMechanismType(MechanismType $mechanismType, AdminDataRequest $request)
+    /**
+     * @param MechanismType $mechanismType
+     * @param AdminDataRequest $request
+     * @return RedirectResponse
+     */
+    public function updateMechanismType(MechanismType $mechanismType, AdminDataRequest $request): RedirectResponse
     {
         $mechanismType->title = $request->name;
         $mechanismType->save();
@@ -86,7 +131,11 @@ class AdminDataController extends Controller
         return redirect()->back();
     }
 
-    public function createMechanismType(AdminDataRequest $request)
+    /**
+     * @param AdminDataRequest $request
+     * @return RedirectResponse
+     */
+    public function createMechanismType(AdminDataRequest $request): RedirectResponse
     {
         $mechanismType = new MechanismType();
         $mechanismType->title = $request->name;
@@ -95,7 +144,12 @@ class AdminDataController extends Controller
         return redirect()->back();
     }
 
-    public function changeStatusDeliveryVolume(DeliveryVolume $deliveryVolume, int $status)
+    /**
+     * @param DeliveryVolume $deliveryVolume
+     * @param int $status
+     * @return RedirectResponse
+     */
+    public function changeStatusDeliveryVolume(DeliveryVolume $deliveryVolume, int $status): RedirectResponse
     {
         if ($status != 0 && $status != 1){
             return redirect()->back();
@@ -107,12 +161,21 @@ class AdminDataController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * @param DeliveryVolume $deliveryVolume
+     * @return Application|Factory|View
+     */
     public function updateDeliveryVolumeIndex(DeliveryVolume $deliveryVolume)
     {
         return view('admin.pages.update_delivery_volume', ['deliveryVolume' => $deliveryVolume]);
     }
 
-    public function updateDeliveryVolume(DeliveryVolume $deliveryVolume, AdminDataRequest $request)
+    /**
+     * @param DeliveryVolume $deliveryVolume
+     * @param AdminDataRequest $request
+     * @return RedirectResponse
+     */
+    public function updateDeliveryVolume(DeliveryVolume $deliveryVolume, AdminDataRequest $request): RedirectResponse
     {
         $deliveryVolume->title = $request->name;
         $deliveryVolume->save();
@@ -120,7 +183,11 @@ class AdminDataController extends Controller
         return redirect()->back();
     }
 
-    public function createDeliveryVolume(AdminDataRequest $request)
+    /**
+     * @param AdminDataRequest $request
+     * @return RedirectResponse
+     */
+    public function createDeliveryVolume(AdminDataRequest $request): RedirectResponse
     {
         $deliveryVolume = new DeliveryVolume();
         $deliveryVolume->title = $request->name;
@@ -129,9 +196,13 @@ class AdminDataController extends Controller
         return redirect()->back();
     }
 
-    public function setCountFreeAdverts(Request $request)
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function setCountFreeAdverts(Request $request): RedirectResponse
     {
-        $validator = \Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
             'count_free_adverts' => 'numeric'
         ]);
         if ($validator->fails()){
