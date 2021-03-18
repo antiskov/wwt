@@ -6,10 +6,18 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Price;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
+use Validator;
 
 class ManagePrice extends Controller
 {
+    /**
+     * @return Application|Factory|View
+     */
     public function show()
     {
         $price = Price::where('title', 'vip')->first();
@@ -21,9 +29,13 @@ class ManagePrice extends Controller
         ]);
     }
 
-    public function setPrice(Request $request)
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function setPrice(Request $request): RedirectResponse
     {
-        $validator = \Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
            'price_vip' => 'numeric'
         ]);
         if ($validator->fails()){
@@ -41,9 +53,13 @@ class ManagePrice extends Controller
 
     }
 
-    public function setNotVipPrice(Request $request)
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function setNotVipPrice(Request $request): RedirectResponse
     {
-        $validator = \Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
             'price_not_vip' => 'numeric'
         ]);
         if ($validator->fails()){

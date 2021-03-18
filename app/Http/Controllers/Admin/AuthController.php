@@ -5,14 +5,18 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Services\UserService;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\View\View;
 
 class AuthController extends Controller
 {
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     * @return Application|Factory|RedirectResponse|View
      */
     public function showLogin()
     {
@@ -31,9 +35,9 @@ class AuthController extends Controller
 
     /**
      * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
-    public function login(Request $request)
+    public function login(Request $request): RedirectResponse
     {
         \Log::info($request->email.' '.$request->password);
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
@@ -47,16 +51,16 @@ class AuthController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
-    public function logout()
+    public function logout(): RedirectResponse
     {
         Auth::logout();
         return redirect()->route('admin.showlogin');
     }
 
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|Factory|View
      */
     public function dashboard() {
         return view('admin.pages.dashboard');

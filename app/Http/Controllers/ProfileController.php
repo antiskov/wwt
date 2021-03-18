@@ -47,9 +47,10 @@ class ProfileController extends Controller
     /**
      * @param Request $request
      * @param UserService $setSetting
+     * @param SubscribeService $subscribeService
      * @return RedirectResponse
      */
-    public function setBasicSettings(Request $request, UserService $setSetting, SubscribeService $subscribeService)
+    public function setBasicSettings(Request $request, UserService $setSetting, SubscribeService $subscribeService): RedirectResponse
     {
         $setSetting->setSetting($request, $subscribeService);
 
@@ -60,7 +61,6 @@ class ProfileController extends Controller
     /**
      * @param ProfileService $service
      * @param UserService $userService
-     * @param ProfileService $profileService
      * @return Application|Factory|View
      */
     public function editingProfileIndex(ProfileService $service, UserService $userService)
@@ -81,7 +81,7 @@ class ProfileController extends Controller
      * @param ProfileService $form
      * @return RedirectResponse
      */
-    public function editingProfileForm(ProfileRequest $request, ProfileService $form)
+    public function editingProfileForm(ProfileRequest $request, ProfileService $form): RedirectResponse
     {
         if ($request->phone){
             $validArr['phone'] = 'numeric';
@@ -109,7 +109,7 @@ class ProfileController extends Controller
      * @param ProfileService $deleted
      * @return RedirectResponse
      */
-    public function deleteAvatar(ProfileService $deleted)
+    public function deleteAvatar(ProfileService $deleted): RedirectResponse
     {
         $deleted->deleteAvatar();
 
@@ -120,7 +120,7 @@ class ProfileController extends Controller
      * @param ProfileService $deleted
      * @return RedirectResponse
      */
-    public function deleteUser(ProfileService $deleted)
+    public function deleteUser(ProfileService $deleted): RedirectResponse
     {
         $deleted->deleteUser();
 
@@ -131,7 +131,7 @@ class ProfileController extends Controller
      * @param SecurityService $service
      * @return RedirectResponse
      */
-    public function resetPassword(SecurityService $service)
+    public function resetPassword(SecurityService $service): RedirectResponse
     {
         $service->resetPassword(auth()->user());
 
@@ -172,7 +172,7 @@ class ProfileController extends Controller
      * @param int $status
      * @return RedirectResponse
      */
-    public function myAdvertsChange(int $status)
+    public function myAdvertsChange(int $status): RedirectResponse
     {
         Session::put('advertStatus', $status);
 
@@ -204,7 +204,7 @@ class ProfileController extends Controller
      * @param ProfileService $service
      * @return JsonResponse
      */
-    public function changeFavorite(int $status, ProfileService $service)
+    public function changeFavorite(int $status, ProfileService $service): JsonResponse
     {
 
         $data = [
@@ -222,7 +222,7 @@ class ProfileController extends Controller
      * @param Advert $advert
      * @return RedirectResponse
      */
-    public function deleteFavorite(Advert $advert)
+    public function deleteFavorite(Advert $advert): RedirectResponse
     {
         if ($favorite = UserFavoriteAdvert::where('advert_id', $advert->id)->where('user_id', auth()->user()->id)->first()) {
             $favorite->delete();
@@ -235,7 +235,7 @@ class ProfileController extends Controller
      * @param $search
      * @return RedirectResponse
      */
-    public function deleteSearch($search)
+    public function deleteSearch($search): RedirectResponse
     {
         if ($search = SearchLink::where('id', $search)->first()) {
             $search->delete();
@@ -261,7 +261,7 @@ class ProfileController extends Controller
      * @param $referral_code
      * @return RedirectResponse
      */
-    public function getReferral($referral_code)
+    public function getReferral($referral_code): RedirectResponse
     {
         if (User::where('referral_code', $referral_code)->first()) {
             Cookie::queue(Cookie::make('referral_code', $referral_code));
@@ -291,7 +291,7 @@ class ProfileController extends Controller
      * @param PayService $service
      * @return RedirectResponse
      */
-    public function setTransaction(Request $request, PayService $service)
+    public function setTransaction(Request $request, PayService $service): RedirectResponse
     {
         return redirect()->route('go_to_liqpay', $service->setTransactionDB($request));
     }

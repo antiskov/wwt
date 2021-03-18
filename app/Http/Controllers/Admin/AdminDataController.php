@@ -24,12 +24,8 @@ class AdminDataController extends Controller
         return view('admin.pages.moderation_data', $infoArr);
     }
 
-    public function changeStatusWatchType(WatchType $watchType, $status)
+    public function changeStatusWatchType(WatchType $watchType, int $status)
     {
-        if ($status != 0 && $status != 1){
-            return redirect()->back();
-        }
-
         $watchType->is_active = $status;
         $watchType->save();
 
@@ -65,7 +61,7 @@ class AdminDataController extends Controller
         return redirect()->back();
     }
 
-    public function changeStatusMechanismType(MechanismType $mechanismType, $status)
+    public function changeStatusMechanismType(MechanismType $mechanismType, int $status)
     {
         if ($status != 0 && $status != 1){
             return redirect()->back();
@@ -99,7 +95,7 @@ class AdminDataController extends Controller
         return redirect()->back();
     }
 
-    public function changeStatusDeliveryVolume(DeliveryVolume $deliveryVolume, $status)
+    public function changeStatusDeliveryVolume(DeliveryVolume $deliveryVolume, int $status)
     {
         if ($status != 0 && $status != 1){
             return redirect()->back();
@@ -148,6 +144,7 @@ class AdminDataController extends Controller
         }
         $limit->value = $request->count_free_adverts;
         $limit->save();
+
         return redirect()->back();
 
     }

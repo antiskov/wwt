@@ -6,11 +6,16 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\SliderRequest;
 use App\Models\HomeSlider;
 use App\Services\SliderService;
+use Exception;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class SliderController extends Controller
 {
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|Factory|View
      */
     public function index()
     {
@@ -24,9 +29,9 @@ class SliderController extends Controller
     /**
      * @param SliderRequest $request
      * @param SliderService $service
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
-    public function upload(SliderRequest $request, SliderService $service)
+    public function upload(SliderRequest $request, SliderService $service): RedirectResponse
     {
         $service->uploadSlider($request);
 
@@ -35,9 +40,9 @@ class SliderController extends Controller
 
     /**
      * @param HomeSlider $slider
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
-    public function deactivation(HomeSlider $slider)
+    public function deactivation(HomeSlider $slider): RedirectResponse
     {
         $slider->is_active = 0;
         $slider->save();
@@ -47,9 +52,9 @@ class SliderController extends Controller
 
     /**
      * @param HomeSlider $slider
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
-    public function activation(HomeSlider $slider)
+    public function activation(HomeSlider $slider): RedirectResponse
     {
         $slider->is_active = 1;
         $slider->save();
@@ -59,10 +64,10 @@ class SliderController extends Controller
 
     /**
      * @param HomeSlider $slider
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Exception
+     * @return RedirectResponse
+     * @throws Exception
      */
-    public function delete(HomeSlider $slider)
+    public function delete(HomeSlider $slider): RedirectResponse
     {
         $slider->delete();
 

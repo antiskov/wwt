@@ -28,7 +28,7 @@ Route::middleware('set.locale')->group(function () {
     Route::get('/status_pay/{order_id}', [\App\Http\Controllers\HomeController::class, 'getStatusPay'])->name('status_pay');
     Route::post('/set_cost', [\App\Http\Controllers\ProfileController::class, 'setTransaction'])->name('set_transaction');
     Route::get('/go_to_liqpay/{order_id}', [\App\Http\Controllers\ProfileController::class, 'goToLiqPay'])->name('go_to_liqpay');
-    Route::get('/update_rate', [\App\Http\Controllers\RateController::class])->name('update_rate');
+    Route::get('/update_rate', [\App\Http\Controllers\RateController::class, 'update'])->name('update_rate');
     Route::get('/about', [\App\Http\Controllers\HomeController::class, 'getAbout'])->name('about');
     Route::post('/send_about', [\App\Http\Controllers\HomeController::class, 'sendAbout'])->name('send_about');
     Route::get('/set_locale/{lang}', [\App\Http\Controllers\HomeController::class, 'setLocale'])->name('set_locale');

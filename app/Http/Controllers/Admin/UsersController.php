@@ -10,15 +10,19 @@ use App\Http\Requests\Admin\UpdateUserFormRequest;
 use App\Models\Role;
 use App\Models\User;
 use App\Services\UserService;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\View\View;
 
 class UsersController extends Controller
 {
     /**
      * @param UserService $userService
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|Factory|View
      */
     public function index(UserService $userService)
     {
@@ -29,7 +33,7 @@ class UsersController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|Factory|View
      */
     public function showCreateUser()
     {
@@ -43,9 +47,9 @@ class UsersController extends Controller
     /**
      * @param CreateUserFormRequest $request
      * @param UserService $userService
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
-    public function store(CreateUserFormRequest $request, UserService $userService)
+    public function store(CreateUserFormRequest $request, UserService $userService): RedirectResponse
     {
 
         Log::info('in user controller creation');
@@ -57,7 +61,7 @@ class UsersController extends Controller
 
     /**
      * @param User $user
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|Factory|View
      */
     public function showEditUser(User $user)
     {
@@ -69,13 +73,12 @@ class UsersController extends Controller
     }
 
     /**
-     * @param UpdateUserFormRequest $request
-     * @param UserService $userService
+     * @param Request $request
      * @param User $user
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
 
-    public function update(Request $request, User $user)
+    public function update(Request $request, User $user): RedirectResponse
     {
         $validator = Validator::make($request->all(), [
             'email'=>'required',

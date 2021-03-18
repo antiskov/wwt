@@ -11,17 +11,19 @@ use App\Services\PayService;
 use App\Services\ProfileService;
 use App\Services\SubscribeService;
 use App\Services\UserService;
-use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\Foundation\Application as ApplicationAlias;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\View\View;
 
 class HomeController extends Controller
 {
     /**
-     * @param UserService $user
-     * @return Application|Factory|View
+     * @param Request $request
+     * @return ApplicationAlias|Factory|View
      */
     public function main(Request $request) {
         if(!Cookie::get('referral_code')){
@@ -37,9 +39,9 @@ class HomeController extends Controller
     /**
      * @param Request $request
      * @param SubscribeService $service
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
-    public function subscribe(Request $request, SubscribeService $service)
+    public function subscribe(Request $request, SubscribeService $service): RedirectResponse
     {
         $request->validate(['email' => 'required|email']);
         $service->setSubscribe($request->get('email'));
@@ -50,9 +52,9 @@ class HomeController extends Controller
     /**
      * @param Request $request
      * @param SubscribeService $service
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
-    public function unsubscribe(Request $request, SubscribeService $service)
+    public function unsubscribe(Request $request, SubscribeService $service): RedirectResponse
     {
         $service->changeSubscribe($request->get('email'), 0);
 
@@ -62,7 +64,7 @@ class HomeController extends Controller
     /**
      * @param $order_id
      * @param PayService $service
-     * @return Application|Factory|\Illuminate\View\View
+     * @return ApplicationAlias|Factory|View
      */
     public function getStatusPay($order_id, PayService $service)
     {
@@ -74,7 +76,7 @@ class HomeController extends Controller
     }
 
     /**
-     * @return Application|Factory|\Illuminate\View\View
+     * @return ApplicationAlias|Factory|View
      */
     public function getAbout()
     {
@@ -83,9 +85,9 @@ class HomeController extends Controller
 
     /**
      * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
-    public function sendAbout(Request $request)
+    public function sendAbout(Request $request): RedirectResponse
     {
         $request->validate(['email' => 'required|email']);
         Mail::to($request->email)->send(new SendAbout($request));
@@ -101,6 +103,10 @@ class HomeController extends Controller
         Cookie::queue(Cookie::make('language', $lang));
     }
 
+    /**
+     * @param Request $request
+     * @return ApplicationAlias|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     */
     public function sendAdEMail(Request $request)
     {
         $request->validate(['email' => 'required|email']);

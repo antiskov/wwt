@@ -6,13 +6,17 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MakerRequest;
 use App\Models\WatchMake;
 use App\Services\WatchMakerService;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 use Validator;
 
 class MakersController extends Controller
 {
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|Factory|View
      */
     public function index()
     {
@@ -24,9 +28,9 @@ class MakersController extends Controller
     /**
      * @param MakerRequest $request
      * @param WatchMakerService $service
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
-    public function upload(MakerRequest $request, WatchMakerService $service)
+    public function upload(MakerRequest $request, WatchMakerService $service): RedirectResponse
     {
         $service->createMaker($request);
 
@@ -36,9 +40,9 @@ class MakersController extends Controller
     /**
      * @param int $status
      * @param WatchMake $maker
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
-    public function changeStatus(int $status, WatchMake $maker)
+    public function changeStatus(int $status, WatchMake $maker): RedirectResponse
     {
         if($status == 1) {
             $maker->status = 1;
@@ -52,7 +56,7 @@ class MakersController extends Controller
 
     /**
      * @param WatchMake $maker
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|Factory|View
      */
     public function updateMakerIndex(WatchMake $maker)
     {
@@ -63,9 +67,9 @@ class MakersController extends Controller
      * @param Request $request
      * @param WatchMake $maker
      * @param WatchMakerService $service
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
-    public function updateMaker(Request $request, WatchMake $maker, WatchMakerService $service)
+    public function updateMaker(Request $request, WatchMake $maker, WatchMakerService $service): RedirectResponse
     {
         $request->validate(['logo' => 'required|image']);
         $service->updateMaker($request, $maker);
@@ -73,7 +77,12 @@ class MakersController extends Controller
         return redirect()->back();
     }
 
-    public function setModeration($status, WatchMake $maker)
+    /**
+     * @param $status
+     * @param WatchMake $maker
+     * @return RedirectResponse
+     */
+    public function setModeration($status, WatchMake $maker): RedirectResponse
     {
         if ($status != 0 && $status != 1){
             return redirect()->back();

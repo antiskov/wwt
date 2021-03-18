@@ -6,12 +6,22 @@ use App\Events\Message;
 use App\Models\Dialogs;
 use App\Models\Messages;
 use App\Services\DialogsService;
+use App\Services\ProfileService;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\View\View;
 
 class DialogsController extends Controller
 {
+    /**
+     * @param null $id
+     * @param DialogsService $service
+     * @return Application|Factory|RedirectResponse|View
+     */
     public function show($id = null, DialogsService $service)
     {
 
@@ -36,8 +46,8 @@ class DialogsController extends Controller
         }
 
         $respondentId=Auth::id()==$currentDialog->advert->user_id?$currentDialog->initiator_id:$currentDialog->respondent_id;
-        $respondent_avatar=$currentDialog?(new \App\Services\ProfileService())->getAvatar($respondentId):'/images/content/person.png';
-        $ua=(new \App\Services\ProfileService())->getAvatar(Auth::id());
+        $respondent_avatar=$currentDialog?(new ProfileService())->getAvatar($respondentId):'/images/content/person.png';
+        $ua=(new ProfileService())->getAvatar(Auth::id());
         $user_avatar=$ua?$ua:'/images/icons/wwt_profile_avatar.png';
         return view('profile_user.pages.my_messages',
         [
@@ -51,11 +61,19 @@ class DialogsController extends Controller
         ]);
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function getMessage($id) {
         return Messages::where('dialog_id',$id)->get();
     }
 
-    public function sendMessage(Request $request)
+    /**
+     * @param Request $request
+     * @return Messages
+     */
+    public function sendMessage(Request $request): Messages
     {
         $m=new Messages();
         $m->dialog_id=$request->dialog_id;

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\EmailCodeValidException;
 use App\Http\Requests\CheckEmailRequest;
 use App\Http\Requests\LoginFormRequest;
 use App\Http\Requests\RegisterFormRequest;
@@ -11,6 +12,8 @@ use App\Models\User;
 use App\Services\DialogsService;
 use App\Services\SubscribeService;
 use App\Services\UserService;
+use Cookie;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
@@ -19,9 +22,9 @@ class AjaxController extends Controller
 {
     /**
      * @param CheckEmailRequest $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function checkLoginEmail(CheckEmailRequest $request)
+    public function checkLoginEmail(CheckEmailRequest $request): JsonResponse
     {
         $user = User::where('email', "=", $request->email)->first();
         if ($user) {
@@ -41,14 +44,14 @@ class AjaxController extends Controller
 
     /**
      * @param LoginFormRequest $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function authUser(LoginFormRequest $request)
+    public function authUser(LoginFormRequest $request): JsonResponse
     {
         $email = $request->email;
         $password = $request->password;
         $remember = $request->remember;
-        \Cookie::queue(\Cookie::forget('remember'));
+        Cookie::queue(Cookie::forget('remember'));
         setcookie('remember', $remember ? 1 : 0);
 
         if (Auth::attempt(['email' => $email, 'password' => $password, 'is_active' => 1], $remember)) {
@@ -68,10 +71,10 @@ class AjaxController extends Controller
      * @param RegisterFormRequest $request
      * @param UserService $userService
      * @param SubscribeService $subscribeService
-     * @return \Illuminate\Http\JsonResponse
-     * @throws \App\Exceptions\EmailCodeValidException
+     * @return JsonResponse
+     * @throws EmailCodeValidException
      */
-    public function registerUser(RegisterFormRequest $request, UserService $userService, SubscribeService $subscribeService)
+    public function registerUser(RegisterFormRequest $request, UserService $userService, SubscribeService $subscribeService): JsonResponse
     {
         $user = $userService->create($request->getDto());
         if($request->mailing){
@@ -86,7 +89,13 @@ class AjaxController extends Controller
 
         return response()->json($data);
     }
-    public function getLinkToDialog(Advert $advert, DialogsService $service)
+
+    /**
+     * @param Advert $advert
+     * @param DialogsService $service
+     * @return JsonResponse
+     */
+    public function getLinkToDialog(Advert $advert, DialogsService $service): JsonResponse
     {
         return response()->json(['url'=>$service->getLinkToTheDialog($advert)]);
     }

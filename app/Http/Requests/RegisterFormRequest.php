@@ -12,7 +12,7 @@ class RegisterFormRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -22,7 +22,7 @@ class RegisterFormRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'referrer'=>'string',
@@ -32,7 +32,7 @@ class RegisterFormRequest extends FormRequest
         ];
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [
             'email.unique:users' => 'A email must be unique',

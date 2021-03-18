@@ -3,15 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Services\RateService;
+use GuzzleHttp\Exception\GuzzleException;
 
 class RateController
 {
     /**
      * @param RateService $service
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws GuzzleException
      */
-    public function update(RateService $service)
+    public function update(RateService $service): \Illuminate\Http\RedirectResponse
     {
-        return $service->update();
+        $service->update();
+
+        return redirect()->back();
     }
 }

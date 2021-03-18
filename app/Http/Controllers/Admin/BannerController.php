@@ -6,11 +6,16 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\BannerRequest;
 use App\Models\Banner;
 use App\Services\BannerService;
+use Exception;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class BannerController extends Controller
 {
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|Factory|View
      */
     public function index()
     {
@@ -22,9 +27,9 @@ class BannerController extends Controller
     /**
      * @param BannerRequest $request
      * @param BannerService $service
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
-    public function createBanner(BannerRequest $request, BannerService $service)
+    public function createBanner(BannerRequest $request, BannerService $service): RedirectResponse
     {
         $service->createBanner($request);
 
@@ -33,9 +38,9 @@ class BannerController extends Controller
 
     /**
      * @param Banner $banner
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
-    public function closeBanner(Banner $banner)
+    public function closeBanner(Banner $banner): RedirectResponse
     {
         $banner->is_active = 0;
         $banner->save();
@@ -45,10 +50,10 @@ class BannerController extends Controller
 
     /**
      * @param Banner $banner
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Exception
+     * @return RedirectResponse
+     * @throws Exception
      */
-    public function deleteBanner(Banner $banner)
+    public function deleteBanner(Banner $banner): RedirectResponse
     {
         $banner->delete();
 

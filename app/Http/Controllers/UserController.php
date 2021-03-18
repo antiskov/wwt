@@ -13,7 +13,7 @@ class UserController extends Controller
     /**
      * @return RedirectResponse
      */
-    public function logout()
+    public function logout(): RedirectResponse
     {
         Auth::logout();
         return redirect()->back();
@@ -23,7 +23,7 @@ class UserController extends Controller
      * @param string $email
      * @return RedirectResponse
      */
-    public function resetPassword(string $email)
+    public function resetPassword(string $email): RedirectResponse
     {
         $pass = new SecurityService();
         $user = User::where('email', '=', $email)->first();
@@ -35,7 +35,8 @@ class UserController extends Controller
      * @param $email_verification_code
      * @return RedirectResponse
      */
-    public function emailVerificationCode($email_verification_code) {
+    public function emailVerificationCode($email_verification_code): RedirectResponse
+    {
         $user = User::where('email_verification_code', '=', $email_verification_code)->first();
         $emailCode = new UserService();
         $emailCode->setActivity($user);

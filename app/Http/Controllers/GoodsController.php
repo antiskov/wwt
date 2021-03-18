@@ -11,7 +11,11 @@ use App\Models\UserFavoriteAdvert;
 use App\Services\CatalogService;
 use App\Services\UserService;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class GoodsController extends Controller
 {
@@ -19,7 +23,7 @@ class GoodsController extends Controller
      * @param Advert $advert
      * @param CatalogService $service
      * @param UserService $userService
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|Factory|View
      */
     public function index(Advert $advert, CatalogService $service, UserService $userService)
     {
@@ -29,9 +33,9 @@ class GoodsController extends Controller
     /**
      * @param Advert $advert
      * @param $favorite
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function setFavorite(Advert $advert, $favorite)
+    public function setFavorite(Advert $advert, $favorite): JsonResponse
     {
         $user = auth()->user();
         if($favorite == 1) {
@@ -47,9 +51,9 @@ class GoodsController extends Controller
     /**
      * @param Advert $advert
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function showPhone(Advert $advert, Request $request)
+    public function showPhone(Advert $advert, Request $request): JsonResponse
     {
         $advert->number_phone_show = $advert->number_phone_show + 1;
         $advert->save();

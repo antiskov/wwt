@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
  * @method static orderBy(string $string, string $string1)
  * @method static find(mixed $id)
  * @property mixed user_id
+ * @property int|mixed number_phone_show
  */
 class Advert extends Model implements Viewable
 {

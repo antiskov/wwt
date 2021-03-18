@@ -15,12 +15,17 @@ use App\Services\FixStatusAdvert;
 use App\Services\ModerationService;
 use App\Services\PayService;
 use App\Services\WatchModelService;
+use Exception;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Log;
+use Illuminate\View\View;
 
 class ModerationAdvertsController extends Controller
 {
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|Factory|View
      */
     public function index()
     {
@@ -38,10 +43,11 @@ class ModerationAdvertsController extends Controller
      * @param Advert $advert
      * @param ModerationService $advertsService
      * @param WatchModelService $modelService
-     * @return \Illuminate\Http\RedirectResponse
+     * @param PayService $service
+     * @return RedirectResponse
      */
     public function changeStatus(Status $status, Advert $advert, ModerationService $advertsService,
-                                 WatchModelService $modelService, PayService $service)
+                                 WatchModelService $modelService, PayService $service): RedirectResponse
     {
         $advertsService->changeStatus($status, $advert);
         if($status->title == 'published')
@@ -88,10 +94,10 @@ class ModerationAdvertsController extends Controller
 
     /**
      * @param Advert $advert
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Exception
+     * @return RedirectResponse
+     * @throws Exception
      */
-    public function deleteAdvert(Advert $advert)
+    public function deleteAdvert(Advert $advert): RedirectResponse
     {
         $advert->delete();
 

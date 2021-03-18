@@ -7,18 +7,25 @@ use App\Models\Advert;
 use App\Models\Status;
 use App\Models\User;
 use App\Services\CatalogService;
+use App\Services\ProfileService;
 use App\Services\RateService;
 use App\Services\SubmittingService;
 use App\Services\UserService;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\View\View;
+use Session;
 
 class CatalogController extends Controller
 {
     /**
      * @param CatalogService $service
      * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|Factory|View
      */
     public function getFilterResult(CatalogService $service, Request $request)
     {
@@ -28,7 +35,7 @@ class CatalogController extends Controller
     /**
      * @param CatalogService $service
      * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|Factory|View
      */
     public function getResultForHome(CatalogService $service, Request $request)
     {
@@ -38,7 +45,7 @@ class CatalogController extends Controller
     /**
      * @param User $user
      * @param UserService $service
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|Factory|View
      */
     public function sellerPage(User $user, UserService $service)
     {
@@ -48,7 +55,7 @@ class CatalogController extends Controller
             'user' => $user,
             'userLanguages' => $service->userLanguages($user),
             'adverts' => Advert::where('user_id', $user->id)->where('status_id', $status_id)->get(),
-            'linkAvatar' => (new \App\Services\ProfileService())->getAvatar($user->id),
+            'linkAvatar' => (new ProfileService())->getAvatar($user->id),
             'currency' => (new RateService())->checkRate(),
             'pageTitle' => 'WWT | '.$user->name,
         ]);
@@ -57,9 +64,9 @@ class CatalogController extends Controller
     /**
      * @param CatalogService $service
      * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
-    public function saveSearch(CatalogService $service, Request $request)
+    public function saveSearch(CatalogService $service, Request $request): RedirectResponse
     {
         $service->saveSearch($service->getFilterResult($request));
 
@@ -71,9 +78,9 @@ class CatalogController extends Controller
      * @param Request $request
      * @param $type
      * @param int $user
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function countResults(CatalogService $service, Request $request, $type, $user = 0)
+    public function countResults(CatalogService $service, Request $request, $type, $user = 0): JsonResponse
     {
         $a = $service->getFilterResults($request, $type, $user);
 
@@ -86,9 +93,9 @@ class CatalogController extends Controller
 
     /**
      * @param int $countPagination
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
-    public function countPagination($countPagination = 50)
+    public function countPagination($countPagination = 50): RedirectResponse
     {
         Cookie::queue(Cookie::make('countPagination', $countPagination));
 
@@ -99,7 +106,7 @@ class CatalogController extends Controller
      * @param CatalogService $service
      * @param Request $request
      * @param User $user
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Application|Factory|View
      */
     public function sellerAds(CatalogService $service, Request $request, User $user)
     {
@@ -108,11 +115,11 @@ class CatalogController extends Controller
 
     /**
      * @param $currency
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
-    public function setRate($currency)
+    public function setRate($currency): RedirectResponse
     {
-        \Session::put('currency', $currency);
+        Session::put('currency', $currency);
         $link = redirect()->back()->getSession()->all();
         $new_link = strstr($link['_previous']['url'], '?', true);
 
@@ -122,22 +129,29 @@ class CatalogController extends Controller
         return redirect()->back();
     }
 
-    public function setOrderPrice($value)
+    /**
+     * @param $value
+     * @return RedirectResponse
+     */
+    public function setOrderPrice($value): RedirectResponse
     {
-        \Session::put('orderPrice', $value);
+        Session::put('orderPrice', $value);
 
         return redirect()->back();
     }
 
-    public function setOrderNew()
+    /**
+     * @return RedirectResponse
+     */
+    public function setOrderNew(): RedirectResponse
     {
-        if (\Session::has('orderNew')){
-            \Session::remove('orderNew');
+        if (Session::has('orderNew')){
+            Session::remove('orderNew');
         } else {
-            \Session::put('orderNew', 1);
+            Session::put('orderNew', 1);
         }
 
-        dump(\Session::get('orderNew'));
+        dump(Session::get('orderNew'));
         return redirect()->back();
     }
 }
